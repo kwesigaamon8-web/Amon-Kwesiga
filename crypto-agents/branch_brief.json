@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-13-branch-brief-v1",
-  "mission": "Find genuine paid tasks, clients, contracts and lawful compensation worldwide. Each branch worker must research independently, include original source URLs, screen for false or stale opportunities, and report actual evidence without inventing income.",
+  "version": "2026-11-13-branch-coin-only-v2",
+  "mission": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt. Independently find lawful real paid tasks, verify source, payer, chain, and Uganda eligibility when relevant.",
   "owner_data_policy": "No personal details, professional bio, location, names, family information, credentials, email, client data or private wallet information are supplied to branch workers.",
   "public_payment_routes": {
     "bitcoin_mainnet_primary": {
@@ -28,5 +28,5 @@
   },
   "payer_instructions": "These public destinations are payment requests for real agreed work, not proof of payment or a request for gifts. Before any payer sends, re-confirm the route and address with the owner over an appropriate channel; never mix chains or claim exchange balances. No Binance shared custody destinations or memos are shared.",
   "autonomy": "One manager (boss) supervises 15 distinct research roles. Each role performs one independent read-only source search, screens it and writes a separate JSON report. The boss consumes all 15 reports and may challenge or reject their findings. Social posting, job applications, negotiations, wallet use, paid fees, seed/private keys and transfers are not supported or authorized.",
-  "target_outputs": "Per branch: fifteen individually identified public research reports, zero-to-several *unverified* lead URLs, source failures, an accountable parent review, and distinction among research, applied, contracted, invoiced and verified received."
+  "target_outputs": "Every active role reports source-linked coin-paying work with scope, original payer, payment token and network checks. Success is only independent evidence of genuine crypto credited to an approved receiving route; nothing else."
 }
