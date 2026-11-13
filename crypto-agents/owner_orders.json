@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:17:26.761Z",
+  "updated_utc": "2026-11-13T17:19:53.999Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -395,6 +395,24 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Automated report writing and repo-internal evidence audit only; no external identity, account, paid contract or coin transfer implied."
+    },
+    {
+      "id": "ORD-025",
+      "title": "Prioritize real scheduled agent activity, mandatory evidence deliverables and independent research on other sites",
+      "accountable_director": "D10",
+      "standing_requirement": "OWNER PRIORITY (13 Nov 2026): Make actual activated worker research and individual evidence-backed deliverables the primary objective, ahead of creating further giant pools of role identifiers. All 30 primary research jobs should conduct permitted research and report; the 10 director jobs schedule 15 manager reviews and 30 rotated workers each per successful cycle, each activated S/G/H child only when its actual model invocation succeeds. Give different actively executed roles different legitimate sources, including documented key-free read-only APIs for Himalayas remote jobs, Arbeitnow jobs and public Superteam Earn listings, instead of only GitHub/Hacker News. Use authorized public sites to find paid work and tools; check original payer, real deliverable, eligibility and owner-approved correct-chain crypto payout. Every actually attempted identity creates an individual Markdown deliverable and each director gets a status index. D10 consolidates missing primary, manager and scheduled worker reports, model status, tools/site checks and independently verified receipts separately. Keep safely iterating on configured hourly schedules subject to actual GitHub runtime and provider quotas; do not make any false claim that 375,188,632,680 defined roles are active or working. Do not fabricate reports, contacts, contracts or deposited coins.",
+      "evidence_files": [
+        "crypto-agents/external_sites.json",
+        "crypto-agents/external_site_research.py",
+        "crypto-agents/agent_deliverables.py",
+        "crypto-agents/delivery_audit.py",
+        "crypto-agents/deliverable_contract.json",
+        ".github/workflows/crypto-directors.yml"
+      ],
+      "verification_condition": "Require completed workflow runs and inspect actual per-job site-reports, individual agent Markdown reports, per-job manifests and consolidated delivery audit, including model-completed counts and missing reports. Real money requires separate chain/account-credit verification.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Permitted read-only multi-source research and report generation only. Creating accounts, submissions, outreach beyond already authorized integrations, contract signing and cryptocurrency payments require separate actual capabilities/permissions."
     }
   ]
 }
