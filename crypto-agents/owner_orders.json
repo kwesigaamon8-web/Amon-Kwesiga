@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:20:14.462Z",
+  "updated_utc": "2026-11-13T17:21:07.782Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -432,6 +432,25 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Existing allowed public-source analysis, source comparison, drafting and reporting only. GPT-6/API access or proprietary ChatGPT features cannot be passed by instruction alone; external integrations require permissions and credentials."
+    },
+    {
+      "id": "ORD-027",
+      "title": "Every actually activated role independently reasons researches and delivers its own evidence",
+      "accountable_director": "D10",
+      "standing_requirement": "OWNER ORDER 13 Nov 2026: Every ACTUALLY ACTIVATED director, independent assistant, manager, worker, S subagent, G micro-worker and last H branch specialist must independently choose and critically assess its own bounded permitted research assignment, relevant sources, methods and next step, making a separate model decision when model invocation is available. Every role has a unique ID and exactly one supervisor for accountable reporting, not a controlling source of its conclusions. Peer/parent evidence may be used only as clearly identified untrusted input, never copied as a claim of independent discovery. Assign varied independent search/source tasks across active roles, pass relevant owner orders to every last H worker, and require a unique timestamped evidence-backed document of each genuinely attempted role. When source/model/compute limits block a role, show BLOCKED or NOT EXECUTED, never a pretend independently working agent. Directors and managers coordinate evidence and prevent duplicate contacts; they may not fabricate independent research. No authority for new external accounts, uncontrolled code, payments, spam or wallet signing. Maintain the primary objective of legitimate crypto coins independently verified received at approved correct-chain addresses.",
+      "evidence_files": [
+        "crypto-agents/autonomy_policy.json",
+        "crypto-agents/capability_pack.json",
+        "crypto-agents/capability_engine.py",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/agent_deliverables.py",
+        "crypto-agents/deliverable_contract.json",
+        "crypto-agents/order_cascade_audit.py"
+      ],
+      "verification_condition": "Count actual distinct successful model invocations by role ID and parent, unique source/assignment checks and unique generated Markdown reports; report duplicate/reused evidence as shared input. Check activated S/G/H inherit ORD-027 and independent model prompts. All unrun defined roles remain idle, not independent live workers.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Only actual permitted read-only research, analysis and documentation. No claim of billions of simultaneous AIs, separate accounts or deposited coins."
     }
   ]
 }
