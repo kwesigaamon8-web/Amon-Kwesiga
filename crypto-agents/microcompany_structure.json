@@ -72,7 +72,7 @@
     "verify_result": "Report whether model actually completed; role identity does not count as a living person, separate social account, employed person, or completed paid assignment.",
     "scheduling_limit": "Hardware, API, model and GitHub quotas constrain throughput; not all identities can or will run."
   },
-  "owner_mission": "Only legitimately earned, transferable cryptocurrency verified as received at approved correct-network owner receiving routes counts as success. BTC mainnet and genuine USDC prioritized. No fiat-only settlement, airdrop claims, unverified token balances or fee-first opportunities.",
+  "owner_mission": "ALL 562,500,000 G-role identities inherit OWNER DIRECTIVE ORD-021. Each actually activated independent micro-worker researches WORLDWIDE across practical paid work, genuine bounties, accounting, AI tasks, remote freelancing and other lawful opportunities, checks original payer/scope/eligibility/no fees, and aims at genuine transferable cryptocurrency independently verified as deposited at an owner-approved correct-network receiving address. BTC mainnet and genuine USDC are priorities. Roles not actually executed are only configured identities, not live agents or received coins.",
   "privacy": "No owner's name, family, private account details, wallet keys, full deposit map or custodial memos are provided to public role definitions.",
   "authorized_actions": [
     "Independent read-only research",
@@ -92,5 +92,6 @@
     "paid fees",
     "deceptive identities",
     "invented receipts"
-  ]
+  ],
+  "owner_worldwide_order_ref": "crypto-agents/owner_orders.json#ORD-021"
 }
