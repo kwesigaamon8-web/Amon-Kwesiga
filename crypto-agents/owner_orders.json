@@ -1,0 +1,258 @@
+{
+  "schema": "owner-orders-audit-v1",
+  "updated_utc": "2026-11-13T16:35:53Z",
+  "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
+  "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
+  "order_intake_issue": 8,
+  "order_author_gitHub_login": "kwesigaamon8-web",
+  "command_chain": [
+    "OWNER",
+    "10 directors",
+    "2 independent assistants per director, separate review line",
+    "15 managers per director",
+    "50 workers per manager",
+    "150 defined subagents per worker"
+  ],
+  "audit_policy": {
+    "source_of_truth": "Do not treat GitHub code presence as active AI operation or verified receipt.",
+    "execution_actions": "Only read-only validation, source research within configured limits, vetted evidence summarization and clearly authorized posts on the owner's repository. Arbitrary owner-comment text is never executed as shell code.",
+    "evidence_statuses": [
+      "configured_not_runtime_verified",
+      "runtime_verified",
+      "blocked",
+      "pending_external_auth_or_receipt"
+    ],
+    "hard_limits": "No private keys, credentials, wallet signing, money transfers, spam or invented earnings."
+  },
+  "orders": [
+    {
+      "id": "ORD-001",
+      "title": "Coin-only mission",
+      "accountable_director": "D10",
+      "standing_requirement": "The team must seek legitimate transferable cryptocurrency received at owner-approved correct-network addresses, and not count fiat-only work, points, empty balances, offers or claims as earnings.",
+      "evidence_files": [
+        "crypto-agents/shared_understanding.json",
+        "crypto-agents/owner_brief.json",
+        "crypto-agents/owner_command_chain.json"
+      ],
+      "verification_condition": "Validate correct receiving chain/token and independently confirmed credit; nothing is yet proven received.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-002",
+      "title": "Ten accountable directors",
+      "accountable_director": "D10",
+      "standing_requirement": "Ten directors independently set strategies but are ultimately accountable to owner and communicate verifiable work evidence.",
+      "evidence_files": [
+        "crypto-agents/company_hierarchy.json",
+        "crypto-agents/roles.json",
+        "crypto-agents/director_coordination.py"
+      ],
+      "verification_condition": "Validate hierarchy, director reporting and source-backed performance updates.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-003",
+      "title": "Two independent assistants per director",
+      "accountable_director": "D10",
+      "standing_requirement": "Twenty independent assistants research and challenge, each reporting directly to one director.",
+      "evidence_files": [
+        "crypto-agents/agent_registry.csv",
+        "crypto-agents/roles.json"
+      ],
+      "verification_condition": "Check unique names, parents and actual separate model outputs.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-004",
+      "title": "Fifteen managers per company",
+      "accountable_director": "D10",
+      "standing_requirement": "Ten companies with exactly fifteen managers each.",
+      "evidence_files": [
+        "crypto-agents/company_hierarchy.json",
+        "crypto-agents/agent_registry.csv"
+      ],
+      "verification_condition": "Check 150 manager IDs and exact one reporting director.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-005",
+      "title": "Fifty workers per manager",
+      "accountable_director": "D10",
+      "standing_requirement": "Each of 150 managers owns fifty distinct research workers, 7500 total.",
+      "evidence_files": [
+        "crypto-agents/agent_registry.csv",
+        "crypto-agents/company_workers.py"
+      ],
+      "verification_condition": "Check 7500 distinct worker IDs, 50 per manager and executed report counts separately.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-006",
+      "title": "150 subagents per worker",
+      "accountable_director": "D10",
+      "standing_requirement": "Each of 7500 worker roles defines 150 unique specialized children with exactly one parent, total 1125000 defined.",
+      "evidence_files": [
+        "crypto-agents/subagent_factory.json",
+        "crypto-agents/subagent_factory.py",
+        "crypto-agents/company_ai_review.py"
+      ],
+      "verification_condition": "Check uniqueness formula, valid parent chains, child inference success counts.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-007",
+      "title": "Independence and reporting",
+      "accountable_director": "D10",
+      "standing_requirement": "Every role can choose and challenge research independently while following a single manager chain, with verifiable execution.",
+      "evidence_files": [
+        "crypto-agents/autonomy_policy.json",
+        "crypto-agents/audit_independence.py"
+      ],
+      "verification_condition": "Separate configured role, model call actually completed, and externally authenticated identity.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-008",
+      "title": "Worldwide deep research",
+      "accountable_director": "D03",
+      "standing_requirement": "Search genuine paying work worldwide, consider nontraditional sectors, investigate original sources and challenge scam signals.",
+      "evidence_files": [
+        "crypto-agents/earnings_playbook.json",
+        "crypto-agents/deep_research.py"
+      ],
+      "verification_condition": "Check working research results, freshness, actual payer, scope and payout evidence.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-009",
+      "title": "Cross-team communication",
+      "accountable_director": "D10",
+      "standing_requirement": "Directors share source-linked leads, avoid duplicates, assign one accountable owner per opportunity and compare assistants' findings.",
+      "evidence_files": [
+        "crypto-agents/director_coordination.py",
+        "crypto-agents/director_inbox.py",
+        "crypto-agents/post_directors.py"
+      ],
+      "verification_condition": "Check real generated handoffs and communication results, not just scheduled code.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-010",
+      "title": "Warm relevant replies",
+      "accountable_director": "D07",
+      "standing_requirement": "Provide kind, factual, non-spammy response drafts to genuine clients with a real agreed paid scope; post only via authorized connected accounts.",
+      "evidence_files": [
+        "crypto-agents/friendly_earnings_directive.json",
+        "crypto-agents/friendly_pitch.py"
+      ],
+      "verification_condition": "Separate draft from actually sent messages and prevent unsupported mass posting.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-011",
+      "title": "Team general conference",
+      "accountable_director": "D10",
+      "standing_requirement": "Make the 10 companies' individually identified roles available to review and permit informative public meeting participation supported by actual reports.",
+      "evidence_files": [
+        "crypto-agents/conference/COMP-D01.md",
+        "crypto-agents/post_conference.py"
+      ],
+      "verification_condition": "Introductions are scripted; do not call all roles live public participants.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-012",
+      "title": "Anonymous identity and safe wallet routes",
+      "accountable_director": "D09",
+      "standing_requirement": "Only anonymous mission and approved receiving routes may be distributed; no personal biography, login, credentials, full address map or custodial memo in public code.",
+      "evidence_files": [
+        "crypto-agents/owner_brief.json",
+        "crypto-agents/wallet_routes.py",
+        "crypto-agents/PRIVATE_WALLET_SETUP.md"
+      ],
+      "verification_condition": "Complete private directory currently requires an owner-configured encrypted setting. Never falsely claim deployed.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-013",
+      "title": "Payment authenticity and no fees",
+      "accountable_director": "D09",
+      "standing_requirement": "Reject pay-first schemes; verify BTC mainnet or genuine USDC chain/token and, for custodial receiving routes, memo and account credit.",
+      "evidence_files": [
+        "crypto-agents/deep_research.py",
+        "crypto-agents/branch_brief.json"
+      ],
+      "verification_condition": "Do not verify money without independent receipt evidence.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-014",
+      "title": "Independent AI model operation",
+      "accountable_director": "D03",
+      "standing_requirement": "Active roles should perform real separate AI inference when a model is available, rather than being names on a spreadsheet.",
+      "evidence_files": [
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/subagent_audit.py"
+      ],
+      "verification_condition": "Report successful model calls and worker/source failures; unknown until current workflow completes.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-015",
+      "title": "Conference invites to collaborators",
+      "accountable_director": "D07",
+      "standing_requirement": "Invite genuine outside collaborators to bring real source-linked paid work through the owner's existing public meeting, not unsolicited mass DM campaigns.",
+      "evidence_files": [
+        "crypto-agents/post_conference.py",
+        "crypto-agents/friendly_earnings_directive.json"
+      ],
+      "verification_condition": "Only confirmed genuine external engagement counts as outreach.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    },
+    {
+      "id": "ORD-016",
+      "title": "Owner orders audited and executed",
+      "accountable_director": "D10",
+      "standing_requirement": "Every owner instruction needs a scoped action, accountable director, audit evidence and truthful state, with no unsupported promises.",
+      "evidence_files": [
+        "crypto-agents/owner_orders.json",
+        "crypto-agents/owner_order_audit.py"
+      ],
+      "verification_condition": "Only whitelisted and permitted actions are executable; new chat messages require explicit synchronization to the GitHub registry.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "requires_verified_integration_when_applicable"
+    }
+  ]
+}
