@@ -7,6 +7,7 @@ summarizes the activation requirements. Actual model work is checked later.
 import json
 import os
 import re
+import time
 from datetime import datetime,timezone
 from pathlib import Path
 from owner_order_distribution import summary
@@ -21,13 +22,16 @@ OUT=Path("director-work-orders");OUT.mkdir(exist_ok=True)
 # This is a bounded assignment queue, not 375 billion hosted processes.
 # Use distinct sectors and W/S/G/H levels in the next slot.
 roles=[]
+cycle=int(time.time()//3600)
 for slot in range(50):
-    mid=company["managers"][slot%15]["id"]
-    wid=f"{mid}-W{slot//15+1:02d}"
-    level=slot%4
-    if level>=1:wid+=f"-S{(slot*7)%150+1:03d}"
-    if level>=2:wid+=f"-G{(slot*11)%500+1:03d}"
-    if level>=3:wid+=f"-H{(slot*19)%666+1:03d}"
+    index=(cycle*50+slot)%750
+    m=index//50+1
+    w=index%50+1
+    wid=f"{DIRECTOR}-M{m:02d}-W{w:02d}"
+    level=(slot+cycle)%4
+    if level>=1:wid+=f"-S{(cycle+index*7)%150+1:03d}"
+    if level>=2:wid+=f"-G{(cycle+index*17)%500+1:03d}"
+    if level>=3:wid+=f"-H{(cycle+index*37)%666+1:03d}"
     roles.append(wid)
 assert len(roles)==len(set(roles))==50
 out={
@@ -36,6 +40,7 @@ out={
  "owner_order":"ORD-038",
  "director_D_reports_to_owner":True,
  "director_activation_target_per_batch":50,
+ "selection_cycle_utc_hours":cycle,
  "defined_roles_under_director":750*(1+150+150*500+150*500*666)+17,
  "registered_owner_orders":OWN["count"],
  "owner_order_register_sha256":OWN["sha256"],

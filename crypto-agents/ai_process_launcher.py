@@ -23,22 +23,30 @@ start_batch=time.monotonic()
 max_batch_seconds=min(1200,max(60,int(os.environ.get("MAX_BATCH_SECONDS","1080"))))
 cycle=int(time.time()//3600)
 offset=(cycle*max_workers)%750
+activation_file=Path("director-work-orders")/(role+"-activation-plan.json")
+activation_plan=json.loads(activation_file.read_text(encoding="utf-8")) if activation_file.exists() else None
+planned_roles=(activation_plan or {}).get("examples_eligible_for_process_launch",[])
+if activation_plan and activation_plan.get("owner_order")!="ORD-038":
+    raise ValueError("Unexpected activation directive in director plan")
 selected=[]
 events=[]
 for slot in range(max_workers):
     if time.monotonic()-start_batch>=max_batch_seconds:
         break
-    index=(offset+slot)%750
-    m=index//50+1
-    w=index%50+1
-    wid=f"{role}-M{m:02d}-W{w:02d}"
-    level=(slot+cycle)%4
-    s=(cycle+index*7)%150+1
-    g=(cycle+index*17)%500+1
-    h=(cycle+index*37)%666+1
-    if level>=1:wid+=f"-S{s:03d}"
-    if level>=2:wid+=f"-G{g:03d}"
-    if level>=3:wid+=f"-H{h:03d}"
+    if slot<len(planned_roles):
+        wid=planned_roles[slot]
+    else:
+        index=(offset+slot)%750
+        m=index//50+1
+        w=index%50+1
+        wid=f"{role}-M{m:02d}-W{w:02d}"
+        level=(slot+cycle)%4
+        s=(cycle+index*7)%150+1
+        g=(cycle+index*17)%500+1
+        h=(cycle+index*37)%666+1
+        if level>=1:wid+=f"-S{s:03d}"
+        if level>=2:wid+=f"-G{g:03d}"
+        if level>=3:wid+=f"-H{h:03d}"
     selected.append(wid)
     started=datetime.now(timezone.utc).isoformat()
     try:
@@ -99,6 +107,8 @@ manifest={
  "director_id":role,
  "run_at_utc":datetime.now(timezone.utc).isoformat(),
  "cycle":cycle,"workers_total_assigned":750,
+ "director_activation_plan_used":bool(planned_roles),
+ "activation_plan_cycle":(activation_plan or {}).get("selection_cycle_utc_hours"),
  "max_worker_processes_per_director":max_workers,
  "batch_time_budget_seconds":max_batch_seconds,
  "process_attempts_skipped_due_to_budget":max_workers-len(events),
