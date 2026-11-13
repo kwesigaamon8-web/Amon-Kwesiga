@@ -132,11 +132,14 @@ for ident, level, obj in entries:
         else:
             findings = "No source-linked candidate established."
     else:
-        findings = ("; ".join(clean(x.get("title", ""), 130) for x in
-                  (obj.get("unverified_leads") or [])[:3]) if
-                  isinstance(obj.get("unverified_leads"), list) else "") or
-                  clean((obj.get("model_inference") or {}).get("analysis", "")) or
-                  "No verified paid assignment recorded."
+        leads = obj.get("unverified_leads")
+        lead_titles = (
+            "; ".join(clean(x.get("title", ""), 130) for x in leads[:3] if isinstance(x, dict))
+            if isinstance(leads, list) else ""
+        )
+        inference = obj.get("model_inference") or {}
+        model_summary = str(inference.get("analysis") or "").strip() if isinstance(inference, dict) else ""
+        findings = lead_titles or model_summary or "No verified paid assignment recorded."
     completed = (model_state in ("model_completed", "llm_completed"))
     if completed:
         status = "model_completed"
