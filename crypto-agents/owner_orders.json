@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:56:49Z",
+  "updated_utc": "2026-11-13T17:59:00Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -572,6 +572,24 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Bounded public educational and worldwide earning-source research, no account registration, payments or wallet actions."
+    },
+    {
+      "id": "ORD-035",
+      "title": "Owner commands flow director to manager to every actual worker and require individual understanding",
+      "accountable_director": "D10",
+      "standing_requirement": "OWNER DIRECTIVE: All current and future orders flow strictly OWNER -> 10 directors -> 15 managers per director -> 50 workers per manager -> 150 S subagents per worker -> 500 G workers per S -> 666 H final workers per G. Each A/B director assistant reports directly to its director. Every activated agent receives the order inherited from its one immediate parent, independently explains the real crypto-earning mission and its next lawful step in its own model-generated words, reports to that direct parent and records uncertainties. Parent must examine weak or failed understanding reports; retry only in another actual model execution. Every unexecuted configured ID has a queued instruction but no received/understood response. Use actual model outputs and parent route evidence; do not fake billions of live conversations, recruit real humans, mass-spam, spend money or invent crypto receipt.",
+      "evidence_files": [
+        "crypto-agents/command_chain_receipts.py",
+        "crypto-agents/ai_process_worker.py",
+        "crypto-agents/director_work_orders.py",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/ai_process_audit.py",
+        "crypto-agents/order_cascade_audit.py"
+      ],
+      "verification_condition": "Verify owner-to-H one-parent paths, manager assignment count, and individual model-generated receipt with actual completed inference. A keyword check is not proof of complete comprehension.",
+      "reported_status": "configured_not_runtime_verified",
+      "last_verified_payment_receipt": null,
+      "external_action": "Internal order routing, authorized public research and inspectable reports only."
     }
   ],
   "broadcast_aliases": {
