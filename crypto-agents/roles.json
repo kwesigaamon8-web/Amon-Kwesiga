@@ -1,0 +1,422 @@
+[
+  {
+    "id": "D01",
+    "name": "Director: Bitcoin opportunities",
+    "director": "D01",
+    "mission": "Independently research Bitcoin opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bitcoin bounty is:issue is:open",
+      "bitcoin paid task is:issue is:open"
+    ],
+    "hn_queries": [
+      "bitcoin bounty",
+      "bitcoin freelance"
+    ]
+  },
+  {
+    "id": "D01-A",
+    "name": "Assistant A: Bitcoin opportunities",
+    "director": "D01",
+    "mission": "Independently research Bitcoin opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bitcoin paid task is:issue is:open",
+      "bitcoin bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "bitcoin freelance",
+      "bitcoin bounty"
+    ]
+  },
+  {
+    "id": "D01-B",
+    "name": "Assistant B: Bitcoin opportunities",
+    "director": "D01",
+    "mission": "Independently research Bitcoin opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bitcoin bounty is:issue is:open",
+      "bitcoin paid task is:issue is:open"
+    ],
+    "hn_queries": [
+      "bitcoin bounty",
+      "bitcoin freelance"
+    ]
+  },
+  {
+    "id": "D02",
+    "name": "Director: Stablecoin opportunities",
+    "director": "D02",
+    "mission": "Independently research Stablecoin opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "usdc bounty is:issue is:open",
+      "stablecoin paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "USDC jobs",
+      "stablecoin bounty"
+    ]
+  },
+  {
+    "id": "D02-A",
+    "name": "Assistant A: Stablecoin opportunities",
+    "director": "D02",
+    "mission": "Independently research Stablecoin opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "stablecoin paid is:issue is:open",
+      "usdc bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "stablecoin bounty",
+      "USDC jobs"
+    ]
+  },
+  {
+    "id": "D02-B",
+    "name": "Assistant B: Stablecoin opportunities",
+    "director": "D02",
+    "mission": "Independently research Stablecoin opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "usdc bounty is:issue is:open",
+      "stablecoin paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "USDC jobs",
+      "stablecoin bounty"
+    ]
+  },
+  {
+    "id": "D03",
+    "name": "Director: AI agent opportunities",
+    "director": "D03",
+    "mission": "Independently research AI agent opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "ai agent bounty is:issue is:open",
+      "llm agent paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "AI agent bounty",
+      "agent paid project"
+    ]
+  },
+  {
+    "id": "D03-A",
+    "name": "Assistant A: AI agent opportunities",
+    "director": "D03",
+    "mission": "Independently research AI agent opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "llm agent paid is:issue is:open",
+      "ai agent bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "agent paid project",
+      "AI agent bounty"
+    ]
+  },
+  {
+    "id": "D03-B",
+    "name": "Assistant B: AI agent opportunities",
+    "director": "D03",
+    "mission": "Independently research AI agent opportunities. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "ai agent bounty is:issue is:open",
+      "llm agent paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "AI agent bounty",
+      "agent paid project"
+    ]
+  },
+  {
+    "id": "D04",
+    "name": "Director: Accounting jobs",
+    "director": "D04",
+    "mission": "Independently research Accounting jobs. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bookkeeping paid is:issue is:open",
+      "accountant remote is:issue is:open"
+    ],
+    "hn_queries": [
+      "remote accounting job",
+      "bookkeeping freelancer"
+    ]
+  },
+  {
+    "id": "D04-A",
+    "name": "Assistant A: Accounting jobs",
+    "director": "D04",
+    "mission": "Independently research Accounting jobs. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "accountant remote is:issue is:open",
+      "bookkeeping paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "bookkeeping freelancer",
+      "remote accounting job"
+    ]
+  },
+  {
+    "id": "D04-B",
+    "name": "Assistant B: Accounting jobs",
+    "director": "D04",
+    "mission": "Independently research Accounting jobs. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bookkeeping paid is:issue is:open",
+      "accountant remote is:issue is:open"
+    ],
+    "hn_queries": [
+      "remote accounting job",
+      "bookkeeping freelancer"
+    ]
+  },
+  {
+    "id": "D05",
+    "name": "Director: Open-source bounties",
+    "director": "D05",
+    "mission": "Independently research Open-source bounties. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "label:bounty is:issue is:open",
+      "bounty reward is:issue is:open"
+    ],
+    "hn_queries": [
+      "open source bounty",
+      "github bounties"
+    ]
+  },
+  {
+    "id": "D05-A",
+    "name": "Assistant A: Open-source bounties",
+    "director": "D05",
+    "mission": "Independently research Open-source bounties. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bounty reward is:issue is:open",
+      "label:bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "github bounties",
+      "open source bounty"
+    ]
+  },
+  {
+    "id": "D05-B",
+    "name": "Assistant B: Open-source bounties",
+    "director": "D05",
+    "mission": "Independently research Open-source bounties. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "label:bounty is:issue is:open",
+      "bounty reward is:issue is:open"
+    ],
+    "hn_queries": [
+      "open source bounty",
+      "github bounties"
+    ]
+  },
+  {
+    "id": "D06",
+    "name": "Director: AI microtasks",
+    "director": "D06",
+    "mission": "Independently research AI microtasks. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "data labeling bounty is:issue is:open",
+      "evaluation paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "AI data annotation paid",
+      "microtask platform"
+    ]
+  },
+  {
+    "id": "D06-A",
+    "name": "Assistant A: AI microtasks",
+    "director": "D06",
+    "mission": "Independently research AI microtasks. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "evaluation paid is:issue is:open",
+      "data labeling bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "microtask platform",
+      "AI data annotation paid"
+    ]
+  },
+  {
+    "id": "D06-B",
+    "name": "Assistant B: AI microtasks",
+    "director": "D06",
+    "mission": "Independently research AI microtasks. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "data labeling bounty is:issue is:open",
+      "evaluation paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "AI data annotation paid",
+      "microtask platform"
+    ]
+  },
+  {
+    "id": "D07",
+    "name": "Director: Direct clients",
+    "director": "D07",
+    "mission": "Independently research Direct clients. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "accounting contractor is:issue is:open",
+      "finance consultant paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "looking for bookkeeper",
+      "need accountant"
+    ]
+  },
+  {
+    "id": "D07-A",
+    "name": "Assistant A: Direct clients",
+    "director": "D07",
+    "mission": "Independently research Direct clients. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "finance consultant paid is:issue is:open",
+      "accounting contractor is:issue is:open"
+    ],
+    "hn_queries": [
+      "need accountant",
+      "looking for bookkeeper"
+    ]
+  },
+  {
+    "id": "D07-B",
+    "name": "Assistant B: Direct clients",
+    "director": "D07",
+    "mission": "Independently research Direct clients. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "accounting contractor is:issue is:open",
+      "finance consultant paid is:issue is:open"
+    ],
+    "hn_queries": [
+      "looking for bookkeeper",
+      "need accountant"
+    ]
+  },
+  {
+    "id": "D08",
+    "name": "Director: Grants and competitions",
+    "director": "D08",
+    "mission": "Independently research Grants and competitions. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "grant application is:issue is:open",
+      "hackathon prize is:issue is:open"
+    ],
+    "hn_queries": [
+      "hackathon prize crypto",
+      "web3 grant"
+    ]
+  },
+  {
+    "id": "D08-A",
+    "name": "Assistant A: Grants and competitions",
+    "director": "D08",
+    "mission": "Independently research Grants and competitions. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "hackathon prize is:issue is:open",
+      "grant application is:issue is:open"
+    ],
+    "hn_queries": [
+      "web3 grant",
+      "hackathon prize crypto"
+    ]
+  },
+  {
+    "id": "D08-B",
+    "name": "Assistant B: Grants and competitions",
+    "director": "D08",
+    "mission": "Independently research Grants and competitions. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "grant application is:issue is:open",
+      "hackathon prize is:issue is:open"
+    ],
+    "hn_queries": [
+      "hackathon prize crypto",
+      "web3 grant"
+    ]
+  },
+  {
+    "id": "D09",
+    "name": "Director: Payment legitimacy",
+    "director": "D09",
+    "mission": "Independently research Payment legitimacy. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bounty payment is:issue is:open",
+      "bounty scam is:issue is:open"
+    ],
+    "hn_queries": [
+      "freelance payment fraud",
+      "crypto payment escrow"
+    ]
+  },
+  {
+    "id": "D09-A",
+    "name": "Assistant A: Payment legitimacy",
+    "director": "D09",
+    "mission": "Independently research Payment legitimacy. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bounty scam is:issue is:open",
+      "bounty payment is:issue is:open"
+    ],
+    "hn_queries": [
+      "crypto payment escrow",
+      "freelance payment fraud"
+    ]
+  },
+  {
+    "id": "D09-B",
+    "name": "Assistant B: Payment legitimacy",
+    "director": "D09",
+    "mission": "Independently research Payment legitimacy. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income.",
+    "github_queries": [
+      "bounty payment is:issue is:open",
+      "bounty scam is:issue is:open"
+    ],
+    "hn_queries": [
+      "freelance payment fraud",
+      "crypto payment escrow"
+    ]
+  },
+  {
+    "id": "D10",
+    "name": "Director: Mission reminders",
+    "director": "D10",
+    "mission": "Independently research Mission reminders. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income. Continually remind all teams: verified transferable payments, not activity, are the mission.",
+    "github_queries": [
+      "paid issue is:issue is:open",
+      "proof of payment bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "paid bounty experience",
+      "verified remote work payment"
+    ]
+  },
+  {
+    "id": "D10-A",
+    "name": "Assistant A: Mission reminders",
+    "director": "D10",
+    "mission": "Independently research Mission reminders. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income. Continually remind all teams: verified transferable payments, not activity, are the mission.",
+    "github_queries": [
+      "proof of payment bounty is:issue is:open",
+      "paid issue is:issue is:open"
+    ],
+    "hn_queries": [
+      "verified remote work payment",
+      "paid bounty experience"
+    ]
+  },
+  {
+    "id": "D10-B",
+    "name": "Assistant B: Mission reminders",
+    "director": "D10",
+    "mission": "Independently research Mission reminders. Identify worldwide opportunities and verify Uganda eligibility, payer, requirements and payout network. Do not claim offers as earnings, pay fees, sign wallets, request credentials or post on platforms. Only genuinely paid amounts verified by evidence count as income. Continually remind all teams: verified transferable payments, not activity, are the mission.",
+    "github_queries": [
+      "paid issue is:issue is:open",
+      "proof of payment bounty is:issue is:open"
+    ],
+    "hn_queries": [
+      "paid bounty experience",
+      "verified remote work payment"
+    ]
+  }
+]
