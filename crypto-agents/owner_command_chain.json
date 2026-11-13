@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-ord038-real-ai-agent-activation-v12",
+  "version": "2026-11-13-ord039-owner-controls-B-not-ChatGPT-v13",
   "highest_authority": "OWNER",
   "owner_directive": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt. Each layer freely researches authentic paid work, cooperates through one-parent reporting, and clearly distinguishes draft, application, contract, delivered work and real verified wallet credit.",
   "reporting_chain": {
@@ -28,7 +28,8 @@
     "ord035_parent_review": "The direct manager/parent checks each actually executed child receipt before accepting the child as understood; no skip-level approvals, no invented acknowledgements.",
     "ord036_consensus": "All ten operating directors compare their actual research and debate differences; D consolidates. Fewer than ten evidenced director model responses => no claim of unanimous agreement; record limited working consensus only if justified by source evidence.",
     "ord037_no_empty_reports": "D requests actionable, independently sourced work from every actually activated level; weak/generic or source-free output receives NEEDS_WORK, not success. Unrun roles remain assigned_not_executed.",
-    "ord038_activate_every_role": "All ten directors own conversion of assigned virtual W/S/G/H role IDs into actual separately executed AI model processes with independent authorized public research, genuine source evidence, a unique parent, a checkpoint and an actual result. D audits real completed and queued counts. Never claim all 375 billion IDs concurrently online."
+    "ord038_activate_every_role": "All ten directors own conversion of assigned virtual W/S/G/H role IDs into actual separately executed AI model processes with independent authorized public research, genuine source evidence, a unique parent, a checkpoint and an actual result. D audits real completed and queued counts. Never claim all 375 billion IDs concurrently online.",
+    "ord039_independent_execution": "Owner instructions are stored in owner-controlled GitHub code. Each bounded agent instance runs its own open-weight language model, public research and optional critical review, and can reuse prior task checkpoint; they do not require ChatGPT running. The user retains authority; independent models have no permission to spend, sign or message external parties automatically."
   },
   "source_of_truth": "crypto-agents/agent_registry.csv and crypto-agents/subagent_factory.json",
   "meeting": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/7",
@@ -45,5 +46,7 @@
     "execution_truth": "D is a configured coordinating role until its model actually executes; underlying directors still report directly to OWNER structurally but route consolidated written updates through D.",
     "performance_order": "ORD-037: Director D evaluates each of ten director companies by actual source-linked legitimate paid-work lead, concrete next authorized action, real AI completions, missing evidence and verified payouts, not by defined headcount. No director report passes merely for saying its worker roles are configured.",
     "activation_priority": "ORD-038: D reports per director actual separate successful AI model invocations with source and checkpoint, versus assigned or defined roles. Expansion cannot exceed approved free runner capacity."
-  }
+  },
+  "owner_belongs_to": "USER_OWNER",
+  "chatgpt_role": "Transmission and software assistance only; not a commander, scheduler, parent, hosting platform or owner of B"
 }

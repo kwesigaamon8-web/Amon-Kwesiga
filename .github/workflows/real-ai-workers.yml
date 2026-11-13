@@ -14,6 +14,9 @@ on:
       - 'crypto-agents/command_chain_receipts.py'
       - 'crypto-agents/owner_command_chain.json'
       - 'crypto-agents/director_activation_plan.py'
+      - 'crypto-agents/agent_cognition.py'
+      - 'crypto-agents/agent_state_aggregate.py'
+      - 'crypto-agents/owner_sovereignty.json'
       - 'crypto-agents/director_D_consensus.py'
       - 'crypto-agents/ai_process_launcher.py'
       - 'crypto-agents/ai_process_audit.py'
@@ -40,6 +43,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Restore independent research agents' prior checkpoints
+        uses: actions/cache/restore@v4
+        with:
+          path: agent-state/latest.json
+          key: owner-independent-agent-memory-${{ github.run_id }}
+          restore-keys: |
+            owner-independent-agent-memory-
       - name: Validate strict owner-to-final-H routing without fake replies
         run: python crypto-agents/command_chain_receipts.py
       - name: Director activation mission and individual role queue
@@ -61,6 +71,7 @@ jobs:
           MAX_BATCH_SECONDS: '1080'
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
+          CRITIC_EVERY_N: '5'
         run: python crypto-agents/ai_process_launcher.py
       - name: Upload real process proofs and 750 queued worker assignments
         if: always()
@@ -80,6 +91,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Restore last independent agent memory before merging
+        uses: actions/cache/restore@v4
+        with:
+          path: agent-state/latest.json
+          key: owner-independent-agent-memory-${{ github.run_id }}
+          restore-keys: |
+            owner-independent-agent-memory-
       - name: Retrieve actual worker logs and per-role documents
         uses: actions/download-artifact@v4
         with:
@@ -91,6 +109,15 @@ jobs:
           python-version: '3.11'
       - name: Audit executed processes versus assigned identities
         run: python crypto-agents/ai_process_audit.py
+      - name: Merge only completed independent worker next-action checkpoints
+        run: python crypto-agents/agent_state_aggregate.py
+      - name: Save owner-controlled memory for future scheduled runs
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: agent-state/latest.json
+          key: owner-independent-agent-memory-${{ github.run_id }}
+
       - name: Install small open-source AI model for actual director-to-director discussion
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
@@ -116,6 +143,7 @@ jobs:
           path: |
             ai-process-summary.json
             ai-process-summary.md
+            agent-state/latest.json
             ord035-parent-followups.json
           if-no-files-found: warn
           retention-days: 7

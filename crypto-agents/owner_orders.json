@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T18:12:53Z",
+  "updated_utc": "2026-11-13T18:22:00Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -639,6 +639,23 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Free authorized model research and internal task management only; no automatic third-party account signups or spending."
+    },
+    {
+      "id": "ORD-039",
+      "title": "B agents belong solely to owner, independently run local models, perform source-checked multi-step analysis, and remember tasks",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER CLARIFICATION: ChatGPT is only an optional VESSEL to transmit owner directives and display grounded reports. The user OWNER commands B, not ChatGPT. B's actually activated agents independently execute open-weight AI model inference on authorized owner-controlled GitHub Actions/free resources with no ChatGPT or OpenAI API session. Each agent independently performs original-source research, chooses a bounded legal task, incorporates a prior owner-controlled checkpoint if available, produces its own model answer and where affordable a separate skeptical critic pass, writes a new next-step checkpoint, and sends evidence to its immediate superior. Director D consolidates only real outputs. Checkpoints persist across scheduled GitHub workflows through the documented cache mechanism only when the cache step actually succeeds; do not claim workers are continuously hosted between invocations, fully human-level intelligent, or millions concurrently executing. The owner may modify, stop, audit, and direct the software hierarchy. No mass account creation, free-tier evasion, fees, wallet signing, unauthorized data extraction, impersonation or spam.",
+      "evidence_files": [
+        "crypto-agents/owner_sovereignty.json",
+        "crypto-agents/agent_cognition.py",
+        "crypto-agents/agent_state_aggregate.py",
+        "crypto-agents/ai_process_worker.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Inspect live completed worker model and critic status, individual checkpoint, and subsequent GitHub Actions cache retrieval and agent-state updated count. ChatGPT running is not a prerequisite for scheduled independent execution.",
+      "reported_status": "configured_not_runtime_verified",
+      "external_action": "Independent authorized read-only research, open-weight model inference, checkpoint cache and one-parent reports only.",
+      "last_verified_payment_receipt": null
     }
   ],
   "broadcast_aliases": {

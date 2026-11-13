@@ -21,7 +21,7 @@ out.mkdir(exist_ok=True)
 max_workers=min(50,max(1,int(os.environ.get("REAL_AI_PROCESSES_PER_DIRECTOR","50"))))
 start_batch=time.monotonic()
 max_batch_seconds=min(1200,max(60,int(os.environ.get("MAX_BATCH_SECONDS","1080"))))
-cycle=int(time.time()//3600)
+cycle=int(os.getenv("GITHUB_RUN_NUMBER") or int(time.time()//3600))
 offset=(cycle*max_workers)%750
 activation_file=Path("director-work-orders")/(role+"-activation-plan.json")
 activation_plan=json.loads(activation_file.read_text(encoding="utf-8")) if activation_file.exists() else None
@@ -108,7 +108,7 @@ manifest={
  "run_at_utc":datetime.now(timezone.utc).isoformat(),
  "cycle":cycle,"workers_total_assigned":750,
  "director_activation_plan_used":bool(planned_roles),
- "activation_plan_cycle":(activation_plan or {}).get("selection_cycle_utc_hours"),
+ "activation_plan_cycle":(activation_plan or {}).get("selection_run_cycle"),
  "max_worker_processes_per_director":max_workers,
  "batch_time_budget_seconds":max_batch_seconds,
  "process_attempts_skipped_due_to_budget":max_workers-len(events),

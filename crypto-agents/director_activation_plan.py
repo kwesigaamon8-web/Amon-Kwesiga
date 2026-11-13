@@ -22,7 +22,7 @@ OUT=Path("director-work-orders");OUT.mkdir(exist_ok=True)
 # This is a bounded assignment queue, not 375 billion hosted processes.
 # Use distinct sectors and W/S/G/H levels in the next slot.
 roles=[]
-cycle=int(time.time()//3600)
+cycle=int(os.getenv("GITHUB_RUN_NUMBER") or int(time.time()//3600))
 for slot in range(50):
     index=(cycle*50+slot)%750
     m=index//50+1
@@ -40,7 +40,8 @@ out={
  "owner_order":"ORD-038",
  "director_D_reports_to_owner":True,
  "director_activation_target_per_batch":50,
- "selection_cycle_utc_hours":cycle,
+ "selection_run_cycle":cycle,
+ "selection_method":"GitHub workflow run number rotates W parent slots; avoids hourly-cycle repeats",
  "defined_roles_under_director":750*(1+150+150*500+150*500*666)+17,
  "registered_owner_orders":OWN["count"],
  "owner_order_register_sha256":OWN["sha256"],
