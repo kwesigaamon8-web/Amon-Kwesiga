@@ -31,7 +31,7 @@ def describe_micro_worker(parent_id,parent_name,slot):
        "level":"microcompany_worker",
        "assigned_sector":sector,
        "assigned_task":action,
-       "independent_research_objective":f"{action} for legitimate crypto-paid work involving {sector}. Confirm real payer, clear deliverable, country eligibility, zero fees, and exact owner-approved receiving network before calling it payable.",
+       "independent_research_objective":f"Independently research WORLDWIDE and {action} for legitimate crypto-paid work involving {sector} or other viable industries. Confirm real payer, clear deliverable, eligibility, zero upfront fees, exact approved receiving network and independently verified credit before calling anything earned.",
        "chain":"micro-worker -> subagent microcompany head -> parent worker -> manager -> director -> OWNER",
        "mission":"Only legitimate transferable cryptocurrency actually received at owner-approved addresses is success.",
        "identity_status":"defined_not_running",
