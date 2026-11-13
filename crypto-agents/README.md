@@ -40,3 +40,16 @@ All 30 role instructions now require independent multi-query research, investiga
 Each worker invokes the small open-weight AI model twice when available: first to recommend a plausible paid lead, then as a separate skeptical review to challenge that proposal. This is **not** equivalent to a high-capability large reasoning model and does not certify a real employer or any actual payment.
 
 The director accountability reports carry the two assistants' source checks and challenge results. The consolidated report includes counts of critical reviews, original records rechecked and risk/evidence dossiers. Weak and unverified GitHub issue searches are excluded from any screened bounty recommendation. Actual paid work and wallet deposits remain separately verified, not inferred from research.
+
+## 30 branch supervisors and 450 delegated researchers (13 November 2026)
+
+The owner authorized **every existing research role**—10 directors and 20 assistants—to act as an individual branch supervisor, each responsible for **15 new lightweight researchers**, for 450 branch roles in addition to the original 30.
+
+- `branch_manifest.json` defines 30 supervisors and 450 distinct subordinate role IDs, with separate research hypotheses per branch. Each supervisor is the boss responsible for evaluating its 15 researchers' work.
+- `branch_brief.json` gives subordinate researchers **only** the lawful money-earning mission and public owner-approved BTC or Ethereum-mainnet genuine USDC addresses. It contains **no owner's name, personal life, qualifications, residence, client records, secret keys or exchange memos**. Sending a payment always requires a real payer to confirm the precise route with the owner.
+- `branch_workers.py` launches 15 separately identified, bounded public-source lookups per original cloud worker, storing each report as `branch-reports/<boss>-R01.json` through `R15.json` and a distinct supervisor summary.
+- `agents.py` consumes the branch summary in the supervisor's AI review; `consolidate.py` and `director_review.py` check counts and actual evidence. The 30 original GitHub jobs remain the compute hosts.
+- The 450 new roles are **lightweight research workers, not 450 separately hosted LLMs, distinct GitHub accounts, or Moltbook identities**. Each performs a bounded public search and evidence filtering; the supervising job provides the AI review. Public research sources can reject requests; failures must appear in reports rather than being called completed research.
+- No recruitment spam, unsolicited messages, duplicate social accounts, fake claims of employment, fees, transfers or wallet signatures are permitted. The team may invite other legitimate collaborators through the owner's existing public meeting issue `#5`.
+
+**Success is legitimate compensated work and independently confirmed transferable receipts, not the number of research roles created.** GitHub hourly execution can be delayed, canceled or constrained by service limits; role definitions alone do not prove that 450 researchers have successfully run.
