@@ -14,6 +14,7 @@ from pathlib import Path
 from wallet_routes import private_directory_status
 from friendly_pitch import warm_pitch
 from subagent_factory import describe_child, select_slot
+from microcompany_factory import describe_micro_worker, select_micro_worker_slot
 from datetime import datetime, timezone
 
 ROLE=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
@@ -84,7 +85,7 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
         return {"status":"llm_execution_failed","analysis":"",
                 "error":str(exc)[:180],"parent_id":meta["parent_id"]}
 
-tally={"worker_ai_completed":0,"manager_ai_completed":0,"subagent_ai_completed":0,"subagent_roles_activated":0,"ai_failed":0}
+tally={"worker_ai_completed":0,"manager_ai_completed":0,"subagent_ai_completed":0,"subagent_roles_activated":0,"micro_worker_model_completed":0,"micro_worker_inference_attempted":0,"ai_failed":0}
 for manager_id in manager_ids:
     manager_path=root/(manager_id+".json")
     mgr=json.loads(manager_path.read_text(encoding="utf-8"))
@@ -127,6 +128,33 @@ for manager_id in manager_ids:
         tally["subagent_roles_activated"]+=1
         if child_decision["status"]=="model_completed":tally["subagent_ai_completed"]+=1
         else:tally["ai_failed"]+=1
+        # The child subagent is the head of one deterministically defined 500-worker
+        # microcompany. Rotate just one of its workers each actual parent cycle.
+        # This is a bounded separate inference, NOT 500 independent cloud agents.
+        micro_slot=select_micro_worker_slot(child["id"],CYCLE)
+        micro=describe_micro_worker(child["id"],child["agent_name"],micro_slot)
+        if micro["parent_id"]!=child["id"]:
+            raise ValueError("Micro-worker must report exclusively to its subagent head")
+        micro_decision=run_agent(micro["id"],micro["independent_research_objective"],
+            worker.get("unverified_leads",[])[:1],
+            meta_override={"agent_name":micro["name"],"parent_id":child["id"]})
+        micro["model_inference"]=micro_decision
+        micro["role_execution_status"]="model_completed" if micro_decision["status"]=="model_completed" else "not_verified_active_AI"
+        micro["research_source_urls"]=[x["url"] for x in worker.get("unverified_leads",[])[:1] if x.get("url","").startswith("https://")]
+        micro["external_outreach_sent"]=False
+        micro["paid_contracts_verified"]=[]
+        micro["cryptocurrency_receipts_verified"]=[]
+        (root/(micro["id"]+".json")).write_text(json.dumps(micro,indent=2),encoding="utf-8")
+        tally["micro_worker_inference_attempted"]+=1
+        if micro_decision["status"]=="model_completed":
+            tally["micro_worker_model_completed"]+=1
+        else:
+            tally["ai_failed"]+=1
+        child["microcompany_id"]=micro["company_id"]
+        child["microcompany_configured_staff"]=500
+        child["activated_micro_worker_id"]=micro["id"]
+        child["micro_worker_model_status"]=micro["role_execution_status"]
+        (root/(child["id"]+".json")).write_text(json.dumps(child,indent=2),encoding="utf-8")
         worker["delegated_subagent_id"]=child["id"]
         worker["delegated_subagent_status"]=child["status"]
         path.write_text(json.dumps(worker,indent=2),encoding="utf-8")
@@ -165,6 +193,11 @@ summary["owner_command_chain_version"]=OWNER_COMMAND["version"]
 summary["configured_delegation_per_worker"]=150
 summary["subagent_model_checks_this_cycle"]=tally["subagent_roles_activated"]
 summary["subagent_model_successes_this_cycle"]=tally["subagent_ai_completed"]
+summary["microcompany_count_configured_beneath_company"]=750*150
+summary["microcompany_worker_roles_configured_beneath_company"]=750*150*500
+summary["micro_worker_model_attempts_this_cycle"]=tally["micro_worker_inference_attempted"]
+summary["micro_worker_model_successes_this_cycle"]=tally["micro_worker_model_completed"]
+summary["grandchildren_proof_status"]="Attempted independent model calls are distinguished from completed inferences, configured identities and real cryptocurrency receipts."
 summary["friendly_earning_directive"]=FRIENDLY["version"]
 summary["warm_drafts_prepared"]=sum(len(json.loads((root/(mid+".json")).read_text(encoding="utf-8")).get("friendly_reply_drafts",[])) for mid in manager_ids)
 summary["status_report"]="Independent AI and respectful reply drafts generated only where code has actually executed. No applications, DMs or payments implied."
