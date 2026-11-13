@@ -7,6 +7,8 @@ on:
       - 'crypto-agents/roles.json'
       - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/shared_understanding.json'
+      - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/owner_order_audit.py'
       - 'crypto-agents/agents.py'
       - 'crypto-agents/social_scan.py'
       - 'crypto-agents/deep_research.py'
@@ -116,6 +118,11 @@ jobs:
         run: python crypto-agents/audit_independence.py --reports combined-reports --output independence-audit
       - name: Verify subordinate one-parent command lines and actual AI activity
         run: python crypto-agents/subagent_audit.py --reports combined-reports --output subagent-audit
+      - name: Audit all owner instructions against completed research evidence
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python crypto-agents/owner_order_audit.py --reports combined-reports --output owner-order-audit
       - name: Have each director review two assistants
         run: python crypto-agents/director_review.py
       - name: Produce cross-director performance messages and one-owner handoff register
@@ -153,5 +160,6 @@ jobs:
             director-communications/
             independence-audit/
             subagent-audit/
+            owner-order-audit/
           if-no-files-found: warn
           retention-days: 7
