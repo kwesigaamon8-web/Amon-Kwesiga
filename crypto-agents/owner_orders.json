@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:42:52Z",
+  "updated_utc": "2026-11-13T19:46:48Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -768,6 +768,24 @@
       "reported_status": "owner_order_recorded; public_directory_already_live; bulk_publication_not_claimed",
       "last_verified_payment_receipt": null,
       "external_action": "Reference canonical public directory in owner-authorized appropriate contexts only, never mass unsolicited messaging or unconfirmed exchange payout instructions."
+    },
+    {
+      "id": "ORD-047",
+      "title": "Director D teaches B what D can do; every actually trained worker must personally report whether it learned",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER: Director D must teach all B operating directors, assistants, managers, W, S, G and H roles the approved lesson crypto-agents/DIRECTOR_D_LESSON_TO_B.md explaining what D can do and cannot do. On genuine worker activation, the worker must read the lesson and generate its OWN model answer naming at least one real capability, at least one limitation and its correct direct supervisor. The worker must explicitly report learned / needs review / failed / not run, with independent model execution evidence, not scripted pretend acknowledgments. A real learned/passed status requires the lesson to be accessible, a completed worker-model inference and a conservatively checked answer. A model that never executes, fails, or never produces a correct answer remains NOT LEARNED/NOT VERIFIED. D10 audits actual graded completions, D01-D10 and immediate supervisors review weak reports, and D consolidates the trained, passed, needs-review, failed and dormant counts into one owner report. D must itself produce a separate actually executed director-model teaching response when available, record absence as pending, and communicate results through its authorized directors. Teaching must also cover genuine crypto earnings, accurate payment proofs, private keys and unverified exchange routes, and limitations of billion-role identity definitions. Never fabricate school attendance or received coins.",
+      "evidence_files": [
+        "crypto-agents/DIRECTOR_D_LESSON_TO_B.md",
+        "crypto-agents/director_D_training.py",
+        "crypto-agents/ai_process_worker.py",
+        "crypto-agents/owner_order_distribution.py",
+        "crypto-agents/owner_direct_reports.py",
+        "crypto-agents/director_D_consensus.py"
+      ],
+      "verification_condition": "Each actual worker JSON must record curriculum read status, separate model training response, grade/pass, and matching parent. D owner digest must count passes, needs review, model failure and not run separately. A configured role without a live model process is NOT TRAINED and must not report 'learned'.",
+      "reported_status": "lesson_published; owner_instruction_recorded; executed learner proof pending future worker run",
+      "last_verified_payment_receipt": null,
+      "external_action": "Teaching and internal evidence reports only; no autonomous financial or account actions."
     }
   ],
   "broadcast_aliases": {
