@@ -1,0 +1,85 @@
+{
+  "title": "B — Practical verified public earning channels and exclusions",
+  "timestamp_utc": "2026-11-13T19:10:46Z",
+  "status": "Research leads only; no accepted contract, payout or money credited was established",
+  "owner_goal": "Secure legal completed paid work with cryptocurrency receipts on a verified owner-approved route",
+  "sources": [
+    {
+      "id": "LABORX-ACCOUNTING",
+      "category": "crypto-payable service marketplace",
+      "url": "https://laborx.com/vacancies/accounting-and-consulting",
+      "platform": "LaborX",
+      "facts_verified_from_public_site": [
+        "Accounting and Consulting Specialist is a supported skills category",
+        "Platform advertises crypto settlement with escrow and freelancer fees"
+      ],
+      "not_verified": [
+        "A buyer currently offering a suitable contract to owner",
+        "User registration or approved account",
+        "A specific active accounting task and compensation",
+        "Wallet/escrow settlement route"
+      ],
+      "recommendation": "D04 prepares realistic bookkeeping, bank reconciliation, Excel cleanup and QuickBooks service gigs with actual sample deliverables and scope. D07 researches buyer opportunities. Never claim gigs posted without proof. Ask owner approval before registration or external messaging.",
+      "priority": 1
+    },
+    {
+      "id": "VETA-VIRTUAL-ACCOUNTANT",
+      "category": "possible salaried remote role",
+      "url": "https://keywordise.com/jobs/accountant-q6rmiulsin",
+      "facts_verified_from_public_site": [
+        "Listing presents a remote worldwide crypto-related accountant position",
+        "Tasks include digital-asset rollforwards, reconciliations and month-end close",
+        "Compensation described as USD, exact pay not published"
+      ],
+      "not_verified": [
+        "Employer still accepting applications",
+        "Candidate eligibility following screening",
+        "Cryptocurrency payout option"
+      ],
+      "recommendation": "D04 check the actual hiring employer and source job listing, required experience and any fee. Only include as a fiat-paying employment opportunity unless a crypto settlement is explicitly confirmed.",
+      "priority": 2
+    },
+    {
+      "id": "GOMINING-BOOKKEEPER",
+      "category": "restrictive job requiring eligibility check",
+      "url": "https://simplify.jobs/p/980c43e4-2176-48c7-8694-2edd7cf050c2/JuniorMiddle-Bookkeeper",
+      "facts_verified_from_public_site": [
+        "GoMining US operations role with reconciliations and mining revenue bookkeeping",
+        "US bank operations and NetSuite preferred"
+      ],
+      "not_verified": [
+        "Uganda eligibility",
+        "Crypto pay",
+        "Fresh application availability"
+      ],
+      "recommendation": "Do not prioritize unless the original employer expressly confirms worldwide eligibility and suitable payment terms.",
+      "priority": 3
+    },
+    {
+      "id": "GENERAL-TENSOR-BLOCKCHAIN-ACCOUNTANT",
+      "category": "excluded closed listing",
+      "url": "https://cryptocurrencyjobs.co/operations/general-tensor-junior-blockchain-accountant/",
+      "facts_verified_from_public_site": [
+        "Job board explicitly states career opportunity no longer available",
+        "Role location restricted to Europe, North America or South America"
+      ],
+      "recommendation": "REJECT. Do not keep suggesting as actionable paid opportunity.",
+      "priority": null
+    }
+  ],
+  "report_metrics": {
+    "publicly_verified_marketplace_categories": 1,
+    "public_job_leads_checked": 3,
+    "real_owner_paid_contracts_verified": 0,
+    "owner_applications_sent_by_this_research": 0,
+    "verified_cryptocurrency_receipts": 0,
+    "wallets_shared_publicly": 0
+  },
+  "followup_tasks": {
+    "D04": "Create three professional paid-services mini-offers with precise scope, required client documents, delivery standards, evidence-backed sample reports and optional correct-network USDC payment; no invented clients or submissions.",
+    "D07": "Investigate genuine buyer postings, filter closed/restricted opportunities, request approval for any contact or registration.",
+    "D09": "Check only verified token/network/escrow arrangements; require proof of payment and never publish owner's full wallet registry.",
+    "D10": "Keep per-worker actual execution and checkpoint evidence separate from earnings.",
+    "D": "Report one ranked action and an actual demonstrable deliverable; do not equate research with income."
+  }
+}
