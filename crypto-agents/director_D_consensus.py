@@ -54,7 +54,11 @@ for d in DIRECTORS:
 timestamp=datetime.now(timezone.utc).isoformat()
 record={
  "coordinator":"Director D",
- "owner_order":"ORD-036",
+ "owner_order":"ORD-037",
+ "manager_in_charge":"Director D",
+ "performance_scorecard":{},
+ "actionable_source_linked_leads_count":0,
+ "verified_payer_or_contract_count":0,
  "created_utc":timestamp,
  "defined_virtual_roles":375188632680,
  "source_status_by_director":source_checks,
@@ -69,6 +73,30 @@ record={
  "verified_crypto_receipts":[],
  "truth":"This is a bounded genuine small-model cross-review only where model executions succeed. A missing model is not a director's vote. No payment verified by local worker logs."
 }
+# D grades only actual evidence, never pre-filled or configured role identities.
+for director_id in DIRECTORS:
+    evidence=source_checks.get(director_id) or {}
+    findings=evidence.get("sampled_evidence",[])
+    real_urls=[f["source"] for f in findings if str(f.get("source","")).startswith("https://")]
+    model_ok=int(evidence.get("model_completed",0))
+    if real_urls and model_ok:
+        status="WORK_RESEARCHED_PAYER_AND_PAYOUT_NOT_VERIFIED"
+    elif model_ok:
+        status="MODEL_RAN_NO_VERIFIABLE_SOURCE_LINK"
+    else:
+        status="NO_REAL_MODEL_WORK_VERIFIED"
+    record["performance_scorecard"][director_id]={
+       "status":status,"model_completions_reported":model_ok,
+       "source_linked_sample_count":len(real_urls),
+       "best_actual_source_url":real_urls[0] if real_urls else None,
+       "payer_and_crypto_terms_verified":False,
+       "verified_earned_coin_receipts":0,
+       "required_next_action":"Verify real payer, a fee-free task and exact coin/network payment terms at this original source" if real_urls else "Run a real source-check and individual AI model report first",
+       "report_ready_for_payment_claim":False
+    }
+    record["actionable_source_linked_leads_count"]+=len(real_urls)
+# A source link alone does not establish an actionable paying opportunity.
+record["actionable_source_linked_leads_count_is_provisional"]=True
 model=None
 load_error=None
 try:
@@ -102,8 +130,8 @@ for d in DIRECTORS:
         continue
     task=("You are "+d+" with genuine worker research evidence: "+
       json.dumps(evidence["sampled_evidence"],ensure_ascii=False)[:1650]+
-      ". State one legal crypto-earning lead to verify, one source limitation, "
-      "and one next work step. You have not contacted payers or received coins. "
+      ". Speak only from an actual URL provided; state one real payer/deliverable if evidenced (else unknown), one crypto-payment uncertainty, "
+      "and ONE immediate authorized no-fee next action, not a motivational statement. You have not contacted payers or received coins. "
       "No unverifiable claims.")
     reply=ask(d,"You are one of ten independent director review model calls. Evaluate only supplied evidence. Challenge unsupported claims, protect owner funds, no fictional actions.",task)
     record["round_one"][d]=reply
@@ -120,7 +148,7 @@ for d in DIRECTORS:
         ". Your first opinion: "+first["response"][:360]+
         ". Other director research opinions: "+
         json.dumps({k:v for k,v in summaries.items() if k!=d},ensure_ascii=False)[:1350]+
-        ". Identify a common safe, practical evidence-based next step, say what "
+        ". Prioritize one concrete payer verification, eligibility check or preparation of an actual paid-work deliverable. Explain what "
         "you disagree with or cannot verify, and distinguish work leads from coins received.")
     reply=ask(d,"Independent director cross-review. Accept colleagues' claims only if their source evidence supports them; disagreement is allowed; do not fake consensus.",task)
     record["round_two"][d]=reply
@@ -133,7 +161,7 @@ if perspectives:
       "Owner has 375188632680 defined roles, not live workers. Ten director cross-reviews: "+
       json.dumps(perspectives,ensure_ascii=False)[:3500]+
       ". Number with actual round two responses: "+str(len(perspectives))+
-      ". Provide a short owner report with evidence limitations and one feasible next action.")
+      ". Provide a short owner performance report: actionable evidence, no-work directors, the best original URL for one opportunity, one feasible action, agreement/dissent and money verification status. Never imply ten agreeing if any model is missing.")
     record["D_model_completed"]=record["director_D_response"].get("status")=="model_completed"
 
 if record["real_director_model_round_two"]==10 and record["D_model_completed"]:
@@ -155,6 +183,12 @@ lines=[
  "Owner order: ORD-036 — all departments discuss; D consolidates and reports",
  "Defined workforce: 375,188,632,680 role identities (not active model instances)",
  "",
+ "## Director D — accountable performance order ORD-037",
+ "Only original checked source URLs and real model logs count as investigated work.",
+ "Source-linked research items (NOT verified paid clients): "+str(record["actionable_source_linked_leads_count"]),
+ "Verified payer/contract terms: "+str(record["verified_payer_or_contract_count"]),
+ "Actual wallet receipts verified by this report: 0",
+ "",
  "## Actually executed director model discussion",
  "Round 1 model responses: "+str(record["real_director_model_round_one"])+"/10",
  "Cross-review model responses: "+str(record["real_director_model_round_two"])+"/10",
@@ -165,6 +199,9 @@ lines=[
 for d in DIRECTORS:
     lines.append("### "+d)
     lines.append("Worker results: "+source_checks.get(d,{}).get("status","unknown"))
+    lines.append("D performance status: "+record["performance_scorecard"][d]["status"])
+    lines.append("Best original source: "+str(record["performance_scorecard"][d]["best_actual_source_url"]))
+    lines.append("Next authorized action: "+record["performance_scorecard"][d]["required_next_action"])
     lines.append("First-round model: "+record["round_one"][d]["status"])
     lines.append("Second-round model: "+record["round_two"][d]["status"])
     lines.append("Actual opinion: "+record["round_two"][d].get("response","Not obtained"))
