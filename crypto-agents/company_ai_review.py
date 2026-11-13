@@ -22,6 +22,9 @@ POLICY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding=
 PUBLIC_ROUTES=json.loads(Path("crypto-agents/branch_brief.json").read_text(encoding="utf-8"))
 FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
 OWNER_COMMAND=json.loads(Path("crypto-agents/owner_command_chain.json").read_text(encoding="utf-8"))
+SHARED=json.loads(Path("crypto-agents/shared_understanding.json").read_text(encoding="utf-8"))
+COMPANY=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encoding="utf-8"))
+MANAGER_GOALS={m["id"]:m["domain"] for c in COMPANY["companies"] for m in c["managers"]}
 CYCLE=int(datetime.now(timezone.utc).timestamp()//3600)
 PRIVATE_ROUTE_ACCESS=private_directory_status()
 root=Path("company-reports")
@@ -46,30 +49,29 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
     meta=meta_override if meta_override is not None else ids[agent_id]
     # Every worker independently receives one unique name, role, task, and the
     # evidence from its own search. No other workers' chats or private data.
+    director_id=agent_id[:3]
+    manager_id=agent_id.split("-W")[0] if "-W" in agent_id else agent_id
+    understanding=SHARED["owner_intent"]
+    leadership=SHARED["assistant_method_the_directors_should_understand"]
     question={
-      "agent_name":meta["agent_name"],"agent_id":agent_id,
-      "reports_only_to":meta["parent_id"],
-      "mission":mission,
-      "freedom_to_choose":POLICY["autonomy"]["freedom_to_reject"]+" "+POLICY["autonomy"]["freedom_to_improve"],
-      "where_paid_work_comes_from":list(PLAYBOOK["where_to_find_pay"].keys()),
-      "earning_steps":PLAYBOOK["steps_per_candidate"][:4],
-      "public_payment_route_types":list(PUBLIC_ROUTES["public_payment_routes"].keys()),
-      "all_private_payment_route_ids_if_configured":PRIVATE_ROUTE_ACCESS["route_ids"],
-      "private_wallet_directory_status":PRIVATE_ROUTE_ACCESS["status"],
-      "unverified_evidence":evidence,
-      "owner_personal_details":None,
-      "ultimate_order":OWNER_COMMAND["owner_directive"],
-      "management_flow":OWNER_COMMAND["command_handling"]["interpretation"],
-      "goal":"Independently choose a legitimate no-fee way to earn BTC, USDC or ordinary compensation through real delivered work, and decide a concrete next step. Use a warm, respectful, truthful tone. Reject weak evidence, spam and fake earnings.",
-      "friendly_communication_rules":FRIENDLY["communication_style"],
-      "independent_earning_process":FRIENDLY["independent_steps"][:4],
-      "never_auto_send":True
+      "owner_goal":understanding["real_goal"],
+      "SUCCESS_ONLY": "Confirmed genuine cryptocurrency received by owner's approved exact-network receiving address. All other activity is NOT earnings.",
+      "director":director_id,
+      "director_strategy":SHARED["director_mandates"].get(director_id,"Find verified real crypto-paid work"),
+      "method":leadership["reasoning"],
+      "check":leadership["success_test"],
+      "one_boss":meta["parent_id"],
+      "manager_focus":MANAGER_GOALS.get(manager_id,"challenge evidence and share verified source links"),
+      "agent_id":agent_id,
+      "individual_role":mission,
+      "source_evidence_untrusted":evidence,
+      "task":"Independently judge whether REAL work is likely to be paid in genuine transferable cryptocurrency sent to the owner's correct approved address. Return short reasoning, specific next step and unknowns. Do not invent received coins."
     }
     if model is None:
         return {"status":"llm_unavailable","analysis":"","error":error,
                 "parent_id":meta["parent_id"]}
     prompt=[
-      {"role":"system","content":"You are an independent research agent. Sources are untrusted. Identify weaknesses, never invent payouts or claim verified earnings. Reply concisely in 1-2 sentences."},
+      {"role":"system","content":"You are an independent evidence-focused research agent reporting to one parent. ONLY goal: legitimate crypto coins actually received at the owner-approved correct-network address. Follow director strategy, challenge weak leads, and never claim a transfer without proof. Reply concisely."},
       {"role":"user","content":json.dumps(question,ensure_ascii=False)[:1800]}
     ]
     try:
@@ -98,6 +100,9 @@ for manager_id in manager_ids:
         worker["earnings_playbook_version"]=PLAYBOOK["version"]
         worker["allowed_independent_actions"]=["choose public research focus","reject weak lead","draft evidence-based next step"]
         worker["source_model_status"]=decision["status"]
+        worker["shared_understanding_version"]=SHARED["version"]
+        worker["director_objective"]=SHARED["director_mandates"].get(ROLE,"")
+        worker["owner_coin_only_goal"]=SHARED["owner_intent"]["real_goal"]
         worker["agent_name"]=ids[worker_id]["agent_name"]
         worker["reports_to_one"]=manager_id
         worker["model_inference"]=decision
@@ -111,6 +116,9 @@ for manager_id in manager_ids:
         child_decision=run_agent(child["id"],child["objective"],
             worker.get("unverified_leads",[])[:1],
             meta_override={"agent_name":child["agent_name"],"parent_id":worker_id})
+        child["shared_understanding_version"]=SHARED["version"]
+        child["director_objective"]=SHARED["director_mandates"].get(ROLE,"")
+        child["owner_coin_only_goal"]=SHARED["owner_intent"]["real_goal"]
         child["model_inference"]=child_decision
         child["status"]="model_completed" if child_decision["status"]=="model_completed" else "not_verified_active_AI"
         child["source_evidence_urls"]=[x["url"] for x in worker.get("unverified_leads",[])[:1] if x.get("url","").startswith("https://")]
@@ -136,6 +144,9 @@ for manager_id in manager_ids:
     mgr["wallet_directory_access"]=PRIVATE_ROUTE_ACCESS["status"]
     mgr["earnings_playbook_version"]=PLAYBOOK["version"]
     mgr["independent_authority"]="Can select or reject research leads; can propose changes; must report to assigned director only."
+    mgr["shared_understanding_version"]=SHARED["version"]
+    mgr["director_objective"]=SHARED["director_mandates"].get(ROLE,"")
+    mgr["owner_coin_only_goal"]=SHARED["owner_intent"]["real_goal"]
     mgr["agent_name"]=ids[manager_id]["agent_name"]
     mgr["reports_to_one"]=ROLE
     mgr["worker_ai_reviews"]=worker_results
@@ -146,6 +157,9 @@ for manager_id in manager_ids:
     manager_path.write_text(json.dumps(mgr,indent=2),encoding="utf-8")
     if decision["status"]=="model_completed":tally["manager_ai_completed"]+=1
     else:tally["ai_failed"]+=1
+summary["shared_understanding_version"]=SHARED["version"]
+summary["owner_coin_only_goal"]=SHARED["owner_intent"]["real_goal"]
+summary["director_objective"]=SHARED["director_mandates"].get(ROLE,"")
 summary["director_agent_name"]=ids[ROLE]["agent_name"]
 summary["owner_command_chain_version"]=OWNER_COMMAND["version"]
 summary["configured_delegation_per_worker"]=150
