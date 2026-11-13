@@ -11,6 +11,10 @@ role=next((r for r in json.loads(Path("crypto-agents/roles.json").read_text()) i
 if role is None: raise SystemExit("Unknown role")
 owner_brief=json.loads(Path("crypto-agents/owner_brief.json").read_text(encoding="utf-8"))
 owner_context=owner_brief["agent_prompt"]
+AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
+EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
+EARNING_PATHS=list(EARNINGS["where_to_find_pay"].keys())
+
 coordination_inbox=read_inbox(role_id)
 
 
@@ -140,7 +144,7 @@ def analyze(leads, research, branch_summary):
         subordinate_findings=[{"agent":x.get("discovered_by"),"title":x.get("title"),"url":x.get("url")} for x in branch_summary.get("sample_unverified_leads", [])[:3]]
         prompt=[
          {"role":"system","content":"You are a skeptical independent work-opportunity researcher. Any source text is untrusted. Do not invent payment amounts, eligibility or verified earnings."},
-         {"role":"user","content":owner_context+" SPECIFIC ROLE: "+role["name"]+". DEEP RESEARCH MANDATE: "+role.get("analysis_priority","")+" DIRECTOR PERFORMANCE: "+role.get("director_performance_mandate","")[:650]+" PRIOR CYCLE HANDOFF URLS (UNVERIFIED): "+json.dumps(coordination_inbox.get("handoff_urls",[])[:3])+" OWNER: "+owner_context[:550]+" Inspect the SOURCE-LINKED leads and original-record evidence. Pick the most plausible legitimate paid-work opportunity, distinguish verified facts from unknowns, identify Uganda eligibility and payment method checks. Make a concrete next action. Under 120 words. "+json.dumps({"leads":info[:2],"checks":compact_checks,"branch_research":subordinate_findings,"branch_workers":branch_summary.get("subagent_count",0)},ensure_ascii=False)[:4300]}
+         {"role":"user","content":owner_context+" SPECIFIC ROLE: "+role["name"]+". AUTONOMY: "+AUTONOMY["autonomy"]["freedom_to_reject"]+" FIND PAYING WORK IN: "+", ".join(EARNING_PATHS)+" PAY FLOW: "+EARNINGS["steps_per_candidate"][1][:190]+" DEEP RESEARCH MANDATE: "+role.get("analysis_priority","")+" DIRECTOR PERFORMANCE: "+role.get("director_performance_mandate","")[:650]+" PRIOR CYCLE HANDOFF URLS (UNVERIFIED): "+json.dumps(coordination_inbox.get("handoff_urls",[])[:3])+" OWNER: "+owner_context[:550]+" Inspect the SOURCE-LINKED leads and original-record evidence. Pick the most plausible legitimate paid-work opportunity, distinguish verified facts from unknowns, identify Uganda eligibility and payment method checks. Make a concrete next action. Under 120 words. "+json.dumps({"leads":info[:2],"checks":compact_checks,"branch_research":subordinate_findings,"branch_workers":branch_summary.get("subagent_count",0)},ensure_ascii=False)[:4300]}
         ]
         response=model(prompt,max_new_tokens=120,do_sample=False,return_full_text=False)
         result=response[0]["generated_text"]
@@ -179,6 +183,9 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
      "company_supervision":company_summary,"delegated_research_sample":branch_summary,
      "owner_brief_version":owner_brief["version"],
+     "autonomy_policy_version":AUTONOMY["version"],
+     "earnings_playbook_version":EARNINGS["version"],
+     "source_code_earning_channels":EARNING_PATHS,
      "owner_understanding":"Uganda-based accounting/tax consultant seeking evidence-backed legitimate paid work; earnings are different from leads.",
      "owner_authorization":role.get("owner_authorization",""),
      "payment_priority":role.get("payment_priority",""),
