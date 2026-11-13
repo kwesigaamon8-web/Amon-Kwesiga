@@ -9,6 +9,9 @@ on:
       - 'crypto-agents/agents.py'
       - 'crypto-agents/social_scan.py'
       - 'crypto-agents/deep_research.py'
+      - 'crypto-agents/branch_workers.py'
+      - 'crypto-agents/branch_manifest.json'
+      - 'crypto-agents/branch_brief.json'
       - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
@@ -39,6 +42,11 @@ jobs:
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Dispatch fifteen independent branch researchers
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python crypto-agents/branch_workers.py
       - name: Run independent researcher
         env:
           ROLE_ID: ${{ matrix.role }}
@@ -52,7 +60,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: crypto-research-${{ matrix.role }}
-          path: reports/*.json
+          path: |
+            reports/*.json
+            branch-reports/*.json
           if-no-files-found: warn
           retention-days: 7
 
