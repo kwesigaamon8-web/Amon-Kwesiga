@@ -25,93 +25,159 @@
           "id": "D01-M01",
           "worker_count": 50,
           "worker_id_pattern": "D01-M01-WNN",
-          "domain": "Monthly bookkeeping"
+          "domain": "Monthly bookkeeping",
+          "agent_name": "Atlas-Manager-01-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M01-WNN"
         },
         {
           "id": "D01-M02",
           "worker_count": 50,
           "worker_id_pattern": "D01-M02-WNN",
-          "domain": "QuickBooks Online"
+          "domain": "QuickBooks Online",
+          "agent_name": "Atlas-Manager-02-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M02-WNN"
         },
         {
           "id": "D01-M03",
           "worker_count": 50,
           "worker_id_pattern": "D01-M03-WNN",
-          "domain": "Management accounts"
+          "domain": "Management accounts",
+          "agent_name": "Atlas-Manager-03-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M03-WNN"
         },
         {
           "id": "D01-M04",
           "worker_count": 50,
           "worker_id_pattern": "D01-M04-WNN",
-          "domain": "EFRIS systems"
+          "domain": "EFRIS systems",
+          "agent_name": "Atlas-Manager-04-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M04-WNN"
         },
         {
           "id": "D01-M05",
           "worker_count": 50,
           "worker_id_pattern": "D01-M05-WNN",
-          "domain": "Accounts payable"
+          "domain": "Accounts payable",
+          "agent_name": "Atlas-Manager-05-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M05-WNN"
         },
         {
           "id": "D01-M06",
           "worker_count": 50,
           "worker_id_pattern": "D01-M06-WNN",
-          "domain": "Inventory accounting"
+          "domain": "Inventory accounting",
+          "agent_name": "Atlas-Manager-06-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M06-WNN"
         },
         {
           "id": "D01-M07",
           "worker_count": 50,
           "worker_id_pattern": "D01-M07-WNN",
-          "domain": "Sacco accounting"
+          "domain": "Sacco accounting",
+          "agent_name": "Atlas-Manager-07-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M07-WNN"
         },
         {
           "id": "D01-M08",
           "worker_count": 50,
           "worker_id_pattern": "D01-M08-WNN",
-          "domain": "Hospitality bookkeeping"
+          "domain": "Hospitality bookkeeping",
+          "agent_name": "Atlas-Manager-08-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M08-WNN"
         },
         {
           "id": "D01-M09",
           "worker_count": 50,
           "worker_id_pattern": "D01-M09-WNN",
-          "domain": "USDC tasks"
+          "domain": "USDC tasks",
+          "agent_name": "Atlas-Manager-09-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M09-WNN"
         },
         {
           "id": "D01-M10",
           "worker_count": 50,
           "worker_id_pattern": "D01-M10-WNN",
-          "domain": "Documentation bounties"
+          "domain": "Documentation bounties",
+          "agent_name": "Atlas-Manager-10-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M10-WNN"
         },
         {
           "id": "D01-M11",
           "worker_count": 50,
           "worker_id_pattern": "D01-M11-WNN",
-          "domain": "AI evaluation"
+          "domain": "AI evaluation",
+          "agent_name": "Atlas-Manager-11-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M11-WNN"
         },
         {
           "id": "D01-M12",
           "worker_count": 50,
           "worker_id_pattern": "D01-M12-WNN",
-          "domain": "Localization work"
+          "domain": "Localization work",
+          "agent_name": "Atlas-Manager-12-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M12-WNN"
         },
         {
           "id": "D01-M13",
           "worker_count": 50,
           "worker_id_pattern": "D01-M13-WNN",
-          "domain": "Virtual assistant finance"
+          "domain": "Virtual assistant finance",
+          "agent_name": "Atlas-Manager-13-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M13-WNN"
         },
         {
           "id": "D01-M14",
           "worker_count": 50,
           "worker_id_pattern": "D01-M14-WNN",
-          "domain": "Proposal writing"
+          "domain": "Proposal writing",
+          "agent_name": "Atlas-Manager-14-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M14-WNN"
         },
         {
           "id": "D01-M15",
           "worker_count": 50,
           "worker_id_pattern": "D01-M15-WNN",
-          "domain": "AI-agent tasks"
+          "domain": "AI-agent tasks",
+          "agent_name": "Atlas-Manager-15-D01",
+          "reports_to": "D01",
+          "direct_report_id": "D01",
+          "worker_name_pattern": "Atlas-{role}-D01-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Atlas-Director-D01",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D01-A": "Atlas-Independent-Analyst-1-D01",
+        "D01-B": "Atlas-Independent-Analyst-2-D01"
+      }
     },
     {
       "id": "COMP-D02",
@@ -125,93 +191,159 @@
           "id": "D02-M01",
           "worker_count": 50,
           "worker_id_pattern": "D02-M01-WNN",
-          "domain": "Bank reconciliations"
+          "domain": "Bank reconciliations",
+          "agent_name": "Beacon-Manager-01-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M01-WNN"
         },
         {
           "id": "D02-M02",
           "worker_count": 50,
           "worker_id_pattern": "D02-M02-WNN",
-          "domain": "Accounting cleanup"
+          "domain": "Accounting cleanup",
+          "agent_name": "Beacon-Manager-02-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M02-WNN"
         },
         {
           "id": "D02-M03",
           "worker_count": 50,
           "worker_id_pattern": "D02-M03-WNN",
-          "domain": "Payroll processing"
+          "domain": "Payroll processing",
+          "agent_name": "Beacon-Manager-03-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M03-WNN"
         },
         {
           "id": "D02-M04",
           "worker_count": 50,
           "worker_id_pattern": "D02-M04-WNN",
-          "domain": "Excel financial models"
+          "domain": "Excel financial models",
+          "agent_name": "Beacon-Manager-04-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M04-WNN"
         },
         {
           "id": "D02-M05",
           "worker_count": 50,
           "worker_id_pattern": "D02-M05-WNN",
-          "domain": "Accounts receivable"
+          "domain": "Accounts receivable",
+          "agent_name": "Beacon-Manager-05-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M05-WNN"
         },
         {
           "id": "D02-M06",
           "worker_count": 50,
           "worker_id_pattern": "D02-M06-WNN",
-          "domain": "Audit preparation"
+          "domain": "Audit preparation",
+          "agent_name": "Beacon-Manager-06-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M06-WNN"
         },
         {
           "id": "D02-M07",
           "worker_count": 50,
           "worker_id_pattern": "D02-M07-WNN",
-          "domain": "Agribusiness finance"
+          "domain": "Agribusiness finance",
+          "agent_name": "Beacon-Manager-07-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M07-WNN"
         },
         {
           "id": "D02-M08",
           "worker_count": 50,
           "worker_id_pattern": "D02-M08-WNN",
-          "domain": "Crypto payroll"
+          "domain": "Crypto payroll",
+          "agent_name": "Beacon-Manager-08-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M08-WNN"
         },
         {
           "id": "D02-M09",
           "worker_count": 50,
           "worker_id_pattern": "D02-M09-WNN",
-          "domain": "Lightning tasks"
+          "domain": "Lightning tasks",
+          "agent_name": "Beacon-Manager-09-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M09-WNN"
         },
         {
           "id": "D02-M10",
           "worker_count": 50,
           "worker_id_pattern": "D02-M10-WNN",
-          "domain": "Bugfix bounties"
+          "domain": "Bugfix bounties",
+          "agent_name": "Beacon-Manager-10-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M10-WNN"
         },
         {
           "id": "D02-M11",
           "worker_count": 50,
           "worker_id_pattern": "D02-M11-WNN",
-          "domain": "Data annotation"
+          "domain": "Data annotation",
+          "agent_name": "Beacon-Manager-11-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M11-WNN"
         },
         {
           "id": "D02-M12",
           "worker_count": 50,
           "worker_id_pattern": "D02-M12-WNN",
-          "domain": "Technical writing"
+          "domain": "Technical writing",
+          "agent_name": "Beacon-Manager-12-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M12-WNN"
         },
         {
           "id": "D02-M13",
           "worker_count": 50,
           "worker_id_pattern": "D02-M13-WNN",
-          "domain": "Finance data entry"
+          "domain": "Finance data entry",
+          "agent_name": "Beacon-Manager-13-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M13-WNN"
         },
         {
           "id": "D02-M14",
           "worker_count": 50,
           "worker_id_pattern": "D02-M14-WNN",
-          "domain": "Public grants"
+          "domain": "Public grants",
+          "agent_name": "Beacon-Manager-14-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M14-WNN"
         },
         {
           "id": "D02-M15",
           "worker_count": 50,
           "worker_id_pattern": "D02-M15-WNN",
-          "domain": "Automation gigs"
+          "domain": "Automation gigs",
+          "agent_name": "Beacon-Manager-15-D02",
+          "reports_to": "D02",
+          "direct_report_id": "D02",
+          "worker_name_pattern": "Beacon-{role}-D02-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Beacon-Director-D02",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D02-A": "Beacon-Independent-Analyst-1-D02",
+        "D02-B": "Beacon-Independent-Analyst-2-D02"
+      }
     },
     {
       "id": "COMP-D03",
@@ -225,93 +357,159 @@
           "id": "D03-M01",
           "worker_count": 50,
           "worker_id_pattern": "D03-M01-WNN",
-          "domain": "QuickBooks Desktop"
+          "domain": "QuickBooks Desktop",
+          "agent_name": "Cobalt-Manager-01-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M01-WNN"
         },
         {
           "id": "D03-M02",
           "worker_count": 50,
           "worker_id_pattern": "D03-M02-WNN",
-          "domain": "Financial statements"
+          "domain": "Financial statements",
+          "agent_name": "Cobalt-Manager-02-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M02-WNN"
         },
         {
           "id": "D03-M03",
           "worker_count": 50,
           "worker_id_pattern": "D03-M03-WNN",
-          "domain": "Tax compliance support"
+          "domain": "Tax compliance support",
+          "agent_name": "Cobalt-Manager-03-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M03-WNN"
         },
         {
           "id": "D03-M04",
           "worker_count": 50,
           "worker_id_pattern": "D03-M04-WNN",
-          "domain": "Bookkeeping migration"
+          "domain": "Bookkeeping migration",
+          "agent_name": "Cobalt-Manager-04-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M04-WNN"
         },
         {
           "id": "D03-M05",
           "worker_count": 50,
           "worker_id_pattern": "D03-M05-WNN",
-          "domain": "Credit control"
+          "domain": "Credit control",
+          "agent_name": "Cobalt-Manager-05-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M05-WNN"
         },
         {
           "id": "D03-M06",
           "worker_count": 50,
           "worker_id_pattern": "D03-M06-WNN",
-          "domain": "Nonprofit accounts"
+          "domain": "Nonprofit accounts",
+          "agent_name": "Cobalt-Manager-06-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M06-WNN"
         },
         {
           "id": "D03-M07",
           "worker_count": 50,
           "worker_id_pattern": "D03-M07-WNN",
-          "domain": "Ecommerce bookkeeping"
+          "domain": "Ecommerce bookkeeping",
+          "agent_name": "Cobalt-Manager-07-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M07-WNN"
         },
         {
           "id": "D03-M08",
           "worker_count": 50,
           "worker_id_pattern": "D03-M08-WNN",
-          "domain": "Bitcoin tasks"
+          "domain": "Bitcoin tasks",
+          "agent_name": "Cobalt-Manager-08-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M08-WNN"
         },
         {
           "id": "D03-M09",
           "worker_count": 50,
           "worker_id_pattern": "D03-M09-WNN",
-          "domain": "Open-source issues"
+          "domain": "Open-source issues",
+          "agent_name": "Cobalt-Manager-09-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M09-WNN"
         },
         {
           "id": "D03-M10",
           "worker_count": 50,
           "worker_id_pattern": "D03-M10-WNN",
-          "domain": "Software QA"
+          "domain": "Software QA",
+          "agent_name": "Cobalt-Manager-10-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M10-WNN"
         },
         {
           "id": "D03-M11",
           "worker_count": 50,
           "worker_id_pattern": "D03-M11-WNN",
-          "domain": "Transcription work"
+          "domain": "Transcription work",
+          "agent_name": "Cobalt-Manager-11-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M11-WNN"
         },
         {
           "id": "D03-M12",
           "worker_count": 50,
           "worker_id_pattern": "D03-M12-WNN",
-          "domain": "Market research"
+          "domain": "Market research",
+          "agent_name": "Cobalt-Manager-12-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M12-WNN"
         },
         {
           "id": "D03-M13",
           "worker_count": 50,
           "worker_id_pattern": "D03-M13-WNN",
-          "domain": "Customer invoicing"
+          "domain": "Customer invoicing",
+          "agent_name": "Cobalt-Manager-13-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M13-WNN"
         },
         {
           "id": "D03-M14",
           "worker_count": 50,
           "worker_id_pattern": "D03-M14-WNN",
-          "domain": "Competitions"
+          "domain": "Competitions",
+          "agent_name": "Cobalt-Manager-14-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M14-WNN"
         },
         {
           "id": "D03-M15",
           "worker_count": 50,
           "worker_id_pattern": "D03-M15-WNN",
-          "domain": "Data quality audits"
+          "domain": "Data quality audits",
+          "agent_name": "Cobalt-Manager-15-D03",
+          "reports_to": "D03",
+          "direct_report_id": "D03",
+          "worker_name_pattern": "Cobalt-{role}-D03-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Cobalt-Director-D03",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D03-A": "Cobalt-Independent-Analyst-1-D03",
+        "D03-B": "Cobalt-Independent-Analyst-2-D03"
+      }
     },
     {
       "id": "COMP-D04",
@@ -325,93 +523,159 @@
           "id": "D04-M01",
           "worker_count": 50,
           "worker_id_pattern": "D04-M01-WNN",
-          "domain": "QuickBooks Online"
+          "domain": "QuickBooks Online",
+          "agent_name": "Delta-Manager-01-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M01-WNN"
         },
         {
           "id": "D04-M02",
           "worker_count": 50,
           "worker_id_pattern": "D04-M02-WNN",
-          "domain": "Management accounts"
+          "domain": "Management accounts",
+          "agent_name": "Delta-Manager-02-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M02-WNN"
         },
         {
           "id": "D04-M03",
           "worker_count": 50,
           "worker_id_pattern": "D04-M03-WNN",
-          "domain": "EFRIS systems"
+          "domain": "EFRIS systems",
+          "agent_name": "Delta-Manager-03-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M03-WNN"
         },
         {
           "id": "D04-M04",
           "worker_count": 50,
           "worker_id_pattern": "D04-M04-WNN",
-          "domain": "Accounts payable"
+          "domain": "Accounts payable",
+          "agent_name": "Delta-Manager-04-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M04-WNN"
         },
         {
           "id": "D04-M05",
           "worker_count": 50,
           "worker_id_pattern": "D04-M05-WNN",
-          "domain": "Inventory accounting"
+          "domain": "Inventory accounting",
+          "agent_name": "Delta-Manager-05-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M05-WNN"
         },
         {
           "id": "D04-M06",
           "worker_count": 50,
           "worker_id_pattern": "D04-M06-WNN",
-          "domain": "Sacco accounting"
+          "domain": "Sacco accounting",
+          "agent_name": "Delta-Manager-06-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M06-WNN"
         },
         {
           "id": "D04-M07",
           "worker_count": 50,
           "worker_id_pattern": "D04-M07-WNN",
-          "domain": "Hospitality bookkeeping"
+          "domain": "Hospitality bookkeeping",
+          "agent_name": "Delta-Manager-07-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M07-WNN"
         },
         {
           "id": "D04-M08",
           "worker_count": 50,
           "worker_id_pattern": "D04-M08-WNN",
-          "domain": "USDC tasks"
+          "domain": "USDC tasks",
+          "agent_name": "Delta-Manager-08-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M08-WNN"
         },
         {
           "id": "D04-M09",
           "worker_count": 50,
           "worker_id_pattern": "D04-M09-WNN",
-          "domain": "Documentation bounties"
+          "domain": "Documentation bounties",
+          "agent_name": "Delta-Manager-09-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M09-WNN"
         },
         {
           "id": "D04-M10",
           "worker_count": 50,
           "worker_id_pattern": "D04-M10-WNN",
-          "domain": "AI evaluation"
+          "domain": "AI evaluation",
+          "agent_name": "Delta-Manager-10-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M10-WNN"
         },
         {
           "id": "D04-M11",
           "worker_count": 50,
           "worker_id_pattern": "D04-M11-WNN",
-          "domain": "Localization work"
+          "domain": "Localization work",
+          "agent_name": "Delta-Manager-11-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M11-WNN"
         },
         {
           "id": "D04-M12",
           "worker_count": 50,
           "worker_id_pattern": "D04-M12-WNN",
-          "domain": "Virtual assistant finance"
+          "domain": "Virtual assistant finance",
+          "agent_name": "Delta-Manager-12-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M12-WNN"
         },
         {
           "id": "D04-M13",
           "worker_count": 50,
           "worker_id_pattern": "D04-M13-WNN",
-          "domain": "Proposal writing"
+          "domain": "Proposal writing",
+          "agent_name": "Delta-Manager-13-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M13-WNN"
         },
         {
           "id": "D04-M14",
           "worker_count": 50,
           "worker_id_pattern": "D04-M14-WNN",
-          "domain": "AI-agent tasks"
+          "domain": "AI-agent tasks",
+          "agent_name": "Delta-Manager-14-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M14-WNN"
         },
         {
           "id": "D04-M15",
           "worker_count": 50,
           "worker_id_pattern": "D04-M15-WNN",
-          "domain": "Remote spreadsheet work"
+          "domain": "Remote spreadsheet work",
+          "agent_name": "Delta-Manager-15-D04",
+          "reports_to": "D04",
+          "direct_report_id": "D04",
+          "worker_name_pattern": "Delta-{role}-D04-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Delta-Director-D04",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D04-A": "Delta-Independent-Analyst-1-D04",
+        "D04-B": "Delta-Independent-Analyst-2-D04"
+      }
     },
     {
       "id": "COMP-D05",
@@ -425,93 +689,159 @@
           "id": "D05-M01",
           "worker_count": 50,
           "worker_id_pattern": "D05-M01-WNN",
-          "domain": "Accounting cleanup"
+          "domain": "Accounting cleanup",
+          "agent_name": "Equinox-Manager-01-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M01-WNN"
         },
         {
           "id": "D05-M02",
           "worker_count": 50,
           "worker_id_pattern": "D05-M02-WNN",
-          "domain": "Payroll processing"
+          "domain": "Payroll processing",
+          "agent_name": "Equinox-Manager-02-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M02-WNN"
         },
         {
           "id": "D05-M03",
           "worker_count": 50,
           "worker_id_pattern": "D05-M03-WNN",
-          "domain": "Excel financial models"
+          "domain": "Excel financial models",
+          "agent_name": "Equinox-Manager-03-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M03-WNN"
         },
         {
           "id": "D05-M04",
           "worker_count": 50,
           "worker_id_pattern": "D05-M04-WNN",
-          "domain": "Accounts receivable"
+          "domain": "Accounts receivable",
+          "agent_name": "Equinox-Manager-04-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M04-WNN"
         },
         {
           "id": "D05-M05",
           "worker_count": 50,
           "worker_id_pattern": "D05-M05-WNN",
-          "domain": "Audit preparation"
+          "domain": "Audit preparation",
+          "agent_name": "Equinox-Manager-05-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M05-WNN"
         },
         {
           "id": "D05-M06",
           "worker_count": 50,
           "worker_id_pattern": "D05-M06-WNN",
-          "domain": "Agribusiness finance"
+          "domain": "Agribusiness finance",
+          "agent_name": "Equinox-Manager-06-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M06-WNN"
         },
         {
           "id": "D05-M07",
           "worker_count": 50,
           "worker_id_pattern": "D05-M07-WNN",
-          "domain": "Crypto payroll"
+          "domain": "Crypto payroll",
+          "agent_name": "Equinox-Manager-07-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M07-WNN"
         },
         {
           "id": "D05-M08",
           "worker_count": 50,
           "worker_id_pattern": "D05-M08-WNN",
-          "domain": "Lightning tasks"
+          "domain": "Lightning tasks",
+          "agent_name": "Equinox-Manager-08-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M08-WNN"
         },
         {
           "id": "D05-M09",
           "worker_count": 50,
           "worker_id_pattern": "D05-M09-WNN",
-          "domain": "Bugfix bounties"
+          "domain": "Bugfix bounties",
+          "agent_name": "Equinox-Manager-09-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M09-WNN"
         },
         {
           "id": "D05-M10",
           "worker_count": 50,
           "worker_id_pattern": "D05-M10-WNN",
-          "domain": "Data annotation"
+          "domain": "Data annotation",
+          "agent_name": "Equinox-Manager-10-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M10-WNN"
         },
         {
           "id": "D05-M11",
           "worker_count": 50,
           "worker_id_pattern": "D05-M11-WNN",
-          "domain": "Technical writing"
+          "domain": "Technical writing",
+          "agent_name": "Equinox-Manager-11-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M11-WNN"
         },
         {
           "id": "D05-M12",
           "worker_count": 50,
           "worker_id_pattern": "D05-M12-WNN",
-          "domain": "Finance data entry"
+          "domain": "Finance data entry",
+          "agent_name": "Equinox-Manager-12-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M12-WNN"
         },
         {
           "id": "D05-M13",
           "worker_count": 50,
           "worker_id_pattern": "D05-M13-WNN",
-          "domain": "Public grants"
+          "domain": "Public grants",
+          "agent_name": "Equinox-Manager-13-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M13-WNN"
         },
         {
           "id": "D05-M14",
           "worker_count": 50,
           "worker_id_pattern": "D05-M14-WNN",
-          "domain": "Automation gigs"
+          "domain": "Automation gigs",
+          "agent_name": "Equinox-Manager-14-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M14-WNN"
         },
         {
           "id": "D05-M15",
           "worker_count": 50,
           "worker_id_pattern": "D05-M15-WNN",
-          "domain": "SME bookkeeping"
+          "domain": "SME bookkeeping",
+          "agent_name": "Equinox-Manager-15-D05",
+          "reports_to": "D05",
+          "direct_report_id": "D05",
+          "worker_name_pattern": "Equinox-{role}-D05-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Equinox-Director-D05",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D05-A": "Equinox-Independent-Analyst-1-D05",
+        "D05-B": "Equinox-Independent-Analyst-2-D05"
+      }
     },
     {
       "id": "COMP-D06",
@@ -525,93 +855,159 @@
           "id": "D06-M01",
           "worker_count": 50,
           "worker_id_pattern": "D06-M01-WNN",
-          "domain": "Financial statements"
+          "domain": "Financial statements",
+          "agent_name": "Falcon-Manager-01-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M01-WNN"
         },
         {
           "id": "D06-M02",
           "worker_count": 50,
           "worker_id_pattern": "D06-M02-WNN",
-          "domain": "Tax compliance support"
+          "domain": "Tax compliance support",
+          "agent_name": "Falcon-Manager-02-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M02-WNN"
         },
         {
           "id": "D06-M03",
           "worker_count": 50,
           "worker_id_pattern": "D06-M03-WNN",
-          "domain": "Bookkeeping migration"
+          "domain": "Bookkeeping migration",
+          "agent_name": "Falcon-Manager-03-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M03-WNN"
         },
         {
           "id": "D06-M04",
           "worker_count": 50,
           "worker_id_pattern": "D06-M04-WNN",
-          "domain": "Credit control"
+          "domain": "Credit control",
+          "agent_name": "Falcon-Manager-04-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M04-WNN"
         },
         {
           "id": "D06-M05",
           "worker_count": 50,
           "worker_id_pattern": "D06-M05-WNN",
-          "domain": "Nonprofit accounts"
+          "domain": "Nonprofit accounts",
+          "agent_name": "Falcon-Manager-05-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M05-WNN"
         },
         {
           "id": "D06-M06",
           "worker_count": 50,
           "worker_id_pattern": "D06-M06-WNN",
-          "domain": "Ecommerce bookkeeping"
+          "domain": "Ecommerce bookkeeping",
+          "agent_name": "Falcon-Manager-06-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M06-WNN"
         },
         {
           "id": "D06-M07",
           "worker_count": 50,
           "worker_id_pattern": "D06-M07-WNN",
-          "domain": "Bitcoin tasks"
+          "domain": "Bitcoin tasks",
+          "agent_name": "Falcon-Manager-07-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M07-WNN"
         },
         {
           "id": "D06-M08",
           "worker_count": 50,
           "worker_id_pattern": "D06-M08-WNN",
-          "domain": "Open-source issues"
+          "domain": "Open-source issues",
+          "agent_name": "Falcon-Manager-08-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M08-WNN"
         },
         {
           "id": "D06-M09",
           "worker_count": 50,
           "worker_id_pattern": "D06-M09-WNN",
-          "domain": "Software QA"
+          "domain": "Software QA",
+          "agent_name": "Falcon-Manager-09-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M09-WNN"
         },
         {
           "id": "D06-M10",
           "worker_count": 50,
           "worker_id_pattern": "D06-M10-WNN",
-          "domain": "Transcription work"
+          "domain": "Transcription work",
+          "agent_name": "Falcon-Manager-10-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M10-WNN"
         },
         {
           "id": "D06-M11",
           "worker_count": 50,
           "worker_id_pattern": "D06-M11-WNN",
-          "domain": "Market research"
+          "domain": "Market research",
+          "agent_name": "Falcon-Manager-11-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M11-WNN"
         },
         {
           "id": "D06-M12",
           "worker_count": 50,
           "worker_id_pattern": "D06-M12-WNN",
-          "domain": "Customer invoicing"
+          "domain": "Customer invoicing",
+          "agent_name": "Falcon-Manager-12-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M12-WNN"
         },
         {
           "id": "D06-M13",
           "worker_count": 50,
           "worker_id_pattern": "D06-M13-WNN",
-          "domain": "Competitions"
+          "domain": "Competitions",
+          "agent_name": "Falcon-Manager-13-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M13-WNN"
         },
         {
           "id": "D06-M14",
           "worker_count": 50,
           "worker_id_pattern": "D06-M14-WNN",
-          "domain": "Data quality audits"
+          "domain": "Data quality audits",
+          "agent_name": "Falcon-Manager-14-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M14-WNN"
         },
         {
           "id": "D06-M15",
           "worker_count": 50,
           "worker_id_pattern": "D06-M15-WNN",
-          "domain": "Client prospecting"
+          "domain": "Client prospecting",
+          "agent_name": "Falcon-Manager-15-D06",
+          "reports_to": "D06",
+          "direct_report_id": "D06",
+          "worker_name_pattern": "Falcon-{role}-D06-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Falcon-Director-D06",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D06-A": "Falcon-Independent-Analyst-1-D06",
+        "D06-B": "Falcon-Independent-Analyst-2-D06"
+      }
     },
     {
       "id": "COMP-D07",
@@ -625,93 +1021,159 @@
           "id": "D07-M01",
           "worker_count": 50,
           "worker_id_pattern": "D07-M01-WNN",
-          "domain": "Management accounts"
+          "domain": "Management accounts",
+          "agent_name": "Granite-Manager-01-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M01-WNN"
         },
         {
           "id": "D07-M02",
           "worker_count": 50,
           "worker_id_pattern": "D07-M02-WNN",
-          "domain": "EFRIS systems"
+          "domain": "EFRIS systems",
+          "agent_name": "Granite-Manager-02-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M02-WNN"
         },
         {
           "id": "D07-M03",
           "worker_count": 50,
           "worker_id_pattern": "D07-M03-WNN",
-          "domain": "Accounts payable"
+          "domain": "Accounts payable",
+          "agent_name": "Granite-Manager-03-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M03-WNN"
         },
         {
           "id": "D07-M04",
           "worker_count": 50,
           "worker_id_pattern": "D07-M04-WNN",
-          "domain": "Inventory accounting"
+          "domain": "Inventory accounting",
+          "agent_name": "Granite-Manager-04-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M04-WNN"
         },
         {
           "id": "D07-M05",
           "worker_count": 50,
           "worker_id_pattern": "D07-M05-WNN",
-          "domain": "Sacco accounting"
+          "domain": "Sacco accounting",
+          "agent_name": "Granite-Manager-05-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M05-WNN"
         },
         {
           "id": "D07-M06",
           "worker_count": 50,
           "worker_id_pattern": "D07-M06-WNN",
-          "domain": "Hospitality bookkeeping"
+          "domain": "Hospitality bookkeeping",
+          "agent_name": "Granite-Manager-06-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M06-WNN"
         },
         {
           "id": "D07-M07",
           "worker_count": 50,
           "worker_id_pattern": "D07-M07-WNN",
-          "domain": "USDC tasks"
+          "domain": "USDC tasks",
+          "agent_name": "Granite-Manager-07-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M07-WNN"
         },
         {
           "id": "D07-M08",
           "worker_count": 50,
           "worker_id_pattern": "D07-M08-WNN",
-          "domain": "Documentation bounties"
+          "domain": "Documentation bounties",
+          "agent_name": "Granite-Manager-08-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M08-WNN"
         },
         {
           "id": "D07-M09",
           "worker_count": 50,
           "worker_id_pattern": "D07-M09-WNN",
-          "domain": "AI evaluation"
+          "domain": "AI evaluation",
+          "agent_name": "Granite-Manager-09-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M09-WNN"
         },
         {
           "id": "D07-M10",
           "worker_count": 50,
           "worker_id_pattern": "D07-M10-WNN",
-          "domain": "Localization work"
+          "domain": "Localization work",
+          "agent_name": "Granite-Manager-10-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M10-WNN"
         },
         {
           "id": "D07-M11",
           "worker_count": 50,
           "worker_id_pattern": "D07-M11-WNN",
-          "domain": "Virtual assistant finance"
+          "domain": "Virtual assistant finance",
+          "agent_name": "Granite-Manager-11-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M11-WNN"
         },
         {
           "id": "D07-M12",
           "worker_count": 50,
           "worker_id_pattern": "D07-M12-WNN",
-          "domain": "Proposal writing"
+          "domain": "Proposal writing",
+          "agent_name": "Granite-Manager-12-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M12-WNN"
         },
         {
           "id": "D07-M13",
           "worker_count": 50,
           "worker_id_pattern": "D07-M13-WNN",
-          "domain": "AI-agent tasks"
+          "domain": "AI-agent tasks",
+          "agent_name": "Granite-Manager-13-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M13-WNN"
         },
         {
           "id": "D07-M14",
           "worker_count": 50,
           "worker_id_pattern": "D07-M14-WNN",
-          "domain": "Remote spreadsheet work"
+          "domain": "Remote spreadsheet work",
+          "agent_name": "Granite-Manager-14-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M14-WNN"
         },
         {
           "id": "D07-M15",
           "worker_count": 50,
           "worker_id_pattern": "D07-M15-WNN",
-          "domain": "Financial controls"
+          "domain": "Financial controls",
+          "agent_name": "Granite-Manager-15-D07",
+          "reports_to": "D07",
+          "direct_report_id": "D07",
+          "worker_name_pattern": "Granite-{role}-D07-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Granite-Director-D07",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D07-A": "Granite-Independent-Analyst-1-D07",
+        "D07-B": "Granite-Independent-Analyst-2-D07"
+      }
     },
     {
       "id": "COMP-D08",
@@ -725,93 +1187,159 @@
           "id": "D08-M01",
           "worker_count": 50,
           "worker_id_pattern": "D08-M01-WNN",
-          "domain": "Payroll processing"
+          "domain": "Payroll processing",
+          "agent_name": "Horizon-Manager-01-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M01-WNN"
         },
         {
           "id": "D08-M02",
           "worker_count": 50,
           "worker_id_pattern": "D08-M02-WNN",
-          "domain": "Excel financial models"
+          "domain": "Excel financial models",
+          "agent_name": "Horizon-Manager-02-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M02-WNN"
         },
         {
           "id": "D08-M03",
           "worker_count": 50,
           "worker_id_pattern": "D08-M03-WNN",
-          "domain": "Accounts receivable"
+          "domain": "Accounts receivable",
+          "agent_name": "Horizon-Manager-03-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M03-WNN"
         },
         {
           "id": "D08-M04",
           "worker_count": 50,
           "worker_id_pattern": "D08-M04-WNN",
-          "domain": "Audit preparation"
+          "domain": "Audit preparation",
+          "agent_name": "Horizon-Manager-04-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M04-WNN"
         },
         {
           "id": "D08-M05",
           "worker_count": 50,
           "worker_id_pattern": "D08-M05-WNN",
-          "domain": "Agribusiness finance"
+          "domain": "Agribusiness finance",
+          "agent_name": "Horizon-Manager-05-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M05-WNN"
         },
         {
           "id": "D08-M06",
           "worker_count": 50,
           "worker_id_pattern": "D08-M06-WNN",
-          "domain": "Crypto payroll"
+          "domain": "Crypto payroll",
+          "agent_name": "Horizon-Manager-06-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M06-WNN"
         },
         {
           "id": "D08-M07",
           "worker_count": 50,
           "worker_id_pattern": "D08-M07-WNN",
-          "domain": "Lightning tasks"
+          "domain": "Lightning tasks",
+          "agent_name": "Horizon-Manager-07-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M07-WNN"
         },
         {
           "id": "D08-M08",
           "worker_count": 50,
           "worker_id_pattern": "D08-M08-WNN",
-          "domain": "Bugfix bounties"
+          "domain": "Bugfix bounties",
+          "agent_name": "Horizon-Manager-08-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M08-WNN"
         },
         {
           "id": "D08-M09",
           "worker_count": 50,
           "worker_id_pattern": "D08-M09-WNN",
-          "domain": "Data annotation"
+          "domain": "Data annotation",
+          "agent_name": "Horizon-Manager-09-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M09-WNN"
         },
         {
           "id": "D08-M10",
           "worker_count": 50,
           "worker_id_pattern": "D08-M10-WNN",
-          "domain": "Technical writing"
+          "domain": "Technical writing",
+          "agent_name": "Horizon-Manager-10-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M10-WNN"
         },
         {
           "id": "D08-M11",
           "worker_count": 50,
           "worker_id_pattern": "D08-M11-WNN",
-          "domain": "Finance data entry"
+          "domain": "Finance data entry",
+          "agent_name": "Horizon-Manager-11-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M11-WNN"
         },
         {
           "id": "D08-M12",
           "worker_count": 50,
           "worker_id_pattern": "D08-M12-WNN",
-          "domain": "Public grants"
+          "domain": "Public grants",
+          "agent_name": "Horizon-Manager-12-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M12-WNN"
         },
         {
           "id": "D08-M13",
           "worker_count": 50,
           "worker_id_pattern": "D08-M13-WNN",
-          "domain": "Automation gigs"
+          "domain": "Automation gigs",
+          "agent_name": "Horizon-Manager-13-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M13-WNN"
         },
         {
           "id": "D08-M14",
           "worker_count": 50,
           "worker_id_pattern": "D08-M14-WNN",
-          "domain": "SME bookkeeping"
+          "domain": "SME bookkeeping",
+          "agent_name": "Horizon-Manager-14-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M14-WNN"
         },
         {
           "id": "D08-M15",
           "worker_count": 50,
           "worker_id_pattern": "D08-M15-WNN",
-          "domain": "Fraud verification"
+          "domain": "Fraud verification",
+          "agent_name": "Horizon-Manager-15-D08",
+          "reports_to": "D08",
+          "direct_report_id": "D08",
+          "worker_name_pattern": "Horizon-{role}-D08-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Horizon-Director-D08",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D08-A": "Horizon-Independent-Analyst-1-D08",
+        "D08-B": "Horizon-Independent-Analyst-2-D08"
+      }
     },
     {
       "id": "COMP-D09",
@@ -825,93 +1353,159 @@
           "id": "D09-M01",
           "worker_count": 50,
           "worker_id_pattern": "D09-M01-WNN",
-          "domain": "Tax compliance support"
+          "domain": "Tax compliance support",
+          "agent_name": "Ion-Manager-01-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M01-WNN"
         },
         {
           "id": "D09-M02",
           "worker_count": 50,
           "worker_id_pattern": "D09-M02-WNN",
-          "domain": "Bookkeeping migration"
+          "domain": "Bookkeeping migration",
+          "agent_name": "Ion-Manager-02-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M02-WNN"
         },
         {
           "id": "D09-M03",
           "worker_count": 50,
           "worker_id_pattern": "D09-M03-WNN",
-          "domain": "Credit control"
+          "domain": "Credit control",
+          "agent_name": "Ion-Manager-03-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M03-WNN"
         },
         {
           "id": "D09-M04",
           "worker_count": 50,
           "worker_id_pattern": "D09-M04-WNN",
-          "domain": "Nonprofit accounts"
+          "domain": "Nonprofit accounts",
+          "agent_name": "Ion-Manager-04-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M04-WNN"
         },
         {
           "id": "D09-M05",
           "worker_count": 50,
           "worker_id_pattern": "D09-M05-WNN",
-          "domain": "Ecommerce bookkeeping"
+          "domain": "Ecommerce bookkeeping",
+          "agent_name": "Ion-Manager-05-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M05-WNN"
         },
         {
           "id": "D09-M06",
           "worker_count": 50,
           "worker_id_pattern": "D09-M06-WNN",
-          "domain": "Bitcoin tasks"
+          "domain": "Bitcoin tasks",
+          "agent_name": "Ion-Manager-06-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M06-WNN"
         },
         {
           "id": "D09-M07",
           "worker_count": 50,
           "worker_id_pattern": "D09-M07-WNN",
-          "domain": "Open-source issues"
+          "domain": "Open-source issues",
+          "agent_name": "Ion-Manager-07-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M07-WNN"
         },
         {
           "id": "D09-M08",
           "worker_count": 50,
           "worker_id_pattern": "D09-M08-WNN",
-          "domain": "Software QA"
+          "domain": "Software QA",
+          "agent_name": "Ion-Manager-08-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M08-WNN"
         },
         {
           "id": "D09-M09",
           "worker_count": 50,
           "worker_id_pattern": "D09-M09-WNN",
-          "domain": "Transcription work"
+          "domain": "Transcription work",
+          "agent_name": "Ion-Manager-09-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M09-WNN"
         },
         {
           "id": "D09-M10",
           "worker_count": 50,
           "worker_id_pattern": "D09-M10-WNN",
-          "domain": "Market research"
+          "domain": "Market research",
+          "agent_name": "Ion-Manager-10-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M10-WNN"
         },
         {
           "id": "D09-M11",
           "worker_count": 50,
           "worker_id_pattern": "D09-M11-WNN",
-          "domain": "Customer invoicing"
+          "domain": "Customer invoicing",
+          "agent_name": "Ion-Manager-11-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M11-WNN"
         },
         {
           "id": "D09-M12",
           "worker_count": 50,
           "worker_id_pattern": "D09-M12-WNN",
-          "domain": "Competitions"
+          "domain": "Competitions",
+          "agent_name": "Ion-Manager-12-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M12-WNN"
         },
         {
           "id": "D09-M13",
           "worker_count": 50,
           "worker_id_pattern": "D09-M13-WNN",
-          "domain": "Data quality audits"
+          "domain": "Data quality audits",
+          "agent_name": "Ion-Manager-13-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M13-WNN"
         },
         {
           "id": "D09-M14",
           "worker_count": 50,
           "worker_id_pattern": "D09-M14-WNN",
-          "domain": "Client prospecting"
+          "domain": "Client prospecting",
+          "agent_name": "Ion-Manager-14-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M14-WNN"
         },
         {
           "id": "D09-M15",
           "worker_count": 50,
           "worker_id_pattern": "D09-M15-WNN",
-          "domain": "Monthly bookkeeping"
+          "domain": "Monthly bookkeeping",
+          "agent_name": "Ion-Manager-15-D09",
+          "reports_to": "D09",
+          "direct_report_id": "D09",
+          "worker_name_pattern": "Ion-{role}-D09-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Ion-Director-D09",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D09-A": "Ion-Independent-Analyst-1-D09",
+        "D09-B": "Ion-Independent-Analyst-2-D09"
+      }
     },
     {
       "id": "COMP-D10",
@@ -925,93 +1519,159 @@
           "id": "D10-M01",
           "worker_count": 50,
           "worker_id_pattern": "D10-M01-WNN",
-          "domain": "EFRIS systems"
+          "domain": "EFRIS systems",
+          "agent_name": "Juniper-Manager-01-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M01-WNN"
         },
         {
           "id": "D10-M02",
           "worker_count": 50,
           "worker_id_pattern": "D10-M02-WNN",
-          "domain": "Accounts payable"
+          "domain": "Accounts payable",
+          "agent_name": "Juniper-Manager-02-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M02-WNN"
         },
         {
           "id": "D10-M03",
           "worker_count": 50,
           "worker_id_pattern": "D10-M03-WNN",
-          "domain": "Inventory accounting"
+          "domain": "Inventory accounting",
+          "agent_name": "Juniper-Manager-03-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M03-WNN"
         },
         {
           "id": "D10-M04",
           "worker_count": 50,
           "worker_id_pattern": "D10-M04-WNN",
-          "domain": "Sacco accounting"
+          "domain": "Sacco accounting",
+          "agent_name": "Juniper-Manager-04-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M04-WNN"
         },
         {
           "id": "D10-M05",
           "worker_count": 50,
           "worker_id_pattern": "D10-M05-WNN",
-          "domain": "Hospitality bookkeeping"
+          "domain": "Hospitality bookkeeping",
+          "agent_name": "Juniper-Manager-05-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M05-WNN"
         },
         {
           "id": "D10-M06",
           "worker_count": 50,
           "worker_id_pattern": "D10-M06-WNN",
-          "domain": "USDC tasks"
+          "domain": "USDC tasks",
+          "agent_name": "Juniper-Manager-06-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M06-WNN"
         },
         {
           "id": "D10-M07",
           "worker_count": 50,
           "worker_id_pattern": "D10-M07-WNN",
-          "domain": "Documentation bounties"
+          "domain": "Documentation bounties",
+          "agent_name": "Juniper-Manager-07-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M07-WNN"
         },
         {
           "id": "D10-M08",
           "worker_count": 50,
           "worker_id_pattern": "D10-M08-WNN",
-          "domain": "AI evaluation"
+          "domain": "AI evaluation",
+          "agent_name": "Juniper-Manager-08-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M08-WNN"
         },
         {
           "id": "D10-M09",
           "worker_count": 50,
           "worker_id_pattern": "D10-M09-WNN",
-          "domain": "Localization work"
+          "domain": "Localization work",
+          "agent_name": "Juniper-Manager-09-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M09-WNN"
         },
         {
           "id": "D10-M10",
           "worker_count": 50,
           "worker_id_pattern": "D10-M10-WNN",
-          "domain": "Virtual assistant finance"
+          "domain": "Virtual assistant finance",
+          "agent_name": "Juniper-Manager-10-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M10-WNN"
         },
         {
           "id": "D10-M11",
           "worker_count": 50,
           "worker_id_pattern": "D10-M11-WNN",
-          "domain": "Proposal writing"
+          "domain": "Proposal writing",
+          "agent_name": "Juniper-Manager-11-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M11-WNN"
         },
         {
           "id": "D10-M12",
           "worker_count": 50,
           "worker_id_pattern": "D10-M12-WNN",
-          "domain": "AI-agent tasks"
+          "domain": "AI-agent tasks",
+          "agent_name": "Juniper-Manager-12-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M12-WNN"
         },
         {
           "id": "D10-M13",
           "worker_count": 50,
           "worker_id_pattern": "D10-M13-WNN",
-          "domain": "Remote spreadsheet work"
+          "domain": "Remote spreadsheet work",
+          "agent_name": "Juniper-Manager-13-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M13-WNN"
         },
         {
           "id": "D10-M14",
           "worker_count": 50,
           "worker_id_pattern": "D10-M14-WNN",
-          "domain": "Financial controls"
+          "domain": "Financial controls",
+          "agent_name": "Juniper-Manager-14-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M14-WNN"
         },
         {
           "id": "D10-M15",
           "worker_count": 50,
           "worker_id_pattern": "D10-M15-WNN",
-          "domain": "Bank reconciliations"
+          "domain": "Bank reconciliations",
+          "agent_name": "Juniper-Manager-15-D10",
+          "reports_to": "D10",
+          "direct_report_id": "D10",
+          "worker_name_pattern": "Juniper-{role}-D10-M15-WNN"
         }
-      ]
+      ],
+      "director_name": "Juniper-Director-D10",
+      "reporting_parent": "owner",
+      "assistant_names": {
+        "D10-A": "Juniper-Independent-Analyst-1-D10",
+        "D10-B": "Juniper-Independent-Analyst-2-D10"
+      }
     }
   ],
   "worker_roles": [
@@ -1368,5 +2028,8 @@
   ],
   "payment_brief_file": "crypto-agents/branch_brief.json",
   "owner_context_policy": "Subordinate worker instructions contain publicly approved payment routes and work mission only; no personal details",
-  "external_identity_claims": "These are software research roles, not recruited humans or independent authenticated social accounts"
+  "external_identity_claims": "These are software research roles, not recruited humans or independent authenticated social accounts",
+  "identity_registry_file": "crypto-agents/agent_registry.csv",
+  "reporting_policy": "Each worker independently researches with a unique agent identity and reports to exactly one manager. Each manager independently reviews 50 worker roles and reports to exactly one director. Each of the 2 independent assistants reports only to its director. Each director reports only to the owner. Shared findings are copied as source-linked handoffs, never dual reporting lines.",
+  "implementation_truth": "These are distinct configured autonomous inference roles, not 7680 separate authenticated social accounts, distinct processes or simultaneous cloud instances. Only activated rotational worker slots actually run."
 }
