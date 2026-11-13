@@ -27,6 +27,7 @@ def describe_micro_worker(parent_id,parent_name,slot):
        "id":f"{parent_id}-G{slot:03d}",
        "name":f"{parent_name}-MicroWorker-{slot:03d}",
        "parent_id":parent_id,
+       "owner_order_id":"ORD-021","order_inherited_from":parent_id,
        "company_id":"MC-"+parent_id,
        "level":"microcompany_worker",
        "assigned_sector":sector,
