@@ -1,0 +1,41 @@
+name: Ten-Minute Directors One-Page Report
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/director-report-deadline.yml'
+permissions:
+  contents: read
+  actions: read
+  issues: write
+jobs:
+  one-page-deadline:
+    name: Ten director evidence report due 17:07 UTC
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: At the requested deadline inspect evidence from all directors and post one page
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/director_ten_minute_report.py
+      - name: Display the one-page report
+        if: always()
+        run: |
+          if [ -f ten-minute-director-report/ONE_PAGE.md ]; then
+            cat ten-minute-director-report/ONE_PAGE.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Archive one-page report and evidence summary
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: ten-directors-one-page-report
+          path: ten-minute-director-report/
+          retention-days: 14
+          if-no-files-found: warn
