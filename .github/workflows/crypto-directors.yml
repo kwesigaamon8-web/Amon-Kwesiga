@@ -65,6 +65,8 @@ jobs:
           python-version: '3.11'
       - name: Screen for evidence and consolidate
         run: python crypto-agents/consolidate.py combined-reports
+      - name: Have each director review two assistants
+        run: python crypto-agents/director_review.py
       - name: Upload consolidated report
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,5 +75,6 @@ jobs:
           path: |
             summary.json
             summary.md
+            director-reports/
           if-no-files-found: warn
           retention-days: 7
