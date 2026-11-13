@@ -7,13 +7,16 @@ on:
       - 'crypto-agents/audit_independence.py'
       - 'crypto-agents/agent_registry.csv'
       - 'crypto-agents/company_hierarchy.json'
+      - 'crypto-agents/microcompany_structure.json'
+      - 'crypto-agents/microcompany_factory.py'
+      - 'crypto-agents/microcompany_audit.py'
   schedule:
     - cron: '7 3 * * *'
 permissions:
   contents: read
 jobs:
   check-independence:
-    name: Verify 7680 identities and one-parent reporting
+    name: Verify hierarchy plus 562.5m nested-role ID formula
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -23,17 +26,26 @@ jobs:
           python-version: '3.11'
       - name: Check every reporting line and distinct identity
         run: python crypto-agents/audit_independence.py --output independence-audit
+      - name: Verify unique nested microcompany identity formula
+        run: python crypto-agents/microcompany_factory.py
+      - name: Audit 1.125m nested companies without materializing all roles
+        run: python crypto-agents/microcompany_audit.py --output microcompany-audit
       - name: Publish audit to GitHub workflow summary
         if: always()
         run: |
           if [ -f independence-audit/audit.md ]; then
             cat independence-audit/audit.md >> "$GITHUB_STEP_SUMMARY"
+          if [ -f microcompany-audit/AUDIT.md ]; then
+            cat microcompany-audit/AUDIT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
           fi
       - name: Archive evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ai-independence-integrity-audit
-          path: independence-audit/
+          path: |
+            independence-audit/
+            microcompany-audit/
           retention-days: 14
           if-no-files-found: warn
