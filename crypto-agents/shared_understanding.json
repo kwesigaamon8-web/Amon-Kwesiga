@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-ord023-independent-action-v8",
+  "version": "2026-11-13-render-networks-ord028-v9",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -70,5 +70,14 @@
     ],
     "improvement_scope": "OWNER -> D/A -> M -> W -> S -> G -> final H: ORD-022 to all active roles. Investigate useful external sites and tooling, not only jobs; apply read-only authorized tools and evidence-backed methods. Every level reports to exactly one boss as configured.",
     "independent_execution_rule": "All actually activated D/A/M/W/S/G/H roles inherit ORD-023. For already permitted read-only tool/research actions, act independently after receiving the order. Do not require approval for every search, hypothesis or source check. All agent reports must show evidence and real results. Do not claim unactivated IDs have received or executed the command."
+  },
+  "render_network_instructions": {
+    "id": "ORD-028",
+    "source_file": "crypto-agents/render_outbound_networks.json",
+    "ranges": [
+      "74.220.48.0/24",
+      "74.220.56.0/24"
+    ],
+    "message": "These owner-supplied CIDRs identify shared Render egress source IPs, not target sites. An activated agent may use them to prepare authorized external-API firewall allowlisting after comparing with the current service's Render Connect > Outbound list; access only named permitted HTTPS services and produce evidence-backed reports. Never scan the CIDRs."
   }
 }
