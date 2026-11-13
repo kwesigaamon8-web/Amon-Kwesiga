@@ -69,6 +69,7 @@ if not data.get("handoff_register"):
     lines.append("No screened handoffs this cycle; directors should research new original sources and identify why weaker leads failed.")
 lines += [
     "",
+    "**Owner-approved public payment directory:** [Receiving addresses](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md). Directors may reference this in relevant authorized work and payment communications. Binance routes are unverified; no transfer should be requested to them.",
     "**D09:** independently challenge payer legitimacy, network authenticity and no-fee requirements.",
     "**D10:** check source failures, missing reports, duplicated work, honest status labels and independently evidenced receipts.",
     "**All directors:** choose credible next steps without waiting, share concrete URLs and counterevidence, cooperate across specialties, and do not misrepresent unsent applications or unsigned contracts as completed work.",
