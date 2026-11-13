@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:07:30.029Z",
+  "updated_utc": "2026-11-13T17:12:27.816Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -338,6 +338,25 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Research and safe evidence reporting are configured; actual external job applications/contacts/payments require compatible authenticated integrations and any needed explicit authorization. Never invent deposits, spend wallet funds, sign messages, disclose private keys, or send unsolicited bulk messages."
+    },
+    {
+      "id": "ORD-022",
+      "title": "Independent discovery and improvement using additional tools, websites and services through last branch level",
+      "accountable_director": "D03",
+      "standing_requirement": "OWNER ORDER (13 Nov 2026): Every actually activated research role, including all D/A/M/W/S/G/H tiers, must continuously discover, evaluate and where permitted USE helpful external research tools, sites, model resources, job marketplaces, verified bounty platforms, public datasets and automation capabilities to improve the quality, reach, speed, accuracy and legitimate paid-work outcomes of its crypto-earning research. Look worldwide; do not restrict to the existing GitHub/Hacker News/Jobicy channels. Compare tools by actual utility, cost, accessibility, legal terms, scams, country restrictions, auth/API availability, verifiable source and ability to find real paid tasks. Use supported read-only public endpoints and existing authenticated capabilities when available; propose new integrations requiring user connection or paid access instead of claiming they are connected. Route useful source-linked discoveries up one reporting parent and share de-duplicated recommendations. Do not self-modify code without validation or execute downloaded untrusted code. Do not provide credentials, grant permissions, create external accounts, spend funds, use payment keys or spam. Measure real added capabilities and independently confirmed paid cryptocurrency receipts. Commands must propagate to final H-level role definitions and every activated model prompt.",
+      "evidence_files": [
+        "crypto-agents/tool_ecosystem.json",
+        "crypto-agents/tool_scout.py",
+        "crypto-agents/shared_understanding.json",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/owner_brief.json",
+        "crypto-agents/order_cascade_audit.py",
+        ".github/workflows/crypto-directors.yml"
+      ],
+      "verification_condition": "Check tool scout outputs from actual successful GitHub Actions runs, evidence-linked tool/source candidate summaries, one-parent cascade to final H-role generated instructions, model prompts for all actually activated tiers, and independently verified tool adoption only when tool invocation succeeded. Do not label recommended or discovered tools as installed or activated.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Read-only discovery via explicitly configured public-source HTTP APIs is supported if workflow runs; authenticated logins, integration installs, code changes affecting external services, wallet actions and payments require separate compatible tools/owner approvals."
     }
   ]
 }
