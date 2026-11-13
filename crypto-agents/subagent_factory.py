@@ -23,6 +23,7 @@ def describe_child(parent_id, parent_name, slot):
         "id":f"{parent_id}-S{slot:03d}",
         "agent_name":f"{parent_name}-Subagent-{slot:03d}-{slug}",
         "parent_id":parent_id,"level":"delegated_subagent",
+        "owner_order_id":"ORD-021","order_inherited_from":parent_id,
         "sector":task["sector"],"assigned_role":task["specific_role"],
         "objective":"Independently research WORLDWIDE for legitimate crypto-paid assignments; confirm payer, actual paid deliverable, location eligibility, no upfront fee, approved payment network and verified incoming credit. Specific responsibility: "+task["independent_objective"],
         "reporting_chain":"subagent -> assigned worker -> assigned manager -> assigned director -> owner",
