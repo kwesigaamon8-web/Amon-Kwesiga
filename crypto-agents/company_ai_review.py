@@ -15,6 +15,7 @@ from wallet_routes import private_directory_status
 from friendly_pitch import warm_pitch
 from subagent_factory import describe_child, select_slot
 from microcompany_factory import describe_micro_worker, select_micro_worker_slot
+from mega_branch_factory import describe_branch_worker, rotating_slot
 from datetime import datetime, timezone
 
 ROLE=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
@@ -85,7 +86,7 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
         return {"status":"llm_execution_failed","analysis":"",
                 "error":str(exc)[:180],"parent_id":meta["parent_id"]}
 
-tally={"worker_ai_completed":0,"manager_ai_completed":0,"subagent_ai_completed":0,"subagent_roles_activated":0,"micro_worker_model_completed":0,"micro_worker_inference_attempted":0,"ai_failed":0}
+tally={"worker_ai_completed":0,"manager_ai_completed":0,"subagent_ai_completed":0,"subagent_roles_activated":0,"micro_worker_model_completed":0,"micro_worker_inference_attempted":0,"H_branch_model_completed":0,"H_branch_model_attempted":0,"ai_failed":0}
 for manager_id in manager_ids:
     manager_path=root/(manager_id+".json")
     mgr=json.loads(manager_path.read_text(encoding="utf-8"))
@@ -150,6 +151,36 @@ for manager_id in manager_ids:
             tally["micro_worker_model_completed"]+=1
         else:
             tally["ai_failed"]+=1
+        # Each active G-level micro-worker defines a separate branch of 666
+        # differently specialized H-level researcher roles. A single H-level
+        # model call is attempted ONLY when the parent G-level call completed.
+        micro["configured_H_branch_roles"]=666
+        micro["H_branch_head_id"]=micro["id"]
+        if micro_decision["status"]=="model_completed":
+            hslot=rotating_slot(micro["id"],CYCLE)
+            hchild=describe_branch_worker(micro["id"],micro["name"],hslot)
+            if hchild["parent_id"]!=micro["id"]:
+                raise ValueError("H-level worker must report to exactly one G parent")
+            hdecision=run_agent(hchild["id"],hchild["mission"],
+                worker.get("unverified_leads",[])[:1],
+                meta_override={"agent_name":hchild["name"],"parent_id":micro["id"]})
+            hchild["model_inference"]=hdecision
+            hchild["actual_inference_status"]=hdecision["status"]
+            hchild["source_links"]=[x["url"] for x in worker.get("unverified_leads",[])[:1] if x.get("url","").startswith("https://")]
+            hchild["verified_cryptocurrency_receipts"]=[]
+            hchild["messages_sent"]=False
+            (root/(hchild["id"]+".json")).write_text(json.dumps(hchild,indent=2),encoding="utf-8")
+            tally["H_branch_model_attempted"]+=1
+            if hdecision["status"]=="model_completed":
+                tally["H_branch_model_completed"]+=1
+            else:
+                tally["ai_failed"]+=1
+            micro["H_branch_sampled_child_id"]=hchild["id"]
+            micro["H_branch_sampled_inference_status"]=hdecision["status"]
+        else:
+            micro["H_branch_sampled_child_id"]=None
+            micro["H_branch_runtime_note"]="G-level parent inference did not complete; no child model call attempted."
+        (root/(micro["id"]+".json")).write_text(json.dumps(micro,indent=2),encoding="utf-8")
         child["microcompany_id"]=micro["company_id"]
         child["microcompany_configured_staff"]=500
         child["activated_micro_worker_id"]=micro["id"]
@@ -197,6 +228,10 @@ summary["microcompany_count_configured_beneath_company"]=750*150
 summary["microcompany_worker_roles_configured_beneath_company"]=750*150*500
 summary["micro_worker_model_attempts_this_cycle"]=tally["micro_worker_inference_attempted"]
 summary["micro_worker_model_successes_this_cycle"]=tally["micro_worker_model_completed"]
+summary["H_tier_branches_configured_under_company"]=750*150*500
+summary["H_tier_workers_defined_under_company"]=750*150*500*666
+summary["H_tier_inferences_attempted_this_cycle"]=tally["H_branch_model_attempted"]
+summary["H_tier_successful_model_inferences_this_cycle"]=tally["H_branch_model_completed"]
 summary["grandchildren_proof_status"]="Attempted independent model calls are distinguished from completed inferences, configured identities and real cryptocurrency receipts."
 summary["friendly_earning_directive"]=FRIENDLY["version"]
 summary["warm_drafts_prepared"]=sum(len(json.loads((root/(mid+".json")).read_text(encoding="utf-8")).get("friendly_reply_drafts",[])) for mid in manager_ids)
