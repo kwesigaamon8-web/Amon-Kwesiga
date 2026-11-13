@@ -82,7 +82,7 @@
     "non_disruptive": "No 374.625-billion simultaneous API lookups, external messages, job applications, or wallet requests. Existing real search and payout verification remain prioritized.",
     "rotation": "Use deterministic per-parent varied slot that advances per cycle so more assignments can eventually be sampled; not all will be run."
   },
-  "mission": "All branches seek only legitimately earned transferable cryptocurrency independently verified as received in owner-approved correct-network addresses; use no-fee, genuine payer-approved work, warm truthful approaches and verifiable source links.",
+  "mission": "ALL 374,625,000,000 deterministically defined H-role identities inherit OWNER DIRECTIVE ORD-021: for each role that is actually activated, independently research WORLDWIDE for genuine lawful paid tasks and projects feasible to complete and settle in real transferable cryptocurrency, aiming at verified deposits into existing owner-approved correct-network addresses. Seek opportunities across disciplines, check original payer, work and acceptance terms, amount, applicant eligibility, authenticity, no upfront fees, available authorized outreach and matching payment routes. H roles report only to their G parent; research leads, posts and configured IDs never count as payments. Confirm deposits independently; do not claim roles have run unless evidence proves completed model inference.",
   "privacy": "Anonymous mission only; never reveal private owner data, keys, credentials, full wallet maps or custodial exchange memos.",
   "prohibitions": [
     "Unapproved further automated replication",
@@ -93,5 +93,6 @@
     "Fabricated earnings claims"
   ],
   "code_factory": "crypto-agents/mega_branch_factory.py",
-  "audit": "crypto-agents/mega_branch_audit.py"
+  "audit": "crypto-agents/mega_branch_audit.py",
+  "owner_worldwide_order_ref": "crypto-agents/owner_orders.json#ORD-021"
 }
