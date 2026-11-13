@@ -162,9 +162,14 @@ def analyze(leads, research, branch_summary):
         return {"status":"llm_completed","review":str(result)[:900],
                 "critical_challenge":critical,"critical_challenge_status":crit_status}
     except Exception as e: return {"status":"llm_unavailable","review":"Source discovery only; AI analysis not run.","error":str(e)[:180]}
-branch_summary_file=Path("branch-reports")/(role_id+"-SUMMARY.json")
-branch_summary=json.loads(branch_summary_file.read_text(encoding="utf-8")) if branch_summary_file.exists() else {
-    "branch_manager":role_id,"subagent_count":0,"status":"not_deployed_or_report_unavailable"}
+company_summary_file=Path("company-reports")/(role_id+"-COMPANY-SUMMARY.json")
+company_summary=json.loads(company_summary_file.read_text(encoding="utf-8")) if company_summary_file.exists() else {
+    "director_id":role_id,"configured_managers":0,"configured_workers":0,
+    "status":"independent_assistant_not_company_supervisor"}
+branch_summary={
+    "manager":role_id, "subagent_count":company_summary.get("workers_attempted_this_cycle",0),
+    "sample_unverified_leads":company_summary.get("manager_findings",[])[:6]
+}
 leads,errors=collect()
 research=due_diligence(leads,max_items=5)
 analysis=analyze(leads,research,branch_summary)
@@ -172,7 +177,7 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "checked_at_utc":datetime.now(timezone.utc).isoformat(),"verified_paid_receipts":[],
      "warning":"All found items are UNVERIFIED leads, not payments, offers, or confirmed jobs. Never pay application fees or connect wallets.",
      "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
-     "branch_supervision":branch_summary,
+     "company_supervision":company_summary,"delegated_research_sample":branch_summary,
      "owner_brief_version":owner_brief["version"],
      "owner_understanding":"Uganda-based accounting/tax consultant seeking evidence-backed legitimate paid work; earnings are different from leads.",
      "owner_authorization":role.get("owner_authorization",""),
