@@ -107,17 +107,20 @@ jobs:
       - name: Rotate 50 different specialist assignments across 15 managers
         env:
           ROLE_ID: ${{ matrix.role }}
+          OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
           GITHUB_TOKEN: ${{ github.token }}
         run: python crypto-agents/company_workers.py
       - name: Run independent worker and manager AI reasoning
         env:
           ROLE_ID: ${{ matrix.role }}
+          OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
         run: python crypto-agents/company_ai_review.py
       - name: Run independent researcher
         env:
           ROLE_ID: ${{ matrix.role }}
+          OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
           GITHUB_TOKEN: ${{ github.token }}
           HF_HUB_DISABLE_TELEMETRY: '1'
           HF_HUB_DOWNLOAD_TIMEOUT: '45'
