@@ -1,0 +1,81 @@
+{
+  "version": "2026-11-13-ord022-v1",
+  "standing_order": "ORD-022",
+  "purpose": "Help actually activated research roles discover and evaluate better external tools, websites, models, sources and legitimate paid-work platforms across the world.",
+  "research_policy": "Every role may recommend relevant tools across specialties. Verify source, currency, technical access, price, permissions, applicable terms and benefit. Distinguish discovery from connection, actual use, paid work and received coins. Never run untrusted downloaded code.",
+  "already_connected_or_bounded_use": [
+    {
+      "name": "GitHub public repositories and issues",
+      "website": "https://github.com",
+      "access": "public read-only API in existing GitHub Actions; existing repository write access separately authenticated",
+      "use": "source discovery, bounty research, open-source tools, collaborative reports",
+      "verified_mode": "existing configured GitHub Actions usage"
+    },
+    {
+      "name": "Hugging Face Hub",
+      "website": "https://huggingface.co",
+      "access": "read-only public listings where network access permits; no external Hugging Face account assumed",
+      "use": "find open-weight models, Spaces and evaluation methods to improve accuracy/capability",
+      "verified_mode": "public listing API to be attempted; success only after actual runner report"
+    },
+    {
+      "name": "Hacker News public search",
+      "website": "https://hn.algolia.com",
+      "access": "public read-only",
+      "use": "find technical tooling and professional paid-work discussions",
+      "verified_mode": "existing configured search usage"
+    },
+    {
+      "name": "Jobicy public jobs feed",
+      "website": "https://jobicy.com",
+      "access": "public read-only",
+      "use": "remote job postings; verify original employer and crypto payout separately",
+      "verified_mode": "existing configured search usage"
+    }
+  ],
+  "other_websites_to_assess": [
+    {
+      "name": "Algora",
+      "website": "https://algora.io",
+      "use": "open-source paid bounties",
+      "access": "external site; review public information only, do not claim account"
+    },
+    {
+      "name": "BEPRO Network",
+      "website": "https://bepro.network",
+      "use": "blockchain-related task marketplace",
+      "access": "external site; verify current offers, chain, and funding; no wallet signing"
+    },
+    {
+      "name": "OSS.Fund platform directory",
+      "website": "https://www.oss.fund/explore/",
+      "use": "discover established funding and open-source marketplace alternatives",
+      "access": "public resource; independent verification required"
+    },
+    {
+      "name": "Remote work marketplaces",
+      "website": "https://www.upwork.com",
+      "use": "accounting, bookkeeping, QuickBooks and remote services where eligible",
+      "access": "account and paid connects may be required; cannot imply active connected account"
+    }
+  ],
+  "requirements_for_new_tools": [
+    "Original official source and dated live availability",
+    "Actual research or income benefit relevant to the owner's legitimate objectives",
+    "Legitimate payer and cryptocurrency payment terms verified separately",
+    "Public data access vs authenticated or paid access explicitly distinguished",
+    "No secret keys, seed phrases, private deposits or unnecessary private details",
+    "Read-only evaluation before asking the owner to install/connect/approve access",
+    "No automatic execution of untrusted remote code or arbitrary web instructions",
+    "No bulk posting or unsolicited messages; no claim of earning until verified credit"
+  ],
+  "execution_rules": {
+    "open_public_api": "Only explicitly selected HTTPS read-only discovery endpoints; bounded requests, rate-limit compliance, 12-second timeout",
+    "connected_app": "Use only an authenticated compatible action explicitly permitted for the intended task",
+    "auth_needed": "Report needed connection or approval; do not invent access",
+    "paywall_or_fees": "Record blocker; do not spend money, gas or application fees",
+    "software_installation": "Never install discovered scripts or packages from external results without review and explicit permission",
+    "recommendations": "Source-linked tool suggestions, fit, benefit, limitation, next allowed step and real invocation evidence",
+    "success": "Increased verifiable research capability or legitimate crypto-paid work; actual coins only after independent receipt verification"
+  }
+}
