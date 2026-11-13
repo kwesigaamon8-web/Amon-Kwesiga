@@ -14,6 +14,9 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 ROLE=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
+PLAYBOOK=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
+POLICY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
+PUBLIC_ROUTES=json.loads(Path("crypto-agents/branch_brief.json").read_text(encoding="utf-8"))
 root=Path("company-reports")
 summary_path=root/(ROLE+"-COMPANY-SUMMARY.json")
 if not summary_path.exists():
@@ -40,9 +43,13 @@ def run_agent(agent_id, mission, evidence):
       "agent_name":meta["agent_name"],"agent_id":agent_id,
       "reports_only_to":meta["parent_id"],
       "mission":mission,
+      "freedom_to_choose":POLICY["autonomy"]["freedom_to_reject"]+" "+POLICY["autonomy"]["freedom_to_improve"],
+      "where_paid_work_comes_from":list(PLAYBOOK["where_to_find_pay"].keys()),
+      "earning_steps":PLAYBOOK["steps_per_candidate"][:4],
+      "public_payment_route_types":list(PUBLIC_ROUTES["public_payment_routes"].keys()),
       "unverified_evidence":evidence,
       "owner_personal_details":None,
-      "goal":"Find genuine paid work. Review its source critically and choose one concrete no-fee next action. No fake payment or job claims."
+      "goal":"Independently choose the best feasible way to earn actual lawful money. Challenge weak evidence; choose one paid-work search channel and one legitimate concrete next action. No identity claims, fees or fabricated payouts."
     }
     if model is None:
         return {"status":"llm_unavailable","analysis":"","error":error,
@@ -72,6 +79,10 @@ for manager_id in manager_ids:
         if worker["manager_id"]!=manager_id or ids[worker_id]["parent_id"]!=manager_id:
             raise ValueError("A worker must report to precisely one assigned manager")
         decision=run_agent(worker_id,worker["assigned_role"],worker.get("unverified_leads",[])[:2])
+        worker["autonomy_policy_version"]=POLICY["version"]
+        worker["earnings_playbook_version"]=PLAYBOOK["version"]
+        worker["allowed_independent_actions"]=["choose public research focus","reject weak lead","draft evidence-based next step"]
+        worker["source_model_status"]=decision["status"]
         worker["agent_name"]=ids[worker_id]["agent_name"]
         worker["reports_to_one"]=manager_id
         worker["model_inference"]=decision
@@ -87,6 +98,9 @@ for manager_id in manager_ids:
     if ids[manager_id]["parent_id"]!=ROLE:
         raise ValueError("Manager must report only to assigned director")
     decision=run_agent(manager_id,"Challenge worker findings, pick a credible no-fee next research step and report to your one director",worker_results)
+    mgr["autonomy_policy_version"]=POLICY["version"]
+    mgr["earnings_playbook_version"]=PLAYBOOK["version"]
+    mgr["independent_authority"]="Can select or reject research leads; can propose changes; must report to assigned director only."
     mgr["agent_name"]=ids[manager_id]["agent_name"]
     mgr["reports_to_one"]=ROLE
     mgr["worker_ai_reviews"]=worker_results
