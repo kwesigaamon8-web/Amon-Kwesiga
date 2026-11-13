@@ -36,6 +36,9 @@ on:
       - 'crypto-agents/microcompany_structure.json'
       - 'crypto-agents/microcompany_factory.py'
       - 'crypto-agents/microcompany_audit.py'
+      - 'crypto-agents/mega_branch_666.json'
+      - 'crypto-agents/mega_branch_factory.py'
+      - 'crypto-agents/mega_branch_audit.py'
       - 'crypto-agents/subagent_audit.py'
       - 'crypto-agents/owner_command_chain.json'
   schedule:
@@ -123,6 +126,8 @@ jobs:
         run: python crypto-agents/subagent_audit.py --reports combined-reports --output subagent-audit
       - name: Verify new nested microcompany single-parent lines and actual inferences
         run: python crypto-agents/microcompany_audit.py --reports combined-reports --output microcompany-audit
+      - name: Audit actual executed 666-branch worker models
+        run: python crypto-agents/mega_branch_audit.py --reports combined-reports --output mega-branch-audit
       - name: Audit all owner instructions against completed research evidence
         if: always()
         env:
@@ -167,5 +172,6 @@ jobs:
             subagent-audit/
             owner-order-audit/
             microcompany-audit/
+            mega-branch-audit/
           if-no-files-found: warn
           retention-days: 7
