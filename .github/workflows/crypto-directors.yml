@@ -12,6 +12,10 @@ on:
       - 'crypto-agents/branch_workers.py'
       - 'crypto-agents/branch_manifest.json'
       - 'crypto-agents/branch_brief.json'
+      - 'crypto-agents/company_hierarchy.json'
+      - 'crypto-agents/company_workers.py'
+      - 'crypto-agents/company_ai_review.py'
+      - 'crypto-agents/agent_registry.csv'
       - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
@@ -45,11 +49,17 @@ jobs:
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install --quiet 'transformers>=4.44,<5'
-      - name: Dispatch fifteen independent branch researchers
+      - name: Rotate 50 different specialist assignments across 15 managers
         env:
           ROLE_ID: ${{ matrix.role }}
           GITHUB_TOKEN: ${{ github.token }}
-        run: python crypto-agents/branch_workers.py
+        run: python crypto-agents/company_workers.py
+      - name: Run independent worker and manager AI reasoning
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+        run: python crypto-agents/company_ai_review.py
       - name: Run independent researcher
         env:
           ROLE_ID: ${{ matrix.role }}
@@ -65,7 +75,7 @@ jobs:
           name: crypto-research-${{ matrix.role }}
           path: |
             reports/*.json
-            branch-reports/*.json
+            company-reports/*.json
           if-no-files-found: warn
           retention-days: 7
 
@@ -80,7 +90,7 @@ jobs:
       issues: write
     steps:
       - uses: actions/checkout@v4
-      - name: Download 30 independent reports
+      - name: Download 30 main-agent and rotated company research reports
         uses: actions/download-artifact@v4
         with:
           pattern: crypto-research-*
