@@ -60,7 +60,17 @@ for r in reports:
         # Fresh accounting listings elsewhere need a direct job URL and
         # hiring language, but payment/eligibility remain unverified.
         direct_job = (x.get("source") == "Jobicy" and bool(job_pattern.search(combined))) or (not from_github and any(part in parsed.path.lower() for part in ("/jobs/", "/job/", "/careers/", "/positions/")) and bool(job_pattern.search(combined)) and bool(paid_pattern.search(combined)))
-        if not (strong_bounty or direct_job):
+        # Social posts are only possible leads, never verified vacancies.
+        # Require a current, explicit paid-work signal and a money amount or
+        # relevant work description before placing them on the review shortlist.
+        social_source = x.get("source") in ("Bluesky public post", "Reddit public post")
+        social_text = combined.lower()
+        social_action = any(k in social_text for k in ("hiring", "looking for", "need a bookkeeper",
+            "need an accountant", "paid bounty", "paid task", "paid gig", "paid contract", "freelance work"))
+        social_candidate = (social_source and (today - timedelta(days=7) <=
+            datetime.fromisoformat(x["updated"].replace("Z","+00:00")).astimezone(timezone.utc))
+            and social_action and (bool(money_pattern.search(combined)) or bool(job_pattern.search(combined))))
+        if not (strong_bounty or direct_job or social_candidate):
             continue
         seen.add(url)
         qualified.append({
@@ -79,6 +89,8 @@ out = {
     "researcher_ids": sorted({r["role"] for r in reports}),
     "AI_review_completed": sum(r.get("ai_analysis", {}).get("status") == "llm_completed" for r in reports),
     "source_errors_count": sum(len(r.get("source_errors", [])) for r in reports),
+    "public_social_candidates": sum(1 for x in qualified if x["source"] in ("Bluesky public post", "Reddit public post")),
+    "social_sources_checked": ["Bluesky", "Reddit"],
     "qualified_unverified_leads": qualified[:35],
     "verified_paid_receipts": [],
     "warnings": [
@@ -97,6 +109,7 @@ lines = [
     f"Small-model AI reviews completed: **{out['AI_review_completed']}**",
     f"Source errors: **{out['source_errors_count']}**",
     f"Strictly screened candidate leads: **{len(qualified)}**",
+    f"Unverified social-source candidates: **{out['public_social_candidates']}**",
     "**Verified new earnings: none established by this research workflow.**",
     "", "## Director 10 — mission reminder",
     "Real, legitimately earned payments are the deliverable. Search worldwide. Never misclassify leads, token spam, unverified transfers, or offers as received income.",
