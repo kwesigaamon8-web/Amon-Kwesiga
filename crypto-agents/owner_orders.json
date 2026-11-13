@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:08:09Z",
+  "updated_utc": "2026-11-13T19:12:21Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -687,6 +687,20 @@
       ],
       "verification_condition": "Offline scheduler checks prove correct role domain and noncollision samples; later actual GitHub model batches must show real per-tier subprocess completions, parent receipts and useful reports.",
       "reported_status": "configured_pending_new_execution_proof",
+      "last_verified_payment_receipt": null
+    },
+    {
+      "id": "ORD-042",
+      "title": "B executing workers produce earned cryptocurrency; directors make their work productive and verifiable",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER ASSIGNMENT: The genuine active B workers, not ChatGPT, are the income-generating workforce. Their mission is to identify legitimate paying opportunities; carry out actually authorized deliverables for accounting, QuickBooks, Excel, software, research or other feasible paid work; obtain payer and compensation evidence; and route legitimate received cryptocurrency only through the confirmed single owner-approved address/network. Managers and directors develop, quality-check and coordinate the work. Director D reports real delivered work, genuine contracts, payment pending and independently verified owner coin receipts separately. Research by itself, speculative reward points, self-transfer, role counts and generated text are not earned coins. No signed transaction, third-party commitment, bulk messaging or registration without the required authorization. Every launched agent owes an individual task result, source/evidence and next action, or records its genuine blocker. B can earn coins through real external payers; the infrastructure does not create cryptocurrency through prompts.",
+      "evidence_files": [
+        "crypto-agents/owner_orders.json",
+        "crypto-agents/director_D_results_gate.py",
+        "crypto-agents/owner_sovereignty.json"
+      ],
+      "verification_condition": "Each paid outcome needs original paying counterparty, accepted deliverable and actual blockchain or exchange-credit proof matched to the correct approved address; otherwise report zero verified earned coins.",
+      "reported_status": "standing_owner_order_accepted; no payment verified by instruction",
       "last_verified_payment_receipt": null
     }
   ],
