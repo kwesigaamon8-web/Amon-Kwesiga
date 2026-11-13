@@ -1,0 +1,81 @@
+{
+  "version": "2026-11-13-free-compute-v1",
+  "objective": "Run as many REAL independent, documented, low-cost agent research jobs as allowed by accessible free hosting, without inventing billions of active workers or spending money.",
+  "priority": "Increase successful model/source calls and individual deliverables from already configured GitHub jobs before adding new provider deployments.",
+  "providers": [
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions standard hosted runners",
+      "status": "already_configured_in_current_repository_run_success_not_yet_confirmed_for_latest",
+      "public_docs": "https://docs.github.com/en/actions/concepts/billing-and-usage",
+      "free_conditions": "Standard GitHub-hosted runners free on public repositories, subject to usage/policy limits",
+      "best_for": "Scheduled public-source research, rotating role workloads, audited per-agent Markdown documents and persistent short-lived artifacts",
+      "resource_notes": "Current repo uses 30 primary matrix jobs, max-parallel 10, one-hourly schedule with 2/50 workers per manager. S/G/H are bounded rotated inferences, not billions of concurrent AIs.",
+      "required_action": "Watch scheduled runs and audit failures before increasing batches; avoid simultaneous push-triggered cancellation storms."
+    },
+    {
+      "id": "cloudflare-workers",
+      "name": "Cloudflare Workers Free",
+      "status": "not_connected_not_deployed",
+      "public_docs": "https://developers.cloudflare.com/workers/platform/limits/",
+      "free_conditions": "100,000 requests/day, 10 ms CPU time per request, 128 MB memory; free plan limits subject to change",
+      "best_for": "Very lightweight public API polling, URL checks, dispatch and coordination; not full language-model inference",
+      "required_action": "Owner must connect an authenticated Cloudflare account and approve any deployment; no credentials exist in this workflow."
+    },
+    {
+      "id": "hugging-face-spaces",
+      "name": "Hugging Face Spaces",
+      "status": "hugging_face_read_and_jobs_oauth_connected_but_NO_space_write_or_deploy_scopes_confirmed",
+      "public_docs": "https://huggingface.co/docs/hub/spaces-overview",
+      "free_conditions": "Free static Spaces; CPU Basic no-hourly-cost may require paid account to create Gradio/Docker compute Space and free hardware sleeps when idle",
+      "best_for": "Front end and visual reporting; optional small AI demos only if account is eligible",
+      "required_action": "Do not deploy until authenticated write permission and zero-charge eligibility confirmed."
+    },
+    {
+      "id": "hugging-face-jobs",
+      "name": "Hugging Face Jobs",
+      "status": "connected_jobs_scope_but_NOT_a_free_compute_option",
+      "public_docs": "https://huggingface.co/docs/hub/jobs-pricing",
+      "free_conditions": "Jobs billed per minute: CPU Basic listed as $0.01/hr; prepaid credits or positive balance required",
+      "best_for": "Explicitly paid optional compute only, not authorized for free-only goal",
+      "required_action": "Do not run jobs or schedule work when a free-only instruction applies."
+    },
+    {
+      "id": "google-cloud-run",
+      "name": "Google Cloud Run",
+      "status": "not_connected_not_deployed",
+      "public_docs": "https://cloud.google.com/run/pricing",
+      "free_conditions": "Monthly CPU/RAM/request allowances with billable excess; may require billing account",
+      "best_for": "Occasional short containers after connection and strict budget guardrails",
+      "required_action": "Obtain authenticated account, billing consent, zero-dollar spend guardrail and explicit deployment permission."
+    },
+    {
+      "id": "render",
+      "name": "Render",
+      "status": "connection_suggested_but_not_confirmed",
+      "public_docs": "https://render.com/pricing",
+      "free_conditions": "Verify currently available free workspace/service tier and sleep behavior before any deployment",
+      "best_for": "Small dashboard or API for viewing agent results rather than always-on AI inference",
+      "required_action": "User can connect Render integration; installation alone does not deploy services."
+    }
+  ],
+  "activation_strategy": {
+    "current": "Keep existing GitHub Actions hourly autonomous cycles; rotating 30 primary jobs plus manager/worker tasks and bounded descendant model checks.",
+    "no_fake_scaling": "Do not claim 375,188,632,680 defined worker IDs can be hosted for free or are all concurrently active.",
+    "priority_measures": [
+      "Completed primary workflow runs",
+      "Unique role IDs with actual model_completed reports",
+      "Independent new original-source checks across unrelated websites",
+      "Individual Markdown deliverables from actually attempted agents",
+      "Failed/missing reports to fix",
+      "Independently verified cryptocurrency credited to owner-approved addresses"
+    ],
+    "expansion_order": [
+      "Verify present GitHub Actions workflow runs and missing reports",
+      "Tune source calls and realistic model/compute quota without breaking existing paid research",
+      "Connect new free provider only if it provides measurable extra capacity",
+      "Deploy a lightweight job/site checker with clear output evidence, not a fake ChatGPT clone"
+    ],
+    "financial_safety": "No charges, prepaid credits, billing enrollment or subscriptions without explicit owner authorization. Never use private keys/wallets in hosted code."
+  }
+}
