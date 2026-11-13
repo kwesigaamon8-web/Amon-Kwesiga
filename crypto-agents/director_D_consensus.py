@@ -58,6 +58,7 @@ record={
  "manager_in_charge":"Director D",
  "performance_scorecard":{},
  "actionable_source_linked_leads_count":0,
+ "ORD038_activation_by_director":{},
  "verified_payer_or_contract_count":0,
  "created_utc":timestamp,
  "defined_virtual_roles":375188632680,
@@ -85,6 +86,13 @@ for director_id in DIRECTORS:
         status="MODEL_RAN_NO_VERIFIABLE_SOURCE_LINK"
     else:
         status="NO_REAL_MODEL_WORK_VERIFIED"
+    record["ORD038_activation_by_director"][director_id]={
+       "confirmed_actual_individual_agent_model_completions":model_ok,
+       "defined_role_identities_under_director_not_running":True,
+       "verified_live_persistent_agents":0,
+       "research_based_activities_checked":len(real_urls),
+       "next_action":"Activate more distinct workers within free runner limits, retrieve model reports and resume confirmed pay-eligible work."
+    }
     record["performance_scorecard"][director_id]={
        "status":status,"model_completions_reported":model_ok,
        "source_linked_sample_count":len(real_urls),
@@ -183,7 +191,8 @@ lines=[
  "Owner order: ORD-036 — all departments discuss; D consolidates and reports",
  "Defined workforce: 375,188,632,680 role identities (not active model instances)",
  "",
- "## Director D — accountable performance order ORD-037",
+ "## Director D — accountable performance orders ORD-037 and ORD-038",
+ "Real agent model invocations by director are counted separately from dormant role IDs.",
  "Only original checked source URLs and real model logs count as investigated work.",
  "Source-linked research items (NOT verified paid clients): "+str(record["actionable_source_linked_leads_count"]),
  "Verified payer/contract terms: "+str(record["verified_payer_or_contract_count"]),
@@ -200,6 +209,7 @@ for d in DIRECTORS:
     lines.append("### "+d)
     lines.append("Worker results: "+source_checks.get(d,{}).get("status","unknown"))
     lines.append("D performance status: "+record["performance_scorecard"][d]["status"])
+    lines.append("Actual agent model completions: "+str(record["ORD038_activation_by_director"][d]["confirmed_actual_individual_agent_model_completions"]))
     lines.append("Best original source: "+str(record["performance_scorecard"][d]["best_actual_source_url"]))
     lines.append("Next authorized action: "+record["performance_scorecard"][d]["required_next_action"])
     lines.append("First-round model: "+record["round_one"][d]["status"])

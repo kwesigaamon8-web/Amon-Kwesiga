@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T18:11:22Z",
+  "updated_utc": "2026-11-13T18:12:53Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -622,6 +622,23 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Owner-authorized internal model review, source verification and reporting; no external payment or signup actions."
+    },
+    {
+      "id": "ORD-038",
+      "title": "Directors' primary mission is converting defined worker IDs into real useful independent AI agents",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER: Every defined role of the 375,188,632,680-role hierarchy should ultimately become a genuine useful AI worker, and activating actual AI agents is the overriding directors' job. D01–D10 must use safe permitted free computing already available to schedule distinct W/S/G/H worker processes, give each process a bounded independent model reasoning and original-source research task, capture direct parent, owner-order inheritance, one concrete next action, source evidence and separate model execution outcome, and maintain an individually addressable follow-up checkpoint. Do not treat a virtual ID, assignment, repeat of the same prompt, or dormant definition as an actually hosted independent model. D oversees each director's actual verified successes, failures and per-batch resource/time limits. Free hosting cannot simultaneously run billions of independent models; do not create mass accounts or evade provider usage limits. Scale only when successful trial reports and capacity warrant it; spend no money without user approval. Director D reports true active/completed/queued counts and prioritizes cryptocurrency-paid real work.",
+      "evidence_files": [
+        "crypto-agents/director_activation_plan.py",
+        "crypto-agents/ai_process_worker.py",
+        "crypto-agents/ai_process_audit.py",
+        "crypto-agents/director_D_consensus.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Ten directors each write activation plans; each actually activated worker has a distinct real PID, completed model inference, research result and next-action checkpoint; Director D reports verified unique success counts per director and makes no permanent-host claims.",
+      "reported_status": "configured_not_runtime_verified",
+      "last_verified_payment_receipt": null,
+      "external_action": "Free authorized model research and internal task management only; no automatic third-party account signups or spending."
     }
   ],
   "broadcast_aliases": {

@@ -154,6 +154,23 @@ if (report["inference_status"]=="model_completed" and
             report["understanding_retry_status"]="retry_model_returned_empty"
     except Exception as exc:
         report["understanding_retry_status"]="retry_failed:"+str(exc)[:170]
+# The individual agent's output is inspectable and resumable, not a promise
+# that this ephemeral runner will continue after it shuts down.
+report["activation_evidence"]={
+    "owner_order":"ORD-038",
+    "agent_id":WORKER,
+    "independent_model_completed":report["inference_status"]=="model_completed",
+    "public_source_research_attempted":report["source_check_status"] in ("source_checked","source_failed") or
+         report["coin_learning"]["source_status"]!="not_checked",
+    "direct_parent":PARENT,
+    "unique_os_pid":os.getpid(),
+    "state":"ephemeral_agent_process_completed" if report["inference_status"]=="model_completed" else "model_failed_or_incomplete",
+    "next_step_checkpoint":("Independently verify payer, work deliverable, eligibility and correct network for "+
+        (report["source_items"][0]["url"] if report["source_items"] else report["coin_learning"]["earning_source_url"])),
+    "model_next_action":report["model_response"][:550] if report.get("model_response") else None,
+    "will_resume_automatically_without_new_run":False,
+    "independently_verified_payment":False
+}
 report["duration_sec"]=round(time.monotonic()-START,2)
 report["completed_at_utc"]=datetime.now(timezone.utc).isoformat()
 path=OUT/(WORKER+".json")

@@ -21,6 +21,10 @@ summary={
  "ord035_invalid_command_paths":0,
  "ord035_retry_inference_count":0,
  "ord035_director_pending_followups":{},
+ "ord038_directors_activation_count":{},
+ "ord038_verified_distinct_agent_completions":0,
+ "ord038_processes_with_followup_checkpoint":0,
+ "ord038_pending_or_failed":0,
  "actual_independent_model_completions":0,
  "per_agent_markdown_reports_written":0,
  "director_manifests_present":0,
@@ -66,6 +70,21 @@ for d in directors:
                 if receipt.get("understanding_status")!="model_response_has_mission_and_action":
                     summary["ord035_director_pending_followups"].setdefault(d,[]).append(wid)
                     summary["ord035_understanding_needs_review_or_failed"]+=1
+                active=individual.get("activation_evidence") or {}
+                activated=(active.get("owner_order")=="ORD-038" and
+                           active.get("agent_id")==wid and
+                           active.get("independent_model_completed") is True and
+                           active.get("public_source_research_attempted") is True and
+                           bool(active.get("direct_parent")) and
+                           bool(active.get("next_step_checkpoint")) and
+                           bool(active.get("unique_os_pid")))
+                if activated:
+                    summary["ord038_verified_distinct_agent_completions"]+=1
+                    summary["ord038_directors_activation_count"][d]=summary["ord038_directors_activation_count"].get(d,0)+1
+                else:
+                    summary["ord038_pending_or_failed"]+=1
+                if active.get("next_step_checkpoint"):
+                    summary["ord038_processes_with_followup_checkpoint"]+=1
                 if individual.get("inference_status")=="model_completed" and individual.get("os_process_pid"):
                     summary["completed_models_with_pid_evidence"]+=1
                     if individual.get("owner_broadcast_B_id")=="ORD-033" and individual.get("order_inheritance",{}).get("broadcast_B_inherited"):
@@ -102,6 +121,9 @@ rows=[
  f"Actual OS processes invoked: **{summary['actual_os_processes_invoked']}**",
  f"Actually completed independent model calls: **{summary['actual_independent_model_completions']}**",
  f"Individual documents: **{summary['per_agent_markdown_reports_written']}**",
+ f"ORD-038 verified distinct bounded AI agents: **{summary['ord038_verified_distinct_agent_completions']}**",
+ f"ORD-038 agents with follow-up checkpoints: **{summary['ord038_processes_with_followup_checkpoint']}**",
+ f"ORD-038 pending/failed activation checks: **{summary['ord038_pending_or_failed']}**",
  f"ORD-035 individual model-generated replies: **{summary['ord035_individual_model_replies']}**",
  f"ORD-035 replies needing review or retry: **{summary['ord035_understanding_needs_review_or_failed']}**",
  f"ORD-035 invalid command paths: **{summary['ord035_invalid_command_paths']}**",
