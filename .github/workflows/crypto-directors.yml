@@ -8,6 +8,7 @@ on:
       - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/agents.py'
       - 'crypto-agents/social_scan.py'
+      - 'crypto-agents/deep_research.py'
       - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
