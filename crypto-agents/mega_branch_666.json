@@ -94,5 +94,6 @@
   ],
   "code_factory": "crypto-agents/mega_branch_factory.py",
   "audit": "crypto-agents/mega_branch_audit.py",
-  "owner_worldwide_order_ref": "crypto-agents/owner_orders.json#ORD-021"
+  "owner_worldwide_order_ref": "crypto-agents/owner_orders.json#ORD-021",
+  "tool_improvement_order": "ORD-022: Every activated LAST H worker independently assesses helpful additional sites, tools, public APIs, AI model resources, research and paid-work platforms WORLDWIDE. Distinguish source discovery, actual permitted API usage, credentials/fees needed, and objectively better legitimate crypto-paying work outcomes. Report to one G parent, never claim installed tools or successful payments without evidence."
 }
