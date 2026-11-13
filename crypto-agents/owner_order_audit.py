@@ -23,6 +23,7 @@ SHARED=ROOT/"shared_understanding.json"
 COMMAND=ROOT/"owner_command_chain.json"
 FACTORY=ROOT/"subagent_factory.json"
 MICROCOMPANY=ROOT/"microcompany_structure.json"
+MEGA_BRANCH=ROOT/"mega_branch_666.json"
 READONLY_COMMENT_PATTERN=re.compile(r"^/owner-order[ \t]+(.{4,2000})",re.S)
 
 def as_json(path):
@@ -74,9 +75,10 @@ def main():
     command=as_json(COMMAND)
     factory=as_json(FACTORY)
     micro=as_json(MICROCOMPANY)
+    mega=as_json(MEGA_BRANCH)
     hard_fail=[]
     warnings=[]
-    if not all([instructions,hierarchy,shared,command,factory,micro]):
+    if not all([instructions,hierarchy,shared,command,factory,micro,mega]):
         raise SystemExit("Order control cannot proceed: required standing files missing or malformed")
     with REGISTRY.open(encoding="utf-8",newline="") as f:
         roles=list(csv.DictReader(f))
@@ -115,6 +117,12 @@ def main():
         hard_fail.append("Grand total of declared identities should be 563,632,680")
     if len(micro.get("sector_catalog",[]))!=20 or len(micro.get("task_catalog",[]))!=25:
         hard_fail.append("Micro-worker task specialization template is not 20x25")
+    if mega.get("existing_micro_worker_parent_identities")!=562500000 or mega.get("new_worker_roles_per_branch")!=666:
+        hard_fail.append("Branch head identities or 666 roles per head do not match owner order")
+    if mega.get("new_role_identities")!=374625000000 or mega.get("all_level_total_role_identities")!=375188632680:
+        hard_fail.append("New 374,625,000,000-role expansion arithmetic incorrect")
+    if len(mega.get("sectors",[]))!=18 or len(mega.get("methods",[]))!=37:
+        hard_fail.append("Missing 666 unique specialist task combinations")
     if len(factory.get("independent_scope_templates",[]))!=150:
         hard_fail.append("Child task templates are not all distinct 150 slots")
     if len({x.get("id") for x in factory["independent_scope_templates"]})!=150:
@@ -135,7 +143,9 @@ def main():
       "subagent_factory.py":["def describe_child","def select_slot"],
       "subagent_audit.py":["verified_completed_individual_child_model_calls"],
       "microcompany_factory.py":["def describe_micro_worker","def audit_definitions"],
-      "microcompany_audit.py":["separate_model_inference_successes","one_parent_uniqueness_proof"]
+      "microcompany_audit.py":["separate_model_inference_successes","one_parent_uniqueness_proof"],
+      "mega_branch_factory.py":["def describe_branch_worker","def structural_proof"],
+      "mega_branch_audit.py":["successful_independent_model_inferences","new_software_role_identifiers_defined"]
     }.items():
         src=(ROOT/file)
         if not src.exists():
@@ -199,6 +209,8 @@ def main():
             blockers.append("No independently verified incoming cryptocurrency receipt supplied to this audit.")
         if order["id"]=="ORD-017":
             blockers.append("562,500,000 identities are mathematically defined but not actually hosted AI workers or recruited people. Real model execution requires separate completed proof files.")
+        if order["id"]=="ORD-018":
+            blockers.append("374,625,000,000 identities are lazily defined software roles only, not hired humans, external AI accounts, active independent model services or earned coins; actual model execution requires per-role completed report evidence.")
         if order["id"]=="ORD-016":
             blockers.append("Future ChatGPT messages are not automatically accessible to this GitHub process. Instructions must be synchronized here or owner-authored in issue #8.")
         status=("source_missing" if missing else
