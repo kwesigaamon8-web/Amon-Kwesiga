@@ -12,6 +12,10 @@ on:
       - 'crypto-agents/consolidate.py'
   schedule:
     - cron: '31 * * * *'
+# Repeated hourly checks should not overlap or consume free runners on stale scans.
+concurrency:
+  group: crypto-agents-${{ github.workflow }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
