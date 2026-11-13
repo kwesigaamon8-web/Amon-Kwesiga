@@ -66,3 +66,17 @@ New connected tools:
 - Every hourly cloud run uploads the per-director coordination reports in the consolidated artifact. New functionality must be validated by successful GitHub Actions runs; configuration alone does not constitute a completed review, successful application or paid receipt.
 
 Autonomy means selecting research topics, challenging poor leads, communicating evidence and drafting work approaches **within available permissions**. It does not grant new authenticated social accounts, unsanctioned outreach, contract signing, fee spending, wallet operations, or invisible paid work. Money received always requires independent verification.
+
+## Current 10-company hierarchy, real independent activity and polite replies
+
+Current authorized design supersedes the earlier 30-branch/450-worker prototype: **10 companies, 10 directors, 20 independent assistants, 150 managers and 7,500 individually named specialist worker roles**. Registered hierarchy is in `company_hierarchy.json` and `agent_registry.csv`. Each worker has exactly one manager; each manager reports to a single director; each independent assistant reports directly to its director. The separate integrity workflow has passed its registry and parent-chain checks.
+
+`company_workers.py` rotates **two of 50 specialists per manager per full research cycle** (up to 300 distinct searches worldwide if all 10 company director jobs complete). `company_ai_review.py` calls an open-weight small language model for each active worker and manager when available and records whether each independent inference actually succeeded. Workers that have not executed in a given cycle are **registered, not actively thinking or messaging**. Full coverage depends on distinct successful cycles and is not guaranteed by GitHub scheduling.
+
+`earnings_playbook.json` tells every active role how to find realistic legitimate paid tasks, check real compensation and eligibility, prepare a proposal, and distinguish an actual contract and independently confirmed payment from an unverified lead. `autonomy_policy.json` gives freedom to investigate, reject weak leads and share source evidence while preserving one reporting parent.
+
+`friendly_earnings_directive.json` and `friendly_pitch.py` instruct and assist workers, managers, directors and assistants to prepare **warm, truthful, personalized drafts** to real paid-work prospects. The drafts remain unsent until a genuinely authenticated and permitted external posting channel is available. No mass direct messaging, unsolicited fake identities, guaranteed payment claims, fee-for-claim schemes or wallet access are included.
+
+[General company conference #7](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/7) contains all the assigned scripted role introductions. `post_conference.py` is configured to post up to one substantive daily summary *per company* only when actual cloud reports are available; it records actual searches, completed AI inference and drafts. That is communication through the **owner's single GitHub workflow identity**, not thousands of independent social accounts.
+
+**Success remains actual legitimate paid assignments and verified received value.** The 7,680-role registry and conference introductions alone are not evidence of active independent AI execution or money received.
