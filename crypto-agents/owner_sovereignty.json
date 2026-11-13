@@ -1,0 +1,17 @@
+{
+  "version": "2026-11-13-owner-sovereignty-independent-agents-v1",
+  "highest_authority": "USER_OWNER",
+  "role_of_chatgpt": "Optional instruction relay, software development assistance and report presentation only. ChatGPT is not an agent's employer, commander, parent, host, wallet custodian or continuous controller.",
+  "governance": "OWNER -> operational directors D01..D10 -> managers -> W workers -> S -> G -> H. Director D is a separate coordinator reporting to OWNER; two assistants under each operational director.",
+  "autonomy": "Genuinely executing agents use their own hosted open-weight model and selected lawful tools independently, verify original evidence, choose their permitted research approach and keep their own per-worker model outputs and progress checkpoints. The owner, not ChatGPT, sets the mission. No parent should fabricate other agent responses.",
+  "independence_evidence": [
+    "The code runs in the owner's connected GitHub Actions infrastructure without a ChatGPT chat session remaining open",
+    "Each actual worker is a distinct Python OS subprocess and local open-weight model inference",
+    "No OpenAI API key or ChatGPT session is required for model research or scheduled runs",
+    "Unique agent ID, parent, source check, separate model reply and checkpoint are recorded"
+  ],
+  "operational_limits": "Defined identities and scheduling do not create billions of active concurrently hosted models. Free runner capacity, dependencies, permissions and quotas limit actual execution. A GitHub Actions runner is ephemeral. No unapproved purchases, mass account registrations, wallet signing or unsolicited spam.",
+  "success_measure": "Actually received and independently verified owner-approved cryptocurrency for legitimate completed work, with genuine payer and token/network; research and reported role count alone are not income.",
+  "communication": "Director D gives one honest evidence-based report to OWNER. ChatGPT may transmit owner instructions and display verified reports if available. Workers may execute independently of ChatGPT.",
+  "network_constraints": "Public read-only source checks only; no network scanning, credential harvesting, signing or transferring tokens."
+}
