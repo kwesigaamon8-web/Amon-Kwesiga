@@ -1,0 +1,21 @@
+{
+  "version": "2026-11-13-render-outbound-cidrs-v1",
+  "owner_instruction": "All ACTUALLY running agents D/A/M/W/S/G/H should understand and use these network ranges correctly when a legitimate authenticated service requires a Render outbound source-IP allowlist; this is not an instruction to enumerate/scan hosts.",
+  "source": "Owner-supplied CIDRs and https://render.com/docs/outbound-ip-addresses",
+  "render_outbound_source_ip_ranges": [
+    "74.220.48.0/24",
+    "74.220.56.0/24"
+  ],
+  "network_type": "Shared Render-hosting IP ranges; use as potential outbound egress source-IP CIDRs, not as direct service destinations or guaranteed static IPs for an individual agent.",
+  "important_notes": [
+    "Each /24 covers 256 addresses; the two ranges together cover 512 IP addresses. No individual destination services or ports were supplied.",
+    "These CIDR blocks do not create AI instances, establish model connections, grant agent access, or fix any Render deployment failures.",
+    "Before authorizing traffic by source IP, check that the service's Render Dashboard -> Connect -> Outbound list actually includes these ranges for that deployed service and region.",
+    "Shared source IP address ranges can include other customers; allowlisting must be paired with normal strong authentication.",
+    "Run automated jobs against explicitly authorized HTTPS URLs or documented APIs only; do not ping, sweep, enumerate, port-scan, exploit, or brute-force the CIDRs.",
+    "Each actually executed agent should document the intended provider, approved destination hostname, request type, source evidence, outcome/status, and any limitations. Do not claim a connection without logs.",
+    "No charges, credentials, private keys or paid outbound routing are authorized by this instruction."
+  ],
+  "agent_action": "If a legitimate external API explicitly requires source-IP allowlisting, explain these owner-provided Render CIDRs and verify the specific deployed service's current outbound ranges. Work on permitted source-specific research rather than bulk probing.",
+  "execution_state": "configured_instruction_only_no_network_connections_performed"
+}
