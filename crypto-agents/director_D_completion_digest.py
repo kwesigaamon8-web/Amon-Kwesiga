@@ -66,7 +66,7 @@ def digest(latest,completed,audits):
     w=audits.get(WORKER,{})
     a=w.get("ai-process-summary.json") or {}
     d=w.get("director-D-results/DIRECTOR_D_RESULTS.json") or {}
-    lines+=["","**Last completed worker audit**"]
+    lines+=["","**Last successful completed worker audit**"]
     if a:
         lines.append("- Actual model subprocess invocations: "+str(int(a.get("actual_os_processes_invoked") or 0)))
         lines.append("- Actual completed model inferences: "+str(int(a.get("actual_independent_model_completions") or 0)))
@@ -79,7 +79,7 @@ def digest(latest,completed,audits):
     p=audits.get(RESEARCH,{})
     sr=p.get("summary.json") or {}
     dr=p.get("delivery-audit/REPORT.json") or {}
-    lines+=["","**Last completed opportunity research audit**"]
+    lines+=["","**Last successful completed opportunity research audit**"]
     if sr:
         leads=sr.get("qualified_unverified_leads") or []
         lines.append("- Reporting researcher roles: "+str(int(sr.get("report_count") or 0))+"/30")
@@ -101,7 +101,7 @@ def main():
     if os.getenv("GITHUB_REPOSITORY")!=REPO or not TOKEN:raise SystemExit("Owner GitHub token required")
     rows=api("/repos/"+REPO+"/actions/runs?per_page=100").get("workflow_runs",[])
     latest={n:next((x for x in rows if x.get("name")==n),None) for n in NAMES}
-    complete={n:next((x for x in rows if x.get("name")==n and x.get("status")=="completed"),None) for n in NAMES}
+    complete={n:next((x for x in rows if x.get("name")==n and x.get("status")=="completed" and x.get("conclusion")=="success"),None) for n in NAMES}
     state=[(n,(latest[n] or {}).get("id"),(latest[n] or {}).get("status"),
             (latest[n] or {}).get("conclusion"),(complete[n] or {}).get("id"))
            for n in NAMES]
