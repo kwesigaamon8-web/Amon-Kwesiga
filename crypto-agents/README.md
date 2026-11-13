@@ -1,8 +1,11 @@
 # Free cloud research fleet — 10 directors and 20 assistants
 
-Thirty independent role-based GitHub Actions research workers are scheduled daily on the connected public repository. Each of the ten directors has exactly two assistants (A and B), and all workers have separate missions and output JSON artifacts.
+Thirty independent role-based GitHub Actions research workers are scheduled hourly on the connected public repository (cron at minute 31, subject to GitHub scheduling availability and concurrency control). Each of the ten directors has exactly two assistants (A and B), and all workers have separate missions and output JSON artifacts.
 
 Workflow: `.github/workflows/crypto-directors.yml`
+- `social_scan.py`: publicly searchable Bluesky posts and Reddit discussions for paid job requests, bounties and client leads; unauthenticated, read-only and subject to provider availability.
+- Social requests never post, message, follow users, or advertise wallet addresses. Social results are unverified leads requiring direct-source confirmation.
+- Scheduling is periodic, not true nonstop execution; if a previous run remains active, concurrency cancels stale overlapping checks.
 - `agents.py`: each independent worker searches public leads, saves a source-linked JSON report, and attempts a free open-weight small-model review.
 - `consolidate.py`: combines 30 reports, excludes weak/old/unsubstantiated search hits, and preserves the distinction between leads and income.
 - `director_review.py`: creates a separate director accountability report from each director's own report and the reports of its two assistants. Director D10 additionally reports fleet-wide mission compliance.
