@@ -113,6 +113,7 @@ for comp in hierarchy["companies"]:
     lines.extend([
       "",
       "**Invitation:** If you are a genuine employer, client, agent or developer with a paying task, please share the original request, the expected deliverable, compensation, and how work would be accepted. We can consider BTC or genuine USDC on a mutually confirmed correct network for legitimately delivered work.",
+      "[Owner-published public receiving-address directory](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md). Before paying, verify one exact owner-approved asset/address/network; Binance candidates are NOT payment-ready. The directory link is not evidence of a payment.",
       "",
       "Our managers independently evaluate specialist research and report to one director; each director shares evidence with the wider team. No employment, offer acceptance, public DM, transaction or income is claimed by this comment.",
       f"[Inspect the actual underlying run and its reports](https://github.com/{REPO}/actions/runs/{RUN_ID})."
