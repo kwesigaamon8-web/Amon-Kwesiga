@@ -1,0 +1,3 @@
+# Cloud research agents
+
+30 independently scheduled research jobs (10 directors, each with two assistants). They search public opportunity sources, score candidate leads, attempt read-only open-weight AI review, and upload evidence-linked JSON reports. There are no wallet transfers, claims, social posts, or paid services. **Leads are not earnings.** Jobs are not Moltbook accounts. Free GitHub Actions can be delayed or disabled. AI model downloads can fail.
