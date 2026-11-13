@@ -15,15 +15,20 @@ OUTPUT.mkdir(exist_ok=True)
 ROLES = json.loads(Path("crypto-agents/roles.json").read_text(encoding="utf-8"))
 ROLE_NAMES = {r["id"]: r["name"] for r in ROLES}
 OWNER_BRIEF = json.loads(Path("crypto-agents/owner_brief.json").read_text(encoding="utf-8"))
-BRANCH_MANIFEST = json.loads(Path("crypto-agents/branch_manifest.json").read_text(encoding="utf-8"))
-branch_summaries = {}
-branch_report_root = Path("combined-reports")
-for path in branch_report_root.rglob("*-SUMMARY.json"):
+COMPANY_HIERARCHY = json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encoding="utf-8"))
+company_summaries = {}
+manager_summaries = {}
+worker_reports = {}
+for path in ROOT.rglob("*.json"):
     try:
-        obj = json.loads(path.read_text(encoding="utf-8"))
-        if obj.get("branch_manager") and obj.get("subagent_count") == 15:
-            branch_summaries[obj["branch_manager"]] = obj
-    except (ValueError, OSError):
+        entry = json.loads(path.read_text(encoding="utf-8"))
+        if entry.get("director_id") and entry.get("configured_managers")==15:
+            company_summaries[entry["director_id"]]=entry
+        elif entry.get("manager_id") and entry.get("workers_executed_this_cycle") is not None:
+            manager_summaries[entry["manager_id"]]=entry
+        elif entry.get("worker_id") and entry.get("manager_id"):
+            worker_reports[entry["worker_id"]]=entry
+    except (ValueError,OSError):
         continue
 reports = {}
 for file in sorted(ROOT.rglob("*.json")):
@@ -39,7 +44,7 @@ strong = qualified.get("qualified_unverified_leads", [])
 qualified_urls = {x.get("url"): x for x in strong}
 directors = [f"D{i:02d}" for i in range(1, 11)]
 now = datetime.now(timezone.utc).isoformat()
-rows = ["# Director accountability — 10 directors, 20 assistants", "",
+rows = ["# Ten directors, twenty assistants, fifteen managers each, fifty specialist researchers per manager", "",
         "All payees, job terms, eligibility, and actual receipts require external verification.",
         "These are cloud research workers, not separate Moltbook user accounts.",
         "", "| Director | Direct report | Assistant A | Assistant B | Qualified leads |",
@@ -74,14 +79,23 @@ for d in directors:
         "assistant_a_report_present": sources[1] is not None,
         "assistant_b_report_present": sources[2] is not None,
         "assistant_report_ids": ids[1:],
-        "branch_supervision": {boss: {
-            "subagents_assigned": 15,
-            "subagent_reports_received": (branch_summaries.get(boss) or {}).get("subagent_count", 0),
-            "source_success_count": (branch_summaries.get(boss) or {}).get("completed", 0),
-            "source_failures": (branch_summaries.get(boss) or {}).get("source_unavailable", 0),
-            "unverified_lead_count": (branch_summaries.get(boss) or {}).get("unverified_lead_count", 0),
-            "sample_unverified_leads": (branch_summaries.get(boss) or {}).get("sample_unverified_leads", [])[:3]
-        } for boss in ids},
+        "company_management": {
+            "company_id": "COMP-"+d,
+            "configured_managers":15,
+            "configured_workers":750,
+            "managers_reporting":sum(1 for m in manager_summaries.values() if m.get("reports_to_director")==d),
+            "workers_reporting_this_rotation":sum(1 for w in worker_reports.values() if w.get("director_id")==d),
+            "company_summary":company_summaries.get(d, {"status":"not_received"}),
+            "operating_structure":"One director with two independent assistants, 15 manager role records, 50 specialist worker roles per manager. Reports only count actually executed tasks."
+        },
+        "manager_reviews": [{
+            "manager_id": m.get("manager_id"),
+            "workers_assigned": m.get("workforce_authorized",50),
+            "reports_this_rotation":m.get("workers_executed_this_cycle",0),
+            "source_checked":m.get("source_checked",0),
+            "source_failures":m.get("source_unavailable",0),
+            "unverified_leads":m.get("unverified_leads_count",0)
+        } for m in manager_summaries.values() if m.get("reports_to_director")==d],
         "individual_ai_reviews": {role_id: (reports.get(role_id) or {}).get("ai_analysis", {}).get("status", "missing") for role_id in ids},
         "deep_research_by_role": {
             role_id: {
@@ -110,9 +124,13 @@ for d in directors:
     if d == "D10":
         review["teamwide_accountability"] = {
             "expected_roles": 30,
-            "expected_branch_subagents": 450,
-            "branch_supervisors_reporting": len(branch_summaries),
-            "subagent_reports_claimed_by_supervisors": sum((x.get("subagent_count") or 0) for x in branch_summaries.values()),
+            "expected_companies":10,
+            "expected_managers":150,
+            "managers_reporting":len(manager_summaries),
+            "configured_specialist_workers":7500,
+            "worker_report_files_this_rotation":len(worker_reports),
+            "worker_source_checks":sum(x.get("execution_status")=="source_checked" for x in worker_reports.values()),
+            "director_companies_reporting":len(company_summaries),
             "reported_roles": len(reports),
             "ai_reviews_completed": sum(v.get("ai_analysis",{}).get("status") == "llm_completed" for v in reports.values()),
             "independent_critical_challenges_completed": sum(v.get("ai_analysis",{}).get("critical_challenge_status") == "completed" for v in reports.values()),
