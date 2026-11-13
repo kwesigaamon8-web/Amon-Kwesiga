@@ -8,6 +8,7 @@ on:
       - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/agents.py'
       - 'crypto-agents/social_scan.py'
+      - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
   schedule:
@@ -62,6 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      issues: write
     steps:
       - uses: actions/checkout@v4
       - name: Download 30 independent reports
@@ -77,6 +79,13 @@ jobs:
         run: python crypto-agents/consolidate.py combined-reports
       - name: Have each director review two assistants
         run: python crypto-agents/director_review.py
+      - name: Contribute 30 individual research summaries to the public meeting
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/post_meeting.py
       - name: Upload consolidated report
         if: always()
         uses: actions/upload-artifact@v4
