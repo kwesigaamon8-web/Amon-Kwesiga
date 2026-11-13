@@ -30,6 +30,8 @@ def recent(s):
         return False
     try:
         t = datetime.fromisoformat(s.replace("Z", "+00:00"))
+        if t.tzinfo is None:
+            t = t.replace(tzinfo=timezone.utc)
         return t >= cutoff
     except (TypeError, ValueError):
         return False
