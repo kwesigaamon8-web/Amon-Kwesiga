@@ -65,6 +65,15 @@ for d in directors:
         "assistant_b_report_present": sources[2] is not None,
         "assistant_report_ids": ids[1:],
         "individual_ai_reviews": {role_id: (reports.get(role_id) or {}).get("ai_analysis", {}).get("status", "missing") for role_id in ids},
+        "deep_research_by_role": {
+            role_id: {
+                "original_sources_rechecked": sum(1 for x in (reports.get(role_id) or {}).get("deep_research",{}).get("dossiers",[]) if x.get("source_refetched")),
+                "due_diligence_dossiers": (reports.get(role_id) or {}).get("deep_research",{}).get("dossiers",[])[:3],
+                "adversarial_review_status": (reports.get(role_id) or {}).get("ai_analysis",{}).get("critical_challenge_status", "missing"),
+                "adversarial_review": (reports.get(role_id) or {}).get("ai_analysis",{}).get("critical_challenge","")[:900]
+            }
+            for role_id in ids
+        },
         "distinct_raw_leads_reviewed": len(raw),
         "qualified_leads_require_manual_checks": reviewed,
         "next_actions": [
@@ -76,6 +85,7 @@ for d in directors:
         "owner_authorized_independence": True,
         "payout_priority": "Direct verified earnings into a user-approved address on the exact supported network; never guess full addresses or reveal a private user wallet map in this public repository.",
         "outreach_capability": "Not available through this workflow: it can research, draft, and rank but cannot post, apply, sign, or remit.",
+        "deep_research_review_instruction": "Compare the director and both assistants source-refetched evidence, contrary evidence, dates, explicit pay amounts, real work scope, unknowns and skeptical model reviews. Reject unsupported opportunities and choose one concrete legitimate follow-up.",
         "verified_earnings": [],
         "mission_reminder": "The measure of success is actual legitimate transferable payment to the user, not research volume or token spam."
     }
@@ -84,6 +94,8 @@ for d in directors:
             "expected_roles": 30,
             "reported_roles": len(reports),
             "ai_reviews_completed": sum(v.get("ai_analysis",{}).get("status") == "llm_completed" for v in reports.values()),
+            "independent_critical_challenges_completed": sum(v.get("ai_analysis",{}).get("critical_challenge_status") == "completed" for v in reports.values()),
+            "original_github_records_rechecked": sum(sum(1 for x in v.get("deep_research",{}).get("dossiers",[]) if x.get("source_refetched")) for v in reports.values()),
             "total_qualified_leads": len(strong),
             "verified_payment_receipts": 0,
             "message_to_all_directors": "Owner authorizes independent work. Search worldwide, prioritize payouts to an approved correct-network owner address, protect wallet access, and report only verified income as received.",
