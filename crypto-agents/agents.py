@@ -18,6 +18,9 @@ AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encodin
 EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
 TOOL_REPORT_PATH=Path("tool-reports")/(role_id+".json")
 TOOL_REPORT=json.loads(TOOL_REPORT_PATH.read_text(encoding="utf-8")) if TOOL_REPORT_PATH.exists() else {"status":"not_executed","new_tool_candidates":[],"sources_checked":[]}
+SITE_REPORT_PATH=Path("site-reports")/(role_id+".json")
+SITE_REPORT=json.loads(SITE_REPORT_PATH.read_text(encoding="utf-8")) if SITE_REPORT_PATH.exists() else {"source_check_status":"not_executed","unverified_leads":[]}
+
 
 EARNING_PATHS=list(EARNINGS["where_to_find_pay"].keys())
 FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
@@ -111,6 +114,24 @@ def collect():
     social_items, social_errors = scan_social(role)
     items.extend(social_items)
     errors.extend(social_errors)
+    # New official public job/bounty source, selected independently by role.
+    # These are unverified paid-work leads, not crypto receipts or applications.
+    if SITE_REPORT.get("source_check_status") == "public_source_checked":
+        for item in SITE_REPORT.get("unverified_leads", [])[:6]:
+            if isinstance(item, dict) and str(item.get("url","")).startswith("https://"):
+                items.append({
+                    "title":str(item.get("title",""))[:160],
+                    "url":str(item["url"])[:400],
+                    "source":str(item.get("source","Additional public job site"))[:70],
+                    "excerpt":str(item.get("excerpt",""))[:350],
+                    "updated":str(item.get("updated",""))[:50],
+                    "payment_verified":False,
+                    "owner_eligibility_verified":False,
+                    "source_check_status":SITE_REPORT["source_check_status"]
+                })
+    elif SITE_REPORT.get("source_error"):
+        errors.append("Additional public site: " + str(SITE_REPORT["source_error"])[:180])
+
 
     unique={x["url"]:x for x in items}
     candidates=list(unique.values())
@@ -222,6 +243,13 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "autonomy_policy_version":AUTONOMY["version"],
      "earnings_playbook_version":EARNINGS["version"],
      "source_code_earning_channels":EARNING_PATHS,
+     "additional_public_site_research":{"provider":SITE_REPORT.get("source_name"),
+         "status":SITE_REPORT.get("source_check_status"),
+         "site":SITE_REPORT.get("official_site"),
+         "lead_count":len(SITE_REPORT.get("unverified_leads",[])),
+         "error":SITE_REPORT.get("source_error")},
+     "required_individual_deliverable_order":"ORD-024",
+
      "independent_after_owner_order":"ORD-023",
      "discovered_tools_and_sites":{"status":"completed_report_available" if TOOL_REPORT_PATH.exists() else "missing","source_checks":TOOL_REPORT.get("sources_checked",[]),"candidate_count":len(TOOL_REPORT.get("new_tool_candidates",[])),"source_errors":TOOL_REPORT.get("source_errors",[])},
 
