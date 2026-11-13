@@ -24,12 +24,13 @@ on:
       - 'crypto-agents/director_coordination.py'
       - 'crypto-agents/post_directors.py'
       - 'crypto-agents/director_inbox.py'
+      - 'crypto-agents/audit_independence.py'
   schedule:
     - cron: '31 * * * *'
 # Repeated hourly checks should not overlap or consume free runners on stale scans.
 concurrency:
   group: crypto-agents-${{ github.workflow }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
@@ -103,6 +104,8 @@ jobs:
           python-version: '3.11'
       - name: Screen for evidence and consolidate
         run: python crypto-agents/consolidate.py combined-reports
+      - name: Audit unique identities and actual independent model reports
+        run: python crypto-agents/audit_independence.py --reports combined-reports --output independence-audit
       - name: Have each director review two assistants
         run: python crypto-agents/director_review.py
       - name: Produce cross-director performance messages and one-owner handoff register
@@ -131,5 +134,6 @@ jobs:
             summary.md
             director-reports/
             director-communications/
+            independence-audit/
           if-no-files-found: warn
           retention-days: 7
