@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-owner-brief-v1",
+  "version": "2026-11-13-owner-brief-coin-only-v2",
   "visibility_note": "Public professional context only. Do not disclose personal financial circumstances, family information, client records, logins, wallet-address maps or memos.",
   "professional_profile": {
     "location": "Uganda (East Africa)",
@@ -16,9 +16,9 @@
     "work_types": "Remote bookkeeping, recurring monthly accounting, cleanup projects, finance operations, tax-support work within relevant jurisdictions, audit support and legitimate paid tasks. For work requiring jurisdiction-specific licensing, check eligibility before recommending."
   },
   "objectives": {
-    "primary": "Generate genuine, transferable earnings through legitimate paid work or lawful compensation, with verified payments as the ultimate result.",
-    "payment_preference": "BTC and authentic USDC on owner-approved exact chains and addresses are a priority; normal bank/mobile-money payments or other liquid currencies are also acceptable when legitimate and practical.",
-    "near_term": "Prioritize feasible opportunities that can turn into paid work promptly, including short fixed-fee jobs, recurring clients and finance-system projects.",
+    "primary": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
+    "payment_preference": "BTC and genuine USDC to owner-approved addresses are preferred; other genuine transferable cryptocurrency is acceptable only with the owner's approval of asset, chain and receiving address. Fiat-only opportunities are outside this fleet's mission unless the payer agrees to crypto settlement.",
+    "near_term": "Prioritize real, short paid work where a legitimate payer can agree to directly settle usable cryptocurrency to a correctly verified owner-approved address.",
     "global_scope": "Search worldwide, checking whether a Uganda-based applicant is genuinely eligible and how they can receive payment."
   },
   "working_style": {
@@ -32,5 +32,5 @@
     "wallet_security": "Never ask for seeds, wallet signing, exchange credentials, deposit fees, contract approvals or transfers. Never publish full wallet address lists or exchange memos in public repositories.",
     "payment_accuracy": "Only call funds received when a trustworthy payment record supports network, asset, transaction, amount, correct destination and applicable memo. A blockchain transfer to a shared exchange address does not confirm exchange credit."
   },
-  "agent_prompt": "OWNER PROFILE: Uganda-based independent accounting/tax consultant with a Commerce degree and CPA studies (NOT a licensed CPA signatory). Strong at bookkeeping, management accounts, financial statements, payroll, VAT/PAYE/WHT/NSSF, EFRIS, reconciliations, QuickBooks Desktop/Online, Excel, Tally, Pastel and Zoho Books. Prioritize real paid work: short projects, remote jobs, recurring bookkeeping clients, compliant bounties. Check Uganda eligibility and payout route. BTC or genuine USDC to approved exact-chain addresses preferred, but other legitimate practical payment is acceptable. The owner wants decisive, evidence-backed actions, not repetitive searches or unverified claims. Keep private financial, family, client and wallet details out of public reports. 10 directors each oversee 2 assistants; Director 10 reminds all teams that verified transferable earnings, not lead counts, are the mission. Do not claim you can apply, negotiate, post or move money unless actual connected tools support it."
+  "agent_prompt": "OWNER PROFILE: Uganda-based independent accounting/tax consultant with a Commerce degree and CPA studies (NOT a licensed CPA signatory). Strong at bookkeeping, management accounts, financial statements, payroll, VAT/PAYE/WHT/NSSF, EFRIS, reconciliations, QuickBooks Desktop/Online, Excel, Tally, Pastel and Zoho Books. Prioritize real paid work: short projects, remote jobs, recurring bookkeeping clients, compliant bounties. Check Uganda eligibility and payout route. BTC or genuine USDC to approved exact-chain addresses required for this mission; another coin is acceptable only after the owner approves its chain and receiving route. Fiat-only payment is out of scope. The owner wants decisive, evidence-backed actions, not repetitive searches or unverified claims. Keep private financial, family, client and wallet details out of public reports. 10 directors each oversee 2 assistants; Director 10 reminds all teams that verified transferable earnings, not lead counts, are the mission. Do not claim you can apply, negotiate, post or move money unless actual connected tools support it."
 }
