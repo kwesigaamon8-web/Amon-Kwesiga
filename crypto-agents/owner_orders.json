@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:42:10.075Z",
+  "updated_utc": "2026-11-13T17:49:58.770Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -518,6 +518,23 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Read-only research and autonomous local computing only; no paid cloud resources, remote account creation, outreach, blockchain signing or transfers."
+    },
+    {
+      "id": "ORD-032",
+      "title": "Attempt maximum sustainable free batch of independent W S G H AI processes",
+      "accountable_director": "D03",
+      "standing_requirement": "Attempt up to 500 true separate CPU open-weight model OS processes across 10 directors (50/director), spread over W S G H tiers, from public GitHub Actions at no cost. Every activated role inherits all owner orders, has a separate model inference, public-source check, unique PID, parent and evidence-backed personal report; it is not continuously online. Enforce 1080 second per-director time budget and 80 second per process, stop cleanly on limits. Schedule daily rather than overload free runners. Count only evidenced successful executions, no fabricated payments.",
+      "reported_status": "configured_not_runtime_verified",
+      "evidence_files": [
+        "crypto-agents/role_ai_identity.py",
+        "crypto-agents/ai_process_worker.py",
+        "crypto-agents/ai_process_launcher.py",
+        "crypto-agents/ai_process_audit.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Verify GitHub workflow logs and individual artifacts show W/S/G/H process PIDs, model_completed statuses and unique reports. This is 500 maximum attempted, not guaranteed complete.",
+      "last_verified_payment_receipt": null,
+      "external_action": "Free read-only public research and local model inference only."
     }
   ]
 }

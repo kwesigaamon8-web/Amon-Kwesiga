@@ -1,4 +1,4 @@
-"""Run exactly ONE independent research AI OS process for a real W worker ID.
+"""Run one real separately invoked W/S/G/H AI worker OS process.
 
 No identity is counted active unless the process runs; no model inference is
 claimed successful unless Transformers actually returns generated text.
@@ -15,38 +15,33 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from owner_order_distribution import inheritance, compact_prompt
+from role_ai_identity import resolve_role
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
 OUT.mkdir(exist_ok=True)
-CONFIG=json.loads((ROOT/"company_hierarchy.json").read_text(encoding="utf-8"))
 WORKER=sys.argv[1] if len(sys.argv)>1 else ""
-MATCH=re.fullmatch(r"(D(?:0[1-9]|10))-M(0[1-9]|1[0-5])-W(0[1-9]|[1-4][0-9]|50)",WORKER)
-if not MATCH:
-    raise SystemExit("Invalid worker ID")
-DIRECTOR= MATCH.group(1)
-MANAGER= f"{DIRECTOR}-M{MATCH.group(2)}"
-INDEX=int(MATCH.group(3))-1
-SPEC=CONFIG["worker_roles"][INDEX]
-COMPANY=next(c for c in CONFIG["companies"] if c["director_id"]==DIRECTOR)
-MGR=next(m for m in COMPANY["managers"] if m["id"]==MANAGER)
+IDENTITY=resolve_role(WORKER)
+DIRECTOR=IDENTITY["director_id"]
+MANAGER=IDENTITY["manager_id"]
+PARENT=IDENTITY["parent_id"]
+SPEC={"role_name":IDENTITY["specialty"],"query":IDENTITY["query"]}
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
-TASK=("Find one credible lawful paid work opportunity for "+SPEC["role_name"]+
-      " or another feasible independent specialty. Verify source, payer, deliverable, "
-      "Uganda eligibility, no up-front fees and correct-chain crypto payout. "
-      "Report independently; leads are not deposited funds.")
+TASK=IDENTITY["task"]
 
 report={
     "worker_id":WORKER,
     "manager_id":MANAGER,
+    "parent_id":PARENT,
+    "agent_level":IDENTITY["level"],
     "director_id":DIRECTOR,
     "os_process_pid":os.getpid(),
     "actual_process_started_at_utc":STAMP,
     "os_process_invoked":True,
     "task":TASK,
     "independent_query":SPEC["query"],
-    "order_inheritance":inheritance(WORKER,MANAGER),
+    "order_inheritance":inheritance(WORKER,PARENT),
     "source":"HN Algolia public original read-only API",
     "source_url":None,
     "source_check_status":"not_started",
@@ -98,9 +93,9 @@ try:
     examples=[{"title":x["title"],"url":x["url"]}
               for x in report["source_items"][:2]]
     prompt=[
-      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to one manager."},
+      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent."},
       {"role":"user","content":(compact_prompt()[:700]+
-        "\nAgent "+WORKER+"; manager "+MANAGER+
+        "\nAgent "+WORKER+"; parent "+PARENT+
         "; specialty "+SPEC["role_name"]+
         "; original search results "+json.dumps(examples,ensure_ascii=False)[:530]+
         ". Answer: strongest evidence, weakness, next independent source or task, and payment proof needed.")},
@@ -128,6 +123,7 @@ lines=[
     "# Independently hosted worker — "+WORKER,"",
     f"- **Actual OS process PID:** {report['os_process_pid']}",
     f"- **Director/Manager:** {DIRECTOR} / {MANAGER}",
+    f"- **Level/Parent:** {IDENTITY['level']} / {PARENT}",
     f"- **Started:** {STAMP}",
     f"- **Source result:** {report['source_check_status']}",
     f"- **AI inference result:** {report['inference_status']}",

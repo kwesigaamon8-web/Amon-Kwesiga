@@ -13,6 +13,8 @@ summary={
  "first_tier_worker_ids_defined":7500,
  "billion_scale_descendant_roles_are_defined_not_running":True,
  "actual_os_processes_invoked":0,
+ "completed_models_with_pid_evidence":0,
+ "attempts_by_level":{"W":0,"S":0,"G":0,"H":0},
  "actual_independent_model_completions":0,
  "per_agent_markdown_reports_written":0,
  "director_manifests_present":0,
@@ -38,6 +40,13 @@ for d in directors:
         selected=data.get("worker_processes_selected",[])
         for wid in selected:
             if wid in seen:summary["issues"].append("Duplicate active worker ID: "+wid)
+            level="H" if "-H" in wid else "G" if "-G" in wid else "S" if "-S" in wid else "W"
+            summary["attempts_by_level"][level]+=1
+            record_path=reports/(wid+".json")
+            if record_path.exists():
+                individual=json.loads(record_path.read_text(encoding="utf-8"))
+                if individual.get("inference_status")=="model_completed" and individual.get("os_process_pid"):
+                    summary["completed_models_with_pid_evidence"]+=1
             seen.add(wid)
             if not (reports/(wid+".md")).exists():summary["issues"].append("Missing per-worker report: "+wid)
         if work.exists():
@@ -64,6 +73,8 @@ rows=[
  f"Actual OS processes invoked: **{summary['actual_os_processes_invoked']}**",
  f"Actually completed independent model calls: **{summary['actual_independent_model_completions']}**",
  f"Individual documents: **{summary['per_agent_markdown_reports_written']}**",
+ f"Completed AI with unique PID evidence: **{summary['completed_models_with_pid_evidence']}**",
+ f"Attempted by W/S/G/H level: **{summary['attempts_by_level']}**",
  "Confirmed new crypto deposits: **not verified by this workflow**",
  "","## Director evidence"
 ]

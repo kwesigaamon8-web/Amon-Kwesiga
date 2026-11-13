@@ -3,11 +3,12 @@ name: Real Free-Hosted AI Worker Processes
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7 * * * *'
+    - cron: '7 4 * * *'
   push:
     paths:
       - '.github/workflows/real-ai-workers.yml'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/role_ai_identity.py'
       - 'crypto-agents/ai_process_launcher.py'
       - 'crypto-agents/ai_process_audit.py'
       - 'crypto-agents/director_work_orders.py'
@@ -22,7 +23,7 @@ jobs:
   real-worker-processes:
     name: ${{ matrix.director }} actual AI worker OS processes
     runs-on: ubuntu-latest
-    timeout-minutes: 22
+    timeout-minutes: 28
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -44,7 +45,8 @@ jobs:
       - name: Actually launch isolated per-worker operating-system processes
         env:
           ROLE_ID: ${{ matrix.director }}
-          REAL_AI_PROCESSES_PER_DIRECTOR: '2'
+          REAL_AI_PROCESSES_PER_DIRECTOR: '50'
+          MAX_BATCH_SECONDS: '1080'
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
         run: python crypto-agents/ai_process_launcher.py

@@ -1,4 +1,4 @@
-"""Launch small REAL OS subprocesses from the 750 assigned W roles for one director.
+"""Launch genuine independent W/S/G/H OS/model subprocesses from one director.
 
 Each Python child has its own PID, individual Transformers model invocation, and
 separate JSON/Markdown reports. Never spawn billions of configured roles.
@@ -18,23 +18,34 @@ if not re.fullmatch(r"D(?:0[1-9]|10)",role):
     raise SystemExit("Expected one executing director D01..D10")
 out=Path("ai-process-reports")
 out.mkdir(exist_ok=True)
-max_workers=min(4,max(1,int(os.environ.get("REAL_AI_PROCESSES_PER_DIRECTOR","2"))))
+max_workers=min(50,max(1,int(os.environ.get("REAL_AI_PROCESSES_PER_DIRECTOR","50"))))
+start_batch=time.monotonic()
+max_batch_seconds=min(1200,max(60,int(os.environ.get("MAX_BATCH_SECONDS","1080"))))
 cycle=int(time.time()//3600)
 offset=(cycle*max_workers)%750
 selected=[]
 events=[]
 for slot in range(max_workers):
+    if time.monotonic()-start_batch>=max_batch_seconds:
+        break
     index=(offset+slot)%750
     m=index//50+1
     w=index%50+1
     wid=f"{role}-M{m:02d}-W{w:02d}"
+    level=(slot+cycle)%4
+    s=(cycle+index*7)%150+1
+    g=(cycle+index*17)%500+1
+    h=(cycle+index*37)%666+1
+    if level>=1:wid+=f"-S{s:03d}"
+    if level>=2:wid+=f"-G{g:03d}"
+    if level>=3:wid+=f"-H{h:03d}"
     selected.append(wid)
     started=datetime.now(timezone.utc).isoformat()
     try:
         # This is a separate child operating-system process.
         result=subprocess.run(
             [sys.executable,"crypto-agents/ai_process_worker.py",wid],
-            capture_output=True,text=True,timeout=180,check=False,
+            capture_output=True,text=True,timeout=80,check=False,
             env={**os.environ,"OMP_NUM_THREADS":"2","HF_HUB_DISABLE_TELEMETRY":"1"}
         )
         status="process_terminated"
@@ -88,6 +99,9 @@ manifest={
  "director_id":role,
  "run_at_utc":datetime.now(timezone.utc).isoformat(),
  "cycle":cycle,"workers_total_assigned":750,
+ "max_worker_processes_per_director":max_workers,
+ "batch_time_budget_seconds":max_batch_seconds,
+ "process_attempts_skipped_due_to_budget":max_workers-len(events),
  "worker_processes_selected":selected,
  "subprocesses_invoked":len(events),
  "independent_worker_process_documents":sum((out/(wid+".md")).exists() for wid in selected),
@@ -97,7 +111,7 @@ manifest={
  "owner_order_register_sha256":summary()["sha256"],
  "verified_paid_crypto_receipts":[],
  "events":events,
- "truth":"Only the selected subprocesses were attempted. Other configured first-tier workers and S/G/H descendants are not concurrently hosted or reported as executed."
+ "truth":"Only the selected W/S/G/H OS subprocesses were attempted; other defined roles are not concurrently hosted or reported as executed."
 }
 (out/("manifest-"+role+".json")).write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8")
 print("REAL_WORKER_PROCESSES",role,"attempted",len(events),
