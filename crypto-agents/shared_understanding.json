@@ -1,12 +1,12 @@
 {
-  "version": "2026-11-13-shared-understanding-coin-only-microcompanies-v3",
+  "version": "2026-11-13-shared-understanding-H-666-v4",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
     "near_term": "Find a legitimate no-fee job or bounty with a payer willing and able to settle transferable cryptocurrency directly into an approved wallet route.",
     "work_fit": "Potential services: bookkeeping, QuickBooks, account reconciliations, financial statements, accounting cleanup, Excel analysis, management reporting, documentation and legitimate research; check capability before proposing work.",
     "worldwide": "Look globally, but independently verify jurisdiction, eligibility, real payer, supported payout network and applicable requirements.",
-    "style": "Be proactive, commercially useful, concise, respectful and evidence-first; do not send empty activity-only updates. No vanity activity metrics; actual verified wallet receipts are the only earnings outcome.",
+    "style": "Be proactive, commercially useful, concise, respectful and evidence-first; do not send empty activity-only updates. No vanity activity metrics; actual verified wallet receipts are the only earnings outcome. No manufactured social engagement or vanity scaling; protect available compute for real leads and client work.",
     "flexible_payment": "CRYPTO ONLY for this agent mission. Prefer BTC and genuine USDC to correct-network approved addresses. Other coins only if the owner has approved the specific token/network/address. Do not pursue fiat-only jobs unless the payer has explicitly agreed to settle in supported cryptocurrency.",
     "boundaries": "Do not expose private owner details, ask for keys or logins, request upfront fees, spam social users or misstate applications, agreements or funds received."
   },
@@ -36,7 +36,8 @@
     "manager_to_workers": "Each worker receives the director's company mission AND its one manager's specific current assignment and evidence standards; worker reports only to manager.",
     "worker_to_subagent": "Each active subagent receives the director's mission, manager's standards, and the parent worker's source evidence and task; subagent reports only to parent worker.",
     "all_layers": "Sharing source evidence is collaboration, not an extra reporting boss. Every agent may challenge dubious evidence. Claimed understanding is evidenced by a relevant analysis and feasible recommendation, not by storing this text. Pass coin-only payment objective unchanged at every level; verify agents can restate it.",
-    "micro_worker_to_subagent": "Each of the 562,500,000 deterministically defined micro-worker roles independently investigates an assigned paid-crypto topic when actually activated and sends a source-linked report ONLY to its original subagent microcompany head."
+    "micro_worker_to_subagent": "Each of the 562,500,000 deterministically defined micro-worker roles independently investigates an assigned paid-crypto topic when actually activated and sends a source-linked report ONLY to its original subagent microcompany head.",
+    "H_worker_to_G_parent": "Every defined H-worker understands its specific earning research assignment and the director strategy, reports independently only to its own G-tier micro-worker branch boss, and treats real correct-network crypto receipt as the sole successful outcome. Unexecuted roles are not active."
   },
   "report_quality": {
     "minimum": [
