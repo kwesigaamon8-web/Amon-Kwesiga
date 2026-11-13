@@ -43,3 +43,35 @@ jobs:
           path: reports/*.json
           if-no-files-found: warn
           retention-days: 7
+
+
+  consolidate:
+    name: Consolidate and verify mission
+    if: ${{ always() }}
+    needs: independent-research
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download 30 independent reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: crypto-research-*
+          path: combined-reports
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Screen for evidence and consolidate
+        run: python crypto-agents/consolidate.py combined-reports
+      - name: Upload consolidated report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: consolidated-opportunity-report
+          path: |
+            summary.json
+            summary.md
+          if-no-files-found: warn
+          retention-days: 7
