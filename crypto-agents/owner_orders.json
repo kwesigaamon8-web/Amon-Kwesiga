@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:50:33Z",
+  "updated_utc": "2026-11-13T19:51:05Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -803,6 +803,23 @@
       ],
       "verification_condition": "Owner report must distinguish complete addressable role census, actual separate model completions, actual separate lesson answers, training results, missing replies and verified earning receipts. Check only genuine execution logs, not assigned worker counts.",
       "reported_status": "owner_instruction_registered; model response and roster reconciliation not yet verified",
+      "last_verified_payment_receipt": null
+    },
+    {
+      "id": "ORD-049",
+      "title": "Director D hosts an evidence-based joint discussion with all ACTUALLY executing B workers and operating directors",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER REQUEST: 'discus all together d and B'. Convene a joint owner-controlled roundtable of Director D, all ten operating directors and every actually executed B worker represented by their own saved model outputs, including actual lesson answers (ORD-047), genuine tasks, source evidence, verified opportunities, blockers and payment status. D must prepare a single indexed discussion record, give genuine B workers voice by including their own source-generated answers verbatim where safely possible, and use actual ten-director cross-review model outputs when completed. The meeting can be asynchronous through a GitHub Actions artifact and owner-controlled issue: never misrepresent thousands/billions of defined role IDs as simultaneously talking. Include ONE actually executed representative worker's own reply, all actually available worker records, director contributions, D teaching message and synthesis; mark absence with no invented attendance or fake votes. Every role can inherit the agenda through standing orders; workers lacking execution are queued, not contacted. Agree on practical ways to turn lawful original deliverables into genuinely verified earnings. No mass unsolicited external communications, unauthorized network actions or fictional coins.",
+      "evidence_files": [
+        "crypto-agents/DIRECTOR_D_LESSON_TO_B.md",
+        "crypto-agents/b_d_joint_discussion.py",
+        "crypto-agents/b_representative_to_owner.py",
+        "crypto-agents/b_all_workers_report.py",
+        "crypto-agents/director_D_consensus.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "A GitHub Actions artifact contains actual worker roster and individual responses; separate genuine director models and D model response when completed; missing participants explicitly reported; monetary success only from independently verified wallet receipts.",
+      "reported_status": "owner_order_recorded; live full-worker discussion not verified",
       "last_verified_payment_receipt": null
     }
   ],
