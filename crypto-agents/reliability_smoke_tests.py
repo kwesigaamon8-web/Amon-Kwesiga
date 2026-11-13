@@ -35,6 +35,22 @@ x=subprocess.run([sys.executable,"-m","compileall","-q",str(AGENTS)],
                  cwd=ROOT,text=True,capture_output=True,timeout=30)
 verify("all_python_scripts_compile",x.returncode==0)
 
+# 1b: W/S/G/H are all scheduled to use real finite model capacity.
+sys.path.insert(0,str(AGENTS))
+from fair_agent_scheduler import (select_roles, role_for_ordinal,
+    activation_summary,TOTAL_HIERARCHY,TOTAL_BY_DIRECTOR)
+verify("all_375b_identities_addressable_not_live",TOTAL_HIERARCHY==375188632680)
+roles=select_roles("D01",31,50)
+fair=activation_summary("D01",31,50)
+verify("four_tiers_get_real_model_slots",
+    len(roles)==len(set(roles))==50 and
+    all(12<=fair["activation_counts_by_tier"][t]<=13 for t in "WSGH"))
+for tier in "WSGH":
+    seen={role_for_ordinal("D01",tier,i) for i in range(3000)}
+    expected=min(3000,TOTAL_BY_DIRECTOR[tier])
+    verify("no_repeat_role_ids_sample_"+tier,len(seen)==expected)
+verify("different_directors_have_distinct_roles",not(set(roles)&set(select_roles("D02",31,50))))
+
 # 2: Owner order identity and invariant checks.
 orders=json.loads((AGENTS/"owner_orders.json").read_text(encoding="utf-8"))
 ids=[x["id"] for x in orders["orders"]]

@@ -14,6 +14,7 @@ on:
       - 'crypto-agents/command_chain_receipts.py'
       - 'crypto-agents/owner_command_chain.json'
       - 'crypto-agents/director_activation_plan.py'
+      - 'crypto-agents/fair_agent_scheduler.py'
       - 'crypto-agents/agent_cognition.py'
       - 'crypto-agents/director_D_results_gate.py'
       - 'crypto-agents/agent_state_aggregate.py'

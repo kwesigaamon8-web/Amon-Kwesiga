@@ -11,6 +11,7 @@ import time
 from datetime import datetime,timezone
 from pathlib import Path
 from owner_order_distribution import summary
+from fair_agent_scheduler import activation_summary
 
 DIRECTOR=os.environ.get("ROLE_ID","")
 if not re.fullmatch(r"D(?:0[1-9]|10)",DIRECTOR):
@@ -19,20 +20,12 @@ CONFIG=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encodin
 OWN=summary()
 company=next(c for c in CONFIG["companies"] if c["director_id"]==DIRECTOR)
 OUT=Path("director-work-orders");OUT.mkdir(exist_ok=True)
-# This is a bounded assignment queue, not 375 billion hosted processes.
-# Use distinct sectors and W/S/G/H levels in the next slot.
-roles=[]
+# Deterministic tier-fair queue: 12 or 13 ACTUAL MODEL SLOTS per W/S/G/H
+# tier each run. Defined IDs not selected remain mathematically available,
+# but NOT claimed active until a real AI model independently executes.
 cycle=int(os.getenv("GITHUB_RUN_NUMBER") or int(time.time()//3600))
-for slot in range(50):
-    index=(cycle*50+slot)%750
-    m=index//50+1
-    w=index%50+1
-    wid=f"{DIRECTOR}-M{m:02d}-W{w:02d}"
-    level=(slot+cycle)%4
-    if level>=1:wid+=f"-S{(cycle+index*7)%150+1:03d}"
-    if level>=2:wid+=f"-G{(cycle+index*17)%500+1:03d}"
-    if level>=3:wid+=f"-H{(cycle+index*37)%666+1:03d}"
-    roles.append(wid)
+fair=activation_summary(DIRECTOR,cycle,50)
+roles=fair["selected_ids"]
 assert len(roles)==len(set(roles))==50
 out={
  "director":DIRECTOR,
@@ -41,7 +34,10 @@ out={
  "director_D_reports_to_owner":True,
  "director_activation_target_per_batch":50,
  "selection_run_cycle":cycle,
- "selection_method":"GitHub workflow run number rotates W parent slots; avoids hourly-cycle repeats",
+ "selection_method":"Four-tier bijective mixed-radix scheduling via GitHub workflow-run counter; each selected role becomes active ONLY upon actual model inference",
+ "role_tier_activation_budget":fair["activation_counts_by_tier"],
+ "distinct_managers_selected":fair["distinct_managers_selected"],
+ "scheduler_version":"ORD-041-fair-agent-fabric",
  "defined_roles_under_director":750*(1+150+150*500+150*500*666)+17,
  "registered_owner_orders":OWN["count"],
  "owner_order_register_sha256":OWN["sha256"],

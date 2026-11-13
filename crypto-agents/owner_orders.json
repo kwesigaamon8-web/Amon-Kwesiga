@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T18:37:57Z",
+  "updated_utc": "2026-11-13T19:08:09Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -673,6 +673,21 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Internal owner-directed independent research and evidence-backed reporting only."
+    },
+    {
+      "id": "ORD-041",
+      "title": "All B roles addressable and fairly scheduled across W S G H without pretending billions of concurrent AI models",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER wants every B worker and Director D to contribute actual useful work. Each W/S/G/H role is mathematically addressable through a unique owner-director-manager-parent path, and real execution capacity is rotated fairly among the FOUR levels each cycle. Director D and D10 must check that each scheduled role actually runs its own open-weight AI inference, public evidence check, individual report and practical next-task checkpoint, or record a genuine blocker. No dormant identity is called a running agent; no global 375b concurrent execution claim. The ten directors remain accountable, and D09 protects payment validation. Use only actual authorized hosting, within quotas and permitted infrastructure. Prefer genuine payer-verified work over model counts.",
+      "evidence_files": [
+        "crypto-agents/fair_agent_scheduler.py",
+        "crypto-agents/director_activation_plan.py",
+        "crypto-agents/reliability_smoke_tests.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Offline scheduler checks prove correct role domain and noncollision samples; later actual GitHub model batches must show real per-tier subprocess completions, parent receipts and useful reports.",
+      "reported_status": "configured_pending_new_execution_proof",
+      "last_verified_payment_receipt": null
     }
   ],
   "broadcast_aliases": {
