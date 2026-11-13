@@ -10,6 +10,9 @@ on:
       - 'crypto-agents/microcompany_structure.json'
       - 'crypto-agents/microcompany_factory.py'
       - 'crypto-agents/microcompany_audit.py'
+      - 'crypto-agents/mega_branch_666.json'
+      - 'crypto-agents/mega_branch_factory.py'
+      - 'crypto-agents/mega_branch_audit.py'
   schedule:
     - cron: '7 3 * * *'
 permissions:
@@ -30,6 +33,10 @@ jobs:
         run: python crypto-agents/microcompany_factory.py
       - name: Audit 1.125m nested companies without materializing all roles
         run: python crypto-agents/microcompany_audit.py --output microcompany-audit
+      - name: Prove 666 children per G parent without allocating 374.625bn rows
+        run: python crypto-agents/mega_branch_factory.py
+      - name: Audit 374.625bn deterministic worker IDs and one-parent flow
+        run: python crypto-agents/mega_branch_audit.py --output mega-branch-audit
       - name: Publish audit to GitHub workflow summary
         if: always()
         run: |
@@ -37,6 +44,9 @@ jobs:
             cat independence-audit/audit.md >> "$GITHUB_STEP_SUMMARY"
           if [ -f microcompany-audit/AUDIT.md ]; then
             cat microcompany-audit/AUDIT.md >> "$GITHUB_STEP_SUMMARY"
+          if [ -f mega-branch-audit/AUDIT.md ]; then
+            cat mega-branch-audit/AUDIT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
           fi
           fi
       - name: Archive evidence
@@ -49,6 +59,7 @@ jobs:
           path: |
             independence-audit/
             microcompany-audit/
+            mega-branch-audit/
           retention-days: 14
           if-no-files-found: warn
       - name: Retry evidence upload if the first connection failed
@@ -60,5 +71,6 @@ jobs:
           path: |
             independence-audit/
             microcompany-audit/
+            mega-branch-audit/
           retention-days: 14
           if-no-files-found: warn
