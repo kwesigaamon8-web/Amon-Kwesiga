@@ -16,6 +16,9 @@ owner_brief=json.loads(Path("crypto-agents/owner_brief.json").read_text(encoding
 owner_context=owner_brief["agent_prompt"]
 AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
 EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
+TOOL_REPORT_PATH=Path("tool-reports")/(role_id+".json")
+TOOL_REPORT=json.loads(TOOL_REPORT_PATH.read_text(encoding="utf-8")) if TOOL_REPORT_PATH.exists() else {"status":"not_executed","new_tool_candidates":[],"sources_checked":[]}
+
 EARNING_PATHS=list(EARNINGS["where_to_find_pay"].keys())
 FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
 SHARED=json.loads(Path("crypto-agents/shared_understanding.json").read_text(encoding="utf-8"))
@@ -150,12 +153,17 @@ def analyze(leads, research, branch_summary):
         compact_checks=[{"title":x["title"],"source_status":x["source_status"],"score":x["score_for_followup_not_payment_probability"],"risks":x["counter_evidence_and_risks"][:3],"unknowns":x["unknowns"][:3]} for x in checked]
         subordinate_findings=[{"agent":x.get("discovered_by"),"title":x.get("title"),"url":x.get("url")} for x in branch_summary.get("sample_unverified_leads", [])[:3]]
         prompt=[
-          {"role":"system","content":"You are a director or independently thinking assistant using an evidence-first ChatGPT-style method. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
+          {"role":"system","content":"You are a director or independently thinking assistant following ORD-021 ORD-022 ORD-023. Once you receive the owner's order, work independently through already authorized research, permitted tools/sites, evidence and one-parent reports without repeated instructions; attempt a permitted alternate source after failure. Use actually verified tool access only. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
           {"role":"user","content":json.dumps({
             "owner_professional_context":BRIEF["whom_you_work_for"]["description"],
             "professional_strengths":BRIEF["whom_you_work_for"]["strengths"][:5],
             "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
+            "autonomy_order":"ORD-023",
+            "autonomy_instruction":SHARED["owner_intent"]["immediate_independent_execution"],
+            "tool_scouting_order":"ORD-022",
+            "actually_discovered_tools":[{"url":t.get("url",""),"name":t.get("name","")} for t in TOOL_REPORT.get("new_tool_candidates",[])[:2]],
+
             "director_strategy":directors_goal,
             "coordinator_reasoning_method":SHARED["assistant_method_the_directors_should_understand"]["reasoning"],
             "coordinator_execution_limit":SHARED["assistant_method_the_directors_should_understand"]["execution"],
@@ -214,6 +222,9 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "autonomy_policy_version":AUTONOMY["version"],
      "earnings_playbook_version":EARNINGS["version"],
      "source_code_earning_channels":EARNING_PATHS,
+     "independent_after_owner_order":"ORD-023",
+     "discovered_tools_and_sites":{"status":"completed_report_available" if TOOL_REPORT_PATH.exists() else "missing","source_checks":TOOL_REPORT.get("sources_checked",[]),"candidate_count":len(TOOL_REPORT.get("new_tool_candidates",[])),"source_errors":TOOL_REPORT.get("source_errors",[])},
+
      "owner_wallet_directory_access":wallet_directory_status["status"],
      "owner_payment_route_ids_available":wallet_directory_status["route_ids"],
      "owner_understanding":SHARED["owner_intent"]["real_goal"],
