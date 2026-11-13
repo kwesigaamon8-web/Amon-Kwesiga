@@ -1,0 +1,51 @@
+{
+  "version": "2026-11-13-agent-delivery-contract-v1",
+  "owner_order_id": "ORD-024",
+  "objective": "Every actually scheduled agent role must produce one inspectable evidence-backed document per successful research cycle, and missing/failed work must be explicitly identified. All defined inactive identities remain a scheduling backlog, not imagined active workers.",
+  "coverage": {
+    "primary_agents": "30 GitHub matrix jobs every scheduled cycle, including directors and independent assistants",
+    "director_managers": "Each of 10 executing directors schedules 15 manager reviews and 2/50 workers per manager per cycle",
+    "descendants": "Each actually attempted S, G and H role with report data gets its own document; no document claims for billions of unrun definitions",
+    "total_defined_roles": 375188632680,
+    "no_false_activity": "No document for an unexecuted role may say it performed research or AI inference."
+  },
+  "required_sections": [
+    "Agent identification and supervisor",
+    "Assigned work and instructions",
+    "What actually happened, including execution/model/source status",
+    "Primary evidence URLs and findings",
+    "Tool/site checks",
+    "Risks, blockers and unknowns",
+    "Next permitted action",
+    "Verified cryptocurrency receipts only if externally substantiated"
+  ],
+  "accepted_states": [
+    "model_completed",
+    "source_checked_only",
+    "source_failed",
+    "ai_unavailable",
+    "not_executed_missing_report",
+    "tool_discovery_only"
+  ],
+  "pipeline": {
+    "writer": "crypto-agents/agent_deliverables.py",
+    "worker_report_files": "company-reports/<ID>.json",
+    "director_and_assistant_reports": "reports/<ID>.json",
+    "tool_reports": "tool-reports/<ID>.json",
+    "each_agent_document": "agent-deliverables/<role-id>.md",
+    "per_job_manifest": "agent-deliverables/manifest-<director-or-assistant-role>.json",
+    "director_index": "agent-deliverables/INDEX-<director-or-assistant-role>.md",
+    "auditor": "crypto-agents/delivery_audit.py",
+    "consolidated_outputs": [
+      "delivery-audit/REPORT.md",
+      "delivery-audit/REPORT.json"
+    ],
+    "reporting": "Status and genuine evidence, not synthetic model output or imaginary received cryptocurrency"
+  },
+  "automation_limits": {
+    "scheduled": "GitHub Actions scheduled jobs may be delayed, cancelled or fail; every actually completed job with accessible outputs should produce documents.",
+    "unrun_roles": "Not a completed delivery; report these as unscheduled configured roles.",
+    "model_failures": "Document the source checks if available; explicitly mark model failure, not success.",
+    "money": "Neither report count nor lead count is money. Count payments only after independent chain or account confirmation."
+  }
+}
