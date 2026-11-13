@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T18:22:00Z",
+  "updated_utc": "2026-11-13T18:37:57Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -656,6 +656,23 @@
       "reported_status": "configured_not_runtime_verified",
       "external_action": "Independent authorized read-only research, open-weight model inference, checkpoint cache and one-parent reports only.",
       "last_verified_payment_receipt": null
+    },
+    {
+      "id": "ORD-040",
+      "title": "Every actually executing B worker must deliver a distinct evidence-based result to Director D",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER ORDER: B, every actually activated worker must perform real independent authorized research or useful work, produce an individual report showing the source or tool result, one actionable next step and explicit blockers, and report via their one direct parent. D01-D10 must compare their executed workers' original-source findings, reject empty/generic reports, challenge unverifiable payer claims and report actual model completion plus useful verified opportunities separately from source leads. Director D must aggregate 10 director scorecards and tell OWNER what actually worked, what failed and what genuine earnings have been received. Prioritize legally earned cryptocurrency actually credited to a correct-network owner-approved address; do not reveal the entire owner wallet register publicly. Roles never activated remain queued, not active; no role IDs count as model executions or completed work. Respect user-authorized free hosting and data access, no bulk registrations or spam. Each actual agent independently executes without ChatGPT as its controller.",
+      "evidence_files": [
+        "crypto-agents/director_D_results_gate.py",
+        "crypto-agents/agent_deliverables.py",
+        "crypto-agents/ai_process_worker.py",
+        ".github/workflows/crypto-directors.yml",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Source-backed actual worker report and next action per successfully run worker; D deterministic results gate counts exact individual files, explicit blockers and excludes unverified earned coins. Gate must run successfully in workflow before report considered verified.",
+      "reported_status": "configured_not_runtime_verified",
+      "last_verified_payment_receipt": null,
+      "external_action": "Internal owner-directed independent research and evidence-backed reporting only."
     }
   ],
   "broadcast_aliases": {

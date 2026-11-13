@@ -61,7 +61,19 @@ concurrency:
 permissions:
   contents: read
 jobs:
+  preflight:
+    name: Validate all agent Python files before consuming model runners
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Detect Python syntax errors without running models
+        run: python -m compileall -q crypto-agents
   independent-research:
+    needs: preflight
     name: ${{ matrix.role }}
     runs-on: ubuntu-latest
     timeout-minutes: 28

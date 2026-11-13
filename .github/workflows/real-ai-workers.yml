@@ -15,6 +15,7 @@ on:
       - 'crypto-agents/owner_command_chain.json'
       - 'crypto-agents/director_activation_plan.py'
       - 'crypto-agents/agent_cognition.py'
+      - 'crypto-agents/director_D_results_gate.py'
       - 'crypto-agents/agent_state_aggregate.py'
       - 'crypto-agents/owner_sovereignty.json'
       - 'crypto-agents/director_D_consensus.py'
@@ -29,7 +30,19 @@ permissions:
   contents: read
 
 jobs:
+  preflight:
+    name: Check agent Python syntax before CPU model downloads
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile all research and management scripts
+        run: python -m compileall -q crypto-agents
   real-worker-processes:
+    needs: preflight
     name: ${{ matrix.director }} actual AI worker OS processes
     runs-on: ubuntu-latest
     timeout-minutes: 28
@@ -111,6 +124,10 @@ jobs:
         run: python crypto-agents/ai_process_audit.py
       - name: Merge only completed independent worker next-action checkpoints
         run: python crypto-agents/agent_state_aggregate.py
+      - name: Director D evaluates real results, sources and next actions
+        run: python crypto-agents/director_D_results_gate.py
+      - name: Summarize Director D accountable result counts
+        run: cat director-D-results/DIRECTOR_D_RESULTS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save owner-controlled memory for future scheduled runs
         if: always()
         uses: actions/cache/save@v4
@@ -144,6 +161,7 @@ jobs:
             ai-process-summary.json
             ai-process-summary.md
             agent-state/latest.json
+            director-D-results/
             ord035-parent-followups.json
           if-no-files-found: warn
           retention-days: 7
