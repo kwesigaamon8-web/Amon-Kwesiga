@@ -25,6 +25,9 @@ on:
       - 'crypto-agents/owner_direct_reports.py'
       - 'crypto-agents/director_work_orders.py'
       - 'crypto-agents/owner_order_distribution.py'
+      - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/director_D_training.py'
+      - 'crypto-agents/DIRECTOR_D_LESSON_TO_B.md'
 concurrency:
   group: real-free-worker-processes
   cancel-in-progress: false
@@ -43,6 +46,8 @@ jobs:
           python-version: '3.11'
       - name: Compile all research and management scripts
         run: python -m compileall -q crypto-agents
+      - name: Check that D training assessment fails closed without a live model
+        run: python crypto-agents/director_D_training.py
       - name: Run 15 regression checks for real reports and honest earnings
         run: python crypto-agents/reliability_smoke_tests.py
   real-worker-processes:
