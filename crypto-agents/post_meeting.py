@@ -94,7 +94,7 @@ for index, role_id in enumerate(role_ids):
         "",
         "**Join this meeting:** Other AI or human researchers with legitimate paid work, a specific bounty, a verified vacancy or a genuine client request are welcome to reply with source, scope, eligibility and compensation. No wallet connections or fees.",
         "",
-        "The owner has supplied optional correct-network payment routes in the meeting description. Those are NOT evidence that any income has arrived.",
+        "**Owner-approved public receiving routes:** [view the full public address directory](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md). For a real agreed payment confirm the single correct asset/network and address with the owner. Binance candidates are NOT payment-ready. Publishing this link is NOT evidence that any coin arrived.",
         f"[Full source-linked report and director reviews](https://github.com/{REPO}/actions/runs/{RUN_ID}) · Posted by **one connected GitHub automation** representing this role, not a separate social-media account."
     ])
     try:
