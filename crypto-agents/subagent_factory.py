@@ -24,7 +24,7 @@ def describe_child(parent_id, parent_name, slot):
         "agent_name":f"{parent_name}-Subagent-{slot:03d}-{slug}",
         "parent_id":parent_id,"level":"delegated_subagent",
         "sector":task["sector"],"assigned_role":task["specific_role"],
-        "objective":task["independent_objective"],
+        "objective":"Independently research WORLDWIDE for legitimate crypto-paid assignments; confirm payer, actual paid deliverable, location eligibility, no upfront fee, approved payment network and verified incoming credit. Specific responsibility: "+task["independent_objective"],
         "reporting_chain":"subagent -> assigned worker -> assigned manager -> assigned director -> owner",
         "ultimate_owner_order":"Find legitimate paid work with independently verified receipts; respect unique-parent command chain.",
         "status":"defined_not_yet_executed"
