@@ -1,0 +1,38 @@
+name: B Reliability - Fast Independent Agent Regression Tests
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b-reliability-smoke.yml'
+      - 'crypto-agents/reliability_smoke_tests.py'
+      - 'crypto-agents/agent_deliverables.py'
+      - 'crypto-agents/agent_cognition.py'
+      - 'crypto-agents/agent_state_aggregate.py'
+      - 'crypto-agents/director_D_results_gate.py'
+  schedule:
+    - cron: '17 5 * * *'
+concurrency:
+  group: b-reliability-tests
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile all agent scripts and check genuine output invariants
+        run: python crypto-agents/reliability_smoke_tests.py
+      - name: Validate strict owner-to-worker command hierarchy
+        run: python crypto-agents/command_chain_receipts.py
+      - name: Summarize test commitment
+        if: always()
+        run: |
+          echo "## B reliability preflight" >> "$GITHUB_STEP_SUMMARY"
+          echo "Run ID: $GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
+          echo "Real model executions tested here: 0 (offline regression tests only)." >> "$GITHUB_STEP_SUMMARY"
+          echo "Paid cryptocurrency verified here: none." >> "$GITHUB_STEP_SUMMARY"
