@@ -36,3 +36,57 @@ jobs:
           echo "Run ID: $GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
           echo "Real model executions tested here: 0 (offline regression tests only)." >> "$GITHUB_STEP_SUMMARY"
           echo "Paid cryptocurrency verified here: none." >> "$GITHUB_STEP_SUMMARY"
+
+  live-worker:
+    name: Verify one real independent AI worker model and checkpoint
+    if: github.event_name != 'schedule'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install bounded open-weight CPU model
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Execute one actual, independently running worker
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+          CRITIC_EVERY_N: '1'
+        run: python crypto-agents/ai_process_worker.py D01-M01-W01
+      - name: Assert real model inference, own report, checkpoint and critic
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('ai-process-reports/D01-M01-W01.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d.get('worker_id')=='D01-M01-W01'
+          assert d.get('os_process_pid')
+          assert d.get('inference_status')=='model_completed', d.get('inference_error')
+          assert str(d.get('model_response') or '').strip()
+          assert d.get('cognitive_checkpoint',{}).get('next_action')
+          assert d.get('cognitive_critical_review',{}).get('status')=='model_completed', d.get('cognitive_critical_review')
+          assert d.get('verified_wallet_receipts')==[]
+          assert Path('ai-process-reports/D01-M01-W01.md').exists()
+          print('LIVE_B_WORKER_SMOKE_PASS',json.dumps({
+             'worker':d['worker_id'],
+             'source_status':d.get('source_check_status'),
+             'real_model':d.get('inference_status'),
+             'critic_model':d['cognitive_critical_review']['status'],
+             'next_action_saved':True,
+             'verified_coins':0
+          }))
+          PY
+      - name: Archive actual model work and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b-one-real-worker-smoke
+          path: ai-process-reports/
+          if-no-files-found: warn
+          retention-days: 7

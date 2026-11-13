@@ -41,6 +41,8 @@ jobs:
           python-version: '3.11'
       - name: Compile all research and management scripts
         run: python -m compileall -q crypto-agents
+      - name: Run 15 regression checks for real reports and honest earnings
+        run: python crypto-agents/reliability_smoke_tests.py
   real-worker-processes:
     needs: preflight
     name: ${{ matrix.director }} actual AI worker OS processes
