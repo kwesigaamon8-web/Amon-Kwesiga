@@ -2,6 +2,7 @@
 import json, os, sys, time, urllib.request, urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
+from social_scan import scan_social
 
 role_id=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "D01")
 role=next((r for r in json.loads(Path("crypto-agents/roles.json").read_text()) if r["id"]==role_id), None)
@@ -69,11 +70,40 @@ def collect():
                     "payment_verified": False
                 })
 
+    social_items, social_errors = scan_social(role)
+    items.extend(social_items)
+    errors.extend(social_errors)
+
     unique={x["url"]:x for x in items}
     candidates=list(unique.values())
-    words=[w for w in role["name"].lower().replace(":"," ").split() if len(w)>3]
-    candidates.sort(key=lambda x:sum((x["title"]+" "+x["excerpt"]).lower().count(w) for w in words),reverse=True)
-    return candidates[:6],errors
+    role_terms={
+      "D01": ("bitcoin","btc","lightning"),
+      "D02": ("usdc","stablecoin","usdt"),
+      "D03": ("agent","automation","ai"),
+      "D04": ("accounting","bookkeep","quickbooks","finance"),
+      "D05": ("bounty","open source","developer"),
+      "D06": ("data","evaluation","annotation"),
+      "D07": ("bookkeep","accountant","finance","quickbooks"),
+      "D08": ("grant","competition","hackathon"),
+      "D09": ("payment","fraud","payout","bounty"),
+      "D10": ("paid","earn","hiring","contract")
+    }.get(role["director"], ())
+    def relevance(x):
+        content=(x["title"]+" "+x["excerpt"]).lower()
+        relevant=sum(3 for word in role_terms if word in content)
+        actionable=sum(2 for word in ("hiring", "hire", "looking for", "paid", "bounty", "freelance", "contract", "job") if word in content)
+        noise=8 if any(word in content for word in ("airdrop","giveaway","buy now","pay first")) else 0
+        return relevant+actionable-noise
+    candidates.sort(key=relevance,reverse=True)
+    # Avoid letting one noisy source consume every evidence slot.
+    limited=[]; source_counts={}
+    for item in candidates:
+        source=item.get("source","unknown")
+        if source_counts.get(source,0)>=4: continue
+        limited.append(item)
+        source_counts[source]=source_counts.get(source,0)+1
+        if len(limited)>=12: break
+    return limited, errors
 def analyze(leads):
     if not leads:return {"status":"no_leads","review":""}
     try:
