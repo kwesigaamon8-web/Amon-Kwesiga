@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-ord029-freedom-to-research-v10",
+  "version": "2026-11-13-B-broadcast-every-role-v11",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -88,5 +88,27 @@
     "supervisor_role": "One parent only for reporting, never permission to form independent evidence-based conclusions",
     "delivery": "One real evidence-backed document per actually executed agent or a truthful blocked/missing report",
     "limits": "No self-activation of dormant billion-role identities, unauthorized accounts, payments, wallet access or messaging"
+  },
+  "universal_broadcast_B": {
+    "alias": "B",
+    "order_id": "ORD-033",
+    "destination": "EVERY defined and future D/A/M/W/S/G/H role, dynamically inherited",
+    "defined_role_count": 375188632680,
+    "not_a_message_to": "The B-labelled director assistants alone",
+    "mission": "Independently identify legitimate concrete opportunities to earn transferable crypto to approved correct-network addresses; produce unique evidence-based report on each actual model execution.",
+    "all_idle_roles": "defined/eligible only, not hosted or claiming delivery",
+    "individual_reporting_fields": [
+      "agent ID and parent",
+      "real source and URL",
+      "actual search result",
+      "payer and work deliverable",
+      "payment token/network verified or unknown",
+      "eligibility",
+      "risks",
+      "next lawful action",
+      "model result",
+      "verified coin receipt or none"
+    ],
+    "safety": "No mass signups, bulk messages, costs, theft, credential exposure or fabricated success"
   }
 }

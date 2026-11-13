@@ -15,6 +15,7 @@ summary={
  "actual_os_processes_invoked":0,
  "completed_models_with_pid_evidence":0,
  "attempts_by_level":{"W":0,"S":0,"G":0,"H":0},
+ "B_broadcast_ORD033_model_completions":0,
  "actual_independent_model_completions":0,
  "per_agent_markdown_reports_written":0,
  "director_manifests_present":0,
@@ -47,6 +48,8 @@ for d in directors:
                 individual=json.loads(record_path.read_text(encoding="utf-8"))
                 if individual.get("inference_status")=="model_completed" and individual.get("os_process_pid"):
                     summary["completed_models_with_pid_evidence"]+=1
+                    if individual.get("owner_broadcast_B_id")=="ORD-033" and individual.get("order_inheritance",{}).get("broadcast_B_inherited"):
+                        summary["B_broadcast_ORD033_model_completions"]+=1
             seen.add(wid)
             if not (reports/(wid+".md")).exists():summary["issues"].append("Missing per-worker report: "+wid)
         if work.exists():
@@ -74,6 +77,7 @@ rows=[
  f"Actually completed independent model calls: **{summary['actual_independent_model_completions']}**",
  f"Individual documents: **{summary['per_agent_markdown_reports_written']}**",
  f"Completed AI with unique PID evidence: **{summary['completed_models_with_pid_evidence']}**",
+ f"B=ORD-033 completed model reports: **{summary['B_broadcast_ORD033_model_completions']}**",
  f"Attempted by W/S/G/H level: **{summary['attempts_by_level']}**",
  "Confirmed new crypto deposits: **not verified by this workflow**",
  "","## Director evidence"

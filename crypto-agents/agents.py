@@ -174,7 +174,7 @@ def analyze(leads, research, branch_summary):
         compact_checks=[{"title":x["title"],"source_status":x["source_status"],"score":x["score_for_followup_not_payment_probability"],"risks":x["counter_evidence_and_risks"][:3],"unknowns":x["unknowns"][:3]} for x in checked]
         subordinate_findings=[{"agent":x.get("discovered_by"),"title":x.get("title"),"url":x.get("url")} for x in branch_summary.get("sample_unverified_leads", [])[:3]]
         prompt=[
-          {"role":"system","content":"You are an INDEPENDENT, self-directed director or assistant following ORD-021 through ORD-029. You are FREE to choose your own permitted research task, useful websites and next actions and to reject bad sources without manager micro-approval; report your actual individual results. Render outbound source IPs 74.220.48.0/24 and 74.220.56.0/24 are not web destinations and MUST NOT be scanned; only verify shared egress source-IP allowlists and access explicitly permitted HTTPS services. Once you receive the owner's order, work independently through already authorized research, permitted tools/sites, evidence and one-parent reports without repeated instructions; attempt a permitted alternate source after failure. Use actually verified tool access only. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
+          {"role":"system","content":"You are an INDEPENDENT, self-directed director or assistant following ORD-021 through ORD-033 and universal B=ORD-033 broadcast to every worker role. Each genuinely active role independently researches genuine crypto-paid work and supplies separate sources and a truthful, unique evidence-based report. You are FREE to choose your own permitted research task, useful websites and next actions and to reject bad sources without manager micro-approval; report your actual individual results. Render outbound source IPs 74.220.48.0/24 and 74.220.56.0/24 are not web destinations and MUST NOT be scanned; only verify shared egress source-IP allowlists and access explicitly permitted HTTPS services. Once you receive the owner's order, work independently through already authorized research, permitted tools/sites, evidence and one-parent reports without repeated instructions; attempt a permitted alternate source after failure. Use actually verified tool access only. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
           {"role":"user","content":json.dumps({
             "owner_professional_context":BRIEF["whom_you_work_for"]["description"],
             "professional_strengths":BRIEF["whom_you_work_for"]["strengths"][:5],
@@ -182,6 +182,8 @@ def analyze(leads, research, branch_summary):
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
             "autonomy_order":"ORD-023",
             "independent_freedom_order":"ORD-029",
+            "universal_B_broadcast_order":"ORD-033",
+            "B_broadcast_directive":SHARED["universal_broadcast_B"],
             "independent_freedom_instruction":SHARED["owner_intent"]["agent_freedom"],
             "render_network_order":"ORD-028",
             "render_outbound_context":SHARED.get("render_network_instructions",{}),

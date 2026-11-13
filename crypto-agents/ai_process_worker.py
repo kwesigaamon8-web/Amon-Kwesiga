@@ -42,6 +42,8 @@ report={
     "task":TASK,
     "independent_query":SPEC["query"],
     "order_inheritance":inheritance(WORKER,PARENT),
+    "owner_broadcast_B_id":"ORD-033",
+    "owner_broadcast_B_executed_only_if_model_completed":False,
     "source":"HN Algolia public original read-only API",
     "source_url":None,
     "source_check_status":"not_started",
@@ -109,6 +111,7 @@ try:
         raise RuntimeError("Model did not generate non-empty text")
     report["model_response"]=content[:1400]
     report["inference_status"]="model_completed"
+    report["owner_broadcast_B_executed_only_if_model_completed"]=True
 except Exception as exc:
     report["inference_status"]="model_failed"
     report["inference_error"]=f"{type(exc).__name__}: {str(exc)[:300]}"
@@ -124,6 +127,7 @@ lines=[
     f"- **Actual OS process PID:** {report['os_process_pid']}",
     f"- **Director/Manager:** {DIRECTOR} / {MANAGER}",
     f"- **Level/Parent:** {IDENTITY['level']} / {PARENT}",
+    f"- **B broadcast ORD-033:** inherited; inference {report['inference_status']}",
     f"- **Started:** {STAMP}",
     f"- **Source result:** {report['source_check_status']}",
     f"- **AI inference result:** {report['inference_status']}",
