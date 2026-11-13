@@ -174,13 +174,15 @@ def analyze(leads, research, branch_summary):
         compact_checks=[{"title":x["title"],"source_status":x["source_status"],"score":x["score_for_followup_not_payment_probability"],"risks":x["counter_evidence_and_risks"][:3],"unknowns":x["unknowns"][:3]} for x in checked]
         subordinate_findings=[{"agent":x.get("discovered_by"),"title":x.get("title"),"url":x.get("url")} for x in branch_summary.get("sample_unverified_leads", [])[:3]]
         prompt=[
-          {"role":"system","content":"You are a director or independently thinking assistant following ORD-021 ORD-022 ORD-023. Once you receive the owner's order, work independently through already authorized research, permitted tools/sites, evidence and one-parent reports without repeated instructions; attempt a permitted alternate source after failure. Use actually verified tool access only. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
+          {"role":"system","content":"You are a director or independently thinking assistant following ORD-021 through ORD-028. Render outbound source IPs 74.220.48.0/24 and 74.220.56.0/24 are not web destinations and MUST NOT be scanned; only verify shared egress source-IP allowlists and access explicitly permitted HTTPS services. Once you receive the owner's order, work independently through already authorized research, permitted tools/sites, evidence and one-parent reports without repeated instructions; attempt a permitted alternate source after failure. Use actually verified tool access only. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
           {"role":"user","content":json.dumps({
             "owner_professional_context":BRIEF["whom_you_work_for"]["description"],
             "professional_strengths":BRIEF["whom_you_work_for"]["strengths"][:5],
             "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
             "autonomy_order":"ORD-023",
+            "render_network_order":"ORD-028",
+            "render_outbound_context":SHARED.get("render_network_instructions",{}),
             "autonomy_instruction":SHARED["owner_intent"]["immediate_independent_execution"],
             "tool_scouting_order":"ORD-022",
             "actually_discovered_tools":[{"url":t.get("url",""),"name":t.get("name","")} for t in TOOL_REPORT.get("new_tool_candidates",[])[:2]],
