@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from collections import Counter
 
 root=Path("combined-ai-processes")
+reports=root/"ai-process-reports"
 directors=[f"D{i:02d}" for i in range(1,11)]
 summary={
  "generated_at_utc":datetime.now(timezone.utc).isoformat(),
@@ -22,7 +23,7 @@ summary={
 }
 seen=set()
 for d in directors:
-    manifest=root/("manifest-"+d+".json")
+    manifest=reports/("manifest-"+d+".json")
     work=root/"director-work-orders"/(d+".json")
     if not manifest.exists():
         summary["issues"].append("Missing process manifest: "+d)
@@ -38,7 +39,7 @@ for d in directors:
         for wid in selected:
             if wid in seen:summary["issues"].append("Duplicate active worker ID: "+wid)
             seen.add(wid)
-            if not (root/(wid+".md")).exists():summary["issues"].append("Missing per-worker report: "+wid)
+            if not (reports/(wid+".md")).exists():summary["issues"].append("Missing per-worker report: "+wid)
         if work.exists():
             content=json.loads(work.read_text(encoding="utf-8"))
             num=len(content.get("individual_first_tier_worker_assignments",[]))
