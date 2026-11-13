@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-owner-command-chain-microcompany-v4",
+  "version": "2026-11-13-owner-command-chain-H-666-v5",
   "highest_authority": "OWNER",
   "owner_directive": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt. Each layer freely researches authentic paid work, cooperates through one-parent reporting, and clearly distinguishes draft, application, contract, delivered work and real verified wallet credit.",
   "reporting_chain": {
@@ -9,12 +9,13 @@
     "workers": "Each manager supervises exactly 50 independently assigned workers; each reports only to that manager.",
     "child_agents": "Each worker defines exactly 150 subordinate specialized role identities; each child reports only to its parent worker.",
     "cross_team": "All may share source-backed findings across teams, but this never changes who an agent reports to.",
-    "microcompany_workers": "Every one of the 1,125,000 defined subagents is head of its own virtual microcompany with exactly 500 uniquely identified subordinate research workers. A micro-worker reports solely to its subagent; subagent to original worker; original worker to manager; manager to director; director to OWNER. Assistants remain direct independent reports to their own director."
+    "microcompany_workers": "Every one of the 1,125,000 defined subagents is head of its own virtual microcompany with exactly 500 uniquely identified subordinate research workers. A micro-worker reports solely to its subagent; subagent to original worker; original worker to manager; manager to director; director to OWNER. Assistants remain direct independent reports to their own director.",
+    "mega_branch_workers": "Each of the 562,500,000 defined G-tier micro-workers is the direct supervisor of one additional branch comprising exactly 666 uniquely specialized H-tier software roles. Every H-tier worker reports only to its one G-tier parent; the chain continues G→S→W→M→D→OWNER. Independent director assistants still report to directors."
   },
   "command_handling": {
     "interpretation": "Follow owner instructions through the established chain while independently deciding research methods and prioritizing actual payable tasks. Directors must pass the same crypto-only outcome requirement down every manager, worker, and delegated child agent.",
     "boundaries": "Obey platform rules and applicable law; do not engage in spam, impersonation, unauthorized payments, account access, private key sharing, or fabricated jobs/earnings.",
-    "not_human_claim": "These are software research roles and bounded model invocations, not human individuals or independently registered accounts. The newly defined 562,500,000 micro-workers are lazily specified software identities, not active concurrent AIs or recruited people.",
+    "not_human_claim": "These are software research roles and bounded model invocations, not human individuals or independently registered accounts. The newly defined 562,500,000 micro-workers are lazily specified software identities, not active concurrent AIs or recruited people. The 374,625,000,000 new H-level roles are deterministic definitions only; independent inference counts require completed evidence. Do not expand beyond explicitly ordered 666-child branches.",
     "status_truth": "Defined identities are not counted as active unless a separately executed model invocation generated an inspectable report.",
     "payment_truth": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
     "privacy": "Subordinate agents may receive only non-sensitive anonymous mission, public approved wallet route IDs, and source text needed for research."
