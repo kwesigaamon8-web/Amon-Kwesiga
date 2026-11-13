@@ -1,0 +1,1093 @@
+{
+  "schema": "delegated-subagent-factory-v1",
+  "created_date": "2026-11-13",
+  "command_chain": [
+    "OWNER -> D01 through D10",
+    "Each director -> two independent assistants plus 15 managers",
+    "Each manager -> 50 independently assigned worker roles",
+    "Each of the 7500 workers -> 150 uniquely scoped subordinate AI roles"
+  ],
+  "existing_directors": 10,
+  "independent_assistants": 20,
+  "managers": 150,
+  "parent_workers": 7500,
+  "new_subagents_per_worker": 150,
+  "new_subagent_identities": 1125000,
+  "total_roles_including_existing": 1132680,
+  "child_id_format": "{parent_worker_id}-S{slot:03d}",
+  "single_parent": "Each new subagent reports only to the exact preceding worker_id; worker to manager, manager to director, director to owner. Assistants remain independent and report only to their director.",
+  "unique_name_format": "{parent_worker_agent_name}-Subagent-{slot:03d}-{specific_role_slug}",
+  "registry_style": "Lazy deterministic identities, never materialize a million full records into a public repository commit.",
+  "execution_policy": {
+    "model": "HuggingFaceTB/SmolLM2-135M-Instruct when available",
+    "active_parents": "Only workers with actual research output from an executing cloud run",
+    "child_inferences_per_active_worker_per_cycle": 1,
+    "source_reuse": "Use parent's source-linked findings as untrusted evidence; do not generate artificial web traffic",
+    "rotation": "Select a deterministic rotating subagent slot from 1 through 150",
+    "no_claim": "Unscheduled identities are defined, not deployed standalone running programs, network accounts or human staff."
+  },
+  "independent_scope_templates": [
+    {
+      "slot": 1,
+      "id": "S001",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 2,
+      "id": "S002",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 3,
+      "id": "S003",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 4,
+      "id": "S004",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 5,
+      "id": "S005",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 6,
+      "id": "S006",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 7,
+      "id": "S007",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 8,
+      "id": "S008",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 9,
+      "id": "S009",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 10,
+      "id": "S010",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 11,
+      "id": "S011",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 12,
+      "id": "S012",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 13,
+      "id": "S013",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 14,
+      "id": "S014",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 15,
+      "id": "S015",
+      "sector": "Bookkeeping and reconciliations",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate bookkeeping and reconciliations earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 16,
+      "id": "S016",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 17,
+      "id": "S017",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 18,
+      "id": "S018",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 19,
+      "id": "S019",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 20,
+      "id": "S020",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 21,
+      "id": "S021",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 22,
+      "id": "S022",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 23,
+      "id": "S023",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 24,
+      "id": "S024",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 25,
+      "id": "S025",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 26,
+      "id": "S026",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 27,
+      "id": "S027",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 28,
+      "id": "S028",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 29,
+      "id": "S029",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 30,
+      "id": "S030",
+      "sector": "QuickBooks and accounting systems",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate quickbooks and accounting systems earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 31,
+      "id": "S031",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 32,
+      "id": "S032",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 33,
+      "id": "S033",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 34,
+      "id": "S034",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 35,
+      "id": "S035",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 36,
+      "id": "S036",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 37,
+      "id": "S037",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 38,
+      "id": "S038",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 39,
+      "id": "S039",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 40,
+      "id": "S040",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 41,
+      "id": "S041",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 42,
+      "id": "S042",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 43,
+      "id": "S043",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 44,
+      "id": "S044",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 45,
+      "id": "S045",
+      "sector": "Remote finance and payroll",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate remote finance and payroll earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 46,
+      "id": "S046",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 47,
+      "id": "S047",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 48,
+      "id": "S048",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 49,
+      "id": "S049",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 50,
+      "id": "S050",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 51,
+      "id": "S051",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 52,
+      "id": "S052",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 53,
+      "id": "S053",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 54,
+      "id": "S054",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 55,
+      "id": "S055",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 56,
+      "id": "S056",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 57,
+      "id": "S057",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 58,
+      "id": "S058",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 59,
+      "id": "S059",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 60,
+      "id": "S060",
+      "sector": "BTC and USDC contracting",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate btc and usdc contracting earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 61,
+      "id": "S061",
+      "sector": "Open-source bounties",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 62,
+      "id": "S062",
+      "sector": "Open-source bounties",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 63,
+      "id": "S063",
+      "sector": "Open-source bounties",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 64,
+      "id": "S064",
+      "sector": "Open-source bounties",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 65,
+      "id": "S065",
+      "sector": "Open-source bounties",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 66,
+      "id": "S066",
+      "sector": "Open-source bounties",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 67,
+      "id": "S067",
+      "sector": "Open-source bounties",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 68,
+      "id": "S068",
+      "sector": "Open-source bounties",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 69,
+      "id": "S069",
+      "sector": "Open-source bounties",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 70,
+      "id": "S070",
+      "sector": "Open-source bounties",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 71,
+      "id": "S071",
+      "sector": "Open-source bounties",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 72,
+      "id": "S072",
+      "sector": "Open-source bounties",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 73,
+      "id": "S073",
+      "sector": "Open-source bounties",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 74,
+      "id": "S074",
+      "sector": "Open-source bounties",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 75,
+      "id": "S075",
+      "sector": "Open-source bounties",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate open-source bounties earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 76,
+      "id": "S076",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 77,
+      "id": "S077",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 78,
+      "id": "S078",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 79,
+      "id": "S079",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 80,
+      "id": "S080",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 81,
+      "id": "S081",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 82,
+      "id": "S082",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 83,
+      "id": "S083",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 84,
+      "id": "S084",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 85,
+      "id": "S085",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 86,
+      "id": "S086",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 87,
+      "id": "S087",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 88,
+      "id": "S088",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 89,
+      "id": "S089",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 90,
+      "id": "S090",
+      "sector": "AI microtasks and evaluation",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate ai microtasks and evaluation earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 91,
+      "id": "S091",
+      "sector": "Writing and research contracts",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 92,
+      "id": "S092",
+      "sector": "Writing and research contracts",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 93,
+      "id": "S093",
+      "sector": "Writing and research contracts",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 94,
+      "id": "S094",
+      "sector": "Writing and research contracts",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 95,
+      "id": "S095",
+      "sector": "Writing and research contracts",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 96,
+      "id": "S096",
+      "sector": "Writing and research contracts",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 97,
+      "id": "S097",
+      "sector": "Writing and research contracts",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 98,
+      "id": "S098",
+      "sector": "Writing and research contracts",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 99,
+      "id": "S099",
+      "sector": "Writing and research contracts",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 100,
+      "id": "S100",
+      "sector": "Writing and research contracts",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 101,
+      "id": "S101",
+      "sector": "Writing and research contracts",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 102,
+      "id": "S102",
+      "sector": "Writing and research contracts",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 103,
+      "id": "S103",
+      "sector": "Writing and research contracts",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 104,
+      "id": "S104",
+      "sector": "Writing and research contracts",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 105,
+      "id": "S105",
+      "sector": "Writing and research contracts",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate writing and research contracts earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 106,
+      "id": "S106",
+      "sector": "Direct business clients",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 107,
+      "id": "S107",
+      "sector": "Direct business clients",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 108,
+      "id": "S108",
+      "sector": "Direct business clients",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 109,
+      "id": "S109",
+      "sector": "Direct business clients",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 110,
+      "id": "S110",
+      "sector": "Direct business clients",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 111,
+      "id": "S111",
+      "sector": "Direct business clients",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 112,
+      "id": "S112",
+      "sector": "Direct business clients",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 113,
+      "id": "S113",
+      "sector": "Direct business clients",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 114,
+      "id": "S114",
+      "sector": "Direct business clients",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 115,
+      "id": "S115",
+      "sector": "Direct business clients",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 116,
+      "id": "S116",
+      "sector": "Direct business clients",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 117,
+      "id": "S117",
+      "sector": "Direct business clients",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 118,
+      "id": "S118",
+      "sector": "Direct business clients",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 119,
+      "id": "S119",
+      "sector": "Direct business clients",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 120,
+      "id": "S120",
+      "sector": "Direct business clients",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate direct business clients earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 121,
+      "id": "S121",
+      "sector": "Grants and competitions",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 122,
+      "id": "S122",
+      "sector": "Grants and competitions",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 123,
+      "id": "S123",
+      "sector": "Grants and competitions",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 124,
+      "id": "S124",
+      "sector": "Grants and competitions",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 125,
+      "id": "S125",
+      "sector": "Grants and competitions",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 126,
+      "id": "S126",
+      "sector": "Grants and competitions",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 127,
+      "id": "S127",
+      "sector": "Grants and competitions",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 128,
+      "id": "S128",
+      "sector": "Grants and competitions",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 129,
+      "id": "S129",
+      "sector": "Grants and competitions",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 130,
+      "id": "S130",
+      "sector": "Grants and competitions",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 131,
+      "id": "S131",
+      "sector": "Grants and competitions",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 132,
+      "id": "S132",
+      "sector": "Grants and competitions",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 133,
+      "id": "S133",
+      "sector": "Grants and competitions",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 134,
+      "id": "S134",
+      "sector": "Grants and competitions",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 135,
+      "id": "S135",
+      "sector": "Grants and competitions",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate grants and competitions earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 136,
+      "id": "S136",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Find original paid-client requests",
+      "independent_objective": "Independently find original paid-client requests for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 137,
+      "id": "S137",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Verify hiring source",
+      "independent_objective": "Independently verify hiring source for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 138,
+      "id": "S138",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Validate employer identity",
+      "independent_objective": "Independently validate employer identity for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 139,
+      "id": "S139",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Extract deliverables",
+      "independent_objective": "Independently extract deliverables for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 140,
+      "id": "S140",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Check scope and budget",
+      "independent_objective": "Independently check scope and budget for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 141,
+      "id": "S141",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Check work eligibility",
+      "independent_objective": "Independently check work eligibility for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 142,
+      "id": "S142",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Check deadlines",
+      "independent_objective": "Independently check deadlines for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 143,
+      "id": "S143",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Check payment method",
+      "independent_objective": "Independently check payment method for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 144,
+      "id": "S144",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Verify source recency",
+      "independent_objective": "Independently verify source recency for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 145,
+      "id": "S145",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Assess scam indicators",
+      "independent_objective": "Independently assess scam indicators for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 146,
+      "id": "S146",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Compare competing offers",
+      "independent_objective": "Independently compare competing offers for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 147,
+      "id": "S147",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Plan service delivery",
+      "independent_objective": "Independently plan service delivery for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 148,
+      "id": "S148",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Prepare a courteous proposal",
+      "independent_objective": "Independently prepare a courteous proposal for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 149,
+      "id": "S149",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Review proposal accuracy",
+      "independent_objective": "Independently review proposal accuracy for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    },
+    {
+      "slot": 150,
+      "id": "S150",
+      "sector": "Payer and payment due diligence",
+      "specific_role": "Prepare milestone schedule",
+      "independent_objective": "Independently prepare milestone schedule for legitimate payer and payment due diligence earning opportunities; cite actual sources, do not invent clients, payouts or account access."
+    }
+  ],
+  "privacy": "Subordinate agent prompts include only anonymous earning mission, role, parent ID and source evidence; never personal owner details, private keys, or full custodial wallet mapping.",
+  "mission": "Find genuine no-fee paying work, help deliver legitimate value, prepare polite evidence-based outreach drafts, and request BTC/USDC only for agreed real work on an approved network. Show zero earnings unless independently verified.",
+  "unauthorized_actions": [
+    "mass unsolicited social replies",
+    "opening deceptive accounts",
+    "recruiting real people without actual invitation/consent",
+    "wallet signing",
+    "fees",
+    "private credentials",
+    "invented employment or coin deposits"
+  ],
+  "conference": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/7"
+}
