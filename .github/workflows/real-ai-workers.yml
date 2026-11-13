@@ -28,6 +28,9 @@ on:
       - 'crypto-agents/owner_orders.json'
       - 'crypto-agents/director_D_training.py'
       - 'crypto-agents/DIRECTOR_D_LESSON_TO_B.md'
+      - 'crypto-agents/b_all_workers_report.py'
+      - 'crypto-agents/b_representative_to_owner.py'
+      - 'crypto-agents/b_d_joint_discussion.py'
 concurrency:
   group: real-free-worker-processes
   cancel-in-progress: false
@@ -137,6 +140,10 @@ jobs:
         run: python crypto-agents/director_D_results_gate.py
       - name: Director D consolidates all executed agents into one OWNER report
         run: python crypto-agents/owner_direct_reports.py
+      - name: Census all B roles and index every actual individual reply and learning result
+        run: python crypto-agents/b_all_workers_report.py
+      - name: Select one actual B worker representative and report its real lesson response
+        run: python crypto-agents/b_representative_to_owner.py
       - name: Display Director D's owner report
         run: cat owner-B-reports/DIRECTOR_D_TO_OWNER.md >> "$GITHUB_STEP_SUMMARY"
       - name: Summarize Director D accountable result counts
@@ -157,6 +164,12 @@ jobs:
           OMP_NUM_THREADS: '2'
           HF_HUB_DISABLE_TELEMETRY: '1'
         run: python crypto-agents/director_D_consensus.py
+      - name: Consolidate genuine joint D and B discussion with every actual worker's voice
+        if: always()
+        run: python crypto-agents/b_d_joint_discussion.py
+      - name: Show actual B and D roundtable in GitHub Actions summary
+        if: always()
+        run: cat owner-B-reports/D_B_JOINT_DISCUSSION.md >> "$GITHUB_STEP_SUMMARY"
       - name: Archive director discussion and Director D response
         if: always()
         uses: actions/upload-artifact@v4
