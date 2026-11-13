@@ -57,7 +57,7 @@ for r in reports:
         strong_bounty = from_github and bool(money_pattern.search(combined)) and bool(paid_pattern.search(combined))
         # Fresh accounting listings elsewhere need a direct job URL and
         # hiring language, but payment/eligibility remain unverified.
-        direct_job = not from_github and any(s in parsed.path.lower() for s in ("/jobs/", "/job/", "/careers/", "/positions/")) and bool(job_pattern.search(combined)) and bool(paid_pattern.search(combined))
+        direct_job = (x.get("source") == "Jobicy" and bool(job_pattern.search(combined))) or (not from_github and any(part in parsed.path.lower() for part in ("/jobs/", "/job/", "/careers/", "/positions/")) and bool(job_pattern.search(combined)) and bool(paid_pattern.search(combined)))
         if not (strong_bounty or direct_job):
             continue
         seen.add(url)
