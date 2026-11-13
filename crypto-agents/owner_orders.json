@@ -1,6 +1,6 @@
 {
-  "schema": "owner-orders-audit-v4",
-  "updated_utc": "2026-11-13T16:48:59Z",
+  "schema": "owner-orders-audit-v5",
+  "updated_utc": "2026-11-13T16:54:48Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -304,6 +304,22 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "No public disclosure of owner personal circumstances. Exact full-organization individual replies are impossible without actually executing each separate model role; unactivated identities remain pending."
+    },
+    {
+      "id": "ORD-020",
+      "title": "System introductions from all levels and persistent approved crypto receiving routes",
+      "accountable_director": "D10",
+      "standing_requirement": "Order every role tier to introduce its professional task, one assigned reporting parent and crypto-paying next action. Receive individually real model-generated statements only from actually activated AI roles; distinguish all 375,188,632,680 configured IDs from active inference. Reinforce all FOUR previously public owner-approved BTC mainnet and Ethereum-mainnet genuine USDC payment routes via the source-of-truth payment brief without publishing private custodial exchange memos. No role may claim received coins without verified proof.",
+      "evidence_files": [
+        "crypto-agents/system_introductions.py",
+        ".github/workflows/system-introductions.yml",
+        "crypto-agents/branch_brief.json",
+        "crypto-agents/understanding_response.py"
+      ],
+      "verification_condition": "Check dedicated GitHub Actions run and individual role-response artifact (80 separately attempted role samples); only successful distinct model outputs count as speaking. Audit the two public BTC and two public Ethereum-mainnet Circle USDC addresses and correct network restrictions. All other unexecuted IDs remain not yet replied.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Single owner-authenticated conference update only when actual model replies exist; does not create 375 billion real AI workers, post millions of messages, make payments or distribute private exchange credentials."
     }
   ]
 }
