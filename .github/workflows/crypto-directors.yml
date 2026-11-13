@@ -1,0 +1,45 @@
+name: Independent Crypto Opportunity Agents
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/crypto-directors.yml'
+  schedule:
+    - cron: '17 5 * * *'
+permissions:
+  contents: read
+jobs:
+  independent-research:
+    name: ${{ matrix.role }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        role: [D01, D01-A, D01-B, D02, D02-A, D02-B, D03, D03-A, D03-B, D04, D04-A, D04-B, D05, D05-A, D05-B, D06, D06-A, D06-B, D07, D07-A, D07-B, D08, D08-A, D08-B, D09, D09-A, D09-B, D10, D10-A, D10-B]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install small CPU model dependencies
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Run independent researcher
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          GITHUB_TOKEN: ${{ github.token }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          HF_HUB_DOWNLOAD_TIMEOUT: '45'
+          OMP_NUM_THREADS: '2'
+        run: python crypto-agents/agents.py
+      - name: Upload independent report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crypto-research-${{ matrix.role }}
+          path: reports/*.json
+          if-no-files-found: warn
+          retention-days: 7
