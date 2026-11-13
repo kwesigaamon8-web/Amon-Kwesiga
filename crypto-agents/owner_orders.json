@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:35:50Z",
+  "updated_utc": "2026-11-13T19:40:34Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -734,6 +734,23 @@
       "verification_condition": "Self-test passes plus a full run produces DIRECTOR_D_TO_OWNER.md and EVERY_ACTUAL_AGENT.json with accurate real process completions, failures and no invented coins.",
       "reported_status": "configured_waiting_for_new_full_run",
       "last_verified_payment_receipt": null
+    },
+    {
+      "id": "ORD-045",
+      "title": "B and Director D must securely retrieve the owner's receiving address directory and use only verified routes for genuinely earned coins",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER DIRECTIVE: B and Director D, obtain the owner's previously supplied cryptocurrency RECEIVING addresses from the privately configured, read-only OWNER_WALLET_DIRECTORY_JSON registry, never from guesses, private keys, internet searches or public code. Director D must task D09 to maintain the single authoritative route-ID register for BTC mainnet, supported self-custody EVM/Solana/TRON/Stellar networks and only owner-confirmed Binance USDC deposit routes. D10 must audit whether the private directory is actually configured and available to each activated agent; report private_directory_not_configured until verified instead of claiming address access. Each actually running B worker must pursue genuine lawful paid opportunities and completed deliverables, and refer to an appropriate route ID without broadcasting the full directory. When an actual payer and payment arrangement exist, D09 must verify coin, network, receiving address, and any memo/tag; share only the single owner-approved receiving address with that payer through an authorized private channel. Never publish all addresses or memos to GitHub, chats with unrelated third parties, public social sites or artifact logs. The addresses are intended to RECEIVE earned cryptocurrency; they confer NO permission to sign, spend, withdraw, access exchange accounts or request secrets. D must report verified receipts separately from source leads, contracts and pending payments. If the encrypted repository secret is missing, obtain the owner's required private setup via the repository Settings rather than fabricating access; continue legitimate research while blocked.",
+      "evidence_files": [
+        "crypto-agents/wallet_routes.py",
+        "crypto-agents/PRIVATE_WALLET_SETUP.md",
+        ".github/workflows/crypto-directors.yml",
+        "crypto-agents/owner_order_distribution.py",
+        "crypto-agents/director_D_results_gate.py"
+      ],
+      "verification_condition": "Each completed trusted agent run must explicitly show wallet_directory_access private_directory_available or private_directory_not_configured; D09 publishes only route IDs and risk status, never the full address registry. A correct-network verified payment or credited exchange deposit is required before classifying income as received.",
+      "reported_status": "standing_owner_order_recorded; encrypted_directory_secret_configuration_unverified; no_payment_claimed",
+      "last_verified_payment_receipt": null,
+      "external_action": "No signing, transfer, spending, bulk messaging or registration; restricted owner action required to set the private GitHub Actions secret if absent."
     }
   ],
   "broadcast_aliases": {
