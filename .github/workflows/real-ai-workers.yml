@@ -22,6 +22,7 @@ on:
       - 'crypto-agents/director_D_consensus.py'
       - 'crypto-agents/ai_process_launcher.py'
       - 'crypto-agents/ai_process_audit.py'
+      - 'crypto-agents/owner_direct_reports.py'
       - 'crypto-agents/director_work_orders.py'
       - 'crypto-agents/owner_order_distribution.py'
 concurrency:
@@ -129,6 +130,10 @@ jobs:
         run: python crypto-agents/agent_state_aggregate.py
       - name: Director D evaluates real results, sources and next actions
         run: python crypto-agents/director_D_results_gate.py
+      - name: Director D consolidates all executed agents into one OWNER report
+        run: python crypto-agents/owner_direct_reports.py
+      - name: Display Director D's owner report
+        run: cat owner-B-reports/DIRECTOR_D_TO_OWNER.md >> "$GITHUB_STEP_SUMMARY"
       - name: Summarize Director D accountable result counts
         run: cat director-D-results/DIRECTOR_D_RESULTS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save owner-controlled memory for future scheduled runs
@@ -155,6 +160,14 @@ jobs:
           path: director-D-discussion/
           if-no-files-found: warn
           retention-days: 7
+      - name: Archive Director D report and every actual agent record for OWNER
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Director-D-Owner-Report-and-All-Executed-Agents
+          path: owner-B-reports/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Archive verified counts and blockers
         if: always()
         uses: actions/upload-artifact@v4

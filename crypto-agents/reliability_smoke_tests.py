@@ -144,6 +144,12 @@ with tempfile.TemporaryDirectory(prefix="B-offline-director-") as tmp:
            and d["payer_and_compensation_verified_by_this_audit"]==0)
     verify("director_d_missing_directors_are_not_counted",d["directors_with_manifests"]==1)
 
+# 5b: D reports every actually attempted worker to OWNER without fabricated outputs.
+dtest=subprocess.run([sys.executable,str(AGENTS/"owner_direct_reports.py"),"--self-test"],
+                     cwd=ROOT,capture_output=True,text=True,timeout=15)
+verify("director_D_all_real_agents_to_owner_with_truthful_evidence",
+       dtest.returncode==0 and "SELF_TEST_PASS" in dtest.stdout)
+
 # 6: The next independent run receives real saved checkpoints when valid.
 with tempfile.TemporaryDirectory(prefix="B-offline-memory-") as tmp:
     here=pathlib.Path(tmp)

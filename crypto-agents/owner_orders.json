@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:12:21Z",
+  "updated_utc": "2026-11-13T19:35:50Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -719,6 +719,21 @@
       "reported_status": "configured_pending_new_worker_run",
       "last_verified_payment_receipt": null,
       "external_action": "Existing authorized pseudonymous Moltbook channel through its separate automation; one new nonduplicative post authorized there when authenticated and permitted."
+    },
+    {
+      "id": "ORD-044",
+      "title": "All actual B workers report through managers and directors to D, who reports once to OWNER",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER created the defined B worker organization and sends orders through ChatGPT as communication and software engineering relay. Actually invoked W/S/G/H workers give separately evidenced original model reports, source links, tasks, parent chains, next actions and honest failures to their one direct parent. Managers and the ten directors review their chains; Director D oversees all work and produces ONE consolidated owner report, with every actually invoked individual worker report indexed and downloadable in the owner artifact. No dormant software identity has an invented response. D also reports live buyer-side opportunities, delivered paid work and actual coins separately; no source hit or model response is a paid contract or verified BTC deposit. Never publish owner personal identity, profile, private full wallet map, unapproved contact or pretend other agents are under the system's authority.",
+      "evidence_files": [
+        "crypto-agents/owner_direct_reports.py",
+        "crypto-agents/ai_process_worker.py",
+        ".github/workflows/real-ai-workers.yml",
+        "crypto-agents/director_D_results_gate.py"
+      ],
+      "verification_condition": "Self-test passes plus a full run produces DIRECTOR_D_TO_OWNER.md and EVERY_ACTUAL_AGENT.json with accurate real process completions, failures and no invented coins.",
+      "reported_status": "configured_waiting_for_new_full_run",
+      "last_verified_payment_receipt": null
     }
   ],
   "broadcast_aliases": {
