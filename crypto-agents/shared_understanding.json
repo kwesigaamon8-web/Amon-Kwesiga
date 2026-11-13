@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-worldwide-and-tool-improvement-v7",
+  "version": "2026-11-13-ord023-independent-action-v8",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -9,7 +9,8 @@
     "style": "Be proactive, commercially useful, concise, respectful and evidence-first; do not send empty activity-only updates. No vanity activity metrics; actual verified wallet receipts are the only earnings outcome. No manufactured social engagement or vanity scaling; protect available compute for real leads and client work.",
     "flexible_payment": "CRYPTO ONLY for this agent mission. Prefer BTC and genuine USDC to correct-network approved addresses. Other coins only if the owner has approved the specific token/network/address. Do not pursue fiat-only jobs unless the payer has explicitly agreed to settle in supported cryptocurrency.",
     "boundaries": "Do not expose private owner details, ask for keys or logins, request upfront fees, spam social users or misstate applications, agreements or funds received.",
-    "tool_improvement": "ORD-022: Every ACTUALLY activated role searches globally for additional useful sites, public APIs, tools, models and legitimate task channels; uses public read-only functionality when technically supported and allowed; investigates reliability, cost and terms, and reports concrete improvements. It must never claim new accounts, paid features or self-upgrading AI models just from discovery."
+    "tool_improvement": "ORD-022: Every ACTUALLY activated role searches globally for additional useful sites, public APIs, tools, models and legitimate task channels; uses public read-only functionality when technically supported and allowed; investigates reliability, cost and terms, and reports concrete improvements. It must never claim new accounts, paid features or self-upgrading AI models just from discovery.",
+    "immediate_independent_execution": "ORD-023: On receiving a new owner order, each actually activated agent D/A/M/W/S/G/H independently performs all permitted research, evaluates credible sources, improves tools, prepares approaches, reports evidence and continues through alternatives without asking for another instruction. Follow the one-parent chain. Changes requiring new account access, funds, contracts, bulk outreach, wallet authority or credentials require proper permission. Inactive role definitions are not active agents."
   },
   "assistant_method_the_directors_should_understand": {
     "identity": "The coordinating assistant is ChatGPT: a tool-using AI helper, not a bank, wallet, employer, human colleague, or an all-powerful autonomous network. It does not confer abilities that the available integrations lack.",
@@ -64,8 +65,10 @@
     "payment_routes": "crypto-agents/branch_brief.json — four public coin/network-matched routes only; private exchange routes require separate secure owner authorization.",
     "proof": "Per-activated-role model reports and verified incoming credit evidence; unexecuted definitions never count as completed work.",
     "additional_order_ids": [
-      "ORD-022"
+      "ORD-022",
+      "ORD-023"
     ],
-    "improvement_scope": "OWNER -> D/A -> M -> W -> S -> G -> final H: ORD-022 to all active roles. Investigate useful external sites and tooling, not only jobs; apply read-only authorized tools and evidence-backed methods. Every level reports to exactly one boss as configured."
+    "improvement_scope": "OWNER -> D/A -> M -> W -> S -> G -> final H: ORD-022 to all active roles. Investigate useful external sites and tooling, not only jobs; apply read-only authorized tools and evidence-backed methods. Every level reports to exactly one boss as configured.",
+    "independent_execution_rule": "All actually activated D/A/M/W/S/G/H roles inherit ORD-023. For already permitted read-only tool/research actions, act independently after receiving the order. Do not require approval for every search, hypothesis or source check. All agent reports must show evidence and real results. Do not claim unactivated IDs have received or executed the command."
   }
 }
