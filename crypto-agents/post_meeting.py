@@ -1,101 +1,110 @@
-"""Post one daily public meeting digest of 30 independently generated reports.
+"""Owner-authorized meeting participation by 30 role-specific cloud researchers.
 
-Posts only inside the repository owner's explicit meeting issue (#5).
-Never posts in third-party threads or advertises arbitrary wallets.
-Uses the short-lived GitHub Actions token with issues:write.
+Each role contributes ONE distinct evidence-linked comment a day under the SAME
+GitHub automation identity, never falsely representing 30 social identities.
+Only posts to the owner's designated issue #5; no DMs or outside accounts.
 """
 import json
 import os
 import sys
-import urllib.request
+import time
+import urllib.error
 import urllib.parse
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
+REPO = "kwesigaamon8-web/Amon-Kwesiga"
 ISSUE = 5
-REPO = os.environ.get("GITHUB_REPOSITORY", "kwesigaamon8-web/Amon-Kwesiga")
-TOKEN = os.environ.get("GH_TOKEN")
+TOKEN = os.environ.get("GH_TOKEN", "")
 RUN_ID = os.environ.get("GITHUB_RUN_ID", "")
-if not TOKEN or REPO != "kwesigaamon8-web/Amon-Kwesiga":
-    raise SystemExit("Meeting publisher: no authorized GitHub token/repository; no public action")
+if not TOKEN or os.environ.get("GITHUB_REPOSITORY", REPO) != REPO:
+    raise SystemExit("No repository-scoped authorization; no public meeting action.")
 
-base = "https://api.github.com/repos/" + REPO + "/issues/" + str(ISSUE)
-head = {
+url = f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments"
+headers = {
     "Authorization": "Bearer " + TOKEN,
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
-    "User-Agent": "OwnerAuthorizedResearchMeeting/1.0"
+    "User-Agent": "OwnerAuthorizedResearchMeeting/1.1"
 }
-def call(url, method="GET", payload=None):
-    data = json.dumps(payload).encode("utf-8") if payload is not None else None
-    req = urllib.request.Request(url, headers=head, method=method, data=data)
-    with urllib.request.urlopen(req, timeout=20) as response:
-        return json.loads(response.read(400000))
+def request(address, method="GET", obj=None):
+    data = json.dumps(obj).encode("utf-8") if obj is not None else None
+    req = urllib.request.Request(address, headers=headers, data=data, method=method)
+    with urllib.request.urlopen(req, timeout=25) as response:
+        return json.loads(response.read(600000))
 
 reports = {}
 for path in Path("combined-reports").rglob("*.json"):
     try:
-        r = json.loads(path.read_text(encoding="utf-8"))
-        role = r.get("role")
-        if role and isinstance(r.get("leads"), list):
-            reports[role] = r
+        record = json.loads(path.read_text(encoding="utf-8"))
+        if record.get("role") and isinstance(record.get("leads"), list):
+            reports[record["role"]] = record
     except (ValueError, OSError):
         continue
-if len(reports) < 25:
-    raise SystemExit("Insufficient independent role reports to hold a credible meeting: " + str(len(reports)))
 
-today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-marker = "<!-- owner-research-meeting:" + today + " -->"
-# A daily digest is enough to hold an accountable public meeting without
-# producing 30 spam comments on every hourly scan.
-for page in range(1, 6):
-    existing = call(base + "/comments?" + urllib.parse.urlencode({"per_page": 100, "page": page}))
-    if any(marker in c.get("body", "") for c in existing):
-        print("A daily public research meeting digest has already been posted; no duplicate")
-        sys.exit(0)
-    if len(existing) < 100:
-        break
+role_ids = [f"D{i:02d}{suffix}" for i in range(1, 11) for suffix in ("", "-A", "-B")]
+missing = [r for r in role_ids if r not in reports]
+if missing:
+    raise SystemExit("No fabricated participation: missing actual worker reports: " + ", ".join(missing))
 
 summary = json.loads(Path("summary.json").read_text(encoding="utf-8"))
-qualified = {str(x.get("url", "")): x for x in summary.get("qualified_unverified_leads", [])}
-lines = [
-    marker,
-    "## 30-worker independent research meeting · " + today,
-    "",
-    "**10 directors + 20 assistants.** Each worker researched independently; all can follow legitimate opportunities across disciplines.",
-    "Participants: please bring verified job specifications, bounty terms, Uganda eligibility, source links, and payout methods. Other AI agents and people are invited to contribute here.",
-    "",
-    "| Agent report | Director team | Screened opportunity (not verified payment) |",
-    "|---|---|---|"
-]
-for i in range(1, 11):
-    director = "D" + str(i).zfill(2)
-    for role_id in (director, director + "-A", director + "-B"):
-        r = reports.get(role_id)
-        if not r:
-            lines.append("| " + role_id + " | " + director + " | Missing report |")
-            continue
-        useful = None
-        for x in r.get("leads", []):
-            if x.get("url") in qualified:
-                useful = x
-                break
-        if useful:
-            title = useful.get("title", "")[:85].replace("|", "-").replace("[", "(").replace("]", ")").replace("\n", " ")
-            link = useful.get("url", "")
-            detail = "[" + title + "](" + link + ") — unverified; check payer, eligibility and scope"
-        else:
-            detail = "No independently screened paid opportunity this cycle"
-        lines.append("| " + role_id + " | " + director + " | " + detail + " |")
-lines += [
-    "",
-    "**Mission reminder from Director D10:** Only legitimately earned, independently verified transferable payment counts as income; research, social replies, leads, claimed token drops and promises are not receipts.",
-    "",
-    "The owner has shared payment instructions in this issue's opening post. They are not a request for donations or a claim of earnings. Verify chain, token and owner approval before any actual payer sends funds.",
-    "",
-    "Full role-specific reports and director reviews: [this cloud research run](https://github.com/" + REPO + "/actions/runs/" + RUN_ID + ") (Artifacts).",
-    "Public meeting responses should be substantive and non-spammy. Research jobs here do not autonomously sign deals, conduct social messaging or move funds."
-]
-body = "\n".join(lines)
-result = call(base + "/comments", "POST", {"body": body})
-print("Published owner-authorized meeting digest comment", result.get("html_url", "id=" + str(result.get("id"))), "roles", len(reports))
+approved = {str(x.get("url")): x for x in summary.get("qualified_unverified_leads", [])}
+date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+existing = []
+for page in range(1, 6):
+    batch = request(url + "?" + urllib.parse.urlencode({"per_page": 100, "page": page}))
+    existing.extend(batch)
+    if len(batch) < 100:
+        break
+markers = {f"<!-- 30-researcher-meeting:{date}:{rid} -->" for rid in role_ids}
+posted = {mark for comment in existing for mark in markers if mark in (comment.get("body") or "")}
+print("Existing today", len(posted), "of 30 distinct role contributions.")
+
+def safe(s, size=180):
+    return str(s or "").replace("\n", " ").replace("|", "/").replace("<", "(").replace(">", ")")[:size].strip()
+
+for index, role_id in enumerate(role_ids):
+    marker = f"<!-- 30-researcher-meeting:{date}:{role_id} -->"
+    if marker in posted:
+        continue
+    r = reports[role_id]
+    director = r.get("director", role_id.split("-")[0])
+    independent = [lead for lead in r.get("leads", []) if lead.get("url") in approved]
+    lines = [
+        marker,
+        f"### {role_id} — {safe(r.get('name', 'Research worker'), 90)}",
+        "",
+        f"**Independent research update** · Reporting team: **{director}**.",
+        f"Source-linked leads inspected: **{len(r.get('leads', []))}**; shortlisted after evidence checks: **{len(independent)}**.",
+        "",
+    ]
+    if independent:
+        for item in independent[:2]:
+            target = item.get("url", "")
+            title = safe(item.get("title"), 130)
+            lines.append(f"- [{title}]({target}) — **unverified** opportunity; employer/payer, payment terms, eligibility in Uganda and current availability must still be checked.")
+    else:
+        lines.append("No credible new paid opportunity passed this role's current evidence checks. Weak leads are excluded; no earnings claimed.")
+    if role_id == "D10":
+        lines.extend(["", "**Teamwide reminder:** Legitimate, independently verified earnings—not search volume, promises, token spam or agent chatter—are the objective. Everyone may research across specialties."])
+    else:
+        lines.extend(["", "**Cross-team action:** Share evidence with every director; do not confine research to the nominal specialty. Verify source legitimacy and a feasible payment method before preparing outreach."])
+    lines.extend([
+        "",
+        "**Join this meeting:** Other AI or human researchers with legitimate paid work, a specific bounty, a verified vacancy or a genuine client request are welcome to reply with source, scope, eligibility and compensation. No wallet connections or fees.",
+        "",
+        "The owner has supplied optional correct-network payment routes in the meeting description. Those are NOT evidence that any income has arrived.",
+        f"[Full source-linked report and director reviews](https://github.com/{REPO}/actions/runs/{RUN_ID}) · Posted by **one connected GitHub automation** representing this role, not a separate social-media account."
+    ])
+    try:
+        result = request(url, "POST", {"body": "\n".join(lines)})
+    except urllib.error.HTTPError as ex:
+        if ex.code in (403, 429):
+            print("Rate limit or anti-abuse guard for role", role_id, "HTTP", ex.code, "- stopping this meeting cycle.")
+            sys.exit(0)
+        raise
+    print("Posted contribution", role_id, result.get("html_url", result.get("id")))
+    time.sleep(3)
+
+print("Completed distinct role contributions. Total intended: 30.")
