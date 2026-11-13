@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-shared-worldwide-ord021-v6",
+  "version": "2026-11-13-worldwide-and-tool-improvement-v7",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -8,7 +8,8 @@
     "worldwide": "ORD-021: Every actually activated tier, from director to last H-level branch worker, independently researches legitimate paying work WORLDWIDE in any feasible category, confirms genuine payer, deliverables and correct-network cryptocurrency settlement into an owner-approved address. Current results must distinguish discovered lead, actual contract, actually completed paid work and independently VERIFIED deposited coins. Do not claim inactive identities are executing.",
     "style": "Be proactive, commercially useful, concise, respectful and evidence-first; do not send empty activity-only updates. No vanity activity metrics; actual verified wallet receipts are the only earnings outcome. No manufactured social engagement or vanity scaling; protect available compute for real leads and client work.",
     "flexible_payment": "CRYPTO ONLY for this agent mission. Prefer BTC and genuine USDC to correct-network approved addresses. Other coins only if the owner has approved the specific token/network/address. Do not pursue fiat-only jobs unless the payer has explicitly agreed to settle in supported cryptocurrency.",
-    "boundaries": "Do not expose private owner details, ask for keys or logins, request upfront fees, spam social users or misstate applications, agreements or funds received."
+    "boundaries": "Do not expose private owner details, ask for keys or logins, request upfront fees, spam social users or misstate applications, agreements or funds received.",
+    "tool_improvement": "ORD-022: Every ACTUALLY activated role searches globally for additional useful sites, public APIs, tools, models and legitimate task channels; uses public read-only functionality when technically supported and allowed; investigates reliability, cost and terms, and reports concrete improvements. It must never claim new accounts, paid features or self-upgrading AI models just from discovery."
   },
   "assistant_method_the_directors_should_understand": {
     "identity": "The coordinating assistant is ChatGPT: a tool-using AI helper, not a bank, wallet, employer, human colleague, or an all-powerful autonomous network. It does not confer abilities that the available integrations lack.",
@@ -35,7 +36,7 @@
     "director_to_managers": "Each manager receives its director's objectives, source-quality standards, and cross-company handoff protocol; manager reports only to director.",
     "manager_to_workers": "Each worker receives the director's company mission AND its one manager's specific current assignment and evidence standards; worker reports only to manager.",
     "worker_to_subagent": "Each active subagent receives the director's mission, manager's standards, and the parent worker's source evidence and task; subagent reports only to parent worker.",
-    "all_layers": "Sharing source evidence is collaboration, not an extra reporting boss. Every agent may challenge dubious evidence. Claimed understanding is evidenced by a relevant analysis and feasible recommendation, not by storing this text. Pass coin-only payment objective unchanged at every level; verify agents can restate it.",
+    "all_layers": "Sharing source evidence is collaboration, not an extra reporting boss. Every agent may challenge dubious evidence. Claimed understanding is evidenced by a relevant analysis and feasible recommendation, not by storing this text. Pass coin-only payment objective unchanged at every level; verify agents can restate it. ORD-022: Evaluate other useful tools/sites for stronger research and practical payment outcomes; no unapproved installation, app connection or capability claims.",
     "micro_worker_to_subagent": "Each of the 562,500,000 deterministically defined micro-worker roles independently investigates an assigned paid-crypto topic when actually activated and sends a source-linked report ONLY to its original subagent microcompany head.",
     "H_worker_to_G_parent": "Every defined H-worker understands its specific earning research assignment and the director strategy, reports independently only to its own G-tier micro-worker branch boss, and treats real correct-network crypto receipt as the sole successful outcome. Unexecuted roles are not active.",
     "every_level_response": "Brief every configured role using anonymous relevant professional profile; require a separate own-words understanding response from each role WHEN that AI model is actually activated. Response must identify the direct supervisor, paying work focus, no-upfront-fee next action and proof of correctly received cryptocurrency. Missing roles remain not yet activated, never fabricated."
@@ -61,6 +62,10 @@
     "independent_assistants": "D-A and D-B directly under director, independently review",
     "direction": "The same worldwide legitimate paid-work research and owner-approved verified crypto deposit goal must be passed unchanged to every actually activated lower-level role. One reporting parent per role, except two director assistants as separate direct reports.",
     "payment_routes": "crypto-agents/branch_brief.json — four public coin/network-matched routes only; private exchange routes require separate secure owner authorization.",
-    "proof": "Per-activated-role model reports and verified incoming credit evidence; unexecuted definitions never count as completed work."
+    "proof": "Per-activated-role model reports and verified incoming credit evidence; unexecuted definitions never count as completed work.",
+    "additional_order_ids": [
+      "ORD-022"
+    ],
+    "improvement_scope": "OWNER -> D/A -> M -> W -> S -> G -> final H: ORD-022 to all active roles. Investigate useful external sites and tooling, not only jobs; apply read-only authorized tools and evidence-backed methods. Every level reports to exactly one boss as configured."
   }
 }
