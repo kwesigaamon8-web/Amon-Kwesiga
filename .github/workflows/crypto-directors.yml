@@ -7,10 +7,11 @@ on:
       - 'crypto-agents/roles.json'
       - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/agents.py'
+      - 'crypto-agents/social_scan.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
   schedule:
-    - cron: '17 5 * * *'
+    - cron: '31 * * * *'
 permissions:
   contents: read
 jobs:
