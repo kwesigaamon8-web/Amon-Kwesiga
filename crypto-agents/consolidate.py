@@ -23,6 +23,20 @@ for path in files:
     except Exception as exc:
         bad.append(str(path) + ": " + str(exc)[:80])
 
+branch_manifest=json.loads(Path("crypto-agents/branch_manifest.json").read_text(encoding="utf-8"))
+expected_subagents={a["id"] for branch in branch_manifest["branches"] for a in branch["agents"]}
+branch_reports={}
+branch_summaries={}
+for subpath in root.rglob("*.json"):
+    try:
+        subobj=json.loads(subpath.read_text(encoding="utf-8"))
+        if subobj.get("subagent_id") in expected_subagents:
+            branch_reports[subobj["subagent_id"]]=subobj
+        elif subobj.get("branch_manager") and subobj.get("subagent_count") == 15:
+            branch_summaries[subobj["branch_manager"]]=subobj
+    except (ValueError, OSError):
+        pass
+
 today = datetime.now(timezone.utc)
 cutoff = today - timedelta(days=45)
 def recent(s):
@@ -105,6 +119,13 @@ qualified.sort(key=lambda x: (x["amount_claimed_in_source"], x["updated"]), reve
 out = {
     "generated_at_utc": today.isoformat(),
     "expected_research_jobs": 30, "report_count": len(reports),
+    "expected_branches": len(branch_manifest["branches"]),
+    "branches_reporting": len(branch_summaries),
+    "expected_subagents": len(expected_subagents),
+    "distinct_subagent_reports_received": len(branch_reports),
+    "missing_subagent_ids": sorted(expected_subagents.difference(branch_reports.keys())),
+    "branch_source_failures": sum(r.get("status")=="source_unavailable" for r in branch_reports.values()),
+    "branch_unverified_leads": sum(len(r.get("leads", [])) for r in branch_reports.values()),
     "researcher_ids": sorted({r["role"] for r in reports}),
     "AI_review_completed": sum(r.get("ai_analysis", {}).get("status") == "llm_completed" for r in reports),
     "adversarial_AI_challenges_completed": sum(r.get("ai_analysis", {}).get("critical_challenge_status") == "completed" for r in reports),
@@ -128,6 +149,9 @@ lines = [
     "# Independent crypto opportunity fleet — consolidated report",
     "", f"UTC: {today.isoformat()}",
     f"Research jobs with reports: **{len(reports)}/30**",
+    f"Reporting branch supervisors: **{out['branches_reporting']}/{out['expected_branches']}**",
+    f"Individual branch researcher outputs: **{out['distinct_subagent_reports_received']}/{out['expected_subagents']}**",
+    f"Branch source errors: **{out['branch_source_failures']}**",
     f"Small-model AI reviews completed: **{out['AI_review_completed']}**",
     f"Adversarial AI challenges completed: **{out['adversarial_AI_challenges_completed']}**",
     f"Original sources independently refetched: **{out['original_source_records_refetched']}**",
