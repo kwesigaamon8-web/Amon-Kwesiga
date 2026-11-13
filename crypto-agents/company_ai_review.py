@@ -12,12 +12,14 @@ import os
 import sys
 from pathlib import Path
 from wallet_routes import private_directory_status
+from friendly_pitch import warm_pitch
 from datetime import datetime, timezone
 
 ROLE=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
 PLAYBOOK=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
 POLICY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
 PUBLIC_ROUTES=json.loads(Path("crypto-agents/branch_brief.json").read_text(encoding="utf-8"))
+FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
 PRIVATE_ROUTE_ACCESS=private_directory_status()
 root=Path("company-reports")
 summary_path=root/(ROLE+"-COMPANY-SUMMARY.json")
@@ -53,7 +55,10 @@ def run_agent(agent_id, mission, evidence):
       "private_wallet_directory_status":PRIVATE_ROUTE_ACCESS["status"],
       "unverified_evidence":evidence,
       "owner_personal_details":None,
-      "goal":"Independently choose the best feasible way to earn actual lawful money. Challenge weak evidence; choose one paid-work search channel and one legitimate concrete next action. No identity claims, fees or fabricated payouts."
+      "goal":"Independently choose a legitimate no-fee way to earn BTC, USDC or ordinary compensation through real delivered work, and decide a concrete next step. Use a warm, respectful, truthful tone. Reject weak evidence, spam and fake earnings.",
+      "friendly_communication_rules":FRIENDLY["communication_style"],
+      "independent_earning_process":FRIENDLY["independent_steps"][:4],
+      "never_auto_send":True
     }
     if model is None:
         return {"status":"llm_unavailable","analysis":"","error":error,
@@ -91,6 +96,8 @@ for manager_id in manager_ids:
         worker["agent_name"]=ids[worker_id]["agent_name"]
         worker["reports_to_one"]=manager_id
         worker["model_inference"]=decision
+        worker["friendly_reply_drafts"]=[warm_pitch(x,role=worker["assigned_role"],writer_id=worker_id) for x in worker.get("unverified_leads",[])[:2]]
+        worker["outreach_activity"]="DRAFTED only; no public social-network post or payer message sent."
         worker["report_status"]="AI completed" if decision["status"]=="model_completed" else "No verified AI inference"
         path.write_text(json.dumps(worker,indent=2),encoding="utf-8")
         if decision["status"]=="model_completed": tally["worker_ai_completed"]+=1
@@ -111,10 +118,16 @@ for manager_id in manager_ids:
     mgr["reports_to_one"]=ROLE
     mgr["worker_ai_reviews"]=worker_results
     mgr["model_inference"]=decision
+    mgr["friendly_reply_drafts"]=[warm_pitch(x,role="manager",writer_id=manager_id) for x in mgr.get("source_linked_candidate_examples",[])[:2]]
+    mgr["reporting_handoff_to"]=ROLE
+    mgr["information_shared_with_director"]=True
     manager_path.write_text(json.dumps(mgr,indent=2),encoding="utf-8")
     if decision["status"]=="model_completed":tally["manager_ai_completed"]+=1
     else:tally["ai_failed"]+=1
 summary["director_agent_name"]=ids[ROLE]["agent_name"]
+summary["friendly_earning_directive"]=FRIENDLY["version"]
+summary["warm_drafts_prepared"]=sum(len(json.loads((root/(mid+".json")).read_text(encoding="utf-8")).get("friendly_reply_drafts",[])) for mid in manager_ids)
+summary["status_report"]="Independent AI and respectful reply drafts generated only where code has actually executed. No applications, DMs or payments implied."
 summary["wallet_directory_access"]=PRIVATE_ROUTE_ACCESS["status"]
 summary["model_execution"]={**tally,"model":"HuggingFaceTB/SmolLM2-135M-Instruct",
    "note":"Only worker and manager inferences with model_completed are real AI executions. Configured roles without completed inference remain not yet activated."}
