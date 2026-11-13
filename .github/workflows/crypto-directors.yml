@@ -33,6 +33,9 @@ on:
       - 'crypto-agents/audit_independence.py'
       - 'crypto-agents/subagent_factory.json'
       - 'crypto-agents/subagent_factory.py'
+      - 'crypto-agents/microcompany_structure.json'
+      - 'crypto-agents/microcompany_factory.py'
+      - 'crypto-agents/microcompany_audit.py'
       - 'crypto-agents/subagent_audit.py'
       - 'crypto-agents/owner_command_chain.json'
   schedule:
@@ -118,6 +121,8 @@ jobs:
         run: python crypto-agents/audit_independence.py --reports combined-reports --output independence-audit
       - name: Verify subordinate one-parent command lines and actual AI activity
         run: python crypto-agents/subagent_audit.py --reports combined-reports --output subagent-audit
+      - name: Verify new nested microcompany single-parent lines and actual inferences
+        run: python crypto-agents/microcompany_audit.py --reports combined-reports --output microcompany-audit
       - name: Audit all owner instructions against completed research evidence
         if: always()
         env:
@@ -161,5 +166,6 @@ jobs:
             independence-audit/
             subagent-audit/
             owner-order-audit/
+            microcompany-audit/
           if-no-files-found: warn
           retention-days: 7
