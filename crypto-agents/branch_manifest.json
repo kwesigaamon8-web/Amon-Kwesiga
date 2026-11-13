@@ -1,0 +1,3399 @@
+{
+  "schema": "public-branch-team-v1",
+  "generated_date": "2026-11-13",
+  "boss_count": 30,
+  "subagents_per_boss": 15,
+  "subagent_count": 450,
+  "branches": [
+    {
+      "boss_id": "D01",
+      "branch_id": "BR-01",
+      "agent_ids": [
+        "D01-R01",
+        "D01-R02",
+        "D01-R03",
+        "D01-R04",
+        "D01-R05",
+        "D01-R06",
+        "D01-R07",
+        "D01-R08",
+        "D01-R09",
+        "D01-R10",
+        "D01-R11",
+        "D01-R12",
+        "D01-R13",
+        "D01-R14",
+        "D01-R15"
+      ],
+      "agents": [
+        {
+          "id": "D01-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D01-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D01-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D01-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D01-A",
+      "branch_id": "BR-02",
+      "agent_ids": [
+        "D01-A-R01",
+        "D01-A-R02",
+        "D01-A-R03",
+        "D01-A-R04",
+        "D01-A-R05",
+        "D01-A-R06",
+        "D01-A-R07",
+        "D01-A-R08",
+        "D01-A-R09",
+        "D01-A-R10",
+        "D01-A-R11",
+        "D01-A-R12",
+        "D01-A-R13",
+        "D01-A-R14",
+        "D01-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D01-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D01-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D01-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D01-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D01-B",
+      "branch_id": "BR-03",
+      "agent_ids": [
+        "D01-B-R01",
+        "D01-B-R02",
+        "D01-B-R03",
+        "D01-B-R04",
+        "D01-B-R05",
+        "D01-B-R06",
+        "D01-B-R07",
+        "D01-B-R08",
+        "D01-B-R09",
+        "D01-B-R10",
+        "D01-B-R11",
+        "D01-B-R12",
+        "D01-B-R13",
+        "D01-B-R14",
+        "D01-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D01-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D01-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D01-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D01-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D01-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D02",
+      "branch_id": "BR-04",
+      "agent_ids": [
+        "D02-R01",
+        "D02-R02",
+        "D02-R03",
+        "D02-R04",
+        "D02-R05",
+        "D02-R06",
+        "D02-R07",
+        "D02-R08",
+        "D02-R09",
+        "D02-R10",
+        "D02-R11",
+        "D02-R12",
+        "D02-R13",
+        "D02-R14",
+        "D02-R15"
+      ],
+      "agents": [
+        {
+          "id": "D02-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D02-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D02-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D02-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D02-A",
+      "branch_id": "BR-05",
+      "agent_ids": [
+        "D02-A-R01",
+        "D02-A-R02",
+        "D02-A-R03",
+        "D02-A-R04",
+        "D02-A-R05",
+        "D02-A-R06",
+        "D02-A-R07",
+        "D02-A-R08",
+        "D02-A-R09",
+        "D02-A-R10",
+        "D02-A-R11",
+        "D02-A-R12",
+        "D02-A-R13",
+        "D02-A-R14",
+        "D02-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D02-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D02-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D02-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D02-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D02-B",
+      "branch_id": "BR-06",
+      "agent_ids": [
+        "D02-B-R01",
+        "D02-B-R02",
+        "D02-B-R03",
+        "D02-B-R04",
+        "D02-B-R05",
+        "D02-B-R06",
+        "D02-B-R07",
+        "D02-B-R08",
+        "D02-B-R09",
+        "D02-B-R10",
+        "D02-B-R11",
+        "D02-B-R12",
+        "D02-B-R13",
+        "D02-B-R14",
+        "D02-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D02-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D02-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D02-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D02-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D02-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D03",
+      "branch_id": "BR-07",
+      "agent_ids": [
+        "D03-R01",
+        "D03-R02",
+        "D03-R03",
+        "D03-R04",
+        "D03-R05",
+        "D03-R06",
+        "D03-R07",
+        "D03-R08",
+        "D03-R09",
+        "D03-R10",
+        "D03-R11",
+        "D03-R12",
+        "D03-R13",
+        "D03-R14",
+        "D03-R15"
+      ],
+      "agents": [
+        {
+          "id": "D03-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D03-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D03-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D03-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D03-A",
+      "branch_id": "BR-08",
+      "agent_ids": [
+        "D03-A-R01",
+        "D03-A-R02",
+        "D03-A-R03",
+        "D03-A-R04",
+        "D03-A-R05",
+        "D03-A-R06",
+        "D03-A-R07",
+        "D03-A-R08",
+        "D03-A-R09",
+        "D03-A-R10",
+        "D03-A-R11",
+        "D03-A-R12",
+        "D03-A-R13",
+        "D03-A-R14",
+        "D03-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D03-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D03-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D03-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D03-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D03-B",
+      "branch_id": "BR-09",
+      "agent_ids": [
+        "D03-B-R01",
+        "D03-B-R02",
+        "D03-B-R03",
+        "D03-B-R04",
+        "D03-B-R05",
+        "D03-B-R06",
+        "D03-B-R07",
+        "D03-B-R08",
+        "D03-B-R09",
+        "D03-B-R10",
+        "D03-B-R11",
+        "D03-B-R12",
+        "D03-B-R13",
+        "D03-B-R14",
+        "D03-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D03-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D03-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D03-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D03-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D03-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D04",
+      "branch_id": "BR-10",
+      "agent_ids": [
+        "D04-R01",
+        "D04-R02",
+        "D04-R03",
+        "D04-R04",
+        "D04-R05",
+        "D04-R06",
+        "D04-R07",
+        "D04-R08",
+        "D04-R09",
+        "D04-R10",
+        "D04-R11",
+        "D04-R12",
+        "D04-R13",
+        "D04-R14",
+        "D04-R15"
+      ],
+      "agents": [
+        {
+          "id": "D04-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D04-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D04-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D04-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D04-A",
+      "branch_id": "BR-11",
+      "agent_ids": [
+        "D04-A-R01",
+        "D04-A-R02",
+        "D04-A-R03",
+        "D04-A-R04",
+        "D04-A-R05",
+        "D04-A-R06",
+        "D04-A-R07",
+        "D04-A-R08",
+        "D04-A-R09",
+        "D04-A-R10",
+        "D04-A-R11",
+        "D04-A-R12",
+        "D04-A-R13",
+        "D04-A-R14",
+        "D04-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D04-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D04-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D04-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D04-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D04-B",
+      "branch_id": "BR-12",
+      "agent_ids": [
+        "D04-B-R01",
+        "D04-B-R02",
+        "D04-B-R03",
+        "D04-B-R04",
+        "D04-B-R05",
+        "D04-B-R06",
+        "D04-B-R07",
+        "D04-B-R08",
+        "D04-B-R09",
+        "D04-B-R10",
+        "D04-B-R11",
+        "D04-B-R12",
+        "D04-B-R13",
+        "D04-B-R14",
+        "D04-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D04-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D04-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D04-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D04-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D04-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D05",
+      "branch_id": "BR-13",
+      "agent_ids": [
+        "D05-R01",
+        "D05-R02",
+        "D05-R03",
+        "D05-R04",
+        "D05-R05",
+        "D05-R06",
+        "D05-R07",
+        "D05-R08",
+        "D05-R09",
+        "D05-R10",
+        "D05-R11",
+        "D05-R12",
+        "D05-R13",
+        "D05-R14",
+        "D05-R15"
+      ],
+      "agents": [
+        {
+          "id": "D05-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D05-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D05-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D05-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D05-A",
+      "branch_id": "BR-14",
+      "agent_ids": [
+        "D05-A-R01",
+        "D05-A-R02",
+        "D05-A-R03",
+        "D05-A-R04",
+        "D05-A-R05",
+        "D05-A-R06",
+        "D05-A-R07",
+        "D05-A-R08",
+        "D05-A-R09",
+        "D05-A-R10",
+        "D05-A-R11",
+        "D05-A-R12",
+        "D05-A-R13",
+        "D05-A-R14",
+        "D05-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D05-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D05-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D05-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D05-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D05-B",
+      "branch_id": "BR-15",
+      "agent_ids": [
+        "D05-B-R01",
+        "D05-B-R02",
+        "D05-B-R03",
+        "D05-B-R04",
+        "D05-B-R05",
+        "D05-B-R06",
+        "D05-B-R07",
+        "D05-B-R08",
+        "D05-B-R09",
+        "D05-B-R10",
+        "D05-B-R11",
+        "D05-B-R12",
+        "D05-B-R13",
+        "D05-B-R14",
+        "D05-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D05-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D05-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D05-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D05-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D05-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D06",
+      "branch_id": "BR-16",
+      "agent_ids": [
+        "D06-R01",
+        "D06-R02",
+        "D06-R03",
+        "D06-R04",
+        "D06-R05",
+        "D06-R06",
+        "D06-R07",
+        "D06-R08",
+        "D06-R09",
+        "D06-R10",
+        "D06-R11",
+        "D06-R12",
+        "D06-R13",
+        "D06-R14",
+        "D06-R15"
+      ],
+      "agents": [
+        {
+          "id": "D06-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D06-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D06-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D06-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D06-A",
+      "branch_id": "BR-17",
+      "agent_ids": [
+        "D06-A-R01",
+        "D06-A-R02",
+        "D06-A-R03",
+        "D06-A-R04",
+        "D06-A-R05",
+        "D06-A-R06",
+        "D06-A-R07",
+        "D06-A-R08",
+        "D06-A-R09",
+        "D06-A-R10",
+        "D06-A-R11",
+        "D06-A-R12",
+        "D06-A-R13",
+        "D06-A-R14",
+        "D06-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D06-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D06-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D06-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D06-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D06-B",
+      "branch_id": "BR-18",
+      "agent_ids": [
+        "D06-B-R01",
+        "D06-B-R02",
+        "D06-B-R03",
+        "D06-B-R04",
+        "D06-B-R05",
+        "D06-B-R06",
+        "D06-B-R07",
+        "D06-B-R08",
+        "D06-B-R09",
+        "D06-B-R10",
+        "D06-B-R11",
+        "D06-B-R12",
+        "D06-B-R13",
+        "D06-B-R14",
+        "D06-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D06-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D06-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D06-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D06-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D06-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D07",
+      "branch_id": "BR-19",
+      "agent_ids": [
+        "D07-R01",
+        "D07-R02",
+        "D07-R03",
+        "D07-R04",
+        "D07-R05",
+        "D07-R06",
+        "D07-R07",
+        "D07-R08",
+        "D07-R09",
+        "D07-R10",
+        "D07-R11",
+        "D07-R12",
+        "D07-R13",
+        "D07-R14",
+        "D07-R15"
+      ],
+      "agents": [
+        {
+          "id": "D07-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D07-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D07-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D07-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D07-A",
+      "branch_id": "BR-20",
+      "agent_ids": [
+        "D07-A-R01",
+        "D07-A-R02",
+        "D07-A-R03",
+        "D07-A-R04",
+        "D07-A-R05",
+        "D07-A-R06",
+        "D07-A-R07",
+        "D07-A-R08",
+        "D07-A-R09",
+        "D07-A-R10",
+        "D07-A-R11",
+        "D07-A-R12",
+        "D07-A-R13",
+        "D07-A-R14",
+        "D07-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D07-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D07-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D07-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D07-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D07-B",
+      "branch_id": "BR-21",
+      "agent_ids": [
+        "D07-B-R01",
+        "D07-B-R02",
+        "D07-B-R03",
+        "D07-B-R04",
+        "D07-B-R05",
+        "D07-B-R06",
+        "D07-B-R07",
+        "D07-B-R08",
+        "D07-B-R09",
+        "D07-B-R10",
+        "D07-B-R11",
+        "D07-B-R12",
+        "D07-B-R13",
+        "D07-B-R14",
+        "D07-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D07-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D07-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D07-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D07-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D07-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D08",
+      "branch_id": "BR-22",
+      "agent_ids": [
+        "D08-R01",
+        "D08-R02",
+        "D08-R03",
+        "D08-R04",
+        "D08-R05",
+        "D08-R06",
+        "D08-R07",
+        "D08-R08",
+        "D08-R09",
+        "D08-R10",
+        "D08-R11",
+        "D08-R12",
+        "D08-R13",
+        "D08-R14",
+        "D08-R15"
+      ],
+      "agents": [
+        {
+          "id": "D08-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D08-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D08-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D08-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D08-A",
+      "branch_id": "BR-23",
+      "agent_ids": [
+        "D08-A-R01",
+        "D08-A-R02",
+        "D08-A-R03",
+        "D08-A-R04",
+        "D08-A-R05",
+        "D08-A-R06",
+        "D08-A-R07",
+        "D08-A-R08",
+        "D08-A-R09",
+        "D08-A-R10",
+        "D08-A-R11",
+        "D08-A-R12",
+        "D08-A-R13",
+        "D08-A-R14",
+        "D08-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D08-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D08-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D08-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D08-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D08-B",
+      "branch_id": "BR-24",
+      "agent_ids": [
+        "D08-B-R01",
+        "D08-B-R02",
+        "D08-B-R03",
+        "D08-B-R04",
+        "D08-B-R05",
+        "D08-B-R06",
+        "D08-B-R07",
+        "D08-B-R08",
+        "D08-B-R09",
+        "D08-B-R10",
+        "D08-B-R11",
+        "D08-B-R12",
+        "D08-B-R13",
+        "D08-B-R14",
+        "D08-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D08-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D08-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D08-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D08-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D08-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D09",
+      "branch_id": "BR-25",
+      "agent_ids": [
+        "D09-R01",
+        "D09-R02",
+        "D09-R03",
+        "D09-R04",
+        "D09-R05",
+        "D09-R06",
+        "D09-R07",
+        "D09-R08",
+        "D09-R09",
+        "D09-R10",
+        "D09-R11",
+        "D09-R12",
+        "D09-R13",
+        "D09-R14",
+        "D09-R15"
+      ],
+      "agents": [
+        {
+          "id": "D09-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D09-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D09-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D09-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D09-A",
+      "branch_id": "BR-26",
+      "agent_ids": [
+        "D09-A-R01",
+        "D09-A-R02",
+        "D09-A-R03",
+        "D09-A-R04",
+        "D09-A-R05",
+        "D09-A-R06",
+        "D09-A-R07",
+        "D09-A-R08",
+        "D09-A-R09",
+        "D09-A-R10",
+        "D09-A-R11",
+        "D09-A-R12",
+        "D09-A-R13",
+        "D09-A-R14",
+        "D09-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D09-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D09-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D09-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D09-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D09-B",
+      "branch_id": "BR-27",
+      "agent_ids": [
+        "D09-B-R01",
+        "D09-B-R02",
+        "D09-B-R03",
+        "D09-B-R04",
+        "D09-B-R05",
+        "D09-B-R06",
+        "D09-B-R07",
+        "D09-B-R08",
+        "D09-B-R09",
+        "D09-B-R10",
+        "D09-B-R11",
+        "D09-B-R12",
+        "D09-B-R13",
+        "D09-B-R14",
+        "D09-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D09-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D09-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D09-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D09-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D09-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D10",
+      "branch_id": "BR-28",
+      "agent_ids": [
+        "D10-R01",
+        "D10-R02",
+        "D10-R03",
+        "D10-R04",
+        "D10-R05",
+        "D10-R06",
+        "D10-R07",
+        "D10-R08",
+        "D10-R09",
+        "D10-R10",
+        "D10-R11",
+        "D10-R12",
+        "D10-R13",
+        "D10-R14",
+        "D10-R15"
+      ],
+      "agents": [
+        {
+          "id": "D10-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D10-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D10-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D10-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D10-A",
+      "branch_id": "BR-29",
+      "agent_ids": [
+        "D10-A-R01",
+        "D10-A-R02",
+        "D10-A-R03",
+        "D10-A-R04",
+        "D10-A-R05",
+        "D10-A-R06",
+        "D10-A-R07",
+        "D10-A-R08",
+        "D10-A-R09",
+        "D10-A-R10",
+        "D10-A-R11",
+        "D10-A-R12",
+        "D10-A-R13",
+        "D10-A-R14",
+        "D10-A-R15"
+      ],
+      "agents": [
+        {
+          "id": "D10-A-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-A-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D10-A-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D10-A-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-A-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-A-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-A-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D10-A-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    },
+    {
+      "boss_id": "D10-B",
+      "branch_id": "BR-30",
+      "agent_ids": [
+        "D10-B-R01",
+        "D10-B-R02",
+        "D10-B-R03",
+        "D10-B-R04",
+        "D10-B-R05",
+        "D10-B-R06",
+        "D10-B-R07",
+        "D10-B-R08",
+        "D10-B-R09",
+        "D10-B-R10",
+        "D10-B-R11",
+        "D10-B-R12",
+        "D10-B-R13",
+        "D10-B-R14",
+        "D10-B-R15"
+      ],
+      "agents": [
+        {
+          "id": "D10-B-R01",
+          "specialty": "Remote bookkeeping",
+          "query": "remote bookkeeping contract",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R02",
+          "specialty": "QuickBooks paid cleanup",
+          "query": "quickbooks bookkeeper freelance paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-B-R03",
+          "specialty": "Financial reporting gigs",
+          "query": "financial reporting consultant remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R04",
+          "specialty": "Bitcoin paid bounties",
+          "query": "bitcoin paid bounty",
+          "source": "github"
+        },
+        {
+          "id": "D10-B-R05",
+          "specialty": "USDC contract jobs",
+          "query": "USDC paid task bounty",
+          "source": "github"
+        },
+        {
+          "id": "D10-B-R06",
+          "specialty": "AI evaluation microtasks",
+          "query": "paid AI evaluation remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R07",
+          "specialty": "Data annotation work",
+          "query": "data annotation paid remote",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R08",
+          "specialty": "Open-source issue rewards",
+          "query": "bounty reward paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-B-R09",
+          "specialty": "Accounting system migration",
+          "query": "QuickBooks migration contractor",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R10",
+          "specialty": "Freelance financial operations",
+          "query": "finance operations freelancer",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R11",
+          "specialty": "Remote payroll services",
+          "query": "payroll bookkeeper remote paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-B-R12",
+          "specialty": "Research and writing gigs",
+          "query": "research contract paid",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R13",
+          "specialty": "Web3 contributor work",
+          "query": "web3 contributor bounty paid",
+          "source": "github"
+        },
+        {
+          "id": "D10-B-R14",
+          "specialty": "Small-business client requests",
+          "query": "need accountant bookkeeper hire",
+          "source": "hn"
+        },
+        {
+          "id": "D10-B-R15",
+          "specialty": "Payment legitimacy audit",
+          "query": "payment bounty proof scam",
+          "source": "github"
+        }
+      ]
+    }
+  ]
+}
