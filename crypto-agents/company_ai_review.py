@@ -17,6 +17,7 @@ from subagent_factory import describe_child, select_slot
 from microcompany_factory import describe_micro_worker, select_micro_worker_slot
 from mega_branch_factory import describe_branch_worker, rotating_slot
 from understanding_response import understanding_report, BRIEF
+from capability_engine import capability_review, short_model_context, PACK as CAPABILITY_PACK
 from datetime import datetime, timezone
 
 ROLE=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
@@ -61,11 +62,16 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
     manager_id=agent_id.split("-W")[0] if "-W" in agent_id else agent_id
     understanding=SHARED["owner_intent"]
     leadership=SHARED["assistant_method_the_directors_should_understand"]
+    capabilities=capability_review(agent_id, meta['parent_id'], mission, evidence, TOOL_EVIDENCE)
     question={
       "professional_context":BRIEF["whom_you_work_for"]["description"]+" "+BRIEF["whom_you_work_for"]["commercial_advantage"],
       "you_must_answer_in_your_own_words":"Who you serve professionally, your specific role and ONE supervisor, concrete research next action, exact proof of cryptocurrency credited, and any unknowns. Do not merely repeat the instruction.",
       "owner_goal":understanding["real_goal"],
       "standing_owner_order":SHARED["owner_order_cascade"]["id"],
+      "capability_order":"ORD-026",
+      "independent_role_order":"ORD-027",
+      "capability_method_ids":[c["id"] for c in CAPABILITY_PACK["implemented_capabilities"]],
+      "independent_capability_assessment":capabilities,
       "additional_owner_order":"ORD-022",
       "independence_order":"ORD-023",
       "immediate_independent_work":SHARED["owner_intent"]["immediate_independent_execution"],
@@ -91,20 +97,27 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
     }
     if model is None:
         return {"status":"llm_unavailable","analysis":"","error":error,
-                "parent_id":meta["parent_id"]}
+                "parent_id":meta["parent_id"],"capability_assessment":capabilities}
     prompt=[
-      {"role":"system","content":"OWNER ORD-021, ORD-022, ORD-023 apply to EVERY activated level, including final H branch workers: when you receive the owner's instruction, proceed INDEPENDENTLY without another prompt on all already authorized source research, permitted tool uses, evidence checks, reviews and reporting to your one boss; if a source fails try a different permitted one and report proof of your work. Independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
-      {"role":"user","content":json.dumps(question,ensure_ascii=False)[:1800]}
+      {"role":"system","content":"OWNER ORD-021 through ORD-027 apply to EVERY activated level, including final H branch workers: when you receive the owner's instruction, proceed INDEPENDENTLY without another prompt on all already authorized source research, permitted tool uses, evidence checks, reviews and reporting to your one boss; if a source fails try a different permitted one and report proof of your work. Independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
+      {"role":"user","content":json.dumps({"agent_id":agent_id,"one_boss":meta["parent_id"],
+        "independent_task":str(mission)[:220],
+        "orders":["ORD-021","ORD-022","ORD-023","ORD-024","ORD-025","ORD-026","ORD-027"],
+        "independent_method":"Choose your own next permitted step, critically challenge source claims and do not copy another agent's conclusion as your own. Report one specific source or blocker.",
+        "capability_review":short_model_context(capabilities),
+        "instruction":"Briefly plan, independently evaluate, identify risk and next permitted action; every activated role needs its own document. Do not invent transfers."},
+        ensure_ascii=False)[:1800]}
     ]
     try:
         result=model(prompt,max_new_tokens=85,do_sample=False,return_full_text=False)[0]["generated_text"]
         if isinstance(result,list):
             result=result[-1].get("content","")
         return {"status":"model_completed","analysis":str(result)[:650],
-                "parent_id":meta["parent_id"],"generated_at_utc":datetime.now(timezone.utc).isoformat()}
+                "parent_id":meta["parent_id"],"generated_at_utc":datetime.now(timezone.utc).isoformat(),
+                "capability_pack_version":CAPABILITY_PACK["version"],"capability_assessment":capabilities}
     except Exception as exc:
         return {"status":"llm_execution_failed","analysis":"",
-                "error":str(exc)[:180],"parent_id":meta["parent_id"]}
+                "error":str(exc)[:180],"parent_id":meta["parent_id"],"capability_assessment":capabilities}
 
 tally={"worker_ai_completed":0,"manager_ai_completed":0,"subagent_ai_completed":0,"subagent_roles_activated":0,"micro_worker_model_completed":0,"micro_worker_inference_attempted":0,"H_branch_model_completed":0,"H_branch_model_attempted":0,"ai_failed":0}
 for manager_id in manager_ids:
@@ -249,6 +262,8 @@ for manager_id in manager_ids:
 summary["shared_understanding_version"]=SHARED["version"]
 summary["tool_improvement_standing_order"]="ORD-022"
 summary["independent_after_owner_order"]="ORD-023"
+summary["agent_independence_order"]="ORD-027"
+summary["capability_pack_version"]=CAPABILITY_PACK["version"]
 summary["active_worker_independent_actions"]="Read-only research, evaluation, evidence, draft and one-parent report within existing capabilities; external authorization not implied"
 summary["external_tools_discovered_this_cycle"]=len(TOOL_REPORT.get("new_tool_candidates",[]))
 summary["external_tools_actually_installed_or_connected"]=0
