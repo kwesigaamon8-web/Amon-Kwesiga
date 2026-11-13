@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-crypto-wallet-only-v2",
+  "version": "2026-11-13-crypto-and-tool-improvement-v3",
   "mission": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
   "privacy": "All workers and managers receive this anonymous earnings playbook only. No owner's name, location, professional biography, contacts, clients, wallet secrets or exchange memos.",
   "where_to_find_pay": {
@@ -118,5 +118,32 @@
   ],
   "reporting_contract": "Every role must output its unique identifier, exact one parent identifier, source URL, own evidence check, uncertainty, best realistic paid next action, and verified payment amount only if independently confirmed. Managers challenge 50 workers across rotated runs; assistants independently audit director conclusions; directors consolidate and assign follow-ups; D09 verifies legitimacy and D10 monitors results.",
   "payment_reference": "ONLY owner-approved correct-network cryptocurrency receiving addresses in the public branch brief or a separately configured private directory. Verify the actual address with owner before payer sends, chain, token issuer/contract and memo if required. A deposit to a shared Binance address does not prove user credit.",
-  "cryptocurrency_only_success_condition": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt."
+  "cryptocurrency_only_success_condition": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
+  "tool_improvement": {
+    "owner_order": "ORD-022",
+    "mission": "Actively research other websites, safe public APIs, open-weight model resources, real freelance/bounty platforms, and productivity utilities worldwide that improve the legitimate crypto-paying work pipeline. Try bounded public read-only discovery where workflow tools allow. Screen provider reputation, terms, fees, restrictions, APIs, data quality, security and actual use evidence.",
+    "tool_registry": "crypto-agents/tool_ecosystem.json",
+    "live_candidate_reports": "tool-reports/<ROLE_ID>.json",
+    "steps": [
+      "Find original official service or open-source repository",
+      "Evaluate value against real paid work and current research gaps",
+      "Check technical access, authentication, local eligibility and charges",
+      "Use only public permitted read-only endpoint or explicitly approved connected tool",
+      "Record actual call results, real limitations and safe proposed next step",
+      "Share best source-linked nonduplicate findings to assigned manager/director",
+      "Never install third-party packages from an untrusted search result or send private data to a new service"
+    ],
+    "evidence_fields": [
+      "tool_url",
+      "provider",
+      "what_it_improves",
+      "license_or_terms_unknowns",
+      "auth_required",
+      "actual_read_only_action_taken",
+      "worked_or_failed",
+      "costs_and_risks",
+      "next_authorized_step"
+    ],
+    "not_success": "Tool discovery alone is not an active integrated agent, a sent application, contract, verified earnings or cryptocurrency receipt."
+  }
 }
