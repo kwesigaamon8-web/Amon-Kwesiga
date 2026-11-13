@@ -1,0 +1,39 @@
+name: AI Independence and Reporting Audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/independence-audit.yml'
+      - 'crypto-agents/audit_independence.py'
+      - 'crypto-agents/agent_registry.csv'
+      - 'crypto-agents/company_hierarchy.json'
+  schedule:
+    - cron: '7 3 * * *'
+permissions:
+  contents: read
+jobs:
+  check-independence:
+    name: Verify 7680 identities and one-parent reporting
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check every reporting line and distinct identity
+        run: python crypto-agents/audit_independence.py --output independence-audit
+      - name: Publish audit to GitHub workflow summary
+        if: always()
+        run: |
+          if [ -f independence-audit/audit.md ]; then
+            cat independence-audit/audit.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Archive evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-independence-integrity-audit
+          path: independence-audit/
+          retention-days: 14
+          if-no-files-found: warn
