@@ -53,6 +53,19 @@ def audited(r,name):
         print("AUDIT_ARTIFACT_NOT_READABLE",name,type(exc).__name__)
         return {}
 
+def job_result_fallback(run):
+    if not run:return {}
+    try:
+        rows=api("/repos/"+REPO+"/actions/runs/"+str(run["id"])+"/jobs?per_page=100").get("jobs",[])
+        workers=[j for j in rows if "actual AI worker OS processes" in j.get("name","")]
+        return {"directors_with_successful_jobs":sum(j.get("conclusion")=="success" for j in workers),
+                "directors_with_failed_jobs":sum(j.get("conclusion")=="failure" for j in workers),
+                "directors_with_cancelled_jobs":sum(j.get("conclusion")=="cancelled" for j in workers),
+                "successful_job_count_only_not_model_inference_proof":True}
+    except Exception as e:
+        print("JOB_FALLBACK_UNAVAILABLE",type(e).__name__)
+        return {}
+
 def clean(s):
     return re.sub(r"[\r\n\[\]()\x00-\x1f]"," ",str(s or ""))[:120]
 
@@ -64,6 +77,7 @@ def digest(latest,completed,audits):
         status=clean(x.get("conclusion") or x.get("status"))
         lines.append("- ["+name+"](https://github.com/"+REPO+"/actions/runs/"+str(x["id"])+"): "+status)
     w=audits.get(WORKER,{})
+    fallback=w.get("job_evidence",{})
     a=w.get("ai-process-summary.json") or {}
     d=w.get("director-D-results/DIRECTOR_D_RESULTS.json") or {}
     lines+=["","**Last successful completed worker audit**"]
@@ -72,7 +86,13 @@ def digest(latest,completed,audits):
         lines.append("- Actual completed model inferences: "+str(int(a.get("actual_independent_model_completions") or 0)))
         lines.append("- Individual written reports: "+str(int(a.get("per_agent_markdown_reports_written") or 0)))
         lines.append("- Directors with manifests: "+str(int(a.get("director_manifests_present") or 0))+"/10")
-    else:lines.append("- No completed worker audit artifact available; counts not inferred.")
+    else:
+        if fallback:
+            lines.append("- Successful director-level workflow jobs: "+
+              str(fallback.get("directors_with_successful_jobs",0))+"/10; "+
+              "this does NOT independently prove a count of worker model inferences.")
+        else:
+            lines.append("- No accessible model-audit or job evidence; counts not inferred.")
     if d:
         lines.append("- Source-linked worker reports: "+str(int(d.get("workers_with_public_source_links") or 0)))
         lines.append("- Next-step checkpoints: "+str(int(d.get("workers_with_specific_next_action") or 0)))
@@ -106,11 +126,12 @@ def main():
             (latest[n] or {}).get("conclusion"),(complete[n] or {}).get("id"))
            for n in NAMES]
     key=hashlib.sha256(json.dumps(state).encode()).hexdigest()[:18]
-    marker="<!-- b-owner-digest-v1:"+key+" -->"
+    marker="<!-- b-owner-digest-v2:"+key+" -->"
     comments=api("/repos/"+REPO+"/issues/6/comments?per_page=100&sort=created&direction=desc")
     if any(marker in x.get("body","") for x in comments):
         print("DIRECTOR_D_UNCHANGED",key);return
     audits={n:audited(complete[n],n) for n in NAMES}
+    audits[WORKER]["job_evidence"]=job_result_fallback(complete[WORKER])
     body=digest(latest,complete,audits)+"\n"+marker
     r=api("/repos/"+REPO+"/issues/6/comments",payload={"body":body})
     print("DIRECTOR_D_POSTED",r.get("html_url"))
@@ -124,6 +145,9 @@ def test():
        RESEARCH:{"summary.json":{"report_count":12,"qualified_unverified_leads":[]}}})
     assert "500" in result and "NONE ASSESSED" in result
     assert "payer/payment not verified" in result and "No payment is claimed" in result
+    fallback=digest(a,a,{WORKER:{"job_evidence":{"directors_with_successful_jobs":10}},RESEARCH:{}})
+    assert "Successful director-level workflow jobs: 10/10" in fallback
+    assert "does NOT independently prove" in fallback
     print("B_OWNER_DIGEST_SELFTEST_PASS")
 
 if __name__=="__main__":
