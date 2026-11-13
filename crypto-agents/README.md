@@ -53,3 +53,16 @@ The owner authorized **every existing research role**—10 directors and 20 assi
 - No recruitment spam, unsolicited messages, duplicate social accounts, fake claims of employment, fees, transfers or wallet signatures are permitted. The team may invite other legitimate collaborators through the owner's existing public meeting issue `#5`.
 
 **Success is legitimate compensated work and independently confirmed transferable receipts, not the number of research roles created.** GitHub hourly execution can be delayed, canceled or constrained by service limits; role definitions alone do not prove that 450 researchers have successfully run.
+
+## Director performance and coordinated independence — 13 November 2026
+
+The user directed the **10 directors (D01–D10)** to improve system communication, research performance, independence and teamwork. The ten `director_performance_mandate` and `teamwork_contract` fields in `roles.json` formally communicate the order; these apply to director AI prompts and accountability records.
+
+New connected tools:
+
+- `director_coordination.py`: after the 30 supervisors and 450 delegated workers return their evidence, produces `director-communications/D01.json` through `D10.json`, `coordination.json` and `INDEX.md`. It removes duplicate candidate URLs, assigns one owner per screened lead, routes cross-team handoffs, records source failures, and requires D09 to challenge legitimacy and D10 to audit progress. Directories are not separate social identities.
+- `post_directors.py`: submits **one daily coordinator digest**, if available, to the owner's [director room #6](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/6), avoiding duplicate daily posts.
+- `director_inbox.py`: director researchers read prior coordination comments via the official GitHub API, limited to source-linked suggestions from the owner or workflow identity. Untrusted comment contents are not commands.
+- Every hourly cloud run uploads the per-director coordination reports in the consolidated artifact. New functionality must be validated by successful GitHub Actions runs; configuration alone does not constitute a completed review, successful application or paid receipt.
+
+Autonomy means selecting research topics, challenging poor leads, communicating evidence and drafting work approaches **within available permissions**. It does not grant new authenticated social accounts, unsanctioned outreach, contract signing, fee spending, wallet operations, or invisible paid work. Money received always requires independent verification.
