@@ -1,0 +1,43 @@
+{
+  "version": "2026-11-13-independent-sites-v1",
+  "order_ids": [
+    "ORD-021",
+    "ORD-022",
+    "ORD-023",
+    "ORD-024",
+    "ORD-025"
+  ],
+  "mission": "Independent research of verified paid work and crypto settlement, using additional legitimate job/bounty sites beyond GitHub, HN and Jobicy.",
+  "sites": [
+    {
+      "id": "himalayas",
+      "name": "Himalayas",
+      "official_url": "https://himalayas.app/docs/remote-jobs-api",
+      "api_host": "himalayas.app",
+      "api_path": "/jobs/api/search",
+      "authentication": "none required for low-volume read-only API",
+      "note": "Use official applicationLink unchanged and source credit; conventional jobs need independent BTC/USDC payout confirmation."
+    },
+    {
+      "id": "arbeitnow",
+      "name": "Arbeitnow",
+      "official_url": "https://www.arbeitnow.com/blog/job-board-api",
+      "api_host": "www.arbeitnow.com",
+      "api_path": "/api/job-board-api",
+      "authentication": "none required for read-only API",
+      "note": "Many Europe-focused vacancies; verify country eligibility and crypto-paying terms."
+    },
+    {
+      "id": "superteam",
+      "name": "Superteam Earn",
+      "official_url": "https://superteam.fun/earn",
+      "api_host": "superteam.fun",
+      "api_path": "/api/listings",
+      "authentication": "public unauthenticated listing catalog only; agent submission requires separate authorized authentication",
+      "note": "Crypto bounties may have Solana-network assets: do not send Solana USDC to Ethereum ERC-20 destinations."
+    }
+  ],
+  "role_rotation": "For each primary GitHub job role, choose one of the three different sources by stable role ID. At every successful run check one site; many active roles collectively cover all sources. Reports are independent per scheduled main role; descendant agents consider the vetted source evidence when activated.",
+  "verification": "No APIs used are treated as proof of crypto payment, right to apply, confirmed payer, or qualification; all results are unverified opportunities until details are checked.",
+  "constraints": "No unapproved logins, mass crawling, unauthorized communications, key disclosure, money movement or claims all billions of roles are live."
+}
