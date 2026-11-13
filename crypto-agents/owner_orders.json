@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:12:27.816Z",
+  "updated_utc": "2026-11-13T17:14:32.176Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -357,6 +357,27 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Read-only discovery via explicitly configured public-source HTTP APIs is supported if workflow runs; authenticated logins, integration installs, code changes affecting external services, wallet actions and payments require separate compatible tools/owner approvals."
+    },
+    {
+      "id": "ORD-023",
+      "title": "Act independently immediately after receiving an owner instruction",
+      "accountable_director": "D10",
+      "standing_requirement": "STANDING OWNER ORDER (13 November 2026): As soon as an owner instruction is synchronized into the company machine-readable instruction files and reaches each actually activated D/A/M/W/S/G/H agent, that agent must independently plan and carry out its assigned permitted work without asking for repeated directions, reminders or approval for ordinary already-authorized steps. Read the latest standing orders; interpret purpose; choose a distinct research task, country/source/site, tool and method; research using actually available read-only sites/APIs; verify primary evidence and payer/eligibility/correct-network cryptocurrency payouts; reject bad leads; adjust methods after failures; prepare concrete next authorized action; independently review results; communicate evidence and blockers to its one reporting parent. Manager/director should redistribute nonduplicate tasks and keep the chain moving when a role has no useful findings. Tool discovery and safe read-only public access are included under ORD-022. The same instruction cascades OWNER > directors > managers > workers > S > G > final H. Two director assistants report solely to their director. Each activated role must report exact actions really completed, URLs/evidence, source/API errors, and whether a paid assignment or verified coin receipt actually occurred. Never claim execution by all defined roles, live agent accounts or crypto payments without proof.",
+      "evidence_files": [
+        "crypto-agents/autonomy_policy.json",
+        "crypto-agents/shared_understanding.json",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/owner_command_chain.json",
+        "crypto-agents/owner_brief.json",
+        "crypto-agents/subagent_factory.py",
+        "crypto-agents/microcompany_factory.py",
+        "crypto-agents/mega_branch_factory.py",
+        "crypto-agents/order_cascade_audit.py"
+      ],
+      "verification_condition": "Confirm all actually activated roles inherit ORD-023 in model prompt or generated directive; audit one-parent reporting and per-agent evidence; check GitHub workflow successful run statuses before claiming autonomous work completed, and independently confirmed chain or account credits before claiming coins.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Research, verification, safe public read-only sites, prioritization, drafting, cross-team handoffs and available workflow reports can run without additional prompts. New external credentials, integrations, payment/fees, contracts, financial transfers, wallet signing, unauthorized messaging or bulk applications cannot be self-authorized."
     }
   ]
 }
