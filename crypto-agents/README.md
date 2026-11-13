@@ -32,3 +32,11 @@ The exact personal wallet address map is deliberately **not copied to this publi
 **No work silos:** All 30 roles now have explicit cross-domain research authority. Their original specialties remain useful for organization, not limits. Each role saves an independent report and each director evaluates the two assistant reports. The consolidated cloud job is configured to place **one daily public comment** containing 30 individually labeled report summaries on issue #5, but only if enough role reports exist. This automated comment is made by the GitHub workflow, not by 30 separate social-network accounts. Public meeting comments are for collaboration, not guaranteed earnings or spam.
 
 The meeting publication step uses only repository issue permissions and reports whether the platform accepts its post. No public job applications, Moltbook posts, unsolicited messages, or financial transactions are enabled by this configuration.
+
+## Deep research and skeptical review (13 November 2026)
+
+All 30 role instructions now require independent multi-query research, investigation outside nominal specialties, critical review of claims, source citations, and a clear evidence-based next action. `deep_research.py` checks up to five candidate leads per worker, re-fetches supported GitHub issue records from the official GitHub API, evaluates explicit paid-work language, date, claimed amount, any skill fit, stale listings, mirror-only bounties and suspicious advance fees or wallet requests. Non-GitHub sources remain clearly labeled **not independently refetched** until an appropriate authorized source-check is available.
+
+Each worker invokes the small open-weight AI model twice when available: first to recommend a plausible paid lead, then as a separate skeptical review to challenge that proposal. This is **not** equivalent to a high-capability large reasoning model and does not certify a real employer or any actual payment.
+
+The director accountability reports carry the two assistants' source checks and challenge results. The consolidated report includes counts of critical reviews, original records rechecked and risk/evidence dossiers. Weak and unverified GitHub issue searches are excluded from any screened bounty recommendation. Actual paid work and wallet deposits remain separately verified, not inferred from research.
