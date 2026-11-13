@@ -24,7 +24,8 @@ def generate(root, target):
         manifest = read(root / ("manifest-" + did + ".json"))
         director = {"director": did, "manifest_received": isinstance(manifest, dict),
                     "attempted": 0, "completed": 0, "failed_or_missing": 0,
-                    "source_linked": 0, "next_actions": 0}
+                    "source_linked": 0, "next_actions": 0, "lesson_passed": 0,
+                    "lesson_needs_review": 0, "lesson_failed": 0, "lesson_not_run": 0}
         ids = manifest.get("worker_processes_selected", []) if isinstance(manifest, dict) else []
         if not isinstance(ids, list):
             ids = []
@@ -49,11 +50,35 @@ def generate(root, target):
             if not isinstance(activation, dict):
                 activation = {}
             action = checkpoint.get("next_action") or activation.get("next_step_checkpoint")
+            lesson = d.get("director_D_lesson_assessment") or {}
+            if not isinstance(lesson, dict):
+                lesson = {}
+            lesson_status = str(lesson.get("assessment") or "not_run")
+            lesson_pass = (
+                lesson_status == "passed"
+                and lesson.get("model_execution_status") == "model_completed"
+                and lesson.get("lesson_accessible") is True
+                and lesson.get("reported_learned") is True
+                and bool(str(lesson.get("answer") or "").strip())
+                and (lesson.get("knowledge_check") or {}).get("passed") is True
+            )
+            if lesson_pass:
+                director["lesson_passed"] += 1
+            elif lesson_status == "needs_parent_review":
+                director["lesson_needs_review"] += 1
+            elif lesson_status.startswith("failed"):
+                director["lesson_failed"] += 1
+            else:
+                director["lesson_not_run"] += 1
             agents.append({
                 "role_id": rid, "director": did, "parent": d.get("parent_id"),
                 "level": d.get("agent_level"),
                 "real_model_output_evidenced": bool(valid),
                 "model_status": d.get("inference_status", "missing"),
+                "director_D_lesson_assessment": "passed" if lesson_pass else lesson_status,
+                "director_D_lesson_model_evidence": lesson.get("model_execution_status", "not_run"),
+                "worker_reports_lesson_learned": bool(lesson_pass),
+                "worker_lesson_answer": tidy(lesson.get("answer"), 900) if lesson.get("model_execution_status") == "model_completed" else None,
                 "model_response": tidy(d.get("model_response"), 1100) if valid else None,
                 "public_source_urls": original,
                 "next_action": tidy(action, 400) if action else None,
@@ -83,6 +108,11 @@ def generate(root, target):
         "actual_agent_attempt_reports": attempted,
         "successful_individual_model_outputs": completed,
         "incomplete_individual_model_outputs": attempted - completed,
+        "director_D_lesson_passed": sum(x["lesson_passed"] for x in directors),
+        "director_D_lesson_needs_review": sum(x["lesson_needs_review"] for x in directors),
+        "director_D_lesson_failed": sum(x["lesson_failed"] for x in directors),
+        "director_D_lesson_not_run": sum(x["lesson_not_run"] for x in directors),
+        "lesson_truth": "Only separately completed individual training model checks can report learned; dormant roles are not trained.",
         "verified_earned_crypto": None,
         "payment_limit": "No blockchain or exchange receipt verification in this audit.",
         "directors": directors, "individual_actual_agent_reports": agents
@@ -95,6 +125,8 @@ def generate(root, target):
              "Actually attempted individual reports: " + str(attempted),
              "Successful actual AI model outputs: " + str(completed),
              "Failed or incomplete: " + str(attempted - completed), "",
+             "Director D lesson — ACTUAL worker model learning reports: " + str(obj["director_D_lesson_passed"]) + " passed, " + str(obj["director_D_lesson_needs_review"]) + " needs parent review, " + str(obj["director_D_lesson_failed"]) + " failed, " + str(obj["director_D_lesson_not_run"]) + " not run.",
+             "Dormant role identities trained: NOT CLAIMED.",
              "Verified BTC income: NOT ASSESSED by this report.", "",
              "## Team accountability", "",
              "| Director | Attempts | Completed models | Evidence links | Next actions |",
@@ -103,13 +135,20 @@ def generate(root, target):
         lines.append("| " + x["director"] + " | " + str(x["attempted"]) + " | " +
                      str(x["completed"]) + " | " + str(x["source_linked"]) + " | " +
                      str(x["next_actions"]) + " |")
-    lines.extend(["", "## Individual evidence", "",
+    lines.extend(["", "## Director D learner accountability",
+                  "PASS requires a real separate model training answer, correct actual parent, accurate D capability and limit.",
+                  "No response or missing model is never interpreted as learned.",
+                  "", "## Individual evidence", "",
                   "Every actually attempted worker has its own evidence entry in EVERY_ACTUAL_AGENT.json.",
                   "Dormant role IDs have not generated actual model replies.",
                   "Director D must distinguish researched leads, delivered work, accepted contracts and independently verified payments."])
     (target / "DIRECTOR_D_TO_OWNER.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("DIRECTOR_D_OWNER_REPORT", json.dumps({"manifests": obj["directors_with_actual_worker_manifests"],
-          "attempts": attempted, "completed": completed, "missing_or_failed": attempted - completed}))
+          "attempts": attempted, "completed": completed, "missing_or_failed": attempted - completed,
+          "lesson_passed":obj["director_D_lesson_passed"],
+          "lesson_needs_review":obj["director_D_lesson_needs_review"],
+          "lesson_failed":obj["director_D_lesson_failed"],
+          "lesson_not_run":obj["director_D_lesson_not_run"]}))
     return obj
 
 if __name__ == "__main__":
