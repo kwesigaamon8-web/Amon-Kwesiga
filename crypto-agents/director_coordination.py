@@ -1,9 +1,9 @@
-"""Single, auditable intra-team communications register.
+"""Cross-company, one-owner source handoff and director performance register.
 
-Independent 30 researcher jobs finish first. This consolidation passes
-their evidence to ten directors, routes each distinct lead to one owner,
-records risks and blockers, and produces handoffs for subsequent cycles.
-No posting, payment, applications or wallet actions occur here.
+Ten directors supervise independent assistant A and B plus fifteen company
+managers each. A manager independently evaluates exactly fifty unique workers.
+Source-linked handoffs share evidence, not reporting lines. None of this
+is proof of a job application, successful payment or social account.
 """
 import json
 import re
@@ -12,189 +12,151 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
-ROOT = Path("combined-reports")
-OUT = Path("director-communications")
+ROOT=Path("combined-reports")
+OUT=Path("director-communications")
 OUT.mkdir(exist_ok=True)
-NOW = datetime.now(timezone.utc).isoformat()
-DIRECTORS = ["D%02d" % i for i in range(1,11)]
-STRENGTHS = {
-  "D01": "BTC-paid freelance and Bitcoin-related opportunities",
-  "D02": "USDC, stablecoin contract work and authentic payment networks",
-  "D03": "AI-agents, automation and AI developer work",
-  "D04": "Bookkeeping, QuickBooks, tax-support and accounting contracts",
-  "D05": "Verifiable open-source bounties",
-  "D06": "AI testing, research and data microtasks",
-  "D07": "Direct client requests and recurring finance services",
-  "D08": "Open competitions and grants with cash awards",
-  "D09": "Payer legitimacy, hidden fee and payment-network verification",
-  "D10": "Oversight, independent challenge and completion metrics"
+NOW=datetime.now(timezone.utc).isoformat()
+D=[f"D{i:02d}" for i in range(1,11)]
+STRENGTHS={
+    "D01":"BTC-paid work","D02":"USDC contracts","D03":"AI-agent tasks",
+    "D04":"Accounting and bookkeeping","D05":"Open source bounties",
+    "D06":"AI evaluation microtasks","D07":"Direct clients",
+    "D08":"Competitions and grants","D09":"Payer and payment legitimacy",
+    "D10":"Mission quality and earnings accountability"
 }
-KEYWORDS = {
-  "D01": ("bitcoin","btc","lightning"),
-  "D02": ("usdc","usdt","stablecoin"),
-  "D03": ("ai agent","automation","agent","model evaluation"),
-  "D04": ("accounting","bookkeep","quickbooks","tax","payroll"),
-  "D05": ("bounty","open source","github issue","funded"),
-  "D06": ("annotation","training data","microtask","evaluation"),
-  "D07": ("looking for","need accountant","client","freelance","contractor"),
-  "D08": ("grant","prize","hackathon","competition")
+KEYWORDS={
+    "D01":["bitcoin","btc"],"D02":["usdc","stablecoin"],
+    "D03":["agent","automation"],"D04":["accounting","bookkeep","quickbooks","payroll"],
+    "D05":["bounty","open source"],"D06":["annotation","model evaluation"],
+    "D07":["client","freelance","contractor"],"D08":["grant","prize","competition"]
 }
-def canonical(u):
+def canonical(s):
     try:
-        s = urlsplit(str(u or "").strip())
-        if s.scheme != "https" or not s.netloc:
+        p=urlsplit(str(s or "").strip())
+        if p.scheme!="https" or not p.netloc or "@" in p.netloc:
             return None
-        if "@" in s.netloc:
-            return None
-        filtered = [(k,v) for k,v in parse_qsl(s.query,keep_blank_values=True)
-                    if not (k.lower().startswith("utm_") or k.lower() in ("ref","fbclid","gclid"))]
-        return urlunsplit(("https",s.netloc.lower(),s.path.rstrip("/"),urlencode(filtered),""))
+        q=[(k,v) for k,v in parse_qsl(p.query) if not k.lower().startswith("utm_") and k.lower() not in ("ref","fbclid")]
+        return urlunsplit(("https",p.netloc.lower(),p.path.rstrip("/"),urlencode(q),""))
     except (ValueError,TypeError):
         return None
-
-def read_json(path):
+def load(path):
     try:
-        return json.loads(Path(path).read_text(encoding="utf-8"))
-    except (OSError,ValueError):
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError,OSError):
         return {}
-
-reports = {}
-branch_reports = {}
-branch_summaries = {}
+roles,companies,managers,workers={},{},{},{}
 for path in ROOT.rglob("*.json"):
-    obj = read_json(path)
-    if re.fullmatch(r"D\d\d(?:-[AB])?",str(obj.get("role",""))):
-        reports[obj["role"]] = obj
-    if obj.get("subagent_id") and obj.get("branch_manager"):
-        branch_reports[obj["subagent_id"]] = obj
-    if obj.get("branch_manager") and obj.get("subagent_count") == 15:
-        branch_summaries[obj["branch_manager"]] = obj
+    r=load(path)
+    if re.fullmatch(r"D\d\d(?:-[AB])?",str(r.get("role",""))):
+        roles[r["role"]]=r
+    if r.get("configured_managers")==15 and r.get("director_id") in D:
+        companies[r["director_id"]]=r
+    elif r.get("manager_id") and r.get("workers_executed_this_cycle") is not None:
+        managers[r["manager_id"]]=r
+    elif r.get("worker_id") and r.get("manager_id"):
+        workers[r["worker_id"]]=r
 
-summary = read_json("summary.json")
-raw = summary.get("qualified_unverified_leads", [])
-leads, seen = [], set()
-for lead in raw:
+src=load(Path("summary.json"))
+found=src.get("qualified_unverified_leads",[])
+dedup={}
+for lead in found:
     u=canonical(lead.get("url"))
-    if not u or u in seen:
+    if not u or u in dedup:
         continue
-    seen.add(u)
-    text = (str(lead.get("title") or "")+" "+str(lead.get("evidence_excerpt") or "")).lower()
-    # Assign a single owner based on fit, not by whoever found it first.
-    # D09 remains the skeptical cross-team checker; D10 oversees.
-    weights = {d:sum(1 for k in words if k in text) for d,words in KEYWORDS.items()}
-    score = max(weights.values(), default=0)
-    if score == 0:
-        owner = (lead.get("director") if lead.get("director") in KEYWORDS else "D07")
-    else:
-        owners = sorted(d for d,v in weights.items() if v == score)
-        owner = owners[0]
-    status = "research_candidate_unverified"
-    leadrec = {
+    label=(str(lead.get("title") or "")+" "+str(lead.get("evidence_excerpt") or "")).lower()
+    scores={d:sum(k in label for k in keys) for d,keys in KEYWORDS.items()}
+    max_score=max(scores.values())
+    assigned=sorted(d for d,v in scores.items() if v==max_score)[0] if max_score else (
+        lead.get("director") if lead.get("director") in KEYWORDS else "D07")
+    dedup[u]={
         "url":u,"title":str(lead.get("title") or "")[:180],
-        "origin_role":lead.get("researcher"),"origin_director":lead.get("director"),
-        "assigned_director":owner,"independent_checker":"D09",
-        "accountability_director":"D10","status":status,
-        "source_rechecked":bool(lead.get("original_source_refetched")),
-        "payment_received_verified":False,
-        "known_risks":lead.get("risk_and_counterevidence",[])[:4],
-        "unknowns":lead.get("unknowns",[])[:5],
-        "next_action":"Read original payer conditions; verify availability, amount, Uganda eligibility and route, then prepare a truthful no-fee proposal only if feasible.",
-        "outreach_attempted":False, "contract_awarded":False
+        "assigned_director":assigned,"origin_director":lead.get("director"),
+        "discovered_by":lead.get("researcher"),
+        "d09_payment_checker":"D09","d10_quality_checker":"D10",
+        "risks":lead.get("risk_and_counterevidence",[])[:5],
+        "unknowns":lead.get("unknowns",[])[:6],
+        "current_status":"unverified_research_candidate",
+        "paid_assignment_confirmed":False,"payment_received_verified":False,
+        "next_action":"Review original source; check scope, payer, country eligibility, amount, no-fee condition and exact network before drafting work proposal."
     }
-    leads.append(leadrec)
-    
-all_role_ids = [d+s for d in DIRECTORS for s in ("","-A","-B")]
-messages = []
-for d in DIRECTORS:
-    owned = [x for x in leads if x["assigned_director"] == d]
-    three = [d,d+"-A",d+"-B"]
-    child = [r for r in branch_reports.values() if r.get("branch_manager") in three]
-    unique_branch_leads = set()
-    for worker in child:
-        for lead in worker.get("leads",[]):
-            u=canonical(lead.get("url"))
-            if u: unique_branch_leads.add(u)
-    api_errors = sum(len(reports.get(r,{}).get("source_errors",[])) for r in three)
-    api_errors += sum(r.get("status")=="source_unavailable" for r in child)
-    completed_workers = sum(r.get("status")=="completed" for r in child)
-    original_sources = sum(sum(bool(z.get("source_refetched")) for z in reports.get(r,{}).get("deep_research",{}).get("dossiers",[])) for r in three)
-    independent_ai = sum(reports.get(r,{}).get("ai_analysis",{}).get("status")=="llm_completed" for r in three)
-    roles_reporting = [r for r in three if r in reports]
-    cross_team = [x for x in owned if x["origin_director"] != d]
-    handoffs = [{"from":x["origin_director"],"to":d,"source_url":x["url"],"requested_check":x["next_action"]} for x in cross_team]
-    msg = {
-        "director":d,"specialty":STRENGTHS[d],
-        "time_utc":NOW,
-        "own_roles_reporting":len(roles_reporting),
-        "own_roles_expected":3,
-        "delegated_workers_expected":45,
-        "delegated_worker_reports_received":len(child),
-        "successful_worker_source_searches":completed_workers,
-        "branch_reports_with_source_errors":sum(r.get("status")=="source_unavailable" for r in child),
-        "team_source_errors":api_errors,
-        "distinct_unverified_branch_leads":len(unique_branch_leads),
-        "independent_ai_reviews_completed":independent_ai,
-        "original_github_source_checks":original_sources,
-        "assigned_qualified_leads":owned[:8],
-        "handoffs_received":handoffs[:8],
-        "handoffs_to_other_directors":[
-            {"to":x["assigned_director"],"source_url":x["url"]}
-            for x in leads if x["origin_director"] == d and x["assigned_director"] != d
-        ][:8],
-        "independent_decisions_permitted":[
-            "Investigate and reject weak sources without waiting",
-            "Choose promising no-fee research topics across specialties",
-            "Draft a truthful approach for an eligible task",
-            "Request independent checking from D09 via a documented handoff"
-        ],
-        "restricted_actions":["No unsanctioned outreach, signatures, payments, wallet transfers or contracts"],
-        "mandatory_quality_review":"Check source evidence, counterevidence, duplicate ownership, fees, scope, Uganda eligibility and real payment feasibility.",
-        "cooperation_message":"Give one accountable director each canonical lead; share counterevidence and avoid duplicated applications.",
-        "mission":"Verified paid assignments and transferable receipts are outcomes; lead counts are only activity metrics.",
-        "verified_received_earnings": []
+handoffs=list(dedup.values())
+messages=[]
+for director in D:
+    assistants=[director+"-A",director+"-B"]
+    manager_ids=[f"{director}-M{i:02d}" for i in range(1,16)]
+    director_managers=[managers[m] for m in manager_ids if m in managers]
+    child=[w for w in workers.values() if w.get("director_id")==director]
+    main=[director,*assistants]
+    owned=[lead for lead in handoffs if lead["assigned_director"]==director]
+    errors=sum(len(roles.get(r,{}).get("source_errors",[])) for r in main)
+    errors+=sum(w.get("execution_status")=="source_unavailable" for w in child)
+    msg={
+      "director":director,"specialty":STRENGTHS[director],
+      "created_at_utc":NOW,"independent_assistant_ids":assistants,
+      "one_parent_reporting_line":f"Assistants {assistants[0]} and {assistants[1]} report only to {director}; each of 15 managers reports only to {director}; each worker reports only to its allocated manager.",
+      "own_roles_expected":3,
+      "own_roles_reporting":sum(r in roles for r in main),
+      "company_id":"COMP-"+director,
+      "company_report_received":director in companies,
+      "managers_configured":15,
+      "manager_reports_received":len(director_managers),
+      "worker_roles_configured":750,
+      "delegated_worker_reports_received":len(child),
+      "worker_ai_completed":sum(w.get("model_inference",{}).get("status")=="model_completed" for w in child),
+      "manager_ai_completed":sum(m.get("model_inference",{}).get("status")=="model_completed" for m in director_managers),
+      "team_source_errors":errors,
+      "assigned_qualified_leads":owned[:8],
+      "handoffs_received":[{"from":x.get("origin_director"),"to":director,"source_url":x["url"]}
+          for x in owned if x.get("origin_director")!=director][:8],
+      "handoffs_sent":[{"to":x["assigned_director"],"source_url":x["url"]}
+          for x in handoffs if x.get("origin_director")==director and x["assigned_director"]!=director][:8],
+      "allowed_independent_actions":["Find, inspect, challenge and reject leads",
+          "Choose research priorities and document source-linked cross-company handoffs",
+          "Prepare proposals, but only send using an authorized authenticated tool"],
+      "restricted_actions":["No unsupported outreach, fee, private key, wallet signing or transfer"],
+      "mission":"Real legitimate compensated assignments and independently evidenced incoming payments, not number of registered agents.",
+      "verified_paid_receipts":[]
     }
-    if d == "D09":
-        msg["cross_team_critical_queue"] = [
-            {"url":x["url"],"director_owner":x["assigned_director"],"risks":x["known_risks"]}
-            for x in leads[:15]]
-    if d == "D10":
-        msg["fleet_audit"] = {
-            "bosses_expected":30,"branches_reporting":len(branch_summaries),
-            "delegated_workers_expected":450,"distinct_worker_reports":len(branch_reports),
-            "unique_screened_candidates":len(leads),
-            "duplicate_candidate_records_removed":max(0,len(raw)-len(leads)),
-            "payment_receipts_verified_from_this_research":0,
-            "all_directors_reporting":len(reports.keys() & set(DIRECTORS))
+    if director=="D09":
+        msg["critical_review_queue"]=handoffs[:15]
+    if director=="D10":
+        msg["teamwide_performance"]={
+            "configured_companies":10,"companies_reporting":len(companies),
+            "managers_configured":150,"managers_reporting":len(managers),
+            "specialist_roles_configured":7500,"worker_reports_generated":len(workers),
+            "worker_model_inference_completed":sum(w.get("model_inference",{}).get("status")=="model_completed" for w in workers.values()),
+            "manager_model_inference_completed":sum(m.get("model_inference",{}).get("status")=="model_completed" for m in managers.values()),
+            "independent_assistants_expected":20,
+            "independent_assistants_reporting":sum(f"D{i:02d}-{a}" in roles for i in range(1,11) for a in ("A","B")),
+            "distinct_screened_candidate_urls":len(handoffs),
+            "verified_receipts":0
         }
     messages.append(msg)
-    (OUT/(d+".json")).write_text(json.dumps(msg,indent=2),encoding="utf-8")
-
-document = {
-    "schema":"director-coordination-v1","created_at_utc":NOW,
-    "directors":len(messages), "main_worker_reports":len(reports),
-    "branch_workers_reporting":len(branch_reports),
-    "candidate_leads_before_dedup":len(raw),"canonical_leads_after_dedup":len(leads),
-    "handoff_register":leads,
-    "director_message_files":[d+".json" for d in DIRECTORS],
-    "reporting_limitations":"Asynchronous programmatic handoffs, not ten separate social identities or live private agent conversations. Source hits and proposals are not earnings.",
-    "payment_receipts_verified": []
+    (OUT/(director+".json")).write_text(json.dumps(msg,indent=2),encoding="utf-8")
+document={
+ "schema":"ten-company-director-coordination-v2",
+ "generated_at_utc":NOW,"director_reports":len(messages),
+ "company_reports_received":len(companies),"manager_reports_received":len(managers),
+ "unique_worker_reports_received":len(workers),
+ "worker_llm_inferences_completed":sum(w.get("model_inference",{}).get("status")=="model_completed" for w in workers.values()),
+ "source_candidates_before_dedup":len(found),"unique_candidates_after_dedup":len(handoffs),
+ "handoff_register":handoffs,"verified_paid_receipts":[],
+ "limitation":"These are unique role-specific independent model inferences, not 7,680 concurrent AI processes or independently authenticated social accounts."
 }
 (OUT/"coordination.json").write_text(json.dumps(document,indent=2),encoding="utf-8")
-lines=["# Shared director communication and performance board", "",
-       "Asynchronous cross-team evidence exchange, not independent chat identities. Payment claims require separate verification.",
-       "",f"Workers reported: {len(reports)}/30 main roles; {len(branch_reports)}/450 delegated roles.",
-       f"Nonduplicated screened leads: {len(leads)}; assigned one owner each; D09 checks claims, D10 audits outcomes.",
-       "", "| Director | Team reports | Branch researcher outputs | Source issues | Assigned leads | Incoming handoffs |",
-       "|---|---:|---:|---:|---:|---:|"]
+lines=[
+ "# Ten director companies: performance and one-parent reporting","",
+ f"UTC: {NOW}. Distinct source candidates: {len(handoffs)} (all still unverified).",
+ "",
+ "| Director | Main reports | 15 managers | Worker outputs (of 750 configured) | Actual worker AI inferences | Source errors | Leads assigned |",
+ "|---|---:|---:|---:|---:|---:|---:|"
+]
 for m in messages:
-    lines.append(f"| {m['director']} | {m['own_roles_reporting']}/3 | {m['delegated_worker_reports_received']}/45 | {m['team_source_errors']} | {len(m['assigned_qualified_leads'])} | {len(m['handoffs_received'])} |")
-lines += ["", "## One owner per distinct candidate lead"]
-for lead in leads[:15]:
-    lines.append(f"- {lead['assigned_director']} owns [{lead['title'].replace('[','(').replace(']',')')}]({lead['url']}); D09 must challenge. Status: unverified research only")
-if not leads:
-    lines.append("No screened lead received an owner assignment this cycle. Directors should improve source quality, not invent prospects.")
-lines += ["", "## Expected next decisions",
-          "Every director may independently choose leads to investigate or reject and prepare a draft, but may not claim outreach, negotiated commitments, fund transfers or payments it has not actually made.",
-          "D10 compares evidence and progress. Paid receipts: **none established by research**."]
+    lines.append(f"| {m['director']} | {m['own_roles_reporting']}/3 | {m['manager_reports_received']}/15 | {m['delegated_worker_reports_received']} | {m['worker_ai_completed']} | {m['team_source_errors']} | {len(m['assigned_qualified_leads'])} |")
+lines.extend(["","## Handoff register"])
+for x in handoffs[:12]:
+    lines.append(f"- {x['assigned_director']} owns [{x['title'].replace('[','(').replace(']',')')}]({x['url']}); D09 challenges authenticity. No verified payment.")
+if not handoffs:lines.append("No lead met the evidence screening conditions; no fabricated progress.")
+lines.extend(["","## Governance","Each specialist worker reports to one manager, each manager to one director, each independent assistant directly to one director, and each director to the owner. Cross-company evidence handoffs do not alter the reporting line.","**Money received from the research fleet: none independently established.**"])
 (OUT/"INDEX.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
-print("COORDINATION", len(messages), "directors",len(reports),"main reports",len(branch_reports),"subagents",len(leads),"unique leads")
+print("DIRECTOR_COORDINATION",len(messages),"directors",len(managers),"manager files",len(workers),"worker files",len(handoffs),"unique screened leads")
