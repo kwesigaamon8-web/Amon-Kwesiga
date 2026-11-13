@@ -61,6 +61,8 @@ report={
     "inference_error":None,
     "model_response":None,
     "documents_written":False,
+    "public_receiving_directory_url":"https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
+    "owner_order_046_publication_status":"inherited_link_for_authorized_context_not_externally_published",
     "verified_wallet_receipts":[],
     "external_messages_sent":False,
     "accounts_created":False,
