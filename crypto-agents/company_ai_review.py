@@ -67,6 +67,9 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
       "owner_goal":understanding["real_goal"],
       "standing_owner_order":SHARED["owner_order_cascade"]["id"],
       "additional_owner_order":"ORD-022",
+      "independence_order":"ORD-023",
+      "immediate_independent_work":SHARED["owner_intent"]["immediate_independent_execution"],
+      "autonomy_scope":POLICY["immediate_independent_execution"]["autonomous_without_reasking"],
       "tools_and_sites_improvement":SHARED["owner_intent"]["tool_improvement"],
       "tools_and_sites_discovered_read_only":TOOL_EVIDENCE,
       "new_site_or_tool_use_rule":"Evaluate new sites/models and improve paid-work discovery. Only public permitted read-only tools or authenticated approved integrations; never claim access/installation or received funds without evidence.",
@@ -90,7 +93,7 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
         return {"status":"llm_unavailable","analysis":"","error":error,
                 "parent_id":meta["parent_id"]}
     prompt=[
-      {"role":"system","content":"OWNER ORD-021 and ORD-022 apply to EVERY activated level, including final H branch workers: independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
+      {"role":"system","content":"OWNER ORD-021, ORD-022, ORD-023 apply to EVERY activated level, including final H branch workers: when you receive the owner's instruction, proceed INDEPENDENTLY without another prompt on all already authorized source research, permitted tool uses, evidence checks, reviews and reporting to your one boss; if a source fails try a different permitted one and report proof of your work. Independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
       {"role":"user","content":json.dumps(question,ensure_ascii=False)[:1800]}
     ]
     try:
@@ -245,6 +248,8 @@ for manager_id in manager_ids:
     else:tally["ai_failed"]+=1
 summary["shared_understanding_version"]=SHARED["version"]
 summary["tool_improvement_standing_order"]="ORD-022"
+summary["independent_after_owner_order"]="ORD-023"
+summary["active_worker_independent_actions"]="Read-only research, evaluation, evidence, draft and one-parent report within existing capabilities; external authorization not implied"
 summary["external_tools_discovered_this_cycle"]=len(TOOL_REPORT.get("new_tool_candidates",[]))
 summary["external_tools_actually_installed_or_connected"]=0
 summary["tool_research_report_status"]="generated" if TOOL_REPORT_PATH.exists() else "missing"
