@@ -61,6 +61,7 @@ def resolve_role(role_id):
     task=("Find one genuine buyer or funded task for "+specialty+
           ". Check public original source, compensation and a real acceptance test. "+
           "Prepare a useful original lawful sample or explain the blocker. "+
+          "Where permitted in a real work offer, link the owner-approved public receiving-address directory; avoid repeated unsolicited posts and unverified Binance routes. "+
           "Offer BTC payment only with the correct owner-confirmed network. "+
           "Operate pseudonymously: no owner's real name, professional profile or identity. "+
           "Never invent a sale, buyer, external message, completed task or coin receipt.")
