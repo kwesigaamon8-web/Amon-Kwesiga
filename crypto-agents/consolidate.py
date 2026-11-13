@@ -42,6 +42,14 @@ job_pattern = re.compile(r"(?i)\b(?:accountant|bookkeep|quickbooks|tax specialis
 exclude = re.compile(r"(?i)\b(?:show hn|ask hn|feature request|policy|daily content|prompt-feedback|roadmap|content opportunities|mission statement|explainer)\b")
 qualified = []
 seen = set()
+dossiers_by_url = {}
+for report in reports:
+    for dossier in report.get("deep_research", {}).get("dossiers", []):
+        url = dossier.get("url")
+        if url and (url not in dossiers_by_url or
+                dossier.get("score_for_followup_not_payment_probability", 0) >
+                dossiers_by_url[url].get("score_for_followup_not_payment_probability", 0)):
+            dossiers_by_url[url] = dossier
 for r in reports:
     for x in r.get("leads", []):
         url = x.get("url", "").strip()
@@ -72,6 +80,13 @@ for r in reports:
             and social_action and (bool(money_pattern.search(combined)) or bool(job_pattern.search(combined))))
         if not (strong_bounty or direct_job or social_candidate):
             continue
+        dossier = dossiers_by_url.get(url)
+        if dossier and dossier.get("outcome") in ("avoid_until_risk_resolved", "reject_closed"):
+            continue
+        if from_github and (not dossier or not dossier.get("source_refetched")):
+            # A GitHub issue scraped from search but not independently rechecked
+            # is not a sufficiently substantiated bounty lead.
+            continue
         seen.add(url)
         qualified.append({
             "director": r.get("director"), "researcher": r.get("role"),
@@ -79,7 +94,11 @@ for r in reports:
             "updated": x.get("updated"), "evidence_excerpt": snippet,
             "amount_claimed_in_source": bool(money_pattern.search(combined)),
             "Uganda_eligibility_verified": False, "payment_verified": False,
-            "status": "candidate_requires_manual_verification"
+            "status": "candidate_requires_manual_verification",
+            "original_source_refetched": bool(dossier and dossier.get("source_refetched")),
+            "followup_priority_score_not_payment_probability": dossier.get("score_for_followup_not_payment_probability") if dossier else None,
+            "risk_and_counterevidence": (dossier.get("counter_evidence_and_risks", []) if dossier else ["Not independently rechecked in this cycle"]),
+            "unknowns": (dossier.get("unknowns", []) if dossier else ["Payer, terms, eligibility and payment remain unverified"])
         })
 
 qualified.sort(key=lambda x: (x["amount_claimed_in_source"], x["updated"]), reverse=True)
@@ -88,6 +107,9 @@ out = {
     "expected_research_jobs": 30, "report_count": len(reports),
     "researcher_ids": sorted({r["role"] for r in reports}),
     "AI_review_completed": sum(r.get("ai_analysis", {}).get("status") == "llm_completed" for r in reports),
+    "adversarial_AI_challenges_completed": sum(r.get("ai_analysis", {}).get("critical_challenge_status") == "completed" for r in reports),
+    "original_source_records_refetched": sum(sum(1 for x in r.get("deep_research",{}).get("dossiers",[]) if x.get("source_refetched")) for r in reports),
+    "deep_research_dossiers_written": sum(len(r.get("deep_research",{}).get("dossiers",[])) for r in reports),
     "source_errors_count": sum(len(r.get("source_errors", [])) for r in reports),
     "public_social_candidates": sum(1 for x in qualified if x["source"] in ("Bluesky public post", "Reddit public post")),
     "social_sources_checked": ["Bluesky", "Reddit"],
@@ -107,6 +129,9 @@ lines = [
     "", f"UTC: {today.isoformat()}",
     f"Research jobs with reports: **{len(reports)}/30**",
     f"Small-model AI reviews completed: **{out['AI_review_completed']}**",
+    f"Adversarial AI challenges completed: **{out['adversarial_AI_challenges_completed']}**",
+    f"Original sources independently refetched: **{out['original_source_records_refetched']}**",
+    f"Evidence/risk dossiers completed: **{out['deep_research_dossiers_written']}**",
     f"Source errors: **{out['source_errors_count']}**",
     f"Strictly screened candidate leads: **{len(qualified)}**",
     f"Unverified social-source candidates: **{out['public_social_candidates']}**",
