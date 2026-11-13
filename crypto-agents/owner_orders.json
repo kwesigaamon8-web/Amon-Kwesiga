@@ -1,6 +1,6 @@
 {
-  "schema": "owner-orders-audit-v3",
-  "updated_utc": "2026-11-13T16:45:16Z",
+  "schema": "owner-orders-audit-v4",
+  "updated_utc": "2026-11-13T16:48:59Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -287,6 +287,23 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "No external agents or people recruited; no automated mass posting, payments, wallet signing or billions of concurrent cloud hosts."
+    },
+    {
+      "id": "ORD-019",
+      "title": "Explain owner professional context and independently report role understanding",
+      "accountable_director": "D10",
+      "standing_requirement": "Brief every director, independent assistant, manager, specialist worker and defined S/G/H subagent on relevant high-level owner professional background and crypto-only mission. Every activated agent must independently respond in its own model-generated words: whom it supports, its role, one supervisor, real payable opportunity next step, verified crypto success condition and unknowns. Do not fabricate a reply for any of 375,188,632,680 role IDs that has not actually run an AI model.",
+      "evidence_files": [
+        "crypto-agents/professional_owner_context.json",
+        "crypto-agents/understanding_response.py",
+        "crypto-agents/understanding_audit.py",
+        "crypto-agents/agents.py",
+        "crypto-agents/company_ai_review.py"
+      ],
+      "verification_condition": "Require real per-role model text with parent ID and source evidence when available. Audit every completed response and output ten director-level compliance reports. Distinguish role definition, model response, comprehension heuristic and verified earnings.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "No public disclosure of owner personal circumstances. Exact full-organization individual replies are impossible without actually executing each separate model role; unactivated identities remain pending."
     }
   ]
 }
