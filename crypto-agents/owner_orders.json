@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:19:53.999Z",
+  "updated_utc": "2026-11-13T17:20:14.462Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -413,6 +413,25 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Permitted read-only multi-source research and report generation only. Creating accounts, submissions, outreach beyond already authorized integrations, contract signing and cryptocurrency payments require separate actual capabilities/permissions."
+    },
+    {
+      "id": "ORD-026",
+      "title": "Distribute implementable ChatGPT-style research capabilities to every activated agent tier",
+      "accountable_director": "D03",
+      "standing_requirement": "OWNER ORDER (13 November 2026): Share with each actually activated D/A/M/W/S/G/H agent those useful capabilities of ChatGPT which can be faithfully implemented in the existing small-model and Python workflows: break down goals into concrete tasks, select suitable allowed tools and websites, cross-check source claims against evidence, detect suspicious/fake-paid offers, compare opportunities and prioritize realistic paid work, draft concise truthful approaches, preserve uncertainty and original URLs, challenge the first conclusion, record blockers, propose the next lawful autonomous action, produce an independent documented deliverable and report evidence to the one parent. Implement a shared capability pack and an actual Python reasoning/verification helper used in active model prompts and outputs; carry the instruction unchanged into S/G/H role generation. Capability means demonstrable allowed workflow functionality, not GPT-6 model access, general web browsing powers, external account access, automatic software installation, thousands of concurrent hosted models or a guarantee of earnings. Before claiming success show model/tool execution evidence and document reports.",
+      "evidence_files": [
+        "crypto-agents/capability_pack.json",
+        "crypto-agents/capability_engine.py",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/agents.py",
+        "crypto-agents/agent_deliverables.py",
+        "crypto-agents/owner_command_chain.json",
+        "crypto-agents/order_cascade_audit.py"
+      ],
+      "verification_condition": "Review code and recorded successful workflow outputs to establish each activated role receives actual capability-pack contents, research/candidate review and per-agent delivery. Audit explicit capability statuses and last H-tier inherited instruction. Count actual completed model calls separately from source-only checks, simulated role definitions and paid receipts.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Existing allowed public-source analysis, source comparison, drafting and reporting only. GPT-6/API access or proprietary ChatGPT features cannot be passed by instruction alone; external integrations require permissions and credentials."
     }
   ]
 }
