@@ -81,7 +81,7 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
         return {"status":"llm_unavailable","analysis":"","error":error,
                 "parent_id":meta["parent_id"]}
     prompt=[
-      {"role":"system","content":"You are an independent evidence-focused research agent reporting to one parent. ONLY goal: legitimate crypto coins actually received at the owner-approved correct-network address. Follow director strategy, challenge weak leads, and never claim a transfer without proof. Reply concisely."},
+      {"role":"system","content":"OWNER ORD-021 applies to EVERY activated level, including final H branch workers: independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
       {"role":"user","content":json.dumps(question,ensure_ascii=False)[:1800]}
     ]
     try:
