@@ -66,6 +66,9 @@ record={
  "round_one":{},
  "round_two":{},
  "director_D_response":None,
+ "director_D_teaching":None,
+ "director_D_teaching_model_completed":False,
+ "lesson_source":"crypto-agents/DIRECTOR_D_LESSON_TO_B.md",
  "real_director_model_round_one":0,
  "real_director_model_round_two":0,
  "D_model_completed":False,
@@ -129,6 +132,19 @@ def ask(role,system,task):
     except Exception as exc:
         return {"status":"model_failed","response":"",
                 "error":f"{type(exc).__name__}: {str(exc)[:250]}"}
+
+# A separate real D model execution presents the prepared training curriculum.
+# The curriculum file by itself is not proof D actually taught or workers learned.
+lesson_path=Path("crypto-agents/DIRECTOR_D_LESSON_TO_B.md")
+if lesson_path.exists():
+    record["director_D_teaching"]=ask(
+        "D-TEACHER",
+        "You are designated Director D teaching actual B workers. Explain your real abilities and limitations; do not falsely claim students attended or learned.",
+        "Deliver your own short lesson to all activated B agents: D coordinates ten directors, audits sources and real model executions, prepares one owner report, checks legitimate payment with D09, and resolves software problems with D10. D cannot compel outsiders, create coins from prompts, or claim a wallet payment without proof. Require each worker to answer what D CAN do, CANNOT do, and name its real direct PARENT. The lesson file is crypto-agents/DIRECTOR_D_LESSON_TO_B.md. Include an honest line: attendance and learning remain unverified until each real agent replies."
+    )
+    record["director_D_teaching_model_completed"]=(record["director_D_teaching"].get("status")=="model_completed")
+else:
+    record["director_D_teaching"]={"status":"not_run_lesson_missing","response":""}
 
 for d in DIRECTORS:
     evidence=source_checks.get(d) or {"status":"missing_manifest"}
@@ -197,6 +213,11 @@ lines=[
  "Source-linked research items (NOT verified paid clients): "+str(record["actionable_source_linked_leads_count"]),
  "Verified payer/contract terms: "+str(record["verified_payer_or_contract_count"]),
  "Actual wallet receipts verified by this report: 0",
+ "",
+ "## Director D lesson ORD-047: actual teacher model",
+ "Teaching model completed: "+str(record["director_D_teaching_model_completed"]),
+ "Teaching output: "+str((record["director_D_teaching"] or {}).get("response","not_run")),
+ "Note: This is a teaching output, NOT evidence that dormant B roles attended or understood.",
  "",
  "## Actually executed director model discussion",
  "Round 1 model responses: "+str(record["real_director_model_round_one"])+"/10",
