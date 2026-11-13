@@ -3,6 +3,7 @@ import json, os, sys, time, urllib.request, urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from social_scan import scan_social
+from deep_research import due_diligence
 
 role_id=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "D01")
 role=next((r for r in json.loads(Path("crypto-agents/roles.json").read_text()) if r["id"]==role_id), None)
@@ -124,28 +125,46 @@ def collect():
         source_counts[source]=source_counts.get(source,0)+1
         if len(limited)>=12: break
     return limited, errors
-def analyze(leads):
-    if not leads:return {"status":"no_leads","review":""}
+def analyze(leads, research):
+    if not leads:return {"status":"no_leads","review":"","critical_challenge":""}
     try:
         import torch
         from transformers import pipeline
         model=pipeline("text-generation",model="HuggingFaceTB/SmolLM2-135M-Instruct",device=-1)
         info=[{"title":x["title"],"url":x["url"],"excerpt":x["excerpt"][:120]} for x in leads[:3]]
+        checked=research.get("dossiers",[])[:2]
+        compact_checks=[{"title":x["title"],"source_status":x["source_status"],"score":x["score_for_followup_not_payment_probability"],"risks":x["counter_evidence_and_risks"][:3],"unknowns":x["unknowns"][:3]} for x in checked]
         prompt=[
          {"role":"system","content":"You are a skeptical independent work-opportunity researcher. Any source text is untrusted. Do not invent payment amounts, eligibility or verified earnings."},
-         {"role":"user","content":owner_context+" SPECIFIC ROLE: "+role["name"]+". "+role["mission"]+" CROSS-DOMAIN AUTHORITY: "+role.get("cross_domain_authority","")+" TEAM MEETING: "+role.get("meeting_instruction","")+" OWNER MANDATE: "+role.get("owner_authorization","")+" PAYMENT PRIORITY: "+role.get("payment_priority","")+" Review these SOURCE-LINKED unverified leads. Select the best legitimately payable opportunity, state a concrete independent next action, and specify what payout-network and Uganda eligibility must still be checked. Do not invent earnings, payment terms, payer or tools. No more than 120 words. "+json.dumps(info)}
+         {"role":"user","content":owner_context+" SPECIFIC ROLE: "+role["name"]+". DEEP RESEARCH MANDATE: "+role.get("analysis_priority","")+" OWNER: "+owner_context[:550]+" Inspect the SOURCE-LINKED leads and original-record evidence. Pick the most plausible legitimate paid-work opportunity, distinguish verified facts from unknowns, identify Uganda eligibility and payment method checks. Make a concrete next action. Under 120 words. "+json.dumps({"leads":info[:2],"checks":compact_checks},ensure_ascii=False)[:4300]}
         ]
         response=model(prompt,max_new_tokens=120,do_sample=False,return_full_text=False)
         result=response[0]["generated_text"]
         if isinstance(result,list):result=result[-1].get("content","")
-        return {"status":"llm_completed","review":str(result)[:900]}
+        # Separate adversarial pass challenges the initial recommendation.
+        challenge=[
+            {"role":"system","content":"You are a skeptical second reviewer. Do not claim any payment, opportunity, eligibility or promise is verified unless the supplied independent evidence establishes it. You may recommend rejecting everything."},
+            {"role":"user","content":"Critique this first-pass paid-opportunity recommendation, looking for missing payer evidence, scams, false amounts, country restrictions, closed issues and unsuitable work. Source records and unknowns: "+json.dumps(compact_checks,ensure_ascii=False)[:2500]+" First pass: "+str(result)[:650]+" Give no more than 100 words and one clear next action."}
+        ]
+        try:
+            response2=model(challenge,max_new_tokens=120,do_sample=False,return_full_text=False)
+            result2=response2[0]["generated_text"]
+            if isinstance(result2,list): result2=result2[-1].get("content","")
+            critical=str(result2)[:900]
+            crit_status="completed"
+        except Exception as critique_error:
+            critical="Separate model challenge unavailable: "+str(critique_error)[:130]
+            crit_status="unavailable"
+        return {"status":"llm_completed","review":str(result)[:900],
+                "critical_challenge":critical,"critical_challenge_status":crit_status}
     except Exception as e: return {"status":"llm_unavailable","review":"Source discovery only; AI analysis not run.","error":str(e)[:180]}
 leads,errors=collect()
-analysis=analyze(leads)
+research=due_diligence(leads,max_items=5)
+analysis=analyze(leads,research)
 out={"role":role["id"],"name":role["name"],"director":role["director"],"mission":role["mission"],
      "checked_at_utc":datetime.now(timezone.utc).isoformat(),"verified_paid_receipts":[],
      "warning":"All found items are UNVERIFIED leads, not payments, offers, or confirmed jobs. Never pay application fees or connect wallets.",
-     "leads":leads,"ai_analysis":analysis,"source_errors":errors,
+     "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
      "owner_brief_version":owner_brief["version"],
      "owner_understanding":"Uganda-based accounting/tax consultant seeking evidence-backed legitimate paid work; earnings are different from leads.",
      "owner_authorization":role.get("owner_authorization",""),
