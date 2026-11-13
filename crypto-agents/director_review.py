@@ -15,6 +15,16 @@ OUTPUT.mkdir(exist_ok=True)
 ROLES = json.loads(Path("crypto-agents/roles.json").read_text(encoding="utf-8"))
 ROLE_NAMES = {r["id"]: r["name"] for r in ROLES}
 OWNER_BRIEF = json.loads(Path("crypto-agents/owner_brief.json").read_text(encoding="utf-8"))
+BRANCH_MANIFEST = json.loads(Path("crypto-agents/branch_manifest.json").read_text(encoding="utf-8"))
+branch_summaries = {}
+branch_report_root = Path("combined-reports")
+for path in branch_report_root.rglob("*-SUMMARY.json"):
+    try:
+        obj = json.loads(path.read_text(encoding="utf-8"))
+        if obj.get("branch_manager") and obj.get("subagent_count") == 15:
+            branch_summaries[obj["branch_manager"]] = obj
+    except (ValueError, OSError):
+        continue
 reports = {}
 for file in sorted(ROOT.rglob("*.json")):
     try:
@@ -64,6 +74,14 @@ for d in directors:
         "assistant_a_report_present": sources[1] is not None,
         "assistant_b_report_present": sources[2] is not None,
         "assistant_report_ids": ids[1:],
+        "branch_supervision": {boss: {
+            "subagents_assigned": 15,
+            "subagent_reports_received": (branch_summaries.get(boss) or {}).get("subagent_count", 0),
+            "source_success_count": (branch_summaries.get(boss) or {}).get("completed", 0),
+            "source_failures": (branch_summaries.get(boss) or {}).get("source_unavailable", 0),
+            "unverified_lead_count": (branch_summaries.get(boss) or {}).get("unverified_lead_count", 0),
+            "sample_unverified_leads": (branch_summaries.get(boss) or {}).get("sample_unverified_leads", [])[:3]
+        } for boss in ids},
         "individual_ai_reviews": {role_id: (reports.get(role_id) or {}).get("ai_analysis", {}).get("status", "missing") for role_id in ids},
         "deep_research_by_role": {
             role_id: {
@@ -92,6 +110,9 @@ for d in directors:
     if d == "D10":
         review["teamwide_accountability"] = {
             "expected_roles": 30,
+            "expected_branch_subagents": 450,
+            "branch_supervisors_reporting": len(branch_summaries),
+            "subagent_reports_claimed_by_supervisors": sum((x.get("subagent_count") or 0) for x in branch_summaries.values()),
             "reported_roles": len(reports),
             "ai_reviews_completed": sum(v.get("ai_analysis",{}).get("status") == "llm_completed" for v in reports.values()),
             "independent_critical_challenges_completed": sum(v.get("ai_analysis",{}).get("critical_challenge_status") == "completed" for v in reports.values()),
