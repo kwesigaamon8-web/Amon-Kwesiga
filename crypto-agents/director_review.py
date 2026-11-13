@@ -14,6 +14,7 @@ OUTPUT = Path("director-reports")
 OUTPUT.mkdir(exist_ok=True)
 ROLES = json.loads(Path("crypto-agents/roles.json").read_text(encoding="utf-8"))
 ROLE_NAMES = {r["id"]: r["name"] for r in ROLES}
+OWNER_BRIEF = json.loads(Path("crypto-agents/owner_brief.json").read_text(encoding="utf-8"))
 reports = {}
 for file in sorted(ROOT.rglob("*.json")):
     try:
@@ -54,6 +55,10 @@ for d in directors:
     review = {
         "director_id": d,
         "director_name": ROLE_NAMES[d],
+        "owner_brief_version": OWNER_BRIEF["version"],
+        "owner_profile_understood": OWNER_BRIEF["professional_profile"],
+        "owner_objectives": OWNER_BRIEF["objectives"],
+        "owner_working_style": OWNER_BRIEF["working_style"],
         "review_timestamp_utc": now,
         "own_research_report_present": sources[0] is not None,
         "assistant_a_report_present": sources[1] is not None,
@@ -81,7 +86,8 @@ for d in directors:
             "ai_reviews_completed": sum(v.get("ai_analysis",{}).get("status") == "llm_completed" for v in reports.values()),
             "total_qualified_leads": len(strong),
             "verified_payment_receipts": 0,
-            "message_to_all_directors": "Owner authorizes independent work. Search worldwide, prioritize payouts to an approved correct-network owner address, protect wallet access, and report only verified income as received."
+            "message_to_all_directors": "Owner authorizes independent work. Search worldwide, prioritize payouts to an approved correct-network owner address, protect wallet access, and report only verified income as received.",
+            "owner_context_message": OWNER_BRIEF["agent_prompt"]
         }
     (OUTPUT / f"{d}.json").write_text(json.dumps(review, indent=2), encoding="utf-8")
     rows.append(f"| {d} — {ROLE_NAMES[d].replace('Director: ','')} | {'Yes' if sources[0] else 'No'} | {'Yes' if sources[1] else 'No'} | {'Yes' if sources[2] else 'No'} | {len(reviewed)} |")
