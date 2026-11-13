@@ -60,6 +60,10 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
       "professional_context":BRIEF["whom_you_work_for"]["description"]+" "+BRIEF["whom_you_work_for"]["commercial_advantage"],
       "you_must_answer_in_your_own_words":"Who you serve professionally, your specific role and ONE supervisor, concrete research next action, exact proof of cryptocurrency credited, and any unknowns. Do not merely repeat the instruction.",
       "owner_goal":understanding["real_goal"],
+      "standing_owner_order":SHARED["owner_order_cascade"]["id"],
+      "inherited_owner_instruction":SHARED["owner_intent"]["worldwide"],
+      "order_chain_to_last_worker":SHARED["owner_order_cascade"]["chain"],
+      "payment_routing_reference":SHARED["owner_order_cascade"]["payment_routes"],
       "SUCCESS_ONLY": "Confirmed genuine cryptocurrency received by owner's approved exact-network receiving address. All other activity is NOT earnings.",
       "director":director_id,
       "director_strategy":SHARED["director_mandates"].get(director_id,"Find verified real crypto-paid work"),
@@ -68,6 +72,7 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
       "one_boss":meta["parent_id"],
       "manager_focus":MANAGER_GOALS.get(manager_id,"challenge evidence and share verified source links"),
       "agent_id":agent_id,
+      "cascade_last_tier":"H-level branch worker is included and must receive ORD-021 if activated",
       "individual_role":mission,
       "source_evidence_untrusted":evidence,
       "task":"Independently judge whether REAL work is likely to be paid in genuine transferable cryptocurrency sent to the owner's correct approved address. Return short reasoning, specific next step and unknowns. Do not invent received coins."
