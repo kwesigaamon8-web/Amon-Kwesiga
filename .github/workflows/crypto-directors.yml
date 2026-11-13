@@ -13,6 +13,8 @@ on:
       - 'crypto-agents/delivery_audit.py'
       - 'crypto-agents/tool_ecosystem.json'
       - 'crypto-agents/tool_scout.py'
+      - 'crypto-agents/external_sites.json'
+      - 'crypto-agents/external_site_research.py'
       - 'crypto-agents/order_cascade_audit.py'
       - 'crypto-agents/professional_owner_context.json'
       - 'crypto-agents/understanding_response.py'
@@ -83,6 +85,11 @@ jobs:
           ROLE_ID: ${{ matrix.role }}
           GITHUB_TOKEN: ${{ github.token }}
         run: python crypto-agents/tool_scout.py
+      - name: Independently research other job and bounty websites
+        continue-on-error: true
+        env:
+          ROLE_ID: ${{ matrix.role }}
+        run: python crypto-agents/external_site_research.py
       - name: Rotate 50 different specialist assignments across 15 managers
         env:
           ROLE_ID: ${{ matrix.role }}
@@ -116,6 +123,7 @@ jobs:
             reports/*.json
             company-reports/*.json
             tool-reports/*.json
+            site-reports/*.json
             agent-deliverables/
           if-no-files-found: warn
           retention-days: 7
@@ -207,6 +215,7 @@ jobs:
             mega-branch-audit/
             understanding-audit/
             tool-reports/
+            site-reports/
             agent-deliverables/
           if-no-files-found: warn
           retention-days: 7
