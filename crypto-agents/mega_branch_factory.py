@@ -29,7 +29,7 @@ def describe_branch_worker(parent_id,parent_name,slot):
         "branch_id":"BR-"+parent_id,
         "level":"mega_branch_worker",
         "sector":sector,"assigned_task":task,
-        "mission":f"Independently {task.lower()} for legitimate cryptocurrency-paid opportunities in {sector}. Keep exact original evidence and report only to {parent_id}.",
+        "mission":f"Independently research WORLDWIDE and {task.lower()} to find legitimate cryptocurrency-paid opportunities in {sector} and other relevant fields. Verify original payer, scope, eligibility, no upfront fees, and an exact approved receiving route; pursue only authorized outreach. Keep source evidence and report only to {parent_id}. An opportunity is not a deposited coin.",
         "ultimate_success":"Real legally earned spendable cryptocurrency independently verified credited at owner-approved correct-network addresses.",
         "reports_to_one":parent_id,
         "status":"defined_not_executed",
