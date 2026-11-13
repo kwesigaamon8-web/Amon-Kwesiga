@@ -13,6 +13,7 @@ on:
       - 'crypto-agents/global_coin_learning.json'
       - 'crypto-agents/command_chain_receipts.py'
       - 'crypto-agents/owner_command_chain.json'
+      - 'crypto-agents/director_D_consensus.py'
       - 'crypto-agents/ai_process_launcher.py'
       - 'crypto-agents/ai_process_audit.py'
       - 'crypto-agents/director_work_orders.py'
@@ -85,6 +86,23 @@ jobs:
           python-version: '3.11'
       - name: Audit executed processes versus assigned identities
         run: python crypto-agents/ai_process_audit.py
+      - name: Install small open-source AI model for actual director-to-director discussion
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Ten genuine director perspectives, cross-review and Director D's owner reply
+        env:
+          OMP_NUM_THREADS: '2'
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python crypto-agents/director_D_consensus.py
+      - name: Archive director discussion and Director D response
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: director-D-B-workforce-consensus
+          path: director-D-discussion/
+          if-no-files-found: warn
+          retention-days: 7
       - name: Archive verified counts and blockers
         if: always()
         uses: actions/upload-artifact@v4
