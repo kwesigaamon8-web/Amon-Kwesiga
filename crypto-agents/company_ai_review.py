@@ -26,6 +26,11 @@ PUBLIC_ROUTES=json.loads(Path("crypto-agents/branch_brief.json").read_text(encod
 FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
 OWNER_COMMAND=json.loads(Path("crypto-agents/owner_command_chain.json").read_text(encoding="utf-8"))
 SHARED=json.loads(Path("crypto-agents/shared_understanding.json").read_text(encoding="utf-8"))
+TOOL_ECOSYSTEM=json.loads(Path("crypto-agents/tool_ecosystem.json").read_text(encoding="utf-8"))
+TOOL_REPORT_PATH=Path("tool-reports")/(ROLE+".json")
+TOOL_REPORT=json.loads(TOOL_REPORT_PATH.read_text(encoding="utf-8")) if TOOL_REPORT_PATH.exists() else {"status":"not_run","new_tool_candidates":[]}
+TOOL_EVIDENCE=[{"name":x.get("name","")[:75],"url":x.get("url","")[:160],
+                "status":x.get("status","unverified")} for x in TOOL_REPORT.get("new_tool_candidates",[])[:2]]
 COMPANY=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encoding="utf-8"))
 MANAGER_GOALS={m["id"]:m["domain"] for c in COMPANY["companies"] for m in c["managers"]}
 CYCLE=int(datetime.now(timezone.utc).timestamp()//3600)
@@ -61,6 +66,10 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
       "you_must_answer_in_your_own_words":"Who you serve professionally, your specific role and ONE supervisor, concrete research next action, exact proof of cryptocurrency credited, and any unknowns. Do not merely repeat the instruction.",
       "owner_goal":understanding["real_goal"],
       "standing_owner_order":SHARED["owner_order_cascade"]["id"],
+      "additional_owner_order":"ORD-022",
+      "tools_and_sites_improvement":SHARED["owner_intent"]["tool_improvement"],
+      "tools_and_sites_discovered_read_only":TOOL_EVIDENCE,
+      "new_site_or_tool_use_rule":"Evaluate new sites/models and improve paid-work discovery. Only public permitted read-only tools or authenticated approved integrations; never claim access/installation or received funds without evidence.",
       "inherited_owner_instruction":SHARED["owner_intent"]["worldwide"],
       "order_chain_to_last_worker":SHARED["owner_order_cascade"]["chain"],
       "payment_routing_reference":SHARED["owner_order_cascade"]["payment_routes"],
@@ -81,7 +90,7 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
         return {"status":"llm_unavailable","analysis":"","error":error,
                 "parent_id":meta["parent_id"]}
     prompt=[
-      {"role":"system","content":"OWNER ORD-021 applies to EVERY activated level, including final H branch workers: independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
+      {"role":"system","content":"OWNER ORD-021 and ORD-022 apply to EVERY activated level, including final H branch workers: independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
       {"role":"user","content":json.dumps(question,ensure_ascii=False)[:1800]}
     ]
     try:
@@ -235,6 +244,10 @@ for manager_id in manager_ids:
     if decision["status"]=="model_completed":tally["manager_ai_completed"]+=1
     else:tally["ai_failed"]+=1
 summary["shared_understanding_version"]=SHARED["version"]
+summary["tool_improvement_standing_order"]="ORD-022"
+summary["external_tools_discovered_this_cycle"]=len(TOOL_REPORT.get("new_tool_candidates",[]))
+summary["external_tools_actually_installed_or_connected"]=0
+summary["tool_research_report_status"]="generated" if TOOL_REPORT_PATH.exists() else "missing"
 summary["owner_professional_brief_version"]=BRIEF["version"]
 summary["understanding_reports_collected"]="Only model-generated reports from activated workers, managers, S/G/H workers; dormant roles are not counted."
 summary["owner_coin_only_goal"]=SHARED["owner_intent"]["real_goal"]
