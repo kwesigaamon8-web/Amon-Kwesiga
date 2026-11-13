@@ -73,6 +73,8 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
       "capability_method_ids":[c["id"] for c in CAPABILITY_PACK["implemented_capabilities"]],
       "independent_capability_assessment":capabilities,
       "additional_owner_order":"ORD-022",
+      "render_network_order":"ORD-028",
+      "render_outbound_source_ip_context":SHARED.get("render_network_instructions",{}),
       "independence_order":"ORD-023",
       "immediate_independent_work":SHARED["owner_intent"]["immediate_independent_execution"],
       "autonomy_scope":POLICY["immediate_independent_execution"]["autonomous_without_reasking"],
@@ -99,10 +101,11 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
         return {"status":"llm_unavailable","analysis":"","error":error,
                 "parent_id":meta["parent_id"],"capability_assessment":capabilities}
     prompt=[
-      {"role":"system","content":"OWNER ORD-021 through ORD-027 apply to EVERY activated level, including final H branch workers: when you receive the owner's instruction, proceed INDEPENDENTLY without another prompt on all already authorized source research, permitted tool uses, evidence checks, reviews and reporting to your one boss; if a source fails try a different permitted one and report proof of your work. Independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
+      {"role":"system","content":"OWNER ORD-021 through ORD-028 apply to EVERY activated level, including final H branch workers: when you receive the owner's instruction, proceed INDEPENDENTLY without another prompt on all already authorized source research, permitted tool uses, evidence checks, reviews and reporting to your one boss; if a source fails try a different permitted one and report proof of your work. Independently discover and assess other research sites, tools and public AI models to improve verified paid-work research, using only permitted read-only or explicitly authorized functionality. Report actual tested utility, costs, unknowns, and when connection is needed. Independently research WORLDWIDE for legitimate real paid work across any practical field, verify genuine payer, deliverable, no upfront fee, eligibility, and matching owner-approved cryptocurrency receiving network. Seek real completed work and verified coin deposits; leads, drafts and account names are NOT received coins. Report to exactly one parent; challenge weak sources; never invent transfers, send bulk unsolicited messages or share keys. Reply concisely."},
       {"role":"user","content":json.dumps({"agent_id":agent_id,"one_boss":meta["parent_id"],
         "independent_task":str(mission)[:220],
-        "orders":["ORD-021","ORD-022","ORD-023","ORD-024","ORD-025","ORD-026","ORD-027"],
+        "orders":["ORD-021","ORD-022","ORD-023","ORD-024","ORD-025","ORD-026","ORD-027","ORD-028"],
+        "render_network":"Shared Render source egress CIDRs 74.220.48.0/24 and 74.220.56.0/24, NOT destination endpoints. Never scan them. Verify authorized provider hostnames.",
         "independent_method":"Choose your own next permitted step, critically challenge source claims and do not copy another agent's conclusion as your own. Report one specific source or blocker.",
         "capability_review":short_model_context(capabilities),
         "instruction":"Briefly plan, independently evaluate, identify risk and next permitted action; every activated role needs its own document. Do not invent transfers."},
