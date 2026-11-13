@@ -1,4 +1,4 @@
-"""Verify owner directives ORD-021, ORD-022 and ORD-023 cascade to last H-tier.
+"""Verify owner directives ORD-021, ORD-022, ORD-023 and ORD-029 cascade to last H-tier.
 This checks role definitions and model-prompt wiring, NOT successful agent execution.
 """
 import json
@@ -10,7 +10,7 @@ from mega_branch_factory import describe_branch_worker, verify_branch_worker_id
 
 ROOT = Path("crypto-agents")
 ORDER_ID = "ORD-021"
-ORDER_IDS = {"ORD-021", "ORD-022", "ORD-023"}
+ORDER_IDS = {"ORD-021", "ORD-022", "ORD-023", "ORD-029"}
 
 def verify():
     registry = json.loads((ROOT / "owner_orders.json").read_text(encoding="utf-8"))
@@ -20,6 +20,7 @@ def verify():
     assert "WORLDWIDE" in shared["owner_intent"]["worldwide"]
     assert "ORD-022" in shared["owner_intent"]["tool_improvement"]
     assert "ORD-023" in shared["owner_intent"]["immediate_independent_execution"]
+    assert "ORD-029" in shared["owner_intent"]["agent_freedom"]
     source = (ROOT / "company_ai_review.py").read_text(encoding="utf-8")
     for marker in ('"standing_owner_order"', '"additional_owner_order"', '"independence_order"', '"immediate_independent_work"', '"tools_and_sites_improvement"', 'SHARED["owner_intent"]["worldwide"]', 'hchild["mission"]'):
         assert marker in source, f"Missing model prompt cascade marker: {marker}"

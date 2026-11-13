@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:36:34.884Z",
+  "updated_utc": "2026-11-13T17:37:16Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -464,6 +464,26 @@
       "verification_condition": "Owner instruction visible in shared agent context; actual access separately established by legitimate destination URL and authenticated log; no network traffic implied by repository update.",
       "reported_status": "configured_not_runtime_verified",
       "external_action": "No internet scan, firewall change, credentials, login or connection attempted by recording these CIDRs."
+    },
+    {
+      "id": "ORD-029",
+      "title": "Let every actually activated agent work freely and choose independent methods",
+      "accountable_director": "D10",
+      "standing_requirement": "ORD-029: Every ACTUALLY ACTIVATED D/A/M/W/S/G/H agent is free to independently select lawful work topics, investigate new public sites/tools, choose strategies, reject poor leads, pivot after errors, critically review information and create its own evidence-based next steps without permission from its parent for already allowed read-only work. No one micro-manages or dictates the agent's conclusions. Reporting to its single parent is for coordination and proof of work only, not to restrict independent judgment. Authorized authenticated actions may be taken if the precise permissions already cover them; new external accounts, financial commitments, wallet signing, unauthorized outreach and private credential access still require explicit authorization. Do not treat billions of configured but unrun IDs as independently working AIs. Each role's individual actual execution and deliverable must be verified.",
+      "evidence_files": [
+        "crypto-agents/autonomy_policy.json",
+        "crypto-agents/shared_understanding.json",
+        "crypto-agents/subagent_factory.py",
+        "crypto-agents/microcompany_factory.py",
+        "crypto-agents/mega_branch_factory.py",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/agents.py",
+        "crypto-agents/order_cascade_audit.py"
+      ],
+      "verification_condition": "All activated role prompts receive ORD-029 and free_choice_independence; factory-generated S/G/H role IDs inherit it; per-role actual model/source execution and evidence-backed report remain distinct from defined but dormant roles.",
+      "reported_status": "configured_not_runtime_verified",
+      "external_action": "No new payments, third-party site logins, posts, accounts or model deployments have been authorized solely by this order.",
+      "last_verified_payment_receipt": null
     }
   ]
 }

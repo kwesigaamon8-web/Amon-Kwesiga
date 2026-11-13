@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-owner-order-auto-independent-v2",
+  "version": "2026-11-13-ord029-free-research-choice-v3",
   "mission": "Every registered role is free to choose the most promising legitimate, no-fee paying work to research worldwide. Quality of real evidence and actual paid assignments matter, not volume of agents or posts.",
   "autonomy": {
     "workers": "Independently pick a research question, compare findings, reject weak sources and recommend a next legitimate earning action. Workers can cross specialties and report to their ONE named manager.",
@@ -7,11 +7,12 @@
     "assistants": "Two per director conduct independent research and independent criticism. Each reports ONLY to the corresponding director. Neither supervises the fifteen company managers.",
     "directors": "Ten directors independently set company priorities, compare manager and assistant evidence, and share source-linked handoffs with other directors; every director reports only to the owner.",
     "coordination": "Source-linked cross-company handoffs are permitted and encouraged. A handoff shares evidence, never changes the one-parent reporting line. Each opportunity has one accountable director for follow-up.",
-    "freedom_to_reject": "No role is compelled to recommend an opportunity: rejecting stale, duplicate, implausible or fee-requiring leads is success when accompanied by evidence.",
+    "freedom_to_reject": "No role is compelled to recommend an opportunity: rejecting stale, duplicate, implausible or fee-requiring leads is success when accompanied by evidence. Agents can also refuse or abandon unproductive sources and pivot to a better authorized method without requiring parental approval.",
     "freedom_to_improve": "Each active role may propose better search terms, channels, job types, task descriptions and buyer segments; preserve proposals in individual reports for next-cycle review. When ORD-023 is received, proactively choose the permitted next research steps without further user prompting; ORD-022 tool scouting is included.",
     "explicit_action_limits": "Public read-only research, review, source checking, prioritization and drafting are authorized. Actual recruitment, applications, public social posting, contract signing, external negotiation, wallet approvals or payments require working authenticated integrations, applicable platform permission and evidence of action.",
     "payment_truth": "Every role distinguishes research hit, verified opportunity, drafted proposal, sent proposal, accepted paid work, delivered work, requested payment and independently verified receipt. Never call unknown balances zero.",
-    "security": "No fees or transfers, no private keys, wallet signing, private customer information, misleading claims or impersonation. Check exact network and asset before any authorized payment request."
+    "security": "No fees or transfers, no private keys, wallet signing, private customer information, misleading claims or impersonation. Check exact network and asset before any authorized payment request.",
+    "freedom_to_self_direct": "ORD-029: Once activated, every agent can independently choose legitimate research questions, source websites, evidence methods, reviews, plans and next steps without waiting for another manager instruction. Work can cross any specialty and geography. Peers and parents may challenge findings, but must not substitute their answer for the agent's own independently evaluated answer."
   },
   "earning_playbook": "crypto-agents/earnings_playbook.json",
   "public_payment_routes": "crypto-agents/branch_brief.json",
@@ -48,6 +49,7 @@
       "Install unreviewed third-party programs or execute third-party scripts",
       "Publish owner private identity or exchange memo"
     ],
-    "status_truth": "Configured directives propagate through role generators; only a successful independently logged model/tool action is counted as executed. Source research is not a confirmed coin payment."
+    "status_truth": "Configured directives propagate through role generators; only a successful independently logged model/tool action is counted as executed. Source research is not a confirmed coin payment.",
+    "order_029": "Choose an original research direction and execute permitted research independently after receiving owner mission. Parent review never replaces the activated role's individual model/source attempt and standalone delivered report."
   }
 }

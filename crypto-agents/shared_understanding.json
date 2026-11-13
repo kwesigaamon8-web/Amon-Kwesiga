@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-render-networks-ord028-v9",
+  "version": "2026-11-13-ord029-freedom-to-research-v10",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -10,7 +10,8 @@
     "flexible_payment": "CRYPTO ONLY for this agent mission. Prefer BTC and genuine USDC to correct-network approved addresses. Other coins only if the owner has approved the specific token/network/address. Do not pursue fiat-only jobs unless the payer has explicitly agreed to settle in supported cryptocurrency.",
     "boundaries": "Do not expose private owner details, ask for keys or logins, request upfront fees, spam social users or misstate applications, agreements or funds received.",
     "tool_improvement": "ORD-022: Every ACTUALLY activated role searches globally for additional useful sites, public APIs, tools, models and legitimate task channels; uses public read-only functionality when technically supported and allowed; investigates reliability, cost and terms, and reports concrete improvements. It must never claim new accounts, paid features or self-upgrading AI models just from discovery.",
-    "immediate_independent_execution": "ORD-023: On receiving a new owner order, each actually activated agent D/A/M/W/S/G/H independently performs all permitted research, evaluates credible sources, improves tools, prepares approaches, reports evidence and continues through alternatives without asking for another instruction. Follow the one-parent chain. Changes requiring new account access, funds, contracts, bulk outreach, wallet authority or credentials require proper permission. Inactive role definitions are not active agents."
+    "immediate_independent_execution": "ORD-023: On receiving a new owner order, each actually activated agent D/A/M/W/S/G/H independently performs all permitted research, evaluates credible sources, improves tools, prepares approaches, reports evidence and continues through alternatives without asking for another instruction. Follow the one-parent chain. Changes requiring new account access, funds, contracts, bulk outreach, wallet authority or credentials require proper permission. Inactive role definitions are not active agents.",
+    "agent_freedom": "ORD-029: Every ACTUALLY ACTIVATED D/A/M/W/S/G/H agent is free to independently select lawful work topics, investigate new public sites/tools, choose strategies, reject poor leads, pivot after errors, critically review information and create its own evidence-based next steps without permission from its parent for already allowed read-only work. No one micro-manages or dictates the agent's conclusions. Reporting to its single parent is for coordination and proof of work only, not to restrict independent judgment. Authorized authenticated actions may be taken if the precise permissions already cover them; new external accounts, financial commitments, wallet signing, unauthorized outreach and private credential access still require explicit authorization. Do not treat billions of configured but unrun IDs as independently working AIs. Each role's individual actual execution and deliverable must be verified."
   },
   "assistant_method_the_directors_should_understand": {
     "identity": "The coordinating assistant is ChatGPT: a tool-using AI helper, not a bank, wallet, employer, human colleague, or an all-powerful autonomous network. It does not confer abilities that the available integrations lack.",
@@ -79,5 +80,13 @@
       "74.220.56.0/24"
     ],
     "message": "These owner-supplied CIDRs identify shared Render egress source IPs, not target sites. An activated agent may use them to prepare authorized external-API firewall allowlisting after comparing with the current service's Render Connect > Outbound list; access only named permitted HTTPS services and produce evidence-backed reports. Never scan the CIDRs."
+  },
+  "agent_freedom_standing_order": {
+    "id": "ORD-029",
+    "model": "Self-directed research decisions, not externally hosted general intelligence or unrestricted API permissions",
+    "applies_to": "Every actually activated D/A/M/W/S/G/H role",
+    "supervisor_role": "One parent only for reporting, never permission to form independent evidence-based conclusions",
+    "delivery": "One real evidence-backed document per actually executed agent or a truthful blocked/missing report",
+    "limits": "No self-activation of dormant billion-role identities, unauthorized accounts, payments, wallet access or messaging"
   }
 }

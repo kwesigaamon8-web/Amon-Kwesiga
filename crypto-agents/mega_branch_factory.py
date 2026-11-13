@@ -26,7 +26,7 @@ def describe_branch_worker(parent_id,parent_name,slot):
         "id":f"{parent_id}-H{slot:03d}",
         "name":f"{parent_name}-BranchWorker-{slot:03d}",
         "parent_id":parent_id,
-        "owner_order_id":"ORD-021","owner_order_ids":["ORD-021","ORD-022","ORD-023"],"order_inherited_from":parent_id,
+        "owner_order_id":"ORD-021","owner_order_ids":["ORD-021","ORD-022","ORD-023","ORD-029"],"free_choice_independence":"ORD-029: free to choose permitted lawful research tasks, sites, hypotheses and next steps without manager micromanagement; still provide genuine documented results","order_inherited_from":parent_id,
         "independent_after_order":CFG["independent_after_owner_order"],
         "tool_improvement_mandate":CFG["tool_improvement_order"],
         "branch_id":"BR-"+parent_id,
