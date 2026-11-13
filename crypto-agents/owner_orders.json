@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:59:00Z",
+  "updated_utc": "2026-11-13T18:05:38Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -590,6 +590,21 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Internal order routing, authorized public research and inspectable reports only."
+    },
+    {
+      "id": "ORD-036",
+      "title": "Director D consolidates real discussions and reports directly to owner on B workers",
+      "accountable_director": "D",
+      "standing_requirement": "The owner appoints one named communications director D to be the SOLE consolidated reporting voice to owner about B, meaning all 375,188,632,680 defined worker roles. Operating directors D01-D10 each supervise their original managers, workers and descendant S/G/H roles, exchange independent actual findings, challenge source legitimacy, reach agreement only on evidence-supported recommendations and record dissent or unresolved issues otherwise. Director D receives ten actual director perspectives when available, summarizes documented agreement and dissent, reports actual number of completed model calls and missing responses, and prepares a one-page concise Word/PDF-compatible owner report. D must never fabricate ten separate AI votes or claim configured roles are active; if fewer than ten real director reports, say consensus not established. Every standing order reaches all descendant role definitions through the strict one-parent chain on activation. No mass registrations, fees, spam, credential access or blockchain transfers.",
+      "evidence_files": [
+        "crypto-agents/director_D_consensus.py",
+        "crypto-agents/owner_command_chain.json",
+        "crypto-agents/ai_process_audit.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Director D's report includes ten director response statuses, clearly counts completed independent AI findings, explicit agreement/dissent/not-established and next lawful action; no coin-income claim without independent receipt.",
+      "reported_status": "configured_not_runtime_verified",
+      "external_action": "Read-only internal review of real agent report artifacts and presentation to owner."
     }
   ],
   "broadcast_aliases": {

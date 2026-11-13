@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-ord035-understanding-v13",
+  "version": "2026-11-13-ord036-director-D-consensus-v14",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -120,5 +120,24 @@
     "clarification": "The user means my billions of workers, not a named B assistant and not a literal message broadcast to billions of live hosts.",
     "current_owner_order": "ORD-034",
     "learning_catalog": "crypto-agents/global_coin_learning.json"
+  },
+  "coordinating_director_D": {
+    "id": "D",
+    "name": "Director D",
+    "purpose": "Owner's one reporting director for the B-billion-scale worker system",
+    "directors": [
+      "D01",
+      "D02",
+      "D03",
+      "D04",
+      "D05",
+      "D06",
+      "D07",
+      "D08",
+      "D09",
+      "D10"
+    ],
+    "discussion": "Actual individual director views, cross-review of real sources, agreed recommendation or unresolved dissent, and one-page Word/PDF report",
+    "evidence": "Only actual model process logs and source links; no role IDs as fake agreement"
   }
 }
