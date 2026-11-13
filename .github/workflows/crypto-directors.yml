@@ -18,6 +18,9 @@ on:
       - 'crypto-agents/agent_registry.csv'
       - 'crypto-agents/autonomy_policy.json'
       - 'crypto-agents/earnings_playbook.json'
+      - 'crypto-agents/friendly_earnings_directive.json'
+      - 'crypto-agents/friendly_pitch.py'
+      - 'crypto-agents/post_conference.py'
       - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
@@ -117,6 +120,13 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: python crypto-agents/post_directors.py
+      - name: Share actual independently researched company updates in general conference
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/post_conference.py
       - name: Contribute 30 individual research summaries to the public meeting
         continue-on-error: true
         env:
