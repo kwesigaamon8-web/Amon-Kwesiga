@@ -7,10 +7,11 @@ from pathlib import Path
 from subagent_factory import describe_child
 from microcompany_factory import describe_micro_worker
 from mega_branch_factory import describe_branch_worker, verify_branch_worker_id
+from command_chain_receipts import configured_assignment, structural_check
 
 ROOT = Path("crypto-agents")
 ORDER_ID = "ORD-021"
-ORDER_IDS = {"ORD-021", "ORD-022", "ORD-023", "ORD-029"}
+ORDER_IDS = {"ORD-021", "ORD-022", "ORD-023", "ORD-029", "ORD-035"}
 
 def verify():
     registry = json.loads((ROOT / "owner_orders.json").read_text(encoding="utf-8"))
@@ -24,6 +25,7 @@ def verify():
     source = (ROOT / "company_ai_review.py").read_text(encoding="utf-8")
     for marker in ('"standing_owner_order"', '"additional_owner_order"', '"independence_order"', '"immediate_independent_work"', '"tools_and_sites_improvement"', 'SHARED["owner_intent"]["worldwide"]', 'hchild["mission"]'):
         assert marker in source, f"Missing model prompt cascade marker: {marker}"
+    assert structural_check()["status"]=="PASS"
     checked = 0
     for director in (1, 5, 10):
         for manager in (1, 15):
@@ -52,6 +54,7 @@ def verify():
                             assert "ORD-022" in last["tool_improvement_mandate"]
                             assert verify_branch_worker_id(last["id"])
                             assert last["status"] == "defined_not_executed"
+                            assert configured_assignment(last["id"])["direct_supervisor"]==micro["id"]
                             checked += 1
     return {
         "standing_orders": sorted(ORDER_IDS),

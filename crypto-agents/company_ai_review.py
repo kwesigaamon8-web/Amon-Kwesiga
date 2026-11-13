@@ -17,6 +17,7 @@ from subagent_factory import describe_child, select_slot
 from microcompany_factory import describe_micro_worker, select_micro_worker_slot
 from mega_branch_factory import describe_branch_worker, rotating_slot
 from understanding_response import understanding_report, BRIEF
+from command_chain_receipts import configured_assignment, understanding_receipt
 from capability_engine import capability_review, short_model_context, PACK as CAPABILITY_PACK
 from datetime import datetime, timezone
 
@@ -71,6 +72,8 @@ def run_agent(agent_id, mission, evidence, meta_override=None):
       "capability_order":"ORD-026",
       "independent_role_order":"ORD-027",
       "freedom_to_choose_work":"ORD-029",
+      "strict_owner_chain":"ORD-035",
+      "immediate_parent_command_route":configured_assignment(agent_id)["owner_to_role_route"],
       "broadcast_B_id":"ORD-033",
       "broadcast_B_directive":SHARED["universal_broadcast_B"],
       "free_independent_research":SHARED["owner_intent"]["agent_freedom"],
@@ -149,6 +152,8 @@ for manager_id in manager_ids:
         worker["agent_name"]=ids[worker_id]["agent_name"]
         worker["reports_to_one"]=manager_id
         worker["model_inference"]=decision
+        worker["ord035_command_chain"]=configured_assignment(worker_id)
+        worker["ord035_understanding_receipt"]=understanding_receipt(worker_id,decision.get("analysis",""),decision["status"])
         worker["understanding_response"]=understanding_report(worker_id,ids[worker_id]["agent_name"],manager_id,
             worker["assigned_role"],decision,[x.get("url") for x in worker.get("unverified_leads",[])[:2]])
         worker["friendly_reply_drafts"]=[warm_pitch(x,role=worker["assigned_role"],writer_id=worker_id) for x in worker.get("unverified_leads",[])[:2]]
@@ -165,6 +170,8 @@ for manager_id in manager_ids:
         child["director_objective"]=SHARED["director_mandates"].get(ROLE,"")
         child["owner_coin_only_goal"]=SHARED["owner_intent"]["real_goal"]
         child["model_inference"]=child_decision
+        child["ord035_command_chain"]=configured_assignment(child["id"])
+        child["ord035_understanding_receipt"]=understanding_receipt(child["id"],child_decision.get("analysis",""),child_decision["status"])
         child["understanding_response"]=understanding_report(child["id"],child["agent_name"],worker_id,
             child["objective"],child_decision,child.get("source_evidence_urls",[]))
         child["status"]="model_completed" if child_decision["status"]=="model_completed" else "not_verified_active_AI"
@@ -185,6 +192,8 @@ for manager_id in manager_ids:
             worker.get("unverified_leads",[])[:1],
             meta_override={"agent_name":micro["name"],"parent_id":child["id"]})
         micro["model_inference"]=micro_decision
+        micro["ord035_command_chain"]=configured_assignment(micro["id"])
+        micro["ord035_understanding_receipt"]=understanding_receipt(micro["id"],micro_decision.get("analysis",""),micro_decision["status"])
         micro["understanding_response"]=understanding_report(micro["id"],micro["name"],child["id"],
             micro["independent_research_objective"],micro_decision,[x.get("url") for x in worker.get("unverified_leads",[])[:1]])
         micro["role_execution_status"]="model_completed" if micro_decision["status"]=="model_completed" else "not_verified_active_AI"
@@ -212,6 +221,8 @@ for manager_id in manager_ids:
                 worker.get("unverified_leads",[])[:1],
                 meta_override={"agent_name":hchild["name"],"parent_id":micro["id"]})
             hchild["model_inference"]=hdecision
+            hchild["ord035_command_chain"]=configured_assignment(hchild["id"])
+            hchild["ord035_understanding_receipt"]=understanding_receipt(hchild["id"],hdecision.get("analysis",""),hdecision["status"])
             hchild["understanding_response"]=understanding_report(hchild["id"],hchild["name"],micro["id"],
                 hchild["mission"],hdecision,[x.get("url") for x in worker.get("unverified_leads",[])[:1]])
             hchild["actual_inference_status"]=hdecision["status"]
@@ -259,6 +270,8 @@ for manager_id in manager_ids:
     mgr["reports_to_one"]=ROLE
     mgr["worker_ai_reviews"]=worker_results
     mgr["model_inference"]=decision
+    mgr["ord035_command_chain"]=configured_assignment(manager_id)
+    mgr["ord035_understanding_receipt"]=understanding_receipt(manager_id,decision.get("analysis",""),decision["status"])
     mgr["understanding_response"]=understanding_report(manager_id,ids[manager_id]["agent_name"],ROLE,
         "Supervise and independently verify 50 specialist workers",decision,[x.get("url") for x in mgr.get("source_linked_candidate_examples",[])[:2]])
     mgr["friendly_reply_drafts"]=[warm_pitch(x,role="manager",writer_id=manager_id) for x in mgr.get("source_linked_candidate_examples",[])[:2]]

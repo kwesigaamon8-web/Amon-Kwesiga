@@ -16,6 +16,9 @@ summary={
  "completed_models_with_pid_evidence":0,
  "attempts_by_level":{"W":0,"S":0,"G":0,"H":0},
  "B_broadcast_ORD033_model_completions":0,
+ "ord035_individual_model_replies":0,
+ "ord035_understanding_needs_review_or_failed":0,
+ "ord035_invalid_command_paths":0,
  "actual_independent_model_completions":0,
  "per_agent_markdown_reports_written":0,
  "director_manifests_present":0,
@@ -46,6 +49,18 @@ for d in directors:
             record_path=reports/(wid+".json")
             if record_path.exists():
                 individual=json.loads(record_path.read_text(encoding="utf-8"))
+                receipt=individual.get("command_chain_understanding") or {}
+                chain=individual.get("command_chain_assignment") or {}
+                valid_chain=(receipt.get("role_id")==wid and chain.get("role_id")==wid and
+                             receipt.get("direct_parent")==chain.get("direct_supervisor") and
+                             (chain.get("owner_to_role_route") or [])[-1:]==[wid])
+                if not valid_chain:
+                    summary["ord035_invalid_command_paths"]+=1
+                    summary["issues"].append("Invalid or missing owner-to-parent receipt: "+wid)
+                if receipt.get("understanding_status") in ("model_response_has_mission_and_action","model_response_needs_parent_review"):
+                    summary["ord035_individual_model_replies"]+=1
+                if receipt.get("understanding_status")!="model_response_has_mission_and_action":
+                    summary["ord035_understanding_needs_review_or_failed"]+=1
                 if individual.get("inference_status")=="model_completed" and individual.get("os_process_pid"):
                     summary["completed_models_with_pid_evidence"]+=1
                     if individual.get("owner_broadcast_B_id")=="ORD-033" and individual.get("order_inheritance",{}).get("broadcast_B_inherited"):
@@ -76,6 +91,9 @@ rows=[
  f"Actual OS processes invoked: **{summary['actual_os_processes_invoked']}**",
  f"Actually completed independent model calls: **{summary['actual_independent_model_completions']}**",
  f"Individual documents: **{summary['per_agent_markdown_reports_written']}**",
+ f"ORD-035 individual model-generated replies: **{summary['ord035_individual_model_replies']}**",
+ f"ORD-035 replies needing review or retry: **{summary['ord035_understanding_needs_review_or_failed']}**",
+ f"ORD-035 invalid command paths: **{summary['ord035_invalid_command_paths']}**",
  f"Completed AI with unique PID evidence: **{summary['completed_models_with_pid_evidence']}**",
  f"B=ORD-033 completed model reports: **{summary['B_broadcast_ORD033_model_completions']}**",
  f"Attempted by W/S/G/H level: **{summary['attempts_by_level']}**",
