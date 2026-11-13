@@ -16,6 +16,8 @@ on:
       - 'crypto-agents/company_workers.py'
       - 'crypto-agents/company_ai_review.py'
       - 'crypto-agents/agent_registry.csv'
+      - 'crypto-agents/autonomy_policy.json'
+      - 'crypto-agents/earnings_playbook.json'
       - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
@@ -34,10 +36,10 @@ jobs:
   independent-research:
     name: ${{ matrix.role }}
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 28
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 10
       matrix:
         role: [D01, D01-A, D01-B, D02, D02-A, D02-B, D03, D03-A, D03-B, D04, D04-A, D04-B, D05, D05-A, D05-B, D06, D06-A, D06-B, D07, D07-A, D07-B, D08, D08-A, D08-B, D09, D09-A, D09-B, D10, D10-A, D10-B]
     steps:
