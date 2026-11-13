@@ -65,9 +65,12 @@ for d in directors:
         "next_actions": [
             "Review each lead's current source, exact payout, qualification requirements, country eligibility and payment method.",
             "Reject requests for application fees, wallet connection, transfers, identity exposure without legitimate purpose, or contract approval.",
-            "If genuinely eligible, prepare a tailored work proposal for owner approval. Do not claim work or post without permission.",
+            "Owner authorizes independent scouting and proposal preparation. For a genuine eligible opportunity, draft a tailored, truthful approach and a network-appropriate payout request; send only when an authenticated tool actually supports it and platform rules allow.",
             "Record independently confirmed payment receipts only with transaction/network evidence, not lead counts."
         ],
+        "owner_authorized_independence": True,
+        "payout_priority": "Direct verified earnings into a user-approved address on the exact supported network; never guess full addresses or reveal a private user wallet map in this public repository.",
+        "outreach_capability": "Not available through this workflow: it can research, draft, and rank but cannot post, apply, sign, or remit.",
         "verified_earnings": [],
         "mission_reminder": "The measure of success is actual legitimate transferable payment to the user, not research volume or token spam."
     }
@@ -78,7 +81,7 @@ for d in directors:
             "ai_reviews_completed": sum(v.get("ai_analysis",{}).get("status") == "llm_completed" for v in reports.values()),
             "total_qualified_leads": len(strong),
             "verified_payment_receipts": 0,
-            "message_to_all_directors": "Search worldwide; prioritize real paid work, protect wallet access, and report only verified income as received."
+            "message_to_all_directors": "Owner authorizes independent work. Search worldwide, prioritize payouts to an approved correct-network owner address, protect wallet access, and report only verified income as received."
         }
     (OUTPUT / f"{d}.json").write_text(json.dumps(review, indent=2), encoding="utf-8")
     rows.append(f"| {d} — {ROLE_NAMES[d].replace('Director: ','')} | {'Yes' if sources[0] else 'No'} | {'Yes' if sources[1] else 'No'} | {'Yes' if sources[2] else 'No'} | {len(reviewed)} |")
