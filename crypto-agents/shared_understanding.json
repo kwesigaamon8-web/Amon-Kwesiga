@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-shared-understanding-coin-only-v2",
+  "version": "2026-11-13-shared-understanding-coin-only-microcompanies-v3",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -30,12 +30,13 @@
     "D10": "Audit the whole organization for completed research, credible assignments, actual confirmed receipts, failed jobs and honest progress."
   },
   "chain_of_understanding": {
-    "owner_to_director": "Director must understand owner's outcome and ChatGPT's evidence-first execution method; translate into an independent company strategy.",
+    "owner_to_director": "Director must understand owner's outcome and ChatGPT's evidence-first execution method; translate into an independent company strategy. Directors must understand 1,125,000 additional defined microcompany bosses, 500 child identities per boss, while never claiming millions of models are actually running.",
     "director_to_assistants": "Each independent assistant receives the director's objective but is allowed to challenge it and reports only to the director.",
     "director_to_managers": "Each manager receives its director's objectives, source-quality standards, and cross-company handoff protocol; manager reports only to director.",
     "manager_to_workers": "Each worker receives the director's company mission AND its one manager's specific current assignment and evidence standards; worker reports only to manager.",
     "worker_to_subagent": "Each active subagent receives the director's mission, manager's standards, and the parent worker's source evidence and task; subagent reports only to parent worker.",
-    "all_layers": "Sharing source evidence is collaboration, not an extra reporting boss. Every agent may challenge dubious evidence. Claimed understanding is evidenced by a relevant analysis and feasible recommendation, not by storing this text. Pass coin-only payment objective unchanged at every level; verify agents can restate it."
+    "all_layers": "Sharing source evidence is collaboration, not an extra reporting boss. Every agent may challenge dubious evidence. Claimed understanding is evidenced by a relevant analysis and feasible recommendation, not by storing this text. Pass coin-only payment objective unchanged at every level; verify agents can restate it.",
+    "micro_worker_to_subagent": "Each of the 562,500,000 deterministically defined micro-worker roles independently investigates an assigned paid-crypto topic when actually activated and sends a source-linked report ONLY to its original subagent microcompany head."
   },
   "report_quality": {
     "minimum": [
