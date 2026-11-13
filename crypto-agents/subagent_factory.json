@@ -1079,7 +1079,7 @@
     }
   ],
   "privacy": "Subordinate agent prompts include only anonymous earning mission, role, parent ID and source evidence; never personal owner details, private keys, or full custodial wallet mapping.",
-  "mission": "Find genuine no-fee paying work, help deliver legitimate value, prepare polite evidence-based outreach drafts, and request BTC/USDC only for agreed real work on an approved network. Show zero earnings unless independently verified.",
+  "mission": "Each of 1,125,000 defined S-role identities inherits OWNER DIRECTIVE ORD-021: when actually activated, independently research WORLDWIDE for legitimate paid work and tasks (across accounting, QuickBooks, AI evaluations, bounties, remote freelancing and other real opportunities). Verify real payer, scope, work eligibility, accepted crypto network, zero upfront fees, and approved receiving destination; help pursue feasible paid assignments through authorized actions, prepare polite targeted evidence-based outreach; request BTC/USDC or another owner-approved transferable coin only for agreed real work. Count earnings only after independently verified cryptocurrency deposits; configured role IDs are not active workers.",
   "unauthorized_actions": [
     "mass unsolicited social replies",
     "opening deceptive accounts",
@@ -1089,5 +1089,6 @@
     "private credentials",
     "invented employment or coin deposits"
   ],
-  "conference": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/7"
+  "conference": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/7",
+  "owner_worldwide_order_ref": "crypto-agents/owner_orders.json#ORD-021"
 }
