@@ -40,10 +40,23 @@ jobs:
           fi
           fi
       - name: Archive evidence
+        id: first-archive
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: ai-independence-integrity-audit
+          path: |
+            independence-audit/
+            microcompany-audit/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Retry evidence upload if the first connection failed
+        if: ${{ always() && steps.first-archive.outcome == 'failure' }}
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-independence-integrity-audit-retry
           path: |
             independence-audit/
             microcompany-audit/
