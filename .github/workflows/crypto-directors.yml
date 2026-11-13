@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/crypto-directors.yml'
       - 'crypto-agents/roles.json'
+      - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/agents.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
