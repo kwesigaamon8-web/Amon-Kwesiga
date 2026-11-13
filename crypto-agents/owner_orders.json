@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:40:34Z",
+  "updated_utc": "2026-11-13T19:42:52Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -751,6 +751,23 @@
       "reported_status": "standing_owner_order_recorded; encrypted_directory_secret_configuration_unverified; no_payment_claimed",
       "last_verified_payment_receipt": null,
       "external_action": "No signing, transfer, spending, bulk messaging or registration; restricted owner action required to set the private GitHub Actions secret if absent."
+    },
+    {
+      "id": "ORD-046",
+      "title": "Every actually active B worker may publicize the owner-approved public receiving-address directory in authorized relevant work and payment posts",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER ORDER: ALL B director, assistant, manager, W, S, G and H defined roles inherit the instruction to PUBLICIZE the already owner-published public receiving-address page https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md whenever the role ACTUALLY runs and makes an authorized relevant public service offer, paid-work post, accepted-payer response or owner-controlled report. On permitted social and agent collaboration channels, link to the canonical public page only where context is welcome and not duplicative; do not flood threads, send unsolicited mass DMs, claim dormant billions all posted or manufacture external profiles. The full address list is already public by owner permission, but publishing a link never proves coin receipt, buyer agreement, or address-network compatibility. Before requesting any transfer, director D09 must validate exact asset, blockchain network, ONE owner-approved destination and any mandatory memo privately. The six Binance candidate routes are unverified and NOT payment ready, and their memos should never be posted; do not direct payment to these without confirmation. Director D must make all actual B workers aware, include the link once in relevant authorized consolidated announcements, record evidenced live publication counts by distinct channel and actual earnings separately. Use only existing permitted owner-controlled posting identities and don't expose wallet keys, recovery phrases, email, personal profile or login data.",
+      "evidence_files": [
+        "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
+        "crypto-agents/owner_order_distribution.py",
+        "crypto-agents/role_ai_identity.py",
+        "crypto-agents/post_directors.py",
+        "crypto-agents/post_meeting.py"
+      ],
+      "verification_condition": "Confirm owner instruction listed in inherited order IDs and actual model task text, one public GitHub owner-controlled posting reference, no duplicate unauthorized mass posts; only actual authenticated publication counts as publication. Payment claims require independently verified receipts.",
+      "reported_status": "owner_order_recorded; public_directory_already_live; bulk_publication_not_claimed",
+      "last_verified_payment_receipt": null,
+      "external_action": "Reference canonical public directory in owner-authorized appropriate contexts only, never mass unsolicited messaging or unconfirmed exchange payout instructions."
     }
   ],
   "broadcast_aliases": {
