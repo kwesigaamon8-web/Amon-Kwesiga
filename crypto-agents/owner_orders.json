@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T16:54:48Z",
+  "updated_utc": "2026-11-13T17:07:30.029Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -320,6 +320,24 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Single owner-authenticated conference update only when actual model replies exist; does not create 375 billion real AI workers, post millions of messages, make payments or distribute private exchange credentials."
+    },
+    {
+      "id": "ORD-021",
+      "title": "Worldwide independent paid-work research directed at real crypto receipts",
+      "accountable_director": "D03",
+      "standing_requirement": "OWNER DIRECTIVE (13 November 2026): Mobilize all ACTUALLY ACTIVE directors, assistants, managers, rotating specialist workers and activated descendants to research worldwide, independently, for legitimate opportunities that can result in coins deposited to the owner's already approved addresses. Pursue genuine crypto-paying accounting, bookkeeping, QuickBooks, Excel, audit support, remote freelance work, AI evaluations, bounties, microtasks and other feasible legal paid tasks, not just mining or appeals. Research original sources, verify whether workers in Uganda can participate, confirm payer, scope, compensation, timeline and exact asset/network, prepare tailored approaches, and use authenticated permissions only where technically available. Coordinate evidence without duplicating spam. Before requesting any transfer, verify the payer-approved recipient/network against the four PUBLIC receiving routes in crypto-agents/branch_brief.json; other private exchange routes and memo requirements must remain private until the owner securely provides them to the genuine payer. Each director reports verifiable sources, action taken, blocks, and only independently confirmed incoming coins. A registered or mathematically defined identity is not an active agent until execution evidence exists.",
+      "evidence_files": [
+        "crypto-agents/owner_brief.json",
+        "crypto-agents/branch_brief.json",
+        "crypto-agents/earnings_playbook.json",
+        "crypto-agents/company_workers.py",
+        "crypto-agents/company_ai_review.py",
+        "crypto-agents/director_coordination.py"
+      ],
+      "verification_condition": "Verify current GitHub Actions execution and worker outputs; identify concrete payer-linked opportunities and supported applications/outreach; independently match on-chain/account incoming credits to owner-approved correct-network destinations. No offered work, submitted proposal, contract, token promise, testnet balance or reported transfer alone counts as received coins.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Research and safe evidence reporting are configured; actual external job applications/contacts/payments require compatible authenticated integrations and any needed explicit authorization. Never invent deposits, spend wallet funds, sign messages, disclose private keys, or send unsolicited bulk messages."
     }
   ]
 }
