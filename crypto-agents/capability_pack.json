@@ -1,0 +1,70 @@
+{
+  "version": "2026-11-13-ord026-v1",
+  "standing_order": "ORD-026",
+  "name": "Evidence-first assistant capability pack",
+  "purpose": "Give each genuinely activated D/A/M/W/S/G/H research role practical parts of ChatGPT-style workflow via existing code, data and bounded open-weight small-model inference.",
+  "inheritance": "OWNER → 10 directors and 20 assistants → 150 managers → rotating 7,500 workers → activated S → activated G → final activated H role; roles not invoked do not receive a live model call.",
+  "implemented_capabilities": [
+    {
+      "id": "task_planning",
+      "description": "Translate owner goal and individual assignment into next-step research plan with a concrete deliverable.",
+      "method": "Short model-guided decomposition plus deterministic fallback task plan"
+    },
+    {
+      "id": "source_assessment",
+      "description": "Check URLs, actual payer, scope and contradictions, separate search results from verified job offers.",
+      "method": "read-only official API/source checks and structured uncertainty"
+    },
+    {
+      "id": "critical_review",
+      "description": "Challenge inflated pay claims, scam indicators, upfront fees, false urgency and wallet requests.",
+      "method": "small-model critique when available; explicit deterministic risk markers"
+    },
+    {
+      "id": "tool_selection",
+      "description": "Choose permitted source or tool based on task and prior results.",
+      "method": "Himalayas, Arbeitnow, Superteam, GitHub, HN, Jobicy, Hugging Face public metadata where configured; read-only only"
+    },
+    {
+      "id": "prioritization",
+      "description": "Rank credible next steps by evidence and delivery fit without inventing payment probability.",
+      "method": "bounded deterministic evidence score and original-source links"
+    },
+    {
+      "id": "professional_writing",
+      "description": "Prepare concise truthful outreach drafts, owner-facing report and evidence-based recommendation.",
+      "method": "existing friendly_pitch and agent_deliverables code; no claims external contact was sent"
+    },
+    {
+      "id": "independent_execution",
+      "description": "Proceed with authorized research after receipt of owner order and try alternate permitted source if blocked.",
+      "method": "scheduled GitHub Actions with configured source rotation and per-role status"
+    },
+    {
+      "id": "memory_and_context",
+      "description": "Use repository approved standing instructions, previous coordination handoffs and role-specific results.",
+      "method": "shared_understanding, owner_orders, director inbox, per-run artifacts; no human-like long-term memory claim"
+    },
+    {
+      "id": "error_and_integrity",
+      "description": "Record unknowns, failed source/model checks, permissions needed, and never invent outputs.",
+      "method": "machine-readable report fields and delivery audit"
+    },
+    {
+      "id": "receipt_verification_boundary",
+      "description": "Keep offered work and claimed payments separate from confirmed on-chain/account credit.",
+      "method": "no receipt counted from this pack without separate independent transaction/account evidence"
+    }
+  ],
+  "reasoning_protocol": [
+    "1. Identify assigned outcome, single parent and permitted capabilities.",
+    "2. Break research into original-source checks and one practical next step.",
+    "3. Compare up to three available candidates with verified facts versus unknowns.",
+    "4. Apply source risks, payout network checks, feasibility and authenticity constraints.",
+    "5. Draft a truthful next action or mark blocked; never claim unauthorized outreach.",
+    "6. Produce a distinct evidence-backed role deliverable and report upward.",
+    "7. Measure actual model invocations, source checks, errors and verified receipts separately."
+  ],
+  "hard_limits": "This does not provide GPT-6 weights, OpenAI API access, ChatGPT's connected apps, unrestricted browsing, cloud computer access, new credentials, payment signing or ability to operate 375 billion parallel roles. Existing HuggingFaceTB/SmolLM2-135M-Instruct inference remains much weaker, may fail or be truncated. No external APIs/actions without authentic permission.",
+  "scope": "Read-only discovery, simple analysis, critical check, prioritization, drafting and internal reporting within existing GitHub-run tools. User should approve external sending, financial commitments, new account access and installing untrusted software."
+}
