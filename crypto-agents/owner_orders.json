@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:14:32.176Z",
+  "updated_utc": "2026-11-13T17:17:26.761Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -378,6 +378,23 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Research, verification, safe public read-only sites, prioritization, drafting, cross-team handoffs and available workflow reports can run without additional prompts. New external credentials, integrations, payment/fees, contracts, financial transfers, wallet signing, unauthorized messaging or bulk applications cannot be self-authorized."
+    },
+    {
+      "id": "ORD-024",
+      "title": "Every actually activated agent must deliver an individual documented report each cycle",
+      "accountable_director": "D10",
+      "standing_requirement": "OWNER STANDING ORDER (13 Nov 2026): ALL genuinely scheduled and executed research agents, D/A/M/W/S/G/H, must each produce a separate evidence-backed document after an attempted work cycle. A report states identity and one parent, task, tools used, actual work and source links, findings, blockers, next payable action and independently VERIFIED cryptocurrency receipts if any. Every activated role acts independently on permitted work under ORD-023 and creates its own truthful work record. Managers must review missing/failed subordinate reports; directors compile a report index and D10 audits all 30 primary jobs, 150 expected managers and any sampled W/S/G/H roles across successful cycle artifacts. Persist individual documents and a consolidated audit in GitHub Actions artifacts. Missing or failed attempts must be marked NOT EXECUTED or BLOCKED, never fabricated as AI work. 375,188,632,680 deterministically defined roles are NOT continuously working or generating reports; only actually scheduled/successfully invoked roles are reportable. Do not sacrifice legitimate paid research or safety for vanity document counts.",
+      "evidence_files": [
+        "crypto-agents/deliverable_contract.json",
+        "crypto-agents/agent_deliverables.py",
+        "crypto-agents/delivery_audit.py",
+        ".github/workflows/crypto-directors.yml",
+        "crypto-agents/company_ai_review.py"
+      ],
+      "verification_condition": "A successful workflow has a per-agent markdown report for each actually attempted role and a machine-readable per-job manifest; central audit accounts for absent main/manager/worker/descendant role reports and distinguishes model completed from source-only/failed. Check artifacts and wallet receipts separately.",
+      "reported_status": "needs_audit",
+      "last_verified_payment_receipt": null,
+      "external_action": "Automated report writing and repo-internal evidence audit only; no external identity, account, paid contract or coin transfer implied."
     }
   ]
 }
