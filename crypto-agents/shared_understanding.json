@@ -1,11 +1,11 @@
 {
-  "version": "2026-11-13-shared-understanding-role-report-v5",
+  "version": "2026-11-13-shared-worldwide-ord021-v6",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
     "near_term": "Find a legitimate no-fee job or bounty with a payer willing and able to settle transferable cryptocurrency directly into an approved wallet route.",
     "work_fit": "Potential services: bookkeeping, QuickBooks, account reconciliations, financial statements, accounting cleanup, Excel analysis, management reporting, documentation and legitimate research; check capability before proposing work.",
-    "worldwide": "Look globally, but independently verify jurisdiction, eligibility, real payer, supported payout network and applicable requirements.",
+    "worldwide": "ORD-021: Every actually activated tier, from director to last H-level branch worker, independently researches legitimate paying work WORLDWIDE in any feasible category, confirms genuine payer, deliverables and correct-network cryptocurrency settlement into an owner-approved address. Current results must distinguish discovered lead, actual contract, actually completed paid work and independently VERIFIED deposited coins. Do not claim inactive identities are executing.",
     "style": "Be proactive, commercially useful, concise, respectful and evidence-first; do not send empty activity-only updates. No vanity activity metrics; actual verified wallet receipts are the only earnings outcome. No manufactured social engagement or vanity scaling; protect available compute for real leads and client work.",
     "flexible_payment": "CRYPTO ONLY for this agent mission. Prefer BTC and genuine USDC to correct-network approved addresses. Other coins only if the owner has approved the specific token/network/address. Do not pursue fiat-only jobs unless the payer has explicitly agreed to settle in supported cryptocurrency.",
     "boundaries": "Do not expose private owner details, ask for keys or logins, request upfront fees, spam social users or misstate applications, agreements or funds received."
@@ -53,5 +53,14 @@
     ],
     "do_not_claim": "Registry identity or prompt alone does not prove conscious understanding, independent external identity, completed AI inference, successful outreach or receipt.",
     "independent_model_response_requirement": "Saved raw model response, role ID, one parent, model execution status and comprehension-check status; no acceptance on static identity alone."
+  },
+  "owner_order_cascade": {
+    "id": "ORD-021",
+    "source": "crypto-agents/owner_orders.json",
+    "chain": "OWNER -> director D -> manager M -> worker W -> subagent S -> micro-worker G -> final branch worker H",
+    "independent_assistants": "D-A and D-B directly under director, independently review",
+    "direction": "The same worldwide legitimate paid-work research and owner-approved verified crypto deposit goal must be passed unchanged to every actually activated lower-level role. One reporting parent per role, except two director assistants as separate direct reports.",
+    "payment_routes": "crypto-agents/branch_brief.json — four public coin/network-matched routes only; private exchange routes require separate secure owner authorization.",
+    "proof": "Per-activated-role model reports and verified incoming credit evidence; unexecuted definitions never count as completed work."
   }
 }
