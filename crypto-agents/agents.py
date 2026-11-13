@@ -7,6 +7,7 @@ from deep_research import due_diligence
 from director_inbox import read_inbox
 from wallet_routes import private_directory_status
 from friendly_pitch import warm_pitch
+from understanding_response import understanding_report, BRIEF
 
 role_id=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "D01")
 role=next((r for r in json.loads(Path("crypto-agents/roles.json").read_text()) if r["id"]==role_id), None)
@@ -151,6 +152,9 @@ def analyze(leads, research, branch_summary):
         prompt=[
           {"role":"system","content":"You are a director or independently thinking assistant using an evidence-first ChatGPT-style method. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
           {"role":"user","content":json.dumps({
+            "owner_professional_context":BRIEF["whom_you_work_for"]["description"],
+            "professional_strengths":BRIEF["whom_you_work_for"]["strengths"][:5],
+            "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
             "director_strategy":directors_goal,
             "coordinator_reasoning_method":SHARED["assistant_method_the_directors_should_understand"]["reasoning"],
@@ -198,6 +202,9 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "checked_at_utc":datetime.now(timezone.utc).isoformat(),"verified_paid_receipts":[],
      "warning":"All found items are UNVERIFIED leads, not payments, offers, or confirmed jobs. Never pay application fees or connect wallets.",
      "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
+     "understanding_response":understanding_report(role_id,role["name"],"OWNER" if role_id==role["director"] else role["director"],
+         role["mission"],analysis,[x.get("url") for x in leads[:2]]),
+     "owner_professional_brief_version":BRIEF["version"],
      "friendly_outreach_drafts":[warm_pitch(x,role=role["mission"],writer_id=role_id) for x in leads[:3]],
      "friendly_earning_directive":FRIENDLY["version"],
      "communication_activity":"Drafted only; not yet sent externally.",
