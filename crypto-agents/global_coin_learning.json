@@ -1,0 +1,123 @@
+{
+  "version": "ORD-034-worldwide-coin-study-v1",
+  "owner_note": "B means the owner's billions of role identifiers; only actually run processes perform research.",
+  "coins": [
+    {
+      "name": "Bitcoin BTC",
+      "network": "Bitcoin mainnet",
+      "url": "https://bitcoin.org/en/faq",
+      "question": "Learn confirmations, native addresses, transaction fees and mining economics"
+    },
+    {
+      "name": "Ethereum ETH",
+      "network": "Ethereum mainnet",
+      "url": "https://ethereum.org/en/what-is-ethereum/",
+      "question": "Learn gas, smart contracts and Ethereum-compatible chains"
+    },
+    {
+      "name": "USDC",
+      "network": "Issuer-supported networks",
+      "url": "https://www.circle.com/usdc",
+      "question": "Learn genuine USDC issuer networks, contract tokens, bridged-versus-native USDC"
+    },
+    {
+      "name": "Solana SOL",
+      "network": "Solana mainnet",
+      "url": "https://solana.com/docs",
+      "question": "Learn SOL fees and SPL-token deposits"
+    },
+    {
+      "name": "Hedera HBAR",
+      "network": "Hedera mainnet",
+      "url": "https://docs.hedera.com/hedera",
+      "question": "Learn account IDs, tokens and exchange deposit memos"
+    },
+    {
+      "name": "Stellar XLM",
+      "network": "Stellar network",
+      "url": "https://developers.stellar.org/docs",
+      "question": "Learn issued assets, trustlines and destination memos"
+    },
+    {
+      "name": "XRP",
+      "network": "XRPL",
+      "url": "https://xrpl.org/docs",
+      "question": "Learn destination tags and transaction validation"
+    },
+    {
+      "name": "Avalanche AVAX",
+      "network": "C-Chain",
+      "url": "https://build.avax.network/docs",
+      "question": "Learn C-Chain gas and token standards"
+    },
+    {
+      "name": "Polygon POL",
+      "network": "Polygon PoS",
+      "url": "https://docs.polygon.technology/",
+      "question": "Learn native gas coin and token/network mismatch"
+    },
+    {
+      "name": "Arbitrum",
+      "network": "Arbitrum One",
+      "url": "https://docs.arbitrum.io/",
+      "question": "Learn layer-2 fees and transfers"
+    },
+    {
+      "name": "Base",
+      "network": "Base mainnet",
+      "url": "https://docs.base.org/",
+      "question": "Learn native USDC and layer-2 transfer rules"
+    },
+    {
+      "name": "Sui SUI",
+      "network": "Sui mainnet",
+      "url": "https://docs.sui.io/",
+      "question": "Learn object token transfers and explorer verification"
+    },
+    {
+      "name": "Cardano ADA",
+      "network": "Cardano mainnet",
+      "url": "https://docs.cardano.org/",
+      "question": "Learn native assets and receiving addresses"
+    }
+  ],
+  "earning_channels": [
+    {
+      "name": "Superteam Earn Agents",
+      "url": "https://superteam.fun/earn/agents",
+      "question": "Check real agent-eligible bounty, deliverable, winning conditions and human payout claim"
+    },
+    {
+      "name": "Superteam Earn",
+      "url": "https://superteam.fun/earn/",
+      "question": "Check real sponsor and reward asset/network on open bounty"
+    },
+    {
+      "name": "Worldwide remote work",
+      "url": "https://himalayas.app/jobs",
+      "question": "Check actual employer, Uganda eligibility and agreement for BTC or genuine USDC"
+    },
+    {
+      "name": "Job market",
+      "url": "https://www.arbeitnow.com/",
+      "question": "Check original offer and whether crypto settlement is actually permitted"
+    },
+    {
+      "name": "Open source bounty",
+      "url": "https://github.com/topics/bounty",
+      "question": "Check sponsor-backed bounty, scope, eligibility and evidence of payment"
+    }
+  ],
+  "required_reporting": [
+    "coin_and_network",
+    "official_source_check_result",
+    "original_url",
+    "earning_channel",
+    "payer_deliverable_and_token_network_verification",
+    "risk",
+    "next_real_action",
+    "actual_AI_inference_status",
+    "verified_received_coins_or_none"
+  ],
+  "limits": "No mass account registration, bot spam, fees, wallet signing, security bypass, fabricated research, fabricated receipts."
+}
