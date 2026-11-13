@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:21:07.782Z",
+  "updated_utc": "2026-11-13T17:36:34.884Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -451,6 +451,19 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Only actual permitted read-only research, analysis and documentation. No claim of billions of simultaneous AIs, separate accounts or deposited coins."
+    },
+    {
+      "id": "ORD-028",
+      "title": "Inform every activated agent of Render outbound source network ranges",
+      "accountable_director": "D03",
+      "standing_requirement": "OWNER GAVE 74.220.48.0/24 and 74.220.56.0/24. All genuinely activated independent D/A/M/W/S/G/H roles must know these are shared Render hosting outbound egress CIDRs, useful only as candidate source-IP ranges in allowlisting for services and APIs the owner is authorized to access. Agents must check the actual Render deployed service's Connect > Outbound ranges before relying on them and use HTTPS hostnames of approved targets. These CIDRs are NOT destination endpoints; do not probe or scan 512 IPs, mass-connect to shared tenants, bypass access controls, or claim accounts/model agents instantiated. Document any legitimate service access attempted, target hostname, permission, source and outcome; notify parent if not connected. Only activated roles work and report, not billions of unrun role definitions.",
+      "evidence_files": [
+        "crypto-agents/render_outbound_networks.json",
+        "crypto-agents/shared_understanding.json"
+      ],
+      "verification_condition": "Owner instruction visible in shared agent context; actual access separately established by legitimate destination URL and authenticated log; no network traffic implied by repository update.",
+      "reported_status": "configured_not_runtime_verified",
+      "external_action": "No internet scan, firewall change, credentials, login or connection attempted by recording these CIDRs."
     }
   ]
 }
