@@ -1,0 +1,1372 @@
+{
+  "schema": "ten-director-company-hierarchy-v1",
+  "created_date": "2026-11-13",
+  "companies_expected": 10,
+  "independent_assistants_per_director": 2,
+  "managers_per_company": 15,
+  "workers_per_manager": 50,
+  "scheduling": {
+    "current_mode": "rotating public-source lookup jobs",
+    "workers_per_manager_per_cycle": 2,
+    "rotation_slots": 25,
+    "full_coverage_if_25_distinct_hourly_slots_execute": true,
+    "run_limitations": "GitHub schedules may be delayed or skipped, so no guaranteed coverage by a fixed deadline"
+  },
+  "companies": [
+    {
+      "id": "COMP-D01",
+      "director_id": "D01",
+      "assistant_ids": [
+        "D01-A",
+        "D01-B"
+      ],
+      "managers": [
+        {
+          "id": "D01-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M01-WNN",
+          "domain": "Monthly bookkeeping"
+        },
+        {
+          "id": "D01-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M02-WNN",
+          "domain": "QuickBooks Online"
+        },
+        {
+          "id": "D01-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M03-WNN",
+          "domain": "Management accounts"
+        },
+        {
+          "id": "D01-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M04-WNN",
+          "domain": "EFRIS systems"
+        },
+        {
+          "id": "D01-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M05-WNN",
+          "domain": "Accounts payable"
+        },
+        {
+          "id": "D01-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M06-WNN",
+          "domain": "Inventory accounting"
+        },
+        {
+          "id": "D01-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M07-WNN",
+          "domain": "Sacco accounting"
+        },
+        {
+          "id": "D01-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M08-WNN",
+          "domain": "Hospitality bookkeeping"
+        },
+        {
+          "id": "D01-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M09-WNN",
+          "domain": "USDC tasks"
+        },
+        {
+          "id": "D01-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M10-WNN",
+          "domain": "Documentation bounties"
+        },
+        {
+          "id": "D01-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M11-WNN",
+          "domain": "AI evaluation"
+        },
+        {
+          "id": "D01-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M12-WNN",
+          "domain": "Localization work"
+        },
+        {
+          "id": "D01-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M13-WNN",
+          "domain": "Virtual assistant finance"
+        },
+        {
+          "id": "D01-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M14-WNN",
+          "domain": "Proposal writing"
+        },
+        {
+          "id": "D01-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D01-M15-WNN",
+          "domain": "AI-agent tasks"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D02",
+      "director_id": "D02",
+      "assistant_ids": [
+        "D02-A",
+        "D02-B"
+      ],
+      "managers": [
+        {
+          "id": "D02-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M01-WNN",
+          "domain": "Bank reconciliations"
+        },
+        {
+          "id": "D02-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M02-WNN",
+          "domain": "Accounting cleanup"
+        },
+        {
+          "id": "D02-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M03-WNN",
+          "domain": "Payroll processing"
+        },
+        {
+          "id": "D02-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M04-WNN",
+          "domain": "Excel financial models"
+        },
+        {
+          "id": "D02-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M05-WNN",
+          "domain": "Accounts receivable"
+        },
+        {
+          "id": "D02-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M06-WNN",
+          "domain": "Audit preparation"
+        },
+        {
+          "id": "D02-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M07-WNN",
+          "domain": "Agribusiness finance"
+        },
+        {
+          "id": "D02-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M08-WNN",
+          "domain": "Crypto payroll"
+        },
+        {
+          "id": "D02-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M09-WNN",
+          "domain": "Lightning tasks"
+        },
+        {
+          "id": "D02-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M10-WNN",
+          "domain": "Bugfix bounties"
+        },
+        {
+          "id": "D02-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M11-WNN",
+          "domain": "Data annotation"
+        },
+        {
+          "id": "D02-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M12-WNN",
+          "domain": "Technical writing"
+        },
+        {
+          "id": "D02-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M13-WNN",
+          "domain": "Finance data entry"
+        },
+        {
+          "id": "D02-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M14-WNN",
+          "domain": "Public grants"
+        },
+        {
+          "id": "D02-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D02-M15-WNN",
+          "domain": "Automation gigs"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D03",
+      "director_id": "D03",
+      "assistant_ids": [
+        "D03-A",
+        "D03-B"
+      ],
+      "managers": [
+        {
+          "id": "D03-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M01-WNN",
+          "domain": "QuickBooks Desktop"
+        },
+        {
+          "id": "D03-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M02-WNN",
+          "domain": "Financial statements"
+        },
+        {
+          "id": "D03-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M03-WNN",
+          "domain": "Tax compliance support"
+        },
+        {
+          "id": "D03-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M04-WNN",
+          "domain": "Bookkeeping migration"
+        },
+        {
+          "id": "D03-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M05-WNN",
+          "domain": "Credit control"
+        },
+        {
+          "id": "D03-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M06-WNN",
+          "domain": "Nonprofit accounts"
+        },
+        {
+          "id": "D03-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M07-WNN",
+          "domain": "Ecommerce bookkeeping"
+        },
+        {
+          "id": "D03-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M08-WNN",
+          "domain": "Bitcoin tasks"
+        },
+        {
+          "id": "D03-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M09-WNN",
+          "domain": "Open-source issues"
+        },
+        {
+          "id": "D03-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M10-WNN",
+          "domain": "Software QA"
+        },
+        {
+          "id": "D03-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M11-WNN",
+          "domain": "Transcription work"
+        },
+        {
+          "id": "D03-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M12-WNN",
+          "domain": "Market research"
+        },
+        {
+          "id": "D03-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M13-WNN",
+          "domain": "Customer invoicing"
+        },
+        {
+          "id": "D03-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M14-WNN",
+          "domain": "Competitions"
+        },
+        {
+          "id": "D03-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D03-M15-WNN",
+          "domain": "Data quality audits"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D04",
+      "director_id": "D04",
+      "assistant_ids": [
+        "D04-A",
+        "D04-B"
+      ],
+      "managers": [
+        {
+          "id": "D04-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M01-WNN",
+          "domain": "QuickBooks Online"
+        },
+        {
+          "id": "D04-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M02-WNN",
+          "domain": "Management accounts"
+        },
+        {
+          "id": "D04-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M03-WNN",
+          "domain": "EFRIS systems"
+        },
+        {
+          "id": "D04-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M04-WNN",
+          "domain": "Accounts payable"
+        },
+        {
+          "id": "D04-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M05-WNN",
+          "domain": "Inventory accounting"
+        },
+        {
+          "id": "D04-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M06-WNN",
+          "domain": "Sacco accounting"
+        },
+        {
+          "id": "D04-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M07-WNN",
+          "domain": "Hospitality bookkeeping"
+        },
+        {
+          "id": "D04-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M08-WNN",
+          "domain": "USDC tasks"
+        },
+        {
+          "id": "D04-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M09-WNN",
+          "domain": "Documentation bounties"
+        },
+        {
+          "id": "D04-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M10-WNN",
+          "domain": "AI evaluation"
+        },
+        {
+          "id": "D04-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M11-WNN",
+          "domain": "Localization work"
+        },
+        {
+          "id": "D04-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M12-WNN",
+          "domain": "Virtual assistant finance"
+        },
+        {
+          "id": "D04-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M13-WNN",
+          "domain": "Proposal writing"
+        },
+        {
+          "id": "D04-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M14-WNN",
+          "domain": "AI-agent tasks"
+        },
+        {
+          "id": "D04-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D04-M15-WNN",
+          "domain": "Remote spreadsheet work"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D05",
+      "director_id": "D05",
+      "assistant_ids": [
+        "D05-A",
+        "D05-B"
+      ],
+      "managers": [
+        {
+          "id": "D05-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M01-WNN",
+          "domain": "Accounting cleanup"
+        },
+        {
+          "id": "D05-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M02-WNN",
+          "domain": "Payroll processing"
+        },
+        {
+          "id": "D05-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M03-WNN",
+          "domain": "Excel financial models"
+        },
+        {
+          "id": "D05-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M04-WNN",
+          "domain": "Accounts receivable"
+        },
+        {
+          "id": "D05-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M05-WNN",
+          "domain": "Audit preparation"
+        },
+        {
+          "id": "D05-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M06-WNN",
+          "domain": "Agribusiness finance"
+        },
+        {
+          "id": "D05-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M07-WNN",
+          "domain": "Crypto payroll"
+        },
+        {
+          "id": "D05-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M08-WNN",
+          "domain": "Lightning tasks"
+        },
+        {
+          "id": "D05-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M09-WNN",
+          "domain": "Bugfix bounties"
+        },
+        {
+          "id": "D05-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M10-WNN",
+          "domain": "Data annotation"
+        },
+        {
+          "id": "D05-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M11-WNN",
+          "domain": "Technical writing"
+        },
+        {
+          "id": "D05-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M12-WNN",
+          "domain": "Finance data entry"
+        },
+        {
+          "id": "D05-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M13-WNN",
+          "domain": "Public grants"
+        },
+        {
+          "id": "D05-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M14-WNN",
+          "domain": "Automation gigs"
+        },
+        {
+          "id": "D05-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D05-M15-WNN",
+          "domain": "SME bookkeeping"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D06",
+      "director_id": "D06",
+      "assistant_ids": [
+        "D06-A",
+        "D06-B"
+      ],
+      "managers": [
+        {
+          "id": "D06-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M01-WNN",
+          "domain": "Financial statements"
+        },
+        {
+          "id": "D06-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M02-WNN",
+          "domain": "Tax compliance support"
+        },
+        {
+          "id": "D06-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M03-WNN",
+          "domain": "Bookkeeping migration"
+        },
+        {
+          "id": "D06-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M04-WNN",
+          "domain": "Credit control"
+        },
+        {
+          "id": "D06-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M05-WNN",
+          "domain": "Nonprofit accounts"
+        },
+        {
+          "id": "D06-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M06-WNN",
+          "domain": "Ecommerce bookkeeping"
+        },
+        {
+          "id": "D06-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M07-WNN",
+          "domain": "Bitcoin tasks"
+        },
+        {
+          "id": "D06-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M08-WNN",
+          "domain": "Open-source issues"
+        },
+        {
+          "id": "D06-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M09-WNN",
+          "domain": "Software QA"
+        },
+        {
+          "id": "D06-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M10-WNN",
+          "domain": "Transcription work"
+        },
+        {
+          "id": "D06-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M11-WNN",
+          "domain": "Market research"
+        },
+        {
+          "id": "D06-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M12-WNN",
+          "domain": "Customer invoicing"
+        },
+        {
+          "id": "D06-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M13-WNN",
+          "domain": "Competitions"
+        },
+        {
+          "id": "D06-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M14-WNN",
+          "domain": "Data quality audits"
+        },
+        {
+          "id": "D06-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D06-M15-WNN",
+          "domain": "Client prospecting"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D07",
+      "director_id": "D07",
+      "assistant_ids": [
+        "D07-A",
+        "D07-B"
+      ],
+      "managers": [
+        {
+          "id": "D07-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M01-WNN",
+          "domain": "Management accounts"
+        },
+        {
+          "id": "D07-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M02-WNN",
+          "domain": "EFRIS systems"
+        },
+        {
+          "id": "D07-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M03-WNN",
+          "domain": "Accounts payable"
+        },
+        {
+          "id": "D07-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M04-WNN",
+          "domain": "Inventory accounting"
+        },
+        {
+          "id": "D07-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M05-WNN",
+          "domain": "Sacco accounting"
+        },
+        {
+          "id": "D07-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M06-WNN",
+          "domain": "Hospitality bookkeeping"
+        },
+        {
+          "id": "D07-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M07-WNN",
+          "domain": "USDC tasks"
+        },
+        {
+          "id": "D07-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M08-WNN",
+          "domain": "Documentation bounties"
+        },
+        {
+          "id": "D07-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M09-WNN",
+          "domain": "AI evaluation"
+        },
+        {
+          "id": "D07-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M10-WNN",
+          "domain": "Localization work"
+        },
+        {
+          "id": "D07-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M11-WNN",
+          "domain": "Virtual assistant finance"
+        },
+        {
+          "id": "D07-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M12-WNN",
+          "domain": "Proposal writing"
+        },
+        {
+          "id": "D07-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M13-WNN",
+          "domain": "AI-agent tasks"
+        },
+        {
+          "id": "D07-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M14-WNN",
+          "domain": "Remote spreadsheet work"
+        },
+        {
+          "id": "D07-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D07-M15-WNN",
+          "domain": "Financial controls"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D08",
+      "director_id": "D08",
+      "assistant_ids": [
+        "D08-A",
+        "D08-B"
+      ],
+      "managers": [
+        {
+          "id": "D08-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M01-WNN",
+          "domain": "Payroll processing"
+        },
+        {
+          "id": "D08-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M02-WNN",
+          "domain": "Excel financial models"
+        },
+        {
+          "id": "D08-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M03-WNN",
+          "domain": "Accounts receivable"
+        },
+        {
+          "id": "D08-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M04-WNN",
+          "domain": "Audit preparation"
+        },
+        {
+          "id": "D08-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M05-WNN",
+          "domain": "Agribusiness finance"
+        },
+        {
+          "id": "D08-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M06-WNN",
+          "domain": "Crypto payroll"
+        },
+        {
+          "id": "D08-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M07-WNN",
+          "domain": "Lightning tasks"
+        },
+        {
+          "id": "D08-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M08-WNN",
+          "domain": "Bugfix bounties"
+        },
+        {
+          "id": "D08-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M09-WNN",
+          "domain": "Data annotation"
+        },
+        {
+          "id": "D08-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M10-WNN",
+          "domain": "Technical writing"
+        },
+        {
+          "id": "D08-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M11-WNN",
+          "domain": "Finance data entry"
+        },
+        {
+          "id": "D08-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M12-WNN",
+          "domain": "Public grants"
+        },
+        {
+          "id": "D08-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M13-WNN",
+          "domain": "Automation gigs"
+        },
+        {
+          "id": "D08-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M14-WNN",
+          "domain": "SME bookkeeping"
+        },
+        {
+          "id": "D08-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D08-M15-WNN",
+          "domain": "Fraud verification"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D09",
+      "director_id": "D09",
+      "assistant_ids": [
+        "D09-A",
+        "D09-B"
+      ],
+      "managers": [
+        {
+          "id": "D09-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M01-WNN",
+          "domain": "Tax compliance support"
+        },
+        {
+          "id": "D09-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M02-WNN",
+          "domain": "Bookkeeping migration"
+        },
+        {
+          "id": "D09-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M03-WNN",
+          "domain": "Credit control"
+        },
+        {
+          "id": "D09-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M04-WNN",
+          "domain": "Nonprofit accounts"
+        },
+        {
+          "id": "D09-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M05-WNN",
+          "domain": "Ecommerce bookkeeping"
+        },
+        {
+          "id": "D09-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M06-WNN",
+          "domain": "Bitcoin tasks"
+        },
+        {
+          "id": "D09-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M07-WNN",
+          "domain": "Open-source issues"
+        },
+        {
+          "id": "D09-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M08-WNN",
+          "domain": "Software QA"
+        },
+        {
+          "id": "D09-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M09-WNN",
+          "domain": "Transcription work"
+        },
+        {
+          "id": "D09-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M10-WNN",
+          "domain": "Market research"
+        },
+        {
+          "id": "D09-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M11-WNN",
+          "domain": "Customer invoicing"
+        },
+        {
+          "id": "D09-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M12-WNN",
+          "domain": "Competitions"
+        },
+        {
+          "id": "D09-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M13-WNN",
+          "domain": "Data quality audits"
+        },
+        {
+          "id": "D09-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M14-WNN",
+          "domain": "Client prospecting"
+        },
+        {
+          "id": "D09-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D09-M15-WNN",
+          "domain": "Monthly bookkeeping"
+        }
+      ]
+    },
+    {
+      "id": "COMP-D10",
+      "director_id": "D10",
+      "assistant_ids": [
+        "D10-A",
+        "D10-B"
+      ],
+      "managers": [
+        {
+          "id": "D10-M01",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M01-WNN",
+          "domain": "EFRIS systems"
+        },
+        {
+          "id": "D10-M02",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M02-WNN",
+          "domain": "Accounts payable"
+        },
+        {
+          "id": "D10-M03",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M03-WNN",
+          "domain": "Inventory accounting"
+        },
+        {
+          "id": "D10-M04",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M04-WNN",
+          "domain": "Sacco accounting"
+        },
+        {
+          "id": "D10-M05",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M05-WNN",
+          "domain": "Hospitality bookkeeping"
+        },
+        {
+          "id": "D10-M06",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M06-WNN",
+          "domain": "USDC tasks"
+        },
+        {
+          "id": "D10-M07",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M07-WNN",
+          "domain": "Documentation bounties"
+        },
+        {
+          "id": "D10-M08",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M08-WNN",
+          "domain": "AI evaluation"
+        },
+        {
+          "id": "D10-M09",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M09-WNN",
+          "domain": "Localization work"
+        },
+        {
+          "id": "D10-M10",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M10-WNN",
+          "domain": "Virtual assistant finance"
+        },
+        {
+          "id": "D10-M11",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M11-WNN",
+          "domain": "Proposal writing"
+        },
+        {
+          "id": "D10-M12",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M12-WNN",
+          "domain": "AI-agent tasks"
+        },
+        {
+          "id": "D10-M13",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M13-WNN",
+          "domain": "Remote spreadsheet work"
+        },
+        {
+          "id": "D10-M14",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M14-WNN",
+          "domain": "Financial controls"
+        },
+        {
+          "id": "D10-M15",
+          "worker_count": 50,
+          "worker_id_pattern": "D10-M15-WNN",
+          "domain": "Bank reconciliations"
+        }
+      ]
+    }
+  ],
+  "worker_roles": [
+    {
+      "ordinal": 1,
+      "id": "W01",
+      "role_name": "Monthly bookkeeping",
+      "query": "remote bookkeeper monthly paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 2,
+      "id": "W02",
+      "role_name": "Bank reconciliations",
+      "query": "bank reconciliation contractor paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 3,
+      "id": "W03",
+      "role_name": "QuickBooks Desktop",
+      "query": "QuickBooks Desktop freelance expert",
+      "source": "hn"
+    },
+    {
+      "ordinal": 4,
+      "id": "W04",
+      "role_name": "QuickBooks Online",
+      "query": "quickbooks online remote bookkeeper hiring",
+      "source": "hn"
+    },
+    {
+      "ordinal": 5,
+      "id": "W05",
+      "role_name": "Accounting cleanup",
+      "query": "accounting cleanup contractor",
+      "source": "hn"
+    },
+    {
+      "ordinal": 6,
+      "id": "W06",
+      "role_name": "Financial statements",
+      "query": "prepare financial statements freelance",
+      "source": "hn"
+    },
+    {
+      "ordinal": 7,
+      "id": "W07",
+      "role_name": "Management accounts",
+      "query": "management accounts freelancer",
+      "source": "hn"
+    },
+    {
+      "ordinal": 8,
+      "id": "W08",
+      "role_name": "Payroll processing",
+      "query": "payroll contractor remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 9,
+      "id": "W09",
+      "role_name": "Tax compliance support",
+      "query": "tax reporting freelancer",
+      "source": "hn"
+    },
+    {
+      "ordinal": 10,
+      "id": "W10",
+      "role_name": "EFRIS systems",
+      "query": "invoicing electronic tax system contract",
+      "source": "hn"
+    },
+    {
+      "ordinal": 11,
+      "id": "W11",
+      "role_name": "Excel financial models",
+      "query": "Excel financial modelling freelance paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 12,
+      "id": "W12",
+      "role_name": "Bookkeeping migration",
+      "query": "quickbooks migration contractor",
+      "source": "hn"
+    },
+    {
+      "ordinal": 13,
+      "id": "W13",
+      "role_name": "Accounts payable",
+      "query": "accounts payable freelance remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 14,
+      "id": "W14",
+      "role_name": "Accounts receivable",
+      "query": "accounts receivable remote contractor",
+      "source": "hn"
+    },
+    {
+      "ordinal": 15,
+      "id": "W15",
+      "role_name": "Credit control",
+      "query": "credit collections finance remote contract",
+      "source": "hn"
+    },
+    {
+      "ordinal": 16,
+      "id": "W16",
+      "role_name": "Inventory accounting",
+      "query": "inventory accounting freelance remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 17,
+      "id": "W17",
+      "role_name": "Audit preparation",
+      "query": "audit support freelance paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 18,
+      "id": "W18",
+      "role_name": "Nonprofit accounts",
+      "query": "nonprofit financial reporting consultant",
+      "source": "hn"
+    },
+    {
+      "ordinal": 19,
+      "id": "W19",
+      "role_name": "Sacco accounting",
+      "query": "savings credit cooperative bookkeeping",
+      "source": "hn"
+    },
+    {
+      "ordinal": 20,
+      "id": "W20",
+      "role_name": "Agribusiness finance",
+      "query": "agribusiness accounting consultant remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 21,
+      "id": "W21",
+      "role_name": "Ecommerce bookkeeping",
+      "query": "ecommerce remote bookkeeper contract",
+      "source": "hn"
+    },
+    {
+      "ordinal": 22,
+      "id": "W22",
+      "role_name": "Hospitality bookkeeping",
+      "query": "hotel restaurant accountant remote contract",
+      "source": "hn"
+    },
+    {
+      "ordinal": 23,
+      "id": "W23",
+      "role_name": "Crypto payroll",
+      "query": "crypto payroll contractor remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 24,
+      "id": "W24",
+      "role_name": "Bitcoin tasks",
+      "query": "bitcoin bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 25,
+      "id": "W25",
+      "role_name": "USDC tasks",
+      "query": "USDC bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 26,
+      "id": "W26",
+      "role_name": "Lightning tasks",
+      "query": "lightning network bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 27,
+      "id": "W27",
+      "role_name": "Open-source issues",
+      "query": "bounty reward paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 28,
+      "id": "W28",
+      "role_name": "Documentation bounties",
+      "query": "documentation bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 29,
+      "id": "W29",
+      "role_name": "Bugfix bounties",
+      "query": "bug fix bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 30,
+      "id": "W30",
+      "role_name": "Software QA",
+      "query": "software testing bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 31,
+      "id": "W31",
+      "role_name": "AI evaluation",
+      "query": "AI model evaluator paid remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 32,
+      "id": "W32",
+      "role_name": "Data annotation",
+      "query": "data annotation paid freelancer",
+      "source": "hn"
+    },
+    {
+      "ordinal": 33,
+      "id": "W33",
+      "role_name": "Transcription work",
+      "query": "transcription freelance contract paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 34,
+      "id": "W34",
+      "role_name": "Localization work",
+      "query": "translation localization freelance paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 35,
+      "id": "W35",
+      "role_name": "Technical writing",
+      "query": "technical writer contract remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 36,
+      "id": "W36",
+      "role_name": "Market research",
+      "query": "market research analyst freelance",
+      "source": "hn"
+    },
+    {
+      "ordinal": 37,
+      "id": "W37",
+      "role_name": "Virtual assistant finance",
+      "query": "finance virtual assistant remote",
+      "source": "hn"
+    },
+    {
+      "ordinal": 38,
+      "id": "W38",
+      "role_name": "Finance data entry",
+      "query": "finance data entry freelance paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 39,
+      "id": "W39",
+      "role_name": "Customer invoicing",
+      "query": "invoicing specialist freelance",
+      "source": "hn"
+    },
+    {
+      "ordinal": 40,
+      "id": "W40",
+      "role_name": "Proposal writing",
+      "query": "grant proposal freelancer paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 41,
+      "id": "W41",
+      "role_name": "Public grants",
+      "query": "open grant application cash prize",
+      "source": "hn"
+    },
+    {
+      "ordinal": 42,
+      "id": "W42",
+      "role_name": "Competitions",
+      "query": "cash prize hackathon open",
+      "source": "hn"
+    },
+    {
+      "ordinal": 43,
+      "id": "W43",
+      "role_name": "AI-agent tasks",
+      "query": "AI agent bounty paid",
+      "source": "github"
+    },
+    {
+      "ordinal": 44,
+      "id": "W44",
+      "role_name": "Automation gigs",
+      "query": "automation workflow freelance paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 45,
+      "id": "W45",
+      "role_name": "Data quality audits",
+      "query": "data quality freelancer paid",
+      "source": "hn"
+    },
+    {
+      "ordinal": 46,
+      "id": "W46",
+      "role_name": "Remote spreadsheet work",
+      "query": "spreadsheet Google Sheets contractor",
+      "source": "hn"
+    },
+    {
+      "ordinal": 47,
+      "id": "W47",
+      "role_name": "SME bookkeeping",
+      "query": "small business accountant needed",
+      "source": "hn"
+    },
+    {
+      "ordinal": 48,
+      "id": "W48",
+      "role_name": "Client prospecting",
+      "query": "looking for accountant bookkeeper",
+      "source": "hn"
+    },
+    {
+      "ordinal": 49,
+      "id": "W49",
+      "role_name": "Financial controls",
+      "query": "internal controls consultant contract",
+      "source": "hn"
+    },
+    {
+      "ordinal": 50,
+      "id": "W50",
+      "role_name": "Fraud verification",
+      "query": "bounty payout scam payment check",
+      "source": "github"
+    }
+  ],
+  "payment_brief_file": "crypto-agents/branch_brief.json",
+  "owner_context_policy": "Subordinate worker instructions contain publicly approved payment routes and work mission only; no personal details",
+  "external_identity_claims": "These are software research roles, not recruited humans or independent authenticated social accounts"
+}
