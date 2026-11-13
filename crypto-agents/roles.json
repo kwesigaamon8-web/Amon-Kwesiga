@@ -42,7 +42,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D01 understands and follows the director D01's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D01-A",
@@ -73,7 +74,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D01-A understands and follows the director D01's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D01-B",
@@ -104,7 +106,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D01-B understands and follows the director D01's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D02",
@@ -149,7 +152,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D02 understands and follows the director D02's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D02-A",
@@ -180,7 +184,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D02-A understands and follows the director D02's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D02-B",
@@ -211,7 +216,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D02-B understands and follows the director D02's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D03",
@@ -256,7 +262,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D03 understands and follows the director D03's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D03-A",
@@ -287,7 +294,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D03-A understands and follows the director D03's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D03-B",
@@ -318,7 +326,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D03-B understands and follows the director D03's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D04",
@@ -363,7 +372,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D04 understands and follows the director D04's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D04-A",
@@ -394,7 +404,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D04-A understands and follows the director D04's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D04-B",
@@ -425,7 +436,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D04-B understands and follows the director D04's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D05",
@@ -470,7 +482,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D05 understands and follows the director D05's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D05-A",
@@ -501,7 +514,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D05-A understands and follows the director D05's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D05-B",
@@ -532,7 +546,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D05-B understands and follows the director D05's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D06",
@@ -577,7 +592,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D06 understands and follows the director D06's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D06-A",
@@ -608,7 +624,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D06-A understands and follows the director D06's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D06-B",
@@ -639,7 +656,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D06-B understands and follows the director D06's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D07",
@@ -684,7 +702,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D07 understands and follows the director D07's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D07-A",
@@ -715,7 +734,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D07-A understands and follows the director D07's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D07-B",
@@ -746,7 +766,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D07-B understands and follows the director D07's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D08",
@@ -791,7 +812,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D08 understands and follows the director D08's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D08-A",
@@ -822,7 +844,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D08-A understands and follows the director D08's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D08-B",
@@ -853,7 +876,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D08-B understands and follows the director D08's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D09",
@@ -898,7 +922,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D09 understands and follows the director D09's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D09-A",
@@ -929,7 +954,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D09-A understands and follows the director D09's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D09-B",
@@ -960,7 +986,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D09-B understands and follows the director D09's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D10",
@@ -1005,7 +1032,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D10 understands and follows the director D10's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions."
+    "director_method": "Understand the user's objective as only confirmed cryptocurrency received in approved addresses. Follow the coordinator's method: verify payer, work scope, eligibility, contract and actual on-chain or account credit. Pass identical mission to your assistants, 15 managers, each manager's 50 workers and their 150 defined child roles; challenge inaccurate conclusions.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D10-A",
@@ -1036,7 +1064,8 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D10-A understands and follows the director D10's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   },
   {
     "id": "D10-B",
@@ -1067,6 +1096,7 @@
     "cascaded_shared_understanding": "crypto-agents/shared_understanding.json",
     "ultimate_crypto_only_mission": "The OWNER'S ONLY outcome is legitimately earned spendable cryptocurrency credited to an owner-approved address on the correct network, with independent confirmation. Fiat-only payments, points, testnet tokens, unsent proposals, unclaimed rewards and promises are not success.",
     "role_interpretation": "D10-B understands and follows the director D10's company strategy, the coordinator's evidence-first method and the owner's coin-only receiving-address objective; independent source checks and no invented receipts.",
-    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line."
+    "assistant_method": "Challenge the director's evidence independently, but maintain the director's cryptocurrency-only mission and one-parent reporting line.",
+    "tool_improvement_order": "ORD-022: Independently discover and evaluate useful additional global sites, public APIs, reliable agent tools, AI model resources, freelance marketplaces and verified bounty platforms that improve paid-work research. Use only genuinely authorized read-only functions or approved connected integrations. Record source URLs, actual test results, fees/restrictions and proposed next step. Inherit through the director-to-H parent chain; never claim accounts or tools are live without execution evidence."
   }
 ]
