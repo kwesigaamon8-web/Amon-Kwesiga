@@ -8,6 +8,7 @@ on:
       - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/shared_understanding.json'
       - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/order_cascade_audit.py'
       - 'crypto-agents/professional_owner_context.json'
       - 'crypto-agents/understanding_response.py'
       - 'crypto-agents/understanding_audit.py'
@@ -139,6 +140,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python crypto-agents/owner_order_audit.py --reports combined-reports --output owner-order-audit
+      - name: Validate worldwide owner order reaches last H-tier branch
+        run: python crypto-agents/order_cascade_audit.py
       - name: Have each director review two assistants
         run: python crypto-agents/director_review.py
       - name: Produce cross-director performance messages and one-owner handoff register
@@ -177,6 +180,7 @@ jobs:
             independence-audit/
             subagent-audit/
             owner-order-audit/
+            owner-order-cascade-audit/
             microcompany-audit/
             mega-branch-audit/
             understanding-audit/
