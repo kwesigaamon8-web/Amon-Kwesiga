@@ -8,6 +8,9 @@ on:
       - 'crypto-agents/owner_brief.json'
       - 'crypto-agents/shared_understanding.json'
       - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/professional_owner_context.json'
+      - 'crypto-agents/understanding_response.py'
+      - 'crypto-agents/understanding_audit.py'
       - 'crypto-agents/owner_order_audit.py'
       - 'crypto-agents/agents.py'
       - 'crypto-agents/social_scan.py'
@@ -128,6 +131,9 @@ jobs:
         run: python crypto-agents/microcompany_audit.py --reports combined-reports --output microcompany-audit
       - name: Audit actual executed 666-branch worker models
         run: python crypto-agents/mega_branch_audit.py --reports combined-reports --output mega-branch-audit
+      - name: Independently audit each actual role's understanding response
+        if: always()
+        run: python crypto-agents/understanding_audit.py --reports combined-reports --output understanding-audit
       - name: Audit all owner instructions against completed research evidence
         if: always()
         env:
@@ -173,5 +179,6 @@ jobs:
             owner-order-audit/
             microcompany-audit/
             mega-branch-audit/
+            understanding-audit/
           if-no-files-found: warn
           retention-days: 7
