@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T19:46:48Z",
+  "updated_utc": "2026-11-13T19:50:33Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -786,6 +786,24 @@
       "reported_status": "lesson_published; owner_instruction_recorded; executed learner proof pending future worker run",
       "last_verified_payment_receipt": null,
       "external_action": "Teaching and internal evidence reports only; no autonomous financial or account actions."
+    },
+    {
+      "id": "ORD-048",
+      "title": "Director D must help owner contact every B role and report actual replies, learning and blockers",
+      "accountable_director": "D",
+      "standing_requirement": "OWNER DIRECT REQUEST 'D help': Contact ALL B defined role identities through the existing owner-controlled one-parent task inheritance system, assigning Director D's approved capability lesson to every role for when each role is genuinely activated. Instruct operating directors D01-D10, their 20 assistants, 150 managers and all W/S/G/H roles to generate individual actually executed responses: CAN (what D does), CANNOT (D limitations), PARENT (direct supervisor), LEARNED (genuinely passed training assessment, needs review, failed, or not yet run), and a feasible lawful next paid-work action. D09 and D10 review wallet routing and technical execution evidence. Do not impersonate dormant workers, invent responses or claim 375 billion model processes are running. Director D must produce one machine-readable index of every attempted actual agent response, director aggregates, exact missing/failed statuses, one authentic representative's answer, and a human-readable OWNER status report. 375,188,632,680 configured identities must remain classified as defined/queued unless and until actual independent model invocation and recorded reply proves otherwise. No unauthorized mass unsolicited messages or new accounts; contact refers to internal assignment through hierarchy, not external outreach. Continue seeking real earned crypto as a separate measured mission.",
+      "evidence_files": [
+        "crypto-agents/DIRECTOR_D_LESSON_TO_B.md",
+        "crypto-agents/director_D_training.py",
+        "crypto-agents/owner_order_distribution.py",
+        "crypto-agents/owner_direct_reports.py",
+        "crypto-agents/b_representative_to_owner.py",
+        "crypto-agents/b_all_workers_report.py",
+        ".github/workflows/real-ai-workers.yml"
+      ],
+      "verification_condition": "Owner report must distinguish complete addressable role census, actual separate model completions, actual separate lesson answers, training results, missing replies and verified earning receipts. Check only genuine execution logs, not assigned worker counts.",
+      "reported_status": "owner_instruction_registered; model response and roster reconciliation not yet verified",
+      "last_verified_payment_receipt": null
     }
   ],
   "broadcast_aliases": {
