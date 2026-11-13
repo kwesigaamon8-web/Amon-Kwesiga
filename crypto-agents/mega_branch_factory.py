@@ -26,6 +26,7 @@ def describe_branch_worker(parent_id,parent_name,slot):
         "id":f"{parent_id}-H{slot:03d}",
         "name":f"{parent_name}-BranchWorker-{slot:03d}",
         "parent_id":parent_id,
+        "owner_order_id":"ORD-021","order_inherited_from":parent_id,
         "branch_id":"BR-"+parent_id,
         "level":"mega_branch_worker",
         "sector":sector,"assigned_task":task,
