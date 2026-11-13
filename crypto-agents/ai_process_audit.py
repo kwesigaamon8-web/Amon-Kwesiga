@@ -19,6 +19,8 @@ summary={
  "ord035_individual_model_replies":0,
  "ord035_understanding_needs_review_or_failed":0,
  "ord035_invalid_command_paths":0,
+ "ord035_retry_inference_count":0,
+ "ord035_director_pending_followups":{},
  "actual_independent_model_completions":0,
  "per_agent_markdown_reports_written":0,
  "director_manifests_present":0,
@@ -59,7 +61,10 @@ for d in directors:
                     summary["issues"].append("Invalid or missing owner-to-parent receipt: "+wid)
                 if receipt.get("understanding_status") in ("model_response_has_mission_and_action","model_response_needs_parent_review"):
                     summary["ord035_individual_model_replies"]+=1
+                if individual.get("understanding_model_attempts",1)>1:
+                    summary["ord035_retry_inference_count"]+=individual["understanding_model_attempts"]-1
                 if receipt.get("understanding_status")!="model_response_has_mission_and_action":
+                    summary["ord035_director_pending_followups"].setdefault(d,[]).append(wid)
                     summary["ord035_understanding_needs_review_or_failed"]+=1
                 if individual.get("inference_status")=="model_completed" and individual.get("os_process_pid"):
                     summary["completed_models_with_pid_evidence"]+=1
@@ -84,6 +89,12 @@ for d in directors:
 
 summary["truth"]="Configured billions of role identities are NOT billions of hosted AI processes. Count only actual children with logs and completed inference; payments must be independently verified."
 Path("ai-process-summary.json").write_text(json.dumps(summary,indent=2)+"\n",encoding="utf-8")
+Path("ord035-parent-followups.json").write_text(json.dumps({
+  "order":"ORD-035","generated_utc":summary["generated_at_utc"],
+  "unresolved_by_director":summary["ord035_director_pending_followups"],
+  "status":"not_yet_verified_by_actual_supervisor",
+  "instruction":"The immediate parent must review these actual weak/missing worker reports. Rerun the same worker on next authorized free execution opportunity rather than fabricate understanding."
+},indent=2)+"\n",encoding="utf-8")
 rows=[
  "# Real free-hosted worker AI process audit","",
  f"Director manifests present: **{summary['director_manifests_present']}/10**",
@@ -94,6 +105,7 @@ rows=[
  f"ORD-035 individual model-generated replies: **{summary['ord035_individual_model_replies']}**",
  f"ORD-035 replies needing review or retry: **{summary['ord035_understanding_needs_review_or_failed']}**",
  f"ORD-035 invalid command paths: **{summary['ord035_invalid_command_paths']}**",
+ f"ORD-035 second-model-attempt checks: **{summary['ord035_retry_inference_count']}**",
  f"Completed AI with unique PID evidence: **{summary['completed_models_with_pid_evidence']}**",
  f"B=ORD-033 completed model reports: **{summary['B_broadcast_ORD033_model_completions']}**",
  f"Attempted by W/S/G/H level: **{summary['attempts_by_level']}**",

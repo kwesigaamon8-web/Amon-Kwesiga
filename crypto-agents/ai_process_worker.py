@@ -128,6 +128,32 @@ except Exception as exc:
 report["command_chain_understanding"]=understanding_receipt(
     WORKER,report.get("model_response",""),report["inference_status"],
     report["coin_learning"]["official_source_url"])
+report["understanding_model_attempts"]=1
+# If the small model replied but did not mention both its coin mission and a
+# concrete research action, give THAT SAME real model a single clarification.
+# This is not proof of comprehension, and it never invents a child response.
+if (report["inference_status"]=="model_completed" and
+    report["command_chain_understanding"]["understanding_status"]=="model_response_needs_parent_review"):
+    try:
+        correction=[
+            {"role":"system","content":"You are the SAME worker continuing your own reply. State your authorized role, what legitimate cryptocurrency work is needed, one public source to verify, one next concrete research action and important uncertainty. No fabricated earnings."},
+            {"role":"user","content":"Worker "+WORKER+" reports only to "+PARENT+
+             ". Owner order ORD-035 asks you to explain, in your own words, how you will research genuine coin-paying work and verify deposits. Answer briefly in your own words."},
+        ]
+        second=model(correction,max_new_tokens=110,do_sample=False,return_full_text=False)
+        new=second[0].get("generated_text","")
+        if isinstance(new,list):new=new[-1].get("content","")
+        if str(new or "").strip():
+            new_receipt=understanding_receipt(WORKER,str(new), "model_completed",
+                report["coin_learning"]["official_source_url"])
+            report["understanding_model_attempts"]=2
+            report["first_understanding_status"]="model_response_needs_parent_review"
+            report["command_chain_understanding"]=new_receipt
+            report["understanding_retry_status"]=new_receipt["understanding_status"]
+        else:
+            report["understanding_retry_status"]="retry_model_returned_empty"
+    except Exception as exc:
+        report["understanding_retry_status"]="retry_failed:"+str(exc)[:170]
 report["duration_sec"]=round(time.monotonic()-START,2)
 report["completed_at_utc"]=datetime.now(timezone.utc).isoformat()
 path=OUT/(WORKER+".json")
@@ -148,6 +174,7 @@ lines=[
     f"- **All owner orders inherited:** {report['order_inheritance']['order_count']}",
     "- **Owner-to-role command chain:** "+" -> ".join(report["command_chain_assignment"]["owner_to_role_route"]),
     "- **Independent understanding receipt:** "+report["command_chain_understanding"]["understanding_status"],
+    "- **Actual comprehension-model attempts:** "+str(report["understanding_model_attempts"]),
     "- **Direct-parent review:** pending; do not claim human understanding",
     "","## Individual model-generated understanding reply",
     report["command_chain_understanding"]["model_generated_own_words"] or "No independent model response recorded",

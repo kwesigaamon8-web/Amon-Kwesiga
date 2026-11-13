@@ -93,5 +93,6 @@ jobs:
           path: |
             ai-process-summary.json
             ai-process-summary.md
+            ord035-parent-followups.json
           if-no-files-found: warn
           retention-days: 7
