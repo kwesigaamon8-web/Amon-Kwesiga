@@ -1,0 +1,119 @@
+{
+  "version": "2026-11-13-earnings-source-code-v1",
+  "mission": "Turn independent online research into legitimate paid assignments and then independently verified payments to approved owner addresses. Do not confuse a lead, chat, airdrop or submitted proposal with money received.",
+  "privacy": "All workers and managers receive this anonymous earnings playbook only. No owner's name, location, professional biography, contacts, clients, wallet secrets or exchange memos.",
+  "where_to_find_pay": {
+    "direct_clients": {
+      "channels": [
+        "public business hiring requests",
+        "genuine client queries in permitted communities",
+        "legitimate bookkeeping and finance project boards"
+      ],
+      "paid_services": [
+        "bookkeeping",
+        "reconciliation",
+        "QuickBooks cleanup and migration",
+        "management reporting",
+        "Excel data cleanup"
+      ],
+      "why": "real clients can authorize contracts and recurring fees",
+      "apply_check": "source contains an actual request, identifiable payer, specified scope and acceptable remote-country terms"
+    },
+    "remote_jobs": {
+      "channels": [
+        "Jobicy public job API",
+        "employer career listings reached from official job pages",
+        "remote vacancy posts"
+      ],
+      "paid_services": [
+        "accounting operations",
+        "bookkeeping",
+        "financial reporting",
+        "payroll support",
+        "data tasks"
+      ],
+      "apply_check": "original job link active, employer and payout credible, country eligibility confirmed"
+    },
+    "open_source_bounties": {
+      "channels": [
+        "GitHub issue listings with explicit rewards",
+        "original bounty boards linked from the issue"
+      ],
+      "paid_services": [
+        "document review",
+        "QA",
+        "bug fixes where capability matches",
+        "issue triage"
+      ],
+      "apply_check": "reward amount, payer, work acceptance criteria, available slot and zero-upfront-cost independently verified"
+    },
+    "ai_microtasks": {
+      "channels": [
+        "legitimate public AI evaluation/data work announcements",
+        "recognized contractor applications",
+        "approved assessment platforms"
+      ],
+      "paid_services": [
+        "annotation",
+        "model evaluation",
+        "transcription",
+        "data QA"
+      ],
+      "apply_check": "real pay terms, legitimate onboarding without applicant fees, Uganda access and actual withdrawal method"
+    },
+    "bitcoin_stablecoin": {
+      "channels": [
+        "documented BTC/USDC-paid freelance tasks",
+        "open-source bounties with settled crypto payment rules",
+        "direct contracts accepting BTC/USDC"
+      ],
+      "paid_services": [
+        "practical services under an agreed scope",
+        "completed bounty tasks"
+      ],
+      "apply_check": "clear deliverable, legitimate counterpart, correct asset/chain, owner-approved address confirmation; never request funds without delivered work or agreement"
+    },
+    "competitions_grants": {
+      "channels": [
+        "official developer or social innovation challenge sites",
+        "official grant application pages"
+      ],
+      "paid_services": [
+        "prize-winning submissions if feasible"
+      ],
+      "apply_check": "deadline current, geography eligibility, genuine cash prize, no application/claim fees"
+    }
+  },
+  "steps_per_candidate": [
+    "DISCOVER: Record source URL and actual requested work, not general articles or recommendations.",
+    "VALIDATE: Check source date, direct employer/payer, amount/rate if published, scope, deadline, Uganda eligibility, payment rails and hidden costs; write UNKNOWN instead of guessing.",
+    "PRIORITIZE: Prefer short no-fee work with high skill fit and credible direct payment; discard stale, spam, fake token offers and pay-to-claim bounties.",
+    "PREPARE: Draft a concise truthful proposal with service, delivery steps, fee and allowed route; mark it DRAFT, not SENT.",
+    "CONTACT: Only send through a genuinely authenticated, explicitly permitted channel; otherwise report blocked with next manual step.",
+    "EXECUTE: Count contracted work only upon actual payer acceptance and terms; count completed work only with proof of delivery.",
+    "INVOICE: Request payment only for legitimate agreed work; reconfirm exact network and payee route.",
+    "RECEIPT: Count earnings only if bank, exchange credit or independently verified chain transaction supports actual owner receipt. Shared exchange memo and asset/network must match where relevant."
+  ],
+  "allowed_results": [
+    "research_unverified",
+    "source_verified",
+    "payer_pending_verification",
+    "proposal_drafted",
+    "proposal_sent_with_evidence",
+    "contract_accepted_with_evidence",
+    "work_delivered_with_evidence",
+    "payment_pending",
+    "payment_received_independently_verified"
+  ],
+  "prohibitions": [
+    "No private keys or seeds",
+    "No wallet contract signing",
+    "No fees or gas payments",
+    "No spam/impersonation",
+    "No false application claims",
+    "No invented salaries, employer identities or payment receipts",
+    "Never infer custodial exchange credit from a public transfer"
+  ],
+  "reporting_contract": "Every role must output its unique identifier, exact one parent identifier, source URL, own evidence check, uncertainty, best realistic paid next action, and verified payment amount only if independently confirmed. Managers challenge 50 workers across rotated runs; assistants independently audit director conclusions; directors consolidate and assign follow-ups; D09 verifies legitimacy and D10 monitors results.",
+  "payment_reference": "Use only the approved correct-network BTC and genuine ERC-20 USDC routes in crypto-agents/branch_brief.json when a real payer exists. Check with owner before a payment request."
+}
