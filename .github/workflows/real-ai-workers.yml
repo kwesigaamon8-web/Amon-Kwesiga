@@ -11,6 +11,8 @@ on:
       - 'crypto-agents/role_ai_identity.py'
       - 'crypto-agents/coin_learning.py'
       - 'crypto-agents/global_coin_learning.json'
+      - 'crypto-agents/command_chain_receipts.py'
+      - 'crypto-agents/owner_command_chain.json'
       - 'crypto-agents/ai_process_launcher.py'
       - 'crypto-agents/ai_process_audit.py'
       - 'crypto-agents/director_work_orders.py'
@@ -36,6 +38,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Validate strict owner-to-final-H routing without fake replies
+        run: python crypto-agents/command_chain_receipts.py
       - name: Issue all 750 first-tier worker orders for this director
         env:
           ROLE_ID: ${{ matrix.director }}

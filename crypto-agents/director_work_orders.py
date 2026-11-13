@@ -8,6 +8,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from owner_order_distribution import summary
+from command_chain_receipts import configured_assignment
 
 role=os.environ.get("ROLE_ID","")
 if not re.fullmatch(r"D(?:0[1-9]|10)",role):
@@ -34,14 +35,20 @@ for manager in company["managers"]:
           "defined_micro_workers":150*500,
           "defined_last_tier_workers":150*500*666,
           "status":"work_assigned_waiting_for_real_process_invocation",
+          "command_chain_assignment":configured_assignment(wid),
           "verified_wallet_receipts":[]
         })
 assert len(records)==750
 doc={
  "director_id":role,
- "manager_assignments":[{"id":m["id"],"focus":m["domain"],"workers_assigned":50} for m in company["managers"]],
+ "manager_assignments":[{"id":m["id"],"focus":m["domain"],"workers_assigned":50,
+    "command_chain_assignment":configured_assignment(m["id"]),
+    "understanding_status":"pending_manager_model_response"} for m in company["managers"]],
  "individual_first_tier_worker_assignments":records,
  "first_tier_work_order_count":len(records),
+ "director_command_chain":configured_assignment(role),
+ "manager_model_replies_not_verified_in_this_dispatch":15,
+ "worker_model_replies_not_verified_in_this_dispatch":750,
  "defined_S_G_H_roles_accessible_by_lazy_factory":True,
  "total_descendant_defined_roles_per_director":750*(1+150+150*500+150*500*666),
  "canonical_owner_orders":orders,
