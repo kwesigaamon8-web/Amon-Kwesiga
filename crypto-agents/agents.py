@@ -34,6 +34,38 @@ def collect():
             u=x.get("url") or ("https://news.ycombinator.com/item?id="+str(x.get("objectID","")))
             if u.startswith("https://"):
                 items.append({"title":(x.get("title") or "")[:160],"url":u,"source":"Hacker News","excerpt":(x.get("story_text") or "")[:350],"updated":x.get("created_at",""),"payment_verified":False})
+
+    # Direct current job listings for the accounting and client-acquisition teams.
+    # Jobicy's public endpoint needs no key and publishes the latest seven days;
+    # every result remains an unverified application lead, not a paid receipt.
+    if role["director"] in ("D04", "D07", "D06"):
+        tags = {
+            "D04": ("accounting", "bookkeeping", "quickbooks"),
+            "D07": ("accounting", "finance", "consultant"),
+            "D06": ("data", "annotation", "freelance"),
+        }
+        variants = tags[role["director"]]
+        idx = 0 if role_id.endswith("-A") else 1 if role_id.endswith("-B") else 2
+        tag = variants[idx]
+        url = "https://jobicy.com/api/jobs?" + urllib.parse.urlencode({"count": 100, "geo": "anywhere", "tag": tag})
+        data = get(url)
+        if "error" in data:
+            errors.append("Jobicy: " + data["error"])
+        else:
+            import re
+            for x in data.get("jobs", []):
+                title = str(x.get("jobTitle", x.get("title", "")))
+                url = str(x.get("url", ""))
+                if not url.startswith("https://") or not title:
+                    continue
+                body = re.sub("<[^>]+>", " ", str(x.get("jobDescription", x.get("description", ""))))
+                items.append({
+                    "title": title[:160], "url": url, "source": "Jobicy",
+                    "excerpt": (str(x.get("companyName", "")) + " " + body)[:350],
+                    "updated": str(x.get("pubDate", x.get("date", ""))),
+                    "payment_verified": False
+                })
+
     unique={x["url"]:x for x in items}
     candidates=list(unique.values())
     words=[w for w in role["name"].lower().replace(":"," ").split() if len(w)>3]
