@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-13-earnings-source-code-v1",
-  "mission": "Turn independent online research into legitimate paid assignments and then independently verified payments to approved owner addresses. Do not confuse a lead, chat, airdrop or submitted proposal with money received.",
+  "version": "2026-11-13-crypto-wallet-only-v2",
+  "mission": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
   "privacy": "All workers and managers receive this anonymous earnings playbook only. No owner's name, location, professional biography, contacts, clients, wallet secrets or exchange memos.",
   "where_to_find_pay": {
     "direct_clients": {
@@ -92,7 +92,7 @@
     "CONTACT: Only send through a genuinely authenticated, explicitly permitted channel; otherwise report blocked with next manual step.",
     "EXECUTE: Count contracted work only upon actual payer acceptance and terms; count completed work only with proof of delivery.",
     "INVOICE: Request payment only for legitimate agreed work; reconfirm exact network and payee route.",
-    "RECEIPT: Count earnings only if bank, exchange credit or independently verified chain transaction supports actual owner receipt. Shared exchange memo and asset/network must match where relevant."
+    "RECEIPT: Count earnings only if an independently verified incoming chain transaction to the approved owner address or confirmed exchange account credit establishes actual receipt. Shared exchange memo and asset/network must match where relevant."
   ],
   "allowed_results": [
     "research_unverified",
@@ -103,7 +103,8 @@
     "contract_accepted_with_evidence",
     "work_delivered_with_evidence",
     "payment_pending",
-    "payment_received_independently_verified"
+    "payment_received_independently_verified",
+    "confirmed_correct_chain_crypto_receipt_only"
   ],
   "prohibitions": [
     "No private keys or seeds",
@@ -112,8 +113,10 @@
     "No spam/impersonation",
     "No false application claims",
     "No invented salaries, employer identities or payment receipts",
-    "Never infer custodial exchange credit from a public transfer"
+    "Never infer custodial exchange credit from a public transfer",
+    "Do not count fiat payments, testnet rewards, promises, platform credits or unclaimed points as coins received"
   ],
   "reporting_contract": "Every role must output its unique identifier, exact one parent identifier, source URL, own evidence check, uncertainty, best realistic paid next action, and verified payment amount only if independently confirmed. Managers challenge 50 workers across rotated runs; assistants independently audit director conclusions; directors consolidate and assign follow-ups; D09 verifies legitimacy and D10 monitors results.",
-  "payment_reference": "Use only the approved correct-network BTC and genuine ERC-20 USDC routes in crypto-agents/branch_brief.json when a real payer exists. Check with owner before a payment request."
+  "payment_reference": "ONLY owner-approved correct-network cryptocurrency receiving addresses in the public branch brief or a separately configured private directory. Verify the actual address with owner before payer sends, chain, token issuer/contract and memo if required. A deposit to a shared Binance address does not prove user credit.",
+  "cryptocurrency_only_success_condition": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt."
 }
