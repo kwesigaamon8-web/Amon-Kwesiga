@@ -19,6 +19,7 @@ from role_ai_identity import resolve_role
 from coin_learning import study
 from command_chain_receipts import configured_assignment, understanding_receipt
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
+from director_D_training import teach_and_assess
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -63,6 +64,7 @@ report={
     "documents_written":False,
     "public_receiving_directory_url":"https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
     "owner_order_046_publication_status":"inherited_link_for_authorized_context_not_externally_published",
+    "director_D_lesson_assessment":None,
     "verified_wallet_receipts":[],
     "external_messages_sent":False,
     "accounts_created":False,
@@ -145,6 +147,10 @@ except Exception as exc:
     report["inference_status"]="model_failed"
     report["inference_error"]=f"{type(exc).__name__}: {str(exc)[:300]}"
 
+## Director D lesson ORD-047: this is an independent real worker-model response.
+# Missing lesson/model access and weak answers NEVER produce a fake "learned" response.
+report["director_D_lesson_assessment"]=teach_and_assess(model, WORKER, PARENT)
+
 report["command_chain_understanding"]=understanding_receipt(
     WORKER,report.get("model_response",""),report["inference_status"],
     report["coin_learning"]["official_source_url"])
@@ -224,6 +230,10 @@ lines=[
     f"- **Started:** {STAMP}",
     f"- **Source result:** {report['source_check_status']}",
     f"- **AI inference result:** {report['inference_status']}",
+    f"- **Director D lesson accessible:** {report['director_D_lesson_assessment']['lesson_accessible']}",
+    f"- **Separate lesson model execution:** {report['director_D_lesson_assessment']['model_execution_status']}",
+    f"- **Worker reports learned:** {report['director_D_lesson_assessment']['reported_learned']}",
+    f"- **Director D lesson grade:** {report['director_D_lesson_assessment']['assessment']}",
     f"- **Duration:** {report['duration_sec']} sec",
     f"- **All owner orders inherited:** {report['order_inheritance']['order_count']}",
     "- **Owner-to-role command chain:** "+" -> ".join(report["command_chain_assignment"]["owner_to_role_route"]),
@@ -232,6 +242,9 @@ lines=[
     "- **Direct-parent review:** pending; do not claim human understanding",
     "- **Previous independent checkpoint:** "+str(report["cognitive_prior_memory"]["state_source"]),
     "- **Second-pass critique:** "+report["cognitive_critical_review"]["status"],
+    "","## Director D lesson — what I learned (independent model response)",
+    report["director_D_lesson_assessment"].get("answer") or "NOT LEARNED / NOT VERIFIED: no separately completed response",
+    "Teacher lesson assessment: "+report["director_D_lesson_assessment"]["assessment"],
     "","## Individual model-generated understanding reply",
     report["command_chain_understanding"]["model_generated_own_words"] or "No independent model response recorded",
     "","## Independent task",TASK,
