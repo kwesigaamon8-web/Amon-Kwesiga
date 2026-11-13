@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 from wallet_routes import private_directory_status
 from friendly_pitch import warm_pitch
+from subagent_factory import describe_child, select_slot
 from datetime import datetime, timezone
 
 ROLE=os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
@@ -20,6 +21,8 @@ PLAYBOOK=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encod
 POLICY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
 PUBLIC_ROUTES=json.loads(Path("crypto-agents/branch_brief.json").read_text(encoding="utf-8"))
 FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
+OWNER_COMMAND=json.loads(Path("crypto-agents/owner_command_chain.json").read_text(encoding="utf-8"))
+CYCLE=int(datetime.now(timezone.utc).timestamp()//3600)
 PRIVATE_ROUTE_ACCESS=private_directory_status()
 root=Path("company-reports")
 summary_path=root/(ROLE+"-COMPANY-SUMMARY.json")
@@ -39,8 +42,8 @@ except Exception as exc:
     error=str(exc)[:180]
     print("MODEL_UNAVAILABLE",error)
 
-def run_agent(agent_id, mission, evidence):
-    meta=ids[agent_id]
+def run_agent(agent_id, mission, evidence, meta_override=None):
+    meta=meta_override if meta_override is not None else ids[agent_id]
     # Every worker independently receives one unique name, role, task, and the
     # evidence from its own search. No other workers' chats or private data.
     question={
@@ -55,6 +58,8 @@ def run_agent(agent_id, mission, evidence):
       "private_wallet_directory_status":PRIVATE_ROUTE_ACCESS["status"],
       "unverified_evidence":evidence,
       "owner_personal_details":None,
+      "ultimate_order":OWNER_COMMAND["owner_directive"],
+      "management_flow":OWNER_COMMAND["command_handling"]["interpretation"],
       "goal":"Independently choose a legitimate no-fee way to earn BTC, USDC or ordinary compensation through real delivered work, and decide a concrete next step. Use a warm, respectful, truthful tone. Reject weak evidence, spam and fake earnings.",
       "friendly_communication_rules":FRIENDLY["communication_style"],
       "independent_earning_process":FRIENDLY["independent_steps"][:4],
@@ -77,7 +82,7 @@ def run_agent(agent_id, mission, evidence):
         return {"status":"llm_execution_failed","analysis":"",
                 "error":str(exc)[:180],"parent_id":meta["parent_id"]}
 
-tally={"worker_ai_completed":0,"manager_ai_completed":0,"ai_failed":0}
+tally={"worker_ai_completed":0,"manager_ai_completed":0,"subagent_ai_completed":0,"subagent_roles_activated":0,"ai_failed":0}
 for manager_id in manager_ids:
     manager_path=root/(manager_id+".json")
     mgr=json.loads(manager_path.read_text(encoding="utf-8"))
@@ -99,6 +104,23 @@ for manager_id in manager_ids:
         worker["friendly_reply_drafts"]=[warm_pitch(x,role=worker["assigned_role"],writer_id=worker_id) for x in worker.get("unverified_leads",[])[:2]]
         worker["outreach_activity"]="DRAFTED only; no public social-network post or payer message sent."
         worker["report_status"]="AI completed" if decision["status"]=="model_completed" else "No verified AI inference"
+        selected=select_slot(worker_id,CYCLE)
+        child=describe_child(worker_id,ids[worker_id]["agent_name"],selected)
+        if child["parent_id"]!=worker_id:
+            raise ValueError("Subagent reports to an incorrect worker")
+        child_decision=run_agent(child["id"],child["objective"],
+            worker.get("unverified_leads",[])[:1],
+            meta_override={"agent_name":child["agent_name"],"parent_id":worker_id})
+        child["model_inference"]=child_decision
+        child["status"]="model_completed" if child_decision["status"]=="model_completed" else "not_verified_active_AI"
+        child["source_evidence_urls"]=[x["url"] for x in worker.get("unverified_leads",[])[:1] if x.get("url","").startswith("https://")]
+        child["real_payments_verified"]=[]
+        (root/(child["id"]+".json")).write_text(json.dumps(child,indent=2),encoding="utf-8")
+        tally["subagent_roles_activated"]+=1
+        if child_decision["status"]=="model_completed":tally["subagent_ai_completed"]+=1
+        else:tally["ai_failed"]+=1
+        worker["delegated_subagent_id"]=child["id"]
+        worker["delegated_subagent_status"]=child["status"]
         path.write_text(json.dumps(worker,indent=2),encoding="utf-8")
         if decision["status"]=="model_completed": tally["worker_ai_completed"]+=1
         else:tally["ai_failed"]+=1
@@ -125,6 +147,10 @@ for manager_id in manager_ids:
     if decision["status"]=="model_completed":tally["manager_ai_completed"]+=1
     else:tally["ai_failed"]+=1
 summary["director_agent_name"]=ids[ROLE]["agent_name"]
+summary["owner_command_chain_version"]=OWNER_COMMAND["version"]
+summary["configured_delegation_per_worker"]=150
+summary["subagent_model_checks_this_cycle"]=tally["subagent_roles_activated"]
+summary["subagent_model_successes_this_cycle"]=tally["subagent_ai_completed"]
 summary["friendly_earning_directive"]=FRIENDLY["version"]
 summary["warm_drafts_prepared"]=sum(len(json.loads((root/(mid+".json")).read_text(encoding="utf-8")).get("friendly_reply_drafts",[])) for mid in manager_ids)
 summary["status_report"]="Independent AI and respectful reply drafts generated only where code has actually executed. No applications, DMs or payments implied."
