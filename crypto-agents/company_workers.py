@@ -12,6 +12,7 @@ recruit actual human workers, create online identities or send messages.
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from wallet_routes import private_directory_status
 import json
 import os
 import re
@@ -23,6 +24,7 @@ import urllib.request
 ROOT = Path("crypto-agents")
 CONFIG = json.loads((ROOT/"company_hierarchy.json").read_text(encoding="utf-8"))
 BRIEF = json.loads((ROOT/"branch_brief.json").read_text(encoding="utf-8"))
+PAYMENT_DIRECTORY_STATUS = private_directory_status()
 ROLE = os.environ.get("ROLE_ID") or (sys.argv[1] if len(sys.argv)>1 else "")
 COMPANY = next((c for c in CONFIG["companies"] if c["director_id"]==ROLE),None)
 if COMPANY is None:
@@ -64,6 +66,8 @@ def dispatch(job):
         "assigned_role":assignment["role_name"],"search_source":assignment["source"],
         "search_query":assignment["query"],
         "payment_instruction_source":"crypto-agents/branch_brief.json",
+        "wallet_directory_access":PAYMENT_DIRECTORY_STATUS["status"],
+        "payment_route_ids_available":PAYMENT_DIRECTORY_STATUS["route_ids"],
         "personal_details_received":False,
         "checked_at_utc":datetime.now(timezone.utc).isoformat(),
         "execution_status":"source_unavailable","unverified_leads":[],
@@ -153,6 +157,8 @@ summary={
     "manager_findings":[dict(candidate,manager_id=m["manager_id"])
         for m in managers for candidate in m["source_linked_candidate_examples"]][:10],
     "owner_personal_details_shared":False,
+    "private_directory_access_status":PAYMENT_DIRECTORY_STATUS["status"],
+    "wallet_route_count_available":len(PAYMENT_DIRECTORY_STATUS["route_ids"]),
     "payments_received_verified":[],
     "caveat":"Configured 750 workers per company; only 30 bounded worker searches dispatched this hourly cycle. No separate AI account or confirmed payee is created."
 }
