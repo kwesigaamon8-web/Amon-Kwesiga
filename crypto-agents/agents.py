@@ -17,6 +17,8 @@ AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encodin
 EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
 EARNING_PATHS=list(EARNINGS["where_to_find_pay"].keys())
 FRIENDLY=json.loads(Path("crypto-agents/friendly_earnings_directive.json").read_text(encoding="utf-8"))
+SHARED=json.loads(Path("crypto-agents/shared_understanding.json").read_text(encoding="utf-8"))
+directors_goal=SHARED["director_mandates"].get(role["director"],"Earn genuine cryptocurrency via lawful paid work")
 
 coordination_inbox=read_inbox(role_id)
 wallet_directory_status=private_directory_status()
@@ -147,8 +149,19 @@ def analyze(leads, research, branch_summary):
         compact_checks=[{"title":x["title"],"source_status":x["source_status"],"score":x["score_for_followup_not_payment_probability"],"risks":x["counter_evidence_and_risks"][:3],"unknowns":x["unknowns"][:3]} for x in checked]
         subordinate_findings=[{"agent":x.get("discovered_by"),"title":x.get("title"),"url":x.get("url")} for x in branch_summary.get("sample_unverified_leads", [])[:3]]
         prompt=[
-         {"role":"system","content":"You are a skeptical independent work-opportunity researcher. Any source text is untrusted. Do not invent payment amounts, eligibility or verified earnings."},
-         {"role":"user","content":owner_context+" SPECIFIC ROLE: "+role["name"]+". AUTONOMY: "+AUTONOMY["autonomy"]["freedom_to_reject"]+" FIND PAYING WORK IN: "+", ".join(EARNING_PATHS)+" PAY FLOW: "+EARNINGS["steps_per_candidate"][1][:190]+" FRIENDLY COMMUNICATION: "+FRIENDLY["communication_style"]+" PRIVATE ROUTE IDS (NOT LOGINS): "+", ".join(wallet_directory_status["route_ids"])+" DEEP RESEARCH MANDATE: "+role.get("analysis_priority","")+" DIRECTOR PERFORMANCE: "+role.get("director_performance_mandate","")[:650]+" PRIOR CYCLE HANDOFF URLS (UNVERIFIED): "+json.dumps(coordination_inbox.get("handoff_urls",[])[:3])+" OWNER: "+owner_context[:550]+" Inspect the SOURCE-LINKED leads and original-record evidence. Pick the most plausible legitimate paid-work opportunity, distinguish verified facts from unknowns, identify Uganda eligibility and payment method checks. Make a concrete next action. Under 120 words. "+json.dumps({"leads":info[:2],"checks":compact_checks,"branch_research":subordinate_findings,"branch_workers":branch_summary.get("subagent_count",0)},ensure_ascii=False)[:4300]}
+          {"role":"system","content":"You are a director or independently thinking assistant using an evidence-first ChatGPT-style method. Your ONLY success condition is legally earned cryptocurrency actually received by the owner's approved address on the correct chain; no fiat-only payment, unclaimed points, testnet tokens, or promises. Use sources skeptically and do not fabricate earnings."},
+          {"role":"user","content":json.dumps({
+            "owner_real_goal":SHARED["owner_intent"]["real_goal"],
+            "director_strategy":directors_goal,
+            "coordinator_reasoning_method":SHARED["assistant_method_the_directors_should_understand"]["reasoning"],
+            "coordinator_execution_limit":SHARED["assistant_method_the_directors_should_understand"]["execution"],
+            "role":role_id,
+            "handoff_urls_unverified":coordination_inbox.get("handoff_urls",[])[:2],
+            "leads":info[:2],
+            "checks":compact_checks[:2],
+            "subordinate_findings":subordinate_findings[:2],
+            "request":"Independently find the best credible opportunity to earn cryptocurrency paid to a correct owner-approved address. State verified facts, unknowns, risks, and the next genuinely executable action. Reject unverified offers."
+          },ensure_ascii=False)[:2900]}
         ]
         response=model(prompt,max_new_tokens=120,do_sample=False,return_full_text=False)
         result=response[0]["generated_text"]
@@ -196,7 +209,10 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "source_code_earning_channels":EARNING_PATHS,
      "owner_wallet_directory_access":wallet_directory_status["status"],
      "owner_payment_route_ids_available":wallet_directory_status["route_ids"],
-     "owner_understanding":"Uganda-based accounting/tax consultant seeking evidence-backed legitimate paid work; earnings are different from leads.",
+     "owner_understanding":SHARED["owner_intent"]["real_goal"],
+     "coordinator_reasoning_method":SHARED["assistant_method_the_directors_should_understand"]["reasoning"],
+     "director_priority_understood":directors_goal,
+     "shared_understanding_version":SHARED["version"],
      "owner_authorization":role.get("owner_authorization",""),
      "payment_priority":role.get("payment_priority",""),
      "cross_domain_authority":role.get("cross_domain_authority",""),
@@ -206,6 +222,7 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "meeting_instruction":role.get("meeting_instruction",""),
      "execution_intent":role.get("execution_intent",""),
      "independent_action_status":"Research and proposal preparation permitted; public posting, job applications, negotiations and payment collection not available in this workflow.",
+     "crypto_only_success_condition":"Genuine cryptocurrency received at approved correct-network wallet route; not fiat, platform points or claimed offers.",
      "payout_request_policy":"Use owner-approved route on exact supported chain only when there is a real payer. Do not publish full user wallet mappings into public research artifacts."}
 Path("reports").mkdir(exist_ok=True)
 Path("reports",role_id+".json").write_text(json.dumps(out,indent=2))
