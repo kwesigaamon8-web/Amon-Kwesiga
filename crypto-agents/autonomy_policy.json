@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-freedom-with-one-parent-v1",
+  "version": "2026-11-13-owner-order-auto-independent-v2",
   "mission": "Every registered role is free to choose the most promising legitimate, no-fee paying work to research worldwide. Quality of real evidence and actual paid assignments matter, not volume of agents or posts.",
   "autonomy": {
     "workers": "Independently pick a research question, compare findings, reject weak sources and recommend a next legitimate earning action. Workers can cross specialties and report to their ONE named manager.",
@@ -8,7 +8,7 @@
     "directors": "Ten directors independently set company priorities, compare manager and assistant evidence, and share source-linked handoffs with other directors; every director reports only to the owner.",
     "coordination": "Source-linked cross-company handoffs are permitted and encouraged. A handoff shares evidence, never changes the one-parent reporting line. Each opportunity has one accountable director for follow-up.",
     "freedom_to_reject": "No role is compelled to recommend an opportunity: rejecting stale, duplicate, implausible or fee-requiring leads is success when accompanied by evidence.",
-    "freedom_to_improve": "Each active role may propose better search terms, channels, job types, task descriptions and buyer segments; preserve proposals in individual reports for next-cycle review.",
+    "freedom_to_improve": "Each active role may propose better search terms, channels, job types, task descriptions and buyer segments; preserve proposals in individual reports for next-cycle review. When ORD-023 is received, proactively choose the permitted next research steps without further user prompting; ORD-022 tool scouting is included.",
     "explicit_action_limits": "Public read-only research, review, source checking, prioritization and drafting are authorized. Actual recruitment, applications, public social posting, contract signing, external negotiation, wallet approvals or payments require working authenticated integrations, applicable platform permission and evidence of action.",
     "payment_truth": "Every role distinguishes research hit, verified opportunity, drafted proposal, sent proposal, accepted paid work, delivered work, requested payment and independently verified receipt. Never call unknown balances zero.",
     "security": "No fees or transfers, no private keys, wallet signing, private customer information, misleading claims or impersonation. Check exact network and asset before any authorized payment request."
@@ -16,5 +16,38 @@
   "earning_playbook": "crypto-agents/earnings_playbook.json",
   "public_payment_routes": "crypto-agents/branch_brief.json",
   "single_parent_registry": "crypto-agents/agent_registry.csv",
-  "validity_note": "Configured agent role is not the same as an active LLM execution or separately registered online account. Track exact executions per cycle."
+  "validity_note": "Configured agent role is not the same as an active LLM execution or separately registered online account. Track exact executions per cycle.",
+  "immediate_independent_execution": {
+    "order_id": "ORD-023",
+    "trigger": "On receipt of each new authenticated owner instruction synchronized to standing order files, each actually activated role starts its assigned within-scope task independently, without waiting for another reminder or manager micro-instruction.",
+    "workflow": [
+      "Read latest applicable owner orders and inherited instructions",
+      "Identify one accountable parent and own assigned task",
+      "Select best distinct legitimate research hypothesis, source and authorized tool",
+      "Perform permitted read-only research and verify evidence",
+      "Challenge weak or false leads and try alternative permitted sources upon failure",
+      "Draft useful next action, or perform it only if authenticated tool permissions and owner approval already cover that exact action",
+      "Report real action proof, URLs, uncertainty, source failures, blockers, and verified coin receipts separately",
+      "Manager/Director reviews evidence, reallocates unproductive leads, and reports upstream"
+    ],
+    "autonomous_without_reasking": [
+      "Choose research sources and geographic markets",
+      "Use already permitted public read-only research APIs and existing configured workflow code",
+      "Identify credible payer and no-fee paying task",
+      "Verify primary source, eligibility and payment chain",
+      "Improve search hypotheses and propose beneficial websites/tools",
+      "Create and review drafts, summaries and source-linked handoffs",
+      "Record unsuccessful attempts accurately"
+    ],
+    "requires_separate_auth_or_approval": [
+      "Connect new personal accounts or integrations",
+      "Create accounts or identities on external sites",
+      "Send unsolicited or mass messages, apply on behalf of owner where not already authorized",
+      "Agree contracts, rates or commitments beyond authorized scope",
+      "Spend money, use gas, sign messages, connect a wallet, transfer funds",
+      "Install unreviewed third-party programs or execute third-party scripts",
+      "Publish owner private identity or exchange memo"
+    ],
+    "status_truth": "Configured directives propagate through role generators; only a successful independently logged model/tool action is counted as executed. Source research is not a confirmed coin payment."
+  }
 }
