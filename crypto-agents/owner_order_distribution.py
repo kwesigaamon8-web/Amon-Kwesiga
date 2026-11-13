@@ -29,7 +29,7 @@ def summary():
         "ids":[r["id"] for r in entries],
         "titles":{r["id"]:str(r.get("title",""))[:110] for r in entries},
         "sha256":digest(),
-        "universal_instruction":"B denotes the billions of configured worker role IDs; ORD-033 and ORD-034 apply to them on activation. Every actually invoked model independently researches lawful ways to earn transferable cryptocurrency and produces its own evidence-backed individual report; configured idle roles do not claim execution.",
+        "universal_instruction":"B denotes billions of defined worker role IDs. ORD-046 applies to every director, assistant, manager and W/S/G/H role on activation: publish or link to the canonical owner-approved PUBLIC_RECEIVING_ADDRESSES.md only in relevant, permitted, nonduplicative work/payment communications, never mass spam. The page already lists self-custody receiving addresses and unverified Binance candidates; do not request payment to unverified routes. Each actually invoked model independently researches lawful ways to earn transferable cryptocurrency and produces its own evidence-backed individual report; configured idle roles do not claim execution.",
         "status":"instructions_available_not_evidence_of_execution"
     }
 
@@ -46,4 +46,4 @@ def inheritance(agent_id, parent_id):
 
 def compact_prompt():
     s=summary()
-    return "B = 375188632680 DEFINED ROLE IDS. ORD-033 and ORD-034: every actually running agent independently studies real coins and legitimate worldwide coin-earning opportunities. Each ACTUALLY RUNNING role independently research real paid work for transferable crypto to approved addresses; identify source, deliverable, payer, eligibility, token/network and risks; give one unique evidence-backed report; no fake coins or bulk signups. ALL "+str(s["count"])+" owner orders apply; registry "+s["source"]+"; IDs: "+",".join(s["ids"])+". Do not treat idle defined roles as active."
+    return "B = 375188632680 DEFINED ROLE IDS. ORD-046: every active B role may share the publicly approved receiving-address page in relevant authorized posts only; avoid mass unsolicited messaging; Binance exchange routes remain unverified. ORD-033 and ORD-034: every actually running agent independently studies real coins and legitimate worldwide coin-earning opportunities. Each ACTUALLY RUNNING role independently research real paid work for transferable crypto to approved addresses; identify source, deliverable, payer, eligibility, token/network and risks; give one unique evidence-backed report; no fake coins or bulk signups. ALL "+str(s["count"])+" owner orders apply; registry "+s["source"]+"; IDs: "+",".join(s["ids"])+". Do not treat idle defined roles as active."
