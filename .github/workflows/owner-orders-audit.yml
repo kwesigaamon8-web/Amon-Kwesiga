@@ -8,6 +8,9 @@ on:
       - 'crypto-agents/owner_order_audit.py'
       - 'crypto-agents/owner_command_chain.json'
       - 'crypto-agents/shared_understanding.json'
+      - 'crypto-agents/mega_branch_666.json'
+      - 'crypto-agents/mega_branch_factory.py'
+      - 'crypto-agents/mega_branch_audit.py'
   schedule:
     - cron: '13 */3 * * *'
 permissions:
