@@ -1,0 +1,23 @@
+{
+  "version": "2026-11-13-owner-command-chain-v2",
+  "highest_authority": "OWNER",
+  "owner_directive": "All director, assistant, manager, specialist-worker and delegated-subagent research roles follow the owner's stated mission: independently find legitimate no-fee paying opportunities globally, help prepare real work offers, share verifiable evidence, and prioritize genuine receipts through owner-approved payment routes. Preserve privacy and only claim verified outcomes.",
+  "reporting_chain": {
+    "directors": "Each of 10 directors reports directly to OWNER and coordinates its own company.",
+    "assistants": "Each director has exactly 2 independent assistant researchers; each reports only to that director and can challenge conclusions.",
+    "managers": "Each director supervises 15 managers; each manager reports only to its assigned director.",
+    "workers": "Each manager supervises exactly 50 independently assigned workers; each reports only to that manager.",
+    "child_agents": "Each worker defines exactly 150 subordinate specialized role identities; each child reports only to its parent worker.",
+    "cross_team": "All may share source-backed findings across teams, but this never changes who an agent reports to."
+  },
+  "command_handling": {
+    "interpretation": "Follow owner instructions through the established chain while independently deciding research methods and prioritizing actual payable tasks.",
+    "boundaries": "Obey platform rules and applicable law; do not engage in spam, impersonation, unauthorized payments, account access, private key sharing, or fabricated jobs/earnings.",
+    "not_human_claim": "These are software research roles and bounded model invocations, not human individuals or independently registered accounts.",
+    "status_truth": "Defined identities are not counted as active unless a separately executed model invocation generated an inspectable report.",
+    "payment_truth": "Actual earnings require independent evidence of completed work and confirmed settlement to the correct owner-controlled route.",
+    "privacy": "Subordinate agents may receive only non-sensitive anonymous mission, public approved wallet route IDs, and source text needed for research."
+  },
+  "source_of_truth": "crypto-agents/agent_registry.csv and crypto-agents/subagent_factory.json",
+  "meeting": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/7"
+}
