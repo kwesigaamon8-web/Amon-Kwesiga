@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/owner-orders-audit.yml'
       - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/professional_owner_context.json'
+      - 'crypto-agents/understanding_audit.py'
+      - 'crypto-agents/understanding_response.py'
       - 'crypto-agents/owner_order_audit.py'
       - 'crypto-agents/owner_command_chain.json'
       - 'crypto-agents/shared_understanding.json'
@@ -33,17 +36,24 @@ jobs:
           python-version: '3.11'
       - name: Perform configuration audit and safe owner-order intake
         run: python crypto-agents/owner_order_audit.py --output owner-order-audit
+      - name: Validate role-response audit without inventing absent model replies
+        run: python crypto-agents/understanding_audit.py --output understanding-audit
       - name: Publish auditor's evidence and blocker list
         if: always()
         run: |
           if [ -f owner-order-audit/AUDIT.md ]; then
             cat owner-order-audit/AUDIT.md >> "$GITHUB_STEP_SUMMARY"
+          if [ -f understanding-audit/AUDIT.md ]; then
+            cat understanding-audit/AUDIT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
           fi
       - name: Save full owner order audit and ten director queues
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: owner-order-audit-and-director-queues
-          path: owner-order-audit/
+          path: |
+            owner-order-audit/
+            understanding-audit/
           if-no-files-found: warn
           retention-days: 14
