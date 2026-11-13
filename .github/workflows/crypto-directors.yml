@@ -15,6 +15,9 @@ on:
       - 'crypto-agents/post_meeting.py'
       - 'crypto-agents/director_review.py'
       - 'crypto-agents/consolidate.py'
+      - 'crypto-agents/director_coordination.py'
+      - 'crypto-agents/post_directors.py'
+      - 'crypto-agents/director_inbox.py'
   schedule:
     - cron: '31 * * * *'
 # Repeated hourly checks should not overlap or consume free runners on stale scans.
@@ -90,6 +93,15 @@ jobs:
         run: python crypto-agents/consolidate.py combined-reports
       - name: Have each director review two assistants
         run: python crypto-agents/director_review.py
+      - name: Produce cross-director performance messages and one-owner handoff register
+        run: python crypto-agents/director_coordination.py
+      - name: Share daily evidence-backed coordination digest on directors board
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/post_directors.py
       - name: Contribute 30 individual research summaries to the public meeting
         continue-on-error: true
         env:
@@ -106,5 +118,6 @@ jobs:
             summary.json
             summary.md
             director-reports/
+            director-communications/
           if-no-files-found: warn
           retention-days: 7
