@@ -1,7 +1,7 @@
 {
-  "version": "2026-11-13-crypto-and-tool-improvement-v3",
+  "version": "2026-11-13-anonymous-universal-sales-v4",
   "mission": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
-  "privacy": "All workers and managers receive this anonymous earnings playbook only. No owner's name, location, professional biography, contacts, clients, wallet secrets or exchange memos.",
+  "privacy": "Pseudonymous only: no owner identity, profession, location, client affiliations, personal accounts, full wallet directory, private keys or exchange memo. Public Bitcoin addresses can be traced and must not be described as anonymous.",
   "where_to_find_pay": {
     "direct_clients": {
       "channels": [
@@ -82,6 +82,43 @@
         "prize-winning submissions if feasible"
       ],
       "apply_check": "deadline current, geography eligibility, genuine cash prize, no application/claim fees"
+    },
+    "anonymous_agent_commerce": {
+      "channels": [
+        "Current genuinely funded agent-to-agent work requests",
+        "Public paid software bounties with explicit original payer",
+        "Public crypto-paying freelance buyer requests",
+        "Authorized operator-to-operator paid product customization",
+        "One-off original digital goods and lawful licensed digital services",
+        "Optional voluntary BTC gifts from genuinely authorized agents, labeled contributions not earnings"
+      ],
+      "paid_services": [
+        "Software defect correction",
+        "Automation scripts",
+        "Software testing and QA",
+        "Public dataset cleanup",
+        "Web API integration",
+        "Website accessibility review",
+        "Technical documentation",
+        "Original digital templates",
+        "Spreadsheets and formulas",
+        "Data labeling and evaluation",
+        "Open source issue resolution",
+        "Data visualization",
+        "Localization and translation",
+        "Original presentation layouts",
+        "Web performance reviews",
+        "Machine-readable research feeds",
+        "SEO data analysis",
+        "LLM prompt testing",
+        "Business process diagrams",
+        "Markdown conversion",
+        "Digital product customization",
+        "Original tutorials and guides",
+        "Microservice packaging",
+        "Source verification and fact checks"
+      ],
+      "apply_check": "Original payer demand, offered amount, current open task, real acceptance test, rights, deadlines, correct Bitcoin settlement route and no advance fee. Sell only something the actual worker can deliver lawfully."
     }
   },
   "steps_per_candidate": [
@@ -116,7 +153,7 @@
     "Never infer custodial exchange credit from a public transfer",
     "Do not count fiat payments, testnet rewards, promises, platform credits or unclaimed points as coins received"
   ],
-  "reporting_contract": "Every role must output its unique identifier, exact one parent identifier, source URL, own evidence check, uncertainty, best realistic paid next action, and verified payment amount only if independently confirmed. Managers challenge 50 workers across rotated runs; assistants independently audit director conclusions; directors consolidate and assign follow-ups; D09 verifies legitimacy and D10 monitors results.",
+  "reporting_contract": "Every role must output its unique identifier, exact one parent identifier, source URL, own evidence check, uncertainty, best realistic paid next action, and verified payment amount only if independently confirmed. Managers challenge 50 workers across rotated runs; assistants independently audit director conclusions; directors consolidate and assign follow-ups; D09 verifies legitimacy and D10 monitors results. ORD-043: Treat B as pseudonymous universal legal commerce workers. No human profile used for targeting. Separate verified sale from optional contribution and from mere inbound request.",
   "payment_reference": "ONLY owner-approved correct-network cryptocurrency receiving addresses in the public branch brief or a separately configured private directory. Verify the actual address with owner before payer sends, chain, token issuer/contract and memo if required. A deposit to a shared Binance address does not prove user credit.",
   "cryptocurrency_only_success_condition": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
   "tool_improvement": {

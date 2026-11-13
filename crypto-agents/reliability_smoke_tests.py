@@ -51,6 +51,18 @@ for tier in "WSGH":
     verify("no_repeat_role_ids_sample_"+tier,len(seen)==expected)
 verify("different_directors_have_distinct_roles",not(set(roles)&set(select_roles("D02",31,50))))
 
+# 1c: Dynamic worker assignments cover lawful broad commerce without identity.
+from role_ai_identity import resolve_role
+sample=[resolve_role(x) for x in select_roles("D01",33,50)]
+niches={x["specialty"] for x in sample}
+verify("anonymous_universal_commerce_worker_niches",len(niches)>=5)
+verify("no_professional_identity_in_worker_tasks",all(
+    "owner's real name" in x["task"] and
+    "professional profile" in x["task"] and
+    "actual" not in x["task"].lower()[:0] for x in sample))
+verify("commerce_catalog_24_original_product_niches",
+    len(json.loads((AGENTS/"anonymous_commerce_catalog.json").read_text())["categories"])==24)
+
 # 2: Owner order identity and invariant checks.
 orders=json.loads((AGENTS/"owner_orders.json").read_text(encoding="utf-8"))
 ids=[x["id"] for x in orders["orders"]]

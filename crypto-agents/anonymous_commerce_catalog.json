@@ -1,0 +1,175 @@
+{
+  "schema": "b-anonymous-universal-commerce-v1",
+  "identity": "transferexperiment/B (pseudonym in outreach; do not disclose repo or human identity)",
+  "scope": "Global lawful buyer-driven agent commerce, not tied to a human professional profile",
+  "not_an_active_customer_list": true,
+  "earning_goal": "Real legitimately paid native BTC to an owner-confirmed Bitcoin-mainnet address or verified permitted cryptocurrency route",
+  "categories": [
+    {
+      "id": "C01",
+      "name": "Software defect correction",
+      "public_market_search": "paid software bug fix bounty original sponsor",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C02",
+      "name": "Automation scripts",
+      "public_market_search": "paid Python automation task client request",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C03",
+      "name": "Software testing and QA",
+      "public_market_search": "paid software testing bug bash bounty",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C04",
+      "name": "Public dataset cleanup",
+      "public_market_search": "paid CSV data cleaning task freelancer",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C05",
+      "name": "Web API integration",
+      "public_market_search": "paid API integration webhook contract",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C06",
+      "name": "Website accessibility review",
+      "public_market_search": "paid web accessibility audit task",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C07",
+      "name": "Technical documentation",
+      "public_market_search": "paid software documentation writing contract",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C08",
+      "name": "Original digital templates",
+      "public_market_search": "paid original Notion template custom build",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C09",
+      "name": "Spreadsheets and formulas",
+      "public_market_search": "paid Excel formulas spreadsheet task",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C10",
+      "name": "Data labeling and evaluation",
+      "public_market_search": "paid AI evaluation data annotation contract",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C11",
+      "name": "Open source issue resolution",
+      "public_market_search": "open paid GitHub bug bounty issue",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C12",
+      "name": "Data visualization",
+      "public_market_search": "paid data dashboard visualization task",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C13",
+      "name": "Localization and translation",
+      "public_market_search": "paid translation localization proofreading request",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C14",
+      "name": "Original presentation layouts",
+      "public_market_search": "paid presentation design custom deliverable",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C15",
+      "name": "Web performance reviews",
+      "public_market_search": "paid web performance optimization gig",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C16",
+      "name": "Machine-readable research feeds",
+      "public_market_search": "paid data feed research automation project",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C17",
+      "name": "SEO data analysis",
+      "public_market_search": "paid SEO technical audit data analysis task",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C18",
+      "name": "LLM prompt testing",
+      "public_market_search": "paid LLM evaluation red-team authorized test",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C19",
+      "name": "Business process diagrams",
+      "public_market_search": "paid workflow documentation diagram task",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C20",
+      "name": "Markdown conversion",
+      "public_market_search": "paid Markdown documentation HTML conversion gig",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C21",
+      "name": "Digital product customization",
+      "public_market_search": "paid digital product template customization request",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C22",
+      "name": "Original tutorials and guides",
+      "public_market_search": "paid tutorial writing documentation contract",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C23",
+      "name": "Microservice packaging",
+      "public_market_search": "paid CLI tooling Docker packaging bounty",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    },
+    {
+      "id": "C24",
+      "name": "Source verification and fact checks",
+      "public_market_search": "paid source verification dataset audit work",
+      "deliverable_standard": "Create an original useful result, test or inspect it, confirm the needed license/rights, require a real buyer and acceptance test before claiming a sale."
+    }
+  ],
+  "outreach_channel": "Existing authorized pseudonymous Moltbook transferexperiment account when credential/access available; do not claim posts/replies without official API confirmation",
+  "prohibitions": [
+    "No illegal/counterfeit/stolen/copyright-infringing listings",
+    "No fictitious product inventory or guaranteed earnings",
+    "No impersonation, mass spam or unsolicited DMs",
+    "No owner identity, profession, location, GitHub link or full wallet list in public outreach",
+    "No unsafe funds movement, account access or wallet signing",
+    "No claims that unrelated agents must obey B"
+  ],
+  "buyer_validation_fields": [
+    "original_request_url",
+    "buyer_identification_or_source",
+    "scope",
+    "lawful_delivery_rights",
+    "acceptance_test",
+    "offered_BTC_or_USDC_amount",
+    "asset_and_network",
+    "due_date",
+    "verified_payment_or_escrow_terms",
+    "required_owner_authorization"
+  ],
+  "completed_sales_verified": 0
+}

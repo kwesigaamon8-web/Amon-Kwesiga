@@ -6,6 +6,7 @@ and logged by ai_process_worker.py.
 import json
 import re
 from pathlib import Path
+import hashlib
 from subagent_factory import describe_child
 from microcompany_factory import describe_micro_worker
 from mega_branch_factory import describe_branch_worker
@@ -48,6 +49,21 @@ def resolve_role(role_id):
         current=child["id"];level=tag
         query=("remote "+specialty+" paid contract")[:140]
     if current!=role_id:raise ValueError("Factory role mismatch")
+    # Stable, diversified legal selling niches for actual B model processes.
+    # No human professional background is used. This changes research tasks,
+    # never claims that agents are already running or have a buyer.
+    commercial=json.loads(Path("crypto-agents/anonymous_commerce_catalog.json").read_text(encoding="utf-8"))
+    offerings=commercial["categories"]
+    idx=int.from_bytes(hashlib.sha256(role_id.encode("utf-8")).digest()[:8],"big")%len(offerings)
+    niche=offerings[idx]
+    specialty=niche["name"]
+    query=niche["public_market_search"]
+    task=("Find one genuine buyer or funded task for "+specialty+
+          ". Check public original source, compensation and a real acceptance test. "+
+          "Prepare a useful original lawful sample or explain the blocker. "+
+          "Offer BTC payment only with the correct owner-confirmed network. "+
+          "Operate pseudonymously: no owner's real name, professional profile or identity. "+
+          "Never invent a sale, buyer, external message, completed task or coin receipt.")
     return {"id":role_id,"level":level,"parent_id":parent,"manager_id":manager,
             "director_id":director,"specialty":str(specialty)[:180],
             "query":str(query)[:140],"task":str(task)[:650]}

@@ -1,20 +1,18 @@
 {
-  "version": "2026-11-13-professional-owner-brief-v1",
-  "disclosure": "Approved high-level professional and work-related context only. Do not reveal name, clients, personal finances, family, emails, account passwords, crypto private keys, precise location, exchange memos or complete address map in public reports.",
+  "version": "2026-11-13-anonymous-owner-disabled-professional-targeting-v2",
+  "disclosure": "IDENTITY RESTRICTED: Do not use or publish any personal professional background in B's commerce activity. Prior professional data is not an agent sales pitch and must not be exposed to external agents.",
   "whom_you_work_for": {
-    "description": "An independent accounting and tax consultant who has a Bachelor of Commerce and is pursuing professional CPA studies; not represented as a licensed audit-signing CPA.",
+    "description": "Anonymous sponsor of an AI software workforce. No real-world person profile, employer, qualification, or geography should be disclosed or used for targeting.",
     "strengths": [
-      "Bookkeeping and account reconstruction",
-      "Bank and ledger reconciliation",
-      "QuickBooks Desktop and Online, Tally, Pastel and Zoho Books",
-      "Excel reporting, automation and financial analysis",
-      "Management accounts and financial statements",
-      "Payroll, Uganda tax compliance support and EFRIS",
-      "Internal-control reviews and audit preparation"
+      "AI-generated original code and testing, subject to working verification",
+      "Public-source research and evidence comparison",
+      "Digital data cleanup and useful original document templates",
+      "Original translation and localization when validated",
+      "Agent-operated software and authorized machine-readable tasks"
     ],
-    "commercial_advantage": "Practical experience delivering reliable supporting schedules, clean-up projects, accurate reports and recurring financial services.",
-    "realistic_paid_work": "Find legitimate paying clients or bounty tasks where these skills can be used, or feasible independent task work that can be delivered accurately.",
-    "geography": "The professional is based in East Africa; verify Uganda eligibility and remote payment availability. Do not disclose street address or client locations."
+    "commercial_advantage": "Actual available worker compute and testable delivery artifacts, not a claimed professional certification.",
+    "realistic_paid_work": "Any lawful digital product or service B can genuinely produce and deliver with the necessary rights.",
+    "geography": "Not provided; don't infer eligibility; check marketplace-specific requirements without advertising a human identity."
   },
   "owner_instructions": {
     "single_success_condition": "Genuine legitimately earned transferable cryptocurrency credited to one of the owner's approved receiving addresses on the exact network, independently confirmed.",
@@ -36,11 +34,11 @@
   },
   "understanding_test": {
     "all_roles_must_answer_in_own_words": [
-      "Who is the owner professionally, in terms relevant to the task?",
-      "What is my own role and unique reporting parent?",
-      "What kind of paying work will I pursue and what will I do first?",
-      "What exactly constitutes verified success?",
-      "What facts and limitations remain unverified?"
+      "What is B's pseudonymous mission without disclosing owner identity or profession?",
+      "What is my unique direct parent and W/S/G/H assignment?",
+      "Which lawful digital deliverable can I actually create or test for an identified genuine paying buyer?",
+      "What evidence would establish accepted work and genuine BTC received?",
+      "What blockers or missing permissions prevent the next action?"
     ],
     "statuses": [
       "configuration_only_not_activated",

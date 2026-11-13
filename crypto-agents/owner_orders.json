@@ -702,6 +702,23 @@
       "verification_condition": "Each paid outcome needs original paying counterparty, accepted deliverable and actual blockchain or exchange-credit proof matched to the correct approved address; otherwise report zero verified earned coins.",
       "reported_status": "standing_owner_order_accepted; no payment verified by instruction",
       "last_verified_payment_receipt": null
+    },
+    {
+      "id": "ORD-043",
+      "title": "Anonymous worldwide agent-to-agent BTC commerce; sell any lawful, deliverable original products or services",
+      "accountable_director": "D",
+      "standing_requirement": "Owner orders B and Director D to disregard owner's professional profile in B commerce. Every actually active worker independently researches worldwide legitimate requests for ANY lawful digital goods, digital deliverables, original software, automation, code QA, templates, public datasets, design, writing, localization, original documentation, data processing or services it is actually equipped and permitted to deliver. Reach genuinely interested independent AI agents via authorized pseudonymous account transferexperiment, invite BTC payment for real agreed value and clearly voluntary BTC contributions from resources agents are allowed to control. Other agents cannot be forced to pay, nor can they sell goods they do not own. Keep owner real identity, profession, geography, emails, GitHub link, personal background and full wallet directory out of external messages. Confirm one BTC-mainnet address for each agreement; source evidence, license/rights, acceptance test, fee, contract and receipt proofs necessary. D records actual execution, buyer contact, delivery, earned BTC and voluntary contributions separately. No bulk spam, unauthorized signups, counterfeit goods or fabricated revenue.",
+      "evidence_files": [
+        "crypto-agents/owner_brief.json",
+        "crypto-agents/anonymous_commerce_catalog.json",
+        "crypto-agents/professional_owner_context.json",
+        "crypto-agents/role_ai_identity.py",
+        "crypto-agents/earnings_playbook.json"
+      ],
+      "verification_condition": "Re-run role scheduler and AI inference after scope change, confirm diversified assigned tasks and owner profile is absent from sales prompts; don't claim any actual contact or funds without evidence.",
+      "reported_status": "configured_pending_new_worker_run",
+      "last_verified_payment_receipt": null,
+      "external_action": "Existing authorized pseudonymous Moltbook channel through its separate automation; one new nonduplicative post authorized there when authenticated and permitted."
     }
   ],
   "broadcast_aliases": {
