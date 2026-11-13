@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-13T17:54:54Z",
+  "updated_utc": "2026-11-13T17:56:49Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -538,9 +538,9 @@
     },
     {
       "id": "ORD-033",
-      "title": "B means broadcast WORK to ALL 375,188,632,680 configured independent agent role IDs",
+      "title": "Owner B instruction applies to billions of worker role identities",
       "accountable_director": "D10",
-      "standing_requirement": "OWNER BROADCAST B (13 November 2026): B is a UNIVERSAL OWNER ORDER to the COMPLETE 375,188,632,680-role hierarchy, NOT the B-labelled director assistants. Every D/A/M/W/S/G/H role identity must inherit and be able to retrieve B on demand, including all 374,625,000,000 H-tier descendants. Every ACTUALLY EXECUTING agent must independently do permitted lawful worldwide research on how to earn genuinely transferable cryptocurrency for the owner's approved exact-chain addresses. Evaluate concrete paid jobs, bounties, accounting/QuickBooks work, useful AI tasks and verified reward channels, then produce its own evidence-backed report stating unique role and parent, actual source URL and access result, payer/deliverable and payment-token/network confirmation status, eligibility, scam risks, specific next feasible step, actual LLM execution status and no fabricated earnings. Report to one parent while exercising its own independent judgment; a common owner broadcast does not replace distinct agent investigation. ALL 375,188,632,680 identities are addressable via mathematical factories, but only roles actually launched may claim to have received or performed this order. Do not create billions of materialized files, spam external websites, make fake accounts, access private data, incur paid compute, or claim coin deposits without independent blockchain/exchange evidence. In subsequent runs, the B broadcast is automatically inherited, and managers/directors report separate assigned/executed/completed counts.",
+      "standing_requirement": "Owner clarification: B means MY BILLIONS OF WORKERS, not only B assistants. The universal owner work directive ORD-033 and worldwide coin learning ORD-034 apply to every defined D/A/M/W/S/G/H worker identity via lazy inheritance. Only roles that actually execute model calls can claim to have independently researched and reported. All registered orders remain applicable; no mass creation of accounts, unsolicited posts or unverified claims of crypto receipts.",
       "evidence_files": [
         "crypto-agents/owner_orders.json",
         "crypto-agents/owner_order_distribution.py",
@@ -556,9 +556,25 @@
       "reported_status": "configured_not_runtime_verified",
       "last_verified_payment_receipt": null,
       "external_action": "Permitted no-fee research and individual reporting only; no external account registrations, mass unsolicited messages, payment transfers or wallet signing."
+    },
+    {
+      "id": "ORD-034",
+      "title": "B means billions of workers: study coins and worldwide legitimate ways to earn them",
+      "accountable_director": "D03",
+      "standing_requirement": "User clarification: B means MY BILLIONS OF WORKER ROLE IDS, not the director B assistants or a newly named broadcast. For each genuinely activated independent D/A/M/W/S/G/H worker, study one coin and network with a separate real original-source request; examine a real worldwide earning channel; report whether its official source responded, what the coin/network does, legitimate paid bounties or accounting/QuickBooks/AI jobs worth following up, real payer and compensation status, network compatibility, risks, and distinct next permitted action. Distribute the standing order by existing lazy role factories to all 375,188,632,680 defined IDs. Only actually executed workers can claim completion. Do not claim exhaustive crawling of the entire Internet, create fake mass accounts, spend money, spam, impersonate or claim cryptocurrency received without independently verified credit.",
+      "evidence_files": [
+        "crypto-agents/global_coin_learning.json",
+        "crypto-agents/coin_learning.py",
+        "crypto-agents/ai_process_worker.py",
+        "crypto-agents/owner_order_distribution.py"
+      ],
+      "verification_condition": "Distinct W/S/G/H process artifacts show coin study with real original URL and source outcome, actual separate small-model inference, and no invented payment evidence.",
+      "reported_status": "configured_not_runtime_verified",
+      "last_verified_payment_receipt": null,
+      "external_action": "Bounded public educational and worldwide earning-source research, no account registration, payments or wallet actions."
     }
   ],
   "broadcast_aliases": {
-    "B": "ORD-033"
+    "B": "billions_of_workers"
   }
 }

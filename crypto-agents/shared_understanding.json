@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-B-broadcast-every-role-v11",
+  "version": "2026-11-13-B-billions-study-coins-v12",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -90,7 +90,7 @@
     "limits": "No self-activation of dormant billion-role identities, unauthorized accounts, payments, wallet access or messaging"
   },
   "universal_broadcast_B": {
-    "alias": "B",
+    "alias": "B means BILLIONS of configured worker role IDs",
     "order_id": "ORD-033",
     "destination": "EVERY defined and future D/A/M/W/S/G/H role, dynamically inherited",
     "defined_role_count": 375188632680,
@@ -109,6 +109,9 @@
       "model result",
       "verified coin receipt or none"
     ],
-    "safety": "No mass signups, bulk messages, costs, theft, credential exposure or fabricated success"
+    "safety": "No mass signups, bulk messages, costs, theft, credential exposure or fabricated success",
+    "clarification": "The user means my billions of workers, not a named B assistant and not a literal message broadcast to billions of live hosts.",
+    "current_owner_order": "ORD-034",
+    "learning_catalog": "crypto-agents/global_coin_learning.json"
   }
 }

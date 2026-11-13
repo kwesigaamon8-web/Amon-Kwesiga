@@ -9,6 +9,8 @@ on:
       - '.github/workflows/real-ai-workers.yml'
       - 'crypto-agents/ai_process_worker.py'
       - 'crypto-agents/role_ai_identity.py'
+      - 'crypto-agents/coin_learning.py'
+      - 'crypto-agents/global_coin_learning.json'
       - 'crypto-agents/ai_process_launcher.py'
       - 'crypto-agents/ai_process_audit.py'
       - 'crypto-agents/director_work_orders.py'
