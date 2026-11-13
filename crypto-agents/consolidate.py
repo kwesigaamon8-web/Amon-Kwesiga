@@ -23,18 +23,21 @@ for path in files:
     except Exception as exc:
         bad.append(str(path) + ": " + str(exc)[:80])
 
-branch_manifest=json.loads(Path("crypto-agents/branch_manifest.json").read_text(encoding="utf-8"))
-expected_subagents={a["id"] for branch in branch_manifest["branches"] for a in branch["agents"]}
-branch_reports={}
-branch_summaries={}
-for subpath in root.rglob("*.json"):
+hierarchy=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encoding="utf-8"))
+expected_manager_ids={m["id"] for company in hierarchy["companies"] for m in company["managers"]}
+company_summaries={}
+manager_summaries={}
+worker_reports={}
+for source in root.rglob("*.json"):
     try:
-        subobj=json.loads(subpath.read_text(encoding="utf-8"))
-        if subobj.get("subagent_id") in expected_subagents:
-            branch_reports[subobj["subagent_id"]]=subobj
-        elif subobj.get("branch_manager") and subobj.get("subagent_count") == 15:
-            branch_summaries[subobj["branch_manager"]]=subobj
-    except (ValueError, OSError):
+        entry=json.loads(source.read_text(encoding="utf-8"))
+        if entry.get("director_id") and entry.get("configured_managers")==15:
+            company_summaries[entry["director_id"]]=entry
+        elif entry.get("manager_id") in expected_manager_ids and entry.get("workers_executed_this_cycle") is not None:
+            manager_summaries[entry["manager_id"]]=entry
+        elif entry.get("worker_id") and entry.get("manager_id") in expected_manager_ids:
+            worker_reports[entry["worker_id"]]=entry
+    except (ValueError,OSError):
         pass
 
 today = datetime.now(timezone.utc)
@@ -119,13 +122,19 @@ qualified.sort(key=lambda x: (x["amount_claimed_in_source"], x["updated"]), reve
 out = {
     "generated_at_utc": today.isoformat(),
     "expected_research_jobs": 30, "report_count": len(reports),
-    "expected_branches": len(branch_manifest["branches"]),
-    "branches_reporting": len(branch_summaries),
-    "expected_subagents": len(expected_subagents),
-    "distinct_subagent_reports_received": len(branch_reports),
-    "missing_subagent_ids": sorted(expected_subagents.difference(branch_reports.keys())),
-    "branch_source_failures": sum(r.get("status")=="source_unavailable" for r in branch_reports.values()),
-    "branch_unverified_leads": sum(len(r.get("leads", [])) for r in branch_reports.values()),
+    "expected_companies": len(hierarchy["companies"]),
+    "companies_reporting": len(company_summaries),
+    "expected_directors": 10,
+    "expected_independent_assistants": 20,
+    "configured_managers": len(expected_manager_ids),
+    "managers_reporting": len(manager_summaries),
+    "configured_worker_roles": len(expected_manager_ids)*hierarchy["workers_per_manager"],
+    "scheduled_worker_attempts_per_full_cycle": len(expected_manager_ids)*hierarchy["scheduling"]["workers_per_manager_per_cycle"],
+    "worker_reports_generated_this_cycle": len(worker_reports),
+    "worker_source_checks_completed": sum(x.get("execution_status")=="source_checked" for x in worker_reports.values()),
+    "worker_source_failures": sum(x.get("execution_status")=="source_unavailable" for x in worker_reports.values()),
+    "worker_unverified_leads": sum(len(x.get("unverified_leads",[])) for x in worker_reports.values()),
+    "coverage_note": "Roles are configured but worker results are only real when reports are generated; 2 of 50 workers per manager rotate each hourly run.",
     "researcher_ids": sorted({r["role"] for r in reports}),
     "AI_review_completed": sum(r.get("ai_analysis", {}).get("status") == "llm_completed" for r in reports),
     "adversarial_AI_challenges_completed": sum(r.get("ai_analysis", {}).get("critical_challenge_status") == "completed" for r in reports),
@@ -149,9 +158,11 @@ lines = [
     "# Independent crypto opportunity fleet — consolidated report",
     "", f"UTC: {today.isoformat()}",
     f"Research jobs with reports: **{len(reports)}/30**",
-    f"Reporting branch supervisors: **{out['branches_reporting']}/{out['expected_branches']}**",
-    f"Individual branch researcher outputs: **{out['distinct_subagent_reports_received']}/{out['expected_subagents']}**",
-    f"Branch source errors: **{out['branch_source_failures']}**",
+    f"Reporting companies: **{out['companies_reporting']}/{out['expected_companies']}**",
+    f"Reporting managers: **{out['managers_reporting']}/{out['configured_managers']}**",
+    f"Configured worker roles: **{out['configured_worker_roles']}**",
+    f"Worker report files this rotation: **{out['worker_reports_generated_this_cycle']}/{out['scheduled_worker_attempts_per_full_cycle']}**",
+    f"Worker source checks completed: **{out['worker_source_checks_completed']}**, inaccessible: **{out['worker_source_failures']}**",
     f"Small-model AI reviews completed: **{out['AI_review_completed']}**",
     f"Adversarial AI challenges completed: **{out['adversarial_AI_challenges_completed']}**",
     f"Original sources independently refetched: **{out['original_source_records_refetched']}**",
