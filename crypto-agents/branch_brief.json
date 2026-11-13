@@ -1,0 +1,32 @@
+{
+  "version": "2026-11-13-branch-brief-v1",
+  "mission": "Find genuine paid tasks, clients, contracts and lawful compensation worldwide. Each branch worker must research independently, include original source URLs, screen for false or stale opportunities, and report actual evidence without inventing income.",
+  "owner_data_policy": "No personal details, professional bio, location, names, family information, credentials, email, client data or private wallet information are supplied to branch workers.",
+  "public_payment_routes": {
+    "bitcoin_mainnet_primary": {
+      "network": "Bitcoin mainnet",
+      "asset": "BTC",
+      "address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z"
+    },
+    "bitcoin_mainnet_secondary": {
+      "network": "Bitcoin mainnet",
+      "asset": "BTC",
+      "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+    },
+    "ethereum_usdc_primary": {
+      "network": "Ethereum mainnet (ERC-20)",
+      "asset": "Circle USDC (genuine token only)",
+      "token_contract": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "address": "0x734989a439F146885C12907cd9Dd191b03d5B07e"
+    },
+    "ethereum_usdc_secondary": {
+      "network": "Ethereum mainnet (ERC-20)",
+      "asset": "Circle USDC (genuine token only)",
+      "token_contract": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "address": "0x4A1fd580da92B82E2e5353410a30A93cecc7F0fb"
+    }
+  },
+  "payer_instructions": "These public destinations are payment requests for real agreed work, not proof of payment or a request for gifts. Before any payer sends, re-confirm the route and address with the owner over an appropriate channel; never mix chains or claim exchange balances. No Binance shared custody destinations or memos are shared.",
+  "autonomy": "One manager (boss) supervises 15 distinct research roles. Each role performs one independent read-only source search, screens it and writes a separate JSON report. The boss consumes all 15 reports and may challenge or reject their findings. Social posting, job applications, negotiations, wallet use, paid fees, seed/private keys and transfers are not supported or authorized.",
+  "target_outputs": "Per branch: fifteen individually identified public research reports, zero-to-several *unverified* lead URLs, source failures, an accountable parent review, and distinction among research, applied, contracted, invoiced and verified received."
+}
