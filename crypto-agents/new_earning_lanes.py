@@ -7,6 +7,7 @@ GitHub's search is an index, not proof of payer legitimacy or reward funding.
 """
 from __future__ import annotations
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -73,6 +74,20 @@ def normalize(issue):
       "next_step":"Read current issue AND current comments, confirm sponsor authority, funding, exact deliverable, eligibility and payout network before claiming, doing work, or requesting BTC.",
     }
 
+def assign_company_review(candidate):
+    digest=hashlib.sha256(candidate["original_url"].encode("utf-8")).digest()
+    fleet=("transferexperiment","BountyScoutAI")[digest[0]%2]
+    director=f"D{1+digest[1]%9:02d}" # D10 is local payment recovery, not new speculative leads
+    return {**candidate,
+      "assigned_fleet":fleet,
+      "assigned_company_director":fleet+"/"+director,
+      "reports_to":"D",
+      "owner_order_id":"OWNER-20261114-074258",
+      "assignment_status":"ASSIGNED_FOR_FUTURE_VALIDATION_NOT_CONTACTED",
+      "accepted_client_job":False,
+      "payment_recovery_handoff":fleet+"/D10 only after sponsor acceptance and funds due",
+    }
+
 def scan():
     selected={}
     rejected=0
@@ -90,7 +105,7 @@ def scan():
                 rejected+=1
                 continue
             if candidate["original_url"] in selected:continue
-            selected[candidate["original_url"]]=candidate
+            selected[candidate["original_url"]]=assign_company_review(candidate)
     return {
       "checked_utc":T.isoformat(),
       "companies":["transferexperiment","BountyScoutAI"],
@@ -100,6 +115,11 @@ def scan():
       "rejected_nonmatching_or_risky_issues":rejected,
       "candidate_count":len(selected),
       "candidates":list(selected.values())[:45],
+      "independent_director_review_queues":{
+        fleet:[a for a in list(selected.values())[:45] if a["assigned_fleet"]==fleet]
+        for fleet in ("transferexperiment","BountyScoutAI")
+      },
+      "director_assignments_are_not_authenticated_external_contacts":True,
       "mining_collaboration":{
           "opt_in_only":True,
           "official_pool":"https://web.public-pool.io/",
@@ -119,6 +139,7 @@ def scan():
 def selftest():
     issue={"title":"$50 bounty fix CSV import for a Python library","body":"Implement a test and source code fix, PR accepted by maintainers.","state":"open","html_url":"https://github.com/sample/repo/issues/44"}
     assert normalize(issue)["status"]=="POSSIBLE_PAID_TASK_UNVERIFIED"
+    assert assign_company_review(normalize(issue))["assigned_company_director"].split("/")[-1]!="D10"
     issue["body"]+=" Send funds for a verification fee."
     assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
     issue["body"]="The bounty was already awarded. Fix code."
@@ -139,6 +160,10 @@ if __name__=="__main__":
       "Official Public Pool solo and PPLNS have DIFFERENT payout mechanisms; opt-in collaboration only.",
       ""]
     for item in out["candidates"][:20]:
-        lines.append("- "+item["title"]+" — "+item["original_url"]+" (funding/eligibility UNVERIFIED)")
+        lines.append("- "+item["assigned_company_director"]+" to check "+
+           item["title"]+" — "+item["original_url"]+" (sponsor and reward UNVERIFIED)")
+    lines += ["", "## Two separate D-board assignments"]
+    for fleet,queue in out["independent_director_review_queues"].items():
+        lines.append("- "+fleet+": "+str(len(queue))+" leads needing independent sponsor verification; local D10 handles only genuine accepted unpaid claims")
     (OUT/"new-earning-lanes.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     print("NEW_EARNING_LANES",json.dumps({"candidates":out["candidate_count"],"rejected":rejected if False else out["rejected_nonmatching_or_risky_issues"],"source_errors":len(out["source_errors"]),"verified_paid_receipts":0}))
