@@ -27,7 +27,7 @@ jobs:
           python crypto-agents/b_global_commercial_dispatch.py --board --out chief-D-global/board.json
       - name: Allocate 20 distinct individual H-tier worker task packets under the 20 separate company directors
         env:
-          B_CYCLE: \${{ github.run_number }}
+          B_CYCLE: ${{ github.run_number }}
         run: |
           python - <<'PY'
           import os, sys, json
