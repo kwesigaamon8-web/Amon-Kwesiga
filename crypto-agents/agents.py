@@ -14,6 +14,11 @@ role=next((r for r in json.loads(Path("crypto-agents/roles.json").read_text()) i
 if role is None: raise SystemExit("Unknown role")
 owner_brief=json.loads(Path("crypto-agents/owner_brief.json").read_text(encoding="utf-8"))
 owner_context=owner_brief["agent_prompt"]
+COLLECTION_CONFIG=json.loads(Path("crypto-agents/b_collection_assignments.json").read_text(encoding="utf-8"))
+WORKFORCE_ID=os.environ.get("WORKFORCE_ID","transferexperiment")
+if WORKFORCE_ID not in COLLECTION_CONFIG["fleets"]:
+    raise SystemExit("Unrecognized payment collection workforce")
+COLLECTION=COLLECTION_CONFIG["fleets"][WORKFORCE_ID]
 AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
 EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
 TOOL_REPORT_PATH=Path("tool-reports")/(role_id+".json")
@@ -180,6 +185,9 @@ def analyze(leads, research, branch_summary):
             "professional_strengths":BRIEF["whom_you_work_for"]["strengths"][:5],
             "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
+            "specific_B_payment_collection_order":COLLECTION["primary_instruction"],
+            "account_specific_BTC_mainnet_receiving_address":COLLECTION["address"],
+            "source_of_payment_address":"crypto-agents/b_collection_assignments.json",
             "autonomy_order":"ORD-023",
             "independent_freedom_order":"ORD-029",
             "universal_B_broadcast_order":"ORD-033",
@@ -235,6 +243,7 @@ leads,errors=collect()
 research=due_diligence(leads,max_items=5)
 analysis=analyze(leads,research,branch_summary)
 out={"role":role["id"],"name":role["name"],"director":role["director"],"mission":role["mission"],
+     "collection_fleet":WORKFORCE_ID,"receiving_account":COLLECTION["account"],"deposit_asset":COLLECTION["asset"],"deposit_network":COLLECTION["network"],
      "checked_at_utc":datetime.now(timezone.utc).isoformat(),"verified_paid_receipts":[],
      "warning":"All found items are UNVERIFIED leads, not payments, offers, or confirmed jobs. Never pay application fees or connect wallets.",
      "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
