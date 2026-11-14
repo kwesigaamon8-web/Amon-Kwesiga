@@ -13,6 +13,8 @@ concurrency:
 permissions:
   contents: read
   issues: write
+env:
+  WORKFORCE_ID: BountyScoutAI
 jobs:
   preflight:
     name: Validate all agent Python files before consuming model runners
