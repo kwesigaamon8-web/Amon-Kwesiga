@@ -9,6 +9,7 @@ on:
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/b_live_peer_teaching.py'
   workflow_dispatch:
   schedule:
     # B1 and B2 each launch TWO rotated REAL models per 15-minute shift, all days.
@@ -175,10 +176,54 @@ jobs:
           path: ai-process-reports/
           if-no-files-found: warn
           retention-days: 15
+  peer-teach-and-do:
+    name: ${{ matrix.fleet }} learns from OTHER actual B worker while testing deliverable
+    if: ${{ always() && needs.active-learning-worker.result == 'success' }}
+    needs: [active-learning-worker]
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        fleet: [transferexperiment, BountyScoutAI]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download BOTH companies' verified actual worker reports, not synthetic identities
+        uses: actions/download-artifact@v4
+        with:
+          pattern: practical-work-*
+          path: shift-evidence
+          merge-multiple: false
+      - name: Verify peer teaching selection cannot fabricate execution or payment
+        run: python crypto-agents/b_live_peer_teaching.py --self-test
+      - name: Install small CPU model to learn FROM the opposite real B worker
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5' pytest
+      - name: Conduct NEW peer AI model inference and run real work-product tests
+        env:
+          STUDENT_COMPANY: ${{ matrix.fleet }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+        run: |
+          python crypto-agents/b_live_peer_teaching.py --fleet "$STUDENT_COMPANY" --inputs shift-evidence --output peer-learning
+          cat "peer-learning/$STUDENT_COMPANY-peer-applied-learning.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve independently executed peer-learning model reply and commercial tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-peer-teaching-${{ matrix.fleet }}
+          path: peer-learning/
+          if-no-files-found: warn
+          retention-days: 15
   chief-D-actual-shift:
     name: Chief D consolidates ACTUALLY completed model work for both companies
     if: always()
-    needs: [current-original-sources, active-learning-worker]
+    needs: [current-original-sources, active-learning-worker, peer-teach-and-do]
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -201,6 +246,40 @@ jobs:
           python crypto-agents/b_shift_accountability.py --self-test
           python crypto-agents/b_shift_accountability.py --inputs shift-evidence --output shift-chief-D --run-url "$B_RUN_URL"
           cat shift-chief-D/CHIEF_D_SHIFT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Retrieve actual inter-company peer lesson evidence
+        if: always()
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: real-peer-teaching-*
+          path: peer-learning-actual
+          merge-multiple: false
+      - name: Report whether EACH B model really taught and learned from opposite fleet
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,glob,os
+          paths=glob.glob("peer-learning-actual/**/*.json",recursive=True)
+          rows=[]
+          for p in paths:
+              try:
+                  with open(p,encoding="utf-8") as f:x=json.load(f)
+                  if x.get("schema")=="REAL_B_PEER_TEACH_AND_APPLY_V1":rows.append(x)
+              except (OSError,ValueError):continue
+          complete=sum(1 for x in rows if x.get("student_model_reply_completed") and x.get("peer_teaching_from_proven_model"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as f:
+              f.write("\n### REAL cross-company peer teaching, not synthetic AI replies\n")
+              f.write("- Actual completed new peer-learning model calls: "+str(complete)+"/2\n")
+              for x in rows:
+                  peer=x.get("cross_company_peer") or {}
+                  f.write("- "+x["company"]+" learned from executed "+str(peer.get("company","NONE"))+
+                    "/"+str(peer.get("teacher_worker_id","NONE"))+
+                    "; own model="+str(x.get("student_model_reply_completed"))+
+                    "; grade="+str(x.get("lesson_grade"))+
+                    "; code tests="+str((x.get("real_code_test") or {}).get("test_status"))+"\n")
+              f.write("- Verified new paid contract or incoming cryptocurrency from these lessons: NOT ESTABLISHED\n")
+          print("CHIEF_D_REAL_PEER_TEACHING",json.dumps({"completed_new_peer_model_calls":complete,"expected":2,"reported_files":len(rows),"verified_payments":0}))
+          PY
       - name: Preserve one honest Chief D company and worker shift report
         if: always()
         uses: actions/upload-artifact@v4
