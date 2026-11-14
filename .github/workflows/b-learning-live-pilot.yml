@@ -1,0 +1,75 @@
+name: B1 B2 Learn While Working Live Pilot
+on:
+  push:
+    paths:
+      - '.github/workflows/b-learning-live-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  active-learning-worker:
+    name: ${{ matrix.fleet }} real AI training while doing paid-work research
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - fleet: transferexperiment
+            worker: D01-M01-W01
+          - fleet: BountyScoutAI
+            worker: D02-M01-W01
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify the real-work training evaluator
+        run: |
+          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py
+          python crypto-agents/b_learning_by_doing.py
+      - name: Install open-source CPU inference runtime
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Actually run one B worker and teach while it performs source research
+        env:
+          WORKFORCE_ID: ${{ matrix.fleet }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+        run: python crypto-agents/ai_process_worker.py "${{ matrix.worker }}"
+      - name: Audit real practical response and work sample file
+        env:
+          WORKFORCE_ID: ${{ matrix.fleet }}
+          WORKER_ID: ${{ matrix.worker }}
+        run: |
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          worker=os.environ["WORKER_ID"]
+          file=Path("ai-process-reports")/(worker+".json")
+          assert file.exists(),"Worker did not create a real report"
+          r=json.loads(file.read_text())
+          assert r["workforce_namespace"]==os.environ["WORKFORCE_ID"],"Wrong B company"
+          assert r["inference_status"]=="model_completed", "No real worker model inference"
+          p=r.get("practical_training_while_working") or {}
+          assert p.get("independent_model_call_status")=="MODEL_COMPLETED","No real practice inference"
+          result=p["result"]
+          assert result["real_model_call_completed"],"No actual training model reply"
+          assert Path(p["actual_work_sample_file"]).is_file(),"Missing original sample"
+          assert result["actual_payment_verified"] is False,"Cannot invent payments"
+          print("ACTUAL_B_TRAINING_WHILE_WORKING",json.dumps({
+             "company":r["workforce_namespace"],"worker":worker,
+             "real_pid":r["os_process_pid"],"lesson":p["assignment"]["focus"],
+             "practical_status":result["status"],"source":p["assignment"]["real_original_research_url"],
+             "payment_verified":False}))
+          PY
+      - name: Archive executed worker model response and practical work product
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: practical-work-${{ matrix.fleet }}
+          path: ai-process-reports/
+          if-no-files-found: warn
+          retention-days: 15
