@@ -3,13 +3,21 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-071222",
+  "current_owner_order_id": "OWNER-20261114-071432",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
       "as_of_utc": "2026-11-14T07:12:22Z",
       "relayed_by": "ChatGPT at owner's direct instruction",
       "instruction": "Operate two entirely separate companies with the same 10-director structure: Company A transferexperiment/D01–D10 and Company B BountyScoutAI/D01–D10. Maintain independent workers and receiving-account evidence for each. A single Chief D above both separate company boards reports the consolidated results to the owner, and Chief D receives new owner instructions THROUGH ChatGPT only when the owner tells ChatGPT. Local D10 in each company handles only that company's payment evidence; local D01–D09 continue earning work. D must show verified completed jobs, genuine collectible debts, independent payer contact and actual blockchain receipts, and clearly distinguish missing external authentication.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-071432",
+      "as_of_utc": "2026-11-14T07:14:32Z",
+      "relayed_by": "ChatGPT, following explicit owner's message",
+      "instruction": "Chief D, both fully separate companies must carry the SAME billion-scale hierarchical worker role structure. Provide a precise per-level count for each company and combined counts, keeping their distinct fleet-prefixed identities. Company 1 transferexperiment has 10 directors, 20 assistants, 150 managers, 7,500 W-level workers, 1,125,000 defined S roles, 562,500,000 defined G roles and 374,625,000,000 defined H roles; Company 2 BountyScoutAI has the identical count, as a separate namespace. Exactly one global Chief D is above the two company director boards and reports to owner through the ChatGPT-relayed instruction system. Confirm 375,188,632,680 defined role positions per company; 750,377,265,360 across both; and 750,377,265,361 including Chief D. Do not report definitions as live concurrently executing AI models. Show actual model process counts only from audited run evidence; continue same scheduled research/model pace and genuine payment work without inventing a receipt.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
