@@ -84,6 +84,7 @@ jobs:
           python crypto-agents/b_learning_by_doing.py
           python crypto-agents/b_worker_buyer_source.py
           python crypto-agents/owner_first_oath.py
+          python crypto-agents/b_universal_work_protocol.py --self-test
       - name: Install open-source CPU inference runtime
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
@@ -115,6 +116,19 @@ jobs:
           assert file.exists(),"Worker did not create a real report"
           r=json.loads(file.read_text())
           assert r["workforce_namespace"]==os.environ["WORKFORCE_ID"],"Wrong B company"
+          universal=r.get("universal_task_message") or {}
+          assigned=universal.get("assignment") or {}
+          assert assigned.get("worker_id")==r["workforce_namespace"]+"/"+worker,"Wrong universal worker identity"
+          assert assigned.get("report_to")==r["workforce_namespace"]+"/"+r["parent_id"],"Wrong direct reporting parent"
+          assert (universal.get("owner_origin") or {}).get("owner_only_top_level") is True,"Owner-first oath not preserved"
+          assert assigned.get("task_id") and assigned.get("unique_scope_id"),"No individually unique worldwide task"
+          assert r.get("universal_task_status")=="ASSIGNED_NOT_YET_PERFORMED","Task allocation is not proof of doing"
+          print("UNIVERSAL_INDIVIDUAL_TASK",json.dumps({
+            "company":r["workforce_namespace"],"worker":worker,
+            "task_id":assigned["task_id"],"market":assigned["city_focus"],
+            "country":assigned["country_iso_3166_alpha2"],
+            "language":(universal.get("localization") or {}).get("content_language"),
+            "actual_execution_required":True}))
           assert r["inference_status"]=="model_completed", "No real worker model inference"
           p=r.get("practical_training_while_working") or {}
           assert p.get("independent_model_call_status")=="MODEL_COMPLETED","No real practice inference"
@@ -133,6 +147,9 @@ jobs:
              out.write("- Actual worker: "+worker+"\n")
              out.write("- Worker OS PID: "+str(status["real_pid"])+"\n")
              out.write("- Training lesson: "+status["lesson"]+"\n")
+             out.write("- Universal task ID: "+assigned["task_id"]+"\n")
+             out.write("- Country/city research focus: "+assigned["country_iso_3166_alpha2"]+" / "+assigned["city_focus"]+"\n")
+             out.write("- Localization tag (not proof of translation): "+universal["localization"]["content_language"]+"\n")
              out.write("- Practical grade: "+status["practical_status"]+"\n")
              out.write("- Actual issue/source: "+(status["source"] or "No original source confirmed")+"\n")
              out.write("- Verified crypto receipt: NOT ESTABLISHED by this worker run\n")
