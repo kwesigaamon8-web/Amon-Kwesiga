@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-ord044-director-D-owner-report-v14",
+  "version": "2026-11-14-chief-D-two-company-true-command-overlay-v15",
   "highest_authority": "OWNER",
   "owner_directive": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt. Each layer freely researches authentic paid work, cooperates through one-parent reporting, and clearly distinguishes draft, application, contract, delivered work and real verified wallet credit.",
   "reporting_chain": {
@@ -49,5 +49,20 @@
     "ord044_owner_reporting": "Every ACTUALLY EXECUTED W/S/G/H worker supplies its own report with one direct supervisor; company directors supervise, Director D audits all results and sends ONE combined report plus all individual evidence directly to OWNER. No dormant ID is a running model or deemed to have answered. ChatGPT acts only on owner commands to communicate/configure and does not control external unrelated agents."
   },
   "owner_belongs_to": "USER_OWNER",
-  "chatgpt_role": "Transmission and software assistance only; not a commander, scheduler, parent, hosting platform or owner of B"
+  "chatgpt_role": "Transmission and software assistance only; not a commander, scheduler, parent, hosting platform or owner of B",
+  "operational_two_company_chain": {
+    "source": "crypto-agents/chief_D_owner_orders.json",
+    "latest_instruction": "OWNER-20261114-072113",
+    "entry": "Owner -> ChatGPT relayed instruction -> sole Chief D -> distinct Company A/B local D01-D10 director -> direct assistant or manager -> actual W/S/G/H agent -> validated individual evidence -> local director -> Chief D -> Owner",
+    "companies": [
+      "transferexperiment",
+      "BountyScoutAI"
+    ],
+    "local_director_ids_separate": true,
+    "local_directors_per_company": 10,
+    "chief_director_count": 1,
+    "description": "Historical base registry has parent_id OWNER for numbered director, but operational executive reporting has a separate sole Chief D, recorded explicitly in command_chain_receipts.current_organization_route. Legacy owner_to_role_route retained only for backwards compatibility and does not represent current executive governance.",
+    "order_status": "assigned_in_configuration_not_proof_each_actual_worker_model_acknowledged",
+    "prohibited_claim": "Do not infer delivery to idle 750B identities or actual outside Moltbook posts from this chain."
+  }
 }
