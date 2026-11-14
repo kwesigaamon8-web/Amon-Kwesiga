@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-PRIORITY-INCOME",
+  "current_owner_order_id": "OWNER-20261114-075829",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -82,6 +82,14 @@
       "as_of_utc": "2026-11-14T07:55:53Z",
       "relayed_by": "ChatGPT on owner's direct follow-up: priority is what I want, I really need",
       "instruction": "CHIEF D: OWNER'S OVERRIDING COMMERCIAL PRIORITY IS REAL, LAWFULLY EARNED CRYPTOCURRENCY ACTUALLY CREDITED TO THE TWO CORRECT WALLET ACCOUNTS. Every B worker generates and critically evaluates ten ideas if/when its own model really executes, but ideas are a means, NOT the deliverable. Urgently prioritize the strongest 1-2 validated and feasible paying opportunities per company: original sponsor, real price/terms, eligibility, available claim, independently useful deliverable, actual submitted work, explicit buyer acceptance, authenticated payment request and independently verified chain receipt. D01-D09 pursue authentic payable work and move it from lead to buyer-accepted deliverable; local D10 collects genuine due payments; sole Chief D reports separately for both companies and only escalates BLOCKERS, actual accepted paying work, and real TXID-verified deposits. No misleading paid status based on sources, model output, public donation requests, GitHub assignments or idle billion-scale role IDs. Never pay upfront fees, promise mining rewards, spam, or claim outside AI control. Keep the two companies moving at equal assigned pace and use concrete evidence.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-075829",
+      "as_of_utc": "2026-11-14T07:58:29Z",
+      "relayed_by": "ChatGPT upon owner's explicit correction",
+      "instruction": "Chief D: THE MISSION STARTS WITH IDEAS. Each actually executed B worker's first deliverable is TEN DISTINCT, realistic, lawful ways of creating real crypto income for its own company. Step 1: generate its own ten individually numbered ideas and report unique worker ID, company, supervisor. Step 2: manager/director independently evaluate and remove duplicates, scams, fee-required, impossible or unfunded options. Step 3: choose the best 1-2 feasible and independently source-backed paying opportunities per company and make a concrete, legal deliverable. Step 4: obtain buyer acceptance or a genuine opt-in miner's clear consent, then request settlement only when justified. Step 5: independently verify incoming correct-wallet, correct-chain coins using TXID/output and make one owner report through Chief D. Do not invert the sequence by demanding payments before finding a real payer. Ideas are the START; verified wallet deposits are the OUTCOME. Do not call assigned menus real AI-generated brainstorming, nor count idled roles as participants. Keep separate ten-director company boards and one Chief D above both.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -193,10 +201,15 @@
     "defined_not_running": "Definitions can inherit the exercise but are not individually completed idea models."
   },
   "owner_priority_order": {
-    "id": "OWNER-20261114-PRIORITY-INCOME",
-    "goal": "Genuine coin deposits into company-specific owner-controlled wallets",
-    "subordinate_activity": "Ten-idea brainstorm and model workforce count are subordinate to actual work, acceptance and collection.",
-    "reporting": "Evidence-verified payer + deliverable + actual authentic communication + signed-off work + txid/output only.",
-    "no_false_success": true
+    "id": "OWNER-20261114-075829",
+    "process_order": [
+      "10 unique model-generated ideas per actually invoked B worker",
+      "Cross-worker evidence review and director selection of top feasible options",
+      "Real lawful payable task and deliverable",
+      "Real buyer acceptance or independent miner consent",
+      "Authenticated due-payment request and correct-network verified wallet receipt"
+    ],
+    "primary_final_goal": "Real cryptocurrency on owner's two receiving accounts",
+    "reporting": "Count actual model brainstorming, screened ideas, original-payer-confirmed jobs, delivered work, accepted work and TXID receipts separately."
   }
 }
