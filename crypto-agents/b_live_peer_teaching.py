@@ -216,7 +216,6 @@ def self_test():
         assert select_peer("transferexperiment",rows)["company"]=="BountyScoutAI"
         assert select_peer("BountyScoutAI",rows)["company"]=="transferexperiment"
         assert select_peer("BountyScoutAI",rows)["teacher_worker_id"]=="D01-M01-W01"
-        assert select_peer("transferexperiment",rows) is None
         fake["inference_status"]="not_run"
         (inp/"D01-M01-W01.json").write_text(json.dumps(fake))
         assert len(get_actual_teachers(root))==1
