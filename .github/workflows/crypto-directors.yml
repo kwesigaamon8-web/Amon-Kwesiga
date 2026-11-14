@@ -60,6 +60,7 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: read
+  issues: write
 jobs:
   preflight:
     name: Validate all agent Python files before consuming model runners
