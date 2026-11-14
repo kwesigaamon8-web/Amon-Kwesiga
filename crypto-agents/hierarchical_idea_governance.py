@@ -14,6 +14,7 @@ from role_ai_identity import resolve_role
 from ten_ideas_exercise import role_menu
 from b_address_understanding import routes
 from unique_funding_tasks import task as individual_funding_task
+from secondary_software_study import study_task as software_second_task
 
 DIRECTORS={f"D{i:02d}" for i in range(1,11)}
 FLEETS=("transferexperiment","BountyScoutAI")
@@ -50,6 +51,7 @@ def assignment(fleet,worker):
     assert hierarchy[-2]==fleet+"/"+parent
     menu=role_menu(fleet,worker,parent,r["specialty"])
     funding_task=individual_funding_task(fleet,worker,addr,parent)
+    software_task=software_second_task(fleet,worker,parent,funding_task["task_id"])
     return {
        "issued_under":executive_order_id(),
        "governance_order":"OWNER-20261114-082358",
@@ -66,6 +68,9 @@ def assignment(fleet,worker):
        "company":fleet,"chief_director":"D",
        "unique_funding_task":funding_task,
        "funding_task_id":funding_task["task_id"],
+       "software_second_task":software_task,
+       "second_task_id":software_task["task_id"],
+       "task_sequence":["FIRST_10_ORIGINAL_IDEAS_AND_UNIQUE_CRYPTO_FUNDING_TASK","SECOND_PUBLIC_SOFTWARE_STUDY_AND_LAWFUL_IMPROVEMENT"],
        "company_director":fleet+"/"+director,
        "direct_supervisor":fleet+"/"+parent,
        "individual_worker":fleet+"/"+worker,
@@ -124,6 +129,8 @@ def self_test():
                 assert a["single_boss_route"][:2]==["OWNER","CHIEF_D"]
                 assert a["assigned_menu_count"]==10
                 assert a["unique_funding_task"]["task_id"].startswith("FUND-")
+                assert a["software_second_task"]["task_id"].startswith("SOFTWARE-")
+                assert a["software_second_task"]["first_task_id"]==a["funding_task_id"]
                 assert a["unique_funding_task"]["individual_worker_id"]==f+"/"+worker
                 b=corrective_order(a,["REPEATED_IDEAS"])
                 assert b["status"].startswith("SYSTEM_PREPARED_")
