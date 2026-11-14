@@ -19,6 +19,7 @@ WORKFORCE_ID=os.environ.get("WORKFORCE_ID","transferexperiment")
 if WORKFORCE_ID not in COLLECTION_CONFIG["fleets"]:
     raise SystemExit("Unrecognized payment collection workforce")
 COLLECTION=COLLECTION_CONFIG["fleets"][WORKFORCE_ID]
+CHIEF_D_COMMAND=json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text(encoding="utf-8"))["orders"][-1]
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
 DIRECTOR_FUNCTION="payment_recovery" if role["director"]==PAYMENT_DIRECTOR else "independent_paid_work"
 DIRECTOR_ORDER=(
@@ -193,6 +194,8 @@ def analyze(leads, research, branch_summary):
             "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
             "specific_B_payment_collection_order":COLLECTION["primary_instruction"],
+            "owner_relay_to_chief_D":CHIEF_D_COMMAND["id"],
+            "current_owner_instruction":CHIEF_D_COMMAND["instruction"][:1400],
             "director_function":DIRECTOR_FUNCTION,
             "director_mission_order":DIRECTOR_ORDER,
             "account_specific_BTC_mainnet_receiving_address":COLLECTION["address"],
