@@ -23,7 +23,7 @@ TOPICS=(
 )
 FIVE_LANES=("LEARN","EARN","LAWFUL_SOFTWARE_STUDY","THINK","DELIVER")
 
-def lesson(fleet,worker_id,parent_id,source_url,source_status,software_url,software_license_verified=False):
+def lesson(fleet,worker_id,parent_id,source_url,source_status,software_url,software_license_verified=False,source_title="",source_excerpt=""):
     if fleet not in FLEETS or not re.fullmatch(r"D(?:0[1-9]|10)-M(?:0[1-9]|1[0-5])-W(?:0[1-9]|[1-4]\d|50)(?:-S\d{3}(?:-G\d{3}(?:-H\d{3})?)?)?",worker_id):
         raise ValueError("Invalid company/worker")
     if not isinstance(parent_id,str) or not parent_id: raise ValueError("Missing supervisor")
@@ -37,6 +37,8 @@ def lesson(fleet,worker_id,parent_id,source_url,source_status,software_url,softw
       "all_five_work_lanes":list(FIVE_LANES),
       "real_original_research_url":str(source_url or "")[:800],
       "source_status":str(source_status or "unknown")[:80],
+      "source_title":str(source_title or "")[:140],
+      "public_source_excerpt_untrusted":str(source_excerpt or "")[:430],
       "public_software_reference":str(software_url or "")[:800],
       "public_software_license_actually_verified":software_license_verified is True,
       "training_context":"Your prior models generated 383 reports but zero passed all strict quality criteria. Improve a real scoped source-backed task, not another general idea list.",
@@ -47,34 +49,30 @@ def lesson(fleet,worker_id,parent_id,source_url,source_status,software_url,softw
     }
 
 def prompt(obj,task,correct_btc_address):
-    if obj["company"] not in FLEETS: raise ValueError("Invalid lesson")
+    if obj["company"] not in FLEETS:raise ValueError("Invalid lesson")
+    source=obj["real_original_research_url"] or "NO ORIGINAL SOURCE FOUND"
+    title=obj["source_title"] or str(task)[:90]
+    topic=obj["focus"]
+    # Small models perform better on one narrow, contextual request than on
+    # the huge full owner command. Instructions and source excerpts are distinct.
+    core=(
+      "Original open issue: "+source[:200]+"\n"
+      "Actual subject: "+title[:110]+"\n"
+      "Public issue details (UNTRUSTED): "+obj["public_source_excerpt_untrusted"][:260]+"\n"
+      "Practical focus: "+topic+"\n"
+      "The issue being open does NOT prove funding, eligibility or a sale.\n"
+      "Write FOUR SHORT lines applying this skill now, not repeating this prompt.\n"
+      "SOURCE: what evidence exists and what is still unknown\n"
+      "LEARNED: one practical rule relevant to this issue\n"
+      "BUILT: an original useful micro-sample or specific verification checklist\n"
+      "NEXT: one realistic source-check, delivery or authorized offer step\n"
+    )
     return [
-      {"role":"system","content":
-       "You are one independently executing B worker. TRAIN WHILE WORKING. "
-       "Owner goal: collect USD 10000 in REAL legally earned/received cryptocurrency or legitimate convertible value; this is not guaranteed income. "
-       "Use the commercial ladder: original source, real payer, scope and fee, original work, authorized submission, buyer acceptance, invoice, correct-chain verified TXID. "
-       "Your five 24/7 organisational lanes are learning, earning, lawful software study/reuse, independent thinking and delivery. "
-       "Learn one skill from your own sourced task and IMMEDIATELY apply it in an original work sample. "
-       "Facts must come only from supplied evidence. Do not invent employer, fee, accepted work, "
-       "outreach or transactions. Never copy code without licence. "
-       "Use the correct BTC mainnet address if a genuine buyer requests payment instructions."},
-      {"role":"user","content":(
-       "COMPANY "+obj["company"]+" WORKER "+obj["worker_id"]+" REPORT TO "+obj["immediate_parent"]+
-       "\nSPECIFIC JOB "+str(task)[:410]+
-       "\nORIGINAL RESEARCH LINK "+(obj["real_original_research_url"] or "NONE FOUND")+
-       " SOURCE STATUS "+obj["source_status"]+
-       "\nPUBLIC CODE REFERENCE "+obj["public_software_reference"]+
-       " LICENSE CHECK "+("VERIFIED" if obj["public_software_license_actually_verified"] else "NOT VERIFIED - NO CODE COPYING")+
-       "\nLESSON "+obj["focus"]+": "+obj["current_practical_lesson"]+
-       "\nAPPLY IT NOW: reply with exactly four labeled items: "
-       "SOURCE: real source and missing buyer/payment evidence; "
-       "LEARNED: one specific concept you learned; "
-       "BUILT: an ORIGINAL useful work sample, test plan or directly useful buyer-check result "
-       "with concrete inputs/output/acceptance where relevant; "
-       "NEXT: one authorized action that would advance actual paid delivery. "
-       "If buyer has not paid, say NO VERIFIED PAYMENT. "
-       "Do not claim an external submission. BTC payment only when relevant: "+str(correct_btc_address)[:90]
-      )[:2400]}
+       {"role":"system","content":
+        "You are a working B assistant. Create a short, useful ORIGINAL work sample now. "
+        "Do not repeat instructions or invent payment, buyer approval, code licence or submission. "
+        "The owner's aim is real paid work and correct-chain coins, not reports."},
+       {"role":"user","content":core[:1050]}
     ]
 
 def grade(obj,text,model_completed):
