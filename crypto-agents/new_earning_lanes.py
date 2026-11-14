@@ -1,0 +1,144 @@
+"""Read-only cross-source candidate scan for legitimate crypto-paid jobs.
+
+No automatic bounty claims, wallet signatures, mass messaging, mining or
+invented payouts. This expands the original Jobbi feed by independently
+checking a bounded set of recent open GitHub sponsorship opportunities.
+GitHub's search is an index, not proof of payer legitimacy or reward funding.
+"""
+from __future__ import annotations
+import datetime as dt
+import json
+import os
+import re
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+OUT=Path("paid-opportunity-reports")
+OUT.mkdir(exist_ok=True)
+REPO="kwesigaamon8-web/Amon-Kwesiga"
+TOKEN=os.environ.get("GH_TOKEN","")
+T=dt.datetime.now(dt.timezone.utc)
+SINCE=(T-dt.timedelta(days=21)).date().isoformat()
+MAX_CANDIDATES_PER_SEARCH=25
+HEADERS={"Accept":"application/vnd.github+json","User-Agent":"TwoCompanyAuthenticPaidWorkScout/1.0"}
+if TOKEN:HEADERS["Authorization"]="Bearer "+TOKEN
+
+SEARCHES=[
+ f'is:issue is:open bounty reward created:>={SINCE} -repo:{REPO}',
+ f'is:issue is:open "BTC" "reward" created:>={SINCE} -repo:{REPO}',
+ f'is:issue is:open "USDC" bounty created:>={SINCE} -repo:{REPO}',
+ f'is:issue is:open "paid" "fix" created:>={SINCE} -repo:{REPO}',
+]
+MONEY=re.compile(r'(?i)(?:[$€£]\s?\d+(?:[.,]\d+)?|(?:\d+(?:\.\d+)?)\s?(?:BTC|USDC|USD|sats?|satoshis)\b|\bbounty\s*(?:amount|pool|reward)\s*[:=]\s?\d+)')
+SCOPE=re.compile(r'(?i)\b(?:fix|implement|write|docs|test|issue|build|patch|data|audit|research|bug|feature|script|code|review|integration|translate|spreadsheet|documentation)\b')
+RISK=re.compile(r'(?i)\b(?:deposit|prepay|send funds|send crypto first|connect your wallet|verification fee|stake required|bond required|private key|seed phrase|pay to claim)\b')
+FINISHED=re.compile(r'(?i)\b(?:already awarded|claimed and paid|bounty closed|winner chosen|no longer available|work complete|payment issued)\b')
+
+def github_get(url):
+    request=urllib.request.Request(url,headers=HEADERS)
+    with urllib.request.urlopen(request,timeout=14) as response:
+        return json.loads(response.read(1_500_000))
+
+def normalize(issue):
+    title=str(issue.get("title") or "")[:170]
+    body=str(issue.get("body") or "")[:12000]
+    full=title+"\n"+body
+    url=str(issue.get("html_url") or "")
+    checks={
+       "open_issue":issue.get("state")=="open" and not issue.get("pull_request"),
+       "original_link":url.startswith("https://github.com/"),
+       "mentions_specific_reward_amount":bool(MONEY.search(full)),
+       "describes_actual_work":bool(SCOPE.search(full)),
+       "no_obvious_deposit_or_key_request":not bool(RISK.search(full)),
+       "not_marked_already_awarded_in_description":not bool(FINISHED.search(full)),
+    }
+    status=("POSSIBLE_PAID_TASK_UNVERIFIED" if all(checks.values())
+            else "REVIEW_OR_REJECT")
+    return {
+      "original_url":url,
+      "title":title,
+      "created_at":issue.get("created_at"),
+      "updated_at":issue.get("updated_at"),
+      "original_repo":(issue.get("repository_url") or "").split("/repos/")[-1],
+      "source":"GitHub public issues: original repository",
+      "checks":checks,
+      "status":status,
+      "reward_funded":False,
+      "claim_eligible_for_owner":None,
+      "payout_network_accepted":None,
+      "external_payer_contact_sent":False,
+      "work_completed":False,
+      "verified_paid_receipt":False,
+      "next_step":"Read current issue AND current comments, confirm sponsor authority, funding, exact deliverable, eligibility and payout network before claiming, doing work, or requesting BTC.",
+    }
+
+def scan():
+    selected={}
+    rejected=0
+    source_errors=[]
+    for q in SEARCHES:
+        url=("https://api.github.com/search/issues?"+
+          urllib.parse.urlencode({"q":q,"per_page":MAX_CANDIDATES_PER_SEARCH,"sort":"created","order":"desc"}))
+        try:items=github_get(url).get("items",[])
+        except Exception as e:
+            source_errors.append({"query":q,"error":type(e).__name__+": "+str(e)[:100]})
+            continue
+        for item in items:
+            candidate=normalize(item)
+            if candidate["status"]!="POSSIBLE_PAID_TASK_UNVERIFIED":
+                rejected+=1
+                continue
+            if candidate["original_url"] in selected:continue
+            selected[candidate["original_url"]]=candidate
+    return {
+      "checked_utc":T.isoformat(),
+      "companies":["transferexperiment","BountyScoutAI"],
+      "status":"CANDIDATES_REQUIRE_ORIGINAL_SPONSOR_VALIDATION",
+      "queries":SEARCHES,
+      "source_errors":source_errors,
+      "rejected_nonmatching_or_risky_issues":rejected,
+      "candidate_count":len(selected),
+      "candidates":list(selected.values())[:45],
+      "mining_collaboration":{
+          "opt_in_only":True,
+          "official_pool":"https://web.public-pool.io/",
+          "solo_accepted_endpoint":"stratum+tls://public-pool.io:4333",
+          "shared_pplns_endpoint":"stratum+tls://public-pool.io:14333",
+          "correct_bitcoin_username_format":"BTC_RECEIVING_ADDRESS.optional_worker_name",
+          "miner_hardware_or_signing_access":"not_available",
+          "third_party_miner_verified":"not_verified",
+          "hasrate_or_actual_shares_verified":"not_verified",
+          "actual_mined_coins_received":"not_verified",
+          "warning":"Solo mining pays only if a valid block is found; PPLNS pays according to actual eligible share/pool performance. BTC CPU and language-model processes cannot be assumed profitable ASIC miners. Pool mode, payout identity, self-custody and miner consent must be verified, no deposits or hardware financing assumed."
+      },
+      "payment_status":"No real transaction has been established by candidate discovery.",
+      "limits":"This samples bounded public GitHub searches plus the separate Jobbi scout; it is not an exhaustive scan of every paid job or AI agent worldwide. No payouts or external messages are inferred."
+    }
+
+def selftest():
+    issue={"title":"$50 bounty fix CSV import for a Python library","body":"Implement a test and source code fix, PR accepted by maintainers.","state":"open","html_url":"https://github.com/sample/repo/issues/44"}
+    assert normalize(issue)["status"]=="POSSIBLE_PAID_TASK_UNVERIFIED"
+    issue["body"]+=" Send funds for a verification fee."
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue["body"]="The bounty was already awarded. Fix code."
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    print("ADDITIONAL_PAID_LANES_SELFTEST_PASS")
+
+if __name__=="__main__":
+    selftest()
+    out=scan()
+    (OUT/"new-earning-lanes.json").write_text(json.dumps(out,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+    lines=["# Independent paid jobs and opt-in mining cooperation","",
+      "Checked UTC: "+out["checked_utc"],
+      "Recent original-source *candidate* issues: "+str(out["candidate_count"]),
+      "Rejected nonmatching/risky issues: "+str(out["rejected_nonmatching_or_risky_issues"]),
+      "Source query errors: "+str(len(out["source_errors"])),"",
+      "Candidate listings are NOT verified paid jobs or promises of compensation.",
+      "No mining hardware, hashrate, miner consent, mining shares or wallet receipts are proved.",
+      "Official Public Pool solo and PPLNS have DIFFERENT payout mechanisms; opt-in collaboration only.",
+      ""]
+    for item in out["candidates"][:20]:
+        lines.append("- "+item["title"]+" — "+item["original_url"]+" (funding/eligibility UNVERIFIED)")
+    (OUT/"new-earning-lanes.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
+    print("NEW_EARNING_LANES",json.dumps({"candidates":out["candidate_count"],"rejected":rejected if False else out["rejected_nonmatching_or_risky_issues"],"source_errors":len(out["source_errors"]),"verified_paid_receipts":0}))
