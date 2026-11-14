@@ -46,6 +46,10 @@ for manager in company["managers"]:
               "company_director":idea_governance["company_director"],
               "idea_target":10,
               "specific_task":idea_governance["task"],
+              "two_step_execution_sequence":idea_governance["task_sequence"],
+              "first_unique_crypto_task":idea_governance["unique_funding_task"],
+              "second_licensed_software_study":idea_governance["software_second_task"],
+              "second_task_lawful_reuse_and_license_gate":True,
               "supervisor_if_stuck":idea_governance["manager_if_worker_stuck"],
               "state":"ASSIGNED_WAITING_FOR_REAL_MODEL_EXECUTION",
           },
@@ -73,6 +77,12 @@ doc={
     "command_chain_assignment":configured_assignment(m["id"]),
     "idea_first_directive":"Manage your own 50 W workers. Each must generate ten distinct independently model-produced ideas, verify one original potential paying source, and know correct company BTC network. If unable or repetitive, issue one narrower task and verify a new actual response; escalate to your local company director.",
     "ten_ideas_required_per_actual_worker":True,
+    "two_ordered_tasks_each_actual_B":[
+        "FIRST original 10 ideas plus unique source-confirmed funding assignment",
+        "SECOND inspect assigned public software, verify actual license, learn its functionality and prepare an original, license-compliant improvement linked to first task"
+    ],
+    "manager_checks_actual_second_model_result_and_license":True,
+    "manager_must_not_call_open_code_copy_completed_without_committed_artifact":True,
     "manager_review_model_status":"NOT_EXECUTED_IN_THIS_ASSIGNMENT",
     "supervisor_correction_status":"ASSIGNED_ONLY",
     "understanding_status":"pending_manager_model_response"} for m in company["managers"]],
