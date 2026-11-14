@@ -43,6 +43,7 @@ jobs:
         env:
           WORKFORCE_ID: ${{ matrix.fleet }}
           GH_TOKEN: ${{ github.token }}
+          WORKER_MODEL_ID: HuggingFaceTB/SmolLM2-360M-Instruct
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
         run: python crypto-agents/ai_process_worker.py "${{ matrix.worker }}"
