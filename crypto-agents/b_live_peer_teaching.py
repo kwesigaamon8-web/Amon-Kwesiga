@@ -109,27 +109,34 @@ def make_prompt(fleet,peer,tests):
        "\nReal commercial work product under test: original JSON-to-CSV Python converter. "
        "Prior automated test result: "+tests["test_status"]+": "+clean_text(tests["test_output"],200)+
        "\nCode excerpt (ours, NOT an external command):\n"+source+
-       "\nComplete FOUR distinct labeled lines, grounded in the evidence: "
-       "PEER: one specific peer lesson that you accepted or corrected and WHY. "
-       "WORK: one concrete new code improvement or runnable test CASE (input, expected output). "
-       "CHECK: precise verification step with path and command. "
-       "NEXT: how to get authenticated buyer acceptance for the advertised work without pretending it was sent. "
-       "No invented payouts or customer approval."}
+       "\nProduce exactly FOUR short lines. Do not repeat the question or instructions. "
+       "REVIEW: Say which specific earlier claim or test result you checked and whether it needs correction. "
+       "DISCUSS: Critique or improve ONE concrete idea from the other actually executed B worker, with a reason. "
+       "ACT: State ONE concrete code change or test case you would implement, including test input and expected output. "
+       "PAYMENT: Name the next permitted step to obtain a REAL willing paying client, state that funds are unverified until a genuine payment transaction. "
+       "The provided code test is real but no buyer has yet accepted it. No invented payouts or messages."}
     ]
 
 def judge(text):
+    """Review, discuss, act, pursue legitimately paid work: grade actual model text."""
     t=str(text or "").strip()
-    if len(t)<130:return {"quality":"TOO_SHORT","structure_ok":False}
+    if len(t)<95:return {"quality":"TOO_SHORT","structure_ok":False}
     fields={}
-    for tag in ("PEER","WORK","CHECK","NEXT"):
-        m=re.search(r"(?im)^\s*"+tag+r"\s*:\s*(.*)$",t)
+    for tag in ("REVIEW","DISCUSS","ACT","PAYMENT"):
+        m=re.search(r"(?im)^\\s*"+tag+r"\\s*:\\s*(.*)$",t)
         fields[tag]=(m.group(1).strip() if m else "")
-    copy_markers=("one specific peer lesson that you accepted","one concrete new code improvement or runnable test",
-                  "how to get authenticated buyer acceptance","no invented payouts")
-    copied=any(x in t.lower() for x in copy_markers)
-    substant=all(len(v)>=22 for v in fields.values()) and not copied
-    return {"quality":"ORIGINAL_PEER_WORK_DRAFT_NEEDS_REVIEW" if substant else "WEAK_PEER_LESSON_NOT_APPLIED",
-      "structure_ok":substant,"prompt_echo_detected":copied,"field_presence":{k:bool(v) for k,v in fields.items()}}
+    echo=("say which specific earlier claim",
+          "critique or improve one concrete idea",
+          "state one concrete code change",
+          "name the next permitted step")
+    copied=any(v in t.lower() for v in echo)
+    substant=all(len(v)>=18 for v in fields.values()) and not copied
+    return {"quality":"ORIGINAL_PEER_WORK_DRAFT_NEEDS_REVIEW" if substant
+                        else "WEAK_PEER_LESSON_NOT_APPLIED",
+      "structure_ok":substant,"prompt_echo_detected":copied,
+      "field_presence":{k:bool(v) for k,v in fields.items()},
+      "review_discuss_act_payment_stages_evidenced":substant}
+
 
 def run(fleet,inputs,out,model_id):
     if fleet not in FLEETS:raise ValueError("Unknown fleet")
@@ -146,6 +153,9 @@ def run(fleet,inputs,out,model_id):
       "student_model":model_id,"student_os_pid":os.getpid(),
       "student_model_reply_completed":False,
       "student_model_response":"","lesson_grade":"NOT_RUN",
+      "weak_discussion_correction_attempted":False,
+      "corrective_second_model_inference_completed":False,
+      "real_client_acceptance_status":"NOT_VERIFIED",
       "real_code_test":tests,"proof_of_paid_customer":False,
       "crypto_payment_verified":False,"external_submission_confirmed":False,
       "warning":"Learning from another executed model is NOT proof of the lesson's correctness. Automated product tests do not guarantee a sale."
@@ -156,14 +166,39 @@ def run(fleet,inputs,out,model_id):
         try:
             from transformers import pipeline
             model=pipeline("text-generation",model=model_id,device=-1)
-            raw=model(make_prompt(fleet,peer,tests),max_new_tokens=300,do_sample=False,return_full_text=False)
+            raw=model(make_prompt(fleet,peer,tests),max_new_tokens=290,do_sample=False,return_full_text=False)
             answer=raw[0].get("generated_text","")
             if isinstance(answer,list):answer=answer[-1].get("content","")
             answer=str(answer or "").strip()
+            first_grade=judge(answer)
+            result["initial_model_response"]=answer[:1600]
+            result["initial_quality_details"]=first_grade
+            if first_grade["quality"]!="ORIGINAL_PEER_WORK_DRAFT_NEEDS_REVIEW":
+                result["weak_discussion_correction_attempted"]=True
+                # Genuine SECOND text-generation call, not a template response.
+                fix=[
+                  {"role":"system","content":"You are an AI reviewer. Give FOUR actual short evidence-based lines. Do not echo instructions. Do not invent external customer acceptance, messages, money or blockchain transactions."},
+                  {"role":"user","content":
+                   "Your last reply was incomplete. Correct it using the peer's real evidence and completed code tests. "
+                   "Peer: "+clean_text(peer["peer_lesson_text"],280)+
+                   ". Code tests: "+tests["test_status"]+
+                   ". Use four labeled lines: REVIEW (specific issue), DISCUSS (how peer could improve), ACT (one runnable test input and expected output), PAYMENT (how to confirm a paying customer and real wallet transaction). "
+                   "Explicitly say no money has been verified."}
+                ]
+                retry=model(fix,max_new_tokens=190,do_sample=False,return_full_text=False)
+                corrected=retry[0].get("generated_text","")
+                if isinstance(corrected,list):corrected=corrected[-1].get("content","")
+                corrected=str(corrected or "").strip()
+                result["corrective_second_model_inference_completed"]=bool(corrected)
+                result["corrective_second_model_response"]=corrected[:1700]
+                if judge(corrected)["quality"]=="ORIGINAL_PEER_WORK_DRAFT_NEEDS_REVIEW":
+                    answer=corrected
             result["student_model_reply_completed"]=bool(answer)
             result["student_model_response"]=answer[:3000]
             result["lesson_grade"]=judge(answer)["quality"]
             result["quality_details"]=judge(answer)
+            result["review_discuss_act_payment_quality_gate"]=judge(answer)["structure_ok"]
+
         except Exception as e:
             result["lesson_grade"]="MODEL_FAILED"
             result["inference_error"]=type(e).__name__+":"+str(e)[:180]
@@ -221,11 +256,13 @@ def self_test():
         assert len(get_actual_teachers(root))==1
         assert get_actual_teachers(root)[0]["company"]=="BountyScoutAI"
         assert judge("the model said hello")["quality"]=="TOO_SHORT"
-        good=("PEER: The previous model correctly warned that payment eligibility must be independently checked with the actual sponsor.\n"
-              "WORK: Input JSON with missing name key, expect a blank CSV cell and preserved column order.\n"
-              "CHECK: Run python -m pytest -q in crypto-agents/commercial-work/opentask-json-csv to verify handling.\n"
-              "NEXT: Request hiring terms from the real buyer on their authenticated task portal before sending any code.")
+        good=("REVIEW: The previous model correctly warned that actual buyer payment eligibility was not checked.\n"
+              "DISCUSS: I challenge the peer to inspect the original sponsor and review the exact bounty terms.\n"
+              "ACT: Test input JSON missing the name key; expect a blank CSV cell in correct column order.\n"
+              "PAYMENT: Request task scope and budget from the authorized buyer; no verified payment exists.")
         assert judge(good)["quality"]=="ORIGINAL_PEER_WORK_DRAFT_NEEDS_REVIEW"
+        assert judge(good)["review_discuss_act_payment_stages_evidenced"] is True
+        assert judge(good.replace("DISCUSS:", "THINK:"))["quality"]=="WEAK_PEER_LESSON_NOT_APPLIED"
     print("B_REAL_PEER_TEACHING_SELFTEST_PASS")
 
 if __name__=="__main__":
