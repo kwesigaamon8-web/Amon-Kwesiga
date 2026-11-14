@@ -91,7 +91,7 @@ def grade(obj,text,model_completed):
     prompt_echo=any(x in low for x in echo_strings)
     segments={}
     for label in ("SOURCE","LEARNED","BUILT","NEXT"):
-        match=re.search(r"(?im)^\\s*"+label+r"\\s*:\\s*(.*)$",body)
+        match=re.search(r"(?im)^\s*"+label+r"\s*:\s*(.*)$",body)
         segments[label]=match.group(1).strip() if match else ""
     labels={k:bool(v) for k,v in segments.items()}
     semantic_work=(
@@ -151,11 +151,14 @@ def self_test():
     assert x["company"]=="transferexperiment"
     assert x["public_software_license_actually_verified"] is False
     assert len(x["all_five_work_lanes"])==5
-    good="SOURCE: actual URL, sponsor funding unknown\nLEARNED: check scope\nBUILT: original test plan with 2 columns and an expected output\nNEXT: verify buyer before authentic submission; NO VERIFIED PAYMENT"
+    good="SOURCE: Original issue https://example.org/sample is open; sponsor payment approval is not documented\nLEARNED: An open ticket is only a prospect; I must check who can authorize payment\nBUILT: Original verification checklist: check sponsor identity, accepted output test and payable milestone\nNEXT: Ask the named maintainer about payment authorization before attempting an actual scoped fix"
     y=grade(x,good,True)
     assert y["status"]=="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW",y
     assert grade(x,good,False)["status"]=="NO_REAL_TRAINING_MODEL_EXECUTION"
     assert grade(x,"I have learned!",True)["status"]!="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"
+    copied="Public issue details (UNTRUSTED): something\\nWrite FOUR SHORT lines applying this skill now\\nSOURCE: what evidence exists and what is still unknown\\nLEARNED: one practical rule relevant to this issue\\nBUILT: an original useful micro-sample or specific verification checklist\\nNEXT: one realistic source-check, delivery or authorized offer step"
+    assert grade(x,copied,True)["prompt_echo_detected"] is True
+    assert grade(x,copied,True)["status"]!="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"
     assert grade(lesson("BountyScoutAI",w,p,"","source_failed",""),good,True)["status"]!="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"
     with __import__("tempfile").TemporaryDirectory() as temp:
         path=write_worker_sample(temp,x,y)
