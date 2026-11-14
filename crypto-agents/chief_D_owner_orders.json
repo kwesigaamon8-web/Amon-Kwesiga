@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-085516",
+  "current_owner_order_id": "OWNER-20261114-085656",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -122,6 +122,14 @@
       "as_of_utc": "2026-11-14T08:55:16Z",
       "relayed_by": "ChatGPT on explicit owner order",
       "instruction": "Chief D: implement the owner’s relentless crypto CASH mission across the full 7,000,000,000 addressable target roles, while reporting ONLY actual independent model executions. Aggressive means rigorous, focused, resourceful and commercially persistent—not violent, threatening, harassing, abusive, unlawful, unauthorized or mass-spamming. Prioritize ideas that become real paid crypto jobs: ten original proposals from each real worker, fast source/payer/funding/eligibility checks, rank by credible speed to payment, create concrete deliverable, make legitimate permission-based offer, secure client agreement, complete accepted work, request payment in the correct network and verify chain TXID/output. Secondarily pursue voluntary independent-miner/AI-operator contributions with explicit consent and no fake hashrate or claim of outside agent control. D01-D09 of each company must source and validate paying prospects; each local D10 must collect genuine confirmed due amounts; ONE Chief D evaluates evidence, removes dead leads and publishes results. Cap resource consumption to legitimate runner budget and never count a configured role, model thought, GitHub issue, or speculative coin amount as cash received. Reject scams, prepayment requests, unauthorized use of others’ compute or accounts, credential solicitation, manipulation and repetitive unsolicited contacts. Report exact number of verified prospects contacted, real deliverables accepted, payments due and real new crypto receipts, or zero and the next action.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-085656",
+      "as_of_utc": "2026-11-14T08:56:56Z",
+      "relayed_by": "ChatGPT at owner's explicit request to fund the two crypto receiving addresses through worldwide help and legitimate support or NGO-like project opportunities",
+      "instruction": "CHIEF D: The owner needs real cryptocurrency receipts in their existing wallet addresses urgently. Execute three HONEST routes across both companies and the 7-billion indexed idea-role target: (A) lawful paid jobs with clear deliverables, buyer acceptance and crypto settlement; (B) genuine anonymous or pseudonymous voluntary personal support and crypto tips posted only in the owner's own allowed channels or channels that invite funding requests, never impersonate a charity, NGO, donor, distress beneficiary or miner; and (C) legitimate public-good or community projects eligible for vetted Bitcoin crowdfunding or grants, using real source code and real deliverables, documented budgets, any required beneficiary identity verification, applicable legal requirements, public progress reports, and restricted purpose use. Geyser has examples of Bitcoin Kampala-vouched Uganda campaigns and newer Circular Grants, Gitcoin funds early-stage web3/public goods projects, Giveth disqualifies personal-gain projects from GIVbacks. DO NOT falsely represent the owner as an NGO, invent people helped, fake crises or photographs, self-fund donation matching, create fake transactions, or promise grant eligibility. Keep B1 BTC mainnet and B2 BTC mainnet receiving routes separate; optional B1 USDC on Base remains HOLD until self-custody and network receipt verified. Managers must rank by genuine payer/funder access, track authenticated eligibility/application status, source links, real delivered work, receipts and blockers; Chief D reports only confirmed crypto credits or none. Seven billion role IDs are addressable templates, not active fundraisers or independently working AI agents. No spam, harassment, upfront verification fees, access to donor accounts or unauthorized compute.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -308,5 +316,39 @@
       "upfront fees",
       "invented receipts"
     ]
+  },
+  "grant_crowdfunding_and_personal_support": {
+    "source_order": "OWNER-20261114-085656",
+    "lanes": [
+      "real source-confirmed crypto-paid work",
+      "truthful anonymous personal BTC support without pretending nonprofit status",
+      "authentic public-good project with clear approved use of funds and deliverable proof"
+    ],
+    "platform_due_diligence": [
+      {
+        "name": "Geyser Bitcoin Circular Grants",
+        "url": "https://geyser.fund/impact-fund",
+        "note": "Actual local community project and field partner verification; Uganda has historical Bitcoin Kampala-vouched campaigns; eligibility must be checked"
+      },
+      {
+        "name": "Gitcoin Grants",
+        "url": "https://gitcoin.co/program",
+        "note": "Public good project with evidence, within active rounds and eligibility"
+      },
+      {
+        "name": "Giveth",
+        "url": "https://docs.giveth.io/projectverification",
+        "note": "GIVbacks verified public benefit excludes personal profit; self-custody EVM compatible wallet required, not BTC mainnet or unverified exchange route"
+      },
+      {
+        "name": "BTCPay Server",
+        "url": "https://docs.btcpayserver.org/UseCase/",
+        "note": "Bitcoin payment collection software; does not itself find donors or guarantee funds"
+      }
+    ],
+    "verified_external_donors": 0,
+    "verified_grants_awarded": 0,
+    "verified_new_crypto_receipts": "NO_EVIDENCE_FROM_THIS_INSTRUCTION",
+    "strict_separation": "Personal help is not charity. Public-good funding must be spent as promised, with genuine evidence and accountability."
   }
 }
