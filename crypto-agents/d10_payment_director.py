@@ -1,4 +1,4 @@
-"""One logical D10 payment director, read-only: BOTH B fleets, one evidence report.
+"""Two separate fleet-local D10 payment directors, read-only, one combined evidence report to Chief D.
 
 This job is a settlement/reconciliation audit, not a social account, wallet
 custodian, payment processor, or assertion that outside AI agents owe money.
@@ -22,6 +22,9 @@ cfg = json.loads((ROOT / "b_collection_assignments.json").read_text(encoding="ut
 ledger = json.loads((ROOT / "verified_receivables.json").read_text(encoding="utf-8"))
 assert cfg["director_operations"]["payment_director_id"] == "D10"
 assert ledger["payment_director"] == "D10"
+assert cfg["hierarchy"]["chief_director"] == ledger["chief_director"] == "D"
+for fleet in cfg["fleets"]:
+    assert ledger["local_payment_directors"][fleet] == fleet+"/D10"
 assert set(cfg["fleets"]) == {"transferexperiment", "BountyScoutAI"}
 assert isinstance(ledger["claims"], list)
 
@@ -127,6 +130,8 @@ accounts = {}
 for fleet, details in cfg["fleets"].items():
     accounts[fleet] = {
         "account": details["account"],
+        "local_payment_director":fleet+"/D10",
+        "reports_to":"D",
         "asset": details["asset"],
         "network": details["network"],
         "receiving_address": details["address"],
@@ -139,8 +144,9 @@ for fleet, details in cfg["fleets"].items():
 
 report = {
     "as_of_utc": datetime.now(timezone.utc).isoformat(),
-    "logical_payment_director": "D10",
-    "scope": "Both B1 and B2 fleet accounts, one non-custodial director",
+    "local_payment_directors":ledger["local_payment_directors"],
+    "chief_director": "D",
+    "scope": "Two separate fleet-local non-custodial D10 payment directors reporting separately to one Chief D",
     "accounts": accounts,
     "claims_in_registry": len(ledger["claims"]),
     "claims_awaiting_independent_validation": len(awaiting_independent_confirmation),
@@ -159,11 +165,11 @@ report = {
     json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
 )
 rows = [
-    "# Director D10 — Both Accounts Payment Evidence",
+    "# Two independent D10 payment directors — separate evidence to one Chief D",
     "",
     "UTC: " + report["as_of_utc"],
     "",
-    "One logical payment director D10; D01–D09 keep running independent paid-work missions.",
+    "Each company has its own D01-D10 board. Each local D10 handles only its own account; both report to the one Chief D, who reports to owner.",
     "",
     "Registered external acceptance claims: " + str(len(ledger["claims"])),
     "Claims needing independent validation: " + str(len(awaiting_independent_confirmation)),
@@ -175,6 +181,8 @@ for fleet, details in accounts.items():
     scan = details["btc_output_snapshot"]
     rows.extend([
         "## " + fleet + " / " + details["account"],
+        "Local payment director: " + details["local_payment_director"],
+        "Reports to: D",
         "BTC mainnet: " + details["receiving_address"],
         "Explorer status: " + scan["status"],
         "Matching recent public transaction outputs (not classified as client income): " +
@@ -184,7 +192,7 @@ for fleet, details in accounts.items():
     ])
 rows.extend([
     "## Next real action",
-    "D10: obtain an actual external client acceptance/award with agreed amount, "
+    "Each local D10: obtain its own external client acceptance/award with agreed amount, "
     "not just a task listing or internal model run. If a proven debt exists, "
     "use an AUTHENTICATED payer contact to request settlement; track the actual "
     "outgoing demand and confirm the correct network on receipt.",
