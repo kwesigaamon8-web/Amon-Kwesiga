@@ -9,7 +9,9 @@ on:
       - 'crypto-agents/chief_D_reporting.py'
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/ai_process_worker.py'
-      - 'crypto-agents/b_worker_buyer_source.py'
+      - 'crypto-agents/b_worker_buyer_source.py crypto-agents/b_paid_feed_fallback.py crypto-agents/new_earning_lanes.py'
+      - 'crypto-agents/b_paid_feed_fallback.py'
+      - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/b_shift_worker_rotation.py'
       - 'crypto-agents/b_shift_accountability.py'
       - 'crypto-agents/owner_first_oath.py'
@@ -34,6 +36,8 @@ jobs:
         run: python crypto-agents/owner_first_oath.py
       - name: Validate universal multi-country JSON tasks and 7 billion unique addressable IDs
         run: python crypto-agents/b_universal_work_protocol.py --self-test
+      - name: Validate secondary vetted payer source on GitHub API 403 with strict evidence
+        run: python crypto-agents/b_paid_feed_fallback.py
       - name: Check original-source buyer qualification without fake acceptance
         run: python crypto-agents/b_worker_buyer_source.py
       - name: Verify all 6750 rotation slots per fleet without duplication
