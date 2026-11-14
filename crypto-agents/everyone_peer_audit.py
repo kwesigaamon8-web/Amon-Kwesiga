@@ -140,7 +140,8 @@ management={
     "supervisors_with_actual_worker_results":len(supervisors),
     "total_deterministic_ordered_worker_vs_worker_comparisons":checks["ordered_pairwise_comparisons"],
     "expected_all_to_all_ordered_comparisons":n*(n-1),
-    "engine_did_an_automated_check_on_every_distinct_pair":checks["ordered_pairwise_comparisons"]==n*(n-1),
+    "engine_did_an_automated_check_on_every_distinct_pair":n>=2 and checks["ordered_pairwise_comparisons"]==n*(n-1),
+    "audit_coverage_status":"COMPLETE" if n>=2 and checks["ordered_pairwise_comparisons"]==n*(n-1) else ("INSUFFICIENT_ACTUAL_WORKERS" if n<2 else "INCOMPLETE"),
     "actual_separate_model_generated_peer_reviews":0,
     "actual_authenticated_parent_model_reviews":0,
     "per_worker":individual,
@@ -154,7 +155,8 @@ management={
     "external_payments_verified":False,
     "review_limit":"Automated pairwise review tests reported identity, source/response similarity and prior strict grades. It is NOT a completed independent AI peer critique of each other worker's work or factual verification of the payer. No PII, private keys, passwords, private customer files or payments are published.",
 }
-assert management["engine_did_an_automated_check_on_every_distinct_pair"]
+if n>=2 and not management["engine_did_an_automated_check_on_every_distinct_pair"]:
+    raise AssertionError("Pairwise actual-worker checks missed a distinct worker pair")
 assert len(individual)==n
 (OUT/("peer-everyone-"+FLEET+".json")).write_text(
     json.dumps(management,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
@@ -164,6 +166,7 @@ lines=[
  "Report date: "+management["generated_utc"],
  "",
  "**Actual attempted workers with strict audit rows:** "+str(n),
+ "**Coverage status:** "+management["audit_coverage_status"],
  "**Automated unique ordered worker-to-worker comparisons:** "+f"{checks['ordered_pairwise_comparisons']:,}",
  "**Expected full pairwise checks:** "+f"{n*(n-1):,}",
  "**Workers with distinct-peer review assignment:** "+str(checks["workers_with_peers_assigned"]),
@@ -188,7 +191,7 @@ lines += [
 print("EVERYONE_PEER_AUDIT",json.dumps({
  "fleet":FLEET,"actual_workers":n,
  "comparisons":checks["ordered_pairwise_comparisons"],
- "coverage":"PASS" if management["engine_did_an_automated_check_on_every_distinct_pair"] else "FAIL",
+ "coverage":management["audit_coverage_status"],
  "corrective_cases":checks["workers_with_any_corrective_action"],
  "actual_AI_peer_reviews":0,
  "external_payments_verified":"not_assessed"
