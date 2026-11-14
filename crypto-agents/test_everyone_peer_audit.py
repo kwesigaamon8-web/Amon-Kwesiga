@@ -39,6 +39,7 @@ with tempfile.TemporaryDirectory() as directory:
     data=json.loads((root/"peer-accountability"/("peer-everyone-"+fleet+".json")).read_text())
     assert data["attempted_actual_worker_reports"]==3
     assert data["total_deterministic_ordered_worker_vs_worker_comparisons"]==6
+    assert data["audit_coverage_status"]=="COMPLETE"
     assert data["engine_did_an_automated_check_on_every_distinct_pair"] is True
     assert data["actual_separate_model_generated_peer_reviews"]==0
     assert data["automated_checks"]["identical_response_pairs"]==2
@@ -53,4 +54,6 @@ with tempfile.TemporaryDirectory() as directory:
     data=json.loads((root/"peer-accountability"/("peer-everyone-"+fleet+".json")).read_text())
     assert data["attempted_actual_worker_reports"]==0
     assert data["total_deterministic_ordered_worker_vs_worker_comparisons"]==0
+    assert data["audit_coverage_status"]=="INSUFFICIENT_ACTUAL_WORKERS"
+    assert data["engine_did_an_automated_check_on_every_distinct_pair"] is False
 print("EVERYONE_AUDIT_REGRESSION_PASS: 3 actual workers, 6 full checks, 2 repeated output directions, 0 fake reviewers; empty pass")
