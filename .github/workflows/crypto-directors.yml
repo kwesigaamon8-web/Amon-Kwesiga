@@ -116,7 +116,8 @@ jobs:
           OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
-        run: python crypto-agents/company_ai_review.py
+        continue-on-error: true
+        run: timeout --signal=TERM --kill-after=30s 12m python crypto-agents/company_ai_review.py
       - name: Run independent researcher
         env:
           ROLE_ID: ${{ matrix.role }}
@@ -125,7 +126,8 @@ jobs:
           HF_HUB_DISABLE_TELEMETRY: '1'
           HF_HUB_DOWNLOAD_TIMEOUT: '45'
           OMP_NUM_THREADS: '2'
-        run: python crypto-agents/agents.py
+        continue-on-error: true
+        run: timeout --signal=TERM --kill-after=30s 6m python crypto-agents/agents.py
       - name: Publish individual deliverable for every actually attempted agent
         if: ${{ always() }}
         env:
