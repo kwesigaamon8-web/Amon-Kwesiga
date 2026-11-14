@@ -41,7 +41,7 @@ FINISHED=re.compile(r'(?i)\b(?:already awarded|claimed and paid|bounty closed|wi
 # LLM inference. Open GitHub issues often contain unrelated monetary figures,
 # automated digests, third-party mirrors, disputes and reward questions.
 STRONG_REWARD=re.compile(r'(?i)(?:\b(?:bounty|reward|payout|compensation|payment|prize|paid)\s*(?:[:=\-]|is|of|worth)?\s*(?:USD\s*)?(?:[$€£]\s*\d+(?:[.,]\d+)?|\d+(?:\.\d+)?\s*(?:USD|USDC|BTC|sats?|satoshis))\b|(?:[$€£]\s*\d+(?:[.,]\d+)?|\d+(?:\.\d+)?\s*(?:BTC|USDC|USD|sats?))\s*(?:\b(?:bounty|reward|payout|compensation|payment|prize)\b))')
-ZERO_OFFER=re.compile(r'(?i)(?:\b(?:bounty|reward|compensation|payment|price)\s*[:=]?\s*\$0(?:\D|$)|\[\$0\]|\b(?:unpaid|volunteer-only|no reward|no payout)\b)')
+ZERO_OFFER=re.compile(r'(?i)(?:\b(?:bounty|reward|compensation|payment|price)\s*[:=]?\s*\$0(?:\D|$)|\[\$0\]|\b(?:zero[- ]bounty|unpaid|volunteer-only|no reward|no payout|not paid)\b)')
 SECONDARY_SOURCE=re.compile(r'(?i)(?:\b(?:digest|roundup|alert|scanner|mirror|aggregat(?:or|ion)|newsletter|vote:|discussion only|not (?:reviewed|accepted) on this mirror|no manual pull requests)\b|(?:^\s*###\s*(?:original link|source url)\s*$))')
 UNRELATED_MONEY=re.compile(r'(?i)(?:\b(?:state|sales)[ -]?tax\b|\b(?:taxable|income tax|payroll|vat)\b|\b\$[\d.,]+\s*(?:sale|purchase|invoice)\b)')
 QUESTIONS_ONLY=re.compile(r'(?i)(?:\b(?:could the current docs|clarify|question routes|request for information|eligibility question|is the bounty|vote:|how to claim)\b)')
@@ -67,7 +67,10 @@ def normalize(issue):
     mirror_or_digest=(bool(SECONDARY_SOURCE.search(title)) or
         "not reviewed on this mirror" in body.lower() or
         any(name in repo_name for name in EXCLUDED_ORIGIN_REPOS))
+    label_names={str(a.get("name") if isinstance(a,dict) else a).strip().lower() for a in (issue.get("labels") or [])}
+    zero_pay_labels={"zero-bounty","no-bounty","unpaid","no-payment","non-monetary"}
     checks={
+       "actually_not_identified_as_zero_bounty":not bool(ZERO_OFFER.search(full)) and not bool(label_names & zero_pay_labels),
        "open_issue":issue.get("state")=="open" and not issue.get("pull_request"),
        "original_link":url.startswith("https://github.com/"),
        "mentions_specific_reward_amount":bool(MONEY.search(full)),
@@ -216,6 +219,16 @@ def selftest():
            "state":"open","html_url":"https://github.com/owner/repo/issues/5",
            "repository_url":"https://api.github.com/repos/owner/repo","user":{"login":"maintainer"}}
     assert normalize(issue)["status"]=="POSSIBLE_PAID_TASK_UNVERIFIED"
+    issue={"title":"[Bounty] Answer these linked questions",
+           "body":"This is a zero-bounty task: $0. Real bounty only if /reward is funded.",
+           "state":"open","html_url":"https://github.com/owner/repo/issues/6",
+           "labels":[{"name":"bounty"},{"name":"zero-bounty"}]}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue={"title":"[Bounty $50] Fix processing",
+           "body":"Make new tests and implement feature for reward $50.",
+           "state":"open","html_url":"https://github.com/owner/repo/issues/7",
+           "labels":[{"name":"bounty"},{"name":"zero-bounty"}]}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
     print("PAID_CANDIDATE_QUALITY_TESTS_PASS — reject digest, reward FAQ, mirror and zero-bounty; retain real scoped paid issue")
 
 if __name__=="__main__":
