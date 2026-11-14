@@ -30,12 +30,23 @@ DIRECTOR=IDENTITY["director_id"]
 MANAGER=IDENTITY["manager_id"]
 PARENT=IDENTITY["parent_id"]
 SPEC={"role_name":IDENTITY["specialty"],"query":IDENTITY["query"]}
+COLLECTION_CONFIG=json.loads((ROOT/"b_collection_assignments.json").read_text(encoding="utf-8"))
+FLEET=os.environ.get("WORKFORCE_ID","transferexperiment")
+if FLEET not in COLLECTION_CONFIG["fleets"]:
+    raise SystemExit("Unrecognized B collection fleet namespace")
+PAYMENT_MISSION=COLLECTION_CONFIG["fleets"][FLEET]
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
 
 report={
     "worker_id":WORKER,
+    "receiving_account":PAYMENT_MISSION["account"],
+    "receiving_asset":PAYMENT_MISSION["asset"],
+    "receiving_network":PAYMENT_MISSION["network"],
+    "owner_verified_payment_receipts":[],
+    "external_collection_outcome":"not_payment_verified_by_worker",
+    "account_collection_instruction_source":"crypto-agents/b_collection_assignments.json",
     "workforce_namespace":os.environ.get("WORKFORCE_ID","transferexperiment"),
     "globally_unique_agent_id":os.environ.get("WORKFORCE_ID","transferexperiment")+"/"+WORKER,
     "manager_id":MANAGER,
@@ -125,8 +136,9 @@ try:
     examples=[{"title":x["title"],"url":x["url"]}
               for x in report["source_items"][:2]]
     prompt=[
-      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent."},
-      {"role":"user","content":(compact_prompt()[:700]+
+      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
+      {"role":"user","content":(compact_prompt()[:380]+
+        "\nCOLLECTION ORDER "+PAYMENT_MISSION["primary_instruction"][:500]+"; BTC mainnet receiving address "+PAYMENT_MISSION["address"]+"; public support notice "+PAYMENT_MISSION["approved_public_notice"]+
         "\nAgent "+WORKER+"; DIRECT PARENT "+PARENT+"; OWNER COMMAND ROUTE "+">".join(report["command_chain_assignment"]["owner_to_role_route"])+
         "; specialty "+SPEC["role_name"]+
         "; original search results "+json.dumps(examples,ensure_ascii=False)[:270]+
