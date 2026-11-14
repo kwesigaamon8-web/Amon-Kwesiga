@@ -112,6 +112,12 @@ jobs:
           python-version: '3.11'
       - name: Audit executed processes versus assigned identities
         run: python crypto-agents/ai_process_audit.py
+      - name: Grade each REAL worker independently and flag all evidence deficits
+        env:
+          WORKFORCE_ID: BountyScoutAI
+        run: python crypto-agents/strict_worker_accountability.py
+      - name: Publish strict evidence grades in GitHub summary
+        run: cat strict-worker-accountability/strict-BountyScoutAI.md >> "$GITHUB_STEP_SUMMARY"
       - name: Merge only completed independent worker next-action checkpoints
         run: python crypto-agents/agent_state_aggregate.py
       - name: Director D evaluates real results, sources and next actions
@@ -183,5 +189,6 @@ jobs:
             agent-state/latest.json
             director-D-results/
             ord035-parent-followups.json
+            strict-worker-accountability/
           if-no-files-found: warn
           retention-days: 7
