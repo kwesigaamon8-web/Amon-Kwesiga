@@ -37,6 +37,8 @@ for manager in company["managers"]:
           "manager_domain":manager["domain"],
           "search_query":worker["query"],
           "authorized_work":assignment_text, "director_function":director_function, "payment_director_id":payment_director,
+          "strict_chief_D_order_id":orders["chief_D_current_owner_order_id"],
+          "required_actual_execution_evidence":["model_completed","unique_agent_id","original_source_or_failure","separate_model_output","realistic_next_action","payment_status_truth"],
           "owner_order_registry_sha256":orders["sha256"],
           "all_owner_order_ids":orders["ids"],
           "defined_subagents":150,
