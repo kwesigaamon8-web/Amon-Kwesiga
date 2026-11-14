@@ -13,6 +13,7 @@ from pathlib import Path
 from role_ai_identity import resolve_role
 from ten_ideas_exercise import role_menu
 from b_address_understanding import routes
+from unique_funding_tasks import task as individual_funding_task
 
 DIRECTORS={f"D{i:02d}" for i in range(1,11)}
 FLEETS=("transferexperiment","BountyScoutAI")
@@ -48,6 +49,7 @@ def assignment(fleet,worker):
     assert hierarchy[-1]==fleet+"/"+worker
     assert hierarchy[-2]==fleet+"/"+parent
     menu=role_menu(fleet,worker,parent,r["specialty"])
+    funding_task=individual_funding_task(fleet,worker,addr,parent)
     return {
        "issued_under":executive_order_id(),
        "governance_order":"OWNER-20261114-082358",
@@ -62,6 +64,8 @@ def assignment(fleet,worker):
            "public_source_excerpts_untrusted_until_checked":True,
        },
        "company":fleet,"chief_director":"D",
+       "unique_funding_task":funding_task,
+       "funding_task_id":funding_task["task_id"],
        "company_director":fleet+"/"+director,
        "direct_supervisor":fleet+"/"+parent,
        "individual_worker":fleet+"/"+worker,
@@ -70,7 +74,7 @@ def assignment(fleet,worker):
        "company_receiving_BTC_mainnet":addr,
        "manager_supervisory_domain":r["manager_id"],
        "specialty":r["specialty"],
-       "task":"Develop 10 distinct legitimate BTC-earning ideas starting in your individual work area; assess payer proof and no-upfront-fee legitimacy before a pitch; take a specific next lawful action.",
+       "task":"FIRST propose 10 original BTC-earning ideas in your niche. THEN: "+funding_task["specific_task"],
        "scoped_director_command":(
            "Local D10: review only externally accepted unpaid contracts, and validate payer and due amount; ideas cannot be invented debts."
            if director=="D10" else
@@ -119,6 +123,8 @@ def self_test():
                 assert a["company_director"]==a["single_boss_route"][2]
                 assert a["single_boss_route"][:2]==["OWNER","CHIEF_D"]
                 assert a["assigned_menu_count"]==10
+                assert a["unique_funding_task"]["task_id"].startswith("FUND-")
+                assert a["unique_funding_task"]["individual_worker_id"]==f+"/"+worker
                 b=corrective_order(a,["REPEATED_IDEAS"])
                 assert b["status"].startswith("SYSTEM_PREPARED_")
                 assert not b["verified_supervisor_AI_reply"]
