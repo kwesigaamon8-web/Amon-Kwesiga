@@ -62,13 +62,22 @@ def test():
         "command_chain_receipts.py","subagent_audit.py",
         "owner_order_distribution.py","director_work_orders.py",
         "agents.py","chief_D_reporting.py","b_address_understanding.py",
-        "cross_fleet_idea_exchange.py")
+        "cross_fleet_idea_exchange.py","unique_funding_tasks.py",
+        "secondary_software_study.py")
     for file in expected_files:
         text=(ROOT/file).read_text(encoding="utf-8")
         try:ast.parse(text,filename=file)
         except SyntaxError as e:errors.append("PYTHON_SYNTAX_FAILURE "+file+" "+str(e))
     launcher=(ROOT/"ai_process_launcher.py").read_text(encoding="utf-8")
     worker=(ROOT/"ai_process_worker.py").read_text(encoding="utf-8")
+    software=(ROOT/"secondary_software_study.py").read_text(encoding="utf-8")
+    if not all(k in software for k in ("WORLD_SOURCES","GitLab","Codeberg","SourceHut",
+                                       "PyPI","npm","Hugging Face Spaces","legal_reuse_rule")):
+        errors.append("GLOBAL_SOFTWARE_SOURCE_STUDY_MISSING_OR_LICENSE_GATE_BYPASSED")
+    if not all(k in worker for k in ("SECOND_DISTINCT" if False else "SOFTWARE_SECOND",
+                                      "assess_software_study",
+                                      "second_study_actual_model_result")):
+        errors.append("REAL_B_WORKER_SOFTWARE_STUDY_MODEL_RESULT_NOT_GRADED")
     exchange=(ROOT/"cross_fleet_idea_exchange.py").read_text(encoding="utf-8")
     if not all(k in exchange for k in ("compile_digest","make_actions","actual_model_idea_excerpts","assigned_company_director","coin_receipt_confirmed")):
         errors.append("TWO_COMPANY_IDEA_PROVENANCE_OR_DIRECTOR_REVIEW_MISSING")
