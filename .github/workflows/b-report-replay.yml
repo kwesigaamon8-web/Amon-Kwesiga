@@ -1,0 +1,89 @@
+name: Replay Real B Worker Reports to Chief D
+on:
+  push:
+    paths:
+      - '.github/workflows/b-report-replay.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  issues: write
+jobs:
+  replay-existing-worker-evidence:
+    name: Report existing real B evidence for ${{ matrix.fleet }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - fleet: transferexperiment
+            workflow: real-ai-workers.yml
+          - fleet: BountyScoutAI
+            workflow: bountyscoutai-real-ai-workers.yml
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Find most recent completed successful actual model run for this company
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MODEL_WORKFLOW: ${{ matrix.workflow }}
+        run: |
+          set -euo pipefail
+          RUN_ID="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${MODEL_WORKFLOW}/runs?per_page=20" --jq '.workflow_runs | map(select(.conclusion=="success")) | .[0].id // empty')"
+          echo "run_id=${RUN_ID}" >> "$GITHUB_OUTPUT"
+          if [ -z "$RUN_ID" ]; then
+            echo "No successful original real-worker model run found; no worker reports claimed" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Original real worker run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Download actual worker artifacts without rerunning models
+        if: steps.source.outputs.run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.source.outputs.run_id }}
+          github-token: ${{ github.token }}
+          pattern: real-ai-processes-*
+          merge-multiple: true
+          path: combined-ai-processes
+      - name: Check source artifacts and compile evidence reporters
+        if: steps.source.outputs.run_id != ''
+        run: |
+          python -m py_compile crypto-agents/ai_process_audit.py crypto-agents/strict_worker_accountability.py crypto-agents/hierarchical_reporting.py crypto-agents/post_hierarchical_reports.py
+          python crypto-agents/test_hierarchical_reporting.py
+          test -d combined-ai-processes/ai-process-reports
+      - name: Audit raw actual worker process records
+        if: steps.source.outputs.run_id != ''
+        run: python crypto-agents/ai_process_audit.py
+      - name: Grade each individual executed worker report
+        if: steps.source.outputs.run_id != ''
+        env:
+          WORKFORCE_ID: ${{ matrix.fleet }}
+        run: python crypto-agents/strict_worker_accountability.py
+      - name: Route each B report through direct parent, manager, director and Chief D
+        if: steps.source.outputs.run_id != ''
+        env:
+          WORKFORCE_ID: ${{ matrix.fleet }}
+          SOURCE_WORKER_RUN_ID: ${{ steps.source.outputs.run_id }}
+        run: python crypto-agents/hierarchical_reporting.py
+      - name: Show Chief D company report
+        if: steps.source.outputs.run_id != ''
+        run: cat "hierarchical-reports/${{ matrix.fleet }}/CHIEF_D_COMPANY_REPORT.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish one company report in shared Chief D issue
+        if: steps.source.outputs.run_id != ''
+        continue-on-error: true
+        env:
+          WORKFORCE_ID: ${{ matrix.fleet }}
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/post_hierarchical_reports.py
+      - name: Archive all individual B and manager reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hierarchical-worker-reports-${{ matrix.fleet }}
+          path: hierarchical-reports/
+          if-no-files-found: warn
+          retention-days: 30
