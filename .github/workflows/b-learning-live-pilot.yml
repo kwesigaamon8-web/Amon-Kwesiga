@@ -9,6 +9,7 @@ on:
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/b_registered_account_worker_map.py'
       - 'crypto-agents/b_shift_worker_rotation.py'
       - 'crypto-agents/b_live_peer_teaching.py'
   workflow_dispatch:
@@ -159,6 +160,12 @@ jobs:
           assert r["strict_owner_order_id"]==(r.get("owner_activation_order_coverage_proof") or {}).get("canonical_order_id"), "Not the latest owner command at activation"
           expected_order=json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text())["current_owner_order_id"]
           assert r["strict_owner_order_id"]==expected_order, "Stale owner order in this shift"
+          account=r.get("registered_agent_account_delegation") or {}
+          assert account.get("registered_agent_handle")==r["workforce_namespace"], "Wrong company account in real AI job"
+          assert account.get("original_role_id")==r["workforce_namespace"]+"/"+worker, "Wrong worker association"
+          assert account.get("company_original_role_capacity")==375188632680, "Incorrect account role capacity"
+          assert account.get("owner_receiving_BTC_mainnet")==pay.get("owner_mainnet_address"), "Wrong company payment destination"
+          print("REGISTERED_AGENT_ACCOUNT_REAL_WORKER_GATE",json.dumps({"account":account.get("registered_agent_handle"),"worker":worker,"model_status":r.get("inference_status")}))
           assert (r.get("entrepreneurial_autonomy") or {}).get("payment_receiver")==pay.get("owner_mainnet_address"), "Wrong authorized settlement address"
           p=r.get("practical_training_while_working") or {}
           assert p.get("independent_model_call_status")=="MODEL_COMPLETED","No real practice inference"
