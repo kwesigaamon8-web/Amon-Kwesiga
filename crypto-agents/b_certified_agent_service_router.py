@@ -135,7 +135,7 @@ def assignment(fleet,role,doc=None):
       "original_7B_H_target_subset_not_double_counted":True,
       "actual_model_started_by_assignment":False,
       "internal_owner_to_worker_path":full,
-      "immediate_internal_reporting_parent":full[-2],
+      "immediate_internal_reporting_parent":"CHIEF_D" if kind=="D" else full[-2],
       "customer_is_NOT_organizational_boss":True,
       "authorized_agent_work_is_an_additional_income_lane":True,
       "engagement_status":"EXTERNALLY_APPROVED_AGENT_TASK_AVAILABLE" if selected else "NO_VERIFIED_AUTHORIZED_AGENT_ACTIVE",
@@ -180,7 +180,7 @@ def self_test():
                 assert row["owner_order_id"]==current_order()["order_id"]
                 assert row["payout"]["receive_address"]==company_wallet(f)
                 assert row["engagement_status"]=="NO_VERIFIED_AUTHORIZED_AGENT_ACTIVE"
-                assert row["immediate_internal_reporting_parent"]==row["internal_owner_to_worker_path"][-2]
+                assert row["immediate_internal_reporting_parent"]==("CHIEF_D" if row["original_role_kind"]=="D" else row["internal_owner_to_worker_path"][-2])
                 rank=row["unique_original_role_index"]
                 assert rank not in seen
                 seen.add(rank)
