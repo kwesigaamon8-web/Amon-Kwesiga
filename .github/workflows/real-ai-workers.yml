@@ -25,6 +25,18 @@ jobs:
           python-version: '3.11'
       - name: Compile all research and management scripts
         run: python -m compileall -q crypto-agents
+      - name: Refresh actual original paying-task issue candidates for on-the-job training
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/new_earning_lanes.py
+      - name: Give real workers a single recent original-source feed
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-buyer-source-feed
+          path: paid-opportunity-reports/new-earning-lanes.json
+          if-no-files-found: warn
+          retention-days: 2
       - name: Regression-test every B to manager to director to Chief D report
         run: python crypto-agents/test_hierarchical_reporting.py
       - name: Check that D training assessment fails closed without a live model
@@ -77,10 +89,16 @@ jobs:
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Load original issue candidates for each real B practical task
+        uses: actions/download-artifact@v4
+        with:
+          name: real-buyer-source-feed
+          path: paid-opportunity-reports
       - name: Actually launch isolated per-worker operating-system processes
         env:
           ROLE_ID: ${{ matrix.director }}
           WORKFORCE_ID: transferexperiment
+          GH_TOKEN: ${{ github.token }}
           REAL_AI_PROCESSES_PER_DIRECTOR: '20'
           MAX_BATCH_SECONDS: '660'
           HF_HUB_DISABLE_TELEMETRY: '1'
