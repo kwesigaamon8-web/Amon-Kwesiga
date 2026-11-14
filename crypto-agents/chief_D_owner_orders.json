@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-080246",
+  "current_owner_order_id": "OWNER-20261114-082358",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -98,6 +98,14 @@
       "as_of_utc": "2026-11-14T08:02:46Z",
       "relayed_by": "ChatGPT on owner's express instruction",
       "instruction": "CHIEF D: All actually running B workers in BOTH independent companies and your own top-level governance must understand the owner's receiving ADDRESS MAPPING, correct coin, correct chain and responsibility. Company 1 transferexperiment: BTC native Bitcoin MAINNET bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; separately optional USDC on BASE 0x734989a439F146885C12907cd9Dd191b03d5B07e, requiring live asset/network acceptance confirmation before use. Company 2 BountyScoutAI: BTC native Bitcoin MAINNET bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Any other historically mentioned EVM/Solana/Tron/Stellar/HBAR/exchange account route remains HOLD/UNVERIFIED in this GitHub mission until the owner confirms explicit asset, network, address, required memo/tag and receiving approval. Never assume an EVM-format address means Ethereum chain, Base, Polygon, etc.; never treat HBAR or XLM deposit memos as optional. Every actually invoked B model must separately demonstrate that it knows ITS correct company BTC address, which address belongs to the OTHER company (so as NOT to confuse), coin/network, how to handle optional USDC/unknown networks, its local D10 payment director and singular overarching Chief D. Log the independent model's reply and mark missing/wrong addresses FAIL / SUPERVISOR_REVIEW; receiving instruction alone does not establish understanding. This is a read-only instruction and testing mission: never request wallet keys, sign transactions, publish unapproved exchange routes, fabricate payments, claim all dormant worker IDs understood, or cross-credit deposits to the wrong company. Director D consolidates separate company outcomes and reports verified wallet receipts only with TXID and output. Ideas first, actual genuine paid work then settlement remains the priority.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-082358",
+      "as_of_utc": "2026-11-14T08:23:58Z",
+      "relayed_by": "ChatGPT upon owner's express hierarchical-governance instruction",
+      "instruction": "Chief D: Run the ten-idea exercise as a GOVERNMENT-STYLE ORGANIZATION WITH REAL ACCOUNTABILITY. The owner issues a command through ChatGPT to ONE Chief D. Chief D assigns it to both independent company boards, each with its OWN ten local directors D01-D10. Each director instructs its own 15 managers and any assistants; managers assign specific practical idea-generation and original-source validation tasks to their own 50 first-tier workers; deeper S→G→H workers inherit the exact single-parent route. Every ACTUALLY INVOKED worker must attempt TEN distinct original lawful cryptocurrency-earning ideas and a correct company-wallet/command acknowledgement. A worker that cannot propose real ideas, has no source, repeats itself, misunderstands its wallet or produces no usable work must NOT be reported as productive: its IMMEDIATE manager/supervisor must issue a concrete scoped task and corrective instruction for a genuine bounded second model attempt if resources allow; the local company director audits and escalates failures to Chief D, who coordinates both boards and tells owner the real results. Workers may propose new ideas independently but cannot override correct wallet, evidence, acceptance or legal safety rules. Each manager/director must distinguish preassigned procedural instructions from ACTUAL separately completed AI reviews or replies. Everyone has a task, a boss, a verifiable source, a deadline/run identifier, and measurable outcomes: ten ideas, screened top options, paid work, accepted deliverables, authentic permission-based payer request, independently verified correct-chain coins. Do NOT claim inactive billions of role definitions are autonomously working or that scheduled assignments prove execution. Prioritize ideas first, then real work and payment, while keeping the two companies' address assignments distinct.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -237,5 +245,18 @@
     "other_known_routes": "HOLD pending chain/asset/memo confirmation; do not publish private full directory",
     "reporting_requirement": "Real worker must independently model-state its own fleet's exact BTC address and native chain plus correct unique Chief D/local D10 hierarchy; otherwise do not claim understood.",
     "non_custodial": true
+  },
+  "hierarchical_idea_governance": {
+    "order_id": "OWNER-20261114-082358",
+    "chief_director": "D",
+    "two_company_boards": {
+      "transferexperiment": "transferexperiment/D01-D10",
+      "BountyScoutAI": "BountyScoutAI/D01-D10"
+    },
+    "single_boss_hierarchy": "owner -> ChatGPT relay -> Chief D -> fleet local D01-D10 -> direct manager -> W -> S -> G -> H",
+    "per_real_worker": "10 unique model-generated ideas, publicly verifiable evidence and next action",
+    "fallback_rule": "If actual worker fails ten ideas or address understanding, its real immediate parent assignment issues targeted next steps; bounded retry inside same model where available. Director and Chief D review evidence of actual retries, not paper assignments.",
+    "incomplete": "NO_MODEL_IDEAS / NEEDS_SUPERVISOR_INTERVENTION until actually verified",
+    "real_money": "Only independently confirmed incoming correct-chain transactions and verified accepted work count"
   }
 }
