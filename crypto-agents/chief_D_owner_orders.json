@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-071710",
+  "current_owner_order_id": "OWNER-20261114-072052",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -28,6 +28,14 @@
       "instruction": "CHIEF D: Your standing mission across both independent companies is to obtain real, legitimately earned coins deposited into the two owner-controlled wallets on the correct network. The command must flow from Chief D through each fleet's distinct D01-D10 board and direct parent chain to every ACTUALLY EXECUTED B worker, across W/S/G/H levels. Strict accountability: every launched worker must submit a unique identity, real OS process and model evidence, original source checked, specific useful output, honest verified payer/amount status, exact next lawful action, limitation/blocker and supervisor. Directors must audit each launched worker's report, flag missing, empty, duplicate or unsupported work as failure, assign bounded reruns and provide one cross-company Chief D scorecard. Do NOT represent 750 billion lazily configured role IDs as 750 billion concurrently active agents; scale real executed processes to available authorized resources while clearly reporting capacity constraints. Internal model outputs or wallet monitor checks are NOT customer earnings. No invented deposits, fake client agreements, mass spam, harassment, private keys or upfront wallet fees. Make best effort to win genuine work, complete it, and collect verifiable payments; pursue more earning sources if none payable. Chief D is accountable directly to owner via the ChatGPT-relayed instruction channel.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-072052",
+      "as_of_utc": "2026-11-14T07:20:52Z",
+      "relayed_by": "ChatGPT, on owner's express instruction",
+      "instruction": "CHIEF D: Everyone audit everyone across both separately governed companies, meaning every ACTUALLY EXECUTED worker's evidence is examined, every actual participant has a concrete peer-review assignment, each immediate supervisor checks subordinates, each company D01-D10 director reviews its team and cross-checks another director, both local D10s audit customer settlement evidence, and sole Chief D evaluates both companies and reports to owner. Use distributed and rotating peer audits and an independent supervisor/Chief D audit so all real worker outputs receive coverage without pretending 750B dormant role IDs performed O(N^2) reviews. Require distinct reviewer/reviewee IDs, public-source validation, reproducible report links, score, defects, corrective actions, and escalation. All audits must mark whether a real AI review actually executed vs a deterministic code check or simply a queued assignment. Failed or missing workers receive a follow-up slot. Core goal remains verifiably paid cryptocurrency received on the right network, with no invented earnings or false social outreach.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -48,5 +56,19 @@
     ],
     "rejection_policy": "Mark empty, duplicate, ungrounded or unverifiable outputs NOT QUALIFIED; keep attempted and completed counts separate. Retry only within authorized real compute and reasonable rate limits, not claim every defined role is already running.",
     "critical_business_goal": "Actual legitimate cryptocurrency received into the account's correctly verified network wallet, not just worker activity."
+  },
+  "peer_audit_rule": {
+    "owner_order": "OWNER-20261114-072052",
+    "coverage": "100% of workers actually invoked, each reviewed by a different actual worker's evidence and supervisor where possible; avoid dishonest all-to-all claims",
+    "rotation": "Each executed worker gets an independent peer-review assignment, every executed worker appears as a reviewee, plus parent/team director and Chief D oversight",
+    "distinguish": [
+      "assigned_peer_audit",
+      "completed_deterministic_crosscheck",
+      "actual_model_generated_peer_review",
+      "supervisor_evaluated",
+      "chief_D_reviewed"
+    ],
+    "failure_action": "Record failed evidence grade, exact defect, responsible supervisor and next available legitimate rerun",
+    "do_not_claim": "Defined but never executed billions of roles cannot have real review activity; no payments from reviews alone"
   }
 }
