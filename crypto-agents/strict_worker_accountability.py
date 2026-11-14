@@ -81,6 +81,12 @@ for director in DIRECTORS:
                 fingerprints[fingerprint]=id
         if not data.get("parent_id"):
             defects.append("DIRECT_PARENT_MISSING")
+        idea_menu=data.get("ten_idea_exercise") or {}
+        generated_ideas=data.get("ten_idea_model_result") or {}
+        if idea_menu.get("count")!=10:
+            defects.append("TEN_CANDIDATE_IDEAS_NOT_ASSIGNED")
+        if generated_ideas.get("status")!="TEN_MODEL_GENERATED_IDEAS_NEED_FACT_CHECK":
+            defects.append("TEN_ORIGINAL_MODEL_IDEAS_MISSING_OR_REPETITIVE")
         ack=data.get("latest_command_model_acknowledgement") or {}
         if ack.get("status")!="MODEL_SELF_REPORTED_COMMAND_ACK":
             defects.append("LATEST_CHIEF_D_ORDER_NOT_ACKNOWLEDGED")
@@ -120,6 +126,9 @@ for director in DIRECTORS:
             "parent":data.get("parent_id"),
             "grade":grade,"defects":defects,
             "latest_order_ack_status":ack.get("status","NO_MODEL_ACKNOWLEDGEMENT"),
+            "ten_idea_menu_count":idea_menu.get("count",0),
+            "model_generated_distinct_idea_count":generated_ideas.get("numbered_valid_unique_count",0),
+            "ten_model_ideas_status":generated_ideas.get("status","NO_MODEL_IDEAS"),
             "latest_order_id_acknowledged":ack.get("chief_D_owner_order_id"),
             "seven_billion_campaign_target_index":data.get("seven_billion_campaign_target_index"),
             "source_urls":sources[:3],
@@ -143,6 +152,8 @@ res={
  "qualified_results_not_paid_jobs":True,
  "acknowledgment_rule":"Genuine model-generated owner command receipt is required for a qualified research result, even though self-reported comprehension is not proof of competence.",
  "seven_billion_target_roles":7000000000,
+ "ten_idea_owner_order":"OWNER-20261114-075553",
+ "ten_ideas_are_not_verified_paid_jobs":True,
  "verified_new_income":"not_assessed",
  "dormant_defined_roles_are_not_running":True,
  "limitations":"Every attempt must have a grade. A validated model research result is not a verified paid job. Source links are untrusted until independently checked. Model output quality varies. Even QUALIFIED does not show payer acceptance, direct social posting, or cryptocurrency receipt."
