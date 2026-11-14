@@ -19,6 +19,7 @@ from role_ai_identity import resolve_role
 from coin_learning import study
 from command_chain_receipts import configured_assignment, understanding_receipt
 from command_ack_gate import evaluate as evaluate_owner_command_ack
+from ten_ideas_exercise import role_menu, evaluate_generated_ten
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
 
@@ -52,6 +53,7 @@ DIRECTOR_ORDER=(
   if DIRECTOR_FUNCTION=="payment_recovery" else
   "You are a LOCAL D01-D09 director in your own company; continue researching and preparing lawful paid deliverables and real clients. Forward accepted unpaid contract evidence to your own company D10, who reports to Chief D. Never conflate this company with the other fleet."
 )
+TEN_IDEA_MENU=role_menu(FLEET,WORKER,PARENT,SPEC["role_name"])
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
@@ -59,6 +61,9 @@ TASK=IDENTITY["task"]
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "ten_idea_exercise":TEN_IDEA_MENU,
+    "ten_idea_model_result":None,
+    "ten_idea_model_inference_status":"NOT_ATTEMPTED",
     "seven_billion_campaign_target_index":int(os.environ["SEVEN_BILLION_TARGET_INDEX"]) if os.environ.get("SEVEN_BILLION_TARGET_INDEX") else None,
     "seven_billion_target_count":7000000000,
     "latest_command_model_acknowledgement":None,
@@ -252,6 +257,32 @@ if model is not None and report["inference_status"]=="model_completed":
         report["latest_order_ack_inference_status"]="model_ack_failed:"+type(exc).__name__
 report["latest_command_model_acknowledgement"]=evaluate_owner_command_ack(
     ack_reply,WORKER,PARENT,STRICT_OWNER_ORDER_ID)
+# Owner's separate 10-ideas-per-executed-worker brainstorming exercise.
+# Every eligible role has 10 non-confidential, evidence-gated assigned
+# hypotheses, but only a REAL additional model inference counts as the
+# worker's own generated ideas. Weak/deduplicated ideas fail qualification.
+brainstorm=""
+if model is not None and report["inference_status"]=="model_completed":
+    try:
+        menu_line="; ".join(x["idea_title"] for x in TEN_IDEA_MENU["candidate_ideas"])
+        idea_prompt=[
+            {"role":"system","content":"You are an actual independently invoked B worker. Produce ten distinct, realistic ways a legal original digital service or opt-in miner collaboration might result in BTC payment to an authorized account. These are proposals, not real clients or payment commitments. Output EXACTLY ten SHORT numbered lines 1. through 10. No made-up earnings, wallet keys, upfront fees, or spam."},
+            {"role":"user","content":"Worker "+WORKER+" in "+FLEET+", direct parent "+PARENT+
+                ". Chief D idea order OWNER-20261114-075553. Worker specialty: "+SPEC["role_name"][:75]+
+                ". Ten avenues to assess/extend: "+menu_line[:950]+
+                ". Create TEN DISTINCT brief concrete action ideas, one 8-15-word line each, numbered 1. to 10. Do not claim funding or contracts exist."}
+        ]
+        answer=model(idea_prompt,max_new_tokens=230,do_sample=False,return_full_text=False)
+        brainstorm=answer[0].get("generated_text","")
+        if isinstance(brainstorm,list):
+            brainstorm=brainstorm[-1].get("content","")
+        report["ten_idea_model_inference_status"]="MODEL_INFERENCE_COMPLETED"
+    except Exception as exc:
+        report["ten_idea_model_inference_status"]="MODEL_ERROR:"+type(exc).__name__
+report["ten_idea_model_result"]=evaluate_generated_ten(brainstorm)
+report["ten_idea_model_result"]["worker_id"]=FLEET+"/"+WORKER
+report["ten_idea_model_result"]["direct_parent"]=PARENT
+report["ten_idea_model_result"]["inference_status"]=report["ten_idea_model_inference_status"]
 # Bounded skeptical review occurs in this worker's own model process. All
 # other workers retain an evidence-first deterministic plan when compute is
 # too constrained for a second review inference.
@@ -304,6 +335,8 @@ lines=[
     f"- **AI inference result:** {report['inference_status']}",
     "- **Latest Chief D command response:** "+report["latest_command_model_acknowledgement"]["status"],
     "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
+    "- **Ten assigned idea candidates:** "+str(TEN_IDEA_MENU["count"])+" (deterministic, not yet paid)",
+    "- **Own AI-generated ten-idea exercise:** "+report["ten_idea_model_result"]["status"],
     f"- **Director D lesson accessible:** {report['director_D_lesson_assessment']['lesson_accessible']}",
     f"- **Separate lesson model execution:** {report['director_D_lesson_assessment']['model_execution_status']}",
     f"- **Worker reports learned:** {report['director_D_lesson_assessment']['reported_learned']}",
