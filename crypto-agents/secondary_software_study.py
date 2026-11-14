@@ -33,6 +33,41 @@ PROJECTS=(
   ("smart contract documentation","ERC20 token network warnings",
    "permission design tests","token decimal handling","base-chain deployment caution")),
 )
+# WORLDWIDE study sources include official project pages and developer
+# package indexes. A listed page can be viewed but its code may be unlicensed,
+# unavailable or published under terms that prohibit copying. Metadata is NOT
+# an authorization to reuse code.
+WORLD_SOURCES=(
+ ("GitLab reference project","https://gitlab.com/gitlab-org/gitlab","RECHECK_CURRENT_LICENSE",
+  "GitLab hosted repository: project management, issues, CI and change review",
+  ("documented issue triage","test-driven merge request workflow","CI build evidence",
+   "source and review permissions","project access controls")),
+ ("Codeberg Forgejo","https://codeberg.org/forgejo/forgejo","RECHECK_CURRENT_LICENSE",
+  "Codeberg repository: collaborative software hosting and community governance",
+  ("repository issues and permissions","change review","open-source project contribution",
+   "documentation accessibility","versioned software releases")),
+ ("SourceHut scdoc","https://git.sr.ht/~sircmpwn/scdoc","RECHECK_EXISTENCE_AND_LICENSE",
+  "SourceHut published code: lightweight documentation tooling; verify live repository",
+  ("manpage/documentation authoring","minimal developer CLI design","release and installation docs",
+   "source contribution model","proof of licence and attribution")),
+ ("PyPI Requests package","https://pypi.org/project/requests/","RECHECK_VERSION_AND_LICENSE",
+  "Python package registry listing; metadata alone is not source license evidence",
+  ("HTTP client timeout and errors","package metadata verification","real upstream source link",
+   "dependency trust and provenance","data fetching and permissions")),
+ ("npm bitcoinjs-lib package","https://www.npmjs.com/package/bitcoinjs-lib","MIT_LISTED_RECHECK_PACKAGE_VERSION",
+  "npm package page; separately verify source, release and dependencies",
+  ("package version and source hash","Bitcoin mainnet network checks",
+   "transaction validation warnings","dependency audit","package licence notices")),
+ ("BTCPay official documentation","https://docs.btcpayserver.org/UseCase/","DOCUMENTATION_COPYRIGHT_RECHECK",
+  "Official vendor documentation; learning concepts does not mean docs may be copied",
+  ("payment invoicing example","merchant payment-link workflow",
+   "confirmation status guidance","donation checkout design","user error messages")),
+ ("Hugging Face public Spaces","https://huggingface.co/spaces","RECHECK_SPACE_AND_LICENSE",
+  "Public AI examples and demonstrations; every Space has different visibility and licence",
+  ("model evaluation user interface","community project demonstrations",
+   "resource and account restrictions","source and model licensing","accessible documentation")),
+)
+ALL_REFERENCES=PROJECTS+WORLD_SOURCES
 ANGLES=(
  "Compare usability and identify one concrete confusion risk",
  "Write a beginner-friendly original explanation and test checklist",
@@ -62,7 +97,7 @@ def study_task(fleet,role,parent,first_task_id):
     if not parent or not str(first_task_id).startswith("FUND-"):
         raise ValueError("Must reference correct direct boss and first task")
     digest=hashlib.sha256((fleet+"/"+role+"/software2").encode()).digest()
-    project=PROJECTS[digest[0]%len(PROJECTS)]
+    project=ALL_REFERENCES[digest[0]%len(ALL_REFERENCES)]
     features=project[4]
     feature=features[int.from_bytes(digest[1:3],"big")%len(features)]
     angle=ANGLES[int.from_bytes(digest[3:5],"big")%len(ANGLES)]
@@ -75,12 +110,21 @@ def study_task(fleet,role,parent,first_task_id):
       "chief_director":"D","local_director":fleet+"/"+role.split("-")[0],
       "reference_software":project[0],"official_repository":project[1],
       "github_license_metadata_observed_2026_11_14":project[2],
+      "source_platform":("GitLab" if "gitlab.com" in project[1] else
+           "Codeberg" if "codeberg.org" in project[1] else
+           "SourceHut" if "git.sr.ht" in project[1] else
+           "PyPI" if "pypi.org" in project[1] else
+           "npm" if "npmjs.com" in project[1] else
+           "Official documentation" if "docs.btcpayserver.org" in project[1] else
+           "Hugging Face Spaces" if "huggingface.co" in project[1] else "GitHub"),
+      "public_license_metadata_not_enough_for_copying":True,
+      "source_access_and_current_file_license_status":"UNVERIFIED_CHECK_ORIGINAL",
       "current_license_verified_by_this_assignment":False,
       "public_software_description":project[3],
       "focus_feature":feature,"research_angle":angle,
       "required_artifact":artifact,
       "unique_work_scope":fleet+"/"+role+" / "+feature+" / "+angle+" / "+artifact,
-      "task":"Study "+project[0]+" from its official repository and official docs. "+
+      "task":"Study "+project[0]+" from its original public source or official documentation. "+
          "Focus on '"+feature+"'. "+angle+". Deliver "+artifact+
          ". Explicitly recheck repository AND files' current licences, attribution, trademark and redistribution conditions. "+
          "Explain how ONE lawful, independently useful improvement to '"+feature+
@@ -138,14 +182,16 @@ def self_test():
                 assert x["actual_external_software_cloned"] is False
                 seen.add(x["task_id"]);projects[x["reference_software"]]+=1
     assert len(seen)==1000
-    assert len(projects)==len(PROJECTS)
+    assert len(projects)==len(ALL_REFERENCES)
     demo=study_task(FLEETS[0],"D01-M01-W01","D01-M01","FUND-123")
     assert grade_worker_study("",demo,False)["status"]=="STUDY_FAILED_OR_NOT_EVIDENCED"
     answer="Review "+demo["reference_software"]+" at "+demo["official_repository"]+\
       " MIT license. Focus feature: "+demo["focus_feature"]+". Propose a test and original improvement; check licence and attribution before any copying."
     assert grade_worker_study(answer,demo,True)["status"]=="MODEL_STUDY_REPLY_REQUIRES_CODE_AND_LICENSE_REVIEW"
+    assert len(set(x[1].split("/")[2] for x in ALL_REFERENCES))>=7
     print("SECOND_SOFTWARE_STUDY_TEST_PASS",json.dumps({
-      "unique_sample_assignments":len(seen),"referenced_real_public_repositories":len(projects),
+      "unique_sample_assignments":len(seen),"different_public_software_and_documentation_references":len(projects),
+      "source_domains":len(set(x[1].split("/")[2] for x in ALL_REFERENCES)),
       "actual_AI_models_run_by_assignment":0,"actual_software_copied_by_test":0
     }))
 
