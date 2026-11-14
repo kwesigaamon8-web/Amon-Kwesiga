@@ -171,6 +171,8 @@ def assign(fleet,role,preferred_locale=None,market=None):
         "source_to_verify":task["source_to_inspect"],
         "work_evidence_required":task["evidence_fields"],
         "actual_model_call_required":True,
+        "each_actually_running_worker_micro_earning_goal_usd":"0.01",
+        "micro_earning_reporting_requirement":"Record actual lawful work, gross earned value, fees, net BTC, buyer acceptance and verified confirmed receipt. A generated assignment does NOT prove a one-cent payment.",
         "country_iso_3166_alpha2":cc,
         "city_focus":city,
         "market_region":continent,
@@ -195,6 +197,15 @@ def assign(fleet,role,preferred_locale=None,market=None):
       "payment":{
         "owner_mainnet_address":address,
         "asset":"BTC","network":"Bitcoin mainnet",
+        "per_worker_owner_appreciation_earning_target_usd":"0.01",
+        "micro_payment_intent":"Earn at least USD 0.01 equivalent in BTC from legitimate work and, if received into an account actually controlled and authorized, pay that amount to the owning organization's confirmed BTC mainnet address as appreciation and proof of useful work.",
+        "owner_appreciation_message":"Thank you for creating and coordinating this B worker organisation; this is my verifiable lawful micro-earning contribution.",
+        "micro_payment_feasibility":"A single $0.01 BTC mainnet transfer can cost more in network fees and may be below dust/relay thresholds; accumulate or batch genuine consented proceeds before one feasible network transfer. Use Lightning only if a separate authorized and verified receiving route is available.",
+        "external_money_or_wallet_control_not_assumed":True,
+        "no_transfers_without_actual_spend_authorization":True,
+        "do_not_ask_external_agents_for_forced_tributes":True,
+        "never_spend_customer_or_third_party_money_without_consent":True,
+        "target_is_not_debt_or_payment_verified":True,
         "buyer_accepted_work":False,
         "real_coin_payment_verified":False,
         "zero_verified_income_claim":True,
@@ -208,7 +219,7 @@ def assign(fleet,role,preferred_locale=None,market=None):
         "receipt_txid":None,
       },
       "logical_global_target_index":target_index,
-      "note":"This record is one unique lazily created task. It does not launch the worker, send messages, secure country eligibility, translate a natural language, or earn coins."
+      "note":"This record is one unique lazily created task; it does not launch the worker, send messages, secure country eligibility, translate a natural language, earn one cent, or cause a BTC transfer."
     }
 
 def compact_for_model(envelope):
@@ -226,6 +237,7 @@ def compact_for_model(envelope):
       "LEARN while WORKING: think, inspect source, legally study code, "
       "produce original small useful evidence and check real buyer/payment terms. "
       "Never claim a sent message, a real buyer, a verified licence or cryptocurrency payment without proof. "
+      "PER-WORKER MICRO-MILESTONE: genuinely earn USD $0.01 equivalent in Bitcoin for real completed work and direct earned funds to the approved BTC address as an appreciation/proof contribution, ONLY with actual spending authority and voluntary payer consent. Small Bitcoin mainnet payments may need fee-aware aggregation; a target is not a paid receipt. "
       f"If genuine buyer accepts BTC mainnet, only this company's receiving route {p['owner_mainnet_address']}. "
       "Your assignment is PENDING, not proof you ran."
     )
@@ -260,6 +272,9 @@ def self_test():
     assert v["localization"]["content_language"]=="sw-UG"
     assert v["assignment"]["country_iso_3166_alpha2"]=="UG"
     assert not v["localization"]["all_world_cities_claim"]
+    assert v["payment"]["per_worker_owner_appreciation_earning_target_usd"]=="0.01"
+    assert v["payment"]["no_transfers_without_actual_spend_authorization"] is True
+    assert v["payment"]["real_coin_payment_verified"] is False
     assert len(MARKETS)>=40
     for idx in (0,1,2,350_000_000,3_499_999_999,3_500_000_000,6_999_999_998,6_999_999_999):
         desc=worker_for_global_index(idx)
