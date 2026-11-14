@@ -90,6 +90,19 @@ for director in DIRECTORS:
             counts["critical_wrong_company_btc_address"]+=1
         if data.get("address_understanding_model_status")!="MODEL_INFERENCE_COMPLETED":
             defects.append("NO_SEPARATE_WALLET_TRAINING_MODEL_INFERENCE")
+        hierarchy=data.get("hierarchical_idea_governance") or {}
+        correction=data.get("supervisor_issued_idea_correction") or {}
+        retry=data.get("actual_worker_corrective_retry_status","UNDEFINED")
+        if hierarchy.get("direct_supervisor")!=FLEET+"/"+data.get("parent_id",""):
+            defects.append("HIERARCHY_IMMEDIATE_PARENT_ASSIGNMENT_MISMATCH")
+        if hierarchy.get("company_director")!=FLEET+"/"+director or hierarchy.get("chief_director")!="D":
+            defects.append("HIERARCHY_COMPANY_DIRECTOR_OR_CHIEF_D_MISMATCH")
+        if hierarchy.get("assigned_menu_count")!=10:
+            defects.append("MANAGER_DID_NOT_DELEGATE_TEN_IDEAS")
+        if correction and correction.get("status")!="SYSTEM_PREPARED_MANAGER_INSTRUCTION_NOT_SEPARATE_MANAGER_MODEL_INFERENCE":
+            defects.append("INVALID_OR_UNPROVEN_CORRECTIVE_MANAGER_DIRECTIVE")
+        if correction and retry=="NOT_NEEDED_OR_NOT_ELIGIBLE":
+            defects.append("FAILED_IDEA_EXERCISE_NOT_ESCALATED_OR_RETRIED")
         idea_menu=data.get("ten_idea_exercise") or {}
         generated_ideas=data.get("ten_idea_model_result") or {}
         if idea_menu.get("count")!=10:
@@ -136,6 +149,11 @@ for director in DIRECTORS:
             "grade":grade,"defects":defects,
             "latest_order_ack_status":ack.get("status","NO_MODEL_ACKNOWLEDGEMENT"),
             "ten_idea_menu_count":idea_menu.get("count",0),
+            "hierarchical_company_director":hierarchy.get("company_director"),
+            "direct_supervisor":hierarchy.get("direct_supervisor"),
+            "supervisor_correction_order_status":correction.get("status","NO_CORRECTION_NEEDED"),
+            "actual_worker_model_retry_status":retry,
+            "manager_actual_independent_model_review_evidenced":False,
             "model_wallet_address_map_status":wallet_ack.get("status","NO_MODEL_ADDRESS_MAPPING_ACK"),
             "wallet_mapping_checks":wallet_ack.get("fields",{}),
             "address_training_actual_model_status":data.get("address_understanding_model_status","NOT_EVIDENCED"),
@@ -166,6 +184,8 @@ res={
  "seven_billion_target_roles":7000000000,
  "ten_idea_owner_order":"OWNER-20261114-075553",
  "ten_ideas_are_not_verified_paid_jobs":True,
+ "management_escalation":"Defective actual B idea responses are reviewed in the individual grade report with their direct parent, local company director and retry status.",
+ "owner_hierarchical_work_order":"OWNER-20261114-082358",
  "owner_wallet_map_order":"OWNER-20261114-080246",
  "wallet_routes_not_automatically_approved_for_payments":True,
  "verified_new_income":"not_assessed",
