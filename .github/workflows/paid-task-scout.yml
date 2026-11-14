@@ -21,6 +21,7 @@ on:
       - 'crypto-agents/ten_ideas_exercise.py'
       - 'crypto-agents/ten_idea_board.py'
       - 'crypto-agents/b_address_understanding.py'
+      - 'crypto-agents/hierarchical_idea_governance.py'
   schedule:
     - cron: '9 * * * *'
 concurrency:
@@ -61,6 +62,8 @@ jobs:
         run: cat chief-D-reports/CHIEF_D_TEN_IDEA_BOARD.md >> "$GITHUB_STEP_SUMMARY"
       - name: Validate correct B1/B2 Bitcoin addresses, optional Base-USDC HOLD and Chief D reporting
         run: python crypto-agents/b_address_understanding.py
+      - name: Verify Chief D -> two 10-director boards -> manager -> W/S/G/H corrections
+        run: python crypto-agents/hierarchical_idea_governance.py
       - name: Validate independent B1/B2 boards and one overarching Chief D
         run: python crypto-agents/b_fleet_integrity.py
       - name: Two independent local D10 payments audits and read-only BTC snapshots
