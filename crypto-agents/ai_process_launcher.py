@@ -105,6 +105,8 @@ for slot in range(max_workers):
 rows=[json.loads((out/(wid+".json")).read_text(encoding="utf-8")) for wid in selected]
 manifest={
  "director_id":role,
+ "workforce_namespace":os.environ.get("WORKFORCE_ID","transferexperiment"),
+ "globally_unique_worker_ids":[os.environ.get("WORKFORCE_ID","transferexperiment")+"/"+wid for wid in selected],
  "run_at_utc":datetime.now(timezone.utc).isoformat(),
  "cycle":cycle,"workers_total_assigned":750,
  "director_activation_plan_used":bool(planned_roles),
