@@ -20,9 +20,9 @@ collection=json.loads(Path("crypto-agents/b_collection_assignments.json").read_t
 payment_director=collection["director_operations"]["payment_director_id"]
 director_function="payment_recovery" if role==payment_director else "independent_paid_work"
 assignment_text=(
-    "D10 payment-recovery team: investigate actual external delivered AND accepted customer work for BOTH accounts, verify agreement, amount, payer, due date and actual authorized settlement contact before calling it payment due. Independently verify correct-chain incoming output. Do not treat GitHub model-run results as payer obligations."
+    "LOCAL D10 for this company only: investigate external delivered AND accepted work for this company's account, verify agreement, payer, amount, due date and authenticated settlement contact; report genuine payments to the overarching sole Chief D. Never count the other company's payment or internal jobs as debts."
     if director_function=="payment_recovery" else
-    "D01-D09 earning team: independently source real lawful paid opportunities, validate payer/eligibility/no upfront fee and correct asset/network, create a useful evidence-backed deliverable and route any accepted unpaid client claims to D10; do not stall research."
+    "D01-D09 earning directors within their own company: independently source real lawful paid opportunities, validate payer, eligibility and correct asset/network, produce useful deliverables and route true accepted unpaid client claims to their LOCAL D10; both company boards ultimately report to Chief D."
 )
 out=Path("director-work-orders")
 out.mkdir(exist_ok=True)
@@ -49,6 +49,8 @@ for manager in company["managers"]:
 assert len(records)==750
 doc={
  "director_id":role,
+ "company_director_id":os.environ.get("WORKFORCE_ID","transferexperiment")+"/"+role,
+ "chief_director_id":collection["hierarchy"]["chief_director"],
  "director_function":director_function,
  "payment_director_id":payment_director,
  "manager_assignments":[{"id":m["id"],"focus":m["domain"],"workers_assigned":50,
