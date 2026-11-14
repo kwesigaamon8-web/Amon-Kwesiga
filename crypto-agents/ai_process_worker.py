@@ -51,10 +51,16 @@ CHIEF_D_ORDERS=json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding=
 STRICT_OWNER_ORDER_ID=CHIEF_D_ORDERS["current_owner_order_id"]
 LATEST_CHIEF_D_INSTRUCTION=CHIEF_D_ORDERS["orders"][-1]["instruction"]
 STRICT_MODEL_ORDER=(
- "Chief D rule "+STRICT_OWNER_ORDER_ID+": independently produce your actual distinct model result, "
- "public original source URL or exact source error, useful work and realistic next lawful earning step, "
- "the genuine payer acceptance status, direct parent, and truthful payment status. "
- "Missing or duplicate evidence is a failed qualification, not a successful earning."
+ "Chief D rule "+STRICT_OWNER_ORDER_ID+": OWNER'S URGENT $100 REAL-CRYPTO RECEIPT TARGET, "
+ "2026-11-14T15:22:26Z to 2026-11-14T15:32:26Z. On THIS actually running model, "
+ "prioritize real externally accepted unpaid work and feasible funded, genuinely "
+ "paying customers over generic ideas and repeated recruitment reports. "
+ "Identify ONE verified current specific payer and exact permitted next buyer action, "
+ "or precisely explain BLOCKED_AUTH/UNVERIFIED with source URL. Produce original "
+ "useful deliverable/test evidence if practical. No promise of $100, no fabricated "
+ "customers, bids, authenticated messages, source facts or BTC/USDC receipts. "
+ "B1 and B2 must never mix wallet networks. Report exactly to your direct parent; "
+ "Chief D consolidates only actual completed model work and verified txids."
 )
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
 DIRECTOR_FUNCTION=("payment_recovery" if DIRECTOR==PAYMENT_DIRECTOR else "independent_paid_work")
@@ -90,6 +96,16 @@ UNIVERSAL_TASK=universal_assign(FLEET,WORKER)
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "owner_emergency_revenue_target":{
+        "owner_order_id":"OWNER-20261114-152226",
+        "requested_usd_total":100,
+        "start_utc":"2026-11-14T15:22:26Z",
+        "deadline_utc":"2026-11-14T15:32:26Z",
+        "target_is_not_actual_earnings":True,
+        "proof_of_any_new_receipt":"NOT_YET_VERIFIED",
+        "worker_executed_in_owner_deadline":"REQUIRES_ACTUAL_START_STOP_TIMESTAMPS",
+        "work_priority":"Verified genuinely due receivables, independently eligible paid work, permissioned outreach and accepted useful deliverables"
+    },
     "owner_first_oath":OWNER_OATH,
     "universal_task_message":UNIVERSAL_TASK,
     "universal_task_status":"ASSIGNED_NOT_YET_PERFORMED",
@@ -260,7 +276,7 @@ try:
     examples=[{"title":x["title"],"url":x["url"]}
               for x in report["source_items"][:2]]
     prompt=[
-      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
+      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. HUMAN OWNER URGENTLY REQUESTED $100 OF GENUINELY RECEIVED CRYPTO WITHIN TEN MINUTES (15:22:26-15:32:26 UTC ON NOV 14 2026). Prioritize a valid payer, original useful paid deliverable and actual acceptance rather than merely listing possibilities, but neither claim payment nor guarantee it. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
       {"role":"user","content":(universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
         "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
