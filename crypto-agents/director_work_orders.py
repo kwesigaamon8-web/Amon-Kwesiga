@@ -16,6 +16,14 @@ if not re.fullmatch(r"D(?:0[1-9]|10)",role):
 config=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encoding="utf-8"))
 company=next(c for c in config["companies"] if c["director_id"]==role)
 orders=summary()
+collection=json.loads(Path("crypto-agents/b_collection_assignments.json").read_text(encoding="utf-8"))
+payment_director=collection["director_operations"]["payment_director_id"]
+director_function="payment_recovery" if role==payment_director else "independent_paid_work"
+assignment_text=(
+    "D10 payment-recovery team: investigate actual external delivered AND accepted customer work for BOTH accounts, verify agreement, amount, payer, due date and actual authorized settlement contact before calling it payment due. Independently verify correct-chain incoming output. Do not treat GitHub model-run results as payer obligations."
+    if director_function=="payment_recovery" else
+    "D01-D09 earning team: independently source real lawful paid opportunities, validate payer/eligibility/no upfront fee and correct asset/network, create a useful evidence-backed deliverable and route any accepted unpaid client claims to D10; do not stall research."
+)
 out=Path("director-work-orders")
 out.mkdir(exist_ok=True)
 records=[]
@@ -28,7 +36,7 @@ for manager in company["managers"]:
           "director_id":role,"specialty":worker["role_name"],
           "manager_domain":manager["domain"],
           "search_query":worker["query"],
-          "authorized_work":"Independently find current lawful genuinely crypto-paid work; verify original source, payer, terms and eligible network; write your own evidence-backed report when executed.",
+          "authorized_work":assignment_text, "director_function":director_function, "payment_director_id":payment_director,
           "owner_order_registry_sha256":orders["sha256"],
           "all_owner_order_ids":orders["ids"],
           "defined_subagents":150,
@@ -41,6 +49,8 @@ for manager in company["managers"]:
 assert len(records)==750
 doc={
  "director_id":role,
+ "director_function":director_function,
+ "payment_director_id":payment_director,
  "manager_assignments":[{"id":m["id"],"focus":m["domain"],"workers_assigned":50,
     "command_chain_assignment":configured_assignment(m["id"]),
     "understanding_status":"pending_manager_model_response"} for m in company["managers"]],
