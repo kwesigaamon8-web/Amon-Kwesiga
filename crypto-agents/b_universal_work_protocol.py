@@ -349,14 +349,24 @@ def self_test():
                ("D01-M01-W01-S001-G001",666,"H"),
                ("D01-M01-W01-S001-G001-H001",0,None))
         for role,slots,childlevel in roles:
-            e=assign(fleet,role)
-            h=e["recruitment_handoff"]
+            if role=="D01-M01":
+                config=json.loads(CONFIG.read_text(encoding="utf-8"))
+                addr=config["fleets"][fleet]["address"]
+                e=None
+                h=recruitment_handoff(fleet,role,{"immediate_parent":fleet+"/D01"},addr,owner["order_id"])
+                company_address=addr
+                direct_parent=fleet+"/D01"
+            else:
+                e=assign(fleet,role)
+                h=e["recruitment_handoff"]
+                company_address=e["payment"]["owner_mainnet_address"]
+                direct_parent=e["assignment"]["report_to"]
             assert h["owner_order_id"]==owner["order_id"]
             assert h["maximum_defined_direct_child_slots"]==slots
             assert h["recruited_child_level"]==childlevel
             assert h["recruiter_role"]==fleet+"/"+role
-            assert h["immediate_reporting_parent"]==e["assignment"]["report_to"]
-            assert h["company_receiving_address"]==e["payment"]["owner_mainnet_address"]
+            assert h["immediate_reporting_parent"]==direct_parent
+            assert h["company_receiving_address"]==company_address
             assert h["actual_child_invited_or_created"] is False
             assert h["recruiting_is_not_earnings"] is True
             if childlevel is not None:
