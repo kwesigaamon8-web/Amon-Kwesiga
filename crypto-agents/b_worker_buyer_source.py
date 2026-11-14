@@ -22,9 +22,25 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
            x.get("status")=="POSSIBLE_PAID_TASK_UNVERIFIED" and
            ISSUE.fullmatch(str(x.get("original_url","")))]
     if not items:return {"status":"NO_MATCHING_ORIGINAL_TASK_CANDIDATES","source_item":None}
-    items=sorted(items,key=lambda x:x["original_url"])
+    # Work on real paying-origin issues, not automated mirrors, FAQ, or
+    # "reward mentioned in discussion" pseudo-opportunities.
+    def priority(row):
+        pay=row.get("secondary_payment_channel")
+        payer_history=row.get("secondary_payer_history_claim") is True
+        title=str(row.get("title") or "").lower()
+        if any(t in title for t in ("digest","bounty alert","eligibility question","referral reward","[radar]","site credit")):
+            return 9
+        if payer_history and pay=="crypto":return 0
+        if payer_history and pay=="stripe":return 1
+        if payer_history and pay=="upwork":return 2
+        return 5
+    items=sorted(items,key=lambda x:(priority(x),x["original_url"]))
+    best_priority=priority(items[0])
+    if best_priority>=9:
+        return {"status":"NO_COMMERCIALLY_USABLE_ORIGINAL_ISSUES","source_item":None}
+    top=[x for x in items if priority(x)==best_priority]
     seed=hashlib.sha256((fleet+"/"+worker_id).encode()).digest()
-    chosen=items[int.from_bytes(seed[:8],"big")%len(items)]
+    chosen=top[int.from_bytes(seed[:8],"big")%len(top)]
     link=chosen["original_url"]
     match=ISSUE.fullmatch(link)
     api="https://api.github.com/repos/"+match.group(1)+"/"+match.group(2)+"/issues/"+match.group(3)
@@ -77,5 +93,16 @@ def self_test():
         assert choose("BountyScoutAI","D10-M01-W01",f)["source_item"] is None
         assert choose("BountyScoutAI","D01-M01-W01",f,
                    lambda _:{"state":"open","html_url":"https://github.com/example2/repo/issues/19"})["source_item"]["url"].endswith("/19")
+        with f.open("w") as out:
+            json.dump({"candidates":[
+              {"status":"POSSIBLE_PAID_TASK_UNVERIFIED","assigned_fleet":"transferexperiment",
+               "original_url":"https://github.com/example/repo/issues/15","title":"Review discussion about rewards"},
+              {"status":"POSSIBLE_PAID_TASK_UNVERIFIED","assigned_fleet":"transferexperiment",
+               "original_url":"https://github.com/example/repo/issues/16","title":"Fix concrete bug",
+               "secondary_payment_channel":"crypto","secondary_payer_history_claim":True}
+            ]},out)
+        q=choose("transferexperiment","D01-M01-W01",f,
+                   lambda url:{"state":"open","html_url":"https://github.com/example/repo/issues/16"})
+        assert q["source_item"]["url"].endswith("/16")
     print("PASS original task source fed to each real B only, no imaginary payer or D10 speculation")
 if __name__=="__main__":self_test()
