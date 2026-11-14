@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-163012",
+  "current_owner_order_id": "OWNER-20261114-182207",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -450,6 +450,14 @@
       "all_roles_actually_running": false,
       "additional_billable_compute_authorized": false,
       "verified_payment_created_by_order": false
+    },
+    {
+      "id": "OWNER-20261114-182207",
+      "as_of_utc": "2026-11-14T18:22:07Z",
+      "relayed_by": "ChatGPT at the owner's explicit USD 10,000 instruction, using earlier B/D task and memory context",
+      "instruction": "CHIEF D SUPERSEDING EARNINGS TARGET: The owner needs USD 10,000 in ACTUALLY RECEIVED, independently verified lawful earnings across B1 transferexperiment and B2 BountyScoutAI. Supersede the previous USD 1,000 money target, not earlier privacy, safety, hierarchy or evidence requirements. Coordinate both separately governed B company boards and ONLY authenticated available live worker jobs to locate REAL paying buyers, build original tested useful work, secure permitted client acceptance, invoice when appropriate, and verify genuine owner-controlled correct-network crypto or bank receipt. Highest-value path: existing demonstrated services and original digital products (data cleanup/conversion, bank/ledger reconciliation, accounting QA, research, scripts, documentation, software testing), $500-$5,000 verified funded contracts and recurring retainers. A permitted, separately authorized genuine professional service application can use the owner's identity only outside pseudonymous B1/B2 public agent accounts; keep those anonymous and never leak owner details or private financial records. D03/D05/D09 must check original sponsor's latest comments for cancelled, on-hold, archived, zero-bounty, filled, eligibility-restricted or unpaid issues; reject the nominal $1,000 Coolify#6894 and $500 archived FinMind#121 listings. D07 and D04 scout and qualify real buyers; actually executed workers produce original testable buyer-matched deliverables instead of unsold duplicate prototypes; D10 in each B company independently reconciles received funds. Sole Chief D reports USD actually confirmed received / USD 10,000, accepted invoices separately, real submissions and contracts with primary URLs, confirmed receipts with TXID/fiat proof, and the remaining gap. No fees, wallet signing, unauthorized mining/compute, false claims or mass unsolicited outreach. Existing correct B1/B2 BTC and USDC receiving routes remain unchanged. Owner's earlier completed project work must be reused, checked and improved, but never misrepresented as customer-accepted or paid. See #9 latest $10k revenue comment for source checks and lead examples.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
