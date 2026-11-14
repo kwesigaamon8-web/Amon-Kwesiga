@@ -20,6 +20,7 @@ from coin_learning import study
 from command_chain_receipts import configured_assignment, understanding_receipt
 from command_ack_gate import evaluate as evaluate_owner_command_ack
 from ten_ideas_exercise import role_menu, evaluate_generated_ten
+from hierarchical_idea_governance import assignment as governed_idea_assignment, corrective_order as supervisory_correction
 from b_address_understanding import routes as safe_receiving_routes, prompt as address_training_prompt, evaluate as evaluate_address_mapping
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
@@ -56,6 +57,7 @@ DIRECTOR_ORDER=(
   "You are a LOCAL D01-D09 director in your own company; continue researching and preparing lawful paid deliverables and real clients. Forward accepted unpaid contract evidence to your own company D10, who reports to Chief D. Never conflate this company with the other fleet."
 )
 TEN_IDEA_MENU=role_menu(FLEET,WORKER,PARENT,SPEC["role_name"])
+GOVERNED_IDEA_ORDER=governed_idea_assignment(FLEET,WORKER)
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
@@ -64,6 +66,10 @@ report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
     "ten_idea_exercise":TEN_IDEA_MENU,
+    "hierarchical_idea_governance":GOVERNED_IDEA_ORDER,
+    "supervisor_issued_idea_correction":None,
+    "actual_worker_corrective_retry_status":"NOT_NEEDED_OR_NOT_ELIGIBLE",
+    "supervisor_actual_independent_AI_model_review":"NOT_PROVEN",
     "ten_idea_model_result":None,
     "ten_idea_model_inference_status":"NOT_ATTEMPTED",
     "seven_billion_campaign_target_index":int(os.environ["SEVEN_BILLION_TARGET_INDEX"]) if os.environ.get("SEVEN_BILLION_TARGET_INDEX") else None,
@@ -181,6 +187,9 @@ try:
       {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
       {"role":"user","content":(compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
+        "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
+        " DIRECT BOSS "+GOVERNED_IDEA_ORDER["direct_supervisor"]+
+        " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
         "\nOPEN EVIDENCE POLICY share only public non-sensitive research, checks and useful cross-company insights; never reveal keys, passwords or confidential client information."+
@@ -289,6 +298,38 @@ report["ten_idea_model_result"]=evaluate_generated_ten(brainstorm)
 report["ten_idea_model_result"]["worker_id"]=FLEET+"/"+WORKER
 report["ten_idea_model_result"]["direct_parent"]=PARENT
 report["ten_idea_model_result"]["inference_status"]=report["ten_idea_model_inference_status"]
+# Real manager-directed corrective intervention: an executable instruction from
+# the chain of command, NOT a claim the manager separately ran a model.
+if report["ten_idea_model_result"]["status"]!="TEN_MODEL_GENERATED_IDEAS_NEED_FACT_CHECK":
+    report["supervisor_issued_idea_correction"]=supervisory_correction(
+        GOVERNED_IDEA_ORDER,["TEN_ORIGINAL_MODEL_IDEAS_MISSING_OR_REPETITIVE"])
+    if model is not None and report["inference_status"]=="model_completed":
+        try:
+            narrower=[
+              {"role":"system","content":"Complete a CORRECTIVE IDEA EXERCISE under your immediate supervisor. Give EXACTLY 10 separate numbered lines 1. through 10. Each idea should be a different specific lawful service/deliverable or opt-in mining contribution with an evidence check; do not assert anyone is paying yet."},
+              {"role":"user","content":"Company "+FLEET+", worker "+WORKER+", immediate manager "+PARENT+
+                  ". Supervisor correction: "+report["supervisor_issued_idea_correction"]["supervisory_instruction"][:500]+
+                  ". Your specialty: "+SPEC["role_name"][:90]+
+                  ". List TEN distinct realistic ways to earn legitimate BTC with concrete paid deliverables. Number all lines 1. to 10. Never ask for fees or claim confirmed contracts."}
+            ]
+            second=model(narrower,max_new_tokens=260,do_sample=False,return_full_text=False)
+            candidate=second[0].get("generated_text","")
+            if isinstance(candidate,list):
+                candidate=candidate[-1].get("content","")
+            candidate_result=evaluate_generated_ten(candidate)
+            report["actual_worker_corrective_retry_status"]="ACTUAL_MODEL_RETRY_COMPLETED"
+            report["corrective_model_result"]=candidate_result
+            if candidate_result["status"]=="TEN_MODEL_GENERATED_IDEAS_NEED_FACT_CHECK":
+                report["ten_idea_model_result"]=candidate_result
+                report["ten_idea_model_inference_status"]="MODEL_CORRECTIVE_RETRY_COMPLETED"
+                report["supervisor_issued_idea_correction"]["after_retry"]="Worker's actual revised model output passes ten-item format; source and payer review still required"
+            else:
+                report["supervisor_issued_idea_correction"]["after_retry"]="STILL_INCOMPLETE_ESCALATE_TO_COMPANY_DIRECTOR"
+        except Exception as exc:
+            report["actual_worker_corrective_retry_status"]="ACTUAL_MODEL_RETRY_FAILED:"+type(exc).__name__
+            report["supervisor_issued_idea_correction"]["after_retry"]="MODEL_RETRY_FAILED_ESCALATE_TO_COMPANY_DIRECTOR"
+    else:
+        report["actual_worker_corrective_retry_status"]="NO_MODEL_AVAILABLE_ESCALATE_TO_COMPANY_DIRECTOR"
 # Independent address-mapping exercise for this actual model worker:
 # never count merely receiving the public map as comprehension.
 wallet_reply=""
@@ -361,6 +402,8 @@ lines=[
     "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
     "- **Ten assigned idea candidates:** "+str(TEN_IDEA_MENU["count"])+" (deterministic, not yet paid)",
     "- **Own AI-generated ten-idea exercise:** "+report["ten_idea_model_result"]["status"],
+    "- **Direct manager corrective order status:** "+str((report.get("supervisor_issued_idea_correction") or {}).get("status","NOT_NEEDED")),
+    "- **Actual corrective AI model retry:** "+report["actual_worker_corrective_retry_status"],
     "- **Model-verified company wallet mapping:** "+report["separately_checked_address_understanding"]["status"],
     f"- **Director D lesson accessible:** {report['director_D_lesson_assessment']['lesson_accessible']}",
     f"- **Separate lesson model execution:** {report['director_D_lesson_assessment']['model_execution_status']}",
