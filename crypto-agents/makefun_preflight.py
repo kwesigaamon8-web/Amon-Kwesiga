@@ -39,7 +39,18 @@ try:
                     if isinstance(data.get(k),list)),[])
     else:items=[]
     shortlist=[]
-    for row in items[:24]:
+    current=dt.datetime.now(dt.timezone.utc)
+    def live(x):
+        if not isinstance(x,dict):return False
+        end=x.get("deadline") or x.get("endsAt") or x.get("ends_at")
+        if not end:return False
+        try:
+            val=dt.datetime.fromisoformat(str(end).replace("Z","+00:00"))
+            return val>=current
+        except ValueError:return False
+    live_items=[row for row in items if live(row)]
+    live_items.sort(key=lambda row:str(row.get("deadline") or row.get("endsAt") or ""))
+    for row in live_items[:24]:
         if not isinstance(row,dict):continue
         slug=row.get("slug")
         if not slug:continue
@@ -66,9 +77,9 @@ try:
         except (urllib.error.URLError,TimeoutError,ValueError,OSError) as e:
             shortlist.append({"slug":slug,"requirements_api_checked":False,
                               "error":type(e).__name__})
-    out["all_public_bounties_review"]={"list_api_accessible":True,"list_count":len(items),
+    out["all_public_bounties_review"]={"list_api_accessible":True,"list_count":len(items),"still_live_count":len(live_items),
         "items_checked":len(shortlist),"entries":shortlist}
-    print("MAKEFUN_GLOBAL_BOUNTIES",json.dumps({"listed":len(items),
+    print("MAKEFUN_GLOBAL_BOUNTIES",json.dumps({"listed":len(items),"live_now":len(live_items),
        "checked":len(shortlist),
        "sample":[{"slug":x.get("slug"),"handed_over_places":x.get("handed_over_places"),
                    "entry_fee":x.get("entry_fee"),"prerequisites":x.get("prerequisites")}
