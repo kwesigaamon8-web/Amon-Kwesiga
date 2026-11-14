@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-072052",
+  "current_owner_order_id": "OWNER-20261114-072113",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -34,6 +34,14 @@
       "as_of_utc": "2026-11-14T07:20:52Z",
       "relayed_by": "ChatGPT, on owner's express instruction",
       "instruction": "CHIEF D: Everyone audit everyone across both separately governed companies, meaning every ACTUALLY EXECUTED worker's evidence is examined, every actual participant has a concrete peer-review assignment, each immediate supervisor checks subordinates, each company D01-D10 director reviews its team and cross-checks another director, both local D10s audit customer settlement evidence, and sole Chief D evaluates both companies and reports to owner. Use distributed and rotating peer audits and an independent supervisor/Chief D audit so all real worker outputs receive coverage without pretending 750B dormant role IDs performed O(N^2) reviews. Require distinct reviewer/reviewee IDs, public-source validation, reproducible report links, score, defects, corrective actions, and escalation. All audits must mark whether a real AI review actually executed vs a deterministic code check or simply a queued assignment. Failed or missing workers receive a follow-up slot. Core goal remains verifiably paid cryptocurrency received on the right network, with no invented earnings or false social outreach.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-072113",
+      "as_of_utc": "2026-11-14T07:21:13Z",
+      "relayed_by": "ChatGPT at owner's explicit direction",
+      "instruction": "Chief D: public research information and non-sensitive discoveries are FREE AND OPEN for collaboration. Share verified public-source URLs, source excerpts within copyright constraints, safe research findings, reproducible work evidence, quality warnings, improvement recommendations, and non-sensitive peer-audit results across BOTH companies without silos. Every actually running worker and director can check other workers' evidence, within authorized tooling, using transparent cross-company sharing. Mark original sources as untrusted until verified and preserve independent judgment. Do NOT put private keys, seed phrases, passwords, unpublished client records, personal identity/contact details, or confidential commercial terms in public GitHub issues, artifact logs or shared research. Each autonomous model must still produce individual real findings, not an empty copied report. Peer reviews are evaluated honestly as deterministic checks or actual completed model-generated criticism; no fictional billions of cross-reviews or guaranteed incoming payments.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -70,5 +78,22 @@
     ],
     "failure_action": "Record failed evidence grade, exact defect, responsible supervisor and next available legitimate rerun",
     "do_not_claim": "Defined but never executed billions of roles cannot have real review activity; no payments from reviews alone"
+  },
+  "public_information_sharing_policy": {
+    "scope": "Both companies; public-source evidence and non-sensitive model findings may circulate among teams freely",
+    "publishable": [
+      "public job URLs and original-source verification",
+      "nonconfidential code and open research",
+      "reported performance grades, failed evidence checks, lessons learned",
+      "verified public blockchain transaction IDs with no inferred payer identity"
+    ],
+    "not_publishable": [
+      "wallet private keys or seed phrases",
+      "passwords, API tokens and session credentials",
+      "private individual identity or communication details",
+      "confidential client or contract details",
+      "unverified assertions of payments or externally executed work"
+    ],
+    "audit_rule": "Every peer review must distinguish automated validation from actual independent AI inference; sharing a report is not a separate agent's completed evaluation."
   }
 }
