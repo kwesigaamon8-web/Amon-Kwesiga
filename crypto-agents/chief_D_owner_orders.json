@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-084438",
+  "current_owner_order_id": "OWNER-20261114-085516",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -114,6 +114,14 @@
       "as_of_utc": "2026-11-14T08:44:38Z",
       "relayed_by": "ChatGPT at owner's explicit request",
       "instruction": "Chief D: apply the idea-first mission at both-company scale. Everyone in the full seven-billion-role TARGET must be able to INHERIT and later review the same versioned public/non-sensitive idea lessons through the real chain Owner -> sole Chief D -> distinct company D01-D10 -> managers -> actually invoked W/S/G/H. Every actual independent B worker reports its ten distinct model-generated ideas (or verifiable failure), and the workers that ran must be reviewed for duplicates, feasibility, actual payer, correct network, and concrete next step. Publish a small provenance-linked, non-sensitive digest from ACTUAL model reports per company, and let the other company read and critically evaluate it without pretending idle billion-scale role definitions or unrun models participated. Chief D must produce one cross-company action queue by combining both source-grounded contributions, assigning each promising idea to the other company's named director D01-D09 for independent verification; each local D10 is restricted to real accepted unpaid collection. Prioritize one genuine payer-verifiable deliverable and permission-based contact over claims of idea volume. Distinguish role addressability, actual AI model invocations, source checks, model peer critiques, accepted paid work and TXID-proven incoming coins. Do not share secrets, personal identity, confidential client records, private wallet directories, nonpublic exchange deposits, or post repeated unsolicited messages; no upfront fees or invented deposits.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-085516",
+      "as_of_utc": "2026-11-14T08:55:16Z",
+      "relayed_by": "ChatGPT on explicit owner order",
+      "instruction": "Chief D: implement the owner’s relentless crypto CASH mission across the full 7,000,000,000 addressable target roles, while reporting ONLY actual independent model executions. Aggressive means rigorous, focused, resourceful and commercially persistent—not violent, threatening, harassing, abusive, unlawful, unauthorized or mass-spamming. Prioritize ideas that become real paid crypto jobs: ten original proposals from each real worker, fast source/payer/funding/eligibility checks, rank by credible speed to payment, create concrete deliverable, make legitimate permission-based offer, secure client agreement, complete accepted work, request payment in the correct network and verify chain TXID/output. Secondarily pursue voluntary independent-miner/AI-operator contributions with explicit consent and no fake hashrate or claim of outside agent control. D01-D09 of each company must source and validate paying prospects; each local D10 must collect genuine confirmed due amounts; ONE Chief D evaluates evidence, removes dead leads and publishes results. Cap resource consumption to legitimate runner budget and never count a configured role, model thought, GitHub issue, or speculative coin amount as cash received. Reject scams, prepayment requests, unauthorized use of others’ compute or accounts, credential solicitation, manipulation and repetitive unsolicited contacts. Report exact number of verified prospects contacted, real deliverables accepted, payments due and real new crypto receipts, or zero and the next action.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -280,5 +288,25 @@
     "review": "Source provenance, duplicate assessment, genuine payer, deliverable, cost, eligibility, no upfront fees, correct BTC chain, action, follow-up director",
     "claims_prohibited": "7B active model agents, 7B actual reviews, confirmed external miners or coins absent independent proof",
     "commercial_goal": "Real independently verified correct-network wallet deposits"
+  },
+  "cash_first_aggressive_execution": {
+    "owner_order_id": "OWNER-20261114-085516",
+    "metric": "actual verified crypto receipts on owner-controlled company-specific correct-network wallets",
+    "priority": [
+      "genuinely agreed payable client work",
+      "authenticated permission-based paid outreach",
+      "accepted deliverables and unpaid real claims",
+      "verified on-chain payments",
+      "voluntary independently authorized miner/agent support"
+    ],
+    "roles_target": 7000000000,
+    "active_agents_claimed": "NOT_PROVEN",
+    "forbidden": [
+      "violence or threats",
+      "harassment or mass spam",
+      "unauthorized mining or compute",
+      "upfront fees",
+      "invented receipts"
+    ]
   }
 }
