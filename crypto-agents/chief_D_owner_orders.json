@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-073213",
+  "current_owner_order_id": "OWNER-20261114-074000",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -50,6 +50,14 @@
       "as_of_utc": "2026-11-14T07:32:13Z",
       "relayed_by": "ChatGPT on express owner instruction",
       "instruction": "Chief D: The owner sets a specific target of SEVEN BILLION unique B worker identities to do real lawful cryptocurrency-earning work and understand owner orders across TWO completely separate companies. Partition the target evenly: 3,500,000,000 distinct eligible H-level role identities in each company's namespace, 350,000,000 per local D01-D10 director. Use deterministic indexed, reproducible, nonduplicating role selection to rotate ACTUAL model-process attempts through these pools within authorized free runner limits; every launched worker must respond individually to the current order, identify its exact direct supervisor, original evidence and concrete next earning action. Fail or flag missing/weak acknowledgements, and report attempted/completed/qualified model runs, payment acceptance, actual on-chain coins and still-unexecuted target explicitly. Do not claim all 7B worked or understood when they have not. Do not multiply GitHub runs recklessly, invent wallet receipts, misstate inactive definitions as live minds, or spam potential payers. Chief D delivers account-separated accountability report directly to owner through documented scheduled workflow.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-074000",
+      "as_of_utc": "2026-11-14T07:40:00Z",
+      "relayed_by": "ChatGPT with explicit owner authorization",
+      "instruction": "Chief Director D: Correct and improve the reliability and commercial usefulness of the two separate B-worker companies, not only their paper hierarchy. Fix redundant full model runs triggered on each GitHub code edit, retain matched scheduled/manual capacity, verify the correct owner-to-Chief-D-to-local-director-to-parent chain, catch schema and syntax defects before expensive runs, and audit every actually invoked B worker's real model result. Prioritize genuine verified paying customers and delivered useful work over speculative wallet posts. Ensure local D10 on each company audits its own receivables, D01-D09 pursue useful work, and only one Chief D issues an owner-facing exception report. Recheck failures from GitHub job logs, record actual fix/test evidence, do not treat workflow job success as income, and never pretend 7B configured definitions are executing simultaneously. Use strict source validation, acknowledgements, missing/duplicate result rejection, no private keys/upfront fees/spam. Report every concrete improvement and remaining blockers truthfully.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -116,5 +124,17 @@
     "execution_proof_rule": "Only unique completed model invocations with report plus explicit current order response count; role index/configuration is not execution",
     "understanding_rule": "Every actual worker's own response must state mission, next action, risk and correct order ID with supervisor check; otherwise NOT ACKNOWLEDGED",
     "payment_goal": "Independently verified real on-chain credits from legitimate transactions, not research"
+  },
+  "improvement_roadmap": {
+    "order_id": "OWNER-20261114-074000",
+    "priorities": [
+      "Eliminate GitHub runner contention from automatic heavyweight push runs",
+      "Fast fail for command-routing, allocator, schema, source and audit drift",
+      "Track actually completed independent AI model responses and latest-order acknowledgements",
+      "Surface workflow failures and prevent empty director reports from appearing as success",
+      "Increase authentic customer-facing work/accepted deliverables instead of idle roles",
+      "Keep two company accounts and D10 payment ledgers separate while Chief D consolidates"
+    ],
+    "unverified_payouts_not_counted": true
   }
 }
