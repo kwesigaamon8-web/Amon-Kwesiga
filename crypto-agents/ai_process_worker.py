@@ -18,6 +18,7 @@ from owner_order_distribution import inheritance, compact_prompt
 from role_ai_identity import resolve_role
 from coin_learning import study
 from command_chain_receipts import configured_assignment, understanding_receipt
+from command_ack_gate import evaluate as evaluate_owner_command_ack
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
 
@@ -58,6 +59,8 @@ TASK=IDENTITY["task"]
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "latest_command_model_acknowledgement":None,
+    "latest_order_ack_inference_status":"not_started",
     "chief_D_latest_instruction_excerpt":LATEST_CHIEF_D_INSTRUCTION[:1000],
     "peer_assessment_in_separate_actual_model_inference":"not_evidenced",
     "individual_result_required":True,
@@ -225,6 +228,28 @@ if (report["inference_status"]=="model_completed" and
             report["understanding_retry_status"]="retry_model_returned_empty"
     except Exception as exc:
         report["understanding_retry_status"]="retry_failed:"+str(exc)[:170]
+# A separate bounded inference is required to record what THIS real B model
+# thinks the *latest* Chief D owner command means. Merely constructing or
+# receiving an assignment never counts as an acknowledged instruction.
+ack_reply=""
+if model is not None and report["inference_status"]=="model_completed":
+    try:
+        ack_messages=[
+            {"role":"system","content":"Answer accurately in your own words, briefly. Do not invent external jobs, wallet payments or outreach. Echo the exact order ID and your correct parent. State the legitimate Bitcoin earning objective, source-evidence requirement and one next lawful work action."},
+            {"role":"user","content":"Current Chief D order "+STRICT_OWNER_ORDER_ID+
+                ". Your worker identity "+WORKER+"; your direct supervisor "+PARENT+
+                ". Give YOUR own command acknowledgement in 1-3 short sentences: include EXACT ORDER "+STRICT_OWNER_ORDER_ID+
+                ", EXACT PARENT "+PARENT+", real cryptocurrency payment objective, source proof, and your next useful lawful action. Do not claim a coin has been paid."}
+        ]
+        ack_output=model(ack_messages,max_new_tokens=100,do_sample=False,return_full_text=False)
+        ack_reply=ack_output[0].get("generated_text","")
+        if isinstance(ack_reply,list):
+            ack_reply=ack_reply[-1].get("content","")
+        report["latest_order_ack_inference_status"]="model_inference_completed"
+    except Exception as exc:
+        report["latest_order_ack_inference_status"]="model_ack_failed:"+type(exc).__name__
+report["latest_command_model_acknowledgement"]=evaluate_owner_command_ack(
+    ack_reply,WORKER,PARENT,STRICT_OWNER_ORDER_ID)
 # Bounded skeptical review occurs in this worker's own model process. All
 # other workers retain an evidence-first deterministic plan when compute is
 # too constrained for a second review inference.
@@ -275,6 +300,8 @@ lines=[
     f"- **Started:** {STAMP}",
     f"- **Source result:** {report['source_check_status']}",
     f"- **AI inference result:** {report['inference_status']}",
+    "- **Latest Chief D command response:** "+report["latest_command_model_acknowledgement"]["status"],
+    "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
     f"- **Director D lesson accessible:** {report['director_D_lesson_assessment']['lesson_accessible']}",
     f"- **Separate lesson model execution:** {report['director_D_lesson_assessment']['model_execution_status']}",
     f"- **Worker reports learned:** {report['director_D_lesson_assessment']['reported_learned']}",
