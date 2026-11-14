@@ -49,7 +49,11 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
                        "status":"original_open_issue_check_only_not_verified_customer",
                        "payment_funding_accepted":False,
                        "company_director_assigned":chosen.get("assigned_company_director"),
-                       "original_source_read_only":True},
+                       "original_source_read_only":True,
+                       "public_issue_body_excerpt":str(original.get("body") or "")[:650],
+                       "public_issue_created_at":str(original.get("created_at") or "")[:35],
+                       "public_issue_last_updated":str(original.get("updated_at") or "")[:35],
+                       "public_issue_comment_count":int(original.get("comments") or 0)},
         "buyer_acceptance":False,"payout_verified":False,
         "external_contact_sent":False,
         "next_action":"Read terms and recent sponsor comments, verify real funding, eligibility and acceptance before preparing scoped work."
