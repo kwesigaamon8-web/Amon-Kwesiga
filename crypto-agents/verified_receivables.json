@@ -1,8 +1,13 @@
 {
-  "schema": "d10-externally-evidenced-receivables-v1",
-  "description": "Only actual external payer commitments with verifiable accepted work can be entered here. Internal model runs, GitHub jobs, speculative donations and unawarded bounties are NOT receivables. Do not publish private client records in this public repository.",
+  "schema": "two-local-d10-verified-receivables-v2",
+  "description": "Account 1 and Account 2 have separate local D10 directors who verify contractual receivables only for their own fleet. Central Chief D, distinct from both local D10 directors, reports aggregated evidence to owner. Claims are empty unless independently backed by actual public award and accepted deliverable. Never publish private client data to this public repo.",
   "payment_director": "D10",
   "account_1": "transferexperiment",
   "account_2": "BountyScoutAI",
-  "claims": []
+  "claims": [],
+  "chief_director": "D",
+  "local_payment_directors": {
+    "transferexperiment": "transferexperiment/D10",
+    "BountyScoutAI": "BountyScoutAI/D10"
+  }
 }
