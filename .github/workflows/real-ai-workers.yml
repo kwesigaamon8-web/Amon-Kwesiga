@@ -127,6 +127,14 @@ jobs:
         run: python crypto-agents/everyone_peer_audit.py
       - name: Present full reciprocal automated audit and follow-up assignments
         run: cat peer-accountability/peer-everyone-transferexperiment.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Share independently model-generated public ideas with OTHER company for real sponsor checks
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          WORKFORCE_ID: transferexperiment
+        run: python crypto-agents/cross_fleet_idea_exchange.py share --fleet transferexperiment --run-id "${GITHUB_RUN_ID}"
       - name: Publish non-sensitive peer-audit findings for cross-company learning
         continue-on-error: true
         env:
@@ -208,5 +216,6 @@ jobs:
             ord035-parent-followups.json
             strict-worker-accountability/
             peer-accountability/
+            idea-exchange/
           if-no-files-found: warn
           retention-days: 7
