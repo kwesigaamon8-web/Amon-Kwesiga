@@ -123,7 +123,7 @@ def judge(text):
     if len(t)<95:return {"quality":"TOO_SHORT","structure_ok":False}
     fields={}
     for tag in ("REVIEW","DISCUSS","ACT","PAYMENT"):
-        m=re.search(r"(?im)^\\s*"+tag+r"\\s*:\\s*(.*)$",t)
+        m=re.search(r"(?im)^\s*"+tag+r"\s*:\s*(.*)$",t)
         fields[tag]=(m.group(1).strip() if m else "")
     echo=("say which specific earlier claim",
           "critique or improve one concrete idea",
