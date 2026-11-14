@@ -38,6 +38,7 @@ except Exception as exc:
     raise SystemExit(0)
 
 candidates=[]
+watchlist=[]
 for line in feed.splitlines():
     p=[x.strip() for x in line.split("|")]
     if len(p)!=9 or not p[0] or not p[8].startswith("https://"):
@@ -63,10 +64,32 @@ for line in feed.splitlines():
             continue
         # Some bounty sponsors retain a nominally open GitHub issue after awarding;
         # do not call this claimable unless its latest sponsor comments are checked.
-        latest=get(api+"/comments?per_page=15",h)
-        comments=json.loads(latest)
-        closed_claim=re.compile(r"\b(bounty (?:is )?claimed|already awarded|winner announced|bounty paid|no longer available|reward.*paid)\b",re.I)
-        if any(closed_claim.search(str(c.get("body",""))[:1200]) for c in comments[-15:]):
+        count=int(sponsor.get("comments",0))
+        # Fetch the actual final comment page, not Github's first comment page.
+        last_page=max(1,(count+99)//100)
+        comments=json.loads(get(api+"/comments?per_page=100&page="+str(last_page),h))[-15:]
+        closed_claim=re.compile(r"\b(bounty (?:is )?claimed|already awarded|winner announced|bounty paid|no longer available|reward.*paid|task completed|no more submissions)\b",re.I)
+        if any(closed_claim.search(str(msg.get("body") or "")[:1800]) for msg in comments):
+            continue
+        created=str(sponsor.get("created_at") or "")[:10]
+        owner_recent=any(
+            str(msg.get("author_association") or "").upper() in ("OWNER","MEMBER","COLLABORATOR")
+            and str(msg.get("created_at") or "")[:10]>="2026-10-14"
+            and re.search(r"still (?:available|open|payable)|reward.*available|accepting (?:new )?submissions",
+                          str(msg.get("body") or ""),re.I)
+            for msg in comments
+        )
+        if created < "2026-08-01" and not owner_recent:
+            watchlist.append({"original_url":url,
+                "reason":"old listing without current original-sponsor confirmation",
+                "issue_created":created,"last_comments_checked":len(comments)})
+            continue
+        claim_mentions=sum(bool(re.search(r"/claim\b|/attempt\b",str(msg.get("body") or ""),re.I))
+                           for msg in comments)
+        if claim_mentions>=3 and not owner_recent:
+            watchlist.append({"original_url":url,
+                "reason":"several claimed attempts, payer has not re-confirmed reward",
+                "issue_created":created,"last_comments_checked":len(comments)})
             continue
     except Exception:
         continue
@@ -86,9 +109,10 @@ report={"checked_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
         "source":"https://jobbi.org/gigs.txt?lane=agent&limit=100",
         "status":"source_checked","not_claimed_or_paid":True,
         "shortlisted_unverified_paid_work":candidates,
+        "stale_or_contested_watchlist":watchlist,
         "verified_paid_work":[],"verified_wallet_deposits":[]}
 (OUT/"scout.json").write_text(json.dumps(report,indent=2)+"\n")
-print("PAID_SCOUT",json.dumps({"candidates":len(candidates),"verified_paid":0,
+print("PAID_SCOUT",json.dumps({"candidates":len(candidates),"stale_or_contested":len(watchlist),"verified_paid":0,
                              "source_urls":[c["original_url"] for c in candidates]}))
 
 if not candidates or not TOKEN or REPO!="kwesigaamon8-web/Amon-Kwesiga":
