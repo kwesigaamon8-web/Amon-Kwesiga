@@ -9,10 +9,11 @@ on:
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/b_shift_worker_rotation.py'
       - 'crypto-agents/b_live_peer_teaching.py'
   workflow_dispatch:
   schedule:
-    # B1 and B2 each launch TWO rotated REAL models per 15-minute shift, all days.
+    # B1/B2 each launch FIVE rotated REAL worker models per 15-minute shift, all days.
     # Schedule is best-effort and may be delayed/skipped by GitHub.
     - cron: '2,17,32,47 * * * *'
 concurrency:
@@ -50,17 +51,29 @@ jobs:
     timeout-minutes: 14
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 6
       matrix:
         include:
           - fleet: transferexperiment
             slot: 0
           - fleet: transferexperiment
             slot: 1
+          - fleet: transferexperiment
+            slot: 2
+          - fleet: transferexperiment
+            slot: 3
+          - fleet: transferexperiment
+            slot: 4
           - fleet: BountyScoutAI
             slot: 0
           - fleet: BountyScoutAI
             slot: 1
+          - fleet: BountyScoutAI
+            slot: 2
+          - fleet: BountyScoutAI
+            slot: 3
+          - fleet: BountyScoutAI
+            slot: 4
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -143,6 +156,9 @@ jobs:
             "language":(universal.get("localization") or {}).get("content_language"),
             "actual_execution_required":True}))
           assert r["inference_status"]=="model_completed", "No real worker model inference"
+          assert r["strict_owner_order_id"]==(r.get("owner_activation_order_coverage_proof") or {}).get("canonical_order_id"), "Not the latest owner command at activation"
+          assert r["strict_owner_order_id"]=="OWNER-20261114-153621", "Stale owner commercial assignment in this shift"
+          assert (r.get("entrepreneurial_autonomy") or {}).get("payment_receiver")==pay.get("owner_mainnet_address"), "Wrong authorized settlement address"
           p=r.get("practical_training_while_working") or {}
           assert p.get("independent_model_call_status")=="MODEL_COMPLETED","No real practice inference"
           result=p["result"]
