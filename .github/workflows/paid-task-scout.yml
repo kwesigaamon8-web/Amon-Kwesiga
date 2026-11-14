@@ -7,6 +7,8 @@ on:
       - 'crypto-agents/paid_task_scout.py'
       - 'crypto-agents/b_fleet_integrity.py'
       - 'crypto-agents/d10_payment_director.py'
+      - 'crypto-agents/chief_D_reporting.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
   schedule:
     - cron: '9 * * * *'
 concurrency:
@@ -25,14 +27,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Compile D10 payment audit, fleet integrity and paid-task scout
-        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py
-      - name: Validate equal B1/B2 AI agent capacity and sole D10 payment director
+      - name: Compile local D10, Chief D and fleet integrity
+        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py crypto-agents/chief_D_reporting.py
+      - name: Validate independent B1/B2 boards and one overarching Chief D
         run: python crypto-agents/b_fleet_integrity.py
-      - name: D10 inspect two account payment evidence and read-only public BTC outputs
+      - name: Two independent local D10 payments audits and read-only BTC snapshots
         run: python crypto-agents/d10_payment_director.py
       - name: Show D10 payment audit in workflow summary
         run: cat d10-payment-reports/D10_TWO_ACCOUNT_PAYMENT_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Chief D consolidates TWO separate ten-director company boards and owner orders
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/chief_D_reporting.py
+      - name: Show one Chief D owner report in workflow summary
+        run: cat chief-D-reports/CHIEF_D_TO_OWNER.md >> "$GITHUB_STEP_SUMMARY"
       - name: Scan public listings and original sponsor issues
         env:
           GH_TOKEN: ${{ github.token }}
@@ -46,5 +56,6 @@ jobs:
           path: |
             paid-opportunity-reports/
             d10-payment-reports/
+            chief-D-reports/
           if-no-files-found: warn
           retention-days: 7
