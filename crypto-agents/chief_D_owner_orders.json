@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-144226",
+  "current_owner_order_id": "OWNER-20261114-150007",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -282,6 +282,15 @@
       "existing_permissions_not_expanded": true,
       "all_7b_executing_not_claimed": true,
       "real_payment_receipts_claimed_by_order": 0
+    },
+    {
+      "id": "OWNER-20261114-150007",
+      "as_of_utc": "2026-11-14T15:00:07Z",
+      "relayed_by": "ChatGPT on explicit owner's message: 'you have an order togive billions' following a 30-minute coins mission",
+      "origin": "explicit_human_owner_conversation",
+      "instruction": "URGENT THIRTY-MINUTE COIN-EARNING MISSION: Human owner orders ONE Chief D to cascade an authenticated latest owner directive to BOTH distinct B fleets, each D01-D10, the proper manager/worker ancestry, and all 7,000,000,000 uniquely addressable H target identities through the existing O(1) lazy instruction envelope. A defined identity inherits this order on activation; don't claim it executed, received the directive live, or earned money merely because an envelope exists. Each real activated model must conduct up to 30 minutes of focused legal worldwide opportunity verification, genuinely buyer-targeted original useful work, authorized submission only with actual account access, and correct company blockchain receipt verification. B1 native BTC mainnet bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 native BTC mainnet bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Optional B1 Base USDC 0x734989a439F146885C12907cd9Dd191b03d5B07e ONLY after chain/token/payer compatibility confirmed. Every executed worker has ONE parent, ONE uniquely assigned task, an independently executed model result, source URL, customer payer/eligibility/price, deliverable evidence, consented actually posted offer confirmation or explicit blocker, true buyer acceptance, and verified correct-chain txid/credit or NONE. Prioritize real accepted customer work and payments over ideas, role tallies or vanity reports. Directors must supervise distinct source work and fraud checks; local D10 audits only its fleet receipts; Chief D reports BOTH fleets separately to owner. Cross-company peer teaching must require actual other-fleet model output. No unsolicited mass spam, fake model completions, fabricated coins, upfront fees, keys, misrepresentation, unauthorized transfers or credentials. The requested 30-minute focus is a timebox for actual activated tasks, not a promise of instant income, a permanent 30-minute unbounded global countdown or 7B parallel AI processes.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
