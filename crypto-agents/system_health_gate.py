@@ -61,13 +61,18 @@ def test():
         "strict_worker_accountability.py","everyone_peer_audit.py",
         "command_chain_receipts.py","subagent_audit.py",
         "owner_order_distribution.py","director_work_orders.py",
-        "agents.py","chief_D_reporting.py")
+        "agents.py","chief_D_reporting.py","b_address_understanding.py")
     for file in expected_files:
         text=(ROOT/file).read_text(encoding="utf-8")
         try:ast.parse(text,filename=file)
         except SyntaxError as e:errors.append("PYTHON_SYNTAX_FAILURE "+file+" "+str(e))
     launcher=(ROOT/"ai_process_launcher.py").read_text(encoding="utf-8")
     worker=(ROOT/"ai_process_worker.py").read_text(encoding="utf-8")
+    wallet_training=(ROOT/"b_address_understanding.py").read_text(encoding="utf-8")
+    if not all(v in wallet_training for v in ("company_1","company_2","local_payment_director","Bitcoin mainnet","USDC","Base")):
+        errors.append("COMPANY_WALLET_TRAINING_MAP_MISSING")
+    if not all(v in worker for v in ("evaluate_address_mapping","address_understanding_model_status","separately_checked_address_understanding")):
+        errors.append("INDIVIDUAL_B_WORKER_ADDRESS_UNDERSTANDING_NOT_GRADED")
     auditor=(ROOT/"strict_worker_accountability.py").read_text(encoding="utf-8")
     command=(ROOT/"command_chain_receipts.py").read_text(encoding="utf-8")
     child=(ROOT/"subagent_audit.py").read_text(encoding="utf-8")
