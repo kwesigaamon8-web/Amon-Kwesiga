@@ -78,10 +78,10 @@ def share(fleet,run_id):
     marker="<!-- actual-b-idea-share:"+fleet+":"+str(run_id)+" -->"
     if any(marker in str(x.get("body") or "") for x in comments()):
         print("IDEA_SHARE_EXISTING",fleet,run_id);return
-    body=marker+"\n## Real B worker idea evidence — "+fleet+"\n"+
+    body=(marker+"\n## Real B worker idea evidence — "+fleet+"\n"+
        "The following are unverified actual-model excerpts. No payer or coins proven.\n"+
        "BEGIN_B_IDEA_JSON\n"+json.dumps(d,ensure_ascii=False,separators=(",",":"))+
-       "\nEND_B_IDEA_JSON\n"
+       "\nEND_B_IDEA_JSON\n")
     r=github(URL,"POST",{"body":body})
     print("B_IDEA_SHARE_POSTED",r.get("html_url"),d["counts"])
 def read_digests():
