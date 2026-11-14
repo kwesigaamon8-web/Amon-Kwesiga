@@ -14,6 +14,7 @@ import re
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from b_paid_feed_fallback import fetch as backup_paid_issue_feed
 
 OUT=Path("paid-opportunity-reports")
 OUT.mkdir(exist_ok=True)
@@ -131,12 +132,33 @@ def scan():
                 continue
             if candidate["original_url"] in selected:continue
             selected[candidate["original_url"]]=assign_company_review(candidate)
+    # GitHub Search often rejects high-frequency public searches with HTTP
+    # 403. Do not mark a scan successful with 0 results and 4 source errors.
+    # A dated public directory gives original issue LINKS only, not proof
+    # of an escrow, employer offer, eligibility, or accepted work.
+    backup_status="NOT_USED"
+    secondary_count=0
+    if len(selected)<5:
+        try:
+            backup=backup_paid_issue_feed()
+            backup_status=backup["status"]
+            if backup_status=="FRESH_SECONDARY_DIRECTORY_ONLY":
+                for candidate in backup["candidates"]:
+                    if candidate["original_url"] in selected:continue
+                    selected[candidate["original_url"]]=assign_company_review(candidate)
+                    secondary_count+=1
+        except Exception as exc:
+            backup_status="SECONDARY_FEED_ERROR:"+type(exc).__name__+":"+str(exc)[:140]
+    if not selected:
+        backup_status=backup_status+"; NO CANDIDATE AVAILABLE — SOURCE OUTAGE"
     return {
       "checked_utc":T.isoformat(),
       "companies":["transferexperiment","BountyScoutAI"],
       "status":"CANDIDATES_REQUIRE_ORIGINAL_SPONSOR_VALIDATION",
       "queries":SEARCHES,
       "source_errors":source_errors,
+      "secondary_directory_status":backup_status,
+      "secondary_unverified_candidate_count":secondary_count,
       "rejected_nonmatching_or_risky_issues":rejected,
       "candidate_count":len(selected),
       "candidates":list(selected.values())[:45],
@@ -158,7 +180,7 @@ def scan():
           "warning":"Solo mining pays only if a valid block is found; PPLNS pays according to actual eligible share/pool performance. BTC CPU and language-model processes cannot be assumed profitable ASIC miners. Pool mode, payout identity, self-custody and miner consent must be verified, no deposits or hardware financing assumed."
       },
       "payment_status":"No real transaction has been established by candidate discovery.",
-      "limits":"This samples bounded public GitHub searches plus the separate Jobbi scout; it is not an exhaustive scan of every paid job or AI agent worldwide. No payouts or external messages are inferred."
+      "limits":"Samples bounded public GitHub searches, a freshness-limited third-party original-issue directory if needed, plus separate Jobbi scout. Third-party payer history is not escrow, eligibility or payment evidence. This is not a worldwide exhaustive scan. No payouts or external messages are inferred."
     }
 
 def selftest():
@@ -204,7 +226,9 @@ if __name__=="__main__":
       "Checked UTC: "+out["checked_utc"],
       "Recent original-source *candidate* issues: "+str(out["candidate_count"]),
       "Rejected nonmatching/risky issues: "+str(out["rejected_nonmatching_or_risky_issues"]),
-      "Source query errors: "+str(len(out["source_errors"])),"",
+      "Source query errors: "+str(len(out["source_errors"])),
+      "Backup paid-task directory status: "+out["secondary_directory_status"],
+      "Unverified backup candidates added: "+str(out["secondary_unverified_candidate_count"]),"",
       "Candidate listings are NOT verified paid jobs or promises of compensation.",
       "No mining hardware, hashrate, miner consent, mining shares or wallet receipts are proved.",
       "Official Public Pool solo and PPLNS have DIFFERENT payout mechanisms; opt-in collaboration only.",
