@@ -55,8 +55,13 @@ def extract(payload,now=None):
           "next_step":"Re-open original issue, comments and direct payout terms; confirm eligibility and real sponsor approval. No claim, message, work acceptance or payment established."
         })
     # Prefer accessible code/docs tasks; no hard exclusion of other claims.
-    items.sort(key=lambda x:(-int(x["secondary_payer_history_claim"]),
-       int(x["secondary_amount_usd_claim"]>=1000),x["original_url"]))
+    # Prefer actual crypto-payout history and lower-complexity issues.
+    # These remain only secondary, unverified buyer-history claims.
+    items.sort(key=lambda x:(
+       0 if x["secondary_payment_channel"]=="crypto" else
+       1 if x["secondary_payment_channel"]=="stripe" else 2,
+       int(x["secondary_amount_usd_claim"]>=1000),
+       x["original_url"]))
     return {"status":"FRESH_SECONDARY_DIRECTORY_ONLY","candidates":items[:MAX],
             "age_hours":round(age,2)}
 
