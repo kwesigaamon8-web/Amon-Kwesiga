@@ -26,6 +26,7 @@ from secondary_software_study import grade_worker_study as assess_software_study
 from public_code_reader import load as read_public_software_source
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
+from system_understanding_check import teach_and_check as assess_full_system
 from b_learning_by_doing import lesson as make_practical_lesson, prompt as practical_training_prompt, grade as grade_practical_training, write_worker_sample
 from b_worker_buyer_source import choose as choose_actual_issue_for_training
 from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
@@ -177,6 +178,7 @@ report={
     "public_receiving_directory_url":"https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
     "owner_order_046_publication_status":"inherited_link_for_authorized_context_not_externally_published",
     "director_D_lesson_assessment":None,
+    "system_understanding_assessment":None,
     "verified_wallet_receipts":[],
     "external_messages_sent":False,
     "accounts_created":False,
@@ -335,6 +337,21 @@ report["practical_training_while_working"]={
 ## Director D lesson ORD-047: this is an independent real worker-model response.
 # Missing lesson/model access and weak answers NEVER produce a fake "learned" response.
 report["director_D_lesson_assessment"]=teach_and_assess(model, WORKER, PARENT)
+# Every actual model must independently explain the two-company hierarchy,
+# recruiting cascade, its correct company wallet, and reporting via its own
+# parent/director/Chief D to the human OWNER. No model => NOT_RUN, not understood.
+report["system_understanding_assessment"]=assess_full_system(
+    model,FLEET,WORKER,PARENT,PAYMENT_MISSION["address"])
+report["system_report_to_human_owner_via_hierarchy"]={
+    "immediate_parent":FLEET+"/"+PARENT,
+    "local_director":FLEET+"/"+DIRECTOR,
+    "sole_chief_director":"CHIEF_D",
+    "ultimate_owner":"HUMAN_OWNER",
+    "worker_finished_report_uploaded_to_parent_verified":False,
+    "actual_owner_received_this_worker_report_verified":False,
+    "knowledge_check_execution_status":report["system_understanding_assessment"]["model_execution"],
+    "knowledge_check_grade":report["system_understanding_assessment"]["assessment"],
+}
 
 report["command_chain_understanding"]=understanding_receipt(
     WORKER,report.get("model_response",""),report["inference_status"],
