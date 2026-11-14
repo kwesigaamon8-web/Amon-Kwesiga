@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-14-separate-company-boards-one-chief-D-v21",
+  "version": "2026-11-14-full-reciprocal-audits-open-nonconfidential-intelligence-v22",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -176,5 +176,16 @@
       }
     },
     "proof": "Chief D can report only concrete completed work and verified transactions, not imaginary AI existence or collection."
+  },
+  "open_information_and_audit_policy": {
+    "latest_orders": [
+      "OWNER-20261114-072052",
+      "OWNER-20261114-072113"
+    ],
+    "sharing": "Every company may openly share public sources, source quality warnings, non-sensitive learning, performance grades and reproducible findings with all other company teams. No artificial knowledge silos.",
+    "peer_control": "Every actually executed worker's result is checked against every other executed result by deterministic cross-checks. Distinct actual AI peer inference must be evidenced separately; assignment is not AI review.",
+    "management": "Each direct parent and local company director evaluates their team's evidence, each company board cross-evaluates the other's public findings, and sole Chief D consolidates factual results for owner. Never pretend dormant role IDs are active supervisors.",
+    "privacy": "No credential, seed phrase, private wallet key, owner identity, unshared email, client financial data, confidential contract, or sensitive personal detail may be placed in public Github logs or reports.",
+    "success": "Verified cryptocurrency from legitimate work received into each company's correct-network wallet; never call speculative leads or old outputs new earnings."
   }
 }
