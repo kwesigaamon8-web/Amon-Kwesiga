@@ -3,7 +3,7 @@ name: BountyScoutAI Real AI Worker Processes
 on:
   workflow_dispatch:
   schedule:
-    - cron: '21 9 * * *'
+    - cron: '21 4 * * *'
   push:
     paths:
       - '.github/workflows/bountyscoutai-real-ai-workers.yml'
