@@ -1,0 +1,78 @@
+name: Chief D Worldwide Revenue Director Board and Original Work
+on:
+  push:
+    paths:
+      - '.github/workflows/b-world-revenue-command.yml'
+      - 'crypto-agents/b_global_commercial_dispatch.py'
+      - 'crypto-agents/commercial-work/opentask-json-csv/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '13 * * * *'
+permissions:
+  contents: read
+jobs:
+  b-world-revenue:
+    name: Verify 20 directors, rotate worker task packets, test actual buyer work sample
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate 7B-worker lazy routing and sole-owner director chain
+        run: |
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/b_global_commercial_dispatch.py --self-test
+          python crypto-agents/b_global_commercial_dispatch.py --board --out chief-D-global/board.json
+      - name: Allocate 20 distinct individual H-tier worker task packets under the 20 separate company directors
+        env:
+          B_CYCLE: \${{ github.run_number }}
+        run: |
+          python - <<'PY'
+          import os, sys, json
+          from pathlib import Path
+          sys.path.insert(0, "crypto-agents")
+          from b_global_commercial_dispatch import worker_packet, director_board
+          from seven_billion_allocator import PER_FLEET, PER_DIRECTOR, FLEETS
+          board=director_board()
+          cycle=int(os.environ["B_CYCLE"])
+          out=Path("chief-D-global/workers")
+          out.mkdir(parents=True,exist_ok=True)
+          assigned=set()
+          for fidx,fleet in enumerate(FLEETS):
+              for di in range(10):
+                  idx=fidx*PER_FLEET+di*PER_DIRECTOR+(cycle*31+di)%PER_DIRECTOR
+                  w=worker_packet(idx)
+                  assert w["local_director"]==fleet+f"/D{di+1:02d}"
+                  assert w["task_id"] not in assigned
+                  assigned.add(w["task_id"])
+                  (out/(fleet+"-D"+f"{di+1:02d}"+".json")).write_text(json.dumps(w,indent=2)+"\n")
+          assert len(assigned)==20
+          print("D_GLOBAL_BOARD",json.dumps({
+              "director_roles":20,"uniquely_allocated_H_worker_task_packets":20,
+              "worker_models_executed_by_this_planning_job":0,
+              "buyer_contracts_verified":0,"crypto_payments_verified":0
+          }))
+          PY
+      - name: Test original paying-task work sample without inventing customer agreement
+        run: |
+          python -m pip install --quiet pytest
+          cd crypto-agents/commercial-work/opentask-json-csv
+          python -m pytest -q
+      - name: Publish actual management plan and practical customer-ready testing evidence
+        run: |
+          echo "### Chief D — 20 director worldwide commercial routing" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Two independently defined company boards of ten local directors each" >> "$GITHUB_STEP_SUMMARY"
+          echo "- One unique H worker task packet assigned per director this run; identity is NOT a running model" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Up to seven billion distinct identities can be looked up on demand; not seven billion active machines" >> "$GITHUB_STEP_SUMMARY"
+          echo "- One actual JSON-to-CSV work sample tested, advertised customer budget 50 USDC, no accepted offer yet" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Confirmed new crypto revenue from this workflow: not assessed" >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive director board and exact worker assignments
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chief-D-global-commercial-board
+          path: chief-D-global/
+          if-no-files-found: warn
+          retention-days: 15
