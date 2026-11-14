@@ -12,6 +12,7 @@ on:
       - 'crypto-agents/b_certified_agent_service_router.py'
       - 'crypto-agents/b_certified_agent_engagements.json'
       - 'crypto-agents/b_owner_account_link.py'
+      - 'crypto-agents/b_registered_account_worker_map.py'
       - 'crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md'
       - 'crypto-agents/owner_order_distribution.py'
       - 'crypto-agents/b_live_peer_teaching.py'
@@ -44,6 +45,10 @@ jobs:
           python crypto-agents/b_authorized_assistant_namespace.py --self-test
           python crypto-agents/b_certified_agent_service_router.py --self-test
           python crypto-agents/b_owner_account_link.py --self-test
+          python crypto-agents/b_registered_account_worker_map.py --self-test
+          python crypto-agents/b_registered_account_worker_map.py --global-index 0 > chief-D-global/B1-registered-agent-first-worker.json
+          python crypto-agents/b_registered_account_worker_map.py --global-index 375188632680 > chief-D-global/B2-registered-agent-first-worker.json
+          python crypto-agents/b_registered_account_worker_map.py --global-index 750377265359 > chief-D-global/B2-registered-agent-last-worker.json
           python crypto-agents/b_owner_account_link.py --fleet transferexperiment > chief-D-global/B1-multichain-owner-account-link.json
           python crypto-agents/b_owner_account_link.py --fleet BountyScoutAI > chief-D-global/B2-multichain-owner-account-link.json
           python crypto-agents/b_certified_agent_service_router.py --fleet transferexperiment --role D01-M01-W01 > chief-D-global/B1-authorized-certified-agent-worker.json
