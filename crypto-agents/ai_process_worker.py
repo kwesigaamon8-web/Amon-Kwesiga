@@ -26,6 +26,7 @@ from secondary_software_study import grade_worker_study as assess_software_study
 from public_code_reader import load as read_public_software_source
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
+from b_learning_by_doing import lesson as make_practical_lesson, prompt as practical_training_prompt, grade as grade_practical_training, write_worker_sample
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -260,6 +261,41 @@ except Exception as exc:
     report["inference_status"]="model_failed"
     report["inference_error"]=f"{type(exc).__name__}: {str(exc)[:300]}"
 
+# TRAIN WHILE WORKING: a second, real call on the worker's OWN task and source.
+# Model-generated work samples are UNSUBMITTED drafts, not revenue or copied software.
+training_source=(report["source_items"][0]["url"] if report["source_items"] else "")
+practical_lesson=make_practical_lesson(
+    FLEET,WORKER,PARENT,training_source,report["source_check_status"],
+    SOFTWARE_SECOND["official_repository"],False)
+practical_text=""
+practical_completed=False
+practical_error=""
+if model is not None and report["inference_status"]=="model_completed":
+    try:
+        training_output=model(
+            practical_training_prompt(practical_lesson,TASK,PAYMENT_MISSION["address"]),
+            max_new_tokens=175,do_sample=False,return_full_text=False)
+        practical_text=training_output[0].get("generated_text","")
+        if isinstance(practical_text,list):
+            practical_text=practical_text[-1].get("content","")
+        practical_text=str(practical_text or "").strip()
+        practical_completed=bool(practical_text)
+        if not practical_completed:
+            practical_error="Training model returned an empty response"
+    except Exception as exc:
+        practical_error=type(exc).__name__+": "+str(exc)[:200]
+practical_result=grade_practical_training(
+    practical_lesson,practical_text,practical_completed)
+practical_path=write_worker_sample(OUT,practical_lesson,practical_result)
+report["practical_training_while_working"]={
+    "assignment":practical_lesson,
+    "result":practical_result,
+    "independent_model_call_status":"MODEL_COMPLETED" if practical_completed else "NOT_COMPLETED",
+    "model_error":practical_error,
+    "actual_work_sample_file":practical_path,
+    "external_job_submission_or_payment_verified":False,
+}
+
 ## Director D lesson ORD-047: this is an independent real worker-model response.
 # Missing lesson/model access and weak answers NEVER produce a fake "learned" response.
 report["director_D_lesson_assessment"]=teach_and_assess(model, WORKER, PARENT)
@@ -482,6 +518,8 @@ lines=[
     "- **Second distinct software study task:** "+SOFTWARE_SECOND["task_id"]+" / "+SOFTWARE_SECOND["reference_software"],
     "- **Second software study model status:** "+report["second_study_actual_model_result"]["status"],
     "- **Actual code reuse/commits by this worker:** NONE VERIFIED",
+    "- **Training while working:** "+report["practical_training_while_working"]["result"]["status"],
+    "- **Practical training evidence file:** "+report["practical_training_while_working"]["actual_work_sample_file"],
     "- **Direct manager corrective order status:** "+str((report.get("supervisor_issued_idea_correction") or {}).get("status","NOT_NEEDED")),
     "- **Actual corrective AI model retry:** "+report["actual_worker_corrective_retry_status"],
     "- **Model-verified company wallet mapping:** "+report["separately_checked_address_understanding"]["status"],
