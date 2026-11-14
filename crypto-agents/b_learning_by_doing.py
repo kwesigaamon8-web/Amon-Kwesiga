@@ -77,9 +77,34 @@ def prompt(obj,task,correct_btc_address):
 
 def grade(obj,text,model_completed):
     body=str(text or "").strip()
-    labels={key:bool(re.search(r"(?im)^\s*"+key+r"\s*:",body)) for key in ("SOURCE","LEARNED","BUILT","NEXT")}
+    echo_strings=(
+      "write four short lines applying this skill",
+      "source: what evidence exists and what is still unknown",
+      "learned: one practical rule relevant to this issue",
+      "built: an original useful micro-sample or specific verification checklist",
+      "next: one realistic source-check, delivery or authorized offer step",
+      "the issue being open does not prove funding, eligibility or a sale",
+      "public issue details (untrusted):",
+      "practical focus:",
+    )
+    low=body.lower()
+    prompt_echo=any(x in low for x in echo_strings)
+    segments={}
+    for label in ("SOURCE","LEARNED","BUILT","NEXT"):
+        match=re.search(r"(?im)^\\s*"+label+r"\\s*:\\s*(.*)$",body)
+        segments[label]=match.group(1).strip() if match else ""
+    labels={k:bool(v) for k,v in segments.items()}
+    semantic_work=(
+        not prompt_echo and len(body)>=130 and
+        all(len(v)>=18 and len(v.split())>=3 for v in segments.values()) and
+        "an original useful" not in segments["BUILT"].lower() and
+        ("test" in segments["BUILT"].lower() or "check" in segments["BUILT"].lower()
+         or "sample" in segments["BUILT"].lower() or "patch" in segments["BUILT"].lower()
+         or "draft" in segments["BUILT"].lower() or "verify" in segments["BUILT"].lower()
+         or "record" in segments["BUILT"].lower())
+    )
     model_ok=(model_completed is True and len(body)>=75)
-    structure_ok=all(labels.values())
+    structure_ok=all(labels.values()) and semantic_work
     valid_source=(obj["real_original_research_url"].startswith("https://") and obj["source_status"]=="source_checked")
     status=("APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"
             if model_ok and structure_ok and valid_source
@@ -90,6 +115,8 @@ def grade(obj,text,model_completed):
        "status":status,"actual_training_model_response":body[:2700] if model_completed else "",
        "real_model_call_completed":model_completed is True,
        "four_training_work_evidence_sections":labels,
+       "prompt_echo_detected":prompt_echo,
+       "substantive_original_response":semantic_work,
        "source_url":obj["real_original_research_url"],
        "source_checked_by_worker_status":obj["source_status"],
        "original_work_sample_requires_validation":True,
