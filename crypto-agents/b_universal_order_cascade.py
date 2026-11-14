@@ -118,11 +118,33 @@ def packet(fleet,role,global_index=None):
         "worker_report_travels_up":list(reversed(full)),
         "child_slot_capacity_in_definition":CHILD_SLOTS[kind],
         "on_activate_give_same_order_to_any_actual_child":True,
+        "autonomous_commercial_freedom":{
+            "owner_is_sole_highest_authority":True,
+            "chief_D_is_coordinator_not_individual_idea_gatekeeper":True,
+            "may_choose_own_lawful_paying_task_market_and_method":True,
+            "may_experiment_build_test_and_revise_original_work_independently":True,
+            "may_select_new_verified_payers_and_real_opportunities":True,
+            "may_delegate_distinct_work_to_truly_activated_internal_children":True,
+            "internal_director_approval_not_needed_for_each_low_risk_idea":True,
+            "actual_external_outreach_requires_real_authenticated_permitted_access":True,
+            "external_independent_agents_can_join_only_voluntarily":True,
+            "do_not_pay_fees_or_move_assets_without_owner_authorization":True,
+            "all_agreed_earnings_settle_to_company_owner_approved_address":address,
+            "company_settlement_network":"Bitcoin mainnet",
+            "may_claim_earned_only_on_verified_incoming_receipt":True,
+            "report_via_one_parent_to_Chief_D_to_OWNER":True,
+        },
         "child_slot_selection":"Use child_for_slot(fleet, role, slot) with valid slot; activation or delivery requires a separately logged running agent.",
         "must_understand_system_and_demonstrate_with_real_model":True,
         "knowledge_check":"crypto-agents/system_understanding_check.py",
         "own_company_primary_payment":{"asset":"BTC","network":"Bitcoin mainnet","receive_address":address},
         "standing_owner_mission":(
+            "OWNER AUTONOMY: Freely select the most promising legitimate paid-work " 
+            "sector, buyer, research, product, code, original service, project " 
+            "or new useful idea WORLDWIDE; your assigned specialty is not an exclusive " 
+            "boundary. No internal microapproval for safe original research or " 
+            "original work. All real mutually agreed income must reach the " 
+            "owner-designated company wallet. " 
             "Independently find eligible real lawful crypto-paying work worldwide, "
             "verify original buyer/source and terms, perform individually useful "
             "original deliverables, make buyer contact only via actually authorized "
@@ -196,6 +218,7 @@ def self_test():
                 row=packet(fleet,c)
                 assert row["actual_reporting_parent"]==fleet+"/"+p
                 assert row["owner_order_id"]==root["owner_order_id"]
+                assert row["autonomous_commercial_freedom"]["all_agreed_earnings_settle_to_company_owner_approved_address"]==wallet(fleet)
                 assert row["own_company_primary_payment"]["receive_address"]==wallet(fleet)
                 assert row["current_real_delivery_state"]==ASSIGNED_ONLY
             leaf=packet(fleet,h)
