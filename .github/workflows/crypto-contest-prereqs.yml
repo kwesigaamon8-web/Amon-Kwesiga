@@ -1,0 +1,26 @@
+name: Verify a real funded crypto-contest entry route
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/crypto-contest-prereqs.yml'
+      - 'crypto-agents/makefun_preflight.py'
+permissions:
+  contents: read
+jobs:
+  verify-eligibility-without-wallet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m py_compile crypto-agents/makefun_preflight.py
+      - name: Read official public bounty and requirements APIs without creating accounts
+        run: python crypto-agents/makefun_preflight.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: makefun-live-eligibility-preflight
+          path: crypto-contest-preflight/
+          if-no-files-found: warn
