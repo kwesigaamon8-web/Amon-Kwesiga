@@ -209,7 +209,7 @@ def self_test():
     assert out["registered_agent_accounts"]["BountyScoutAI"]["real_python_review_tasks_executed"]==7
     assert set(x["role_tier"] for x in out["auditable_CPU_tasks"])==set(CHECKS)
     for row in out["auditable_CPU_tasks"]:
-        assert row["real_python_rule_check_executed"] is True if "real_python_rule_check_executed" in row else row["actual_rule_engine_check_executed"]
+        assert row["actual_rule_engine_check_executed"] is True
         assert row["registered_agent"] in FLEETS
         assert row["role_id"].startswith(row["registered_agent"]+"/")
         assert row["crypto_receipt_claimed"] is False
