@@ -38,6 +38,7 @@ for slot in range(max_workers):
     # cap the first 20 static plan examples consume the entire daily model
     # budget and the remaining defined hierarchy never receives real inference.
     plan_priority_slots=min(2,len(planned_roles),max_workers)
+    selection=None
     if slot<plan_priority_slots:
         wid=planned_roles[(cycle+slot)%len(planned_roles)]
     else:
@@ -56,13 +57,15 @@ for slot in range(max_workers):
         result=subprocess.run(
             [sys.executable,"crypto-agents/ai_process_worker.py",wid],
             capture_output=True,text=True,timeout=80,check=False,
-            env={**os.environ,"OMP_NUM_THREADS":"2","HF_HUB_DISABLE_TELEMETRY":"1"}
+            env={**os.environ,"OMP_NUM_THREADS":"2","HF_HUB_DISABLE_TELEMETRY":"1",
+                 "SEVEN_BILLION_TARGET_INDEX":str(selection["target_index"]) if selection else ""}
         )
         status="process_terminated"
         if result.returncode!=0:
             status="process_failed"
         event={
           "worker_id":wid,"started_at_utc":started,
+          "seven_billion_target_index":selection["target_index"] if selection else None,
           "subprocess_exit_code":result.returncode,
           "subprocess_status":status,
           "subprocess_stdout_tail":result.stdout[-900:],
