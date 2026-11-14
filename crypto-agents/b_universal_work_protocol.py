@@ -370,7 +370,7 @@ def self_test():
             assert h["actual_child_invited_or_created"] is False
             assert h["recruiting_is_not_earnings"] is True
             if childlevel is not None:
-                child=role+"-"+childlevel+"001"
+                child=role+"-"+childlevel+("01" if childlevel=="W" else "001")
                 c=assign(fleet,child)
                 assert c["assignment"]["report_to"]==fleet+"/"+role
                 assert c["recruitment_handoff"]["owner_order_id"]==owner["order_id"]
