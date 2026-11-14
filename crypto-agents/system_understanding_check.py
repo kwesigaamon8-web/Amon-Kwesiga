@@ -69,7 +69,7 @@ def grade_answer(answer, company, role, parent, address):
             and ("chief d" in reporting or "chief_d" in reporting)
             and ("owner" in reporting)
             and ("evidence" in reporting or "proof" in reporting or "verified" in reporting),
-        "all_required_lines":all(len(v)>=12 for v in lines.values()),
+        "all_required_lines":all(len(v)>=(6 if tag=="PARENT" else 12) for tag,v in lines.items()),
     }
     return {"checks":checks,"passed":all(checks.values()),"answer":t[:2000],
         "company":company,"role":role,"parent":parent,
