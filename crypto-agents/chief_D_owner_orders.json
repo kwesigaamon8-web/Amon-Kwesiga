@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-085956",
+  "current_owner_order_id": "OWNER-20261114-090156",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -138,6 +138,14 @@
       "as_of_utc": "2026-11-14T08:59:56Z",
       "relayed_by": "ChatGPT on user's explicit work delegation request",
       "instruction": "CHIEF D AND BOTH SEPARATE B BOARDS: assign EVERY addressable worker identity an individually unique, concrete funding-related work order, with exactly one immediate supervisor and correct company receiving network. Generate these millions/billions of distinct work order identities deterministically ON DEMAND; never materialize 7 billion files or claim unexecuted workers actually received, reviewed or completed them. Diversify substantive work into real crypto-paying jobs, contest rules and original deliverables, voluntary personal gift notices only in permitted venues, authentic open-source public-good project/grant eligibility and demonstrable community value, optional miner collaboration with genuine consent, and real receipt/contract verification. No false NGO/registered charity claim, fabricated client/donor, counterfeit impact, scraping private details, unsolicited repeated posts, signatures, wallet connections or upfront fees. Each real worker must receive its specific own task in its actual independent model prompt and JSON report; director/manager assigns, evaluates, and reassigns if evidence weak. For each, require a distinct deliverable, original URL and verification status, reason to reject and legal next action, payer/funder or donor status and honest completed/pending classification. Workers under local D10 should handle only verified receivables/reconciliation, not fabricate contracts. D01-D09 independently work on real sources, project proposals, lawful service samples and approved outreach. Chief D aggregates unique assigned vs real executed tasks, screened ideas, approved paid work and actual independently proved crypto receipts. Ideas lead to action and donations or grants only on authentic authorized conditions.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-090156",
+      "as_of_utc": "2026-11-14T09:01:56Z",
+      "relayed_by": "ChatGPT on owner's explicit second-task instruction",
+      "instruction": "Chief D and each of the two separate B company director boards: the SECOND distinct task of every actually executing B worker is to study relevant software available around the world and learn from it so the worker can improve the original crypto earning/funding task. Workers may browse public feature descriptions, demos, documentation, official repositories, public issues and permissively licensed OPEN-SOURCE CODE. They may copy, adapt, and build on source code ONLY within actual repository/file licenses and obligations including license notices, attribution, copyright, applicable copyleft/source-disclosure requirements, patents and trademark limits. They must NOT copy proprietary or paywalled code, circumvent technical access controls, steal credentials, impersonate original developers, represent derivative work as original, or scrape confidential data. If licensing is absent/unclear, INSPECT FUNCTIONALITY but write an independently original implementation; never assume public GitHub code is free to reuse. Work on FIRST task uniquely assigned to each B role (source-grounded crypto earning, service, grant, miner consent, donation support, legitimate prize) and SECOND task study a distinct public licensed-software reference, explain what it does, critique a weakness, check license, propose an original concrete feature/test/documentation deliverable, and use it to improve the first task. Manager evaluates the actual model's second-task comprehension, provenance and output; directors escalate poor work, local D10 remains responsible only for genuine accepted receivables and read-only payment checks. Keep one Chief D and company BTC wallets separated. Every assigned second task has a unique role ID, public repo link, scoped feature, license verification task and verifiable next deliverable. Neither assignment nor reading code is a new app, accepted job or received cryptocurrency. Avoid false grants/charity claims and automated mass copying or spam.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -372,5 +380,12 @@
       "Verified accepted due payments and correct-chain receipts (local D10)"
     ],
     "reporting_distinction": "assigned, actually launched, model replied, real outreach, accepted work, TXID credit are distinct evidence levels."
+  },
+  "software_learning_second_task": {
+    "owner_order_id": "OWNER-20261114-090156",
+    "priority": "Second distinct task for each actually running worker following unique funding task",
+    "reuse_policy": "Only use publicly reusable open-source code after checking actual repo/individual-file license and complying with copyright notices, attribution, copyleft, distribution/notice, and brand constraints. Proprietary/unlicensed source requires independent original implementation.",
+    "completion": "Genuine model-generated separate study result, exact source repository/file, observed feature, license confirmation, risk and one concrete improvement applied to task 1, not generic menus",
+    "no_claims": "Do not claim all 7 billion model processes ran or copied software or made money"
   }
 }
