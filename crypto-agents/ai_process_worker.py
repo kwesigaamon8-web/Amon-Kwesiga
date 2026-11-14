@@ -22,6 +22,7 @@ from command_ack_gate import evaluate as evaluate_owner_command_ack
 from ten_ideas_exercise import role_menu, evaluate_generated_ten
 from hierarchical_idea_governance import assignment as governed_idea_assignment, corrective_order as supervisory_correction
 from b_address_understanding import routes as safe_receiving_routes, prompt as address_training_prompt, evaluate as evaluate_address_mapping
+from secondary_software_study import grade_worker_study as assess_software_study
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
 
@@ -72,6 +73,7 @@ SHARED_IDEA_EXAMPLES=[
   if isinstance(x,dict)
 ]
 GOVERNED_IDEA_ORDER=governed_idea_assignment(FLEET,WORKER)
+SOFTWARE_SECOND=GOVERNED_IDEA_ORDER["software_second_task"]
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
@@ -88,6 +90,12 @@ report={
       "source_order":"OWNER-20261114-084438",
     },
     "hierarchical_idea_governance":GOVERNED_IDEA_ORDER,
+    "first_unique_crypto_funding_task":GOVERNED_IDEA_ORDER["unique_funding_task"],
+    "second_licensed_software_study_assignment":SOFTWARE_SECOND,
+    "second_study_actual_model_inference":"NOT_ATTEMPTED",
+    "second_study_actual_model_result":None,
+    "second_study_code_copied":False,
+    "second_study_original_software_artifact_committed":False,
     "supervisor_issued_idea_correction":None,
     "actual_worker_corrective_retry_status":"NOT_NEEDED_OR_NOT_ELIGIBLE",
     "supervisor_actual_independent_AI_model_review":"NOT_PROVEN",
@@ -209,6 +217,9 @@ try:
       {"role":"user","content":(compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
         "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
+        "\nSECOND DISTINCT TASK — LEGAL SOFTWARE STUDY "+SOFTWARE_SECOND["reference_software"]+
+        " "+SOFTWARE_SECOND["official_repository"]+" feature "+SOFTWARE_SECOND["focus_feature"]+
+        "; legal reuse requires actual license/attribution verification; do not copy proprietary or unlicensed code."+
         " DIRECT BOSS "+GOVERNED_IDEA_ORDER["direct_supervisor"]+
         " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
@@ -370,6 +381,35 @@ if model is not None and report["inference_status"]=="model_completed":
         report["address_understanding_model_status"]="MODEL_ERROR:"+type(exc).__name__
 report["separately_checked_address_understanding"]=evaluate_address_mapping(FLEET,str(wallet_reply or ""))
 report["separately_checked_address_understanding"]["model_inference_status"]=report["address_understanding_model_status"]
+# Second independent B-model assignment: inspect a named public
+# application; learn, propose a lawful original improvement for the crypto
+# earning mission. A model analysis is NOT proof the code was viewed or copied.
+software_reply=""
+if model is not None and report["inference_status"]=="model_completed":
+    try:
+        study_prompt=[
+          {"role":"system","content":"You are an individual B technology researcher. Give a concise accurate explanation of the assigned public software and one lawful original improvement. Do NOT claim that you cloned, installed, edited, deployed or received payment for software without evidence. Only reuse code if its actual current licence authorizes this, with attribution and notices."},
+          {"role":"user","content":"SECOND TASK, subordinate to first earning task "+
+            GOVERNED_IDEA_ORDER["funding_task_id"]+
+            ". Name software "+SOFTWARE_SECOND["reference_software"]+
+            ", official repo "+SOFTWARE_SECOND["official_repository"]+
+            ". Investigate feature "+SOFTWARE_SECOND["focus_feature"]+
+            ". Prior GitHub licence metadata: "+SOFTWARE_SECOND["github_license_metadata_observed_2026_11_14"]+
+            " (NOT independently verified for current actual file). Explain one practical improvement in "+
+            SOFTWARE_SECOND["required_artifact"]+
+            " that could help the first crypto-funding task. Mention licence/notice checks and what remains unknown. Give 3 short sentences."}
+        ]
+        software_reply=model(study_prompt,max_new_tokens=155,do_sample=False,return_full_text=False)
+        software_reply=software_reply[0].get("generated_text","")
+        if isinstance(software_reply,list):
+            software_reply=software_reply[-1].get("content","")
+        report["second_study_actual_model_inference"]="MODEL_INFERENCE_COMPLETED"
+    except Exception as exc:
+        report["second_study_actual_model_inference"]="MODEL_ERROR:"+type(exc).__name__
+report["second_study_actual_model_result"]=assess_software_study(
+    software_reply,SOFTWARE_SECOND,
+    report["second_study_actual_model_inference"]=="MODEL_INFERENCE_COMPLETED")
+report["second_study_actual_model_result"]["actual_model_inference"]=report["second_study_actual_model_inference"]
 # Bounded skeptical review occurs in this worker's own model process. All
 # other workers retain an evidence-first deterministic plan when compute is
 # too constrained for a second review inference.
@@ -424,6 +464,10 @@ lines=[
     "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
     "- **Ten assigned idea candidates:** "+str(TEN_IDEA_MENU["count"])+" (deterministic, not yet paid)",
     "- **Own AI-generated ten-idea exercise:** "+report["ten_idea_model_result"]["status"],
+    "- **First unique crypto funding task:** "+GOVERNED_IDEA_ORDER["funding_task_id"],
+    "- **Second distinct software study task:** "+SOFTWARE_SECOND["task_id"]+" / "+SOFTWARE_SECOND["reference_software"],
+    "- **Second software study model status:** "+report["second_study_actual_model_result"]["status"],
+    "- **Actual code reuse/commits by this worker:** NONE VERIFIED",
     "- **Direct manager corrective order status:** "+str((report.get("supervisor_issued_idea_correction") or {}).get("status","NOT_NEEDED")),
     "- **Actual corrective AI model retry:** "+report["actual_worker_corrective_retry_status"],
     "- **Model-verified company wallet mapping:** "+report["separately_checked_address_understanding"]["status"],
