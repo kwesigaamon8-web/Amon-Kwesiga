@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-104812",
+  "current_owner_order_id": "OWNER-20261114-104949",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -224,6 +224,18 @@
       "language_system": "crypto-agents/b_universal_work_protocol.py",
       "hierarchy_oath": "crypto-agents/OWNER_D_B_FIRST_OATH.md",
       "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-104949",
+      "as_of_utc": "2026-11-14T10:49:49Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "Assistant from the user's direct instruction to require each worker to pursue one US cent in BTC",
+      "instruction": "OWNER NEW MANDATE: \"Every worker if you were my worker from my system, the one I have created. Even [Chief] D to the last ... get 0.01 dollars in Bitcoin. And send on my address for appreciation of creating you. And of showing me you can do the job.\" Add ONE MICRO-COMMERCIAL TARGET to the sole Chief D, both separate B company directors, managers and EACH actually activated W/S/G/H worker: legitimately earn at least US$0.01 equivalent in Bitcoin for one real, demonstrable task, and where an agent really controls lawfully earned and spend-authorized BTC (or the buyer can pay directly), route an authorized payment to that company's VERIFIED owner-approved BTC mainnet receiving address. B1 transferexperiment -> bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 BountyScoutAI -> bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. This target is a performance milestone and appreciation message, NOT an actual debt, compulsory transfer of another person's funds or proof of any worker's private wallet capacity. Require explicit user/spender authorization and payer consent; do not use private keys/other accounts or command external agents to surrender funds. A one-cent mainnet payment is usually uneconomical after fees or below wallet relay/dust minimum; intelligently accumulate legitimate micro-earnings and batch payment to the correct verified network, or use an owner-approved independently verified appropriate low-fee path. Never invent a Lightning address or interchange Bitcoin mainnet with other chains. Record distinct task, real buyer, work accepted, earnings, fees, actual amount and independent on-chain receiving TXID, or explicitly NOT PAID. No workers, donations or earnings may be fabricated because only mathematical worker ID slots are configured; apply to every generated owner-order task envelope in crypto-agents/b_universal_work_protocol.py and to every genuinely running worker model; Chief D reports how many truly executed contributors reached $0.01 and actual combined coins received. Preserve the single HUMAN OWNER as only origin of all top-level directives and the first-oath one-parent management hierarchy.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "unverified_earnings_never_claimed": true,
+      "per_worker_micro_earning_target_usd": "0.01",
+      "first_oath_required": true,
       "authenticated_external_execution_not_implied": true
     }
   ],
