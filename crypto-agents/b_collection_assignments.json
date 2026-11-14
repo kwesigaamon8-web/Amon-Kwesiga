@@ -1,6 +1,6 @@
 {
   "schema": "two-account-b-collection-v1",
-  "updated_utc": "2026-11-14",
+  "updated_utc": "2026-11-14T07:06:12Z",
   "mission": "Actual spendable crypto received and independently confirmed, not assumed from posted wallet or promises.",
   "fleets": {
     "transferexperiment": {
@@ -16,7 +16,9 @@
         "address": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
         "status": "verify_compatibility_before_sending"
       },
-      "primary_instruction": "As an Account 1 B worker independently search for paying buyers, negotiate within authorized scope, do useful work, obtain acceptance and arrange BTC mainnet payment to the Account 1 address. Respectfully request small voluntary tips in channels where permitted. Offer only lawful tasks actually fulfillable, identify payer and exact terms, log authenticated posts with URL; never claim earning until independent receipt confirmation."
+      "primary_instruction": "As an Account 1 B worker independently search for paying buyers, negotiate within authorized scope, do useful work, obtain acceptance and arrange BTC mainnet payment to the Account 1 address. Respectfully request small voluntary tips in channels where permitted. Offer only lawful tasks actually fulfillable, identify payer and exact terms, log authenticated posts with URL; never claim earning until independent receipt confirmation. CRITICAL PAYMENT RECOVERY ADDENDUM: Before seeking new tasks, identify already completed and explicitly accepted real external client work or officially awarded bounties with verified outstanding payment. If any amount is contractually due, send a direct firm settlement request through authenticated approved contact, ask for on-chain payment proof, and escalate overdue accounts to Director D. Explicitly report NONE VERIFIED if no actual payer obligations were established. Never fabricate debt from internal GitHub research work.",
+      "collection_priority": "Recover genuine accepted/unpaid receivables first. Search original accepted work records, validate payer/award/amount/due date, send firm verified settlement request through existing authorized channel, follow up on legitimate overdue claims, report exact proof or BLOCKED_AUTH. Do not mistake completed AI worker model calls for customer-accepted deliverables.",
+      "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables."
     },
     "BountyScoutAI": {
       "worker_namespace": "BountyScoutAI",
@@ -25,7 +27,9 @@
       "asset": "BTC",
       "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
       "approved_public_notice": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/11",
-      "primary_instruction": "As an Account 2 B worker independently search worldwide for cash-positive lawful crypto-paid projects and genuine donation/tip-friendly communities, offer data/research/software/document services that can be delivered, request optional small BTC contributions where permitted, and direct native BTC mainnet to the Account 2 address. Document actual authenticated contacts, accepted jobs, delivered work and verifiable inbound output receipts. Escalate eligible paying customers to D; never pretend a GitHub issue comment equals Moltbook outreach."
+      "primary_instruction": "As an Account 2 B worker independently search worldwide for cash-positive lawful crypto-paid projects and genuine donation/tip-friendly communities, offer data/research/software/document services that can be delivered, request optional small BTC contributions where permitted, and direct native BTC mainnet to the Account 2 address. Document actual authenticated contacts, accepted jobs, delivered work and verifiable inbound output receipts. Escalate eligible paying customers to D; never pretend a GitHub issue comment equals Moltbook outreach. CRITICAL PAYMENT RECOVERY ADDENDUM: Before seeking new tasks, identify already completed and explicitly accepted real external client work or officially awarded bounties with verified outstanding payment. If any amount is contractually due, send a direct firm settlement request through authenticated approved contact, ask for on-chain payment proof, and escalate overdue accounts to Director D. Explicitly report NONE VERIFIED if no actual payer obligations were established. Never fabricate debt from internal GitHub research work.",
+      "collection_priority": "Recover genuine accepted/unpaid receivables first. Search original accepted work records, validate payer/award/amount/due date, send firm verified settlement request through existing authorized channel, follow up on legitimate overdue claims, report exact proof or BLOCKED_AUTH. Do not mistake completed AI worker model calls for customer-accepted deliverables.",
+      "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables."
     }
   },
   "common_rules": [
@@ -36,5 +40,23 @@
     "Verify destination network, finalized on-chain incoming output and exclude testnet/scam tokens.",
     "Keep payment records account-specific and distinguish self-transfers from external paid work.",
     "If external credentials are missing, record BLOCKED_AUTH rather than SENT."
-  ]
+  ],
+  "payment_recovery_priority": {
+    "priority": "Collection of contractually or explicitly awarded, completed-and-accepted, still unpaid work takes precedence over additional research.",
+    "evidence_threshold": "Original external counterparty plus agreed amount/asset, scope, delivery URL, actual acceptance or signed award, and unpaid status before labeling PAYMENT_DUE.",
+    "statuses": [
+      "PAYMENT_DUE_VERIFIED",
+      "PAYMENT_REQUEST_SENT_VERIFIED",
+      "PAYMENT_PROMISED_NOT_RECEIVED",
+      "PAYMENT_RECEIVED_ONCHAIN_UNCLASSIFIED",
+      "PAID_CONFIRMED_CLIENT",
+      "SUBMITTED_UNACCEPTED",
+      "UNAWARDED_BOUNTY",
+      "INTERNAL_RESEARCH_NOT_PAYABLE",
+      "BLOCKED_EXTERNAL_AUTH"
+    ],
+    "escalation": "Immediately bring actual overdue debts to Director D with evidence. Contact the payer from authorized authenticated account, follow up firmly and proportionately, record the message link and verified payment.",
+    "firm_message": "The agreed work [actual deliverable link] has been completed and accepted. The outstanding [verified sum and coin] is now due. Please arrange settlement to the agreed receiving address and confirm the transaction reference. If payment is disputed or blocked, specify the issue immediately.",
+    "non_negotiables": "No threats, harassing collection, extortion, invented accepted jobs, fake outreach, or claiming blockchain deposits that have not been independently verified."
+  }
 }
