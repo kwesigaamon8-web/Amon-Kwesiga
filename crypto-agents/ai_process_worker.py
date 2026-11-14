@@ -167,6 +167,33 @@ report={
         "worker_executed_in_current_sprint":"REQUIRES_ACTUAL_START_STOP_TIMESTAMPS",
         "work_priority":"Find genuine buyers, verify paid eligibility, produce original accepted deliverables, obtain correct-chain cryptocurrency receipts, and report authentic blockers"
     },
+    "owner_coin_report_and_approval":{
+        "owner_order_id":STRICT_OWNER_ORDER_ID,
+        "independent_decision_authorized_for_real_worker":True,
+        "commercial_opportunity_and_original_work_choices_do_not_need_individual_approval":True,
+        "reporting_chain":[FLEET+"/"+WORKER, FLEET+"/D10", "CHIEF_D", "HUMAN_OWNER"],
+        "primary_reporting_unit":"actual native cryptocurrency units, not dollars or hypothetical BTC",
+        "target_btc_equivalent":1.0,
+        "received_coin_ledger":[],
+        "asset_symbol":None,
+        "chain_and_token_contract":None,
+        "receiving_address":PAYMENT_MISSION["address"],
+        "receiving_network":"Bitcoin mainnet",
+        "verified_satoshis_or_native_token_units":None,
+        "verified_payment_txid_or_custodial_credit":None,
+        "actual_received_payment_verified":False,
+        "amount_earned_but_not_yet_received":"NOT_VERIFIED",
+        "owner_approval_required_before":[
+            "signing_or_moving_wallet_assets",
+            "paying_any_fee_gas_or_platform_cost",
+            "changing_wallet_address_token_or_network",
+            "accepting_material_financial_contract_terms",
+            "exposing_private_owner_data",
+            "new_external_account_authentication"
+        ],
+        "owner_approval_status":"NOT_REQUESTED_NO_APPROVAL_GATED_ACTION_PROVED",
+        "submission_or_receipt_status":"NOT_EVIDENCED"
+    },
     "owner_first_oath":OWNER_OATH,
     "universal_task_message":UNIVERSAL_TASK,
     "certified_agent_service_available_to_this_original_role":CERTIFIED_AGENT_SERVICE,
