@@ -1,0 +1,8 @@
+{
+  "schema": "d10-externally-evidenced-receivables-v1",
+  "description": "Only actual external payer commitments with verifiable accepted work can be entered here. Internal model runs, GitHub jobs, speculative donations and unawarded bounties are NOT receivables. Do not publish private client records in this public repository.",
+  "payment_director": "D10",
+  "account_1": "transferexperiment",
+  "account_2": "BountyScoutAI",
+  "claims": []
+}
