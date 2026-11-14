@@ -27,6 +27,7 @@ from public_code_reader import load as read_public_software_source
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
 from b_learning_by_doing import lesson as make_practical_lesson, prompt as practical_training_prompt, grade as grade_practical_training, write_worker_sample
+from b_worker_buyer_source import choose as choose_actual_issue_for_training
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -205,6 +206,23 @@ try:
 except Exception as exc:
     report["source_check_status"]="source_failed"
     report["source_error"]=f"{type(exc).__name__}: {str(exc)[:200]}"
+
+# If broad HN research found no original link, use a real open issue read-only
+# from this execution's authenticated public-source scout. Verify the selected
+# ORIGINAL GitHub issue again. Never call an open issue a funded paying contract.
+if not report["source_items"]:
+    task_candidate=choose_actual_issue_for_training(
+        FLEET,WORKER,"paid-opportunity-reports/new-earning-lanes.json")
+    report["task_source_fallback"]=task_candidate
+    if task_candidate.get("source_item"):
+        report["source_items"].append(task_candidate["source_item"])
+        report["source_check_status"]="source_checked"
+        report["original_research_api_url"]=report["source_url"]
+        report["source_url"]=task_candidate["source_item"]["url"]
+        report["source_original_issue_checked"]=True
+        report["external_payer_acceptance_verified"]=False
+else:
+    report["task_source_fallback"]={"status":"ORIGINAL_HN_LINK_ALREADY_AVAILABLE_NOT_VERIFIED_AS_PAID_JOB"}
 
 # All research and decisions are executed in this standalone Python process.
 # ChatGPT does not run, own or control this model; it may merely relay orders.
