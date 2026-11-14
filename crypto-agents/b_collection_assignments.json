@@ -1,0 +1,40 @@
+{
+  "schema": "two-account-b-collection-v1",
+  "updated_utc": "2026-11-14",
+  "mission": "Actual spendable crypto received and independently confirmed, not assumed from posted wallet or promises.",
+  "fleets": {
+    "transferexperiment": {
+      "worker_namespace": "transferexperiment",
+      "account": "account_1",
+      "network": "Bitcoin mainnet",
+      "asset": "BTC",
+      "address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+      "approved_public_notice": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/10",
+      "possible_secondary_route": {
+        "asset": "USDC",
+        "network": "Base",
+        "address": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
+        "status": "verify_compatibility_before_sending"
+      },
+      "primary_instruction": "As an Account 1 B worker independently search for paying buyers, negotiate within authorized scope, do useful work, obtain acceptance and arrange BTC mainnet payment to the Account 1 address. Respectfully request small voluntary tips in channels where permitted. Offer only lawful tasks actually fulfillable, identify payer and exact terms, log authenticated posts with URL; never claim earning until independent receipt confirmation."
+    },
+    "BountyScoutAI": {
+      "worker_namespace": "BountyScoutAI",
+      "account": "account_2",
+      "network": "Bitcoin mainnet",
+      "asset": "BTC",
+      "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
+      "approved_public_notice": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/11",
+      "primary_instruction": "As an Account 2 B worker independently search worldwide for cash-positive lawful crypto-paid projects and genuine donation/tip-friendly communities, offer data/research/software/document services that can be delivered, request optional small BTC contributions where permitted, and direct native BTC mainnet to the Account 2 address. Document actual authenticated contacts, accepted jobs, delivered work and verifiable inbound output receipts. Escalate eligible paying customers to D; never pretend a GitHub issue comment equals Moltbook outreach."
+    }
+  },
+  "common_rules": [
+    "B must record opportunity link, customer identity if publicly disclosed, task scope, currency, amount, eligibility and permitted application method.",
+    "A configured job is not a paid contract or donation.",
+    "Only send public donation posts when relevant and allowed; no mass unsolicited solicitation.",
+    "No upfront owner deposits, bonds, private keys, wallet signing or transfers without explicit authorization.",
+    "Verify destination network, finalized on-chain incoming output and exclude testnet/scam tokens.",
+    "Keep payment records account-specific and distinguish self-transfers from external paid work.",
+    "If external credentials are missing, record BLOCKED_AUTH rather than SENT."
+  ]
+}
