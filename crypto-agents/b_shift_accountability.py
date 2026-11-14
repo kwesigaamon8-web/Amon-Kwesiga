@@ -11,13 +11,13 @@ from pathlib import Path
 from owner_first_oath import command_envelope
 
 FLEETS=("transferexperiment","BountyScoutAI")
-EXPECTED_PER_FLEET=2
+EXPECTED_PER_FLEET=5
 QUALIFIED="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"
 
 def summarize(folder, run_url=""):
     files=list(Path(folder).glob("practical-work-*/D??-M??-W??.json"))
     # Full GitHub artifact tree may contain more source files; only root individual
-    # worker report names count, and four different fleet/worker identities are required.
+    # worker report names count, and ten different fleet/worker identity slots are expected.
     records=[]
     seen=set()
     problems=[]
@@ -156,9 +156,10 @@ def selftest():
         (p/"D01-M01-W01.json").write_text(json.dumps(record))
         x=summarize(d)
         assert x["actually_completed_model_workers"]==1,x
+        assert x["expected_total_actual_worker_slots"]==10,x
         assert x["actual_independent_training_completions"]==1,x
         assert x["quality_graded_original_work_drafts"]==1,x
-        assert x["company_reports"]["BountyScoutAI"]["missing_or_unverified_slots"]==2,x
+        assert x["company_reports"]["BountyScoutAI"]["missing_or_unverified_slots"]==5,x
         assert x["actual_paid_contracts_verified"]==0
         row=x["individual_worker_evidence"][0]
         assert row["upward_route_to_human_owner"]==[
