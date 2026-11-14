@@ -76,6 +76,37 @@ def _index_for_h_identity(fleet,role):
     if ordinal>=PER_DIRECTOR:return None
     return FLEETS.index(fleet)*PER_FLEET+(d-1)*PER_DIRECTOR+ordinal
 
+def worker_for_global_index(index):
+    """Bijective logical targeting for EVERY target index from 0 to 7B-1.
+
+    This calculates the unique H identity without spawning a model or
+    materializing a giant database. This is O(1) for any eligible index.
+    """
+    if type(index)!=int or not 0<=index<2*PER_FLEET:
+        raise ValueError("Global worker index outside seven-billion target")
+    fleet=FLEETS[index//PER_FLEET]
+    local=index%PER_FLEET
+    d=local//PER_DIRECTOR+1
+    ordinal=local%PER_DIRECTOR
+    director=f"D{d:02d}"
+    salt=int.from_bytes(hashlib.sha256((fleet+"/"+director).encode()).digest()[:8],"big")
+    code=(ordinal*MULTIPLIER+salt)%H_UNIVERSE_PER_DIRECTOR
+    w=code%BASE_W;code//=BASE_W
+    sid=code%S;code//=S
+    gid=code%G;code//=G
+    hid=code%H
+    role=(f"{director}-M{w//50+1:02d}-W{w%50+1:02d}"
+          f"-S{sid+1:03d}-G{gid+1:03d}-H{hid+1:03d}")
+    return {"global_index":index,"fleet":fleet,"worker_id":role,
+            "actual_model_executed":False,
+            "addressable_role_not_live_agent":True}
+
+def assign_global_index(index,preferred_locale=None,market=None):
+    descriptor=worker_for_global_index(index)
+    row=assign(descriptor["fleet"],descriptor["worker_id"],preferred_locale,market)
+    assert row["logical_global_target_index"]==index
+    return row
+
 def assign(fleet,role,preferred_locale=None,market=None):
     """Produce one individually distinctive TASK; zero model/API calls."""
     if fleet not in FLEETS:raise ValueError("Unknown fleet")
@@ -222,6 +253,16 @@ def self_test():
     assert v["assignment"]["country_iso_3166_alpha2"]=="UG"
     assert not v["localization"]["all_world_cities_claim"]
     assert len(MARKETS)>=40
+    for idx in (0,1,2,350_000_000,3_499_999_999,3_500_000_000,6_999_999_998,6_999_999_999):
+        desc=worker_for_global_index(idx)
+        assigned=assign_global_index(idx)
+        assert assigned["logical_global_target_index"]==idx
+        assert assigned["assignment"]["worker_id"]==desc["fleet"]+"/"+desc["worker_id"]
+        assert assigned["proof"]["individual_worker_model_run"]=="NOT_YET_EVIDENCED"
+    try:worker_for_global_index(7_000_000_000)
+    except ValueError:pass
+    else:raise AssertionError("out-of-range 7B index accepted")
+
     try:assign("UnknownFleet","D01-M01-W01")
     except ValueError:pass
     else:raise AssertionError("invalid fleet accepted")
@@ -233,10 +274,13 @@ def cli():
     parser.add_argument("--self-test",action="store_true")
     parser.add_argument("--fleet",choices=FLEETS)
     parser.add_argument("--worker")
+    parser.add_argument("--global-index",type=int)
     parser.add_argument("--locale")
     parser.add_argument("--country")
     args=parser.parse_args()
     if args.self_test:self_test()
+    elif args.global_index is not None:
+        print(json.dumps(assign_global_index(args.global_index,args.locale,args.country),ensure_ascii=False,indent=2))
     else:
         if not args.fleet or not args.worker:parser.error("--fleet and --worker required")
         print(json.dumps(assign(args.fleet,args.worker,args.locale,args.country),ensure_ascii=False,indent=2))
