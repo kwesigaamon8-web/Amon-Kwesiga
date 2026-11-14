@@ -7,31 +7,6 @@ on:
   push:
     paths:
       - '.github/workflows/bountyscoutai-real-ai-workers.yml'
-      - 'crypto-agents/ai_process_worker.py'
-      - 'crypto-agents/role_ai_identity.py'
-      - 'crypto-agents/coin_learning.py'
-      - 'crypto-agents/global_coin_learning.json'
-      - 'crypto-agents/command_chain_receipts.py'
-      - 'crypto-agents/owner_command_chain.json'
-      - 'crypto-agents/director_activation_plan.py'
-      - 'crypto-agents/fair_agent_scheduler.py'
-      - 'crypto-agents/agent_cognition.py'
-      - 'crypto-agents/director_D_results_gate.py'
-      - 'crypto-agents/agent_state_aggregate.py'
-      - 'crypto-agents/owner_sovereignty.json'
-      - 'crypto-agents/director_D_consensus.py'
-      - 'crypto-agents/ai_process_launcher.py'
-      - 'crypto-agents/ai_process_audit.py'
-      - 'crypto-agents/owner_direct_reports.py'
-      - 'crypto-agents/director_work_orders.py'
-      - 'crypto-agents/owner_order_distribution.py'
-      - 'crypto-agents/owner_orders.json'
-      - 'crypto-agents/director_D_training.py'
-      - 'crypto-agents/DIRECTOR_D_LESSON_TO_B.md'
-      - 'crypto-agents/b_all_workers_report.py'
-      - 'crypto-agents/b_representative_to_owner.py'
-      - 'crypto-agents/b_d_joint_discussion.py'
-      - 'crypto-agents/post_real_worker_status.py'
 concurrency:
   group: bountyscoutai-real-ai-worker-processes
   cancel-in-progress: false
