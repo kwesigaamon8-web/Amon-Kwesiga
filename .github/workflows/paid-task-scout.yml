@@ -16,6 +16,7 @@ on:
       - 'crypto-agents/subagent_audit.py'
       - 'crypto-agents/seven_billion_allocator.py'
       - 'crypto-agents/command_ack_gate.py'
+      - 'crypto-agents/system_health_gate.py'
   schedule:
     - cron: '9 * * * *'
 concurrency:
@@ -42,6 +43,8 @@ jobs:
         run: python crypto-agents/command_chain_receipts.py
       - name: Check child-audit schema before expensive 30-role research runs
         run: python crypto-agents/subagent_audit.py --output structural-child-audit
+      - name: Fail early if both companies' execution/reporting system drifts
+        run: python crypto-agents/system_health_gate.py
       - name: Verify exactly 7B uniquely indexed eligible roles and current order acknowledgement test
         run: |
           python crypto-agents/seven_billion_allocator.py --self-test
@@ -78,6 +81,7 @@ jobs:
             paid-opportunity-reports/
             d10-payment-reports/
             structural-child-audit/
+            system-health-reports/
             chief-D-reports/
           if-no-files-found: warn
           retention-days: 7
