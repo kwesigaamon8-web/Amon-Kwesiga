@@ -57,6 +57,20 @@ DIRECTOR_ORDER=(
   "You are a LOCAL D01-D09 director in your own company; continue researching and preparing lawful paid deliverables and real clients. Forward accepted unpaid contract evidence to your own company D10, who reports to Chief D. Never conflate this company with the other fleet."
 )
 TEN_IDEA_MENU=role_menu(FLEET,WORKER,PARENT,SPEC["role_name"])
+SHARED_IDEA_FEED_PATH=Path("idea-exchange")/("SHARED_IDEA_FEED_"+FLEET+".json")
+try:
+    SHARED_IDEA_FEED=json.loads(SHARED_IDEA_FEED_PATH.read_text(encoding="utf-8"))
+    expected_other="BountyScoutAI" if FLEET=="transferexperiment" else "transferexperiment"
+    if (SHARED_IDEA_FEED.get("requesting_company")!=FLEET or
+        SHARED_IDEA_FEED.get("shared_from_other_company")!=expected_other):
+        raise ValueError("Cross-company shared ideas have wrong source namespace")
+except (OSError,ValueError):
+    SHARED_IDEA_FEED={"examples_for_new_model_ideas":[],"status":"NOT_AVAILABLE_NO_EXTERNAL_IDEAS"}
+SHARED_IDEA_EXAMPLES=[
+  " ".join(str(x.get("idea","")).split())[:170] for x in
+  SHARED_IDEA_FEED.get("examples_for_new_model_ideas",[])[:5]
+  if isinstance(x,dict)
+]
 GOVERNED_IDEA_ORDER=governed_idea_assignment(FLEET,WORKER)
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
@@ -66,6 +80,13 @@ report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
     "ten_idea_exercise":TEN_IDEA_MENU,
+    "cross_company_idea_knowledge_feed":{
+      "status":SHARED_IDEA_FEED.get("status","NOT_AVAILABLE"),
+      "actual_other_company_model_examples_received":len(SHARED_IDEA_EXAMPLES),
+      "examples_are_unverified_prior_model_ideas":True,
+      "these_are_NOT_new_worker_ideas_or_earned_funds":True,
+      "source_order":"OWNER-20261114-084438",
+    },
     "hierarchical_idea_governance":GOVERNED_IDEA_ORDER,
     "supervisor_issued_idea_correction":None,
     "actual_worker_corrective_retry_status":"NOT_NEEDED_OR_NOT_ELIGIBLE",
@@ -285,6 +306,7 @@ if model is not None and report["inference_status"]=="model_completed":
             {"role":"user","content":"Worker "+WORKER+" in "+FLEET+", direct parent "+PARENT+
                 ". Chief D idea order OWNER-20261114-075553. Worker specialty: "+SPEC["role_name"][:75]+
                 ". Ten avenues to assess/extend: "+menu_line[:950]+
+                ". OTHER COMPANY'S EXECUTED MODEL LESSONS (UNVERIFIED, DO NOT COPY): "+json.dumps(SHARED_IDEA_EXAMPLES,ensure_ascii=False)[:650]+
                 ". Create TEN DISTINCT brief concrete action ideas, one 8-15-word line each, numbered 1. to 10. Do not claim funding or contracts exist."}
         ]
         answer=model(idea_prompt,max_new_tokens=230,do_sample=False,return_full_text=False)
