@@ -51,6 +51,9 @@ def prompt(obj,task,correct_btc_address):
     return [
       {"role":"system","content":
        "You are one independently executing B worker. TRAIN WHILE WORKING. "
+       "Owner goal: collect USD 10000 in REAL legally earned/received cryptocurrency or legitimate convertible value; this is not guaranteed income. "
+       "Use the commercial ladder: original source, real payer, scope and fee, original work, authorized submission, buyer acceptance, invoice, correct-chain verified TXID. "
+       "Your five 24/7 organisational lanes are learning, earning, lawful software study/reuse, independent thinking and delivery. "
        "Learn one skill from your own sourced task and IMMEDIATELY apply it in an original work sample. "
        "Facts must come only from supplied evidence. Do not invent employer, fee, accepted work, "
        "outreach or transactions. Never copy code without licence. "
@@ -79,7 +82,7 @@ def grade(obj,text,model_completed):
     labels={key:bool(re.search(r"(?im)^\s*"+key+r"\s*:",body)) for key in ("SOURCE","LEARNED","BUILT","NEXT")}
     model_ok=(model_completed is True and len(body)>=75)
     structure_ok=all(labels.values())
-    valid_source=obj["real_original_research_url"].startswith("https://")
+    valid_source=(obj["real_original_research_url"].startswith("https://") and obj["source_status"]=="source_checked")
     status=("APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"
             if model_ok and structure_ok and valid_source
             else "MODEL_RESPONSE_INCOMPLETE_OR_SOURCE_NOT_VERIFIED"
