@@ -5,6 +5,7 @@ D-A/D-B are direct director assistants, not required intermediate supervisors.
 A route is AVAILABLE to all defined descendants, not evidence of delivery.
 """
 import json
+import os
 import re
 from datetime import datetime,timezone
 from pathlib import Path
@@ -43,9 +44,23 @@ def route(role_id):
 def configured_assignment(role_id):
     r=route(role_id)
     orders=summary()
+    # The old hierarchy registry's OWNER -> D01..D10 chain is the historical
+    # template. The real owner's current operational reporting overlay has
+    # exactly one Chief D, then separate numbered directors per fleet.
+    fleet=os.environ.get("WORKFORCE_ID","transferexperiment")
+    if fleet not in ("transferexperiment","BountyScoutAI"):
+        raise ValueError("Unknown organizational company")
+    company_path=(["OWNER","CHIEF_D",fleet+"/"+r[1]]+
+                  [fleet+"/"+a for a in r[2:]]) if len(r)>1 else ["OWNER"]
     return {
       "role_id":role_id,"direct_supervisor":r[-2] if len(r)>1 else None,
       "owner_to_role_route":r,"level":level(role_id),
+      "current_organization_route":company_path,
+      "company_namespace":fleet,
+      "sole_chief_director":"D",
+      "company_director_id":fleet+"/"+r[1] if len(r)>1 else None,
+      "chief_D_latest_owner_order":orders["chief_D_current_owner_order_id"],
+      "chief_D_actual_acknowledgment":"NOT_EVIDENCED_BY_ROUTE_ALONE",
       "owner_orders_count":orders["count"],
       "owner_order_registry_sha256":orders["sha256"],
       "owner_orders_all_inherited":True,
@@ -70,6 +85,8 @@ def understanding_receipt(role_id,model_text,model_status,source_url=""):
       "order":"ORD-035","role_id":role_id,
       "direct_parent":assign["direct_supervisor"],
       "route":assign["owner_to_role_route"],
+      "current_organization_route":assign["current_organization_route"],
+      "chief_D_latest_owner_order":assign["chief_D_latest_owner_order"],
       "all_owner_orders_sha256":assign["owner_order_registry_sha256"],
       "all_owner_orders_received_as_prompt":replied,
       "model_inference_status":model_status,
