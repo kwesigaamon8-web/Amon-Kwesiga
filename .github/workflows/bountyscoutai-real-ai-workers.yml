@@ -1,0 +1,212 @@
+name: BountyScoutAI Real AI Worker Processes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '21 9 * * *'
+  push:
+    paths:
+      - '.github/workflows/bountyscoutai-real-ai-workers.yml'
+      - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/role_ai_identity.py'
+      - 'crypto-agents/coin_learning.py'
+      - 'crypto-agents/global_coin_learning.json'
+      - 'crypto-agents/command_chain_receipts.py'
+      - 'crypto-agents/owner_command_chain.json'
+      - 'crypto-agents/director_activation_plan.py'
+      - 'crypto-agents/fair_agent_scheduler.py'
+      - 'crypto-agents/agent_cognition.py'
+      - 'crypto-agents/director_D_results_gate.py'
+      - 'crypto-agents/agent_state_aggregate.py'
+      - 'crypto-agents/owner_sovereignty.json'
+      - 'crypto-agents/director_D_consensus.py'
+      - 'crypto-agents/ai_process_launcher.py'
+      - 'crypto-agents/ai_process_audit.py'
+      - 'crypto-agents/owner_direct_reports.py'
+      - 'crypto-agents/director_work_orders.py'
+      - 'crypto-agents/owner_order_distribution.py'
+      - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/director_D_training.py'
+      - 'crypto-agents/DIRECTOR_D_LESSON_TO_B.md'
+      - 'crypto-agents/b_all_workers_report.py'
+      - 'crypto-agents/b_representative_to_owner.py'
+      - 'crypto-agents/b_d_joint_discussion.py'
+      - 'crypto-agents/post_real_worker_status.py'
+concurrency:
+  group: bountyscoutai-real-ai-worker-processes
+  cancel-in-progress: false
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  preflight:
+    name: Check agent Python syntax before CPU model downloads
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile all research and management scripts
+        run: python -m compileall -q crypto-agents
+      - name: Check that D training assessment fails closed without a live model
+        run: python crypto-agents/director_D_training.py
+      - name: Run 15 regression checks for real reports and honest earnings
+        run: python crypto-agents/reliability_smoke_tests.py
+  real-worker-processes:
+    needs: preflight
+    name: ${{ matrix.director }} actual AI worker OS processes
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        director: [D01, D02, D03, D04, D05, D06, D07, D08, D09, D10]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore independent research agents' prior checkpoints
+        uses: actions/cache/restore@v4
+        with:
+          path: agent-state/latest.json
+          key: bountyscoutai-agent-memory-${{ github.run_id }}
+          restore-keys: |
+            bountyscoutai-agent-memory-
+      - name: Validate strict owner-to-final-H routing without fake replies
+        run: python crypto-agents/command_chain_receipts.py
+      - name: Director activation mission and individual role queue
+        env:
+          ROLE_ID: ${{ matrix.director }}
+        run: python crypto-agents/director_activation_plan.py
+      - name: Issue all 750 first-tier worker orders for this director
+        env:
+          ROLE_ID: ${{ matrix.director }}
+        run: python crypto-agents/director_work_orders.py
+      - name: Install bounded free CPU AI model requirements
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Actually launch isolated per-worker operating-system processes
+        env:
+          ROLE_ID: ${{ matrix.director }}
+          WORKFORCE_ID: BountyScoutAI
+          REAL_AI_PROCESSES_PER_DIRECTOR: '20'
+          MAX_BATCH_SECONDS: '660'
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+          CRITIC_EVERY_N: '5'
+        run: python crypto-agents/ai_process_launcher.py
+      - name: Upload real process proofs and 750 queued worker assignments
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-ai-processes-${{ matrix.director }}
+          path: |
+            ai-process-reports/
+            director-work-orders/
+          if-no-files-found: warn
+          retention-days: 7
+
+  audit-processes:
+    name: Verify true AI processes, not virtual definitions
+    if: always()
+    needs: real-worker-processes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore last independent agent memory before merging
+        uses: actions/cache/restore@v4
+        with:
+          path: agent-state/latest.json
+          key: bountyscoutai-agent-memory-${{ github.run_id }}
+          restore-keys: |
+            bountyscoutai-agent-memory-
+      - name: Retrieve actual worker logs and per-role documents
+        uses: actions/download-artifact@v4
+        with:
+          pattern: real-ai-processes-*
+          merge-multiple: true
+          path: combined-ai-processes
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit executed processes versus assigned identities
+        run: python crypto-agents/ai_process_audit.py
+      - name: Merge only completed independent worker next-action checkpoints
+        run: python crypto-agents/agent_state_aggregate.py
+      - name: Director D evaluates real results, sources and next actions
+        run: python crypto-agents/director_D_results_gate.py
+      - name: Director D consolidates all executed agents into one OWNER report
+        run: python crypto-agents/owner_direct_reports.py
+      - name: Publish actual process evidence to shared D/B mission room
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          WORKFORCE_ID: BountyScoutAI
+        run: python crypto-agents/post_real_worker_status.py
+      - name: Census all B roles and index every actual individual reply and learning result
+        run: python crypto-agents/b_all_workers_report.py
+      - name: Select one actual B worker representative and report its real lesson response
+        run: python crypto-agents/b_representative_to_owner.py
+      - name: Display Director D's owner report
+        run: cat owner-B-reports/DIRECTOR_D_TO_OWNER.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Summarize Director D accountable result counts
+        run: cat director-D-results/DIRECTOR_D_RESULTS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Save owner-controlled memory for future scheduled runs
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: agent-state/latest.json
+          key: bountyscoutai-agent-memory-${{ github.run_id }}
+
+      - name: Install small open-source AI model for actual director-to-director discussion
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Ten genuine director perspectives, cross-review and Director D's owner reply
+        env:
+          OMP_NUM_THREADS: '2'
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python crypto-agents/director_D_consensus.py
+      - name: Consolidate genuine joint D and B discussion with every actual worker's voice
+        if: always()
+        run: python crypto-agents/b_d_joint_discussion.py
+      - name: Show actual B and D roundtable in GitHub Actions summary
+        if: always()
+        run: cat owner-B-reports/D_B_JOINT_DISCUSSION.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive director discussion and Director D response
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: director-D-B-workforce-consensus
+          path: director-D-discussion/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Archive Director D report and every actual agent record for OWNER
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Director-D-Owner-Report-and-All-Executed-Agents
+          path: owner-B-reports/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Archive verified counts and blockers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-ai-workers-overall-audit
+          path: |
+            ai-process-summary.json
+            ai-process-summary.md
+            agent-state/latest.json
+            director-D-results/
+            ord035-parent-followups.json
+          if-no-files-found: warn
+          retention-days: 7
