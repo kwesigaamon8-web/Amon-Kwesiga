@@ -59,6 +59,8 @@ TASK=IDENTITY["task"]
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "seven_billion_campaign_target_index":int(os.environ["SEVEN_BILLION_TARGET_INDEX"]) if os.environ.get("SEVEN_BILLION_TARGET_INDEX") else None,
+    "seven_billion_target_count":7000000000,
     "latest_command_model_acknowledgement":None,
     "latest_order_ack_inference_status":"not_started",
     "chief_D_latest_instruction_excerpt":LATEST_CHIEF_D_INSTRUCTION[:1000],
