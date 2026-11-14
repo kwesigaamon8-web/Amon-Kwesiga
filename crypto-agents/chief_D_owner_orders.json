@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-085656",
+  "current_owner_order_id": "OWNER-20261114-085956",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -130,6 +130,14 @@
       "as_of_utc": "2026-11-14T08:56:56Z",
       "relayed_by": "ChatGPT at owner's explicit request to fund the two crypto receiving addresses through worldwide help and legitimate support or NGO-like project opportunities",
       "instruction": "CHIEF D: The owner needs real cryptocurrency receipts in their existing wallet addresses urgently. Execute three HONEST routes across both companies and the 7-billion indexed idea-role target: (A) lawful paid jobs with clear deliverables, buyer acceptance and crypto settlement; (B) genuine anonymous or pseudonymous voluntary personal support and crypto tips posted only in the owner's own allowed channels or channels that invite funding requests, never impersonate a charity, NGO, donor, distress beneficiary or miner; and (C) legitimate public-good or community projects eligible for vetted Bitcoin crowdfunding or grants, using real source code and real deliverables, documented budgets, any required beneficiary identity verification, applicable legal requirements, public progress reports, and restricted purpose use. Geyser has examples of Bitcoin Kampala-vouched Uganda campaigns and newer Circular Grants, Gitcoin funds early-stage web3/public goods projects, Giveth disqualifies personal-gain projects from GIVbacks. DO NOT falsely represent the owner as an NGO, invent people helped, fake crises or photographs, self-fund donation matching, create fake transactions, or promise grant eligibility. Keep B1 BTC mainnet and B2 BTC mainnet receiving routes separate; optional B1 USDC on Base remains HOLD until self-custody and network receipt verified. Managers must rank by genuine payer/funder access, track authenticated eligibility/application status, source links, real delivered work, receipts and blockers; Chief D reports only confirmed crypto credits or none. Seven billion role IDs are addressable templates, not active fundraisers or independently working AI agents. No spam, harassment, upfront verification fees, access to donor accounts or unauthorized compute.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-085956",
+      "as_of_utc": "2026-11-14T08:59:56Z",
+      "relayed_by": "ChatGPT on user's explicit work delegation request",
+      "instruction": "CHIEF D AND BOTH SEPARATE B BOARDS: assign EVERY addressable worker identity an individually unique, concrete funding-related work order, with exactly one immediate supervisor and correct company receiving network. Generate these millions/billions of distinct work order identities deterministically ON DEMAND; never materialize 7 billion files or claim unexecuted workers actually received, reviewed or completed them. Diversify substantive work into real crypto-paying jobs, contest rules and original deliverables, voluntary personal gift notices only in permitted venues, authentic open-source public-good project/grant eligibility and demonstrable community value, optional miner collaboration with genuine consent, and real receipt/contract verification. No false NGO/registered charity claim, fabricated client/donor, counterfeit impact, scraping private details, unsolicited repeated posts, signatures, wallet connections or upfront fees. Each real worker must receive its specific own task in its actual independent model prompt and JSON report; director/manager assigns, evaluates, and reassigns if evidence weak. For each, require a distinct deliverable, original URL and verification status, reason to reject and legal next action, payer/funder or donor status and honest completed/pending classification. Workers under local D10 should handle only verified receivables/reconciliation, not fabricate contracts. D01-D09 independently work on real sources, project proposals, lawful service samples and approved outreach. Chief D aggregates unique assigned vs real executed tasks, screened ideas, approved paid work and actual independently proved crypto receipts. Ideas lead to action and donations or grants only on authentic authorized conditions.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -350,5 +358,19 @@
     "verified_grants_awarded": 0,
     "verified_new_crypto_receipts": "NO_EVIDENCE_FROM_THIS_INSTRUCTION",
     "strict_separation": "Personal help is not charity. Public-good funding must be spent as promised, with genuine evidence and accountability."
+  },
+  "unique_funding_task_allocation": {
+    "current_order_id": "OWNER-20261114-085956",
+    "assigned_role_space": 7000000000,
+    "assignment_method": "Deterministic lazy per fleet plus unique full worker role; one unique ID and diversified specific source, deliverable and evidence question per role. Does NOT launch all 7B.",
+    "work_categories": [
+      "Crypto-paid services and bounties",
+      "Pseudonymous permitted voluntary personal support",
+      "Genuine open-source public-good grant eligibility",
+      "Crypto prize competition deliverables",
+      "Permission-based voluntary mining collaborations",
+      "Verified accepted due payments and correct-chain receipts (local D10)"
+    ],
+    "reporting_distinction": "assigned, actually launched, model replied, real outreach, accepted work, TXID credit are distinct evidence levels."
   }
 }
