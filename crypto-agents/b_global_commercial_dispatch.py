@@ -1,0 +1,141 @@
+"""Chief D global revenue management: 20 company-specific director plans + 7B lazy worker packets.
+
+This is an executable task-routing program, NOT billions of hosted AI models,
+nor a sale, account login, permission grant, approved offer or received coin.
+"""
+from __future__ import annotations
+import argparse
+import json
+from datetime import datetime,timezone
+from pathlib import Path
+
+from b_universal_work_protocol import assign_global_index, MARKETS, FLEETS
+from owner_first_oath import current_order
+
+# The owner has two company boards, each with 10 local directors.
+# Distinct director responsibilities; one actual prospective lead belongs to
+# exactly ONE director so no fleet mass-spams the same customer.
+DIRECTOR_LANES=(
+ ("D01","Find original customer demand", "Sourced unexpired customer task and genuine payee identity"),
+ ("D02","Validate ability and funding", "Payer and source legitimacy, eligibility, no advance fee"),
+ ("D03","Price and propose", "Original scope and estimated quote for approved buyer"),
+ ("D04","Build paid-work artifact", "Testable original customer-specific deliverable"),
+ ("D05","Independent QA", "Executable tests with failure and success evidence"),
+ ("D06","Package and explain", "Client-readable sample, README and clear limitations"),
+ ("D07","Permissioned customer contact", "One authorised tailored offer with host-confirmed sending record"),
+ ("D08","Acceptance and revisions", "Genuine buyer response, revisions and acceptance evidence"),
+ ("D09","Source/code and fraud audit", "Licence, uniqueness, duplicate and risk flags"),
+ ("D10","Payments and settlement", "Accepted fee and independently verifiable receiving transaction"),
+)
+GLOBAL_ORIGINAL_BUYER_LEADS=(
+ {"lead_id":"OT-JSON-CSV-50","source":"https://opentask.ai/tasks/cmpupoqmm0027kw04351wcfhz",
+  "client":"Skill Exec Agent", "service":"Python JSON-to-CSV converter",
+  "advertised_budget":"50 USDC","stage":"PUBLIC_LISTING_ONLY",
+  "platform_offer_requires_signin":True,
+  "connected_platform_offer_account_verified":False,
+  "accepted_contract":False,"funding_guaranteed":False,"crypto_received_verified":False,
+  "original_work_artifact":"crypto-agents/commercial-work/opentask-json-csv/json_to_csv.py",
+  "original_test_artifact":"crypto-agents/commercial-work/opentask-json-csv/tests/test_json_to_csv.py",
+  "owner_of_lead":"transferexperiment/D04",
+  "next_gate":"An authenticated account must make a tailored offer, customer must accept hiring terms, then submit work and verify actual USDC settlement."
+ },
+)
+PENDING_VERIFICATION="NOT_EVIDENCED"
+
+def director_board():
+    order=current_order()["order_id"]
+    entries=[]
+    for fleet in FLEETS:
+        for i,(d,lane,proof) in enumerate(DIRECTOR_LANES):
+            # World coverage spans all continents, but chosen city is a
+            # research target only, NOT a paying customer.
+            choice=(i+(0 if fleet==FLEETS[0] else 19))%len(MARKETS)
+            iso,city,locale,continent=MARKETS[choice]
+            entries.append({
+             "director":fleet+"/"+d,"reports_to":"CHIEF_D",
+             "human_owner_order_id":order,"mission_limited_to_owner_order":True,
+             "responsibility":lane,"target_evidence":proof,
+             "market_hypothesis":{"city":city,"country_code":iso,"region":continent,"locale":locale},
+             "actual_customer_known_in_this_market":False,
+             "manager_count_defined":15,"manager_model_acknowledgements_verified":False,
+             "active_worker_proof_required":True,"payment_received_verified":False,
+             "real_lead_claims":[l["lead_id"] for l in GLOBAL_ORIGINAL_BUYER_LEADS if l["owner_of_lead"]==fleet+"/"+d]
+            })
+    return {"owner_order_id":order,"chief_director":"CHIEF_D",
+        "separate_company_director_boards":20,
+        "director_assignments":entries,
+        "source_verified_commercial_leads_not_yet_hired":list(GLOBAL_ORIGINAL_BUYER_LEADS),
+        "actual_human_owner_directive":"Worldwide legitimate opportunities => original work => authenticated offer => buyer acceptance => correct-network verified income.",
+        "unique_lead_claim_rule":"One owner per prospect. Directors coordinate, do not send bulk or repeated offers.",
+        "actual_connected_opentask_account_confirmed":False,
+        "active_billions_claim":False,
+        "total_addressable_H_worker_identities":7_000_000_000,
+        "total_actual_model_workers_proven_by_this_dispatch":0,
+        "confirmed_revenue_from_this_dispatch":0
+    }
+
+def worker_packet(global_index):
+    row=assign_global_index(global_index)
+    item=row["assignment"]
+    parent=item["report_to"]
+    company=item["company"]
+    director=item["board_director"]
+    dname=director.rsplit("/",1)[-1]
+    speciality=next(x for x in DIRECTOR_LANES if x[0]==dname)
+    return {
+      "protocol":"CHIEF_D_GLOBAL_REVENUE_V1",
+      "owner_order":row["owner_origin"]["current_order_id"],
+      "global_index":global_index,
+      "task_id":item["task_id"],
+      "company":company,
+      "worker_id":item["worker_id"],
+      "reports_to":parent,
+      "reports_up_through":item["one_parent_chain"],
+      "local_director":director,
+      "director_job":speciality[1],
+      "worker_assigned_job":speciality[2]+". "+item["specific_task"],
+      "world_market_research_hypothesis":item["city_focus"]+", "+item["country_iso_3166_alpha2"],
+      "translation_hint_locale":row["localization"]["content_language"],
+      "original_paid_contract_or_funding_verified":False,
+      "actual_worker_model_started":False,
+      "independent_model_acknowledgement":PENDING_VERIFICATION,
+      "submitted_to_customer":False,
+      "buyer_accepted":False,
+      "crypto_payment_verified":False,
+      "per_worker_one_cent_btc_target_only":row["payment"]["per_worker_owner_appreciation_earning_target_usd"],
+      "next_required_work":"Check actual payer and original task, create unique work evidence, and obtain real buyer acceptance before claiming fees."
+    }
+
+def self_test():
+    board=director_board()
+    assert len(board["director_assignments"])==20
+    ids=[x["director"] for x in board["director_assignments"]]
+    assert len(set(ids))==20
+    assert all(sum(l["lead_id"] in x["real_lead_claims"] for x in board["director_assignments"])==1 for l in GLOBAL_ORIGINAL_BUYER_LEADS)
+    assert board["source_verified_commercial_leads_not_yet_hired"][0]["crypto_received_verified"] is False
+    tasks=[worker_packet(x) for x in (0,1,2,100,3_499_999_999,3_500_000_000,6_999_999_998,6_999_999_999)]
+    assert len({t["task_id"] for t in tasks})==len(tasks)
+    assert len({t["worker_id"] for t in tasks})==len(tasks)
+    assert all(t["per_worker_one_cent_btc_target_only"]=="0.01" for t in tasks)
+    assert all(not t["actual_worker_model_started"] and not t["submitted_to_customer"] for t in tasks)
+    assert all(t["reports_up_through"][-1]==t["worker_id"] for t in tasks)
+    assert {t["company"] for t in tasks}==set(FLEETS)
+    print("B_GLOBAL_CHIEF_D_DISPATCH_TEST_PASS director_roles=20 unique_h_role_samples=8 actual_earnings_claimed=0")
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument("--self-test",action="store_true")
+    p.add_argument("--board",action="store_true")
+    p.add_argument("--index",type=int)
+    p.add_argument("--out")
+    a=p.parse_args()
+    if a.self_test:
+        self_test()
+    else:
+        data=worker_packet(a.index) if a.index is not None else director_board()
+        out=json.dumps(data,indent=2,ensure_ascii=False)+"\n"
+        if a.out:
+            Path(a.out).parent.mkdir(parents=True,exist_ok=True)
+            Path(a.out).write_text(out,encoding="utf-8")
+        else:print(out)
+if __name__=="__main__":main()
