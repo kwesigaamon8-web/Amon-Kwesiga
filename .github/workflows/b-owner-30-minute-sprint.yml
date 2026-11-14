@@ -1,0 +1,212 @@
+name: Owner B and D Thirty Minute Paid Work Sprint
+on:
+  push:
+    paths:
+      - '.github/workflows/b-owner-30-minute-sprint.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: owner-one-shot-thirty-minute-commercial-work
+  cancel-in-progress: false
+jobs:
+  original-paid-sources:
+    name: Verify current real-world paid issue candidates
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect and grade actual live potential buyer sources
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python crypto-agents/new_earning_lanes.py
+          python crypto-agents/bounty_eligibility_audit.py --self-test
+      - name: Archive candidates but never call unaccepted offers income
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-candidates-owner-sprint
+          path: paid-opportunity-reports/new-earning-lanes.json
+          if-no-files-found: warn
+          retention-days: 7
+  real-b-workers:
+    needs: original-paid-sources
+    name: ${{ matrix.fleet }} actual worker ${{ matrix.slot }} — real model + paid-work attempt
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - {fleet: transferexperiment, slot: 0}
+          - {fleet: transferexperiment, slot: 1}
+          - {fleet: BountyScoutAI, slot: 0}
+          - {fleet: BountyScoutAI, slot: 1}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Allocate unique true role, reject imaginary worker attendance
+        id: worker
+        env:
+          B_FLEET: ${{ matrix.fleet }}
+          B_CYCLE: ${{ github.run_number }}
+          B_SLOT: ${{ matrix.slot }}
+        run: |
+          python - <<'PY'
+          import os,json,sys
+          sys.path.insert(0,"crypto-agents")
+          from b_shift_worker_rotation import select
+          x=select(os.environ["B_FLEET"],int(os.environ["B_CYCLE"]),int(os.environ["B_SLOT"]))
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              f.write("role="+x["worker_id"]+"\n")
+          print("ACTUAL_OWNER_SPRINT_ROLE",json.dumps(x))
+          PY
+      - name: Verify owner instructions and original work validation
+        run: |
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/b_learning_by_doing.py
+          python crypto-agents/b_worker_buyer_source.py
+      - name: Install CPU model to ACTUALLY work
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - uses: actions/download-artifact@v4
+        with:
+          name: source-candidates-owner-sprint
+          path: paid-opportunity-reports
+      - name: Run real CPU model on unique paid-task research and practical lesson
+        env:
+          WORKFORCE_ID: ${{ matrix.fleet }}
+          GH_TOKEN: ${{ github.token }}
+          WORKER_MODEL_ID: Qwen/Qwen2.5-0.5B-Instruct
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+        run: python crypto-agents/ai_process_worker.py "${{ steps.worker.outputs.role }}"
+      - name: Verify real inference and individual original practical response
+        env:
+          WORKER_ROLE: ${{ steps.worker.outputs.role }}
+          COMPANY: ${{ matrix.fleet }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path("ai-process-reports")/(os.environ["WORKER_ROLE"]+".json")
+          d=json.loads(p.read_text())
+          t=d.get("practical_training_while_working") or {}
+          assert d["workforce_namespace"]==os.environ["COMPANY"]
+          assert d["inference_status"]=="model_completed"
+          assert t.get("independent_model_call_status")=="MODEL_COMPLETED"
+          print("OWNER_SPRINT_ACTUAL_MODEL",json.dumps({
+            "company":os.environ["COMPANY"],"worker":os.environ["WORKER_ROLE"],
+            "pid":d.get("os_process_pid"),
+            "source":(t.get("assignment") or {}).get("real_original_research_url"),
+            "work_grade":(t.get("result") or {}).get("status"),
+            "accepted_contract_verified":False,"new_receipt_verified":False}))
+          PY
+      - name: Archive model execution and real work sample
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprint-worker-${{ matrix.fleet }}-${{ matrix.slot }}
+          path: ai-process-reports/
+          if-no-files-found: warn
+          retention-days: 7
+  peer-teach-and-apply:
+    name: ${{ matrix.fleet }} actual model receives opposite B worker's lesson
+    needs: real-b-workers
+    if: ${{ needs.real-b-workers.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        fleet: [transferexperiment, BountyScoutAI]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: sprint-worker-*
+          path: shift-evidence
+      - name: Verify actual peer evidence rules
+        run: python crypto-agents/b_live_peer_teaching.py --self-test
+      - name: Install small independent AI learner and executable code tests
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5' pytest
+      - name: Apply real worker lesson in fresh model response and test software
+        env:
+          B_FLEET: ${{ matrix.fleet }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+        run: |
+          python crypto-agents/b_live_peer_teaching.py --fleet "$B_FLEET" --inputs shift-evidence --output peer-learning
+      - name: Save evidence: no fabricated sales or coins
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprint-actual-peer-learning-${{ matrix.fleet }}
+          path: peer-learning/
+          if-no-files-found: warn
+          retention-days: 7
+  chief-D-evidence:
+    name: Chief D actual-work audit — honest receipts, blockers and company report
+    needs: [original-paid-sources, real-b-workers, peer-teach-and-apply]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: sprint-worker-*
+          path: shift-evidence
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: sprint-actual-peer-learning-*
+          path: sprint-peer-evidence
+      - name: Verify independent worker proofs and record not-yet-paid work
+        run: |
+          python crypto-agents/b_shift_accountability.py --self-test
+          python crypto-agents/b_shift_accountability.py --inputs shift-evidence --output sprint-chief-D --run-url "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          cat sprint-chief-D/CHIEF_D_SHIFT.md >> "$GITHUB_STEP_SUMMARY"
+          python - <<'PY'
+          import glob,json,os
+          rows=[]
+          for p in glob.glob("sprint-peer-evidence/**/*.json",recursive=True):
+              try:
+                  with open(p) as f:x=json.load(f)
+                  if x.get("schema")=="REAL_B_PEER_TEACH_AND_APPLY_V1":rows.append(x)
+              except (ValueError,OSError):pass
+          n=sum(1 for x in rows if x.get("student_model_reply_completed"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("\n### Real cross-company teaching and commercial conversion\n")
+              f.write("- Independent peer learner model replies: "+str(n)+"/2\n")
+              f.write("- External accepted paid agreements: NOT VERIFIED BY THIS WORKFLOW\n")
+              f.write("- Correct-network incoming coins: NOT VERIFIED BY THIS WORKFLOW\n")
+              f.write("- Current constraint: external buyer must accept offer through an actually authorised account\n")
+          print("OWNER_SPRINT_EVIDENCE",json.dumps({"new_peer_inferences":n,"new_payment_verified":False}))
+          PY
+      - name: Archive Chief D honest worker/teaching evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprint-Chief-D-evidence
+          path: sprint-chief-D/
+          if-no-files-found: warn
+          retention-days: 7
