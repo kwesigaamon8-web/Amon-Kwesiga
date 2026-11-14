@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/paid-task-scout.yml'
       - 'crypto-agents/paid_task_scout.py'
+      - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/b_fleet_integrity.py'
       - 'crypto-agents/d10_payment_director.py'
       - 'crypto-agents/chief_D_reporting.py'
@@ -67,6 +68,12 @@ jobs:
         run: python crypto-agents/chief_D_reporting.py
       - name: Show one Chief D owner report in workflow summary
         run: cat chief-D-reports/CHIEF_D_TO_OWNER.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Expand earnings search to recent independently listed GitHub rewards, flag unverified funding
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/new_earning_lanes.py
+      - name: Show new job-scout results and genuine miner opt-in limitations
+        run: cat paid-opportunity-reports/new-earning-lanes.md >> "$GITHUB_STEP_SUMMARY"
       - name: Scan public listings and original sponsor issues
         env:
           GH_TOKEN: ${{ github.token }}
