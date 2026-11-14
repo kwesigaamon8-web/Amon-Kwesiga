@@ -16,13 +16,27 @@ assert C["director_operations"]["payment_director_id"] == "D10"
 assert C["director_operations"]["other_directors"] == [
     "D%02d" % n for n in range(1, 10)
 ]
-assert S["director_operating_split"]["payments"].startswith("D10")
-assert S["director_mandates"]["D10"].startswith("SOLE CROSS-FLEET PAYMENT DIRECTOR")
+assert C["hierarchy"]["chief_director"] == "D"
+assert C["hierarchy"]["top_level_executive_count"] == 1
+assert C["hierarchy"]["distinct_local_director_count"] == 20
+assert S["organization_governance"]["chief_director"] == "D"
+assert S["director_operating_split"]["chief_director"].startswith("Only ONE Chief Director D")
+assert S["director_mandates"]["D10"].startswith("FLEET-LOCAL PAYMENTS DIRECTOR")
+all_local_ids = []
+for fleet in ("transferexperiment", "BountyScoutAI"):
+    board = C["hierarchy"]["companies"][fleet]
+    expected = [fleet + "/D%02d" % i for i in range(1,11)]
+    assert board["local_director_ids"] == expected
+    assert board["directors"] == 10
+    assert board["local_payment_director"] == fleet+"/D10"
+    assert board["reports_to"] == "D"
+    all_local_ids += board["local_director_ids"]
+assert len(all_local_ids) == len(set(all_local_ids)) == 20
 for f in F.values():
     assert f["network"] == "Bitcoin mainnet"
     assert f["asset"] == "BTC"
     assert f["address"].startswith("bc1q")
-    assert f["director_mandate"].startswith("D10")
+    assert "INDEPENDENT board of 10 directors" in f["director_mandate"]
 
 pair = {
     "transferexperiment": ("crypto-directors.yml", "real-ai-workers.yml"),
@@ -64,7 +78,9 @@ assert by_fleet["BountyScoutAI"]["actual_model_cron_utc"] == "21 4 * * *"
 assert by_fleet["transferexperiment"]["configured_daily_model_attempt_cap"] == 200
 print("B_FLEET_PARITY", json.dumps({
     "integrity": "PASS",
-    "payment_director": "D10",
+    "chief_director": "D",
+    "company_local_payment_directors": ["transferexperiment/D10","BountyScoutAI/D10"],
+    "independent_company_directors": 20,
     "earning_directors": 9,
     "fleets": by_fleet,
     "limit": "Scheduled capacity is not completed AI output, permanent model hosting, payer contact or cryptocurrency earnings.",
