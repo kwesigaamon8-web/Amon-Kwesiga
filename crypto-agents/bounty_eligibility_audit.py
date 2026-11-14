@@ -17,6 +17,8 @@ RISK=re.compile(r"(?i)(?:pay to claim|fee before apply|deposit to start|private 
 PRICE=re.compile(r"(?i)(?:\bPrice:\s*\d+(?:\.\d+)?\s*USD|\b(?:bounty|reward|payment|pays?)\b[^\n]{0,50}?\$\s*\d+(?:\.\d+)?|\[\$\d+(?:\.\d+)?\])")
 DISPUTE=re.compile(r"(?i)(?:payment not received|bounty not paid|unable to pay|fake bounty|scam bounty)")
 ISSUE_URL=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\d+)$")
+ZERO_BOUNTY=re.compile(r"(?i)(?:\bzero[- ]bounty\b|\[\$0\]|\b(?:bounty|reward|payment|price|worker price)\s*[:=]?\s*\$\s*0(?:\b|\D)|\b(?:no payout|unpaid|no monetary reward)\b)")
+FILLED_OR_DELIVERED=re.compile(r"(?i)(?:\bstatus\s*:\s*(?:delivered|completed|paid|awarded)\b|\bslots?\s*:\s*\d+\s*\(filled\)|\bslots?\s*:\s*0\b|\bno slots available\b)")
 
 def evaluate(issue,comments,repo=None):
     repo=repo or {}
@@ -31,6 +33,10 @@ def evaluate(issue,comments,repo=None):
         flags.append("NOT_OPEN_OR_ARCHIVED")
     if RESTRICTED.search(issue_text) or RESTRICTED.search(bot_comments):
         flags.append("EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION")
+    if ZERO_BOUNTY.search(issue_text) or any(str(x).lower() in ("zero-bounty","no-bounty","unpaid","no-payment") for x in labels):
+        flags.append("ZERO_PAYMENT_EXPLICIT")
+    if FILLED_OR_DELIVERED.search(issue_text) or any(str(x).lower() in ("delivered","filled","already-awarded","paid") for x in labels):
+        flags.append("ALL_SLOTS_FILLED_OR_DELIVERED")
     if RISK.search(issue_text):
         flags.append("ADVANCE_FEE_OR_SECRET_RISK")
     if DISPUTE.search(issue_text) or DISPUTE.search(all_comments):
@@ -41,7 +47,7 @@ def evaluate(issue,comments,repo=None):
         flags.append("NO_EXPLICIT_REWARD_IN_SOURCE")
     if int(issue.get("comments") or 0)>len(comments):
         flags.append("SOME_COMMENTS_UNREAD")
-    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK"))
+    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED"))
     return {
       "schema":"B_COMMERCIAL_ELIGIBILITY_V1",
       "source_url":issue.get("html_url"),"issue_title":title,
@@ -87,7 +93,16 @@ def self_test():
     assert evaluate(fake,[])["critical_blocker"]
     submitted=evaluate(i,[{"user":{"login":"dev"},"body":"PR submitted #138"}])
     assert "ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS" in submitted["flags"]
-    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: six independently scoped evidence gates")
+    zero={**i,"body":"This is a zero-bounty task: $0. Real reward requires /reward funding.","labels":[{"name":"bounty"},{"name":"zero-bounty"}]}
+    z=evaluate(zero,[])
+    assert z["critical_blocker"] and "ZERO_PAYMENT_EXPLICIT" in z["flags"]
+    filled={**i,"body":"Worker price: $10\\nSlots: 1 (filled)\\nStatus: delivered","labels":[{"name":"bounty"},{"name":"funded"},{"name":"delivered"}]}
+    z=evaluate(filled,[])
+    assert z["critical_blocker"] and "ALL_SLOTS_FILLED_OR_DELIVERED" in z["flags"]
+    price_only={**i,"title":"[$250] New paid issue","body":"Code task with no buyer acceptance evidence","comments":0}
+    z=evaluate(price_only,[])
+    assert not z["reward_funded_verified"] and not z["accepted_paid_job_verified"]
+    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: nine independent checks including zero-payout, filled slots, prior submitted PR and bot permission failures")
 
 def main():
     p=argparse.ArgumentParser()
