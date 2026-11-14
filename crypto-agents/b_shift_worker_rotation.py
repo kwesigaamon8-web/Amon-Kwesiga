@@ -10,7 +10,7 @@ from datetime import datetime,timezone
 
 FLEETS=("transferexperiment","BountyScoutAI")
 PER_COMPANY=9*15*50
-WORKERS_PER_SHIFT=2
+WORKERS_PER_SHIFT=5
 
 def select(fleet,cycle,slot=0):
     if fleet not in FLEETS: raise ValueError("unknown fleet")
@@ -19,7 +19,7 @@ def select(fleet,cycle,slot=0):
     slot=int(slot)
     if not 0<=slot<WORKERS_PER_SHIFT:raise ValueError("slot out of bounds")
     offset=0 if fleet==FLEETS[0] else PER_COMPANY//2
-    # Two non-overlapping slots per company/shift; full 6750-worker cycle in 3375 shifts.
+    # Five distinct real worker slots per company per shift; 6750-worker cycle in 1350 shifts.
     idx=((cycle-1)*WORKERS_PER_SHIFT+slot+offset)%PER_COMPANY
     director=idx%9+1
     manager=(idx//9)%15+1
@@ -39,7 +39,8 @@ def self_test():
     seen=[select("transferexperiment",i,j)["worker_id"] for i in range(1,PER_COMPANY//WORKERS_PER_SHIFT+1) for j in range(WORKERS_PER_SHIFT)]
     assert len(set(seen))==PER_COMPANY
     assert seen[0]!=select("BountyScoutAI",1)["worker_id"]
-    assert select("transferexperiment",1,0)["worker_id"]!=select("transferexperiment",1,1)["worker_id"]
+    assert len({select("transferexperiment",1,s)["worker_id"] for s in range(WORKERS_PER_SHIFT)})==WORKERS_PER_SHIFT
+    assert WORKERS_PER_SHIFT==5
     assert all(re.fullmatch(r"D0[1-9]-M(?:0[1-9]|1[0-5])-W(?:0[1-9]|[1-4]\d|50)",x) for x in seen)
     assert all("-D10" not in x for x in seen)
     assert select("transferexperiment",PER_COMPANY//WORKERS_PER_SHIFT+1)["worker_id"]==seen[0]
