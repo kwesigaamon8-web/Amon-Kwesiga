@@ -8,6 +8,7 @@ on:
       - 'crypto-agents/b_fleet_integrity.py'
       - 'crypto-agents/d10_payment_director.py'
       - 'crypto-agents/chief_D_reporting.py'
+      - 'crypto-agents/b_two_company_census.py'
       - 'crypto-agents/chief_D_owner_orders.json'
   schedule:
     - cron: '9 * * * *'
@@ -28,13 +29,17 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile local D10, Chief D and fleet integrity
-        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py crypto-agents/chief_D_reporting.py
+        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py crypto-agents/chief_D_reporting.py crypto-agents/b_two_company_census.py
       - name: Validate independent B1/B2 boards and one overarching Chief D
         run: python crypto-agents/b_fleet_integrity.py
       - name: Two independent local D10 payments audits and read-only BTC snapshots
         run: python crypto-agents/d10_payment_director.py
       - name: Show D10 payment audit in workflow summary
         run: cat d10-payment-reports/D10_TWO_ACCOUNT_PAYMENT_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Census both companies' complete mathematical hierarchy without claiming live models
+        run: python crypto-agents/b_two_company_census.py
+      - name: Display both workforce totals and active-agent limitations
+        run: cat chief-D-reports/TWO_COMPANY_WORKFORCE_CENSUS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Chief D consolidates TWO separate ten-director company boards and owner orders
         env:
           GH_TOKEN: ${{ github.token }}
