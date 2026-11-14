@@ -4,6 +4,9 @@ on:
     paths:
       - '.github/workflows/b-world-revenue-command.yml'
       - 'crypto-agents/b_global_commercial_dispatch.py'
+      - 'crypto-agents/b_universal_work_protocol.py'
+      - 'crypto-agents/b_live_peer_teaching.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
       - 'crypto-agents/commercial-work/opentask-json-csv/**'
   workflow_dispatch:
   schedule:
@@ -24,6 +27,8 @@ jobs:
         run: |
           python crypto-agents/owner_first_oath.py
           python crypto-agents/b_global_commercial_dispatch.py --self-test
+          python crypto-agents/b_universal_work_protocol.py --self-test
+          python crypto-agents/b_live_peer_teaching.py --self-test
           python crypto-agents/b_global_commercial_dispatch.py --board --out chief-D-global/board.json
       - name: Allocate 20 distinct individual H-tier worker task packets under the 20 separate company directors
         env:
