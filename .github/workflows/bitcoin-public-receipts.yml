@@ -1,0 +1,37 @@
+name: Read-only BTC mainnet receipts evidence
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/bitcoin-public-receipts.yml'
+      - 'crypto-agents/bitcoin_mainnet_receipt_probe.py'
+permissions:
+  contents: read
+concurrency:
+  group: one-off-read-only-wallet-proof
+  cancel-in-progress: false
+jobs:
+  inspect-public-mainnet-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile receipt probe
+        run: python -m py_compile crypto-agents/bitcoin_mainnet_receipt_probe.py
+      - name: Inspect two public Bitcoin mainnet addresses without wallet access
+        run: python crypto-agents/bitcoin_mainnet_receipt_probe.py
+      - name: Publish proof and uncertainty to job summary
+        if: always()
+        run: |
+          if [ -f bitcoin-receipt-probe/BTC_PUBLIC_RECEIPTS.md ]; then
+            cat bitcoin-receipt-probe/BTC_PUBLIC_RECEIPTS.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-mainnet-receipts
+          path: bitcoin-receipt-probe/
+          if-no-files-found: warn
