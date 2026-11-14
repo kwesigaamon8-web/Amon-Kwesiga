@@ -160,7 +160,7 @@ report={
     "source_check_status":"not_started",
     "source_error":None,
     "source_items":[],
-    "model":"HuggingFaceTB/SmolLM2-135M-Instruct",
+    "model":os.environ.get("WORKER_MODEL_ID","HuggingFaceTB/SmolLM2-135M-Instruct"),
     "inference_status":"not_started",
     "inference_error":None,
     "model_response":None,
@@ -282,9 +282,12 @@ except Exception as exc:
 # TRAIN WHILE WORKING: a second, real call on the worker's OWN task and source.
 # Model-generated work samples are UNSUBMITTED drafts, not revenue or copied software.
 training_source=(report["source_items"][0]["url"] if report["source_items"] else "")
+training_item=(report["source_items"][0] if report["source_items"] else {})
 practical_lesson=make_practical_lesson(
     FLEET,WORKER,PARENT,training_source,report["source_check_status"],
-    SOFTWARE_SECOND["official_repository"],False)
+    SOFTWARE_SECOND["official_repository"],False,
+    source_title=training_item.get("title",""),
+    source_excerpt=training_item.get("public_issue_body_excerpt",""))
 practical_text=""
 practical_completed=False
 practical_error=""
