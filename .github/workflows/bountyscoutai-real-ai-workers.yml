@@ -57,6 +57,12 @@ jobs:
             bountyscoutai-agent-memory-
       - name: Validate strict owner-to-final-H routing without fake replies
         run: python crypto-agents/command_chain_receipts.py
+      - name: Read OTHER company's actual public model ideas once for this director batch
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WORKFORCE_ID: BountyScoutAI
+        run: python crypto-agents/cross_fleet_idea_exchange.py feed --fleet BountyScoutAI
       - name: Director activation mission and individual role queue
         env:
           ROLE_ID: ${{ matrix.director }}
