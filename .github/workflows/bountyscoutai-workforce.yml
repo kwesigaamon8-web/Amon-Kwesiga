@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/bountyscoutai-workforce.yml'
   schedule:
-    - cron: '46 */3 * * *'
+    - cron: '46 * * * *'
 # Repeated hourly checks should not overlap or consume free runners on stale scans.
 concurrency:
   group: bountyscoutai-${{ github.workflow }}
