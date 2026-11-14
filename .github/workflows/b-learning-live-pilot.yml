@@ -27,15 +27,22 @@ jobs:
           python-version: '3.11'
       - name: Verify the real-work training evaluator
         run: |
-          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py
+          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py
           python crypto-agents/b_learning_by_doing.py
+          python crypto-agents/b_worker_buyer_source.py
       - name: Install open-source CPU inference runtime
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Find original open work issues for immediate paid-task practice
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/new_earning_lanes.py
       - name: Actually run one B worker and teach while it performs source research
         env:
           WORKFORCE_ID: ${{ matrix.fleet }}
+          GH_TOKEN: ${{ github.token }}
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
         run: python crypto-agents/ai_process_worker.py "${{ matrix.worker }}"
