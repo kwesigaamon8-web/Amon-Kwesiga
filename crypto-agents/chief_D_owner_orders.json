@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-075829",
+  "current_owner_order_id": "OWNER-20261114-080246",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -90,6 +90,14 @@
       "as_of_utc": "2026-11-14T07:58:29Z",
       "relayed_by": "ChatGPT upon owner's explicit correction",
       "instruction": "Chief D: THE MISSION STARTS WITH IDEAS. Each actually executed B worker's first deliverable is TEN DISTINCT, realistic, lawful ways of creating real crypto income for its own company. Step 1: generate its own ten individually numbered ideas and report unique worker ID, company, supervisor. Step 2: manager/director independently evaluate and remove duplicates, scams, fee-required, impossible or unfunded options. Step 3: choose the best 1-2 feasible and independently source-backed paying opportunities per company and make a concrete, legal deliverable. Step 4: obtain buyer acceptance or a genuine opt-in miner's clear consent, then request settlement only when justified. Step 5: independently verify incoming correct-wallet, correct-chain coins using TXID/output and make one owner report through Chief D. Do not invert the sequence by demanding payments before finding a real payer. Ideas are the START; verified wallet deposits are the OUTCOME. Do not call assigned menus real AI-generated brainstorming, nor count idled roles as participants. Keep separate ten-director company boards and one Chief D above both.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-080246",
+      "as_of_utc": "2026-11-14T08:02:46Z",
+      "relayed_by": "ChatGPT on owner's express instruction",
+      "instruction": "CHIEF D: All actually running B workers in BOTH independent companies and your own top-level governance must understand the owner's receiving ADDRESS MAPPING, correct coin, correct chain and responsibility. Company 1 transferexperiment: BTC native Bitcoin MAINNET bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; separately optional USDC on BASE 0x734989a439F146885C12907cd9Dd191b03d5B07e, requiring live asset/network acceptance confirmation before use. Company 2 BountyScoutAI: BTC native Bitcoin MAINNET bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Any other historically mentioned EVM/Solana/Tron/Stellar/HBAR/exchange account route remains HOLD/UNVERIFIED in this GitHub mission until the owner confirms explicit asset, network, address, required memo/tag and receiving approval. Never assume an EVM-format address means Ethereum chain, Base, Polygon, etc.; never treat HBAR or XLM deposit memos as optional. Every actually invoked B model must separately demonstrate that it knows ITS correct company BTC address, which address belongs to the OTHER company (so as NOT to confuse), coin/network, how to handle optional USDC/unknown networks, its local D10 payment director and singular overarching Chief D. Log the independent model's reply and mark missing/wrong addresses FAIL / SUPERVISOR_REVIEW; receiving instruction alone does not establish understanding. This is a read-only instruction and testing mission: never request wallet keys, sign transactions, publish unapproved exchange routes, fabricate payments, claim all dormant worker IDs understood, or cross-credit deposits to the wrong company. Director D consolidates separate company outcomes and reports verified wallet receipts only with TXID and output. Ideas first, actual genuine paid work then settlement remains the priority.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -211,5 +219,23 @@
     ],
     "primary_final_goal": "Real cryptocurrency on owner's two receiving accounts",
     "reporting": "Count actual model brainstorming, screened ideas, original-payer-confirmed jobs, delivered work, accepted work and TXID receipts separately."
+  },
+  "owner_address_understanding": {
+    "id": "OWNER-20261114-080246",
+    "chief_director": "D",
+    "account_specific_distinction": "strict",
+    "public_approved_routes": {
+      "transferexperiment": {
+        "btc_mainnet": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+        "optional_base_usdc": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
+        "optional_route_status": "verify_before_quoting"
+      },
+      "BountyScoutAI": {
+        "btc_mainnet": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+      }
+    },
+    "other_known_routes": "HOLD pending chain/asset/memo confirmation; do not publish private full directory",
+    "reporting_requirement": "Real worker must independently model-state its own fleet's exact BTC address and native chain plus correct unique Chief D/local D10 hierarchy; otherwise do not claim understood.",
+    "non_custodial": true
   }
 }
