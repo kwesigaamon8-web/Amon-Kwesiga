@@ -67,7 +67,7 @@ STRICT_MODEL_ORDER=(
  "approved wallet; B1 and B2 have distinct mainnet BTC addresses. "
  "A buyer may pay only after genuine agreement; do not claim receipts from "
  "wishlists. Report through your one company parent to Chief D and owner. "
- "Preserve the owner's USD 100 genuine receipt goal without guaranteeing a date."
+ "The CURRENT objective is confirmed liquid crypto receipts worth 1 BTC in total across supported owner-controlled accounts. Never count a lead, worker ID or promise as money."
 )
 
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
@@ -157,15 +157,15 @@ report={
         "independent_model_not_previously_invoked_by_assignment":True,
         "only_verified_accepted_paid_work_is_income":True,
     },
-    "owner_emergency_revenue_target":{
-        "owner_order_id":"OWNER-20261114-152226",
-        "requested_usd_total":100,
-        "start_utc":"2026-11-14T15:22:26Z",
-        "deadline_utc":"2026-11-14T15:32:26Z",
+    "owner_current_crypto_revenue_target":{
+        "owner_order_id":STRICT_OWNER_ORDER_ID,
+        "target_btc_equivalent":1.0,
+        "target_scope":"Legitimately earned liquid cryptocurrency actually credited to approved correct-chain owner accounts",
+        "latest_owner_instruction":LATEST_CHIEF_D_INSTRUCTION[:1600],
         "target_is_not_actual_earnings":True,
         "proof_of_any_new_receipt":"NOT_YET_VERIFIED",
-        "worker_executed_in_owner_deadline":"REQUIRES_ACTUAL_START_STOP_TIMESTAMPS",
-        "work_priority":"Verified genuinely due receivables, independently eligible paid work, permissioned outreach and accepted useful deliverables"
+        "worker_executed_in_current_sprint":"REQUIRES_ACTUAL_START_STOP_TIMESTAMPS",
+        "work_priority":"Find genuine buyers, verify paid eligibility, produce original accepted deliverables, obtain correct-chain cryptocurrency receipts, and report authentic blockers"
     },
     "owner_first_oath":OWNER_OATH,
     "universal_task_message":UNIVERSAL_TASK,
