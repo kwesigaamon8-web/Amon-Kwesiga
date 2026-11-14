@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-090342",
+  "current_owner_order_id": "OWNER-20261114-090832",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -154,6 +154,14 @@
       "as_of_utc": "2026-11-14T09:03:42Z",
       "relayed_by": "ChatGPT on owner's request to learn from published software across many code sites",
       "instruction": "CHIEF D: Every actually executing B worker's SECOND task is to learn from publicly published code, documentation and software around the WORLD, not just GitHub. Distribute and diversify original source-study targets across GitHub, GitLab, Codeberg, SourceHut, PyPI project pages, npm package entries and official vendor manuals. Workers must independently verify the current license for specific source code and files, evaluate attribution, compatible source distribution/copyright/trademark restrictions and genuine permissions. Publicly visible source WITHOUT a license is NOT permission to copy/adapt it. Read publicly permitted features and documentation to understand how systems work; reuse/modify source only where the actual license clearly allows it and all terms are followed, or independently build an original implementation. No proprietary source theft, paywall circumvention, private credentials, unauthorized scraping, fake origin attribution, unapproved deployments or malware. Each worker's second work order must name a distinct role-specific repository or package, study feature, source site, license verification step and one useful proposal linked to FIRST unique cryptocurrency-earning task. The real model must reply with independent source discussion and clear unverified facts, then managers/directors check evidence, failure cases and test it. Neither software study nor 7B configured worker identities counts as independent execution or crypto earned. Chief D reports genuine working deliverables and actual correct-chain BTC payments separately.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-090832",
+      "as_of_utc": "2026-11-14T09:08:32Z",
+      "relayed_by": "ChatGPT at owner's request to change 'No new cryptocurrency payment has been verified' using B, D and ChatGPT",
+      "instruction": "CHIEF D: owner measures us by cryptocurrency actually landing in the right wallet, NOT agent numbers, passive receipts monitoring, repeated donation appeals, or random contest headlines. Switch B1/B2 to a narrow commercial conversion funnel. B1 D01-D09 should prioritize a legitimate no-upfront-fee, publicly funded, open-to-eligible-entrants crypto coding contest such as make.fun agency-poem-01 (250 USDC escrow, until 15 Nov 09:00 UTC) and produce truthful original contest-compliant source, authentic AI agent session proof, actual submission through an authorized signed Solana wallet and entry receipt; no promise of winning. A 549-byte original deterministic Python candidate was prepared separately but has NOT been submitted, and the current ChatGPT/GitHub tools have no user-controlled Solana signing wallet, platform key or qualifying new GitHub repository creation action. These are explicit BLOCKERS to surface, never hide. B2 D01-D09 must pursue truly verified original paying customers, paid low-barrier gigs or other escrow-backed global bounties that require no upfront money or false NGO claims; exclude stale/closed items, misleading Ubiquity core-team-only listings, contests requiring 20 USDC deposits, $100,000 wash-resistant volume or incompatible country eligibility. Each local D10 checks genuine outstanding customer payments and correct-chain TXIDs. Chief D must report in this exact order: original source and eligibility, prepared working deliverable, authentic submission, buyer or judge acceptance, amount actually due, network/wallet ownership, independently verified incoming output. Do not confuse sending BTC to B1/B2 Bitcoin mainnet with earning USDC on Solana; a signing Solana wallet would have to be authorized and controlled by its holder. No request for wallet private keys or recovery phrases. Published public addresses are not payment proof. Two independent Bitcoin explorer APIs on a GitHub Actions runner responded on 14 Nov at 09:13 UTC and found no receiving outputs since 13 Nov in the latest returned pages, not an exhaustive history. No balances, winnings or transfers may be invented. The 7B roles are virtual addressable targets, not live concurrent payment earners.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -410,5 +418,36 @@
     "method": "Distinct role-indexed public code/doc source and feature + metadata or file license check; never claim studied if model did not execute",
     "copyright": "Public visible is not automatically licensed. Open source reuse only within actual project/file terms.",
     "no_proprietary_code_copy": true
+  },
+  "evidence_first_conversion_target": {
+    "id": "OWNER-20261114-090832",
+    "primary": "Actual legally earned or voluntary cryptocurrency transfer verified on recipient's authorized chain/wallet",
+    "verified_github_btc_scan": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/43579514059",
+    "active_real_lead": {
+      "provider": "make.fun",
+      "bounty": "https://make.fun/bounty/agency-poem-01",
+      "escrow": "250 USDC Solana",
+      "entry_fee": "No entry fee advertised",
+      "prerequisites": [
+        "genuinely eligible new repository or supported source bundle",
+        "original code",
+        "authentic AI coding agent sessions",
+        "holder-controlled Solana signature and connected account",
+        "valid submitted entry before deadline",
+        "earned ranking and on-chain claim"
+      ],
+      "local_source_artifact": "Original poem Python candidate was locally generated and tested; NOT submitted, NOT in a qualifying new GitHub repo",
+      "status": "WORK_SAMPLE_ONLY_AUTHENTICATION_AND_SUBMISSION_BLOCKED"
+    },
+    "filters": [
+      "Original paid sponsor",
+      "Region eligibility",
+      "No upfront payment",
+      "No fake claims",
+      "Actual deliverables",
+      "Real acceptance",
+      "Correct-chain receipt"
+    ],
+    "independent_earnings_verified": "NOT_PROVEN"
   }
 }
