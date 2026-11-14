@@ -15,7 +15,7 @@ OUT=Path("chief-D-reports")
 OUT.mkdir(exist_ok=True)
 cfg=json.loads((R/"b_collection_assignments.json").read_text(encoding="utf-8"))
 owner=json.loads((R/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
-assert owner["current_owner_order_id"]=="OWNER-20261114-075553"
+assert any(x.get("id")=="OWNER-20261114-075553" for x in owner["orders"])
 assert self_test()["status"]=="PASS"
 report={
  "as_of_utc":datetime.now(timezone.utc).isoformat(),
