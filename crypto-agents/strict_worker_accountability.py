@@ -81,6 +81,16 @@ for director in DIRECTORS:
                 fingerprints[fingerprint]=id
         if not data.get("parent_id"):
             defects.append("DIRECT_PARENT_MISSING")
+        ack=data.get("latest_command_model_acknowledgement") or {}
+        if ack.get("status")!="MODEL_SELF_REPORTED_COMMAND_ACK":
+            defects.append("LATEST_CHIEF_D_ORDER_NOT_ACKNOWLEDGED")
+        if ack.get("chief_D_owner_order_id")!=data.get("strict_owner_order_id"):
+            defects.append("CHIEF_D_ORDER_ACK_ID_MISMATCH")
+        if not (ack.get("correct_direct_parent_in_model_reply") and
+                ack.get("crypto_mission_stated") and
+                ack.get("concrete_action_stated") and
+                ack.get("source_or_payment_evidence_discussed")):
+            defects.append("CHIEF_D_COMMAND_ACK_MISSING_REQUIRED_EVIDENCE")
         checkpoint=data.get("cognitive_checkpoint") or {}
         activate=data.get("activation_evidence") or {}
         next_action=str(checkpoint.get("next_action") or activate.get("next_step_checkpoint") or "")
@@ -109,6 +119,9 @@ for director in DIRECTORS:
             "role_level":data.get("agent_level","not_evidenced"),
             "parent":data.get("parent_id"),
             "grade":grade,"defects":defects,
+            "latest_order_ack_status":ack.get("status","NO_MODEL_ACKNOWLEDGEMENT"),
+            "latest_order_id_acknowledged":ack.get("chief_D_owner_order_id"),
+            "seven_billion_campaign_target_index":data.get("seven_billion_campaign_target_index"),
             "source_urls":sources[:3],
             "independent_model_excerpt":answer[:300] or "NO_MODEL_OUTPUT",
             "next_action":next_action[:300] or "MISSING",
@@ -128,6 +141,8 @@ res={
                                x.get("id","").count("-")>=1),
  "individual_results":detail,
  "qualified_results_not_paid_jobs":True,
+ "acknowledgment_rule":"Genuine model-generated owner command receipt is required for a qualified research result, even though self-reported comprehension is not proof of competence.",
+ "seven_billion_target_roles":7000000000,
  "verified_new_income":"not_assessed",
  "dormant_defined_roles_are_not_running":True,
  "limitations":"Every attempt must have a grade. A validated model research result is not a verified paid job. Source links are untrusted until independently checked. Model output quality varies. Even QUALIFIED does not show payer acceptance, direct social posting, or cryptocurrency receipt."
