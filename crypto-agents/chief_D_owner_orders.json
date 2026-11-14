@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-074258",
+  "current_owner_order_id": "OWNER-20261114-075553",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -66,6 +66,14 @@
       "as_of_utc": "2026-11-14T07:42:58Z",
       "relayed_by": "ChatGPT at owner's explicit request",
       "instruction": "Chief D: broaden BOTH independently governed B companies beyond one task feed. Target every AVAILABLE, genuinely legitimate, source-verifiable paid job/bounty/work opportunity that an actual agent or the authorized owner can perform, while filtering stale, already-awarded, ineligible, prepaid-fee scams and unverified payer claims. Separately seek opt-in collaborations with real miners or other independent AI agents who CAN VOLUNTARILY direct their own legitimate Bitcoin mining income, tip or contract settlement to the correct owner's account address. Offer concrete useful services for coins, develop individual deliverables and request payment after verified acceptance. No inference or GitHub role is itself a Bitcoin ASIC or mining worker; never claim a pool contribution, active independent miner, committed donation or payment without actual verified evidence. Research official Public Pool Bitcoin SOLO versus shared PPLNS modes, show correct opt-in stratum pool distinction and address user string only where miners willingly set it up, and independently verify actual BTC mainnet outputs. Do not encourage spending owner resources on unprofitable CPU Bitcoin mining or solicit private keys. Keep company1/company2 addresses distinct. Share non-sensitive findings publicly across both boards, report payer/contract/eligibility/progress and on-chain receipts separately, with sole Chief D reporting to owner.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-075553",
+      "as_of_utc": "2026-11-14T07:55:53Z",
+      "relayed_by": "ChatGPT on owner explicit instruction",
+      "instruction": "Chief D: IDEA EXERCISE for EVERY B across two independent companies. Every actually executed B worker and director must receive or propose TEN distinct, specific, realistic methods by which genuine useful work or voluntary opt-in collaborations might result in legitimate cryptocurrency credited to its own correct-network company wallet. Evaluate each idea against an authentic payer or potential consenting contributor, deliverable/acceptance evidence, feasibility without upfront payment, owner/worker eligibility, safe privacy/compliance and realistic next action. Every actual worker must leave a separate ten-idea report with unique role ID, parent, company, ranked priorities, evidence status, clear defects/uncertainty, and one top actionable next step. Directors review, reject duplicated/unsupported or fraudulent schemes, and report top actionable candidates to one Chief D; Chief D consolidates separate-company results and prioritizes actual customer contact/delivered work and payment proof. Do NOT claim model-generated individual brainstorming, executed roles, real miners, signed contracts or BTC deposits if only a deterministic menu/template is assigned. All seven-billion and full hierarchy role definitions may inherit the exercise lazily on activation; only real invoked AI worker processes have reviewed or acknowledged it. Avoid fees, scams, unsolicited mass spam, unauthorized external accounts and private keys.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -152,5 +160,28 @@
     "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
     "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
     "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise."
+  },
+  "ten_ideas_exercise": {
+    "order_id": "OWNER-20261114-075553",
+    "ten_per_actually_executed_worker": true,
+    "companies": [
+      "transferexperiment",
+      "BountyScoutAI"
+    ],
+    "required_fields": [
+      "unique_fleet_prefixed_id",
+      "parent_id",
+      "10_distinct_specific_options",
+      "payer_or_consent_status",
+      "deliverable",
+      "evidence_url_or_explicit_unknown",
+      "no_upfront_cost",
+      "eligibility",
+      "next_action",
+      "ranked_one_top_pick",
+      "AI_model_participation_verified_or_not"
+    ],
+    "director_review": "D01-D09 validate opportunity to work, D10 evaluate only accepted genuine payments; Chief D overall report",
+    "defined_not_running": "Definitions can inherit the exercise but are not individually completed idea models."
   }
 }
