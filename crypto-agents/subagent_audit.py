@@ -15,7 +15,7 @@ with Path("crypto-agents/agent_registry.csv").open(newline="",encoding="utf-8") 
     parents=[r for r in csv.DictReader(f) if r.get("level")=="worker"]
 base=verify_catalog()
 errors=[]
-if len(parents)!=7500 or base["deterministic_child_identities"]!=1125000:
+if len(parents)!=7500 or base["unique_deterministic_children"]!=1125000:
     errors.append("Incorrect parent or theoretical child count")
 for item in parents:
     pid=item["id"]
