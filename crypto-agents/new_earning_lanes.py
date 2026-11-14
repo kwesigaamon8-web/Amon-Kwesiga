@@ -35,7 +35,7 @@ SEARCHES=[
 MONEY=re.compile(r'(?i)(?:[$€£]\s?\d+(?:[.,]\d+)?|(?:\d+(?:\.\d+)?)\s?(?:BTC|USDC|USD|sats?|satoshis)\b|\bbounty\s*(?:amount|pool|reward)\s*[:=]\s?\d+)')
 SCOPE=re.compile(r'(?i)\b(?:fix|implement|write|docs|test|issue|build|patch|data|audit|research|bug|feature|script|code|review|integration|translate|spreadsheet|documentation)\b')
 RISK=re.compile(r'(?i)\b(?:deposit|prepay|send funds|send crypto first|connect your wallet|verification fee|stake required|bond required|private key|seed phrase|pay to claim)\b')
-FINISHED=re.compile(r'(?i)\b(?:already awarded|claimed and paid|bounty closed|winner chosen|no longer available|work complete|payment issued)\b')
+FINISHED=re.compile(r'(?i)(?:\b(?:already awarded|claimed and paid|bounty closed|winner chosen|no longer available|work complete|payment issued|closed to new work)\b|\bstatus\s*:\s*(?:delivered|closed|paid|awarded)\b|\bslots?\s*:\s*\d+\s*\(filled\)|\bno slots available\b)')
 
 # Filter misleading low-quality discovery hits before assigning scarce real
 # LLM inference. Open GitHub issues often contain unrelated monetary figures,
@@ -219,6 +219,12 @@ def selftest():
            "state":"open","html_url":"https://github.com/owner/repo/issues/5",
            "repository_url":"https://api.github.com/repos/owner/repo","user":{"login":"maintainer"}}
     assert normalize(issue)["status"]=="POSSIBLE_PAID_TASK_UNVERIFIED"
+    issue={"title":"Frantic bounty #138: Find a live API",
+           "body":"Worker price: $10\\nSlots: 1 (filled)\\nStatus: delivered\\nClaim: done",
+           "state":"open","html_url":"https://github.com/auscaster/frantic-board/issues/558",
+           "repository_url":"https://api.github.com/repos/auscaster/frantic-board",
+           "labels":[{"name":"bounty"},{"name":"funded"},{"name":"delivered"}]}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
     issue={"title":"[Bounty] Answer these linked questions",
            "body":"This is a zero-bounty task: $0. Real bounty only if /reward is funded.",
            "state":"open","html_url":"https://github.com/owner/repo/issues/6",
