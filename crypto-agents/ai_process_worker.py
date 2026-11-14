@@ -89,6 +89,7 @@ report={
     "billions_coin_learning_order":"ORD-034",
     "coin_learning":None,
     "command_chain_assignment":configured_assignment(WORKER),
+    "chief_D_reporting_structure":"OWNER > CHIEF_D > fleet-local D01-D10 > direct manager > individually executed worker",
     "command_chain_understanding":None,
     "owner_broadcast_B_executed_only_if_model_completed":False,
     "source":"HN Algolia public original read-only API",
@@ -169,7 +170,7 @@ try:
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
         "\nOPEN EVIDENCE POLICY share only public non-sensitive research, checks and useful cross-company insights; never reveal keys, passwords or confidential client information."+
         "\nCOLLECTION ORDER "+PAYMENT_MISSION["primary_instruction"][:500]+"; BTC mainnet receiving address "+PAYMENT_MISSION["address"]+"; public support notice "+PAYMENT_MISSION["approved_public_notice"]+
-        "\nAgent "+WORKER+"; DIRECT PARENT "+PARENT+"; OWNER COMMAND ROUTE "+">".join(report["command_chain_assignment"]["owner_to_role_route"])+
+        "\nAgent "+WORKER+"; DIRECT PARENT "+PARENT+"; OWNER COMMAND ROUTE "+">".join(report["command_chain_assignment"]["current_organization_route"])+
         "; specialty "+SPEC["role_name"]+
         "; original search results "+json.dumps(examples,ensure_ascii=False)[:270]+
          "; coin-learning source "+json.dumps({key:coin_study[key] for key in ("coin","network","official_source_url","source_status","source_excerpt","earning_source_url")},ensure_ascii=False)[:570]+
