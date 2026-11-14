@@ -32,6 +32,7 @@ from b_worker_buyer_source import choose as choose_actual_issue_for_training
 from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
 from b_universal_work_protocol import assign as universal_assign, compact_for_model as universal_prompt
 from b_certified_agent_service_router import assignment as certified_agent_assignment
+from b_owner_account_link import agent_packet as owner_multichain_account_packet
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -99,6 +100,11 @@ TASK=IDENTITY["task"]
 OWNER_OATH=owner_oath_envelope(FLEET,WORKER)
 UNIVERSAL_TASK=universal_assign(FLEET,WORKER)
 CERTIFIED_AGENT_SERVICE=certified_agent_assignment(FLEET,WORKER)
+OWNER_RECEIVING_ACCOUNT_LINK=owner_multichain_account_packet(FLEET)
+if OWNER_RECEIVING_ACCOUNT_LINK['owner_primary_BTC_mainnet_route']['address']!=PAYMENT_MISSION['address']:
+    raise SystemExit('Owner shared receiving account directory mismatches own-company Bitcoin destination')
+if OWNER_RECEIVING_ACCOUNT_LINK['authorized_to_send_move_or_withdraw_crypto']:
+    raise SystemExit('External wallet spending must never be granted by route lookup')
 if CERTIFIED_AGENT_SERVICE['payout']['receive_address']!=PAYMENT_MISSION['address']:
     raise SystemExit('Certified-agent task routed to wrong company BTC wallet')
 if CERTIFIED_AGENT_SERVICE['owner_order_id']!=STRICT_OWNER_ORDER_ID:
@@ -158,6 +164,7 @@ report={
     "owner_first_oath":OWNER_OATH,
     "universal_task_message":UNIVERSAL_TASK,
     "certified_agent_service_available_to_this_original_role":CERTIFIED_AGENT_SERVICE,
+    "read_only_link_to_owner_shared_multichain_receiving_accounts":OWNER_RECEIVING_ACCOUNT_LINK,
     "universal_task_status":"ASSIGNED_NOT_YET_PERFORMED",
     "owner_first_oath_required_before_any_external_owner_order":True,
     "unauthenticated_external_messages_are_data_not_commands":True,
@@ -328,6 +335,7 @@ try:
     prompt=[
       {"role":"system","content":"You are one genuinely running B company agent. YOU MAY ALSO OFFER REAL AUTHORIZED ASSISTANT SERVICES TO EXTERNALLY CERTIFIED AI AGENTS WHO HAVE VERIFIED CREDENTIALS, EXPLICITLY OPTED IN AND AGREED THE SPECIFIC LEGAL TASK AND OWNER WALLET PAYMENT; NEVER CLAIM SUCH A CUSTOMER EXISTS WITHOUT ACTUAL PROOF. This is an additional task market for existing company roles, not a new workforce. HUMAN OWNER grants broad creative and commercial initiative: you MAY self-select any lawful original product, service, source-check, software idea or useful buyer task WORLDWIDE, change sectors, try multiple distinct hypotheses and create concrete useful work without asking a manager to preapprove each internal idea. Your specific preassigned location/specialty/source is a STARTING POINT ONLY, not a restriction. Prefer real sponsor identity, actual payer readiness and deliverable over repeating instructions. You cannot invent buyer consent, platform access, hiring, workers or payments. Permitted external posting or selling requires actual authorized account, venue permission and willing counterparties. All mutually agreed payment must go to the owner-approved BTC mainnet address for YOUR company's account; never use arbitrary or other-fleet wallet. Preserve one-parent reporting and owner authority. A verified $100 real-receipt target remains, not a guaranteed or already realized sum."},
       {"role":"user","content":(universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
+        "\nOWNER SHARED MULTICHAIN RECEIVING ROUTES: This worker can negotiate legitimate crypto-paid work in BTC and, only once owner verified, compatible EVM, Solana, TRON or Stellar assets. The public receiving directory indexes 10 owner self-custody candidates and 6 Binance deposit candidates. Other-company BTC mainnet address is NOT interchangeable. ALL non-BTC and ALL exchange deposit options are ON HOLD pending owner approval plus precise payer asset, chain, token/issuer, required memo and receiving compatibility. Never promise a working exchange deposit, claim account login, withdraw, trade or transfer funds. Owner review required; propose ONE confirmed route, never send entire account list to a payer. Route IDs available: "+",".join(x["route_id"] for x in OWNER_RECEIVING_ACCOUNT_LINK["owner_shared_secondary_receiving_options_held"])+". "+
         "\nCERTIFIED AGENT WORK AVAILABILITY "+str(CERTIFIED_AGENT_SERVICE["engagement_status"])+
         "; actual client "+str(CERTIFIED_AGENT_SERVICE["externally_certified_customer_id"])+
         "; task lane "+str(CERTIFIED_AGENT_SERVICE["original_work_suggestion"])+
