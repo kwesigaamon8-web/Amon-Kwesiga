@@ -4,9 +4,8 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '7 4 * * *'
-  push:
-    paths:
-      - '.github/workflows/real-ai-workers.yml'
+  # Heavy model runs launch ONLY through the daily schedule or explicit
+  # workflow_dispatch. Code edits must never queue/cancel full 10-director jobs.
 concurrency:
   group: real-free-worker-processes
   cancel-in-progress: false
