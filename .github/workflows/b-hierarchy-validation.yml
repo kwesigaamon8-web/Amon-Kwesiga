@@ -12,6 +12,9 @@ on:
       - 'crypto-agents/b_worker_buyer_source.py'
       - 'crypto-agents/b_shift_worker_rotation.py'
       - 'crypto-agents/b_shift_accountability.py'
+      - 'crypto-agents/owner_first_oath.py'
+      - 'crypto-agents/OWNER_D_B_FIRST_OATH.md'
+      - 'crypto-agents/chief_D_owner_orders.json'
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,7 +28,9 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile worker reports, hierarchy and Chief D code
-        run: python -m py_compile crypto-agents/hierarchical_reporting.py crypto-agents/post_hierarchical_reports.py crypto-agents/chief_D_reporting.py crypto-agents/b_learning_by_doing.py crypto-agents/ai_process_worker.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/b_shift_accountability.py
+        run: python -m py_compile crypto-agents/hierarchical_reporting.py crypto-agents/post_hierarchical_reports.py crypto-agents/chief_D_reporting.py crypto-agents/b_learning_by_doing.py crypto-agents/ai_process_worker.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/b_shift_accountability.py crypto-agents/owner_first_oath.py
+      - name: Prove one-owner first-oath hierarchy and no forged working descendants
+        run: python crypto-agents/owner_first_oath.py
       - name: Check original-source buyer qualification without fake acceptance
         run: python crypto-agents/b_worker_buyer_source.py
       - name: Verify all 6750 rotation slots per fleet without duplication
