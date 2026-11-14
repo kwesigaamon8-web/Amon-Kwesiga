@@ -1,0 +1,241 @@
+name: BountyScoutAI Independent Workforce
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/crypto-directors.yml'
+      - 'crypto-agents/roles.json'
+      - 'crypto-agents/owner_brief.json'
+      - 'crypto-agents/shared_understanding.json'
+      - 'crypto-agents/owner_orders.json'
+      - 'crypto-agents/deliverable_contract.json'
+      - 'crypto-agents/agent_deliverables.py'
+      - 'crypto-agents/delivery_audit.py'
+      - 'crypto-agents/tool_ecosystem.json'
+      - 'crypto-agents/tool_scout.py'
+      - 'crypto-agents/external_sites.json'
+      - 'crypto-agents/external_site_research.py'
+      - 'crypto-agents/order_cascade_audit.py'
+      - 'crypto-agents/professional_owner_context.json'
+      - 'crypto-agents/understanding_response.py'
+      - 'crypto-agents/understanding_audit.py'
+      - 'crypto-agents/owner_order_audit.py'
+      - 'crypto-agents/agents.py'
+      - 'crypto-agents/social_scan.py'
+      - 'crypto-agents/deep_research.py'
+      - 'crypto-agents/branch_workers.py'
+      - 'crypto-agents/branch_manifest.json'
+      - 'crypto-agents/branch_brief.json'
+      - 'crypto-agents/company_hierarchy.json'
+      - 'crypto-agents/company_workers.py'
+      - 'crypto-agents/company_ai_review.py'
+      - 'crypto-agents/agent_registry.csv'
+      - 'crypto-agents/autonomy_policy.json'
+      - 'crypto-agents/earnings_playbook.json'
+      - 'crypto-agents/friendly_earnings_directive.json'
+      - 'crypto-agents/friendly_pitch.py'
+      - 'crypto-agents/post_conference.py'
+      - 'crypto-agents/post_meeting.py'
+      - 'crypto-agents/director_review.py'
+      - 'crypto-agents/consolidate.py'
+      - 'crypto-agents/director_coordination.py'
+      - 'crypto-agents/post_directors.py'
+      - 'crypto-agents/director_inbox.py'
+      - 'crypto-agents/audit_independence.py'
+      - 'crypto-agents/subagent_factory.json'
+      - 'crypto-agents/subagent_factory.py'
+      - 'crypto-agents/microcompany_structure.json'
+      - 'crypto-agents/microcompany_factory.py'
+      - 'crypto-agents/microcompany_audit.py'
+      - 'crypto-agents/mega_branch_666.json'
+      - 'crypto-agents/mega_branch_factory.py'
+      - 'crypto-agents/mega_branch_audit.py'
+      - 'crypto-agents/subagent_audit.py'
+      - 'crypto-agents/owner_command_chain.json'
+  schedule:
+    - cron: '46 */3 * * *'
+# Repeated hourly checks should not overlap or consume free runners on stale scans.
+concurrency:
+  group: bountyscoutai-${{ github.workflow }}
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  preflight:
+    name: Validate all agent Python files before consuming model runners
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Detect Python syntax errors without running models
+        run: python -m compileall -q crypto-agents
+      - name: Run 15 regression checks for real reports and honest earnings
+        run: python crypto-agents/reliability_smoke_tests.py
+  independent-research:
+    # Separate 30-role BountyScoutAI workforce; read-only research until identity credential is connected.
+    needs: preflight
+    name: ${{ matrix.role }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        role: [D01, D01-A, D01-B, D02, D02-A, D02-B, D03, D03-A, D03-B, D04, D04-A, D04-B, D05, D05-A, D05-B, D06, D06-A, D06-B, D07, D07-A, D07-B, D08, D08-A, D08-B, D09, D09-A, D09-B, D10, D10-A, D10-B]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install small CPU model dependencies
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Independently discover additional public tools and sites
+        continue-on-error: true
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python crypto-agents/tool_scout.py
+      - name: Independently research other job and bounty websites
+        continue-on-error: true
+        env:
+          ROLE_ID: ${{ matrix.role }}
+        run: python crypto-agents/external_site_research.py
+      - name: Rotate 50 different specialist assignments across 15 managers
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python crypto-agents/company_workers.py
+      - name: Run independent worker and manager AI reasoning
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          OMP_NUM_THREADS: '2'
+        continue-on-error: true
+        run: timeout --signal=TERM --kill-after=30s 12m python crypto-agents/company_ai_review.py
+      - name: Run independent researcher
+        env:
+          ROLE_ID: ${{ matrix.role }}
+          OWNER_WALLET_DIRECTORY_JSON: ${{ secrets.OWNER_WALLET_DIRECTORY_JSON }}
+          GITHUB_TOKEN: ${{ github.token }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          HF_HUB_DOWNLOAD_TIMEOUT: '45'
+          OMP_NUM_THREADS: '2'
+        continue-on-error: true
+        run: timeout --signal=TERM --kill-after=30s 6m python crypto-agents/agents.py
+      - name: Publish individual deliverable for every actually attempted agent
+        if: ${{ always() }}
+        env:
+          ROLE_ID: ${{ matrix.role }}
+        run: python crypto-agents/agent_deliverables.py
+      - name: Upload independent report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crypto-research-${{ matrix.role }}
+          path: |
+            reports/*.json
+            company-reports/*.json
+            tool-reports/*.json
+            site-reports/*.json
+            agent-deliverables/
+          if-no-files-found: warn
+          retention-days: 7
+
+
+  consolidate:
+    name: Consolidate and verify mission
+    if: ${{ always() }}
+    needs: independent-research
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download 30 main-agent and rotated company research reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: crypto-research-*
+          path: combined-reports
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit agent-by-agent deliverables and missing work
+        if: ${{ always() }}
+        run: python crypto-agents/delivery_audit.py --reports combined-reports --output delivery-audit
+      - name: Screen for evidence and consolidate
+        run: python crypto-agents/consolidate.py combined-reports
+      - name: Audit unique identities and actual independent model reports
+        run: python crypto-agents/audit_independence.py --reports combined-reports --output independence-audit
+      - name: Verify subordinate one-parent command lines and actual AI activity
+        run: python crypto-agents/subagent_audit.py --reports combined-reports --output subagent-audit
+      - name: Verify new nested microcompany single-parent lines and actual inferences
+        run: python crypto-agents/microcompany_audit.py --reports combined-reports --output microcompany-audit
+      - name: Audit actual executed 666-branch worker models
+        run: python crypto-agents/mega_branch_audit.py --reports combined-reports --output mega-branch-audit
+      - name: Independently audit each actual role's understanding response
+        if: always()
+        run: python crypto-agents/understanding_audit.py --reports combined-reports --output understanding-audit
+      - name: Audit all owner instructions against completed research evidence
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python crypto-agents/owner_order_audit.py --reports combined-reports --output owner-order-audit
+      - name: Validate worldwide owner order reaches last H-tier branch
+        run: python crypto-agents/order_cascade_audit.py
+      - name: Have each director review two assistants
+        run: python crypto-agents/director_review.py
+      - name: Produce cross-director performance messages and one-owner handoff register
+        run: python crypto-agents/director_coordination.py
+      - name: Share daily evidence-backed coordination digest on directors board
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/post_directors.py
+      - name: Share actual independently researched company updates in general conference
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/post_conference.py
+      - name: Contribute 30 individual research summaries to the public meeting
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/post_meeting.py
+      - name: Upload consolidated report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: consolidated-opportunity-report
+          path: |
+            summary.json
+            summary.md
+            director-reports/
+            director-communications/
+            independence-audit/
+            subagent-audit/
+            owner-order-audit/
+            owner-order-cascade-audit/
+            delivery-audit/
+            microcompany-audit/
+            mega-branch-audit/
+            understanding-audit/
+            tool-reports/
+            site-reports/
+            agent-deliverables/
+          if-no-files-found: warn
+          retention-days: 7
