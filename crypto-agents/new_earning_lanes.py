@@ -36,6 +36,18 @@ SCOPE=re.compile(r'(?i)\b(?:fix|implement|write|docs|test|issue|build|patch|data
 RISK=re.compile(r'(?i)\b(?:deposit|prepay|send funds|send crypto first|connect your wallet|verification fee|stake required|bond required|private key|seed phrase|pay to claim)\b')
 FINISHED=re.compile(r'(?i)\b(?:already awarded|claimed and paid|bounty closed|winner chosen|no longer available|work complete|payment issued)\b')
 
+# Filter misleading low-quality discovery hits before assigning scarce real
+# LLM inference. Open GitHub issues often contain unrelated monetary figures,
+# automated digests, third-party mirrors, disputes and reward questions.
+STRONG_REWARD=re.compile(r'(?i)(?:\b(?:bounty|reward|payout|compensation|payment|prize|paid)\s*(?:[:=\-]|is|of|worth)?\s*(?:USD\s*)?(?:[$€£]\s*\d+(?:[.,]\d+)?|\d+(?:\.\d+)?\s*(?:USD|USDC|BTC|sats?|satoshis))\b|(?:[$€£]\s*\d+(?:[.,]\d+)?|\d+(?:\.\d+)?\s*(?:BTC|USDC|USD|sats?))\s*(?:\b(?:bounty|reward|payout|compensation|payment|prize)\b))')
+ZERO_OFFER=re.compile(r'(?i)(?:\b(?:bounty|reward|compensation|payment|price)\s*[:=]?\s*\$0(?:\D|$)|\[\$0\]|\b(?:unpaid|volunteer-only|no reward|no payout)\b)')
+SECONDARY_SOURCE=re.compile(r'(?i)(?:\b(?:digest|roundup|alert|scanner|mirror|aggregat(?:or|ion)|newsletter|vote:|discussion only|not (?:reviewed|accepted) on this mirror|no manual pull requests)\b|(?:^\s*###\s*(?:original link|source url)\s*$))')
+UNRELATED_MONEY=re.compile(r'(?i)(?:\b(?:state|sales)[ -]?tax\b|\b(?:taxable|income tax|payroll|vat)\b|\b\$[\d.,]+\s*(?:sale|purchase|invoice)\b)')
+QUESTIONS_ONLY=re.compile(r'(?i)(?:\b(?:could the current docs|clarify|question routes|request for information|eligibility question|is the bounty|vote:|how to claim)\b)')
+AUTO_USERNAME=re.compile(r'(?i)(?:\[bot\]$|^github-actions(?:\[bot\])?$|^dependabot(?:\[bot\])?$)')
+EXCLUDED_ORIGIN_REPOS=("bountyscout","bounty-plaza")
+
+
 def github_get(url):
     request=urllib.request.Request(url,headers=HEADERS)
     with urllib.request.urlopen(request,timeout=14) as response:
@@ -46,11 +58,24 @@ def normalize(issue):
     body=str(issue.get("body") or "")[:12000]
     full=title+"\n"+body
     url=str(issue.get("html_url") or "")
+    from_user=issue.get("user") or {}
+    original_repo=str(issue.get("repository_url") or "").split("/repos/")[-1]
+    repo_name=original_repo.split("/")[-1].lower()
+    # Empty repository_url occurs in simple unit fixtures: do not assert
+    # provenance from a stub; a real search result must supply its own repo.
+    mirror_or_digest=(bool(SECONDARY_SOURCE.search(title)) or
+        "not reviewed on this mirror" in body.lower() or
+        any(name in repo_name for name in EXCLUDED_ORIGIN_REPOS))
     checks={
        "open_issue":issue.get("state")=="open" and not issue.get("pull_request"),
        "original_link":url.startswith("https://github.com/"),
        "mentions_specific_reward_amount":bool(MONEY.search(full)),
+       "explicit_paid_work_reward":bool(STRONG_REWARD.search(full)) and not bool(ZERO_OFFER.search(full)),
        "describes_actual_work":bool(SCOPE.search(full)),
+       "not_automated_digest_or_secondary_mirror":not mirror_or_digest,
+       "author_not_obvious_bot":not bool(AUTO_USERNAME.search(str(from_user.get("login") or ""))),
+       "not_a_money_question_or_unrelated_sales_figure":not bool(QUESTIONS_ONLY.search(title)) and
+          not (bool(UNRELATED_MONEY.search(title)) and not STRONG_REWARD.search(title)),
        "no_obvious_deposit_or_key_request":not bool(RISK.search(full)),
        "not_marked_already_awarded_in_description":not bool(FINISHED.search(full)),
     }
@@ -144,7 +169,32 @@ def selftest():
     assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
     issue["body"]="The bounty was already awarded. Fix code."
     assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
-    print("ADDITIONAL_PAID_LANES_SELFTEST_PASS")
+    issue={"title":"Docs: current referral reward eligibility and review timing",
+           "body":"The docs advertise $50 in BTC for referrals. Can you clarify eligibility?",
+           "state":"open","html_url":"https://github.com/aib/landing/issues/9",
+           "repository_url":"https://api.github.com/repos/aib/landing","user":{"login":"aria"}}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue={"title":"YouTube digest — 2026-11-14",
+           "body":"Financial video: $35.5 billion debt and audits",
+           "state":"open","html_url":"https://github.com/r/trading/issues/3",
+           "repository_url":"https://api.github.com/repos/r/trading","user":{"login":"github-actions[bot]"}}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue={"title":"[Bounty] [Escrowed $600 USDC] fix 64 shards",
+           "body":"Automated mirror; no manual pull requests reviewed on this mirror",
+           "state":"open","html_url":"https://github.com/r/bounty-plaza/issues/3",
+           "repository_url":"https://api.github.com/repos/r/bounty-plaza","user":{"login":"author"}}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue={"title":"$0 i18n bounty: translate README",
+           "body":"Create docs PR. Reward $0.", "state":"open",
+           "html_url":"https://github.com/owner/repo/issues/4",
+           "repository_url":"https://api.github.com/repos/owner/repo","user":{"login":"maintainer"}}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue={"title":"$50 bounty: fix CSV import on project",
+           "body":"Maintainer offers $50 reward after reviewed PR, test required",
+           "state":"open","html_url":"https://github.com/owner/repo/issues/5",
+           "repository_url":"https://api.github.com/repos/owner/repo","user":{"login":"maintainer"}}
+    assert normalize(issue)["status"]=="POSSIBLE_PAID_TASK_UNVERIFIED"
+    print("PAID_CANDIDATE_QUALITY_TESTS_PASS — reject digest, reward FAQ, mirror and zero-bounty; retain real scoped paid issue")
 
 if __name__=="__main__":
     selftest()
