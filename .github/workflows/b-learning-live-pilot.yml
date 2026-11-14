@@ -122,6 +122,10 @@ jobs:
           assert assigned.get("report_to")==r["workforce_namespace"]+"/"+r["parent_id"],"Wrong direct reporting parent"
           assert (universal.get("owner_origin") or {}).get("owner_only_top_level") is True,"Owner-first oath not preserved"
           assert assigned.get("task_id") and assigned.get("unique_scope_id"),"No individually unique worldwide task"
+          pay=universal.get("payment") or {}
+          assert pay.get("per_worker_owner_appreciation_earning_target_usd")=="0.01","Missing owner one-cent worker milestone"
+          assert pay.get("buyer_accepted_work") is False and pay.get("real_coin_payment_verified") is False,"Cannot pretend a penny has been paid"
+          assert pay.get("no_transfers_without_actual_spend_authorization") is True,"No spending authorization guard"
           assert r.get("universal_task_status")=="ASSIGNED_NOT_YET_PERFORMED","Task allocation is not proof of doing"
           print("UNIVERSAL_INDIVIDUAL_TASK",json.dumps({
             "company":r["workforce_namespace"],"worker":worker,
@@ -148,6 +152,7 @@ jobs:
              out.write("- Worker OS PID: "+str(status["real_pid"])+"\n")
              out.write("- Training lesson: "+status["lesson"]+"\n")
              out.write("- Universal task ID: "+assigned["task_id"]+"\n")
+             out.write("- Worker BTC appreciation micro-target: USD $0.01 equivalent (NOT a confirmed payment)\n")
              out.write("- Country/city research focus: "+assigned["country_iso_3166_alpha2"]+" / "+assigned["city_focus"]+"\n")
              out.write("- Localization tag (not proof of translation): "+universal["localization"]["content_language"]+"\n")
              out.write("- Practical grade: "+status["practical_status"]+"\n")
