@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/b-learning-live-pilot.yml'
       - 'crypto-agents/b_paid_feed_fallback.py'
+      - 'crypto-agents/bounty_eligibility_audit.py'
+      - 'crypto-agents/b_worker_buyer_source.py'
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
@@ -84,8 +86,9 @@ jobs:
           PY
       - name: Verify the real-work training evaluator
         run: |
-          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/owner_first_oath.py crypto-agents/b_paid_feed_fallback.py
+          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/owner_first_oath.py crypto-agents/b_paid_feed_fallback.py crypto-agents/bounty_eligibility_audit.py
           python crypto-agents/b_learning_by_doing.py
+          python crypto-agents/bounty_eligibility_audit.py --self-test
           python crypto-agents/b_worker_buyer_source.py
           python crypto-agents/b_paid_feed_fallback.py
           python crypto-agents/owner_first_oath.py
