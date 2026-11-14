@@ -70,6 +70,7 @@ except Exception as err:
 # only after worker artifacts exist. This is source evidence, not an independent
 # model-to-model peer review or proof of payment.
 peer_published={}
+hierarchy_published={}
 try:
     for page in range(1,5):
         comments=gh_request("https://api.github.com/repos/"+GH_REPO+
@@ -80,6 +81,29 @@ try:
             if author not in ("github-actions[bot]","kwesigaamon8-web"):
                 continue
             body=str(comment.get("body") or "")
+            for reporting_company in ("transferexperiment","BountyScoutAI"):
+                if "<!-- b-to-chief-d:"+reporting_company+":" not in body:
+                    continue
+                tries=re.search(r"Actual attempted B reports:\\s*(\\d+)",body)
+                completed=re.search(r"Completed model responses:\\s*(\\d+)",body)
+                handoffs=re.search(r"Forwarding steps:\\s*(\\d+)",body)
+                inboxes=re.search(r"Parent/manager/director inboxes populated:\\s*(\\d+)",body)
+                if not all((tries,completed,handoffs,inboxes)):
+                    continue
+                stamp=str(comment.get("created_at") or "")
+                if stamp>hierarchy_published.get(reporting_company,{}).get("created_at",""):
+                    hierarchy_published[reporting_company]={
+                        "status":"evidence_rollup_shared_to_chief_D",
+                        "source_issue_comment":comment.get("html_url"),
+                        "created_at":stamp,
+                        "attempted_worker_reports":int(tries.group(1)),
+                        "model_completions":int(completed.group(1)),
+                        "software_handoffs":int(handoffs.group(1)),
+                        "supervisor_inboxes":int(inboxes.group(1)),
+                        "independent_parent_AI_reviews_verified":0,
+                        "wallet_receipts_verified_by_this_report":"not_assessed",
+                        "evidence_caveat":"GitHub Actions file aggregation; neither model acknowledgement nor verified customer payment."
+                    }
             for fleet in ("transferexperiment","BountyScoutAI"):
                 if "<!-- all-to-all-peer-evidence:"+fleet+":" not in body:
                     continue
@@ -127,6 +151,7 @@ for fleet,(res,ai) in pair.items():
         "address_mapping_training_structurally_validated":True,
         "individual_B_worker_comprehension_verified_by_this_chief_report":False,
         "latest_public_peer_audit":peer_published.get(fleet,{"public_audit_state":"not_yet_published"}),
+        "latest_B_worker_chain_to_chief_D":hierarchy_published.get(fleet,{"status":"not_yet_reported"}),
         "configured_role_positions":(CENSUS.get("companies") or {}).get(fleet,{}).get("mathematically_defined_total","not_assessed"),
         "billions_scale_descendants_actually_running":"not_verified_as_running",
         "independent_local_directors":board["local_director_ids"],
@@ -158,6 +183,8 @@ report={
     "reporting_chain":"Company A D01-D10 -> Chief D; Company B D01-D10 -> Chief D -> owner",
     "companies":companies,
     "local_director_total":20,
+    "company_worker_reporting_chain_reports_received":len(hierarchy_published),
+    "latest_company_worker_reporting_chain":hierarchy_published,
     "chief_D_cross_fleet_idea_action_order":"OWNER-20261114-084438",
     "real_idea_digests_visible":IDEA_ACTIONS.get("actual_model_idea_digests_available","NOT_ASSESSED"),
     "model_generated_ideas_cross_shared_after_provenance_checks":IDEA_ACTIONS.get("actual_model_idea_excerpts_cross_shared","NOT_ASSESSED"),
@@ -214,6 +241,7 @@ for fleet,x in companies.items():
         "Worker-versus-worker audit evidence: "+str(x["latest_public_peer_audit"].get("public_audit_state","unknown")),
         "Deterministic comparisons published: "+str(x["latest_public_peer_audit"].get("deterministic_pairwise_checks_reported","not yet available")),
         "Actual individual peer AI-model critique: NOT VERIFIED.",
+        "B-to-D worker report chain: "+str(x["latest_B_worker_chain_to_chief_D"].get("status","not_available"))+"; actual attempted reports: "+str(x["latest_B_worker_chain_to_chief_D"].get("attempted_worker_reports","not reported"))+"; software-recorded handoffs: "+str(x["latest_B_worker_chain_to_chief_D"].get("software_handoffs","not reported"))+"; supervisor model review and cryptocurrency collection not independently established.",
         "Local D01-D09 keep seeking legitimate income and doing authorized work.",
         "Research run: "+str(x["research_workflow"].get("status","unknown"))+
              " / "+str(x["research_workflow"].get("conclusion") or "unverified"),
