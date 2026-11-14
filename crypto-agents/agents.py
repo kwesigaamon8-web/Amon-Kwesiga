@@ -6,6 +6,7 @@ from social_scan import scan_social
 from deep_research import due_diligence
 from director_inbox import read_inbox
 from wallet_routes import private_directory_status
+from b_address_understanding import prompt as public_address_training_prompt, evaluate as evaluate_public_address_reply, routes as publicly_verified_route_map
 from friendly_pitch import warm_pitch
 from understanding_response import understanding_report, BRIEF
 
@@ -193,6 +194,9 @@ def analyze(leads, research, branch_summary):
             "professional_strengths":BRIEF["whom_you_work_for"]["strengths"][:5],
             "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
+            "CHIEF_D_B_ADDRESS_TRAINING_ORDER":"OWNER-20261114-080246",
+            "public_approved_company_receiving_routes":publicly_verified_route_map(),
+            "explain_address_distinction_and_D":"Separate Company1 BTC, Company2 BTC, optional Company1 Base USDC HOLD. The ONE Chief D receives reports from both separate local D10 payment directors.",
             "specific_B_payment_collection_order":COLLECTION["primary_instruction"],
             "owner_relay_to_chief_D":CHIEF_D_COMMAND["id"],
             "current_owner_instruction":CHIEF_D_COMMAND["instruction"][:1400],
@@ -220,8 +224,8 @@ def analyze(leads, research, branch_summary):
             "leads":info[:2],
             "checks":compact_checks[:2],
             "subordinate_findings":subordinate_findings[:2],
-            "request":"Independently find the best credible opportunity to earn cryptocurrency paid to a correct owner-approved address. State verified facts, unknowns, risks, and the next genuinely executable action. Reject unverified offers."
-          },ensure_ascii=False)[:2900]}
+            "request":"Independently find the best credible opportunity; respond with the correct B1 and B2 Bitcoin mainnet receiving addresses labelled by company, the B1 optional USDC Base HOLD route, your own local D10 and one Chief D, and one next genuinely executable source-checked job. State uncertainty and reject false claims."
+          },ensure_ascii=False)[:4250]}
         ]
         response=model(prompt,max_new_tokens=120,do_sample=False,return_full_text=False)
         result=response[0]["generated_text"]
@@ -283,6 +287,11 @@ out={"role":role["id"],"name":role["name"],"director":role["director"],"mission"
      "discovered_tools_and_sites":{"status":"completed_report_available" if TOOL_REPORT_PATH.exists() else "missing","source_checks":TOOL_REPORT.get("sources_checked",[]),"candidate_count":len(TOOL_REPORT.get("new_tool_candidates",[])),"source_errors":TOOL_REPORT.get("source_errors",[])},
 
      "owner_wallet_directory_access":wallet_directory_status["status"],
+     "address_training_order":"OWNER-20261114-080246",
+     "public_route_mapping_prompt_attached":True,
+     "public_route_mapping_model_reply_gate":evaluate_public_address_reply(WORKFORCE_ID,analysis.get("review","")),
+     "local_BTC_receiving_address":COLLECTION["address"],
+     "wallet_comprehension_is_not_assumed_from_instructions":True,
      "owner_payment_route_ids_available":wallet_directory_status["route_ids"],
      "owner_understanding":SHARED["owner_intent"]["real_goal"],
      "coordinator_reasoning_method":SHARED["assistant_method_the_directors_should_understand"]["reasoning"],
