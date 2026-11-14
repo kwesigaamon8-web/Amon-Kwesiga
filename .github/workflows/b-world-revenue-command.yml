@@ -11,6 +11,8 @@ on:
       - 'crypto-agents/b_authorized_assistant_namespace.py'
       - 'crypto-agents/b_certified_agent_service_router.py'
       - 'crypto-agents/b_certified_agent_engagements.json'
+      - 'crypto-agents/b_owner_account_link.py'
+      - 'crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md'
       - 'crypto-agents/owner_order_distribution.py'
       - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/chief_D_owner_orders.json'
@@ -41,6 +43,9 @@ jobs:
           python crypto-agents/b_all_role_coverage_audit.py
           python crypto-agents/b_authorized_assistant_namespace.py --self-test
           python crypto-agents/b_certified_agent_service_router.py --self-test
+          python crypto-agents/b_owner_account_link.py --self-test
+          python crypto-agents/b_owner_account_link.py --fleet transferexperiment > chief-D-global/B1-multichain-owner-account-link.json
+          python crypto-agents/b_owner_account_link.py --fleet BountyScoutAI > chief-D-global/B2-multichain-owner-account-link.json
           python crypto-agents/b_certified_agent_service_router.py --fleet transferexperiment --role D01-M01-W01 > chief-D-global/B1-authorized-certified-agent-worker.json
           python crypto-agents/b_certified_agent_service_router.py --fleet BountyScoutAI --role D10-M15-W50-S150-G500-H666 > chief-D-global/B2-last-role-authorized-agent-worker.json
           python crypto-agents/b_universal_order_cascade.py --chief > chief-D-universal-order.json
