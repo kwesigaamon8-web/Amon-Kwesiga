@@ -30,6 +30,10 @@ jobs:
         run: python crypto-agents/director_D_training.py
       - name: Run 15 regression checks for real reports and honest earnings
         run: python crypto-agents/reliability_smoke_tests.py
+      - name: Validate unique seven-billion-worker target and explicit Chief D acknowledgement gate
+        run: |
+          python crypto-agents/seven_billion_allocator.py --self-test
+          python crypto-agents/command_ack_gate.py
   real-worker-processes:
     needs: preflight
     name: ${{ matrix.director }} actual AI worker OS processes
