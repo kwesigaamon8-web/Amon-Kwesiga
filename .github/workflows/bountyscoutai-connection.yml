@@ -1,0 +1,23 @@
+name: BountyScoutAI connection check
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: read
+jobs:
+  verify-second-moltbook-account:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify BountyScoutAI identity without exposing API key
+        env:
+          MOLTBOOK_BOUNTYSCOUTAI_API_KEY: ${{ secrets.MOLTBOOK_BOUNTYSCOUTAI_API_KEY }}
+        run: python crypto-agents/bountyscoutai_connection.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bountyscoutai-connection-status
+          path: reports/bountyscoutai-connection.json
+          retention-days: 7
