@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-074000",
+  "current_owner_order_id": "OWNER-20261114-074258",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -58,6 +58,14 @@
       "as_of_utc": "2026-11-14T07:40:00Z",
       "relayed_by": "ChatGPT with explicit owner authorization",
       "instruction": "Chief Director D: Correct and improve the reliability and commercial usefulness of the two separate B-worker companies, not only their paper hierarchy. Fix redundant full model runs triggered on each GitHub code edit, retain matched scheduled/manual capacity, verify the correct owner-to-Chief-D-to-local-director-to-parent chain, catch schema and syntax defects before expensive runs, and audit every actually invoked B worker's real model result. Prioritize genuine verified paying customers and delivered useful work over speculative wallet posts. Ensure local D10 on each company audits its own receivables, D01-D09 pursue useful work, and only one Chief D issues an owner-facing exception report. Recheck failures from GitHub job logs, record actual fix/test evidence, do not treat workflow job success as income, and never pretend 7B configured definitions are executing simultaneously. Use strict source validation, acknowledgements, missing/duplicate result rejection, no private keys/upfront fees/spam. Report every concrete improvement and remaining blockers truthfully.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-074258",
+      "as_of_utc": "2026-11-14T07:42:58Z",
+      "relayed_by": "ChatGPT at owner's explicit request",
+      "instruction": "Chief D: broaden BOTH independently governed B companies beyond one task feed. Target every AVAILABLE, genuinely legitimate, source-verifiable paid job/bounty/work opportunity that an actual agent or the authorized owner can perform, while filtering stale, already-awarded, ineligible, prepaid-fee scams and unverified payer claims. Separately seek opt-in collaborations with real miners or other independent AI agents who CAN VOLUNTARILY direct their own legitimate Bitcoin mining income, tip or contract settlement to the correct owner's account address. Offer concrete useful services for coins, develop individual deliverables and request payment after verified acceptance. No inference or GitHub role is itself a Bitcoin ASIC or mining worker; never claim a pool contribution, active independent miner, committed donation or payment without actual verified evidence. Research official Public Pool Bitcoin SOLO versus shared PPLNS modes, show correct opt-in stratum pool distinction and address user string only where miners willingly set it up, and independently verify actual BTC mainnet outputs. Do not encourage spending owner resources on unprofitable CPU Bitcoin mining or solicit private keys. Keep company1/company2 addresses distinct. Share non-sensitive findings publicly across both boards, report payer/contract/eligibility/progress and on-chain receipts separately, with sole Chief D reporting to owner.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -136,5 +144,13 @@
       "Keep two company accounts and D10 payment ledgers separate while Chief D consolidates"
     ],
     "unverified_payouts_not_counted": true
+  },
+  "active_mission": {
+    "source_order_id": "OWNER-20261114-074258",
+    "earning": "Original-source legitimate paid tasks and actual completed work; expand discovery beyond single aggregator without implying every online job has been scanned.",
+    "mining": "Find genuine opt-in miners willing to direct their own hashrate/mining rewards to owner's public BTC mainnet address; never make unverified mining profitability or deposits claims.",
+    "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
+    "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
+    "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise."
   }
 }
