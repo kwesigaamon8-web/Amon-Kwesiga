@@ -16,6 +16,7 @@ if not re.fullmatch(r"D(?:0[1-9]|10)",role):
 config=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encoding="utf-8"))
 company=next(c for c in config["companies"] if c["director_id"]==role)
 orders=summary()
+chief_D_latest=json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text(encoding="utf-8"))["orders"][-1]
 collection=json.loads(Path("crypto-agents/b_collection_assignments.json").read_text(encoding="utf-8"))
 payment_director=collection["director_operations"]["payment_director_id"]
 director_function="payment_recovery" if role==payment_director else "independent_paid_work"
@@ -36,6 +37,7 @@ for manager in company["managers"]:
           "director_id":role,"specialty":worker["role_name"],
           "manager_domain":manager["domain"],
           "search_query":worker["query"],
+          "chief_D_universal_audit_and_open_research_order":chief_D_latest["instruction"][:1300],
           "authorized_work":assignment_text, "director_function":director_function, "payment_director_id":payment_director,
           "strict_chief_D_order_id":orders["chief_D_current_owner_order_id"],
           "required_actual_execution_evidence":["model_completed","unique_agent_id","original_source_or_failure","separate_model_output","realistic_next_action","payment_status_truth"],
