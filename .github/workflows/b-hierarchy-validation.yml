@@ -17,6 +17,7 @@ on:
       - 'crypto-agents/b_shift_accountability.py'
       - 'crypto-agents/owner_first_oath.py'
       - 'crypto-agents/b_universal_work_protocol.py'
+      - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/OWNER_D_B_FIRST_OATH.md'
       - 'crypto-agents/chief_D_owner_orders.json'
   workflow_dispatch:
@@ -32,7 +33,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile worker reports, hierarchy and Chief D code
-        run: python -m py_compile crypto-agents/hierarchical_reporting.py crypto-agents/post_hierarchical_reports.py crypto-agents/chief_D_reporting.py crypto-agents/b_learning_by_doing.py crypto-agents/ai_process_worker.py crypto-agents/b_worker_buyer_source.py crypto-agents/bounty_eligibility_audit.py crypto-agents/b_shift_worker_rotation.py crypto-agents/b_shift_accountability.py crypto-agents/owner_first_oath.py crypto-agents/b_universal_work_protocol.py
+        run: python -m py_compile crypto-agents/hierarchical_reporting.py crypto-agents/post_hierarchical_reports.py crypto-agents/chief_D_reporting.py crypto-agents/b_learning_by_doing.py crypto-agents/ai_process_worker.py crypto-agents/b_worker_buyer_source.py crypto-agents/bounty_eligibility_audit.py crypto-agents/b_shift_worker_rotation.py crypto-agents/b_shift_accountability.py crypto-agents/owner_first_oath.py crypto-agents/b_universal_work_protocol.py crypto-agents/b_live_peer_teaching.py
       - name: Prove one-owner first-oath hierarchy and no forged working descendants
         run: python crypto-agents/owner_first_oath.py
       - name: Validate universal multi-country JSON tasks and 7 billion unique addressable IDs
@@ -47,6 +48,8 @@ jobs:
         run: python crypto-agents/b_shift_worker_rotation.py --self-test
       - name: Verify that Chief D only counts real workers and training receipts
         run: python crypto-agents/b_shift_accountability.py --self-test
+      - name: Validate genuine peer-teacher evidence selection and no fabricated student replies
+        run: python crypto-agents/b_live_peer_teaching.py --self-test
       - name: Verify applied training and no phantom earnings
         run: python crypto-agents/b_learning_by_doing.py
       - name: Regression-test all worker tiers and two company separation
