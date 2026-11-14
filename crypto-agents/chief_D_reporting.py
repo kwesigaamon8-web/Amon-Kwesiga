@@ -25,6 +25,8 @@ LEDGER_FILE = Path("d10-payment-reports/D10_TWO_ACCOUNT_PAYMENT_REPORT.json")
 PAYMENTS = json.loads(LEDGER_FILE.read_text(encoding="utf-8")) if LEDGER_FILE.exists() else {}
 CENSUS_FILE=Path("chief-D-reports/TWO_COMPANY_WORKFORCE_CENSUS.json")
 CENSUS=json.loads(CENSUS_FILE.read_text(encoding="utf-8")) if CENSUS_FILE.exists() else {}
+IDEA_ACTION_FILE=Path("idea-exchange/CHIEF_D_CROSS_COMPANY_ACTIONS.json")
+IDEA_ACTIONS=json.loads(IDEA_ACTION_FILE.read_text(encoding="utf-8")) if IDEA_ACTION_FILE.exists() else {}
 GH_REPO = "kwesigaamon8-web/Amon-Kwesiga"
 GH_TOKEN = os.environ.get("GH_TOKEN","")
 RUN_ID = os.environ.get("GITHUB_RUN_ID","")
@@ -156,6 +158,13 @@ report={
     "reporting_chain":"Company A D01-D10 -> Chief D; Company B D01-D10 -> Chief D -> owner",
     "companies":companies,
     "local_director_total":20,
+    "chief_D_cross_fleet_idea_action_order":"OWNER-20261114-084438",
+    "real_idea_digests_visible":IDEA_ACTIONS.get("actual_model_idea_digests_available","NOT_ASSESSED"),
+    "model_generated_ideas_cross_shared_after_provenance_checks":IDEA_ACTIONS.get("actual_model_idea_excerpts_cross_shared","NOT_ASSESSED"),
+    "actual_independent_AI_cross_fleet_reviews_proven":IDEA_ACTIONS.get("cross_company_model_peer_reviews_evidenced",0),
+    "original_source_followups_assigned":len(IDEA_ACTIONS.get("sponsor_verification_actions",[])),
+    "cross_fleet_idea_followup_examples":IDEA_ACTIONS.get("actual_idea_exchange_assignments",[])[:6],
+    "external_payer_and_crypto_receipt_status":"NO_NEW_ACCEPTED_WORK_OR_TRANSACTION_PROVEN_BY_IDEA_EXCHANGE",
     "owner_address_mapping_instruction_order":"OWNER-20261114-080246",
     "public_wallet_route_training":WALLET_MAP,
     "model_workers_verified_to_understand_wallet_map_in_this_chief_job":0,
@@ -187,6 +196,9 @@ lines=[
   "**Grand total, including one Chief D:** "+str(CENSUS.get("combined_configured_roles_plus_chief_D","not_assessed"))+".",
   "**Owner priority: 7B specific eligible identities** (3.5B per company); real model execution and real order acknowledgement have NOT yet been verified against that target.",
   "**Latest owner instruction relayed by ChatGPT:** "+current["instruction"],
+  "**Cross-company actual model idea digests found:** "+str(IDEA_ACTIONS.get("actual_model_idea_digests_available","not yet checked"))+"/2. Model-generated excerpts shared: "+str(IDEA_ACTIONS.get("actual_model_idea_excerpts_cross_shared","not yet checked"))+".",
+  "**Original public source jobs assigned for director verification:** "+str(len(IDEA_ACTIONS.get("sponsor_verification_actions",[])))+".",
+  "**Actual independent AI peer critique from this exchange:** 0; pre-screening is automatic, and no crypto receipt is inferred.",
   "**Address-training status:** Public B1/B2 BTC mainnet mapping structurally verified; individual B model replies and Chief D's independent model comprehension remain UNVERIFIED until actual execution evidence.",
   ""
 ]
