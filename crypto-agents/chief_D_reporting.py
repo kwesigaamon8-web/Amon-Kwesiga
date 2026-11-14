@@ -151,6 +151,11 @@ report={
     "reporting_chain":"Company A D01-D10 -> Chief D; Company B D01-D10 -> Chief D -> owner",
     "companies":companies,
     "local_director_total":20,
+    "owner_active_worker_target":ORDERS.get("seven_billion_execution_target",{}).get("total_distinct_eligible_role_ids","not_defined"),
+    "seven_billion_per_company":ORDERS.get("seven_billion_execution_target",{}).get("per_company","not_defined"),
+    "seven_billion_actual_worker_acknowledgements_verified_by_chief_report":"not_assessed_no_completed_new_evidence",
+    "seven_billion_actual_distinct_qualified_worker_completions_verified_by_chief_report":"not_assessed_no_completed_new_evidence",
+    "seven_billion_pending_unexecuted_count":"not_computed_without_deduplicated_actual_run_history",
     "separate_company_peer_audit_summaries_found":sum(1 for fleet in ("transferexperiment","BountyScoutAI") if fleet in peer_published),
     "chief_D_peer_audit_assessment":"Evidence checks are automated; actual completed independent model peer reviews are not verified by this report.",
     "configured_company_positions_combined":CENSUS.get("combined_configured_company_role_positions","not_assessed"),
@@ -171,6 +176,7 @@ lines=[
   "**One Chief D** coordinates **two SEPARATE companies**, each with **its OWN 10 directors**, so 20 distinct local director IDs.",
   "**Defined role positions, both companies:** "+str(CENSUS.get("combined_configured_company_role_positions","not_assessed"))+" (not concurrently live AI models).",
   "**Grand total, including one Chief D:** "+str(CENSUS.get("combined_configured_roles_plus_chief_D","not_assessed"))+".",
+  "**Owner priority: 7B specific eligible identities** (3.5B per company); real model execution and real order acknowledgement have NOT yet been verified against that target.",
   "**Latest owner instruction relayed by ChatGPT:** "+current["instruction"],
   ""
 ]
@@ -179,6 +185,7 @@ for fleet,x in companies.items():
         "## "+x["company_name"]+" — "+fleet,
         "Local directors: "+fleet+"/D01 through "+fleet+"/D10",
         "Mathematically defined positions: "+str(x["configured_role_positions"])+" (most are dormant definitions)",
+        "Owner 7B campaign share: "+str(ORDERS.get("seven_billion_execution_target",{}).get("per_company","unknown"))+" distinct eligible H roles; not all concurrently running.",
         "Local payment director: "+x["local_payment_director"],
         "Worker-versus-worker audit evidence: "+str(x["latest_public_peer_audit"].get("public_audit_state","unknown")),
         "Deterministic comparisons published: "+str(x["latest_public_peer_audit"].get("deterministic_pairwise_checks_reported","not yet available")),
