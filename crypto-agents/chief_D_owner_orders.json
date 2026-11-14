@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-162529",
+  "current_owner_order_id": "OWNER-20261114-162815",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -423,6 +423,19 @@
       "schedule_is_best_effort": true,
       "all_roles_simultaneously_active_claimed": false,
       "new_payments_verified_by_this_order": 0
+    },
+    {
+      "id": "OWNER-20261114-162815",
+      "as_of_utc": "2026-11-14T16:28:15Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT on user direction 'all assists 70b work24/7'",
+      "instruction": "OWNER DIRECTIVE: DESIGNATE 70,000,000,000 DISTINCT OWNER-CONFIGURED ASSISTANT ROLE SLOTS TO THE CONTINUOUS 24/7 B1 TRANSFEREXPERIMENT AND B2 BOUNTYSCOUTAI WORK MISSION, UNDER SOLE CHIEF D. Assign exactly 35,000,000,000 virtual assistant-role slots to each company, divided evenly among each company's ten internal directors: 3,500,000,000 assistant role slots per company director. Each slot can be addressed lazily through the already existing OWNER_AUTHORIZED_ASSISTANT_NAMESPACE of 200B theoretical slots per director; use only first 3.5B per lead for this directive, avoid allocating 70B objects, ensure unique IDs and unchanged parent/company ownership. These 70B assistant slots are a TASK ALLOCATION CAPACITY WITHIN A SEPARATE OPTIONAL ASSISTANT NAMESPACE, NOT 70B ACTUALLY INDEPENDENT MODELS, NOT NEW REGISTERED PLATFORM AGENT ACCOUNTS, AND NOT 70B ALREADY ACTIVE PROCESSES. Do not add this capacity to the existing 750,377,265,360 original role count as real workers or produce financial valuations based on count. At each REAL activated assistant/model process, perform 24/7 MISSION where available compute schedules allow: REVIEW earlier real work with evidence, DISCUSS specific deficiencies/ideas with genuinely executed peer model outputs, CORRECT/QA and produce original useful deliverable, ACT on real permissioned crypto-paying opportunities, obtain actual buyer approval, and VERIFY real incoming coin settlement on the owner's correct-chain company address. Independent workers should select different tasks and regions while preserving parent reporting to their assigned B company director and Chief D. No fake responses, mass unsolicited DM, platform scraping or posting without authenticated owner-authorized Moltbook agent account. Only real invocations count as workers active; GitHub best-effort periodic CI is not proof of continuously live processes. No private keys, wallet credentials, transfer ability, mining on CI, or unapproved cost. Each shift report actual work produced, actual worker model processes, discussions/QA, real clients contacted, buyer accepted deliverables, verified txid or NONE, and blockers. This is a recurring open-ended operational mission, not a promise of payment or permanent uptime.",
+      "status": "ASSISTANT_70B_ALLOCATION_POLICY_RECORDED_NOT_70B_LIVE",
+      "configured_assistant_role_slots": 70000000000,
+      "slots_per_company": 35000000000,
+      "slots_per_director": 3500000000,
+      "actual_new_AI_model_processes_created_by_order": 0,
+      "verified_cryptocurrency_receipts_created_by_order": 0
     }
   ],
   "strict_per_worker_reporting": {
