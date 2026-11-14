@@ -2,6 +2,18 @@
 
 **Owner's standing instruction, 14 November 2026 09:00 UTC:** Give every B role a uniquely identifiable funding task and instructions to advance it towards real, independently verified cryptocurrency received on the right company's address. The 7B target role namespace is lazily addressable, **not 7B active hosted workers or paid jobs**.
 
+## OWNER MANDATE: 24/7 FIVE-LANE B OPERATIONS (14 Nov 2026)
+
+**Permanent mission:** B1 transferexperiment, B2 BountyScoutAI and Chief D must maintain **24/7 operational coverage** through scheduled authorised research, quality assurance and available real model cycles. **Learning. Earning. Studying and lawfully copying reusable code. Thinking. Delivering.** Do not treat an interval with no model execution as one containing live workers. GitHub cron is best-effort and may be late or skipped; the heavy independent-model cycle is daily, not continuous. Hourly paid-task scout + other scheduled authorized task checks support around-the-clock coverage, not 750 billion concurrently running AI agents.
+
+- **LEARNING:** each actual B model records one independently sourced lesson from a useful technical reference, official documentation, genuine source failure or previous quality defect; explain how it changes the next action.
+- **EARNING:** each commercial shift checks a current real buyer/escrow/payout source, and ranks genuine scoped tasks by ability to submit and convert; payment evidence, not hypothetical revenue, is the success criterion.
+- **COPYING/REUSING:** workers may inspect public repositories and reuse portions of software only when the actual open licence or public-domain status permits the intended use, all notices and attribution are preserved, and terms are honoured. When permission cannot be shown, independently implement the idea; record source and licence outcome.
+- **THINKING:** each actual B model generates original actionable alternatives, diagnoses defects, rejects weak leads, and chooses the best legal next move with a supervisor and acceptance test; templates alone do not prove independent cognition.
+- **DELIVERING:** every authorized model cycle must work toward an inspectable patch, original code, tested service sample, accurate project deliverable, tailored application or actual customer agreement. Log source and artifact links, customer submission and acceptance separately. **A report is not payment.**
+
+**Continuous shift accountability:** hourly scheduled scout records what really ran, whether external sources were reached, new eligible opportunities, any genuine work artifacts, and its blockers; each model cycle preserves worker individual reports and audits through H→G→S→W→manager→fleet director→Chief D. Chief D should prioritize buyer contact, submissions and completed tasks rather than endless internal self-reporting. Report 24-hour coverage gaps and actual process counts. The $10,000 target is **cumulative genuinely received value**, with exact chain/network evidence for claimed crypto.
+
 ## Command authority
 
 Owner → sole Chief D → separate Company 1 and Company 2 boards → 10 local directors each → their 15 local managers each → real W, S, G, H workers. Each worker reports ONLY to its immediate parent, who grades real evidence; directors challenge manager reports; Chief D compares both companies and reports to the owner. A scheduled script assigning a role does NOT show its AI model ran, received a message or genuinely understood it.
