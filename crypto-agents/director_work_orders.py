@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from owner_order_distribution import summary
 from command_chain_receipts import configured_assignment
+from hierarchical_idea_governance import assignment as governed_idea_assignment
 
 role=os.environ.get("ROLE_ID","")
 if not re.fullmatch(r"D(?:0[1-9]|10)",role):
@@ -32,11 +33,22 @@ for manager in company["managers"]:
     for worker in config["worker_roles"]:
         n=int(worker["ordinal"])
         wid=manager["id"]+f"-W{n:02d}"
+        idea_governance=governed_idea_assignment(os.environ.get("WORKFORCE_ID","transferexperiment"),wid)
         records.append({
           "agent_id":wid,"parent_id":manager["id"],
           "director_id":role,"specialty":worker["role_name"],
           "manager_domain":manager["domain"],
           "search_query":worker["query"],
+          "hierarchical_idea_instruction":{
+              "owner_order_id":idea_governance["issued_under"],
+              "actual_worker_id":idea_governance["individual_worker"],
+              "immediate_boss":idea_governance["direct_supervisor"],
+              "company_director":idea_governance["company_director"],
+              "idea_target":10,
+              "specific_task":idea_governance["task"],
+              "supervisor_if_stuck":idea_governance["manager_if_worker_stuck"],
+              "state":"ASSIGNED_WAITING_FOR_REAL_MODEL_EXECUTION",
+          },
           "chief_D_universal_audit_and_open_research_order":chief_D_latest["instruction"][:1300],
           "authorized_work":assignment_text, "director_function":director_function, "payment_director_id":payment_director,
           "strict_chief_D_order_id":orders["chief_D_current_owner_order_id"],
@@ -59,6 +71,10 @@ doc={
  "payment_director_id":payment_director,
  "manager_assignments":[{"id":m["id"],"focus":m["domain"],"workers_assigned":50,
     "command_chain_assignment":configured_assignment(m["id"]),
+    "idea_first_directive":"Manage your own 50 W workers. Each must generate ten distinct independently model-produced ideas, verify one original potential paying source, and know correct company BTC network. If unable or repetitive, issue one narrower task and verify a new actual response; escalate to your local company director.",
+    "ten_ideas_required_per_actual_worker":True,
+    "manager_review_model_status":"NOT_EXECUTED_IN_THIS_ASSIGNMENT",
+    "supervisor_correction_status":"ASSIGNED_ONLY",
     "understanding_status":"pending_manager_model_response"} for m in company["managers"]],
  "individual_first_tier_worker_assignments":records,
  "first_tier_work_order_count":len(records),
