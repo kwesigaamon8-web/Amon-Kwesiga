@@ -25,6 +25,8 @@ jobs:
           python-version: '3.11'
       - name: Compile all research and management scripts
         run: python -m compileall -q crypto-agents
+      - name: Regression-test every B to manager to director to Chief D report
+        run: python crypto-agents/test_hierarchical_reporting.py
       - name: Check that D training assessment fails closed without a live model
         run: python crypto-agents/director_D_training.py
       - name: Run 15 regression checks for real reports and honest earnings
@@ -125,6 +127,20 @@ jobs:
         env:
           WORKFORCE_ID: transferexperiment
         run: python crypto-agents/strict_worker_accountability.py
+      - name: Forward each actual B report through parent managers and directors to Chief D
+        env:
+          WORKFORCE_ID: transferexperiment
+        run: python crypto-agents/hierarchical_reporting.py
+      - name: Show Chief D's auditable company report and all correction counts
+        run: cat hierarchical-reports/transferexperiment/CHIEF_D_COMPANY_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish concise evidence summary to Chief D's shared mission room
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          WORKFORCE_ID: transferexperiment
+        run: python crypto-agents/post_hierarchical_reports.py
       - name: Publish strict evidence grades in GitHub summary
         run: cat strict-worker-accountability/strict-transferexperiment.md >> "$GITHUB_STEP_SUMMARY"
       - name: Cross-audit EVERY actual worker's evidence against every other actual worker
@@ -201,6 +217,14 @@ jobs:
           path: director-D-discussion/
           if-no-files-found: warn
           retention-days: 7
+      - name: Archive all individual B reports and supervisor-to-Chief-D inboxes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hierarchical-worker-reports-transferexperiment
+          path: hierarchical-reports/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Archive Director D report and every actual agent record for OWNER
         if: always()
         uses: actions/upload-artifact@v4
