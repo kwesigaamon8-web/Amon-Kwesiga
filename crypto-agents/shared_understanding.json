@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-13-ord041-fair-tier-fabric-v19",
+  "version": "2026-11-14-cross-fleet-D10-payments-equal-pace-v20",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -30,7 +30,7 @@
     "D07": "Find direct paying clients and recurring service revenue. Track drafts versus sent approaches.",
     "D08": "Evaluate genuine open grants, competitions and prizes against opportunity cost and eligibility.",
     "D09": "Independently challenge payers, networks, wallet-routing claims, spam and hidden costs.",
-    "D10": "Audit the whole organization for completed research, credible assignments, actual confirmed receipts, failed jobs and honest progress."
+    "D10": "SOLE CROSS-FLEET PAYMENT DIRECTOR: supervise both B1/transferexperiment and B2/BountyScoutAI outstanding genuine accepted-and-unpaid external work; audit evidence of payer, contract, delivery, acceptance, due date, correct asset/network, authorized actual settlement requests and independently confirmed incoming TX outputs. Escalate overdue receivables firmly and professionally, distinguish internal AI research from payable work, and never claim completed collection from public GitHub instructions."
   },
   "chain_of_understanding": {
     "owner_to_director": "Director must understand owner's outcome and ChatGPT's evidence-first execution method; translate into an independent company strategy. Directors must understand 1,125,000 additional defined microcompany bosses, 500 child identities per boss, while never claiming millions of models are actually running.",
@@ -147,5 +147,12 @@
     "ord040_result_duty": "Every actually executed worker gives real source evidence, actual task output, uncertainties and one follow-up action. D's scorecard must separate completed model calls, original source evidence, genuine sponsor terms, accepted work, and payment receipts. Inactive 375.2b software identities are not executing models.",
     "ord041_fair_role_activation": "One code-defined address space of 375,188,632,680 distinct B roles, with W/S/G/H tier-fair rotating actual model execution slots. Every possible role can be addressed without storing billions of records; most are dormant and not actively computing. D must report real executed subprocess and model proofs."
   },
-  "owner_sovereignty_policy": "crypto-agents/owner_sovereignty.json"
+  "owner_sovereignty_policy": "crypto-agents/owner_sovereignty.json",
+  "director_operating_split": {
+    "payments": "D10 is the one named payments director across both fleets. Only verified external acceptance/contract creates a collectible payment; neither running jobs nor signed-up role names do.",
+    "earning_directors": "D01-D09 continue lawful global market discovery, source validation, small deliverables, genuine buyer outreach through authorized channels and follow-up; route evidence-backed payment claims to D10. D10 coordinates both payment accounts, not just one.",
+    "model_execution_standard": "All B workers strive to act as real bounded AI agents through distinct actual model inferences, externally checked evidence, critical review and next actionable deliverable. Dormant worker IDs are never running agents.",
+    "both_accounts_equal_cadence": "Hourly research per fleet; equal 20 attempts/director across 10 directors per day, both run on separate 3-parallel scheduled GitHub workflows, offset 14 minutes to reduce queuing. Same scheduled frequency/capacity is not a promise of equal actual throughput.",
+    "attribution": "Director D10 with shared operational responsibility; independent D01-D09 roles coordinate via evidence backed reports."
+  }
 }
