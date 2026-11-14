@@ -10,6 +10,8 @@ on:
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
       - 'crypto-agents/b_registered_account_worker_map.py'
+      - 'crypto-agents/b_delegated_prospect_batch.py'
+      - 'crypto-agents/b_shift_accountability.py'
       - 'crypto-agents/b_shift_worker_rotation.py'
       - 'crypto-agents/b_live_peer_teaching.py'
   workflow_dispatch:
@@ -37,6 +39,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python crypto-agents/new_earning_lanes.py
+      - name: Execute bounded original-role checks on actual public job candidate metadata
+        if: always()
+        run: |
+          python crypto-agents/b_delegated_prospect_batch.py --self-test
+          python crypto-agents/b_delegated_prospect_batch.py --feed paid-opportunity-reports/new-earning-lanes.json --out paid-opportunity-reports/delegated-account-work
+          cat paid-opportunity-reports/delegated-account-work/delegated-agent-work.md >> "$GITHUB_STEP_SUMMARY"
       - name: Save original source candidate evidence (not funding proof)
         if: always()
         uses: actions/upload-artifact@v4
