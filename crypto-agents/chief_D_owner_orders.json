@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-104949",
+  "current_owner_order_id": "OWNER-20261114-130403",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -236,6 +236,17 @@
       "unverified_earnings_never_claimed": true,
       "per_worker_micro_earning_target_usd": "0.01",
       "first_oath_required": true,
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-130403",
+      "as_of_utc": "2026-11-14T13:04:03Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT direct owner instruction on worldwide opportunity execution",
+      "instruction": "HUMAN OWNER DIRECTIVE (14 NOV 2026 13:04:03 UTC): \"whole world is filled with opportunity, information is filled with opportunity, i have billions of workers management manage the billions.\" CHIEF D MUST GOVERN A WORLDWIDE MULTI-MARKET COMMERCIAL OPERATING SYSTEM, not mere agent-count reports. The sole human owner originates the global mission; Chief D gives separate ten-director boards to B1/transferexperiment and B2/BountyScoutAI. Each of 20 distinct company director positions must own a distinct profitable-work role and oversee local managers, globally targeted original buyer research, source and sponsor eligibility, pricing, original tested code/docs/data deliverables, authenticated customer proposals and negotiations, acceptance evidence, and audited actual crypto payment. All 7,000,000,000 addressable H-tier identity slots must be accessible via O(1) deterministic unique task packets with exact parent, locale, source, task ID, company receiving route, execution gates, and no cross-company owner-order spoofing; do not pretend billions of host agents execute or 20 allocated files mean 20 model calls. All actually scheduled models must do real work and report real evidence. Prioritise existing advertised work opportunity: OpenTask task https://opentask.ai/tasks/cmpupoqmm0027kw04351wcfhz (advertised 50 USDC for Python JSON-to-CSV script) with an original completed script, README and eleven passing tests stored at crypto-agents/commercial-work/opentask-json-csv. Customer terms require a logged-in account to submit an offer; no offer, contract, client acceptance, settlement or coin receipt is evidenced, so DO NOT count revenue. Central automated global director board and per-worker task dispatcher: crypto-agents/b_global_commercial_dispatch.py; scheduled tests and evidence every hour in .github/workflows/b-world-revenue-command.yml. Continue worldwide buyer identification across legitimate paid data, coding, QA, automation, research, documentation and open source; exclude scams, closed tasks, restricted contributors, spam, no-money vanity work and permissions not actually possessed. Chief D must identify the next most concrete conversion blocker (here: authenticated OpenTask offer/account and buyer acceptance) and report approved action to owner. NO fictitious signed deals, income or infinitely running agents. The owner maintains final mission authority and private data remain pseudonymous.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "global_director_board": "crypto-agents/b_global_commercial_dispatch.py",
+      "real_work_sample": "crypto-agents/commercial-work/opentask-json-csv/json_to_csv.py",
       "authenticated_external_execution_not_implied": true
     }
   ],
