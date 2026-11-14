@@ -114,6 +114,11 @@ for director in DIRECTORS:
             defects.append("SECOND_SOFTWARE_STUDY_WRONG_ROLE_OR_PARENT")
         if second.get("source_platform") not in ("GitHub","GitLab","Codeberg","SourceHut","PyPI","npm","Official documentation","Hugging Face Spaces"):
             defects.append("UNAPPROVED_OR_UNSUPPORTED_CODE_SOURCE_PLATFORM")
+        real_public_source=data.get("second_software_actual_source_check") or {}
+        if real_public_source.get("url")!=second.get("official_repository"):
+            defects.append("SECOND_SOURCE_EVIDENCE_URL_INCONSISTENT")
+        if real_public_source.get("read_only_source_status")!="PUBLIC_SOURCE_READ":
+            defects.append("SECOND_SOFTWARE_SOURCE_NOT_ACTUALLY_READ")
         if data.get("second_study_actual_model_inference")!="MODEL_INFERENCE_COMPLETED":
             defects.append("SECOND_SOFTWARE_STUDY_MODEL_NOT_ACTUALLY_COMPLETED")
         if second_response.get("status")!="MODEL_STUDY_REPLY_REQUIRES_CODE_AND_LICENSE_REVIEW":
@@ -168,6 +173,8 @@ for director in DIRECTORS:
             "second_distinct_software_task_id":second.get("task_id"),
             "second_study_source_platform":second.get("source_platform"),
             "second_study_actual_model_status":data.get("second_study_actual_model_inference","NOT_EVIDENCED"),
+            "second_software_read_status":real_public_source.get("read_only_source_status","NOT_EVIDENCED"),
+            "actual_source_excerpt_characters":real_public_source.get("excerpt_chars",0),
             "second_study_model_quality":second_response.get("status","NO_SECOND_STUDY"),
             "source_license_authorized_reuse_not_verified":True,
             "hierarchical_company_director":hierarchy.get("company_director"),
