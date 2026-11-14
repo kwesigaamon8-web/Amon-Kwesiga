@@ -124,6 +124,14 @@ jobs:
         run: python crypto-agents/everyone_peer_audit.py
       - name: Present full reciprocal automated audit and follow-up assignments
         run: cat peer-accountability/peer-everyone-BountyScoutAI.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish non-sensitive peer-audit findings for cross-company learning
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          WORKFORCE_ID: BountyScoutAI
+        run: python crypto-agents/publish_peer_audit.py
       - name: Merge only completed independent worker next-action checkpoints
         run: python crypto-agents/agent_state_aggregate.py
       - name: Director D evaluates real results, sources and next actions
