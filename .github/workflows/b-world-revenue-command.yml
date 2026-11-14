@@ -9,6 +9,7 @@ on:
       - 'crypto-agents/b_universal_order_cascade.py'
       - 'crypto-agents/b_all_role_coverage_audit.py'
       - 'crypto-agents/b_authorized_assistant_namespace.py'
+      - 'crypto-agents/b_70b_assistant_24_7.py'
       - 'crypto-agents/b_certified_agent_service_router.py'
       - 'crypto-agents/b_certified_agent_engagements.json'
       - 'crypto-agents/b_owner_account_link.py'
@@ -45,6 +46,9 @@ jobs:
           python crypto-agents/b_universal_order_cascade.py --self-test
           python crypto-agents/b_all_role_coverage_audit.py
           python crypto-agents/b_authorized_assistant_namespace.py --self-test
+          python crypto-agents/b_70b_assistant_24_7.py --self-test
+          python crypto-agents/b_70b_assistant_24_7.py --index 0 > chief-D-global/B1-assistant-24-7-index-zero.json
+          python crypto-agents/b_70b_assistant_24_7.py --index 69999999999 > chief-D-global/B2-assistant-24-7-last-index.json
           python crypto-agents/b_certified_agent_service_router.py --self-test
           python crypto-agents/b_owner_account_link.py --self-test
           python crypto-agents/b_registered_account_worker_map.py --self-test
