@@ -142,6 +142,14 @@ jobs:
         run: python crypto-agents/director_D_results_gate.py
       - name: Director D consolidates all executed agents into one OWNER report
         run: python crypto-agents/owner_direct_reports.py
+      - name: Publish actual process evidence to shared D/B mission room
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          WORKFORCE_ID: transferexperiment
+        run: python crypto-agents/post_real_worker_status.py
       - name: Census all B roles and index every actual individual reply and learning result
         run: python crypto-agents/b_all_workers_report.py
       - name: Select one actual B worker representative and report its real lesson response
