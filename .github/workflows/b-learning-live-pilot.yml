@@ -80,9 +80,10 @@ jobs:
           PY
       - name: Verify the real-work training evaluator
         run: |
-          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py
+          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/owner_first_oath.py
           python crypto-agents/b_learning_by_doing.py
           python crypto-agents/b_worker_buyer_source.py
+          python crypto-agents/owner_first_oath.py
       - name: Install open-source CPU inference runtime
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
