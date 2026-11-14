@@ -97,10 +97,34 @@ START=time.monotonic()
 TASK=IDENTITY["task"]
 OWNER_OATH=owner_oath_envelope(FLEET,WORKER)
 UNIVERSAL_TASK=universal_assign(FLEET,WORKER)
+# Activation-time owner-command coverage gate. This is one REAL worker process:
+# a stale/misrouted order is a fatal failure, rather than pretending receipt.
+if CHIEF_D_ORDERS["orders"][-1]["id"]!=STRICT_OWNER_ORDER_ID:
+    raise SystemExit("Stale or mismatched current canonical owner order")
+if OWNER_OATH["order_id"]!=STRICT_OWNER_ORDER_ID:
+    raise SystemExit("Real worker received stale owner oath")
+if UNIVERSAL_TASK["owner_origin"]["current_order_id"]!=STRICT_OWNER_ORDER_ID:
+    raise SystemExit("Worker universal order not current")
+if OWNER_OATH["immediate_parent"]!=UNIVERSAL_TASK["assignment"]["report_to"]:
+    raise SystemExit("Worker parent chain and instruction disagree")
+if UNIVERSAL_TASK["payment"]["owner_mainnet_address"]!=PAYMENT_MISSION["address"]:
+    raise SystemExit("Worker payment route does not match its assigned company")
+OWNER_ACTIVATION_PROOF={
+    "worker_id":FLEET+"/"+WORKER,
+    "canonical_order_id":STRICT_OWNER_ORDER_ID,
+    "owner_oath_order_matches":True,
+    "universal_order_matches":True,
+    "parent_hierarchy_matches":True,
+    "correct_company_BTC_mainnet_address":PAYMENT_MISSION["address"],
+    "canonical_owner_order_read_at_process_start":STAMP,
+    "real_model_comprehension_still_requires_own_inference":True,
+    "real_external_payment_not_proved_by_startup":True,
+}
 
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "owner_activation_order_coverage_proof":OWNER_ACTIVATION_PROOF,
     "entrepreneurial_autonomy":{
         "owner_order_id":STRICT_OWNER_ORDER_ID,
         "may_self_direct_new_business_idea":True,
