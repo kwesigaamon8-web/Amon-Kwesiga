@@ -3,6 +3,10 @@ on:
   push:
     paths:
       - '.github/workflows/b-learning-live-pilot.yml'
+      - 'crypto-agents/b_paid_feed_fallback.py'
+      - 'crypto-agents/b_learning_by_doing.py'
+      - 'crypto-agents/new_earning_lanes.py'
+      - 'crypto-agents/ai_process_worker.py'
   workflow_dispatch:
   schedule:
     # B1 and B2 each launch TWO rotated REAL models per 15-minute shift, all days.
@@ -80,9 +84,10 @@ jobs:
           PY
       - name: Verify the real-work training evaluator
         run: |
-          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/owner_first_oath.py
+          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py crypto-agents/owner_first_oath.py crypto-agents/b_paid_feed_fallback.py
           python crypto-agents/b_learning_by_doing.py
           python crypto-agents/b_worker_buyer_source.py
+          python crypto-agents/b_paid_feed_fallback.py
           python crypto-agents/owner_first_oath.py
           python crypto-agents/b_universal_work_protocol.py --self-test
       - name: Install open-source CPU inference runtime
@@ -99,7 +104,7 @@ jobs:
         env:
           WORKFORCE_ID: ${{ matrix.fleet }}
           GH_TOKEN: ${{ github.token }}
-          WORKER_MODEL_ID: HuggingFaceTB/SmolLM2-360M-Instruct
+          WORKER_MODEL_ID: Qwen/Qwen2.5-0.5B-Instruct
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
         run: python crypto-agents/ai_process_worker.py "${{ steps.role.outputs.worker }}"
