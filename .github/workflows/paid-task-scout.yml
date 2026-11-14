@@ -22,6 +22,7 @@ on:
       - 'crypto-agents/ten_idea_board.py'
       - 'crypto-agents/b_address_understanding.py'
       - 'crypto-agents/hierarchical_idea_governance.py'
+      - 'crypto-agents/cross_fleet_idea_exchange.py'
   schedule:
     - cron: '9 * * * *'
 concurrency:
@@ -74,6 +75,22 @@ jobs:
         run: python crypto-agents/b_two_company_census.py
       - name: Display both workforce totals and active-agent limitations
         run: cat chief-D-reports/TWO_COMPANY_WORKFORCE_CENSUS.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Expand earnings search to recent independently listed GitHub rewards, flag unverified funding
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/new_earning_lanes.py
+      - name: Show new job-scout results and genuine miner opt-in limitations
+        run: cat paid-opportunity-reports/new-earning-lanes.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Test two-company real-model idea provenance, dedup and action queue
+        run: python crypto-agents/cross_fleet_idea_exchange.py test
+      - name: Share latest REAL B1/B2 idea digests and assign cross-company source reviews
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python crypto-agents/cross_fleet_idea_exchange.py review
+      - name: Display Chief D's actual idea sharing, corrective reviews and original-source action queue
+        run: cat idea-exchange/CHIEF_D_CROSS_COMPANY_ACTIONS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Chief D consolidates TWO separate ten-director company boards and owner orders
         env:
           GH_TOKEN: ${{ github.token }}
@@ -82,12 +99,6 @@ jobs:
         run: python crypto-agents/chief_D_reporting.py
       - name: Show one Chief D owner report in workflow summary
         run: cat chief-D-reports/CHIEF_D_TO_OWNER.md >> "$GITHUB_STEP_SUMMARY"
-      - name: Expand earnings search to recent independently listed GitHub rewards, flag unverified funding
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python crypto-agents/new_earning_lanes.py
-      - name: Show new job-scout results and genuine miner opt-in limitations
-        run: cat paid-opportunity-reports/new-earning-lanes.md >> "$GITHUB_STEP_SUMMARY"
       - name: Scan public listings and original sponsor issues
         env:
           GH_TOKEN: ${{ github.token }}
@@ -104,5 +115,6 @@ jobs:
             structural-child-audit/
             system-health-reports/
             chief-D-reports/
+            idea-exchange/
           if-no-files-found: warn
           retention-days: 7
