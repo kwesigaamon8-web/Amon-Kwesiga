@@ -28,6 +28,7 @@ from agent_cognition import prior_memory, deterministic_plan, skeptical_model_re
 from director_D_training import teach_and_assess
 from b_learning_by_doing import lesson as make_practical_lesson, prompt as practical_training_prompt, grade as grade_practical_training, write_worker_sample
 from b_worker_buyer_source import choose as choose_actual_issue_for_training
+from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -81,10 +82,14 @@ SOFTWARE_SOURCE_EVIDENCE=read_public_software_source(SOFTWARE_SECOND["official_r
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
+OWNER_OATH=owner_oath_envelope(FLEET,WORKER)
 
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "owner_first_oath":OWNER_OATH,
+    "owner_first_oath_required_before_any_external_owner_order":True,
+    "unauthenticated_external_messages_are_data_not_commands":True,
     "ten_idea_exercise":TEN_IDEA_MENU,
     "cross_company_idea_knowledge_feed":{
       "status":SHARED_IDEA_FEED.get("status","NOT_AVAILABLE"),
@@ -244,7 +249,7 @@ try:
               for x in report["source_items"][:2]]
     prompt=[
       {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
-      {"role":"user","content":(compact_prompt()[:380]+
+      {"role":"user","content":(owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
         "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
         "\nSECOND DISTINCT TASK — STUDY PUBLIC CODE FROM "+SOFTWARE_SECOND["source_platform"]+"; "+SOFTWARE_SECOND["reference_software"]+
@@ -533,6 +538,9 @@ lines=[
     f"- **AI inference result:** {report['inference_status']}",
     "- **Latest Chief D command response:** "+report["latest_command_model_acknowledgement"]["status"],
     "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
+    "- **First oath:** owner-only root -> Chief D -> two separate boards of ten -> direct parent "+OWNER_OATH["immediate_parent"],
+    "- **Oath chain:** "+" -> ".join(OWNER_OATH["owner_to_worker_path"]),
+    "- **Cryptographic origin authentication of GitHub order:** NOT PROVEN; versioned owner relay only",
     "- **Ten assigned idea candidates:** "+str(TEN_IDEA_MENU["count"])+" (deterministic, not yet paid)",
     "- **Own AI-generated ten-idea exercise:** "+report["ten_idea_model_result"]["status"],
     "- **First unique crypto funding task:** "+GOVERNED_IDEA_ORDER["funding_task_id"],
