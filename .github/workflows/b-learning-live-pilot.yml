@@ -1,33 +1,56 @@
-name: B1 B2 Learn While Working Live Pilot
+name: B1 B2 Recurring Real AI Worker Shifts
 on:
   push:
     paths:
       - '.github/workflows/b-learning-live-pilot.yml'
   workflow_dispatch:
+  schedule:
+    # B1 and B2 launch a bounded REAL worker each 15 minutes, all days.
+    # Schedule is best-effort and may be delayed/skipped by GitHub.
+    - cron: '2,17,32,47 * * * *'
+concurrency:
+  group: b1-b2-recurring-real-worker-shifts
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
   active-learning-worker:
     name: ${{ matrix.fleet }} real AI training while doing paid-work research
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 14
     strategy:
       fail-fast: false
       max-parallel: 2
       matrix:
         include:
           - fleet: transferexperiment
-            worker: D01-M01-W01
           - fleet: BountyScoutAI
-            worker: D02-M01-W01
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Choose a genuinely rotating assigned B worker
+        id: role
+        env:
+          B_FLEET: ${{ matrix.fleet }}
+          B_CYCLE: ${{ github.run_number }}
+        run: |
+          python crypto-agents/b_shift_worker_rotation.py --self-test
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, "crypto-agents")
+          from b_shift_worker_rotation import select
+          item=select(os.environ["B_FLEET"],int(os.environ["B_CYCLE"]))
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as out:
+              out.write("worker="+item["worker_id"]+"\n")
+          print("ACTUAL_B_SHIFT_ASSIGNED",json.dumps(item))
+          PY
       - name: Verify the real-work training evaluator
         run: |
-          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py
+          python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/b_learning_by_doing.py crypto-agents/b_worker_buyer_source.py crypto-agents/b_shift_worker_rotation.py
           python crypto-agents/b_learning_by_doing.py
           python crypto-agents/b_worker_buyer_source.py
       - name: Install open-source CPU inference runtime
@@ -46,11 +69,11 @@ jobs:
           WORKER_MODEL_ID: HuggingFaceTB/SmolLM2-360M-Instruct
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
-        run: python crypto-agents/ai_process_worker.py "${{ matrix.worker }}"
+        run: python crypto-agents/ai_process_worker.py "${{ steps.role.outputs.worker }}"
       - name: Audit real practical response and work sample file
         env:
           WORKFORCE_ID: ${{ matrix.fleet }}
-          WORKER_ID: ${{ matrix.worker }}
+          WORKER_ID: ${{ steps.role.outputs.worker }}
         run: |
           python - <<'PY'
           import os,json
@@ -67,11 +90,20 @@ jobs:
           assert result["real_model_call_completed"],"No actual training model reply"
           assert Path(p["actual_work_sample_file"]).is_file(),"Missing original sample"
           assert result["actual_payment_verified"] is False,"Cannot invent payments"
-          print("ACTUAL_B_TRAINING_WHILE_WORKING",json.dumps({
+          status={
              "company":r["workforce_namespace"],"worker":worker,
              "real_pid":r["os_process_pid"],"lesson":p["assignment"]["focus"],
              "practical_status":result["status"],"source":p["assignment"]["real_original_research_url"],
-             "payment_verified":False}))
+             "payment_verified":False}
+          print("ACTUAL_B_TRAINING_WHILE_WORKING",json.dumps(status))
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as out:
+             out.write("### REAL B worker shift — "+status["company"]+"\n\n")
+             out.write("- Actual worker: "+worker+"\n")
+             out.write("- Worker OS PID: "+str(status["real_pid"])+"\n")
+             out.write("- Training lesson: "+status["lesson"]+"\n")
+             out.write("- Practical grade: "+status["practical_status"]+"\n")
+             out.write("- Actual issue/source: "+(status["source"] or "No original source confirmed")+"\n")
+             out.write("- Verified crypto receipt: NOT ESTABLISHED by this worker run\n")
           PY
       - name: Archive executed worker model response and practical work product
         if: always()
