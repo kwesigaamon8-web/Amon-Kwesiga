@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-072113",
+  "current_owner_order_id": "OWNER-20261114-073213",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -42,6 +42,14 @@
       "as_of_utc": "2026-11-14T07:21:13Z",
       "relayed_by": "ChatGPT at owner's explicit direction",
       "instruction": "Chief D: public research information and non-sensitive discoveries are FREE AND OPEN for collaboration. Share verified public-source URLs, source excerpts within copyright constraints, safe research findings, reproducible work evidence, quality warnings, improvement recommendations, and non-sensitive peer-audit results across BOTH companies without silos. Every actually running worker and director can check other workers' evidence, within authorized tooling, using transparent cross-company sharing. Mark original sources as untrusted until verified and preserve independent judgment. Do NOT put private keys, seed phrases, passwords, unpublished client records, personal identity/contact details, or confidential commercial terms in public GitHub issues, artifact logs or shared research. Each autonomous model must still produce individual real findings, not an empty copied report. Peer reviews are evaluated honestly as deterministic checks or actual completed model-generated criticism; no fictional billions of cross-reviews or guaranteed incoming payments.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-073213",
+      "as_of_utc": "2026-11-14T07:32:13Z",
+      "relayed_by": "ChatGPT on express owner instruction",
+      "instruction": "Chief D: The owner sets a specific target of SEVEN BILLION unique B worker identities to do real lawful cryptocurrency-earning work and understand owner orders across TWO completely separate companies. Partition the target evenly: 3,500,000,000 distinct eligible H-level role identities in each company's namespace, 350,000,000 per local D01-D10 director. Use deterministic indexed, reproducible, nonduplicating role selection to rotate ACTUAL model-process attempts through these pools within authorized free runner limits; every launched worker must respond individually to the current order, identify its exact direct supervisor, original evidence and concrete next earning action. Fail or flag missing/weak acknowledgements, and report attempted/completed/qualified model runs, payment acceptance, actual on-chain coins and still-unexecuted target explicitly. Do not claim all 7B worked or understood when they have not. Do not multiply GitHub runs recklessly, invent wallet receipts, misstate inactive definitions as live minds, or spam potential payers. Chief D delivers account-separated accountability report directly to owner through documented scheduled workflow.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -95,5 +103,18 @@
       "unverified assertions of payments or externally executed work"
     ],
     "audit_rule": "Every peer review must distinguish automated validation from actual independent AI inference; sharing a report is not a separate agent's completed evaluation."
+  },
+  "seven_billion_execution_target": {
+    "total_distinct_eligible_role_ids": 7000000000,
+    "per_company": 3500000000,
+    "per_local_director": 350000000,
+    "companies": [
+      "transferexperiment",
+      "BountyScoutAI"
+    ],
+    "actual_process_budget_per_company_per_scheduled_daily_run": 200,
+    "execution_proof_rule": "Only unique completed model invocations with report plus explicit current order response count; role index/configuration is not execution",
+    "understanding_rule": "Every actual worker's own response must state mission, next action, risk and correct order ID with supervisor check; otherwise NOT ACKNOWLEDGED",
+    "payment_goal": "Independently verified real on-chain credits from legitimate transactions, not research"
   }
 }
