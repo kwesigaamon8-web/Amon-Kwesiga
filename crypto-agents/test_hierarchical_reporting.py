@@ -21,12 +21,20 @@ with tempfile.TemporaryDirectory() as temp:
             "source_items":[{"url":"https://example.org"}],
             "cognitive_checkpoint":{"next_action":"Verify payer eligibility before submitting"}
         })
+    first=raw/(ids[0]+".json")
+    example=json.loads(first.read_text())
+    example["practical_training_while_working"]={"result":{
+        "status":"APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW",
+        "real_model_call_completed":True},"actual_work_sample_file":"ai-process-reports/sample.md"}
+    save(first,example)
     save(root/"strict.json",{"fleet":"transferexperiment","individual_results":[
         {"id":"transferexperiment/"+x,"grade":"QUALIFIED_SOURCE_BACKED_AI_RESEARCH","defects":[]} for x in ids]})
     r=generate(raw,root/"strict.json",root/"out","transferexperiment")
     assert r["attempted_worker_reports"]==4, r
     assert r["completed_worker_model_reports"]==4, r
     assert r["strict_qualified_research_reports"]==4, r
+    assert r["real_training_model_calls"]==1, r
+    assert r["applied_training_drafts_needing_review"]==1, r
     assert r["supervisor_inboxes"]==5, r
     assert r["recorded_handoffs"]==sum(len(chain(w)) for w in ids), r
     assert (root/"out"/"transferexperiment"/"workers"/(ids[-1]+".md")).exists()
