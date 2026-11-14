@@ -7,6 +7,7 @@ on:
       - 'crypto-agents/b_universal_work_protocol.py'
       - 'crypto-agents/system_understanding_check.py'
       - 'crypto-agents/b_universal_order_cascade.py'
+      - 'crypto-agents/b_all_role_coverage_audit.py'
       - 'crypto-agents/owner_order_distribution.py'
       - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/chief_D_owner_orders.json'
@@ -34,6 +35,7 @@ jobs:
           python crypto-agents/b_universal_work_protocol.py --self-test
           python crypto-agents/system_understanding_check.py
           python crypto-agents/b_universal_order_cascade.py --self-test
+          python crypto-agents/b_all_role_coverage_audit.py
           python crypto-agents/b_universal_order_cascade.py --chief > chief-D-universal-order.json
           python crypto-agents/b_universal_order_cascade.py --global-index 0 > B1-global-target-0-owner-order.json
           python crypto-agents/b_universal_order_cascade.py --global-index 6999999999 > B2-global-target-last-owner-order.json
@@ -84,6 +86,7 @@ jobs:
           echo "- One unique H worker task packet assigned per director this run; identity is NOT a running model" >> "$GITHUB_STEP_SUMMARY"
           echo "- All-role universal owner-order cascade verified at selected root/child leaves, both companies and boundary H indices; 7 billion IDs are addressable, not 7 billion live models" >> "$GITHUB_STEP_SUMMARY"
           echo "- Every defined director, assistant, manager and W/S/G/H child inherits its owner order; actual child receipt/understanding must be evidenced when separately invoked" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Exact owner-order coverage audit checks all 20 directors, 40 assistants, 300 managers, representative W/S/G/H roles and sampled all-range 7B H IDs; file archived in chief-D-global/" >> "$GITHUB_STEP_SUMMARY"
           echo "- Original JSON-to-CSV and 100-USDC-class CSV-to-JSON samples tested; source listings and buyer hiring remain UNVERIFIED, no paid sale assumed" >> "$GITHUB_STEP_SUMMARY"
           echo "- Confirmed new crypto revenue from this workflow: not assessed" >> "$GITHUB_STEP_SUMMARY"
       - name: Archive director board and exact worker assignments
