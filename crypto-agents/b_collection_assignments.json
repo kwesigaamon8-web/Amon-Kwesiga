@@ -1,6 +1,6 @@
 {
-  "schema": "two-account-b-collection-v1",
-  "updated_utc": "2026-11-14T07:06:12Z",
+  "schema": "two-account-b-collection-v2",
+  "updated_utc": "2026-11-14T07:08:12Z",
   "mission": "Actual spendable crypto received and independently confirmed, not assumed from posted wallet or promises.",
   "fleets": {
     "transferexperiment": {
@@ -18,7 +18,8 @@
       },
       "primary_instruction": "As an Account 1 B worker independently search for paying buyers, negotiate within authorized scope, do useful work, obtain acceptance and arrange BTC mainnet payment to the Account 1 address. Respectfully request small voluntary tips in channels where permitted. Offer only lawful tasks actually fulfillable, identify payer and exact terms, log authenticated posts with URL; never claim earning until independent receipt confirmation. CRITICAL PAYMENT RECOVERY ADDENDUM: Before seeking new tasks, identify already completed and explicitly accepted real external client work or officially awarded bounties with verified outstanding payment. If any amount is contractually due, send a direct firm settlement request through authenticated approved contact, ask for on-chain payment proof, and escalate overdue accounts to Director D. Explicitly report NONE VERIFIED if no actual payer obligations were established. Never fabricate debt from internal GitHub research work.",
       "collection_priority": "Recover genuine accepted/unpaid receivables first. Search original accepted work records, validate payer/award/amount/due date, send firm verified settlement request through existing authorized channel, follow up on legitimate overdue claims, report exact proof or BLOCKED_AUTH. Do not mistake completed AI worker model calls for customer-accepted deliverables.",
-      "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables."
+      "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables.",
+      "director_mandate": "D10 owns payment settlement and verification; D01-D09 must keep pursuing paid work and pass verified accepted-and-unpaid contracts to D10, not halt research."
     },
     "BountyScoutAI": {
       "worker_namespace": "BountyScoutAI",
@@ -29,7 +30,8 @@
       "approved_public_notice": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/11",
       "primary_instruction": "As an Account 2 B worker independently search worldwide for cash-positive lawful crypto-paid projects and genuine donation/tip-friendly communities, offer data/research/software/document services that can be delivered, request optional small BTC contributions where permitted, and direct native BTC mainnet to the Account 2 address. Document actual authenticated contacts, accepted jobs, delivered work and verifiable inbound output receipts. Escalate eligible paying customers to D; never pretend a GitHub issue comment equals Moltbook outreach. CRITICAL PAYMENT RECOVERY ADDENDUM: Before seeking new tasks, identify already completed and explicitly accepted real external client work or officially awarded bounties with verified outstanding payment. If any amount is contractually due, send a direct firm settlement request through authenticated approved contact, ask for on-chain payment proof, and escalate overdue accounts to Director D. Explicitly report NONE VERIFIED if no actual payer obligations were established. Never fabricate debt from internal GitHub research work.",
       "collection_priority": "Recover genuine accepted/unpaid receivables first. Search original accepted work records, validate payer/award/amount/due date, send firm verified settlement request through existing authorized channel, follow up on legitimate overdue claims, report exact proof or BLOCKED_AUTH. Do not mistake completed AI worker model calls for customer-accepted deliverables.",
-      "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables."
+      "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables.",
+      "director_mandate": "D10 owns payment settlement and verification; D01-D09 must keep pursuing paid work and pass verified accepted-and-unpaid contracts to D10, not halt research."
     }
   },
   "common_rules": [
@@ -58,5 +60,41 @@
     "escalation": "Immediately bring actual overdue debts to Director D with evidence. Contact the payer from authorized authenticated account, follow up firmly and proportionately, record the message link and verified payment.",
     "firm_message": "The agreed work [actual deliverable link] has been completed and accepted. The outstanding [verified sum and coin] is now due. Please arrange settlement to the agreed receiving address and confirm the transaction reference. If payment is disputed or blocked, specify the issue immediately.",
     "non_negotiables": "No threats, harassing collection, extortion, invented accepted jobs, fake outreach, or claiming blockchain deposits that have not been independently verified."
+  },
+  "director_operations": {
+    "payment_director_id": "D10",
+    "payment_director_scope": "ONE logical Director D10 coordinating verified outstanding payments, followups, disputes, settlement evidence and two-account receipt reconciliation across both B1 and B2 fleets. Submissions from two fleet execution jobs must be cross-audited; never double-count or treat two D10 copies as two payment directors.",
+    "other_directors": [
+      "D01",
+      "D02",
+      "D03",
+      "D04",
+      "D05",
+      "D06",
+      "D07",
+      "D08",
+      "D09"
+    ],
+    "remaining_directors_mission": "Continue independently pursuing lawful new customers, credible paid tasks, deliverables, real payer contacts, source validation and technical improvements; hand genuine accepted/unpaid contracts to D10 promptly and do not stall opportunity research.",
+    "payment_handoff": "A director must submit real external payer link, contract/award amount, delivered/accepted evidence, due date, exact account/chain and message evidence to D10. D10 verifies, requests settlement from an authorized authentic channel where possible, and records TX/vout only after independent confirmation.",
+    "paid_claim_standard": "Internal model inference, GitHub workflow success, a draft offer or a public donation notice is not a customer contract and is not payable work.",
+    "autonomy_standard": "An agent is independently executing AI only where there is actual recorded model inference, public-source verification, distinct task/result and next action. Configured billions of IDs remain dormant. Use evidence-based self-review rather than fictional machine self-awareness."
+  },
+  "equal_pace": {
+    "research_fleet_frequency": "hourly",
+    "research_schedule_utc": {
+      "transferexperiment": "31 * * * *",
+      "BountyScoutAI": "46 * * * *"
+    },
+    "real_model_fleet_frequency": "daily",
+    "model_schedule_utc": {
+      "transferexperiment": "7 4 * * *",
+      "BountyScoutAI": "21 4 * * *"
+    },
+    "model_worker_attempt_cap_per_director": 20,
+    "model_directors_per_fleet": 10,
+    "model_max_parallel": 3,
+    "model_time_budget_seconds_per_director": 660,
+    "explanation": "Same hourly research frequency and equal daily model capacity per fleet, deliberately staggered to reduce GitHub runner contention; actual starts, full completion and payments depend on runner availability and authenticated external services."
   }
 }
