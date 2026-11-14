@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-082358",
+  "current_owner_order_id": "OWNER-20261114-084438",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -106,6 +106,14 @@
       "as_of_utc": "2026-11-14T08:23:58Z",
       "relayed_by": "ChatGPT upon owner's express hierarchical-governance instruction",
       "instruction": "Chief D: Run the ten-idea exercise as a GOVERNMENT-STYLE ORGANIZATION WITH REAL ACCOUNTABILITY. The owner issues a command through ChatGPT to ONE Chief D. Chief D assigns it to both independent company boards, each with its OWN ten local directors D01-D10. Each director instructs its own 15 managers and any assistants; managers assign specific practical idea-generation and original-source validation tasks to their own 50 first-tier workers; deeper S→G→H workers inherit the exact single-parent route. Every ACTUALLY INVOKED worker must attempt TEN distinct original lawful cryptocurrency-earning ideas and a correct company-wallet/command acknowledgement. A worker that cannot propose real ideas, has no source, repeats itself, misunderstands its wallet or produces no usable work must NOT be reported as productive: its IMMEDIATE manager/supervisor must issue a concrete scoped task and corrective instruction for a genuine bounded second model attempt if resources allow; the local company director audits and escalates failures to Chief D, who coordinates both boards and tells owner the real results. Workers may propose new ideas independently but cannot override correct wallet, evidence, acceptance or legal safety rules. Each manager/director must distinguish preassigned procedural instructions from ACTUAL separately completed AI reviews or replies. Everyone has a task, a boss, a verifiable source, a deadline/run identifier, and measurable outcomes: ten ideas, screened top options, paid work, accepted deliverables, authentic permission-based payer request, independently verified correct-chain coins. Do NOT claim inactive billions of role definitions are autonomously working or that scheduled assignments prove execution. Prioritize ideas first, then real work and payment, while keeping the two companies' address assignments distinct.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-084438",
+      "as_of_utc": "2026-11-14T08:44:38Z",
+      "relayed_by": "ChatGPT at owner's explicit request",
+      "instruction": "Chief D: apply the idea-first mission at both-company scale. Everyone in the full seven-billion-role TARGET must be able to INHERIT and later review the same versioned public/non-sensitive idea lessons through the real chain Owner -> sole Chief D -> distinct company D01-D10 -> managers -> actually invoked W/S/G/H. Every actual independent B worker reports its ten distinct model-generated ideas (or verifiable failure), and the workers that ran must be reviewed for duplicates, feasibility, actual payer, correct network, and concrete next step. Publish a small provenance-linked, non-sensitive digest from ACTUAL model reports per company, and let the other company read and critically evaluate it without pretending idle billion-scale role definitions or unrun models participated. Chief D must produce one cross-company action queue by combining both source-grounded contributions, assigning each promising idea to the other company's named director D01-D09 for independent verification; each local D10 is restricted to real accepted unpaid collection. Prioritize one genuine payer-verifiable deliverable and permission-based contact over claims of idea volume. Distinguish role addressability, actual AI model invocations, source checks, model peer critiques, accepted paid work and TXID-proven incoming coins. Do not share secrets, personal identity, confidential client records, private wallet directories, nonpublic exchange deposits, or post repeated unsolicited messages; no upfront fees or invented deposits.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
@@ -258,5 +266,19 @@
     "fallback_rule": "If actual worker fails ten ideas or address understanding, its real immediate parent assignment issues targeted next steps; bounded retry inside same model where available. Director and Chief D review evidence of actual retries, not paper assignments.",
     "incomplete": "NO_MODEL_IDEAS / NEEDS_SUPERVISOR_INTERVENTION until actually verified",
     "real_money": "Only independently confirmed incoming correct-chain transactions and verified accepted work count"
+  },
+  "seven_billion_cross_company_idea_share": {
+    "order_id": "OWNER-20261114-084438",
+    "eligible_target_role_positions": 7000000000,
+    "participating_companies": [
+      "transferexperiment",
+      "BountyScoutAI"
+    ],
+    "first_principle": "Ideas first, then verified buyer and real deliverable, then settlement",
+    "information_flow": "versioned public non-sensitive actual-worker idea digests, two independent director boards, one chief D",
+    "evidence_threshold": "An actually executed model produces an individual idea with link and unique ID; generic menu or configured role is not execution",
+    "review": "Source provenance, duplicate assessment, genuine payer, deliverable, cost, eligibility, no upfront fees, correct BTC chain, action, follow-up director",
+    "claims_prohibited": "7B active model agents, 7B actual reviews, confirmed external miners or coins absent independent proof",
+    "commercial_goal": "Real independently verified correct-network wallet deposits"
   }
 }
