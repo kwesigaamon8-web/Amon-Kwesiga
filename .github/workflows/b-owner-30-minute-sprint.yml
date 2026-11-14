@@ -151,7 +151,7 @@ jobs:
           OMP_NUM_THREADS: '2'
         run: |
           python crypto-agents/b_live_peer_teaching.py --fleet "$B_FLEET" --inputs shift-evidence --output peer-learning
-      - name: Save evidence: no fabricated sales or coins
+      - name: Archive genuine peer work without fabricated sales or coins
         if: always()
         uses: actions/upload-artifact@v4
         with:
