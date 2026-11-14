@@ -10,20 +10,23 @@ from datetime import datetime,timezone
 
 FLEETS=("transferexperiment","BountyScoutAI")
 PER_COMPANY=9*15*50
+WORKERS_PER_SHIFT=2
 
-def select(fleet,cycle):
+def select(fleet,cycle,slot=0):
     if fleet not in FLEETS: raise ValueError("unknown fleet")
     cycle=int(cycle)
     if cycle<1:raise ValueError("cycle must be >=1")
+    slot=int(slot)
+    if not 0<=slot<WORKERS_PER_SHIFT:raise ValueError("slot out of bounds")
     offset=0 if fleet==FLEETS[0] else PER_COMPANY//2
-    # Multiplication by 17 permutes the entire 6750-worker prospecting pool.
-    idx=((cycle-1)*17+offset)%PER_COMPANY
+    # Two non-overlapping slots per company/shift; full 6750-worker cycle in 3375 shifts.
+    idx=((cycle-1)*WORKERS_PER_SHIFT+slot+offset)%PER_COMPANY
     director=idx%9+1
     manager=(idx//9)%15+1
     worker=(idx//(9*15))%50+1
     identifier=f"D{director:02d}-M{manager:02d}-W{worker:02d}"
     return {
-       "fleet":fleet,"cycle":cycle,"worker_id":identifier,
+       "fleet":fleet,"cycle":cycle,"slot":slot,"worker_id":identifier,
        "report_parent":f"D{director:02d}-M{manager:02d}",
        "actual_model_executed":False,
        "task_status":"SCHEDULED_NOT_YET_EXECUTED",
@@ -33,12 +36,13 @@ def select(fleet,cycle):
     }
 
 def self_test():
-    seen=[select("transferexperiment",i)["worker_id"] for i in range(1,PER_COMPANY+1)]
+    seen=[select("transferexperiment",i,j)["worker_id"] for i in range(1,PER_COMPANY//WORKERS_PER_SHIFT+1) for j in range(WORKERS_PER_SHIFT)]
     assert len(set(seen))==PER_COMPANY
     assert seen[0]!=select("BountyScoutAI",1)["worker_id"]
+    assert select("transferexperiment",1,0)["worker_id"]!=select("transferexperiment",1,1)["worker_id"]
     assert all(re.fullmatch(r"D0[1-9]-M(?:0[1-9]|1[0-5])-W(?:0[1-9]|[1-4]\d|50)",x) for x in seen)
     assert all("-D10" not in x for x in seen)
-    assert select("transferexperiment",PER_COMPANY+1)["worker_id"]==seen[0]
+    assert select("transferexperiment",PER_COMPANY//WORKERS_PER_SHIFT+1)["worker_id"]==seen[0]
     print("B_ROTATION_TEST_PASS",PER_COMPANY,"eligible worker roles per B fleet; scheduled != executed")
 
 if __name__=="__main__":
@@ -46,8 +50,9 @@ if __name__=="__main__":
     parser.add_argument("--self-test",action="store_true")
     parser.add_argument("--fleet",choices=FLEETS)
     parser.add_argument("--cycle",type=int)
+    parser.add_argument("--slot",type=int,default=0)
     a=parser.parse_args()
     if a.self_test:self_test()
     else:
         if not a.fleet or not a.cycle:parser.error("specify --fleet and --cycle")
-        print(json.dumps(select(a.fleet,a.cycle)))
+        print(json.dumps(select(a.fleet,a.cycle,a.slot)))
