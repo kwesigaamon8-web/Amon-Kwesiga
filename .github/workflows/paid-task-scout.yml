@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/paid-task-scout.yml'
       - 'crypto-agents/paid_task_scout.py'
+      - 'crypto-agents/b_fleet_integrity.py'
+      - 'crypto-agents/d10_payment_director.py'
   schedule:
     - cron: '9 * * * *'
 concurrency:
@@ -23,8 +25,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate scout syntax
-        run: python -m py_compile crypto-agents/paid_task_scout.py
+      - name: Compile D10 payment audit, fleet integrity and paid-task scout
+        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py
+      - name: Validate equal B1/B2 AI agent capacity and sole D10 payment director
+        run: python crypto-agents/b_fleet_integrity.py
+      - name: D10 inspect two account payment evidence and read-only public BTC outputs
+        run: python crypto-agents/d10_payment_director.py
+      - name: Show D10 payment audit in workflow summary
+        run: cat d10-payment-reports/D10_TWO_ACCOUNT_PAYMENT_REPORT.md >> "$GITHUB_STEP_SUMMARY"
       - name: Scan public listings and original sponsor issues
         env:
           GH_TOKEN: ${{ github.token }}
@@ -35,6 +43,8 @@ jobs:
         if: always()
         with:
           name: joint-paid-task-scout
-          path: paid-opportunity-reports/
+          path: |
+            paid-opportunity-reports/
+            d10-payment-reports/
           if-no-files-found: warn
           retention-days: 7
