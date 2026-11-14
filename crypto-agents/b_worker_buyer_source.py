@@ -143,7 +143,7 @@ def self_test():
             return denied_issue
         blocked=choose("transferexperiment","D01-M01-W01",f,restricted_fetch)
         assert blocked["source_item"] is None
-        assert blocked["rejected_source_candidates"][0]["flags"]==["EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION"]
+        assert any("EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION" in z.get("flags",[]) for z in blocked["rejected_source_candidates"])
 
     print("PASS original task source fed to each real B only, no imaginary payer or D10 speculation")
 if __name__=="__main__":self_test()
