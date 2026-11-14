@@ -36,6 +36,8 @@ TASK=IDENTITY["task"]
 
 report={
     "worker_id":WORKER,
+    "workforce_namespace":os.environ.get("WORKFORCE_ID","transferexperiment"),
+    "globally_unique_agent_id":os.environ.get("WORKFORCE_ID","transferexperiment")+"/"+WORKER,
     "manager_id":MANAGER,
     "parent_id":PARENT,
     "agent_level":IDENTITY["level"],
