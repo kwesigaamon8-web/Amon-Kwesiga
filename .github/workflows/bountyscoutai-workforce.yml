@@ -216,6 +216,14 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: python crypto-agents/post_meeting.py
+      - name: Post evidence-based joint mission update
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          WORKFORCE_ID: BountyScoutAI
+        run: python crypto-agents/post_joint_mission.py
       - name: Upload consolidated report
         if: always()
         uses: actions/upload-artifact@v4
