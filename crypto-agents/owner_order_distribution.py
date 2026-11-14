@@ -7,6 +7,15 @@ import json
 from pathlib import Path
 
 SOURCE=Path("crypto-agents/owner_orders.json")
+CHIEF_ORDER_SOURCE=Path("crypto-agents/chief_D_owner_orders.json")
+def chief_order():
+    doc=json.loads(CHIEF_ORDER_SOURCE.read_text(encoding="utf-8"))
+    current=doc["current_owner_order_id"]
+    row=doc["orders"][-1]
+    if row["id"]!=current:
+        raise ValueError("Chief D owner order is not current")
+    return {"id":current,"instruction":row["instruction"],
+            "relay_source":str(CHIEF_ORDER_SOURCE)}
 
 def rows():
     records=json.loads(SOURCE.read_text(encoding="utf-8"))["orders"]
@@ -25,6 +34,8 @@ def summary():
     entries=rows()
     return {
         "source":str(SOURCE),
+        "chief_D_current_owner_order_id":chief_order()["id"],
+        "chief_D_owner_order_relay":chief_order()["relay_source"],
         "count":len(entries),
         "ids":[r["id"] for r in entries],
         "titles":{r["id"]:str(r.get("title",""))[:110] for r in entries},
@@ -38,6 +49,7 @@ def inheritance(agent_id, parent_id):
     return {
        "agent_id":agent_id, "parent_id":parent_id,
        "source":s["source"], "all_owner_order_ids":s["ids"],
+       "chief_D_latest_order_id":s["chief_D_current_owner_order_id"],
        "order_count":s["count"], "order_registry_sha256":s["sha256"],
        "broadcast_B_order_id":"ORD-033", "broadcast_B_alias":"B = billions of workers",
        "broadcast_B_inherited":"ORD-033" in s["ids"],
@@ -46,4 +58,4 @@ def inheritance(agent_id, parent_id):
 
 def compact_prompt():
     s=summary()
-    return "B = 375188632680 DEFINED ROLE IDS. ORD-047: Director D coordinates workers, checks evidence and owner reports; cannot fabricate payments or force outside agents. Every actual worker must report whether D lesson was learned with a separate model response and direct parent. ORD-046: every active B role may share the publicly approved receiving-address page in relevant authorized posts only; avoid mass unsolicited messaging; Binance exchange routes remain unverified. ORD-033 and ORD-034: every actually running agent independently studies real coins and legitimate worldwide coin-earning opportunities. Each ACTUALLY RUNNING role independently research real paid work for transferable crypto to approved addresses; identify source, deliverable, payer, eligibility, token/network and risks; give one unique evidence-backed report; no fake coins or bulk signups. ALL "+str(s["count"])+" owner orders apply; registry "+s["source"]+"; IDs: "+",".join(s["ids"])+". Do not treat idle defined roles as active."
+    return "Chief D latest owner instruction "+chief_order()["id"]+": STRICT output evidence from every ACTUALLY EXECUTED worker, and real lawful cryptocurrency settlement; no lazy/duplicate/imagined work. B = 375188632680 DEFINED ROLE IDS. ORD-047: Director D coordinates workers, checks evidence and owner reports; cannot fabricate payments or force outside agents. Every actual worker must report whether D lesson was learned with a separate model response and direct parent. ORD-046: every active B role may share the publicly approved receiving-address page in relevant authorized posts only; avoid mass unsolicited messaging; Binance exchange routes remain unverified. ORD-033 and ORD-034: every actually running agent independently studies real coins and legitimate worldwide coin-earning opportunities. Each ACTUALLY RUNNING role independently research real paid work for transferable crypto to approved addresses; identify source, deliverable, payer, eligibility, token/network and risks; give one unique evidence-backed report; no fake coins or bulk signups. ALL "+str(s["count"])+" owner orders apply; registry "+s["source"]+"; IDs: "+",".join(s["ids"])+". Do not treat idle defined roles as active."
