@@ -33,10 +33,14 @@ events=[]
 for slot in range(max_workers):
     if time.monotonic()-start_batch>=max_batch_seconds:
         break
-    if slot<len(planned_roles):
-        wid=planned_roles[slot]
+    # Allocate only 2 rotated high-priority activation examples. Without this
+    # cap the first 20 static plan examples consume the entire daily model
+    # budget and the remaining defined hierarchy never receives real inference.
+    plan_priority_slots=min(2,len(planned_roles),max_workers)
+    if slot<plan_priority_slots:
+        wid=planned_roles[(cycle+slot)%len(planned_roles)]
     else:
-        index=(offset+slot)%750
+        index=(offset+slot-plan_priority_slots)%750
         m=index//50+1
         w=index%50+1
         wid=f"{role}-M{m:02d}-W{w:02d}"
@@ -110,6 +114,9 @@ manifest={
  "run_at_utc":datetime.now(timezone.utc).isoformat(),
  "cycle":cycle,"workers_total_assigned":750,
  "director_activation_plan_used":bool(planned_roles),
+ "activation_examples_rotated":min(2,len(planned_roles),max_workers),
+ "other_workers_rotating_through_W_S_G_H":True,
+ "strict_accountability_authority":"chief_D_owner_orders.json",
  "activation_plan_cycle":(activation_plan or {}).get("selection_run_cycle"),
  "max_worker_processes_per_director":max_workers,
  "batch_time_budget_seconds":max_batch_seconds,
