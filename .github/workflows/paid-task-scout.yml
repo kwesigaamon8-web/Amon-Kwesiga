@@ -1,0 +1,39 @@
+name: B and D Grounded Paid Task Scout
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/paid-task-scout.yml'
+  schedule:
+    - cron: '9 * * * *'
+concurrency:
+  group: shared-paid-task-scout
+  cancel-in-progress: false
+permissions:
+  contents: read
+  issues: write
+jobs:
+  scout-verifiable-paying-work:
+    name: Original-source research and one owner report
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate scout syntax
+        run: python -m py_compile crypto-agents/paid_task_scout.py
+      - name: Scan public listings and original sponsor issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python crypto-agents/paid_task_scout.py
+      - name: Archive all checked candidate leads and blockers
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: joint-paid-task-scout
+          path: paid-opportunity-reports/
+          if-no-files-found: warn
+          retention-days: 7
