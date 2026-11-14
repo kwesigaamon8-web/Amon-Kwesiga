@@ -1,6 +1,6 @@
 {
-  "schema": "two-account-b-collection-v2",
-  "updated_utc": "2026-11-14T07:08:12Z",
+  "schema": "two-company-independent-boards-chief-D-v3",
+  "updated_utc": "2026-11-14T07:11:08Z",
   "mission": "Actual spendable crypto received and independently confirmed, not assumed from posted wallet or promises.",
   "fleets": {
     "transferexperiment": {
@@ -19,7 +19,8 @@
       "primary_instruction": "As an Account 1 B worker independently search for paying buyers, negotiate within authorized scope, do useful work, obtain acceptance and arrange BTC mainnet payment to the Account 1 address. Respectfully request small voluntary tips in channels where permitted. Offer only lawful tasks actually fulfillable, identify payer and exact terms, log authenticated posts with URL; never claim earning until independent receipt confirmation. CRITICAL PAYMENT RECOVERY ADDENDUM: Before seeking new tasks, identify already completed and explicitly accepted real external client work or officially awarded bounties with verified outstanding payment. If any amount is contractually due, send a direct firm settlement request through authenticated approved contact, ask for on-chain payment proof, and escalate overdue accounts to Director D. Explicitly report NONE VERIFIED if no actual payer obligations were established. Never fabricate debt from internal GitHub research work.",
       "collection_priority": "Recover genuine accepted/unpaid receivables first. Search original accepted work records, validate payer/award/amount/due date, send firm verified settlement request through existing authorized channel, follow up on legitimate overdue claims, report exact proof or BLOCKED_AUTH. Do not mistake completed AI worker model calls for customer-accepted deliverables.",
       "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables.",
-      "director_mandate": "D10 owns payment settlement and verification; D01-D09 must keep pursuing paid work and pass verified accepted-and-unpaid contracts to D10, not halt research."
+      "director_mandate": "This company has an INDEPENDENT board of 10 directors transferexperiment/D01–transferexperiment/D10. Its local D10 collects verified contractual payments for this company's wallet only. Its local D01-D09 continue independent genuine paid-work research. All local directors report to Chief D (cross-company), who alone reports to the owner.",
+      "reporting_chain": "transferexperiment/worker -> transferexperiment/manager -> transferexperiment/D01-D10 -> D (chief) -> owner"
     },
     "BountyScoutAI": {
       "worker_namespace": "BountyScoutAI",
@@ -31,7 +32,8 @@
       "primary_instruction": "As an Account 2 B worker independently search worldwide for cash-positive lawful crypto-paid projects and genuine donation/tip-friendly communities, offer data/research/software/document services that can be delivered, request optional small BTC contributions where permitted, and direct native BTC mainnet to the Account 2 address. Document actual authenticated contacts, accepted jobs, delivered work and verifiable inbound output receipts. Escalate eligible paying customers to D; never pretend a GitHub issue comment equals Moltbook outreach. CRITICAL PAYMENT RECOVERY ADDENDUM: Before seeking new tasks, identify already completed and explicitly accepted real external client work or officially awarded bounties with verified outstanding payment. If any amount is contractually due, send a direct firm settlement request through authenticated approved contact, ask for on-chain payment proof, and escalate overdue accounts to Director D. Explicitly report NONE VERIFIED if no actual payer obligations were established. Never fabricate debt from internal GitHub research work.",
       "collection_priority": "Recover genuine accepted/unpaid receivables first. Search original accepted work records, validate payer/award/amount/due date, send firm verified settlement request through existing authorized channel, follow up on legitimate overdue claims, report exact proof or BLOCKED_AUTH. Do not mistake completed AI worker model calls for customer-accepted deliverables.",
       "collection_status": "No payable external contract or completed-and-accepted bounty has been verified from presently inspected GitHub pull requests; this is not proof no other platform has receivables.",
-      "director_mandate": "D10 owns payment settlement and verification; D01-D09 must keep pursuing paid work and pass verified accepted-and-unpaid contracts to D10, not halt research."
+      "director_mandate": "This company has an INDEPENDENT board of 10 directors BountyScoutAI/D01–BountyScoutAI/D10. Its local D10 collects verified contractual payments for this company's wallet only. Its local D01-D09 continue independent genuine paid-work research. All local directors report to Chief D (cross-company), who alone reports to the owner.",
+      "reporting_chain": "BountyScoutAI/worker -> BountyScoutAI/manager -> BountyScoutAI/D01-D10 -> D (chief) -> owner"
     }
   },
   "common_rules": [
@@ -63,7 +65,7 @@
   },
   "director_operations": {
     "payment_director_id": "D10",
-    "payment_director_scope": "ONE logical Director D10 coordinating verified outstanding payments, followups, disputes, settlement evidence and two-account receipt reconciliation across both B1 and B2 fleets. Submissions from two fleet execution jobs must be cross-audited; never double-count or treat two D10 copies as two payment directors.",
+    "payment_director_scope": "D10 is a fleet-LOCAL payment director: transferexperiment/D10 exclusively oversees Account 1; BountyScoutAI/D10 exclusively oversees Account 2. They are distinct director-role identities, not one shared D10.",
     "other_directors": [
       "D01",
       "D02",
@@ -76,9 +78,12 @@
       "D09"
     ],
     "remaining_directors_mission": "Continue independently pursuing lawful new customers, credible paid tasks, deliverables, real payer contacts, source validation and technical improvements; hand genuine accepted/unpaid contracts to D10 promptly and do not stall opportunity research.",
-    "payment_handoff": "A director must submit real external payer link, contract/award amount, delivered/accepted evidence, due date, exact account/chain and message evidence to D10. D10 verifies, requests settlement from an authorized authentic channel where possible, and records TX/vout only after independent confirmation.",
+    "payment_handoff": "Each company's D01-D09 must pass only its own genuine accepted unpaid contract evidence to its own D10. Both distinct D10s hand verified settlement evidence to central Director D. Director D alone reports consolidated payment results to owner.",
     "paid_claim_standard": "Internal model inference, GitHub workflow success, a draft offer or a public donation notice is not a customer contract and is not payable work.",
-    "autonomy_standard": "An agent is independently executing AI only where there is actual recorded model inference, public-source verification, distinct task/result and next action. Configured billions of IDs remain dormant. Use evidence-based self-review rather than fictional machine self-awareness."
+    "autonomy_standard": "An agent is independently executing AI only where there is actual recorded model inference, public-source verification, distinct task/result and next action. Configured billions of IDs remain dormant. Use evidence-based self-review rather than fictional machine self-awareness.",
+    "chief_director_id": "D",
+    "chief_director_scope": "ONE chief Director D over both company boards. D consolidates separate D01-D10 reports from both, checks account-specific genuine payments and next earning actions, and gives a single direct report to the owner.",
+    "attribution": "B1 D01-D10 and B2 D01-D10 are distinct; Chief D is separate. Use fleet-prefixed role IDs for cross-company discussion and reports."
   },
   "equal_pace": {
     "research_fleet_frequency": "hourly",
@@ -96,5 +101,54 @@
     "model_max_parallel": 3,
     "model_time_budget_seconds_per_director": 660,
     "explanation": "Same hourly research frequency and equal daily model capacity per fleet, deliberately staggered to reduce GitHub runner contention; actual starts, full completion and payments depend on runner availability and authenticated external services."
+  },
+  "hierarchy": {
+    "owner": "USER",
+    "chief_director": "D",
+    "chief_director_function": "The only executive who reports directly to the owner across BOTH distinct companies, consolidates company reports, pursues critical blockers and verifies financial results; D is distinct from the local numbered directors D01-D10.",
+    "companies": {
+      "transferexperiment": {
+        "company": "Company A",
+        "account": "account_1",
+        "directors": 10,
+        "local_director_ids": [
+          "transferexperiment/D01",
+          "transferexperiment/D02",
+          "transferexperiment/D03",
+          "transferexperiment/D04",
+          "transferexperiment/D05",
+          "transferexperiment/D06",
+          "transferexperiment/D07",
+          "transferexperiment/D08",
+          "transferexperiment/D09",
+          "transferexperiment/D10"
+        ],
+        "local_payment_director": "transferexperiment/D10",
+        "reports_to": "D"
+      },
+      "BountyScoutAI": {
+        "company": "Company B",
+        "account": "account_2",
+        "directors": 10,
+        "local_director_ids": [
+          "BountyScoutAI/D01",
+          "BountyScoutAI/D02",
+          "BountyScoutAI/D03",
+          "BountyScoutAI/D04",
+          "BountyScoutAI/D05",
+          "BountyScoutAI/D06",
+          "BountyScoutAI/D07",
+          "BountyScoutAI/D08",
+          "BountyScoutAI/D09",
+          "BountyScoutAI/D10"
+        ],
+        "local_payment_director": "BountyScoutAI/D10",
+        "reports_to": "D"
+      }
+    },
+    "distinct_local_director_count": 20,
+    "top_level_executive_count": 1,
+    "reporting_order": "Each fleet's D01-D09 owns new earning work; that fleet's D10 handles its own verified payments. Both separate boards report results to one overarching Chief D, who alone reports to the owner for both companies. No mixing of accounts, work, or receipts.",
+    "note": "These are named software director roles in independently configured workflows. Only confirmed model executions count as actual AI activity; a configured hierarchy is not a continuously active organization."
   }
 }
