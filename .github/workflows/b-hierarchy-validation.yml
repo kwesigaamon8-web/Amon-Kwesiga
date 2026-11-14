@@ -1,0 +1,25 @@
+name: Validate B to Chief D Reporting
+on:
+  push:
+    paths:
+      - '.github/workflows/b-hierarchy-validation.yml'
+      - 'crypto-agents/hierarchical_reporting.py'
+      - 'crypto-agents/test_hierarchical_reporting.py'
+      - 'crypto-agents/post_hierarchical_reports.py'
+      - 'crypto-agents/chief_D_reporting.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-reporting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile worker reports, hierarchy and Chief D code
+        run: python -m py_compile crypto-agents/hierarchical_reporting.py crypto-agents/post_hierarchical_reports.py crypto-agents/chief_D_reporting.py
+      - name: Regression-test all worker tiers and two company separation
+        run: python crypto-agents/test_hierarchical_reporting.py
