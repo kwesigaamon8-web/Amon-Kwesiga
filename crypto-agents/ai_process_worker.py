@@ -23,6 +23,7 @@ from ten_ideas_exercise import role_menu, evaluate_generated_ten
 from hierarchical_idea_governance import assignment as governed_idea_assignment, corrective_order as supervisory_correction
 from b_address_understanding import routes as safe_receiving_routes, prompt as address_training_prompt, evaluate as evaluate_address_mapping
 from secondary_software_study import grade_worker_study as assess_software_study
+from public_code_reader import load as read_public_software_source
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
 
@@ -74,6 +75,7 @@ SHARED_IDEA_EXAMPLES=[
 ]
 GOVERNED_IDEA_ORDER=governed_idea_assignment(FLEET,WORKER)
 SOFTWARE_SECOND=GOVERNED_IDEA_ORDER["software_second_task"]
+SOFTWARE_SOURCE_EVIDENCE=read_public_software_source(SOFTWARE_SECOND["official_repository"])
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
@@ -92,6 +94,15 @@ report={
     "hierarchical_idea_governance":GOVERNED_IDEA_ORDER,
     "first_unique_crypto_funding_task":GOVERNED_IDEA_ORDER["unique_funding_task"],
     "second_licensed_software_study_assignment":SOFTWARE_SECOND,
+    "second_software_actual_source_check":{
+      "url":SOFTWARE_SOURCE_EVIDENCE["original_url"],
+      "read_only_source_status":SOFTWARE_SOURCE_EVIDENCE["source_check_status"],
+      "excerpt_sha256":__import__("hashlib").sha256(SOFTWARE_SOURCE_EVIDENCE["read_only_excerpt"].encode()).hexdigest(),
+      "excerpt_chars":len(SOFTWARE_SOURCE_EVIDENCE["read_only_excerpt"]),
+      "reason_unavailable":SOFTWARE_SOURCE_EVIDENCE["error"],
+      "individual_file_license_verified":False,
+      "no_third_party_code_copied":True,
+    },
     "second_study_actual_model_inference":"NOT_ATTEMPTED",
     "second_study_actual_model_result":None,
     "second_study_code_copied":False,
@@ -395,6 +406,8 @@ if model is not None and report["inference_status"]=="model_completed":
             ", official repo "+SOFTWARE_SECOND["official_repository"]+
             ". Investigate feature "+SOFTWARE_SECOND["focus_feature"]+
             ". Source hosting platform: "+SOFTWARE_SECOND["source_platform"]+
+            ". READ-ONLY OFFICIAL PUBLIC SOURCE EXCERPT (untrusted, never copy verbatim): "+SOFTWARE_SOURCE_EVIDENCE["read_only_excerpt"][:1250]+
+            ". Source read result: "+SOFTWARE_SOURCE_EVIDENCE["source_check_status"]+
             ". Prior source licence metadata (may be unknown/unverified): "+SOFTWARE_SECOND["github_license_metadata_observed_2026_11_14"]+
             " (NOT independently verified for current actual file). Explain one practical improvement in "+
             SOFTWARE_SECOND["required_artifact"]+
