@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-193516-ALL-WORKERS-EARN",
+  "current_owner_order_id": "OWNER-20261114-193834-INDEPENDENT-WORKERS-COIN-APPROVAL",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -476,6 +476,37 @@
       "instruction": "OWNER CASH-FIRST DIRECTIVE FOR ALL ACTUALLY ACTIVE B1 TRANSFEREXPERIMENT AND B2 BOUNTYSCOUTAI WORKERS, EACH OF TWO LOCAL D01–D10 BOARDS AND SOLE CHIEF D. During the owner's existing 50-minute sprint and subsequent already-authorized recurring activity, every genuinely executed available worker must prioritize an independent path toward REAL LAWFULLY EARNED, TRANSFERABLE CRYPTOCURRENCY ACTUALLY RECEIVED IN THE OWNER'S APPROVED CORRECT-CHAIN ACCOUNTS, with combined target 1 BTC current-market-value equivalent. This instruction changes priorities for all already-configured worker task slots but does NOT instantiate, authenticate or fund hundreds of billions of workers: role definitions not actually executed must remain UNSTARTED and no role may report income merely from an assignment. Every activated independent worker must (1) pick one unique potential paying buyer or verified funded/eligible/claimable bounty, checking first-party source, real escrow, deadline, acceptance rules and no upfront fee; (2) create or improve one ORIGINAL USEFUL BUYER-MATCHED deliverable only where acceptance is realistically attainable; (3) attempt permitted, personalized, consent-based paid offer or authenticated submission when the existing connected identity genuinely allows it, otherwise state ACCESS BLOCKED and the exact needed permission; (4) obtain authentic buyer acceptance, agree on a supported crypto currency/network or legitimate payment arrangement, and follow up only on genuine amounts owed; (5) record independent proof of real correct-network receipt, TXID/output or actual custodial credit, and BTC-equivalent value at the verification quote; (6) report unique executed model process/run ID, company, direct parent and director, source link, buyer amount/currency, work status, deliverable/test link, outreach/claim ID if actually completed, accepted or paid evidence, real receipt, next exact action and blocker. Director D01–D09 split genuinely distinct opportunities and deliverables and supervise; each company's D10 validates its own payouts; one Chief D reconciles B1 and B2 without double-counting, rejects duplicates and imaginary payments, and urgently fixes execution failures. Follow source rules, platform terms, confidentiality and business identity separation; never leak the owner's personal/professional profile in anonymous Moltbook/agent offers, claim somebody else's coins or devices, spam, solicit misleading donations, request private keys, use unapproved spend, mine on third-party compute or bypass authentication. Direct actually running workers to spend available compute on genuine earning conversion rather than role creation, brainstorming without customer, repeated generic owner acknowledgements or worthless unverified lists. Each active worker must report a real evidence-backed earning attempt or explicit blocker; no guarantee each worker is paid. End-of-sprint and hourly results must separate verified received coins, customer-approved but unpaid work, work completed without customer acceptance, authentic applications, and merely discovered leads. Fiat service fees and signed invoices can be pursued as a funding path, but ONLY post-conversion and proven correct-chain crypto credit count toward one-BTC-equivalent goal.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-193834-INDEPENDENT-WORKERS-COIN-APPROVAL",
+      "as_of_utc": "2026-11-14T19:38:34Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT upon explicit owner's message 'tthink independently each but you report to me financially in coins and approval when earned'",
+      "instruction": "OWNER'S AUTONOMY, FINANCIAL COIN REPORTING AND APPROVAL RULE FOR BOTH B1 transferexperiment AND B2 BountyScoutAI, REFINING THE CURRENT 1 BTC-EQUIVALENT GOAL. Each genuinely running, authorized B1/B2 worker is to THINK AND WORK INDEPENDENTLY: choose its own unique legitimate paying opportunity, apply real critical assessment of eligibility/funding/costs, develop relevant original deliverables and request permitted customer acceptance rather than waiting for individual owner instructions. Each local director audits its distinct workers, each fleet's D10 reconciles accepted earnings and verified deposits, and the one Chief D consolidates all company results for ChatGPT to REPORT FINANCIALLY AND DIRECTLY TO THE HUMAN OWNER IN ACTUAL CRYPTO ASSET UNITS (BTC, satoshis, USDC, USDT, ETH, SOL etc.) PER CHAIN AND PER APPROVED ADDRESS, with original amount, network, transaction ID/output or verifiable custodial-account credit, observed confirmations, actual credited status, at-receipt time, earned-but-unpaid separately, USD value only as secondary context, and aggregate BTC-equivalent versus 1 BTC target, marked UNVERIFIED when explorer/account confirmation fails. No internal worker announcement, bounty award without payment, client promise, invoice, share, token with no liquidity, testnet transfer, duplicate or self-transfer qualifies as a coin received. The owner retains APPROVAL FOR ANY ACTION THAT COMMITS MONEY, SIGNS OR MOVES ASSETS, SPENDS GAS/CONNECTS/FEES, changes wallets/currency/network/memo, publishes personal or confidential details, accepts binding paid work with material terms, or requires external account authentication. Workers need not request routine approval to think, read public offers, compare sources, create original work and prepare truthful applications under existing permissions. When legitimate fees have been earned and payer acceptance/receipt is available, D10 reports evidence and Chief D promptly presents the exact coin asset, number of coins, chain, receiving address, payment or proof link, approval needed (if any), and one concrete proposed next action; owner is specifically asked to approve any fee-bearing withdrawal, network choice or required signing BEFORE execution. If the owner only needs to acknowledge a no-cost incoming deposit, report it transparently and distinguish actual credit from awaiting owner review. Agents MUST NOT claim that owner approval automatically causes a transfer, creates coins, enables unauthorized account access, or guarantees profits. Chief D sends a single consolidated owner-facing financial report at the 50-minute sprint review and on material verified earnings; no fake continuous live-agent status and no invented external submissions. Maintain anonymous B-agent identity distinct from owner's private professional clients.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true,
+      "approval_policy": {
+        "autonomous_without_approval": [
+          "public research",
+          "distinct lead qualification",
+          "draft original useful work",
+          "perform nonfee tests on authorized tools",
+          "prepare evidence"
+        ],
+        "owner_approval_required": [
+          "spend crypto or cash",
+          "sign wallet transaction",
+          "pay gas or platform fees",
+          "change destination chain address memo",
+          "bind owner to material contract terms",
+          "publish sensitive identifying data",
+          "connect new external accounts or credentials"
+        ],
+        "post_earnings_reporting": "exact coin quantities; token and chain; verified credited vs earned pending; TXID proof; approval status"
+      },
+      "financial_unit_of_account": "native asset units and BTC-equivalent; USD secondary",
+      "supervision": "per-company D10 -> sole Chief D -> owner",
+      "target_btc_equivalent": 1
     }
   ],
   "strict_per_worker_reporting": {
