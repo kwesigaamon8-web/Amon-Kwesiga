@@ -23,7 +23,15 @@ def clean_text(v, max_chars=950):
 
 def get_actual_teachers(inputs):
     result=[]
-    for file in Path(inputs).glob("practical-work-*/*.json"):
+    # Older fleet jobs upload practical-work-*/<report>.json. The focused
+    # owner sprint uploads ai-process-reports/ via upload-artifact, which
+    # FLATTENS that directory inside sprint-worker-* on download.
+    # Accept both layouts, but still validate actual model execution below.
+    root=Path(inputs)
+    files=(sorted(root.glob("practical-work-*/*.json"))+
+           sorted(root.glob("sprint-worker-*/*.json"))+
+           sorted(root.glob("sprint-worker-*/ai-process-reports/*.json")))
+    for file in files:
         try:
             doc=json.loads(file.read_text(encoding="utf-8"))
         except (OSError, ValueError):continue
@@ -196,6 +204,17 @@ def self_test():
         (inp/"D01-M01-W01.json").write_text(json.dumps(fake))
         rows=get_actual_teachers(root)
         assert len(rows)==1
+        # GitHub Actions upload-artifact path=ai-process-reports/ causes
+        # the received zip to contain worker.json at its root.
+        sprint=root/"sprint-worker-BountyScoutAI-0"
+        sprint.mkdir()
+        other=dict(fake)
+        other["workforce_namespace"]="BountyScoutAI"
+        (sprint/"D01-M01-W01.json").write_text(json.dumps(other))
+        rows=get_actual_teachers(root)
+        assert len(rows)==2
+        assert select_peer("transferexperiment",rows)["company"]=="BountyScoutAI"
+        assert select_peer("BountyScoutAI",rows)["company"]=="transferexperiment"
         assert select_peer("BountyScoutAI",rows)["teacher_worker_id"]=="D01-M01-W01"
         assert select_peer("transferexperiment",rows) is None
         fake["inference_status"]="not_run"
