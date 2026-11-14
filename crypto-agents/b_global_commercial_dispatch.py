@@ -58,6 +58,14 @@ def director_board():
              "market_hypothesis":{"city":city,"country_code":iso,"region":continent,"locale":locale},
              "actual_customer_known_in_this_market":False,
              "manager_count_defined":15,"manager_model_acknowledgements_verified":False,
+             "recruitment_cascade":{
+                "owner_order_id":order,
+                "director_relay_to_15_managers_and_two_assistants_on_activation":True,
+                "manager_to_workers_and_worker_to_S_to_G_to_H":True,
+                "actual_subordinate_activations_not_proven_by_this_plan":True,
+                "external_agent_recruiting_requires_consent_and_authorized_account":True,
+                "mission":"Give each truly activated recruit an individual original lawful crypto-paying work task, its correct company wallet, and a requirement to pass the same mission to its own future actual recruits.",
+             },
              "active_worker_proof_required":True,"payment_received_verified":False,
              "real_lead_claims":[l["lead_id"] for l in GLOBAL_ORIGINAL_BUYER_LEADS if l["owner_of_lead"]==fleet+"/"+d]
             })
@@ -69,7 +77,7 @@ def director_board():
         "unique_lead_claim_rule":"One owner per prospect. Directors coordinate, do not send bulk or repeated offers.",
         "actual_connected_opentask_account_confirmed":False,
         "active_billions_claim":False,
-        "latest_owner_directive":"OWNER-20261114-150007",
+        "latest_owner_directive":order,
         "urgent_commercial_sprint":{"duration_minutes_per_activated_worker":30,
             "scope":"Source-backed paying customer -> original useful work -> authorized submission -> accepted customer -> verified actual crypto receipt",
             "applies_to_all_addressable_H_targets_on_activation":True,
@@ -89,7 +97,7 @@ def worker_packet(global_index):
     speciality=next(x for x in DIRECTOR_LANES if x[0]==dname)
     return {
       "protocol":"CHIEF_D_GLOBAL_REVENUE_V2",
-      "directive_source":"OWNER-20261114-150007",
+      "directive_source":row["owner_origin"]["current_order_id"],
       "owner_30_minute_mission":{
         "focus_minutes_on_real_activation":30,
         "intent":"Get legitimate transferable cryptocurrency paid to this company's approved correct-network owner wallet",
@@ -99,6 +107,7 @@ def worker_packet(global_index):
         "no_guaranteed_payment":True,
       },
       "owner_order":row["owner_origin"]["current_order_id"],
+      "recruitment_handoff":row["recruitment_handoff"],
       "global_index":global_index,
       "task_id":item["task_id"],
       "company":company,
@@ -143,7 +152,10 @@ def self_test():
     assert all(t["per_worker_one_cent_btc_target_only"]=="0.01" for t in tasks)
     assert all(t["owner_30_minute_mission"]["focus_minutes_on_real_activation"]==30 for t in tasks)
     assert all(t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
-    assert all(t["directive_source"]=="OWNER-20261114-150007" for t in tasks)
+    assert all(t["directive_source"]==board["owner_order_id"] for t in tasks)
+    assert all(t["recruitment_handoff"]["company"]==t["company"] for t in tasks)
+    assert all(t["recruitment_handoff"]["company_receiving_address"]==t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
+    assert all(t["recruitment_handoff"]["actual_child_invited_or_created"] is False for t in tasks)
     assert all(not t["actual_worker_model_started"] and not t["submitted_to_customer"] for t in tasks)
     assert all(t["reports_up_through"][-1]==t["worker_id"] for t in tasks)
     assert {t["company"] for t in tasks}==set(FLEETS)
