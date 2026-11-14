@@ -140,7 +140,7 @@ def generate(root,strict_file,out,fleet,run_url=""):
                 "completed_model_reports":supervisors.get(d,{}).get("model_completions",0),
                 "corrections":supervisors.get(d,{}).get("requiring_correction",0)} for d in DIRECTORS]
     final={"schema":"ACTUAL-B-REPORTING-CHAIN-v1","as_of_utc":datetime.now(timezone.utc).isoformat(),
-           "company":fleet,"chief":"D","github_run_url":run_url,
+           "company":fleet,"chief":"D","github_run_url":run_url,"source_worker_model_run_id":os.environ.get("SOURCE_WORKER_RUN_ID"),
            "route":"Executed H > G > S > W > manager > director > Chief D (shorter for W/S/G)",
            "attempted_worker_reports":len(workers),
            "completed_worker_model_reports":sum(x["actual_execution_status"]=="MODEL_COMPLETED_NEEDS_REVIEW" for x in workers.values()),
