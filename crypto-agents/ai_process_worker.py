@@ -20,6 +20,7 @@ from coin_learning import study
 from command_chain_receipts import configured_assignment, understanding_receipt
 from command_ack_gate import evaluate as evaluate_owner_command_ack
 from ten_ideas_exercise import role_menu, evaluate_generated_ten
+from b_address_understanding import routes as safe_receiving_routes, prompt as address_training_prompt, evaluate as evaluate_address_mapping
 from agent_cognition import prior_memory, deterministic_plan, skeptical_model_review, checkpoint
 from director_D_training import teach_and_assess
 
@@ -37,6 +38,7 @@ FLEET=os.environ.get("WORKFORCE_ID","transferexperiment")
 if FLEET not in COLLECTION_CONFIG["fleets"]:
     raise SystemExit("Unrecognized B collection fleet namespace")
 PAYMENT_MISSION=COLLECTION_CONFIG["fleets"][FLEET]
+SAFE_B_WALLET_ROUTES=safe_receiving_routes()
 CHIEF_D_ORDERS=json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
 STRICT_OWNER_ORDER_ID=CHIEF_D_ORDERS["current_owner_order_id"]
 LATEST_CHIEF_D_INSTRUCTION=CHIEF_D_ORDERS["orders"][-1]["instruction"]
@@ -68,6 +70,9 @@ report={
     "seven_billion_target_count":7000000000,
     "latest_command_model_acknowledgement":None,
     "latest_order_ack_inference_status":"not_started",
+    "public_receiving_route_training":"B1 BTC mainnet / B2 BTC mainnet / optional B1 USDC Base HOLD",
+    "separately_checked_address_understanding":None,
+    "address_understanding_model_status":"NOT_ATTEMPTED",
     "chief_D_latest_instruction_excerpt":LATEST_CHIEF_D_INSTRUCTION[:1000],
     "peer_assessment_in_separate_actual_model_inference":"not_evidenced",
     "individual_result_required":True,
@@ -179,6 +184,7 @@ try:
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
         "\nOPEN EVIDENCE POLICY share only public non-sensitive research, checks and useful cross-company insights; never reveal keys, passwords or confidential client information."+
+        "\nWALLET ROUTING AND CHIEF D TRAINING "+address_training_prompt(FLEET)[:900]+
         "\nCOLLECTION ORDER "+PAYMENT_MISSION["primary_instruction"][:500]+"; BTC mainnet receiving address "+PAYMENT_MISSION["address"]+"; public support notice "+PAYMENT_MISSION["approved_public_notice"]+
         "\nAgent "+WORKER+"; DIRECT PARENT "+PARENT+"; OWNER COMMAND ROUTE "+">".join(report["command_chain_assignment"]["current_organization_route"])+
         "; specialty "+SPEC["role_name"]+
@@ -283,6 +289,24 @@ report["ten_idea_model_result"]=evaluate_generated_ten(brainstorm)
 report["ten_idea_model_result"]["worker_id"]=FLEET+"/"+WORKER
 report["ten_idea_model_result"]["direct_parent"]=PARENT
 report["ten_idea_model_result"]["inference_status"]=report["ten_idea_model_inference_status"]
+# Independent address-mapping exercise for this actual model worker:
+# never count merely receiving the public map as comprehension.
+wallet_reply=""
+if model is not None and report["inference_status"]=="model_completed":
+    try:
+        wallet_prompt=[
+          {"role":"system","content":"Read the public receiving details carefully. Reply in exactly five short labelled lines. Never fabricate transactions, routes, memos, payer obligations or payments."},
+          {"role":"user","content":address_training_prompt(FLEET)}
+        ]
+        generated_wallet=model(wallet_prompt,max_new_tokens=220,do_sample=False,return_full_text=False)
+        wallet_reply=generated_wallet[0].get("generated_text","")
+        if isinstance(wallet_reply,list):
+            wallet_reply=wallet_reply[-1].get("content","")
+        report["address_understanding_model_status"]="MODEL_INFERENCE_COMPLETED"
+    except Exception as exc:
+        report["address_understanding_model_status"]="MODEL_ERROR:"+type(exc).__name__
+report["separately_checked_address_understanding"]=evaluate_address_mapping(FLEET,str(wallet_reply or ""))
+report["separately_checked_address_understanding"]["model_inference_status"]=report["address_understanding_model_status"]
 # Bounded skeptical review occurs in this worker's own model process. All
 # other workers retain an evidence-first deterministic plan when compute is
 # too constrained for a second review inference.
@@ -337,6 +361,7 @@ lines=[
     "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
     "- **Ten assigned idea candidates:** "+str(TEN_IDEA_MENU["count"])+" (deterministic, not yet paid)",
     "- **Own AI-generated ten-idea exercise:** "+report["ten_idea_model_result"]["status"],
+    "- **Model-verified company wallet mapping:** "+report["separately_checked_address_understanding"]["status"],
     f"- **Director D lesson accessible:** {report['director_D_lesson_assessment']['lesson_accessible']}",
     f"- **Separate lesson model execution:** {report['director_D_lesson_assessment']['model_execution_status']}",
     f"- **Worker reports learned:** {report['director_D_lesson_assessment']['reported_learned']}",
