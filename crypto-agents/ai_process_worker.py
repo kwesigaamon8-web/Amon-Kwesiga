@@ -35,6 +35,14 @@ FLEET=os.environ.get("WORKFORCE_ID","transferexperiment")
 if FLEET not in COLLECTION_CONFIG["fleets"]:
     raise SystemExit("Unrecognized B collection fleet namespace")
 PAYMENT_MISSION=COLLECTION_CONFIG["fleets"][FLEET]
+CHIEF_D_ORDERS=json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
+STRICT_OWNER_ORDER_ID=CHIEF_D_ORDERS["current_owner_order_id"]
+STRICT_MODEL_ORDER=(
+ "Chief D rule "+STRICT_OWNER_ORDER_ID+": independently produce your actual distinct model result, "
+ "public original source URL or exact source error, useful work and realistic next lawful earning step, "
+ "the genuine payer acceptance status, direct parent, and truthful payment status. "
+ "Missing or duplicate evidence is a failed qualification, not a successful earning."
+)
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
 DIRECTOR_FUNCTION=("payment_recovery" if DIRECTOR==PAYMENT_DIRECTOR else "independent_paid_work")
 DIRECTOR_ORDER=(
@@ -48,6 +56,9 @@ TASK=IDENTITY["task"]
 
 report={
     "worker_id":WORKER,
+    "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "individual_result_required":True,
+    "real_payment_mission":True,
     "receiving_account":PAYMENT_MISSION["account"],
     "local_payment_director":FLEET+"/"+PAYMENT_DIRECTOR,
     "company_director_id":FLEET+"/"+DIRECTOR,
@@ -151,6 +162,7 @@ try:
       {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
       {"role":"user","content":(compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
+        "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nCOLLECTION ORDER "+PAYMENT_MISSION["primary_instruction"][:500]+"; BTC mainnet receiving address "+PAYMENT_MISSION["address"]+"; public support notice "+PAYMENT_MISSION["approved_public_notice"]+
         "\nAgent "+WORKER+"; DIRECT PARENT "+PARENT+"; OWNER COMMAND ROUTE "+">".join(report["command_chain_assignment"]["owner_to_role_route"])+
         "; specialty "+SPEC["role_name"]+
