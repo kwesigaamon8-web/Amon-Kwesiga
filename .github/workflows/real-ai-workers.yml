@@ -37,7 +37,7 @@ jobs:
     timeout-minutes: 28
     strategy:
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 3
       matrix:
         director: [D01, D02, D03, D04, D05, D06, D07, D08, D09, D10]
     steps:
@@ -70,8 +70,8 @@ jobs:
         env:
           ROLE_ID: ${{ matrix.director }}
           WORKFORCE_ID: transferexperiment
-          REAL_AI_PROCESSES_PER_DIRECTOR: '50'
-          MAX_BATCH_SECONDS: '1080'
+          REAL_AI_PROCESSES_PER_DIRECTOR: '20'
+          MAX_BATCH_SECONDS: '660'
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
           CRITIC_EVERY_N: '5'
