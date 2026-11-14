@@ -20,6 +20,8 @@ CFG = json.loads((ROOT/"b_collection_assignments.json").read_text(encoding="utf-
 ORDERS = json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
 LEDGER_FILE = Path("d10-payment-reports/D10_TWO_ACCOUNT_PAYMENT_REPORT.json")
 PAYMENTS = json.loads(LEDGER_FILE.read_text(encoding="utf-8")) if LEDGER_FILE.exists() else {}
+CENSUS_FILE=Path("chief-D-reports/TWO_COMPANY_WORKFORCE_CENSUS.json")
+CENSUS=json.loads(CENSUS_FILE.read_text(encoding="utf-8")) if CENSUS_FILE.exists() else {}
 GH_REPO = "kwesigaamon8-web/Amon-Kwesiga"
 GH_TOKEN = os.environ.get("GH_TOKEN","")
 RUN_ID = os.environ.get("GITHUB_RUN_ID","")
@@ -73,6 +75,8 @@ for fleet,(res,ai) in pair.items():
     proof=(PAYMENTS.get("accounts") or {}).get(fleet,{})
     companies[fleet]={
         "company_name":board["company"],
+        "configured_role_positions":(CENSUS.get("companies") or {}).get(fleet,{}).get("mathematically_defined_total","not_assessed"),
+        "billions_scale_descendants_actually_running":"not_verified_as_running",
         "independent_local_directors":board["local_director_ids"],
         "local_payment_director":board["local_payment_director"],
         "earning_directors":board["local_director_ids"][:9],
@@ -102,6 +106,9 @@ report={
     "reporting_chain":"Company A D01-D10 -> Chief D; Company B D01-D10 -> Chief D -> owner",
     "companies":companies,
     "local_director_total":20,
+    "configured_company_positions_combined":CENSUS.get("combined_configured_company_role_positions","not_assessed"),
+    "configured_positions_plus_one_chief_D":CENSUS.get("combined_configured_roles_plus_chief_D","not_assessed"),
+    "billions_scale_positions_are_live_ai_models":False,
     "known_receivables_verified_by_chief_job":0,
     "actual_external_collections_by_chief_job":0,
     "new_crypto_earnings_verified_by_chief_job":"not_assessed",
@@ -115,6 +122,8 @@ lines=[
   "Owner order: "+current["id"],
   "",
   "**One Chief D** coordinates **two SEPARATE companies**, each with **its OWN 10 directors**, so 20 distinct local director IDs.",
+  "**Defined role positions, both companies:** "+str(CENSUS.get("combined_configured_company_role_positions","not_assessed"))+" (not concurrently live AI models).",
+  "**Grand total, including one Chief D:** "+str(CENSUS.get("combined_configured_roles_plus_chief_D","not_assessed"))+".",
   "**Latest owner instruction relayed by ChatGPT:** "+current["instruction"],
   ""
 ]
@@ -122,6 +131,7 @@ for fleet,x in companies.items():
     lines.extend([
         "## "+x["company_name"]+" — "+fleet,
         "Local directors: "+fleet+"/D01 through "+fleet+"/D10",
+        "Mathematically defined positions: "+str(x["configured_role_positions"])+" (most are dormant definitions)",
         "Local payment director: "+x["local_payment_director"],
         "Local D01-D09 keep seeking legitimate income and doing authorized work.",
         "Research run: "+str(x["research_workflow"].get("status","unknown"))+
