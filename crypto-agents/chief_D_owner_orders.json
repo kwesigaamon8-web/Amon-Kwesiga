@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-130403",
+  "current_owner_order_id": "OWNER-20261114-140444",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -247,6 +247,18 @@
       "status": "recorded_in_versioned_owner_instruction_channel",
       "global_director_board": "crypto-agents/b_global_commercial_dispatch.py",
       "real_work_sample": "crypto-agents/commercial-work/opentask-json-csv/json_to_csv.py",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-140444",
+      "as_of_utc": "2026-11-14T14:04:44Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "Assistant transmitting owner order",
+      "instruction": "DIRECT HUMAN OWNER ORDER 14 NOV 2026 14:04:44Z: \"everone start live work while teaching achother.\" Operational priority: Chief D must run BOTH B1 transferexperiment and B2 BountyScoutAI with actual AI model inference, doing commercially useful original work and teaching each other reciprocally. Each actual worker produces verifiable work, a source and a practical lesson. In the existing 4-worker B1/B2 recurring shift, REAL worker samples are saved and a NEW model inference per B fleet consumes the opposite company's real lesson (label untrusted and quality unverified), critiques/applies it to an actual customer-facing Python JSON-to-CSV program, runs real pytest software tests, and submits evidence to Chief D. Code lives crypto-agents/b_live_peer_teaching.py; live execution config .github/workflows/b-learning-live-pilot.yml. Explicitly distinguish (a) 7B mathematically addressable job IDs, (b) 20 supervisor roles and task assignments, (c) actual OS-running model workers and verified lesson model replies, (d) validated client work, (e) external accepted contracts and real incoming coin. Never count fake workers, lesson replies, customers or payments. Respect human owner-only top-level order, direct parent chain and actual existing account permissions. Teaching cannot justify spam, unlawful access, model-echo recycling or false payment claims. Seek genuine paid work worldwide, critique weak drafts and improve based on tests. Chief D must report each company's actual executed worker and cross-company new peer-model lesson with original evidence and code tests. Provide that evidence, not just words.",
+      "status": "entered_in_versioned_canonical_registry",
+      "real_live_teaching_file": "crypto-agents/b_live_peer_teaching.py",
+      "workflow": ".github/workflows/b-learning-live-pilot.yml",
+      "no_unverified_activity_claim": true,
       "authenticated_external_execution_not_implied": true
     }
   ],
