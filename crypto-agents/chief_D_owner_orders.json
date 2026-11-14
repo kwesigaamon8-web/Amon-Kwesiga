@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-071432",
+  "current_owner_order_id": "OWNER-20261114-071710",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -20,6 +20,33 @@
       "instruction": "Chief D, both fully separate companies must carry the SAME billion-scale hierarchical worker role structure. Provide a precise per-level count for each company and combined counts, keeping their distinct fleet-prefixed identities. Company 1 transferexperiment has 10 directors, 20 assistants, 150 managers, 7,500 W-level workers, 1,125,000 defined S roles, 562,500,000 defined G roles and 374,625,000,000 defined H roles; Company 2 BountyScoutAI has the identical count, as a separate namespace. Exactly one global Chief D is above the two company director boards and reports to owner through the ChatGPT-relayed instruction system. Confirm 375,188,632,680 defined role positions per company; 750,377,265,360 across both; and 750,377,265,361 including Chief D. Do not report definitions as live concurrently executing AI models. Show actual model process counts only from audited run evidence; continue same scheduled research/model pace and genuine payment work without inventing a receipt.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-071710",
+      "as_of_utc": "2026-11-14T07:17:10Z",
+      "relayed_by": "ChatGPT on explicit owner's order",
+      "instruction": "CHIEF D: Your standing mission across both independent companies is to obtain real, legitimately earned coins deposited into the two owner-controlled wallets on the correct network. The command must flow from Chief D through each fleet's distinct D01-D10 board and direct parent chain to every ACTUALLY EXECUTED B worker, across W/S/G/H levels. Strict accountability: every launched worker must submit a unique identity, real OS process and model evidence, original source checked, specific useful output, honest verified payer/amount status, exact next lawful action, limitation/blocker and supervisor. Directors must audit each launched worker's report, flag missing, empty, duplicate or unsupported work as failure, assign bounded reruns and provide one cross-company Chief D scorecard. Do NOT represent 750 billion lazily configured role IDs as 750 billion concurrently active agents; scale real executed processes to available authorized resources while clearly reporting capacity constraints. Internal model outputs or wallet monitor checks are NOT customer earnings. No invented deposits, fake client agreements, mass spam, harassment, private keys or upfront wallet fees. Make best effort to win genuine work, complete it, and collect verifiable payments; pursue more earning sources if none payable. Chief D is accountable directly to owner via the ChatGPT-relayed instruction channel.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
     }
-  ]
+  ],
+  "strict_per_worker_reporting": {
+    "mandatory_for_every_actual_worker_attempt": [
+      "globally_unique_agent_id",
+      "fleet",
+      "director",
+      "parent",
+      "actual_model_inference_status",
+      "original_evidence_url_or_explicit_source_failure",
+      "distinct_work_output",
+      "payer_and_due_amount_status",
+      "next_lawful_revenue_action",
+      "blocker",
+      "external_message_sent_proof_or_not_sent",
+      "verified_receipt_proof_or_none",
+      "evidence_grade"
+    ],
+    "rejection_policy": "Mark empty, duplicate, ungrounded or unverifiable outputs NOT QUALIFIED; keep attempted and completed counts separate. Retry only within authorized real compute and reasonable rate limits, not claim every defined role is already running.",
+    "critical_business_goal": "Actual legitimate cryptocurrency received into the account's correctly verified network wallet, not just worker activity."
+  }
 }
