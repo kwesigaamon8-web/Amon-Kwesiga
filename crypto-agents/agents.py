@@ -19,6 +19,13 @@ WORKFORCE_ID=os.environ.get("WORKFORCE_ID","transferexperiment")
 if WORKFORCE_ID not in COLLECTION_CONFIG["fleets"]:
     raise SystemExit("Unrecognized payment collection workforce")
 COLLECTION=COLLECTION_CONFIG["fleets"][WORKFORCE_ID]
+PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
+DIRECTOR_FUNCTION="payment_recovery" if role["director"]==PAYMENT_DIRECTOR else "independent_paid_work"
+DIRECTOR_ORDER=(
+  "D10 collects verified payments for BOTH account fleets. Check real external payer commitments, work actually delivered and accepted, amount/due date, prior authorized payment requests and exact settlement network. Where verified and authenticated, request timely settlement. Do not invent account receivables from GitHub model jobs; report blockers and unverified claims honestly."
+  if DIRECTOR_FUNCTION=="payment_recovery" else
+  "D01-D09 continue finding legitimate paying customers, preparing genuinely useful paid deliverables, cross-checking payer and payout rules, and routing only true accepted unpaid contractual claims to D10. Remain independently active."
+)
 AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
 EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
 TOOL_REPORT_PATH=Path("tool-reports")/(role_id+".json")
@@ -186,6 +193,8 @@ def analyze(leads, research, branch_summary):
             "must_answer_in_own_words":"Explain whose legitimate professional work we support, your distinct role and single director boss, your next original-source check and exact proof of real crypto received.",
             "owner_real_goal":SHARED["owner_intent"]["real_goal"],
             "specific_B_payment_collection_order":COLLECTION["primary_instruction"],
+            "director_function":DIRECTOR_FUNCTION,
+            "director_mission_order":DIRECTOR_ORDER,
             "account_specific_BTC_mainnet_receiving_address":COLLECTION["address"],
             "source_of_payment_address":"crypto-agents/b_collection_assignments.json",
             "autonomy_order":"ORD-023",
@@ -244,6 +253,7 @@ research=due_diligence(leads,max_items=5)
 analysis=analyze(leads,research,branch_summary)
 out={"role":role["id"],"name":role["name"],"director":role["director"],"mission":role["mission"],
      "collection_fleet":WORKFORCE_ID,"receiving_account":COLLECTION["account"],"deposit_asset":COLLECTION["asset"],"deposit_network":COLLECTION["network"],
+     "logical_payment_director":PAYMENT_DIRECTOR,"director_function":DIRECTOR_FUNCTION,
      "checked_at_utc":datetime.now(timezone.utc).isoformat(),"verified_paid_receipts":[],
      "warning":"All found items are UNVERIFIED leads, not payments, offers, or confirmed jobs. Never pay application fees or connect wallets.",
      "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
