@@ -61,7 +61,7 @@ def dispatch(job):
     n=int(assignment["ordinal"])
     worker=manager["id"]+"-W"+str(n).zfill(2)
     item={
-        "worker_id":worker,"manager_id":manager["id"],
+        "worker_id":worker,"manager_id":manager["id"],"reports_to_one":manager["id"],
         "company_id":COMPANY["id"],"director_id":ROLE,
         "assigned_role":assignment["role_name"],"search_source":assignment["source"],
         "search_query":assignment["query"],
@@ -129,7 +129,7 @@ for manager in COMPANY["managers"]:
     childs=[r for r in records if r["manager_id"]==manager["id"]]
     assert len(childs)==2
     msg={
-        "manager_id":manager["id"],"company_id":COMPANY["id"],
+        "manager_id":manager["id"],"company_id":COMPANY["id"],"reports_to_one":ROLE,
         "reports_to_director":ROLE,"workforce_authorized":50,
         "workers_executed_this_cycle":len(childs),
         "worker_ids_this_cycle":[w["worker_id"] for w in childs],
