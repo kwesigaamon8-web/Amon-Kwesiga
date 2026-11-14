@@ -219,7 +219,8 @@ def self_test():
         assert select_peer("transferexperiment",rows) is None
         fake["inference_status"]="not_run"
         (inp/"D01-M01-W01.json").write_text(json.dumps(fake))
-        assert not get_actual_teachers(root)
+        assert len(get_actual_teachers(root))==1
+        assert get_actual_teachers(root)[0]["company"]=="BountyScoutAI"
         assert judge("the model said hello")["quality"]=="TOO_SHORT"
         good=("PEER: The previous model correctly warned that payment eligibility must be independently checked with the actual sponsor.\n"
               "WORK: Input JSON with missing name key, expect a blank CSV cell and preserved column order.\n"
