@@ -22,9 +22,9 @@ COLLECTION=COLLECTION_CONFIG["fleets"][WORKFORCE_ID]
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
 DIRECTOR_FUNCTION="payment_recovery" if role["director"]==PAYMENT_DIRECTOR else "independent_paid_work"
 DIRECTOR_ORDER=(
-  "D10 collects verified payments for BOTH account fleets. Check real external payer commitments, work actually delivered and accepted, amount/due date, prior authorized payment requests and exact settlement network. Where verified and authenticated, request timely settlement. Do not invent account receivables from GitHub model jobs; report blockers and unverified claims honestly."
+  "You are the LOCAL D10 for ONLY your independent company. Check real payer commitments, accepted work, agreed amount, authorized payment requests and correct settlement network. Report your local verified findings to the sole Chief D overseeing BOTH companies. Do not count internal jobs as client debts."
   if DIRECTOR_FUNCTION=="payment_recovery" else
-  "D01-D09 continue finding legitimate paying customers, preparing genuinely useful paid deliverables, cross-checking payer and payout rules, and routing only true accepted unpaid contractual claims to D10. Remain independently active."
+  "Each company has its own D01-D09 finding legitimate paying customers, useful paid deliverables and genuine payer evidence. Route any truly accepted unpaid contract to that company's LOCAL D10; the two companies report to ONE Chief D."
 )
 AUTONOMY=json.loads(Path("crypto-agents/autonomy_policy.json").read_text(encoding="utf-8"))
 EARNINGS=json.loads(Path("crypto-agents/earnings_playbook.json").read_text(encoding="utf-8"))
@@ -253,7 +253,7 @@ research=due_diligence(leads,max_items=5)
 analysis=analyze(leads,research,branch_summary)
 out={"role":role["id"],"name":role["name"],"director":role["director"],"mission":role["mission"],
      "collection_fleet":WORKFORCE_ID,"receiving_account":COLLECTION["account"],"deposit_asset":COLLECTION["asset"],"deposit_network":COLLECTION["network"],
-     "logical_payment_director":PAYMENT_DIRECTOR,"director_function":DIRECTOR_FUNCTION,
+     "local_payment_director":WORKFORCE_ID+"/"+PAYMENT_DIRECTOR,"company_director_id":WORKFORCE_ID+"/"+role["director"],"chief_director_id":COLLECTION_CONFIG["hierarchy"]["chief_director"],"director_function":DIRECTOR_FUNCTION,
      "checked_at_utc":datetime.now(timezone.utc).isoformat(),"verified_paid_receipts":[],
      "warning":"All found items are UNVERIFIED leads, not payments, offers, or confirmed jobs. Never pay application fees or connect wallets.",
      "leads":leads,"ai_analysis":analysis,"deep_research":research,"source_errors":errors,
