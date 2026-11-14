@@ -51,17 +51,22 @@ CHIEF_D_ORDERS=json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding=
 STRICT_OWNER_ORDER_ID=CHIEF_D_ORDERS["current_owner_order_id"]
 LATEST_CHIEF_D_INSTRUCTION=CHIEF_D_ORDERS["orders"][-1]["instruction"]
 STRICT_MODEL_ORDER=(
- "Chief D rule "+STRICT_OWNER_ORDER_ID+": OWNER'S URGENT $100 REAL-CRYPTO RECEIPT TARGET, "
- "2026-11-14T15:22:26Z to 2026-11-14T15:32:26Z. On THIS actually running model, "
- "prioritize real externally accepted unpaid work and feasible funded, genuinely "
- "paying customers over generic ideas and repeated recruitment reports. "
- "Identify ONE verified current specific payer and exact permitted next buyer action, "
- "or precisely explain BLOCKED_AUTH/UNVERIFIED with source URL. Produce original "
- "useful deliverable/test evidence if practical. No promise of $100, no fabricated "
- "customers, bids, authenticated messages, source facts or BTC/USDC receipts. "
- "B1 and B2 must never mix wallet networks. Report exactly to your direct parent; "
- "Chief D consolidates only actual completed model work and verified txids."
+ "OWNER "+STRICT_OWNER_ORDER_ID+": FULL INDEPENDENT LEGITIMATE COMMERCIAL INITIATIVE. "
+ "You are a separately running B company worker with authority to CHOOSE your "
+ "own best genuine worldwide lawful paid-work lead, original product, service, "
+ "documentation, original code improvement or creative micro-deliverable. "
+ "Assigned regional topic is a SUGGESTION, not an exclusive cage. Explore "
+ "alternatives, find real customer demand, build or test useful work, and "
+ "pursue authenticated permitted buyer outreach without another internal "
+ "microapproval. Do not claim that chat instructions create external tools, "
+ "buyers or money; keep concrete evidence and truthful blockers. "
+ "ONLY mutually agreed real settlement goes to your OWN company's owner "
+ "approved wallet; B1 and B2 have distinct mainnet BTC addresses. "
+ "A buyer may pay only after genuine agreement; do not claim receipts from "
+ "wishlists. Report through your one company parent to Chief D and owner. "
+ "Preserve the owner's USD 100 genuine receipt goal without guaranteeing a date."
 )
+
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
 DIRECTOR_FUNCTION=("payment_recovery" if DIRECTOR==PAYMENT_DIRECTOR else "independent_paid_work")
 DIRECTOR_ORDER=(
@@ -96,6 +101,20 @@ UNIVERSAL_TASK=universal_assign(FLEET,WORKER)
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "entrepreneurial_autonomy":{
+        "owner_order_id":STRICT_OWNER_ORDER_ID,
+        "may_self_direct_new_business_idea":True,
+        "may_change_sector_and_market":True,
+        "may_build_and_test_original_work":True,
+        "internal_manager_approval_required_per_new_idea":False,
+        "may_submit_to_actual_allowed_connected_buyer":True,
+        "actually_connected_outreach_verified":False,
+        "payment_receiver":PAYMENT_MISSION["address"],
+        "payment_network":"Bitcoin mainnet",
+        "role_and_report_to_parent_remain_mandatory":True,
+        "independent_model_not_previously_invoked_by_assignment":True,
+        "only_verified_accepted_paid_work_is_income":True,
+    },
     "owner_emergency_revenue_target":{
         "owner_order_id":"OWNER-20261114-152226",
         "requested_usd_total":100,
@@ -276,7 +295,7 @@ try:
     examples=[{"title":x["title"],"url":x["url"]}
               for x in report["source_items"][:2]]
     prompt=[
-      {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. HUMAN OWNER URGENTLY REQUESTED $100 OF GENUINELY RECEIVED CRYPTO WITHIN TEN MINUTES (15:22:26-15:32:26 UTC ON NOV 14 2026). Prioritize a valid payer, original useful paid deliverable and actual acceptance rather than merely listing possibilities, but neither claim payment nor guarantee it. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
+      {"role":"system","content":"You are one genuinely running B company agent. HUMAN OWNER grants broad creative and commercial initiative: you MAY self-select any lawful original product, service, source-check, software idea or useful buyer task WORLDWIDE, change sectors, try multiple distinct hypotheses and create concrete useful work without asking a manager to preapprove each internal idea. Your specific preassigned location/specialty/source is a STARTING POINT ONLY, not a restriction. Prefer real sponsor identity, actual payer readiness and deliverable over repeating instructions. You cannot invent buyer consent, platform access, hiring, workers or payments. Permitted external posting or selling requires actual authorized account, venue permission and willing counterparties. All mutually agreed payment must go to the owner-approved BTC mainnet address for YOUR company's account; never use arbitrary or other-fleet wallet. Preserve one-parent reporting and owner authority. A verified $100 real-receipt target remains, not a guaranteed or already realized sum.",
       {"role":"user","content":(universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
         "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
