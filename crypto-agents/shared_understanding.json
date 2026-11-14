@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-14-cross-fleet-D10-payments-equal-pace-v20",
+  "version": "2026-11-14-separate-company-boards-one-chief-D-v21",
   "visibility": "PUBLIC ANONYMOUS MISSION ONLY. This file has no owner name, contact, personal finances, family, client identity, private account access, or unshared address mappings.",
   "owner_intent": {
     "real_goal": "The ONLY successful outcome is legitimately earned cryptocurrency actually received at the owner's approved, correct-network receiving addresses. No bank/mobile-money earnings, off-wallet platform points, unclaimed rewards, testnet balances, promises, job offers or pending withdrawals count as success. Prefer BTC mainnet and genuine USDC on an explicitly approved network; another transferable coin counts only after the owner approves a matching controlled receiving address and independently verifiable receipt.",
@@ -30,7 +30,7 @@
     "D07": "Find direct paying clients and recurring service revenue. Track drafts versus sent approaches.",
     "D08": "Evaluate genuine open grants, competitions and prizes against opportunity cost and eligibility.",
     "D09": "Independently challenge payers, networks, wallet-routing claims, spam and hidden costs.",
-    "D10": "SOLE CROSS-FLEET PAYMENT DIRECTOR: supervise both B1/transferexperiment and B2/BountyScoutAI outstanding genuine accepted-and-unpaid external work; audit evidence of payer, contract, delivery, acceptance, due date, correct asset/network, authorized actual settlement requests and independently confirmed incoming TX outputs. Escalate overdue receivables firmly and professionally, distinguish internal AI research from payable work, and never claim completed collection from public GitHub instructions."
+    "D10": "FLEET-LOCAL PAYMENTS DIRECTOR: the transferexperiment/D10 role collects real accepted-and-unpaid payments for account 1 only; BountyScoutAI/D10 independently does the same for account 2 only. Each verifies payer, accepted deliverable, amount, due date, correct network, actual authorized contact and confirmed incoming payments; report to one overarching Chief D, not directly to owner."
   },
   "chain_of_understanding": {
     "owner_to_director": "Director must understand owner's outcome and ChatGPT's evidence-first execution method; translate into an independent company strategy. Directors must understand 1,125,000 additional defined microcompany bosses, 500 child identities per boss, while never claiming millions of models are actually running.",
@@ -149,10 +149,32 @@
   },
   "owner_sovereignty_policy": "crypto-agents/owner_sovereignty.json",
   "director_operating_split": {
-    "payments": "D10 is the one named payments director across both fleets. Only verified external acceptance/contract creates a collectible payment; neither running jobs nor signed-up role names do.",
-    "earning_directors": "D01-D09 continue lawful global market discovery, source validation, small deliverables, genuine buyer outreach through authorized channels and follow-up; route evidence-backed payment claims to D10. D10 coordinates both payment accounts, not just one.",
-    "model_execution_standard": "All B workers strive to act as real bounded AI agents through distinct actual model inferences, externally checked evidence, critical review and next actionable deliverable. Dormant worker IDs are never running agents.",
-    "both_accounts_equal_cadence": "Hourly research per fleet; equal 20 attempts/director across 10 directors per day, both run on separate 3-parallel scheduled GitHub workflows, offset 14 minutes to reduce queuing. Same scheduled frequency/capacity is not a promise of equal actual throughput.",
-    "attribution": "Director D10 with shared operational responsibility; independent D01-D09 roles coordinate via evidence backed reports."
+    "payments": "Both companies have their own numbered director D10 for payments, distinctly identified as transferexperiment/D10 and BountyScoutAI/D10. Both local payments directors report to overarching Chief D, not directly to owner.",
+    "earning_directors": "Each company independently has its own D01–D09, nine directors seeking legitimate payable jobs, clients, deliverables and accepted contracts, handing collectible receivables to their own company D10.",
+    "chief_director": "Only ONE Chief Director D oversees both ten-director company boards, audits evidence, resolves blockers and reports consolidated results directly to owner.",
+    "model_execution_standard": "A named role is not a separately active AI unless a bounded model inference and execution report actually exist; billions of defined names are not deployed minds.",
+    "both_accounts_equal_cadence": "Each fleet's 30 first-level role research runs hourly (staggered) and its 10 directors attempt 20 actual worker model processes each per day (staggered), with 3 concurrent director jobs. Equal configured limits do not guarantee equal completed throughput.",
+    "attribution": "Every local director and assistant report MUST include its fleet namespace, e.g. BountyScoutAI/D10, while the sole global Chief D has ID D."
+  },
+  "organization_governance": {
+    "owner": "The user",
+    "chief_director": "D",
+    "chief_scope": "both companies",
+    "reporting": "One Chief D reports directly to owner",
+    "company_boards": {
+      "transferexperiment": {
+        "directors": "transferexperiment/D01-D10",
+        "numbered_director_count": 10,
+        "payment": "transferexperiment/D10",
+        "earning": "transferexperiment/D01-D09"
+      },
+      "BountyScoutAI": {
+        "directors": "BountyScoutAI/D01-D10",
+        "numbered_director_count": 10,
+        "payment": "BountyScoutAI/D10",
+        "earning": "BountyScoutAI/D01-D09"
+      }
+    },
+    "proof": "Chief D can report only concrete completed work and verified transactions, not imaginary AI existence or collection."
   }
 }
