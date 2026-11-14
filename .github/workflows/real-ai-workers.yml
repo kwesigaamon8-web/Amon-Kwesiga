@@ -36,6 +36,7 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: read
+  issues: write
 
 jobs:
   preflight:
@@ -92,6 +93,7 @@ jobs:
       - name: Actually launch isolated per-worker operating-system processes
         env:
           ROLE_ID: ${{ matrix.director }}
+          WORKFORCE_ID: transferexperiment
           REAL_AI_PROCESSES_PER_DIRECTOR: '50'
           MAX_BATCH_SECONDS: '1080'
           HF_HUB_DISABLE_TELEMETRY: '1'
