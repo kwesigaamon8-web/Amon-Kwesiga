@@ -144,3 +144,37 @@ jobs:
           path: ai-process-reports/
           if-no-files-found: warn
           retention-days: 15
+  chief-D-actual-shift:
+    name: Chief D consolidates ACTUALLY completed model work for both companies
+    if: always()
+    needs: [current-original-sources, active-learning-worker]
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect individual actual worker proofs, if any
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: practical-work-*
+          path: shift-evidence/
+          merge-multiple: false
+      - name: Strictly count model proofs, practical lessons and incomplete workers
+        env:
+          B_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python -m py_compile crypto-agents/b_shift_accountability.py
+          python crypto-agents/b_shift_accountability.py --self-test
+          python crypto-agents/b_shift_accountability.py --inputs shift-evidence --output shift-chief-D --run-url "$B_RUN_URL"
+          cat shift-chief-D/CHIEF_D_SHIFT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve one honest Chief D company and worker shift report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chief-D-real-shift-aggregation
+          path: shift-chief-D/
+          if-no-files-found: warn
+          retention-days: 15
