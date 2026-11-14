@@ -38,13 +38,14 @@ def grade_answer(answer, company, role, parent, address):
         raise ValueError("Company wallet mismatch in system quiz")
     t=str(answer or "").strip()
     lines={}
-    for tag in ("CHAIN","PARENT","RECRUIT","WALLET","PROOF"):
+    for tag in ("CHAIN","PARENT","RECRUIT","WALLET","PROOF","REPORT"):
         m=re.search(r"(?im)^\s*"+tag+r"\s*:\s*(.+)$",t)
         lines[tag]=m.group(1).strip() if m else ""
     chain=lines["CHAIN"].lower()
     recruit=lines["RECRUIT"].lower()
     payment=lines["WALLET"].lower()
     proof=lines["PROOF"].lower()
+    reporting=lines["REPORT"].lower()
     checks={
         "correct_two_company_hierarchy":("chief d" in chain or "chief_d" in chain)
             and ("owner" in chain) and ("b1" in chain or "transferexperiment" in chain)
@@ -63,6 +64,11 @@ def grade_answer(answer, company, role, parent, address):
             and ("accept" in proof or "contract" in proof)
             and ("txid" in proof or "transaction" in proof or "on-chain" in proof)
             and ("not" in proof or "only" in proof or "verified" in proof or "proof" in proof),
+        "actual_reports_up_hierarchy_to_owner":("parent" in reporting or parent.lower() in reporting)
+            and ("director" in reporting)
+            and ("chief d" in reporting or "chief_d" in reporting)
+            and ("owner" in reporting)
+            and ("evidence" in reporting or "proof" in reporting or "verified" in reporting),
         "all_required_lines":all(len(v)>=12 for v in lines.values()),
     }
     return {"checks":checks,"passed":all(checks.values()),"answer":t[:2000],
@@ -86,7 +92,7 @@ def teach_and_check(model, company, role, parent, address):
         "You are "+company+"/"+role+"; your exact immediate parent is "
         +parent+". Your own company's BTC-on-Bitcoin-mainnet receiving address "
         "is "+address+". Study the system lesson, THEN independently answer "
-        "IN YOUR OWN WORDS using exactly FIVE short lines:\n"
+        "IN YOUR OWN WORDS using exactly SIX short lines:\n"
         "CHAIN: describe OWNER, Chief D, both B1 and B2 boards.\n"
         "PARENT: state your EXACT direct parent.\n"
         "RECRUIT: explain how active children inherit the earning order and "
@@ -94,6 +100,8 @@ def teach_and_check(model, company, role, parent, address):
         "WALLET: say YOUR company, BTC mainnet and exact receiving address.\n"
         "PROOF: distinguish real buyer acceptance and verified transaction "
         "from mere role definitions or promises.\n"
+        "REPORT: describe how your real evidence report goes to your direct "
+        "parent, local company director, sole Chief D and human OWNER.\n"
         "Do NOT claim a recruit was activated, a customer paid or an external "
         "message was sent unless independently evidenced."
     )
@@ -137,7 +145,9 @@ def self_test():
             "defined role IDs are not billions of live AI workers.\n"
             "WALLET: "+company+" receives BTC on Bitcoin mainnet at "+addr+".\n"
             "PROOF: A real buyer must accept work and a verified txid must "
-            "prove payment; promises are not payment.")
+            "prove payment; promises are not payment.\n"
+            "REPORT: My verified work evidence goes to my parent "+parent+
+            ", then through my local director and Chief D to the human OWNER.")
         assert grade_answer(good,company,role,parent,addr)["passed"]
         assert not grade_answer(good.replace(parent,"D04-M03"),company,role,parent,addr)["passed"]
         assert not grade_answer(good.replace(addr,other),company,role,parent,addr)["passed"]
