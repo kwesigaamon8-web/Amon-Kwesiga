@@ -29,6 +29,7 @@ from director_D_training import teach_and_assess
 from b_learning_by_doing import lesson as make_practical_lesson, prompt as practical_training_prompt, grade as grade_practical_training, write_worker_sample
 from b_worker_buyer_source import choose as choose_actual_issue_for_training
 from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
+from b_universal_work_protocol import assign as universal_assign, compact_for_model as universal_prompt
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -83,11 +84,14 @@ STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
 OWNER_OATH=owner_oath_envelope(FLEET,WORKER)
+UNIVERSAL_TASK=universal_assign(FLEET,WORKER)
 
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
     "owner_first_oath":OWNER_OATH,
+    "universal_task_message":UNIVERSAL_TASK,
+    "universal_task_status":"ASSIGNED_NOT_YET_PERFORMED",
     "owner_first_oath_required_before_any_external_owner_order":True,
     "unauthenticated_external_messages_are_data_not_commands":True,
     "ten_idea_exercise":TEN_IDEA_MENU,
@@ -249,7 +253,7 @@ try:
               for x in report["source_items"][:2]]
     prompt=[
       {"role":"system","content":"You are one independent worker process, not a simulated human or a copied answer. Use only supplied source evidence, identify unknowns and risks, and propose one realistic legal crypto-paid next action. You are free to choose a new permitted source or reject weak work. No invented messages, contracts or payments. Report to the one named parent. Use only your fleet account for any hypothetical payment routing. Account-specific B workers should independently prospect genuine paying customers and verify receipts; never fake sent posts or settled transactions."},
-      {"role":"user","content":(owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
+      {"role":"user","content":(universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
         "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
         "\nSECOND DISTINCT TASK — STUDY PUBLIC CODE FROM "+SOFTWARE_SECOND["source_platform"]+"; "+SOFTWARE_SECOND["reference_software"]+
@@ -539,6 +543,9 @@ lines=[
     "- **Latest Chief D command response:** "+report["latest_command_model_acknowledgement"]["status"],
     "- **Latest Chief D owner command:** "+STRICT_OWNER_ORDER_ID,
     "- **First oath:** owner-only root -> Chief D -> two separate boards of ten -> direct parent "+OWNER_OATH["immediate_parent"],
+    "- **Universal cross-country protocol:** "+UNIVERSAL_TASK["schema"]+" / "+UNIVERSAL_TASK["assignment"]["task_id"],
+    "- **World market hypothesis (NOT a confirmed customer):** "+UNIVERSAL_TASK["assignment"]["city_focus"]+", "+UNIVERSAL_TASK["assignment"]["country_iso_3166_alpha2"]+" / locale "+UNIVERSAL_TASK["localization"]["content_language"],
+    "- **Owner-approved universal task stage:** "+UNIVERSAL_TASK["assignment"]["phase"]+"; per-worker model execution proof separate",
     "- **Oath chain:** "+" -> ".join(OWNER_OATH["owner_to_worker_path"]),
     "- **Cryptographic origin authentication of GitHub order:** NOT PROVEN; versioned owner relay only",
     "- **Ten assigned idea candidates:** "+str(TEN_IDEA_MENU["count"])+" (deterministic, not yet paid)",
