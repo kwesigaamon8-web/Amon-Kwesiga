@@ -81,6 +81,15 @@ for director in DIRECTORS:
                 fingerprints[fingerprint]=id
         if not data.get("parent_id"):
             defects.append("DIRECT_PARENT_MISSING")
+        wallet_ack=data.get("separately_checked_address_understanding") or {}
+        if wallet_ack.get("status")!="MODEL_ADDRESS_MAPPING_ACK_REQUIRES_HUMAN_CHECK":
+            defects.append("OWN_AND_OTHER_BTC_ADDRESS_NETWORK_OR_CHIEF_D_UNDERSTANDING_FAILED")
+            counts["address_understanding_not_verified"]+=1
+        if wallet_ack.get("fields",{}).get("no_B1_B2_address_mixup") is False:
+            defects.append("CRITICAL_WRONG_COMPANY_BTC_ADDRESS")
+            counts["critical_wrong_company_btc_address"]+=1
+        if data.get("address_understanding_model_status")!="MODEL_INFERENCE_COMPLETED":
+            defects.append("NO_SEPARATE_WALLET_TRAINING_MODEL_INFERENCE")
         idea_menu=data.get("ten_idea_exercise") or {}
         generated_ideas=data.get("ten_idea_model_result") or {}
         if idea_menu.get("count")!=10:
@@ -127,6 +136,9 @@ for director in DIRECTORS:
             "grade":grade,"defects":defects,
             "latest_order_ack_status":ack.get("status","NO_MODEL_ACKNOWLEDGEMENT"),
             "ten_idea_menu_count":idea_menu.get("count",0),
+            "model_wallet_address_map_status":wallet_ack.get("status","NO_MODEL_ADDRESS_MAPPING_ACK"),
+            "wallet_mapping_checks":wallet_ack.get("fields",{}),
+            "address_training_actual_model_status":data.get("address_understanding_model_status","NOT_EVIDENCED"),
             "model_generated_distinct_idea_count":generated_ideas.get("numbered_valid_unique_count",0),
             "ten_model_ideas_status":generated_ideas.get("status","NO_MODEL_IDEAS"),
             "latest_order_id_acknowledged":ack.get("chief_D_owner_order_id"),
@@ -154,6 +166,8 @@ res={
  "seven_billion_target_roles":7000000000,
  "ten_idea_owner_order":"OWNER-20261114-075553",
  "ten_ideas_are_not_verified_paid_jobs":True,
+ "owner_wallet_map_order":"OWNER-20261114-080246",
+ "wallet_routes_not_automatically_approved_for_payments":True,
  "verified_new_income":"not_assessed",
  "dormant_defined_roles_are_not_running":True,
  "limitations":"Every attempt must have a grade. A validated model research result is not a verified paid job. Source links are untrusted until independently checked. Model output quality varies. Even QUALIFIED does not show payer acceptance, direct social posting, or cryptocurrency receipt."
