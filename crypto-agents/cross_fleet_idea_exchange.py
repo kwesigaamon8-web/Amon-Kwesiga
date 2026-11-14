@@ -171,6 +171,29 @@ def review():
        "shared_model_ideas":len(data["actual_idea_exchange_assignments"]),
        "original_source_leads_to_check":len(data["sponsor_verification_actions"]),
        "actually_completed_AI_peer_reviews":0,"coins_received":"not_assessed"}))
+def produce_feed(fleet):
+    if fleet not in FLEETS:raise ValueError("Unknown requesting fleet")
+    digests,errors=read_digests()
+    prior=FLEETS[1] if fleet==FLEETS[0] else FLEETS[0]
+    excerpts=[]
+    for item in digests.get(prior,{}).get("data",{}).get("actual_model_idea_excerpts",[])[:16]:
+        if not item.get("actual_model_response"):continue
+        idea=textclean(item.get("idea",""))
+        if acceptable(idea):
+            excerpts.append({"idea":idea,"origin_company":prior,
+                "source_urls":[s for s in item.get("source_urls",[])[:2]
+                               if str(s).startswith("https://github.com/")],
+                "verified_paid_job":False})
+    out={"requesting_company":fleet,"shared_from_other_company":prior,
+         "owner_order_id":"OWNER-20261114-084438",
+         "real_model_idea_excerpts_available":len(excerpts),
+         "examples_for_new_model_ideas":excerpts[:6],
+         "errors":errors,
+         "status":"READ_ONLY_EXTERNAL_EVIDENCE_NOT_MODEL_RESULT_OR_PAYER_ACCEPTANCE",
+         "directive":"Learn and improve, do NOT copy. Generate 10 of your OWN original ideas. Validate source before customer contact. Wrong network is blocked."}
+    (OUT/("SHARED_IDEA_FEED_"+fleet+".json")).write_text(json.dumps(out,indent=2)+"\n")
+    print("B_SHARED_IDEA_FEED",json.dumps({"fleet":fleet,"actual_other_company_ideas":len(excerpts),
+       "feed_status":out["status"]}))
 def selftest():
     w={"workforce_namespace":FLEETS[0],"worker_id":"D01-M01-W01","director_id":"D01",
        "inference_status":"model_completed","ten_idea_model_inference_status":"MODEL_INFERENCE_COMPLETED",
@@ -189,11 +212,14 @@ def selftest():
     print("B_CROSS_IDEA_EXCHANGE_SELFTEST_PASS")
 if __name__=="__main__":
     p=argparse.ArgumentParser()
-    p.add_argument("mode",choices=["test","share","review"])
+    p.add_argument("mode",choices=["test","share","review","feed"])
     p.add_argument("--fleet",choices=FLEETS);p.add_argument("--run-id")
     args=p.parse_args()
     if args.mode=="test":selftest()
     elif args.mode=="share":
         if not args.fleet or not args.run_id:raise SystemExit("Requires --fleet and --run-id")
         share(args.fleet,args.run_id)
+    elif args.mode=="feed":
+        if not args.fleet:raise SystemExit("--fleet required")
+        produce_feed(args.fleet)
     else:review()
