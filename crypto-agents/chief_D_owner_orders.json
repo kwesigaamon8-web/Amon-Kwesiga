@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-162815",
+  "current_owner_order_id": "OWNER-20261114-163012",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -436,6 +436,20 @@
       "slots_per_director": 3500000000,
       "actual_new_AI_model_processes_created_by_order": 0,
       "verified_cryptocurrency_receipts_created_by_order": 0
+    },
+    {
+      "id": "OWNER-20261114-163012",
+      "as_of_utc": "2026-11-14T16:30:12Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT on explicit owner's 'activate allof them' applying to 'all the billion workers' and 70B assistants",
+      "instruction": "ACTIVATE THE B1 TRANSFEREXPERIMENT AND B2 BOUNTYSCOUTAI WORKFORCE TO THE MAXIMUM REAL AUTHORIZED AVAILABLE EXECUTION CAPACITY, 24 HOURS/DAY 7 DAYS/WEEK, INCLUDING ALL ORIGINAL 750,377,265,360 ADDRESSABLE ROLE POSITIONS AND THE EXISTING 70,000,000,000 ADDITIONAL LAZY ASSISTANT ROLE SLOTS AS ELIGIBLE WORK ASSIGNMENT POOLS. IN REALITY each worker is ACTIVE ONLY WHEN A PROCESS/MODEL ACTUALLY RUNS, produces a unique useful output, and execution evidence is stored; sending an order or indexing an ID does not start an independent process. Assign original positions and existing assistant slots by B1/B2 own-account namespace, maintain correct parent/local D01-D10/sole Chief D, never mix wallets or platform identities. Do not attempt to create 750B/70B containers, accounts or simultaneous models, exceed GitHub/Hugging Face platform quotas, misuse CI for production work, spend owner funds or use unapproved billable compute. Existing real worker job scheduler may run 10 model jobs per shift with up to 6 concurrent on best-effort hosted workflow; Chief D shall maximize that already-authorized bounded capability, avoid redundant reruns that cancel queued tasks, and truthfully distinguish queued, running, completed, failed and never-activated roles. Every genuinely activated job MUST REVIEW past work, DISCUSS factual peer findings where real peer evidence exists, CORRECT actual weaknesses, ACT on an original paid-work task or worthwhile testable deliverable, and VERIFY only real correct-chain crypto receipts. Seek worldwide legitimate willing customers and authenticated permitted offers; do not fake outreach, certifications, clients, verified money or running 24/7 worker processes. For further true scale, get explicit owner approval for an actual sustainable cost cap and eligible compute hosting, then measure independent worker-job completions, customer acceptance and paid receipts. Each shift report active process IDs, actual model inference, tested artifact/source, real buyer approval, on-chain confirmation or NONE and blockers. This directive changes WORK ELIGIBILITY and directs presently available execution; it cannot override physical computing limits or imply all roles are live.",
+      "status": "MAXIMUM_BOUNDED_REAL_ACTIVATION_AUTHORIZED_ALL_CONFIGURED_ROLES_ELIGIBLE_NOT_ALL_RUNNING",
+      "original_role_namespace": 750377265360,
+      "assistant_lazy_slots": 70000000000,
+      "preexisting_simultaneous_worker_job_capacity": 6,
+      "all_roles_actually_running": false,
+      "additional_billable_compute_authorized": false,
+      "verified_payment_created_by_order": false
     }
   ],
   "strict_per_worker_reporting": {
