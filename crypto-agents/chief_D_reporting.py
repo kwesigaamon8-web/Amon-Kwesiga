@@ -13,12 +13,14 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from b_address_understanding import routes as approved_public_routes
 
 ROOT = Path("crypto-agents")
 OUT = Path("chief-D-reports")
 OUT.mkdir(exist_ok=True)
 CFG = json.loads((ROOT/"b_collection_assignments.json").read_text(encoding="utf-8"))
 ORDERS = json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
+WALLET_MAP=approved_public_routes()
 LEDGER_FILE = Path("d10-payment-reports/D10_TWO_ACCOUNT_PAYMENT_REPORT.json")
 PAYMENTS = json.loads(LEDGER_FILE.read_text(encoding="utf-8")) if LEDGER_FILE.exists() else {}
 CENSUS_FILE=Path("chief-D-reports/TWO_COMPANY_WORKFORCE_CENSUS.json")
@@ -119,6 +121,9 @@ for fleet,(res,ai) in pair.items():
     proof=(PAYMENTS.get("accounts") or {}).get(fleet,{})
     companies[fleet]={
         "company_name":board["company"],
+        "BTC_mainnet_address": WALLET_MAP["company_1" if fleet=="transferexperiment" else "company_2"]["btc_mainnet"],
+        "address_mapping_training_structurally_validated":True,
+        "individual_B_worker_comprehension_verified_by_this_chief_report":False,
         "latest_public_peer_audit":peer_published.get(fleet,{"public_audit_state":"not_yet_published"}),
         "configured_role_positions":(CENSUS.get("companies") or {}).get(fleet,{}).get("mathematically_defined_total","not_assessed"),
         "billions_scale_descendants_actually_running":"not_verified_as_running",
@@ -151,6 +156,10 @@ report={
     "reporting_chain":"Company A D01-D10 -> Chief D; Company B D01-D10 -> Chief D -> owner",
     "companies":companies,
     "local_director_total":20,
+    "owner_address_mapping_instruction_order":"OWNER-20261114-080246",
+    "public_wallet_route_training":WALLET_MAP,
+    "model_workers_verified_to_understand_wallet_map_in_this_chief_job":0,
+    "unverified_network_routes_status":"HOLD_OWNER_CONFIRMATION",
     "owner_active_worker_target":ORDERS.get("seven_billion_execution_target",{}).get("total_distinct_eligible_role_ids","not_defined"),
     "seven_billion_per_company":ORDERS.get("seven_billion_execution_target",{}).get("per_company","not_defined"),
     "seven_billion_actual_worker_acknowledgements_verified_by_chief_report":"not_assessed_no_completed_new_evidence",
@@ -178,6 +187,7 @@ lines=[
   "**Grand total, including one Chief D:** "+str(CENSUS.get("combined_configured_roles_plus_chief_D","not_assessed"))+".",
   "**Owner priority: 7B specific eligible identities** (3.5B per company); real model execution and real order acknowledgement have NOT yet been verified against that target.",
   "**Latest owner instruction relayed by ChatGPT:** "+current["instruction"],
+  "**Address-training status:** Public B1/B2 BTC mainnet mapping structurally verified; individual B model replies and Chief D's independent model comprehension remain UNVERIFIED until actual execution evidence.",
   ""
 ]
 for fleet,x in companies.items():
@@ -187,6 +197,8 @@ for fleet,x in companies.items():
         "Mathematically defined positions: "+str(x["configured_role_positions"])+" (most are dormant definitions)",
         "Owner 7B campaign share: "+str(ORDERS.get("seven_billion_execution_target",{}).get("per_company","unknown"))+" distinct eligible H roles; not all concurrently running.",
         "Local payment director: "+x["local_payment_director"],
+        "Public BTC mainnet receiving address: "+x["BTC_mainnet_address"],
+        "Own company address-training understanding: individual model response NOT VERIFIED by this summary.",
         "Worker-versus-worker audit evidence: "+str(x["latest_public_peer_audit"].get("public_audit_state","unknown")),
         "Deterministic comparisons published: "+str(x["latest_public_peer_audit"].get("deterministic_pairwise_checks_reported","not yet available")),
         "Actual individual peer AI-model critique: NOT VERIFIED.",
