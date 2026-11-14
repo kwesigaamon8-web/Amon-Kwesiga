@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from owner_order_distribution import summary
+from seven_billion_allocator import role_for_slot
 
 role=os.environ.get("ROLE_ID","")
 if not re.fullmatch(r"D(?:0[1-9]|10)",role):
@@ -40,17 +41,14 @@ for slot in range(max_workers):
     if slot<plan_priority_slots:
         wid=planned_roles[(cycle+slot)%len(planned_roles)]
     else:
-        index=(offset+slot-plan_priority_slots)%750
-        m=index//50+1
-        w=index%50+1
-        wid=f"{role}-M{m:02d}-W{w:02d}"
-        level=(slot+cycle)%4
-        s=(cycle+index*7)%150+1
-        g=(cycle+index*17)%500+1
-        h=(cycle+index*37)%666+1
-        if level>=1:wid+=f"-S{s:03d}"
-        if level>=2:wid+=f"-G{g:03d}"
-        if level>=3:wid+=f"-H{h:03d}"
+        # 90% of real process opportunities rotate through the seven-billion
+        # target H-level namespace, retaining two priority W/S/G/H plan
+        # examples per director. No identity is 'active' until subprocess and
+        # independent model response evidence actually exist.
+        selection=role_for_slot(
+            os.environ.get("WORKFORCE_ID","transferexperiment"),
+            role,cycle,slot,max_workers)
+        wid=selection["role_id"]
     selected.append(wid)
     started=datetime.now(timezone.utc).isoformat()
     try:
@@ -114,6 +112,10 @@ manifest={
  "run_at_utc":datetime.now(timezone.utc).isoformat(),
  "cycle":cycle,"workers_total_assigned":750,
  "director_activation_plan_used":bool(planned_roles),
+ "seven_billion_target_roles":7000000000,
+ "seven_billion_scheduled_role_sample":max(0,len(selected)-plan_priority_slots),
+ "seven_billion_target_execution_note":"Target sample is unique indexed role definitions only; successful real AI execution must be proven by each report and independent audit.",
+ "chief_D_current_order":summary()["chief_D_current_owner_order_id"],
  "activation_examples_rotated":min(2,len(planned_roles),max_workers),
  "other_workers_rotating_through_W_S_G_H":True,
  "strict_accountability_authority":"chief_D_owner_orders.json",
