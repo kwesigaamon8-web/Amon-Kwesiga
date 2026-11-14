@@ -48,7 +48,7 @@ def test():
         contains(txt,r"(?m)^\s*WORKFORCE_ID:\s*"+re.escape(fleet)+r"\s*$",file+" fleet label missing",errors)
         contains(txt,r"(?m)^      - name: Grade each REAL worker independently",file+" lacks strict scoring",errors)
         contains(txt,r"(?m)^      - name: Cross-audit EVERY actual worker",file+" lacks reciprocal audit",errors)
-        contains(txt,r"(?m)^      - name: Verify true AI processes",file+" no postrun process verification",errors)
+        contains(txt,r"(?m)^    name: Verify true AI processes",file+" no postrun process verification",errors)
         plans[fleet]={
             "workflow":file,
             "push_retrigger_disabled":not bool(re.search(r"(?m)^  push:",txt)),
