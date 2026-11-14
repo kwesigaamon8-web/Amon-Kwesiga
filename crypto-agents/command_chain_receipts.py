@@ -110,11 +110,24 @@ def structural_check():
               "D10-M15-W50-S150-G500-H666"]
     chain=route(ids[-1])
     if chain!=expected:raise AssertionError("H-tier owner chain mismatch: "+str(chain))
-    for item in ids:
-        obj=configured_assignment(item)
-        assert obj["owner_to_role_route"][-1]==item
-        assert obj["individual_acknowledgement_status"]=="not_received"
-        assert obj["role_instruction_status"]=="assigned_not_executed"
+    original_fleet=os.environ.get("WORKFORCE_ID")
+    try:
+        for fleet in ("transferexperiment","BountyScoutAI"):
+            os.environ["WORKFORCE_ID"]=fleet
+            for item in ids:
+                obj=configured_assignment(item)
+                assert obj["owner_to_role_route"][-1]==item
+                assert obj["current_organization_route"][:3]==[
+                    "OWNER","CHIEF_D",fleet+"/"+item[:3]]
+                assert obj["current_organization_route"][-1]==fleet+"/"+item
+                assert obj["chief_D_latest_owner_order"]==summary()["chief_D_current_owner_order_id"]
+                assert obj["individual_acknowledgement_status"]=="not_received"
+                assert obj["role_instruction_status"]=="assigned_not_executed"
+    finally:
+        if original_fleet is None:
+            os.environ.pop("WORKFORCE_ID",None)
+        else:
+            os.environ["WORKFORCE_ID"]=original_fleet
     assert summary()["count"]>=35
     return {"status":"PASS","routes_checked":ids,"final_H_route":chain,
             "defined_roles_total":375188632680,
