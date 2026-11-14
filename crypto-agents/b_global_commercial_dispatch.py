@@ -11,6 +11,7 @@ from pathlib import Path
 
 from b_universal_work_protocol import assign_global_index, MARKETS, FLEETS
 from owner_first_oath import current_order
+from b_universal_order_cascade import packet as universal_command_packet, packet_for_global_index as global_command_packet, chief_packet as chief_universal_packet
 
 # The owner has two company boards, each with 10 local directors.
 # Distinct director responsibilities; one actual prospective lead belongs to
@@ -54,6 +55,7 @@ def director_board():
             entries.append({
              "director":fleet+"/"+d,"reports_to":"CHIEF_D",
              "human_owner_order_id":order,"mission_limited_to_owner_order":True,
+             "universal_owner_cascade":universal_command_packet(fleet,d),
              "responsibility":lane,"target_evidence":proof,
              "market_hypothesis":{"city":city,"country_code":iso,"region":continent,"locale":locale},
              "actual_customer_known_in_this_market":False,
@@ -90,6 +92,7 @@ def director_board():
              "real_lead_claims":[l["lead_id"] for l in GLOBAL_ORIGINAL_BUYER_LEADS if l["owner_of_lead"]==fleet+"/"+d]
             })
     return {"owner_order_id":order,"chief_director":"CHIEF_D",
+        "sole_chief_director_own_command_packet":chief_universal_packet(),
         "internal_company_roles_under_human_owner":True,
         "all_directors_assistants_managers_W_S_G_H_are_included":True,
         "defined_director_assistants_both_fleets":40,
@@ -133,6 +136,7 @@ def worker_packet(global_index):
         "no_guaranteed_payment":True,
       },
       "owner_order":row["owner_origin"]["current_order_id"],
+      "full_universal_7B_inheritable_order_packet":global_command_packet(global_index),
       "internal_role_under_human_owner":True,
       "my_whole_supervisory_ancestry_is_internal_to_my_company":True,
       "assistants_A_B_are_included_as_direct_reporting_children_of_local_D":True,
@@ -173,6 +177,9 @@ def worker_packet(global_index):
 def self_test():
     board=director_board()
     assert len(board["director_assignments"])==20
+    assert board["sole_chief_director_own_command_packet"]["owner_order_id"]==board["owner_order_id"]
+    assert all(d["universal_owner_cascade"]["actual_reporting_parent"]=="CHIEF_D" for d in board["director_assignments"])
+    assert all(d["universal_owner_cascade"]["owner_order_id"]==board["owner_order_id"] for d in board["director_assignments"])
     assert board["internal_company_roles_under_human_owner"] is True
     assert sum(len(d["two_director_assistants"]) for d in board["director_assignments"])==40
     assert sum(len(d["all_fifteen_manager_roles_in_owner_scope"]) for d in board["director_assignments"])==300
@@ -186,6 +193,9 @@ def self_test():
     assert len({t["task_id"] for t in tasks})==len(tasks)
     assert len({t["worker_id"] for t in tasks})==len(tasks)
     assert all(t["per_worker_one_cent_btc_target_only"]=="0.01" for t in tasks)
+    assert all(t["full_universal_7B_inheritable_order_packet"]["global_H_target_index"]==t["global_index"] for t in tasks)
+    assert all(t["full_universal_7B_inheritable_order_packet"]["owner_order_id"]==board["owner_order_id"] for t in tasks)
+    assert all(t["full_universal_7B_inheritable_order_packet"]["own_company_primary_payment"]["receive_address"]==t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
     assert all(t["owner_30_minute_mission"]["focus_minutes_on_real_activation"]==30 for t in tasks)
     assert all(t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
     assert all(t["directive_source"]==board["owner_order_id"] for t in tasks)
