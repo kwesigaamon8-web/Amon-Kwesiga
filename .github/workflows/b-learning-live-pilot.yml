@@ -5,7 +5,7 @@ on:
       - '.github/workflows/b-learning-live-pilot.yml'
   workflow_dispatch:
   schedule:
-    # B1 and B2 launch a bounded REAL worker each 15 minutes, all days.
+    # B1 and B2 each launch TWO rotated REAL models per 15-minute shift, all days.
     # Schedule is best-effort and may be delayed/skipped by GitHub.
     - cron: '2,17,32,47 * * * *'
 concurrency:
@@ -15,16 +15,22 @@ permissions:
   contents: read
 jobs:
   active-learning-worker:
-    name: ${{ matrix.fleet }} real AI training while doing paid-work research
+    name: ${{ matrix.fleet }} / slot ${{ matrix.slot }} — actual B model + applied work
     runs-on: ubuntu-latest
     timeout-minutes: 14
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 4
       matrix:
         include:
           - fleet: transferexperiment
+            slot: 0
+          - fleet: transferexperiment
+            slot: 1
           - fleet: BountyScoutAI
+            slot: 0
+          - fleet: BountyScoutAI
+            slot: 1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,6 +41,7 @@ jobs:
         env:
           B_FLEET: ${{ matrix.fleet }}
           B_CYCLE: ${{ github.run_number }}
+          B_SLOT: ${{ matrix.slot }}
         run: |
           python crypto-agents/b_shift_worker_rotation.py --self-test
           python - <<'PY'
@@ -43,7 +50,7 @@ jobs:
           import sys
           sys.path.insert(0, "crypto-agents")
           from b_shift_worker_rotation import select
-          item=select(os.environ["B_FLEET"],int(os.environ["B_CYCLE"]))
+          item=select(os.environ["B_FLEET"],int(os.environ["B_CYCLE"]),int(os.environ["B_SLOT"]))
           with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as out:
               out.write("worker="+item["worker_id"]+"\n")
           print("ACTUAL_B_SHIFT_ASSIGNED",json.dumps(item))
@@ -109,7 +116,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: practical-work-${{ matrix.fleet }}
+          name: practical-work-${{ matrix.fleet }}-slot-${{ matrix.slot }}
           path: ai-process-reports/
           if-no-files-found: warn
           retention-days: 15
