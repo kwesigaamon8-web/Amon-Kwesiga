@@ -118,6 +118,12 @@ jobs:
         run: python crypto-agents/strict_worker_accountability.py
       - name: Publish strict evidence grades in GitHub summary
         run: cat strict-worker-accountability/strict-transferexperiment.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Cross-audit EVERY actual worker's evidence against every other actual worker
+        env:
+          WORKFORCE_ID: transferexperiment
+        run: python crypto-agents/everyone_peer_audit.py
+      - name: Present full reciprocal automated audit and follow-up assignments
+        run: cat peer-accountability/peer-everyone-transferexperiment.md >> "$GITHUB_STEP_SUMMARY"
       - name: Merge only completed independent worker next-action checkpoints
         run: python crypto-agents/agent_state_aggregate.py
       - name: Director D evaluates real results, sources and next actions
@@ -190,5 +196,6 @@ jobs:
             director-D-results/
             ord035-parent-followups.json
             strict-worker-accountability/
+            peer-accountability/
           if-no-files-found: warn
           retention-days: 7
