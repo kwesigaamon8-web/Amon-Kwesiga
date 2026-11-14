@@ -8,6 +8,7 @@ or convert worker-role definitions into running agent processes.
 from __future__ import annotations
 import json
 import os
+import re
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -61,6 +62,49 @@ try:
 except Exception as err:
     latest_runs={"source_error":type(err).__name__+": "+str(err)[:120]}
 
+# Independent company worker auditor summaries are published by GitHub Actions
+# only after worker artifacts exist. This is source evidence, not an independent
+# model-to-model peer review or proof of payment.
+peer_published={}
+try:
+    for page in range(1,5):
+        comments=gh_request("https://api.github.com/repos/"+GH_REPO+
+            "/issues/9/comments?"+
+            urllib.parse.urlencode({"per_page":100,"page":page}))
+        for comment in comments:
+            author=(comment.get("user") or {}).get("login")
+            if author not in ("github-actions[bot]","kwesigaamon8-web"):
+                continue
+            body=str(comment.get("body") or "")
+            for fleet in ("transferexperiment","BountyScoutAI"):
+                if "<!-- all-to-all-peer-evidence:"+fleet+":" not in body:
+                    continue
+                nmatch=re.search(r"\*\*Actually executed worker reports assessed:\*\*\s*(\d+)",body)
+                cmatch=re.search(r"\*\*Automated all-against-all comparisons:\*\*\s*([\d,]+)",body)
+                fmatch=re.search(r"\*\*Pairwise coverage verified:\*\*\s*(True|False)",body)
+                if not (nmatch and cmatch and fmatch):
+                    continue
+                n=int(nmatch.group(1))
+                count=int(cmatch.group(1).replace(",",""))
+                if n<0 or n>500 or count!=n*(n-1):
+                    continue
+                stamp=str(comment.get("created_at") or "")
+                if stamp > peer_published.get(fleet,{}).get("created_at",""):
+                    peer_published[fleet]={
+                        "public_audit_state":"reported_in_owner_control_room",
+                        "source":comment.get("html_url"),
+                        "created_at":stamp,
+                        "attempted_real_worker_reports_reported":n,
+                        "deterministic_pairwise_checks_reported":count,
+                        "pairwise_coverage_claimed":fmatch.group(1)=="True",
+                        "actual_AI_worker_peer_reviews_confirmed":0,
+                        "caveat":"Summary self-reported by controlled GitHub Actions job. Full artifact evidence still requires independent inspection."
+                    }
+        if len(comments)<100:
+            break
+except Exception as err:
+    peer_published={"source_error":type(err).__name__+": "+str(err)[:120]}
+
 pair={
     "transferexperiment":(
         "Independent Crypto Opportunity Agents",
@@ -75,6 +119,7 @@ for fleet,(res,ai) in pair.items():
     proof=(PAYMENTS.get("accounts") or {}).get(fleet,{})
     companies[fleet]={
         "company_name":board["company"],
+        "latest_public_peer_audit":peer_published.get(fleet,{"public_audit_state":"not_yet_published"}),
         "configured_role_positions":(CENSUS.get("companies") or {}).get(fleet,{}).get("mathematically_defined_total","not_assessed"),
         "billions_scale_descendants_actually_running":"not_verified_as_running",
         "independent_local_directors":board["local_director_ids"],
@@ -106,6 +151,8 @@ report={
     "reporting_chain":"Company A D01-D10 -> Chief D; Company B D01-D10 -> Chief D -> owner",
     "companies":companies,
     "local_director_total":20,
+    "separate_company_peer_audit_summaries_found":sum(1 for fleet in ("transferexperiment","BountyScoutAI") if fleet in peer_published),
+    "chief_D_peer_audit_assessment":"Evidence checks are automated; actual completed independent model peer reviews are not verified by this report.",
     "configured_company_positions_combined":CENSUS.get("combined_configured_company_role_positions","not_assessed"),
     "configured_positions_plus_one_chief_D":CENSUS.get("combined_configured_roles_plus_chief_D","not_assessed"),
     "billions_scale_positions_are_live_ai_models":False,
@@ -133,6 +180,9 @@ for fleet,x in companies.items():
         "Local directors: "+fleet+"/D01 through "+fleet+"/D10",
         "Mathematically defined positions: "+str(x["configured_role_positions"])+" (most are dormant definitions)",
         "Local payment director: "+x["local_payment_director"],
+        "Worker-versus-worker audit evidence: "+str(x["latest_public_peer_audit"].get("public_audit_state","unknown")),
+        "Deterministic comparisons published: "+str(x["latest_public_peer_audit"].get("deterministic_pairwise_checks_reported","not yet available")),
+        "Actual individual peer AI-model critique: NOT VERIFIED.",
         "Local D01-D09 keep seeking legitimate income and doing authorized work.",
         "Research run: "+str(x["research_workflow"].get("status","unknown"))+
              " / "+str(x["research_workflow"].get("conclusion") or "unverified"),
@@ -162,7 +212,7 @@ print("CHIEF_D_CONSOLIDATION",json.dumps({
 # durable evidence, NOT as direct ChatGPT delivery or a live Moltbook post.
 if GH_TOKEN and os.environ.get("GITHUB_REPOSITORY")==GH_REPO:
     comments_url="https://api.github.com/repos/"+GH_REPO+"/issues/9/comments"
-    marker="<!-- chief-D-owner:"+current["id"]+":"+now[:10]+" -->"
+    marker="<!-- chief-D-owner:"+current["id"]+":"+now[:10]+":peer-"+str(report["separate_company_peer_audit_summaries_found"])+" -->"
     try:
         posted=False
         for page in range(1,5):
