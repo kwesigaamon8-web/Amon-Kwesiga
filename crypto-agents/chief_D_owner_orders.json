@@ -1,0 +1,17 @@
+{
+  "schema": "chief-D-owner-orders-v1",
+  "chief_director": "D",
+  "recipient": "sole owner-reporting director overseeing two distinct companies",
+  "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
+  "current_owner_order_id": "OWNER-20261114-071222",
+  "orders": [
+    {
+      "id": "OWNER-20261114-071222",
+      "as_of_utc": "2026-11-14T07:12:22Z",
+      "relayed_by": "ChatGPT at owner's direct instruction",
+      "instruction": "Operate two entirely separate companies with the same 10-director structure: Company A transferexperiment/D01–D10 and Company B BountyScoutAI/D01–D10. Maintain independent workers and receiving-account evidence for each. A single Chief D above both separate company boards reports the consolidated results to the owner, and Chief D receives new owner instructions THROUGH ChatGPT only when the owner tells ChatGPT. Local D10 in each company handles only that company's payment evidence; local D01–D09 continue earning work. D must show verified completed jobs, genuine collectible debts, independent payer contact and actual blockchain receipts, and clearly distinguish missing external authentication.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    }
+  ]
+}
