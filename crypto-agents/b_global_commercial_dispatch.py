@@ -57,6 +57,21 @@ def director_board():
              "responsibility":lane,"target_evidence":proof,
              "market_hypothesis":{"city":city,"country_code":iso,"region":continent,"locale":locale},
              "actual_customer_known_in_this_market":False,
+             "director_belongs_to_owner_internal_structure":True,
+             "director_accountability":"Own fleet 10-director local board -> sole Chief D -> human OWNER",
+             "two_director_assistants":[
+                {"id":fleet+"/"+d+"-A","parent":fleet+"/"+d,
+                 "internal_owner_defined_role":True,
+                 "scope":"Independently verify buyer legitimacy and original sources, review one distinct genuine crypto-paying lead, report proof to director",
+                 "actual_model_acknowledgement":"NOT_EVIDENCED"},
+                {"id":fleet+"/"+d+"-B","parent":fleet+"/"+d,
+                 "internal_owner_defined_role":True,
+                 "scope":"Independently check owner order, worker training, consent, company-specific wallet and verified receipt evidence; report to director",
+                 "actual_model_acknowledgement":"NOT_EVIDENCED"}
+             ],
+             "all_fifteen_manager_roles_in_owner_scope":[fleet+"/"+d+f"-M{m:02d}" for m in range(1,16)],
+             "all_w_s_g_h_descendants_in_owner_scope_on_activation":True,
+             "no_pretense_that_all_assistants_or_managers_ran_a_model":True,
              "manager_count_defined":15,"manager_model_acknowledgements_verified":False,
              "recruitment_cascade":{
                 "owner_order_id":order,
@@ -75,6 +90,12 @@ def director_board():
              "real_lead_claims":[l["lead_id"] for l in GLOBAL_ORIGINAL_BUYER_LEADS if l["owner_of_lead"]==fleet+"/"+d]
             })
     return {"owner_order_id":order,"chief_director":"CHIEF_D",
+        "internal_company_roles_under_human_owner":True,
+        "all_directors_assistants_managers_W_S_G_H_are_included":True,
+        "defined_director_assistants_both_fleets":40,
+        "defined_company_local_directors_both_fleets":20,
+        "defined_manager_roles_both_fleets":300,
+        "actual_assistant_or_manager_model_execution_proven_by_board":0,
         "separate_company_director_boards":20,
         "director_assignments":entries,
         "source_verified_commercial_leads_not_yet_hired":list(GLOBAL_ORIGINAL_BUYER_LEADS),
@@ -112,6 +133,9 @@ def worker_packet(global_index):
         "no_guaranteed_payment":True,
       },
       "owner_order":row["owner_origin"]["current_order_id"],
+      "internal_role_under_human_owner":True,
+      "my_whole_supervisory_ancestry_is_internal_to_my_company":True,
+      "assistants_A_B_are_included_as_direct_reporting_children_of_local_D":True,
       "recruitment_handoff":row["recruitment_handoff"],
       "system_understanding_requirements":row["system_understanding_requirements"],
       "hierarchical_reporting":row["hierarchical_reporting"],
@@ -149,6 +173,11 @@ def worker_packet(global_index):
 def self_test():
     board=director_board()
     assert len(board["director_assignments"])==20
+    assert board["internal_company_roles_under_human_owner"] is True
+    assert sum(len(d["two_director_assistants"]) for d in board["director_assignments"])==40
+    assert sum(len(d["all_fifteen_manager_roles_in_owner_scope"]) for d in board["director_assignments"])==300
+    assert len({a["id"] for d in board["director_assignments"] for a in d["two_director_assistants"]})==40
+    assert all(a["parent"]==d["director"] for d in board["director_assignments"] for a in d["two_director_assistants"])
     ids=[x["director"] for x in board["director_assignments"]]
     assert len(set(ids))==20
     assert all(sum(l["lead_id"] in x["real_lead_claims"] for x in board["director_assignments"])==1 for l in GLOBAL_ORIGINAL_BUYER_LEADS)
