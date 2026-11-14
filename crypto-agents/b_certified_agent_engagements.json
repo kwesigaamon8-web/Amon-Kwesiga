@@ -1,0 +1,17 @@
+{
+  "schema": "B_CERTIFIED_AGENT_ENGAGEMENT_REGISTRY_V1",
+  "as_of_owner_order": "OWNER-20261114-154657",
+  "status": "NO_EXTERNAL_CERTIFIED_AGENT_OR_PAID_CONTRACT_YET_VERIFIED",
+  "purpose": "Only explicitly consented, externally credential-verified, customer-authorized engagements can receive real assistant work. Internal owner-managed role identities are not externally certified.",
+  "engagements": [],
+  "rules": {
+    "requires_real_third_party_credential_evidence": true,
+    "requires_agent_operator_opt_in": true,
+    "requires_specific_authorized_scope": true,
+    "requires_owner_approval": true,
+    "requires_real_payer_and_settlement_agreement": true,
+    "permitted_wallets": "Only own company BTC Bitcoin mainnet; optional Base USDC via separate token/network approval",
+    "no_actual_external_agent_onboarded_by_empty_registry": true,
+    "no_pretend_all_750B_are_executing": true
+  }
+}
