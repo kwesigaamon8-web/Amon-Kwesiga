@@ -61,13 +61,19 @@ def test():
         "strict_worker_accountability.py","everyone_peer_audit.py",
         "command_chain_receipts.py","subagent_audit.py",
         "owner_order_distribution.py","director_work_orders.py",
-        "agents.py","chief_D_reporting.py","b_address_understanding.py")
+        "agents.py","chief_D_reporting.py","b_address_understanding.py",
+        "cross_fleet_idea_exchange.py")
     for file in expected_files:
         text=(ROOT/file).read_text(encoding="utf-8")
         try:ast.parse(text,filename=file)
         except SyntaxError as e:errors.append("PYTHON_SYNTAX_FAILURE "+file+" "+str(e))
     launcher=(ROOT/"ai_process_launcher.py").read_text(encoding="utf-8")
     worker=(ROOT/"ai_process_worker.py").read_text(encoding="utf-8")
+    exchange=(ROOT/"cross_fleet_idea_exchange.py").read_text(encoding="utf-8")
+    if not all(k in exchange for k in ("compile_digest","make_actions","actual_model_idea_excerpts","assigned_company_director","coin_receipt_confirmed")):
+        errors.append("TWO_COMPANY_IDEA_PROVENANCE_OR_DIRECTOR_REVIEW_MISSING")
+    if not all(k in worker for k in ("SHARED_IDEA_FEED","SHARED_IDEA_EXAMPLES","TEN_IDEA_MENU")):
+        errors.append("REAL_B_WORKERS_ARE_NOT_READING_OPPOSITE_COMPANY_IDEAS")
     wallet_training=(ROOT/"b_address_understanding.py").read_text(encoding="utf-8")
     if not all(v in wallet_training for v in ("company_1","company_2","local_payment_director","Bitcoin mainnet","USDC","Base")):
         errors.append("COMPANY_WALLET_TRAINING_MAP_MISSING")
