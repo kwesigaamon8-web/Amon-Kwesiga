@@ -217,7 +217,7 @@ try:
       {"role":"user","content":(compact_prompt()[:380]+
         "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
         "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
-        "\nSECOND DISTINCT TASK — LEGAL SOFTWARE STUDY "+SOFTWARE_SECOND["reference_software"]+
+        "\nSECOND DISTINCT TASK — STUDY PUBLIC CODE FROM "+SOFTWARE_SECOND["source_platform"]+"; "+SOFTWARE_SECOND["reference_software"]+
         " "+SOFTWARE_SECOND["official_repository"]+" feature "+SOFTWARE_SECOND["focus_feature"]+
         "; legal reuse requires actual license/attribution verification; do not copy proprietary or unlicensed code."+
         " DIRECT BOSS "+GOVERNED_IDEA_ORDER["direct_supervisor"]+
@@ -394,7 +394,8 @@ if model is not None and report["inference_status"]=="model_completed":
             ". Name software "+SOFTWARE_SECOND["reference_software"]+
             ", official repo "+SOFTWARE_SECOND["official_repository"]+
             ". Investigate feature "+SOFTWARE_SECOND["focus_feature"]+
-            ". Prior GitHub licence metadata: "+SOFTWARE_SECOND["github_license_metadata_observed_2026_11_14"]+
+            ". Source hosting platform: "+SOFTWARE_SECOND["source_platform"]+
+            ". Prior source licence metadata (may be unknown/unverified): "+SOFTWARE_SECOND["github_license_metadata_observed_2026_11_14"]+
             " (NOT independently verified for current actual file). Explain one practical improvement in "+
             SOFTWARE_SECOND["required_artifact"]+
             " that could help the first crypto-funding task. Mention licence/notice checks and what remains unknown. Give 3 short sentences."}
