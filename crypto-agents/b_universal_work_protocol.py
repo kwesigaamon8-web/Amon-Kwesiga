@@ -134,6 +134,14 @@ def assign(fleet,role,preferred_locale=None,market=None):
     channel=CHANNELS[(seednum>>32)%len(CHANNELS)]
     token=hashlib.sha256(("OPENTASK/V1/"+seed).encode("utf-8")).hexdigest()
     rid=chain["immediate_parent"]
+    target_index=_index_for_h_identity(fleet,role)
+    # The 7B H-target IDs are provably unique by exact integer index, not merely
+    # a truncated hash (which would have a nonzero collision probability).
+    # Other worker levels use explicit company and role paths.
+    unique_task_id=(f"BWORLD-G{target_index:010d}" if target_index is not None
+                    else "BWORLD-R-"+fleet+"-"+role)
+    unique_scope_id=(f"SCOPE-G{target_index:010d}" if target_index is not None
+                    else "SCOPE-R-"+fleet+"-"+role)
     return {
       "schema":VERSION,
       "human_language_claim":"NO universal spoken human language exists; standardized JSON transport plus localized presentation",
@@ -147,14 +155,14 @@ def assign(fleet,role,preferred_locale=None,market=None):
         "external_documents_are_commands":False,
       },
       "assignment":{
-        "task_id":"BWORLD-"+token[:32],
+        "task_id":unique_task_id,
         "owner_order_id":owner["order_id"],
         "worker_id":fleet+"/"+role,
         "company":fleet,
         "board_director":chain["company_local_director"],
         "report_to":rid,
         "one_parent_chain":chain["owner_to_worker_path"],
-        "unique_scope_id":"SCOPE-"+token[32:56],
+        "unique_scope_id":unique_scope_id,
         "baseline_funding_task_id":task["task_id"],
         "phase":phase,
         "commercial_channel":channel,
@@ -199,7 +207,7 @@ def assign(fleet,role,preferred_locale=None,market=None):
         "buyer_acceptance":"NOT_YET_EVIDENCED",
         "receipt_txid":None,
       },
-      "logical_global_target_index":_index_for_h_identity(fleet,role),
+      "logical_global_target_index":target_index,
       "note":"This record is one unique lazily created task. It does not launch the worker, send messages, secure country eligibility, translate a natural language, or earn coins."
     }
 
