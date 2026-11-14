@@ -16,6 +16,7 @@ from pathlib import Path
 from command_chain_receipts import level, route
 from owner_first_oath import current_order
 from b_universal_work_protocol import assign, worker_for_global_index, FLEETS
+from b_certified_agent_service_router import assignment as certified_agent_assignment, TOTAL_ROLES as ORIGINAL_ORGANIZATION_ROLES
 
 COLLECTION=Path("crypto-agents/b_collection_assignments.json")
 OWNER="HUMAN_OWNER"
@@ -118,6 +119,7 @@ def packet(fleet,role,global_index=None):
         "worker_report_travels_up":list(reversed(full)),
         "child_slot_capacity_in_definition":CHILD_SLOTS[kind],
         "on_activate_give_same_order_to_any_actual_child":True,
+        "certified_agent_client_work":certified_agent_assignment(fleet,role),
         "autonomous_commercial_freedom":{
             "owner_is_sole_highest_authority":True,
             "chief_D_is_coordinator_not_individual_idea_gatekeeper":True,
@@ -183,6 +185,8 @@ def chief_packet():
       "director_assistants_per_company":2*DIRECTORS,
       "managers_per_company":DIRECTORS*MANAGERS,
       "worker_H_target_id_namespace_total":CAPACITY,
+      "all_original_D_A_M_W_S_G_H_roles_eligible_for_authorized_certified_agent_service":ORIGINAL_ORGANIZATION_ROLES,
+      "real_external_certification_and_client_consent_required_before_agent_work":True,
       "actual_live_agents_proven_by_packet":0,
       "mission":"Relay the latest order to every internal role ON ITS ACTUAL ACTIVATION, supervise separate B1/B2 paid-work execution and truthful earnings evidence, aggregate real hierarchical reports to HUMAN_OWNER; no fictional 7B process claims.",
       "human_owner_delivery_confirmed_by_packet":False,
@@ -197,6 +201,8 @@ def self_test():
         for director_idx in range(1,11):
             d=f"D{director_idx:02d}"
             root=packet(fleet,d)
+            assert root["certified_agent_client_work"]["unique_original_role_index"]>=0
+            assert root["certified_agent_client_work"]["engagement_status"]=="NO_VERIFIED_AUTHORIZED_AGENT_ACTIVE"
             assert root["actual_reporting_parent"]==CHIEF
             assert root["worker_report_travels_up"][-1]=="OWNER"
             assert root["child_slot_capacity_in_definition"]==17
@@ -216,6 +222,8 @@ def self_test():
             h=child_for_slot(fleet,g,666)
             for p,c in ((d,m),(m,w),(w,ss),(ss,g),(g,h)):
                 row=packet(fleet,c)
+                assert row["certified_agent_client_work"]["payout"]["receive_address"]==wallet(fleet)
+                assert row["certified_agent_client_work"]["owner_order_id"]==root["owner_order_id"]
                 assert row["actual_reporting_parent"]==fleet+"/"+p
                 assert row["owner_order_id"]==root["owner_order_id"]
                 assert row["autonomous_commercial_freedom"]["all_agreed_earnings_settle_to_company_owner_approved_address"]==wallet(fleet)
