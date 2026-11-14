@@ -24,6 +24,7 @@ on:
       - 'crypto-agents/hierarchical_idea_governance.py'
       - 'crypto-agents/unique_funding_tasks.py'
       - 'crypto-agents/secondary_software_study.py'
+      - 'crypto-agents/public_code_reader.py'
       - 'crypto-agents/cross_fleet_idea_exchange.py'
   schedule:
     - cron: '9 * * * *'
@@ -44,7 +45,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile local D10, Chief D and fleet integrity
-        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py crypto-agents/chief_D_reporting.py crypto-agents/b_two_company_census.py crypto-agents/seven_billion_allocator.py crypto-agents/command_ack_gate.py crypto-agents/ai_process_launcher.py crypto-agents/ai_process_worker.py crypto-agents/strict_worker_accountability.py crypto-agents/cross_fleet_idea_exchange.py crypto-agents/unique_funding_tasks.py crypto-agents/secondary_software_study.py
+        run: python -m py_compile crypto-agents/paid_task_scout.py crypto-agents/b_fleet_integrity.py crypto-agents/d10_payment_director.py crypto-agents/chief_D_reporting.py crypto-agents/b_two_company_census.py crypto-agents/seven_billion_allocator.py crypto-agents/command_ack_gate.py crypto-agents/ai_process_launcher.py crypto-agents/ai_process_worker.py crypto-agents/strict_worker_accountability.py crypto-agents/cross_fleet_idea_exchange.py crypto-agents/unique_funding_tasks.py crypto-agents/secondary_software_study.py crypto-agents/public_code_reader.py
       - name: Regression-test complete peer crosschecks, zero phantom reviewers and empty worker pools
         run: python crypto-agents/test_everyone_peer_audit.py
       - name: Verify both Chief D to local director chains and nested worker routes
@@ -69,6 +70,7 @@ jobs:
         run: |
           python crypto-agents/unique_funding_tasks.py
           python crypto-agents/secondary_software_study.py
+          python crypto-agents/public_code_reader.py
       - name: Verify Chief D -> two 10-director boards -> manager -> W/S/G/H corrections
         run: python crypto-agents/hierarchical_idea_governance.py
       - name: Validate independent B1/B2 boards and one overarching Chief D
