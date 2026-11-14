@@ -47,7 +47,7 @@ def api_for(url):
     if url=="https://codeberg.org/forgejo/forgejo":
         return "https://codeberg.org/api/v1/repos/forgejo/forgejo"
     if url=="https://pypi.org/project/requests/":
-        return "https://pypi.org/pypi/requests/json"
+        return url  # The registry HTML page is small enough to read partially without truncated JSON
     if url=="https://www.npmjs.com/package/bitcoinjs-lib":
         return "https://registry.npmjs.org/bitcoinjs-lib/latest"
     return url
