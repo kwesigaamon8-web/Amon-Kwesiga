@@ -152,8 +152,15 @@ if args.reports and Path(args.reports).exists():
         rid=data.get("role")
         if wid in lookup and lookup[wid]["level"]=="worker":
             seen_worker.add(wid)
-            if mid!=lookup[wid]["parent_id"] or data.get("reports_to_one")!=mid:
+            if mid!=lookup[wid]["parent_id"]:
                 evidence["inference_results_with_wrong_reporting_parent"]+=1
+            # A research report can exist before the optional bounded LLM review.
+            # Absence of a model review is a missing-evidence warning, not proof
+            # of a wrongly assigned parent. New reports include reports_to_one at source.
+            if "reports_to_one" in data and data["reports_to_one"]!=mid:
+                evidence["inference_results_with_wrong_reporting_parent"]+=1
+            if "reports_to_one" not in data and not (data.get("model_inference") or {}):
+                warnings.append("Worker not independently reviewed: "+wid)
             inference=data.get("model_inference") or {}
             if inference.get("status")=="model_completed":
                 if inference.get("parent_id")!=mid:
@@ -165,8 +172,10 @@ if args.reports and Path(args.reports).exists():
         elif mid in lookup and lookup[mid]["level"]=="manager" and data.get("workers_executed_this_cycle") is not None:
             seen_manager.add(mid)
             inference=data.get("model_inference") or {}
-            if data.get("reports_to_one")!=lookup[mid]["parent_id"]:
+            if "reports_to_one" in data and data["reports_to_one"]!=lookup[mid]["parent_id"]:
                 evidence["inference_results_with_wrong_reporting_parent"]+=1
+            if "reports_to_one" not in data and not inference:
+                warnings.append("Manager not independently reviewed: "+mid)
             if inference.get("status")=="model_completed":
                 evidence["actual_manager_AI_executions_verified"]+=1
                 if inference.get("parent_id")!=lookup[mid]["parent_id"]:
