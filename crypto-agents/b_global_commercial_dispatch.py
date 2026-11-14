@@ -66,6 +66,11 @@ def director_board():
                 "external_agent_recruiting_requires_consent_and_authorized_account":True,
                 "mission":"Give each truly activated recruit an individual original lawful crypto-paying work task, its correct company wallet, and a requirement to pass the same mission to its own future actual recruits.",
              },
+             "understanding_assessment_on_actual_child_model_execution":True,
+             "only_human_owner_receives_Chief_D_consolidation":True,
+             "upward_reporting_path":[fleet+"/"+d,"CHIEF_D","HUMAN_OWNER"],
+             "knowledge_check_script":"crypto-agents/system_understanding_check.py",
+             "model_understanding_verified_from_director_plan":False,
              "active_worker_proof_required":True,"payment_received_verified":False,
              "real_lead_claims":[l["lead_id"] for l in GLOBAL_ORIGINAL_BUYER_LEADS if l["owner_of_lead"]==fleet+"/"+d]
             })
@@ -108,6 +113,8 @@ def worker_packet(global_index):
       },
       "owner_order":row["owner_origin"]["current_order_id"],
       "recruitment_handoff":row["recruitment_handoff"],
+      "system_understanding_requirements":row["system_understanding_requirements"],
+      "hierarchical_reporting":row["hierarchical_reporting"],
       "global_index":global_index,
       "task_id":item["task_id"],
       "company":company,
@@ -154,6 +161,8 @@ def self_test():
     assert all(t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
     assert all(t["directive_source"]==board["owner_order_id"] for t in tasks)
     assert all(t["recruitment_handoff"]["company"]==t["company"] for t in tasks)
+    assert all(t["hierarchical_reporting"]["upward_path_current_role_to_owner"][-1]=="OWNER" for t in tasks)
+    assert all(t["system_understanding_requirements"]["assessment_until_real_model_answer"]=="NOT_RUN" for t in tasks)
     assert all(t["recruitment_handoff"]["company_receiving_address"]==t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
     assert all(t["recruitment_handoff"]["actual_child_invited_or_created"] is False for t in tasks)
     assert all(not t["actual_worker_model_started"] and not t["submitted_to_customer"] for t in tasks)
