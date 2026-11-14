@@ -8,6 +8,7 @@ import argparse,json,tempfile
 from collections import Counter
 from datetime import datetime,timezone
 from pathlib import Path
+from owner_first_oath import command_envelope
 
 FLEETS=("transferexperiment","BountyScoutAI")
 EXPECTED_PER_FLEET=2
@@ -35,6 +36,28 @@ def summarize(folder, run_url=""):
             problems.append(str(p)+":duplicate_worker_identity")
             continue
         seen.add(key)
+        # Derive the logical full upward reporting chain from the canonical
+        # company-specific hierarchy. This is NOT a claim each intermediate
+        # director/manager executed an AI review or received a real message.
+        try:
+            actual_route=command_envelope(company,worker)["owner_to_worker_path"]
+        except (ValueError,KeyError) as exc:
+            problems.append(str(p)+":invalid_owner_chain:"+type(exc).__name__)
+            continue
+        upward_route=list(reversed(actual_route))
+        expected_direct_parent=upward_route[1]
+        reported_parent=r.get("parent_id")
+        if not reported_parent or company+"/"+str(reported_parent)!=expected_direct_parent:
+            problems.append(str(p)+":worker_direct_parent_mismatch")
+            continue
+        knowledge=(r.get("system_understanding_assessment") or {})
+        knowledge_grade=(knowledge.get("grade") or {})
+        has_independent_knowledge=(
+            knowledge.get("model_execution")=="MODEL_COMPLETED"
+            and knowledge_grade.get("passed") is True
+            and knowledge.get("company")==company
+            and knowledge.get("direct_parent")==reported_parent
+        )
         training=(r.get("practical_training_while_working") or {})
         result=(training.get("result") or {})
         model_completed=(r.get("inference_status")=="model_completed")
@@ -51,7 +74,15 @@ def summarize(folder, run_url=""):
           "training_grade":quality,
           "source_url":original_source,
           "original_source_present":original_source.startswith("https://"),
-          "direct_parent":r.get("parent_id") or (r.get("command_chain_assignment") or {}).get("direct_parent"),
+          "direct_parent":expected_direct_parent,
+          "upward_route_to_human_owner":upward_route,
+          "local_company_director":actual_route[3],
+          "sole_chief_director":"CHIEF_D",
+          "knowledge_check_completed":knowledge.get("model_execution")=="MODEL_COMPLETED",
+          "knowledge_check_passed":has_independent_knowledge,
+          "knowledge_assessment":knowledge.get("assessment","NOT_RUN"),
+          "supervisor_independent_model_receipt_verified":False,
+          "human_owner_final_delivery_verified":False,
           "real_pid":pid if valid_pid else None,
           "delivered_original_draft_needs_review":bool(trained and quality==QUALIFIED),
           "externally_submitted":False,
@@ -67,6 +98,8 @@ def summarize(folder, run_url=""):
           "actual_model_completions":sum(z["actual_model_completed"] for z in company_rows),
           "real_training_completions":sum(z["trained_with_real_separate_model_call"] for z in company_rows),
           "original_drafts_needing_review":sum(z["delivered_original_draft_needs_review"] for z in company_rows),
+          "full_system_knowledge_check_passes":sum(z["knowledge_check_passed"] for z in company_rows),
+          "full_system_knowledge_checks_to_review":sum(not z["knowledge_check_passed"] for z in company_rows),
           "missing_or_unverified_slots":max(0,EXPECTED_PER_FLEET-sum(z["trained_with_real_separate_model_call"] for z in company_rows)),
         }
     summary={
@@ -80,6 +113,9 @@ def summarize(folder, run_url=""):
       "actual_customer_contact_verified":0,
       "actual_paid_contracts_verified":0,
       "crypto_payments_verified":"NOT_ASSESSED_BY_THIS_SHIFT",
+      "upward_reporting_policy":"active H->G->S->W->M->company director->Chief D->OWNER; directors' assistants report to company director",
+      "actual_direct_parent_model_acknowledgements_verified":False,
+      "software_reconciled_to_chief_D_not_proof_of_intermediate_live_agent_delivery":True,
       "company_reports":by_company,
       "individual_worker_evidence":records,
       "anomalies":problems,
@@ -95,14 +131,17 @@ def write(out,summary):
      "Applied-training AI completions: **"+str(summary["actual_independent_training_completions"])+"**",
      "Original drafts needing supervisor review: **"+str(summary["quality_graded_original_work_drafts"])+"**",
      "Genuine accepted customer jobs: **not verified by this shift**",
-     "Confirmed new coins: **not assessed by this shift**","",
+     "Confirmed new coins: **not assessed by this shift**",
+     "Owner reporting policy: **each real worker -> its direct parent -> its company director -> one Chief D -> human OWNER**.",
+     "System comprehension: only independently completed, graded model answers count; assigned instructions do not.",
+     "Actual live acknowledgements by every intermediate supervisor: **not established by this software summary**.","",
      "| Company | Scheduled slots | Model calls completed | Practical lessons completed | Drafts for review | Missing/unverified |",
      "|---|---:|---:|---:|---:|---:|"]
     for company, x in summary["company_reports"].items():
         lines.append(f"| {company} | {x['expected_slots']} | {x['actual_model_completions']} | {x['real_training_completions']} | {x['original_drafts_needing_review']} | {x['missing_or_unverified_slots']} |")
     lines.extend(["","## Individual executed worker evidence"])
     for z in summary["individual_worker_evidence"]:
-        lines.append(f"- **{z['company']}/{z['worker']}** → parent {z['direct_parent'] or 'not established'}; model={z['actual_model_completed']}; on-job training={z['trained_with_real_separate_model_call']}; grade={z['training_grade']}; source={z['source_url'] or 'NONE'}")
+        lines.append(f"- **{z['company']}/{z['worker']}** → parent {z['direct_parent']}; upward software route {' -> '.join(z['upward_route_to_human_owner'])}; independent system check={z['knowledge_assessment']} / passed={z['knowledge_check_passed']}; model={z['actual_model_completed']}; on-job training={z['trained_with_real_separate_model_call']}; grade={z['training_grade']}; source={z['source_url'] or 'NONE'}")
     if summary["anomalies"]:lines.extend(["","## Inconsistent input",*[f"- {x}" for x in summary["anomalies"]]])
     lines+=["","Software-collected supervisor evidence is not independent AI manager acknowledgment. A role is active only during actual execution. Company directors should correct weak drafts and obtain authenticated buyer acceptance before billing."]
     (out/"CHIEF_D_SHIFT.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
@@ -121,6 +160,13 @@ def selftest():
         assert x["quality_graded_original_work_drafts"]==1,x
         assert x["company_reports"]["BountyScoutAI"]["missing_or_unverified_slots"]==2,x
         assert x["actual_paid_contracts_verified"]==0
+        row=x["individual_worker_evidence"][0]
+        assert row["upward_route_to_human_owner"]==[
+            "transferexperiment/D01-M01-W01","transferexperiment/D01-M01",
+            "transferexperiment/D01","transferexperiment","CHIEF_D","OWNER"]
+        assert row["knowledge_check_passed"] is False
+        assert row["knowledge_assessment"]=="NOT_RUN"
+        assert x["actual_direct_parent_model_acknowledgements_verified"] is False
         write(Path(d)/"report",x)
     print("B_SHIFT_AGGREGATE_SELFTEST_PASS")
 if __name__=="__main__":
