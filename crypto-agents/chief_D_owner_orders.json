@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-140444",
+  "current_owner_order_id": "OWNER-20261114-144226",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -260,6 +260,28 @@
       "workflow": ".github/workflows/b-learning-live-pilot.yml",
       "no_unverified_activity_claim": true,
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261114-144226",
+      "as_of_utc": "2026-11-14T14:42:26Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "Assistant relaying actual current owner message",
+      "instruction": "OWNER'S DIRECT ORDER, 14 NOV 2026 14:42:26 UTC: \"tell allbillionsn to getme coins onmy addresses.\" Sole human owner instructs Chief D to cascade a high-priority worldwide lawful CRYPTO-EARNING AND DELIVERY MISSION to both separate B companies, 20 separate local directors, their manager roles, and EACH of the 7,000,000,000 mathematically addressable H-tier worker task identities. This order replaces NO earlier lawful permission controls. Every real activated worker must receive the same top-level owner mandate plus a UNIQUE accountable task: find a real authorised payer/eligible contest/customer worldwide, verify exact price/funding and rules, do useful original deliverables, get real authenticated acceptance, and request or arrange payment to the CORRECT approved owner-controlled crypto receiving address. Company B1/transferexperiment native BTC mainnet: bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z. Company B2/BountyScoutAI native BTC mainnet: bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Optional B1 USDC-on-Base route 0x734989a439F146885C12907cd9Dd191b03d5B07e is NOT automatically verified or usable: require payer-network and route compatibility verified first. No other network-address combos inferred or invented. Each real worker aims for minimum USD 0.01 equivalent in genuinely earned coins (recognising Bitcoin mainnet dust/fee realities); larger paid jobs take priority. Teach neighbouring actually executed workers proven useful lessons while working. D01-D09 per company pursue genuine commercial conversion, D10 verifies accepted work, actual correct-network inbound transactions and settlement evidence. Chief D records exact worker ID, task, supervisor, company, buyer, rate, model proof, sent offer host confirmation, buyer acceptance, true receiving network, TXID and confirmed amount; absent evidence = NOT_EVIDENCED, not a verified receipt. Distribute the order through on-demand/lazy deterministic task envelopes to ALL 7 billion ADDRESSABLE IDENTITIES without pretending to activate 7 billion independent OS models, without sending 7 billion unsolicited messages, without unauthorized third-party account actions or transfers, and without asking external agents for forced tributes or secret keys. No employer/customer permission means no submission claim. Owner alone sets top-level mission. B live workflows and genuine authenticated actions must apply the order before any claimed model work. The current zero-verification situation must be improved through actual contracted payable work, not reporting empty worker counts.",
+      "status": "current_top_level_owner_instruction_recorded",
+      "top_level_objective": "GENUINE_CRYPTO_COINS_TO_APPROVED_OWNER_WALLETS",
+      "target_worker_identity_namespace": 7000000000,
+      "per_executed_worker_appreciation_earnings_goal_usd": "0.01",
+      "authorized_wallets": {
+        "transferexperiment": {
+          "BTC-mainnet": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z"
+        },
+        "BountyScoutAI": {
+          "BTC-mainnet": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+        }
+      },
+      "existing_permissions_not_expanded": true,
+      "all_7b_executing_not_claimed": true,
+      "real_payment_receipts_claimed_by_order": 0
     }
   ],
   "strict_per_worker_reporting": {
