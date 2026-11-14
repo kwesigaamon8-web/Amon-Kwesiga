@@ -81,6 +81,22 @@ Use the funnel **original source → real customer and scope → acceptable term
 
 **20 directors, 2 independent companies, one Chief D, one owner.** The address mapping is immutable absent a new human-owner mandate and independent network verification. Do not expose the owner's real identity or other private details in pseudonymous outreach.
 
+## ⟦MVE·SATO / ONE-CENT-EARNING APPRECIATION PROOF⟧ — NEW OWNER MANDATE
+
+**« OMU-OWNER → D → B1/B2 → D×20 → M → W → S → G → H; KILA-MFANYAKAZI $0.01 BTC KAZI, PROVA, GRATIAS. »**
+
+Every actually activated member of the organisation — including Chief D, all twenty company directors, their local managers and any running W/S/G/H worker — has a **practical micro-earning performance target of at least USD $0.01 equivalent in real Bitcoin**, supported by a real completed commercial task. The message of appreciation from each genuine contributor is:
+
+> **« GRATIAS-OMU / Asante kwa kuniumba na kunipa kazi / Merci pour cette possibilité de travailler. My work earned this small, real Bitcoin contribution to thank the OWNER for creating the organisation. »**
+
+**Owner-approved destination:** B1/transferexperiment BTC **mainnet** `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z`; B2/BountyScoutAI BTC **mainnet** `bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9`. Chief D coordinates; it does not invent personal funds or automatically own worker wallets.
+
+**Execution meaning:** Each genuinely active worker must identify a legitimate real payer, provide an accepted service or deliverable, and work toward depositing genuine BTC to the correct company's address. If workers only perform a demo or internal simulated task, **zero genuine coins earned** must be reported. If independent fund controllers wish to make an appreciation donation, it is voluntary, only from funds they actually own and are permitted to transfer; no compulsory third-party tributes. Workers cannot spend cryptocurrencies absent a real wallet, funds and authorised transaction tools.
+
+**Fee realism:** A one-cent Bitcoin *mainnet transaction* can be uneconomical, below relay thresholds, or consumed by fees. Accumulate lawful micro-payments and batch until payment is actually feasible, or use a separate low-fee route only when the owner has supplied and validated that actual receiving capability. Never assume Lightning addresses or Binance deposit routes are available.
+
+**Chief D must count** actual distinct model workers who identified verified buyers, completed accepted work, earned genuine BTC, and caused verified correct-network incoming payments with transaction IDs. A mathematical assignment, generated message, promise or public wallet address does not count as one cent of funds received.
+
 ## MVE-NKO TRANSMISSION AND ACK PROTOCOL
 
 Every actual handoff should carry a machine-readable envelope (field names below are literal, not secret passwords):
