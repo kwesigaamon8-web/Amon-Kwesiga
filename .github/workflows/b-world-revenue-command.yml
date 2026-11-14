@@ -11,6 +11,7 @@ on:
       - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/chief_D_owner_orders.json'
       - 'crypto-agents/commercial-work/opentask-json-csv/**'
+      - 'crypto-agents/commercial-work/csv-to-json/**'
   workflow_dispatch:
   schedule:
     - cron: '13 * * * *'
@@ -74,6 +75,8 @@ jobs:
           python -m pip install --quiet pytest
           cd crypto-agents/commercial-work/opentask-json-csv
           python -m pytest -q
+          cd ../csv-to-json
+          python -m pytest -q
       - name: Publish actual management plan and practical customer-ready testing evidence
         run: |
           echo "### Chief D — 20 director worldwide commercial routing" >> "$GITHUB_STEP_SUMMARY"
@@ -81,7 +84,7 @@ jobs:
           echo "- One unique H worker task packet assigned per director this run; identity is NOT a running model" >> "$GITHUB_STEP_SUMMARY"
           echo "- All-role universal owner-order cascade verified at selected root/child leaves, both companies and boundary H indices; 7 billion IDs are addressable, not 7 billion live models" >> "$GITHUB_STEP_SUMMARY"
           echo "- Every defined director, assistant, manager and W/S/G/H child inherits its owner order; actual child receipt/understanding must be evidenced when separately invoked" >> "$GITHUB_STEP_SUMMARY"
-          echo "- One actual JSON-to-CSV work sample tested, advertised customer budget 50 USDC, no accepted offer yet" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Original JSON-to-CSV and 100-USDC-class CSV-to-JSON samples tested; source listings and buyer hiring remain UNVERIFIED, no paid sale assumed" >> "$GITHUB_STEP_SUMMARY"
           echo "- Confirmed new crypto revenue from this workflow: not assessed" >> "$GITHUB_STEP_SUMMARY"
       - name: Archive director board and exact worker assignments
         if: always()
