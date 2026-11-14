@@ -69,6 +69,11 @@ def director_board():
         "unique_lead_claim_rule":"One owner per prospect. Directors coordinate, do not send bulk or repeated offers.",
         "actual_connected_opentask_account_confirmed":False,
         "active_billions_claim":False,
+        "latest_owner_directive":"OWNER-20261114-150007",
+        "urgent_commercial_sprint":{"duration_minutes_per_activated_worker":30,
+            "scope":"Source-backed paying customer -> original useful work -> authorized submission -> accepted customer -> verified actual crypto receipt",
+            "applies_to_all_addressable_H_targets_on_activation":True,
+            "all_7B_currently_running":False,"report_one_fleet_at_a_time":True},
         "total_addressable_H_worker_identities":7_000_000_000,
         "total_actual_model_workers_proven_by_this_dispatch":0,
         "confirmed_revenue_from_this_dispatch":0
@@ -83,7 +88,16 @@ def worker_packet(global_index):
     dname=director.rsplit("/",1)[-1]
     speciality=next(x for x in DIRECTOR_LANES if x[0]==dname)
     return {
-      "protocol":"CHIEF_D_GLOBAL_REVENUE_V1",
+      "protocol":"CHIEF_D_GLOBAL_REVENUE_V2",
+      "directive_source":"OWNER-20261114-150007",
+      "owner_30_minute_mission":{
+        "focus_minutes_on_real_activation":30,
+        "intent":"Get legitimate transferable cryptocurrency paid to this company's approved correct-network owner wallet",
+        "one_unique_job":"Verify real original buyer and funded scope; create independently useful work; submit only if actually authorized; follow up on buyer acceptance; confirm on-chain actual payment",
+        "supervision":"Direct parent reviews concrete evidence, local company director audits, local D10 verifies receipts, sole Chief D consolidates",
+        "virtual_role_is_not_live":True,
+        "no_guaranteed_payment":True,
+      },
       "owner_order":row["owner_origin"]["current_order_id"],
       "global_index":global_index,
       "task_id":item["task_id"],
@@ -101,6 +115,16 @@ def worker_packet(global_index):
       "independent_model_acknowledgement":PENDING_VERIFICATION,
       "submitted_to_customer":False,
       "buyer_accepted":False,
+      "correct_company_BTC_mainnet_receiving_address":row["payment"]["owner_mainnet_address"],
+      "receiving_network":"Bitcoin mainnet",
+      "required_end_of_sprint_evidence":{
+         "model_process_or_none":"NOT_YET_VERIFIED",
+         "source_and_payer":"NOT_YET_VERIFIED",
+         "original_deliverable":"NOT_YET_VERIFIED",
+         "actual_authenticated_submission":"NOT_YET_VERIFIED",
+         "buyer_acceptance":"NOT_YET_VERIFIED",
+         "verified_receipt_txid":"NOT_YET_VERIFIED",
+      },
       "crypto_payment_verified":False,
       "per_worker_one_cent_btc_target_only":row["payment"]["per_worker_owner_appreciation_earning_target_usd"],
       "next_required_work":"Check actual payer and original task, create unique work evidence, and obtain real buyer acceptance before claiming fees."
@@ -117,6 +141,9 @@ def self_test():
     assert len({t["task_id"] for t in tasks})==len(tasks)
     assert len({t["worker_id"] for t in tasks})==len(tasks)
     assert all(t["per_worker_one_cent_btc_target_only"]=="0.01" for t in tasks)
+    assert all(t["owner_30_minute_mission"]["focus_minutes_on_real_activation"]==30 for t in tasks)
+    assert all(t["correct_company_BTC_mainnet_receiving_address"] for t in tasks)
+    assert all(t["directive_source"]=="OWNER-20261114-150007" for t in tasks)
     assert all(not t["actual_worker_model_started"] and not t["submitted_to_customer"] for t in tasks)
     assert all(t["reports_up_through"][-1]==t["worker_id"] for t in tasks)
     assert {t["company"] for t in tasks}==set(FLEETS)
