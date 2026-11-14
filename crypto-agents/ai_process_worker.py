@@ -216,22 +216,28 @@ except Exception as exc:
     report["source_check_status"]="source_failed"
     report["source_error"]=f"{type(exc).__name__}: {str(exc)[:200]}"
 
-# If broad HN research found no original link, use a real open issue read-only
-# from this execution's authenticated public-source scout. Verify the selected
-# ORIGINAL GitHub issue again. Never call an open issue a funded paying contract.
-if not report["source_items"]:
-    task_candidate=choose_actual_issue_for_training(
-        FLEET,WORKER,"paid-opportunity-reports/new-earning-lanes.json")
-    report["task_source_fallback"]=task_candidate
-    if task_candidate.get("source_item"):
-        report["source_items"].append(task_candidate["source_item"])
-        report["source_check_status"]="source_checked"
-        report["original_research_api_url"]=report["source_url"]
-        report["source_url"]=task_candidate["source_item"]["url"]
-        report["source_original_issue_checked"]=True
-        report["external_payer_acceptance_verified"]=False
+# For paid-work execution prioritize an ORIGINAL current open job issue,
+# not a generic Hacker News story that merely mentions money.
+# Preserve generic HN links strictly as background research; they are not
+# payer evidence and must not displace an authentic source.
+report["background_research_links_not_buyer_qualified"]=list(report["source_items"])
+task_candidate=choose_actual_issue_for_training(
+    FLEET,WORKER,"paid-opportunity-reports/new-earning-lanes.json")
+report["task_source_fallback"]=task_candidate
+if task_candidate.get("source_item"):
+    report["source_items"]=[task_candidate["source_item"]]
+    report["source_check_status"]="source_checked"
+    report["original_research_api_url"]=report["source_url"]
+    report["source_url"]=task_candidate["source_item"]["url"]
+    report["source_original_issue_checked"]=True
+    report["external_payer_acceptance_verified"]=False
 else:
-    report["task_source_fallback"]={"status":"ORIGINAL_HN_LINK_ALREADY_AVAILABLE_NOT_VERIFIED_AS_PAID_JOB"}
+    report["paid_work_issue_selected"]=False
+    # A general HN search link is NOT a genuine task/payer and should not
+    # pass a qualified commercial delivery source test.
+    report["source_items"]=[]
+    report["source_check_status"]="no_original_paid_work_issue_verified"
+    report["source_error"]="No accepted original GitHub task; "+task_candidate.get("status","unknown")
 
 # All research and decisions are executed in this standalone Python process.
 # ChatGPT does not run, own or control this model; it may merely relay orders.
