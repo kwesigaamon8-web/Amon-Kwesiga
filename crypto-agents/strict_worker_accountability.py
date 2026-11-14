@@ -103,6 +103,21 @@ for director in DIRECTORS:
             defects.append("INVALID_OR_UNPROVEN_CORRECTIVE_MANAGER_DIRECTIVE")
         if correction and retry=="NOT_NEEDED_OR_NOT_ELIGIBLE":
             defects.append("FAILED_IDEA_EXERCISE_NOT_ESCALATED_OR_RETRIED")
+        second=data.get("second_licensed_software_study_assignment") or {}
+        second_response=data.get("second_study_actual_model_result") or {}
+        first=data.get("first_unique_crypto_funding_task") or {}
+        if first.get("task_id")!=hierarchy.get("funding_task_id") or not first.get("task_id","").startswith("FUND-"):
+            defects.append("UNIQUE_FIRST_CRYPTO_FUNDING_TASK_MISSING_OR_MISMATCH")
+        if second.get("first_task_id")!=first.get("task_id") or not second.get("task_id","").startswith("SOFTWARE-"):
+            defects.append("UNIQUE_SECOND_CODE_STUDY_MISSING_OR_MISMATCH")
+        if second.get("worker_id")!=FLEET+"/"+w or second.get("direct_supervisor")!=FLEET+"/"+data.get("parent_id",""):
+            defects.append("SECOND_SOFTWARE_STUDY_WRONG_ROLE_OR_PARENT")
+        if second.get("source_platform") not in ("GitHub","GitLab","Codeberg","SourceHut","PyPI","npm","Official documentation","Hugging Face Spaces"):
+            defects.append("UNAPPROVED_OR_UNSUPPORTED_CODE_SOURCE_PLATFORM")
+        if data.get("second_study_actual_model_inference")!="MODEL_INFERENCE_COMPLETED":
+            defects.append("SECOND_SOFTWARE_STUDY_MODEL_NOT_ACTUALLY_COMPLETED")
+        if second_response.get("status")!="MODEL_STUDY_REPLY_REQUIRES_CODE_AND_LICENSE_REVIEW":
+            defects.append("SECOND_SOFTWARE_STUDY_INCOMPLETE_OR_NOT_EVIDENCED")
         idea_menu=data.get("ten_idea_exercise") or {}
         generated_ideas=data.get("ten_idea_model_result") or {}
         if idea_menu.get("count")!=10:
@@ -149,6 +164,12 @@ for director in DIRECTORS:
             "grade":grade,"defects":defects,
             "latest_order_ack_status":ack.get("status","NO_MODEL_ACKNOWLEDGEMENT"),
             "ten_idea_menu_count":idea_menu.get("count",0),
+            "funding_unique_task_id":first.get("task_id"),
+            "second_distinct_software_task_id":second.get("task_id"),
+            "second_study_source_platform":second.get("source_platform"),
+            "second_study_actual_model_status":data.get("second_study_actual_model_inference","NOT_EVIDENCED"),
+            "second_study_model_quality":second_response.get("status","NO_SECOND_STUDY"),
+            "source_license_authorized_reuse_not_verified":True,
             "hierarchical_company_director":hierarchy.get("company_director"),
             "direct_supervisor":hierarchy.get("direct_supervisor"),
             "supervisor_correction_order_status":correction.get("status","NO_CORRECTION_NEEDED"),
