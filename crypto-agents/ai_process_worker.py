@@ -38,9 +38,9 @@ PAYMENT_MISSION=COLLECTION_CONFIG["fleets"][FLEET]
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
 DIRECTOR_FUNCTION=("payment_recovery" if DIRECTOR==PAYMENT_DIRECTOR else "independent_paid_work")
 DIRECTOR_ORDER=(
-  "D10 is the SINGLE logical payment director across both accounts. Audit only verifiable external contracts, delivered and ACCEPTED work, agreed payable amounts, payer communications and confirmed on-chain outputs. Demand genuinely due payments firmly through authenticated allowed channels; when missing evidence, report NOT VERIFIED. Coordinate both B1 and B2, prevent double-counting and avoid claiming a GitHub role output is owed money."
+  "You are this company's LOCAL D10 payment director only. Audit verifiable external contracts, completed and ACCEPTED work, agreed amounts, authorized payer communications and confirmed on-chain receipts for your OWN fleet account, then report evidence to the single overall Chief D above both companies. Never count your local D10 as the other company's D10; do not invent payer claims."
   if DIRECTOR_FUNCTION=="payment_recovery" else
-  "D01-D09 keep actively researching and preparing concrete lawful paid deliverables, real clients and original-source bounty opportunities. Do not stall on payment checks; hand any actually accepted unpaid contract evidence to D10. Distinguish drafts from sent offers and real model completions from inactive roles."
+  "You are a LOCAL D01-D09 director in your own company; continue researching and preparing lawful paid deliverables and real clients. Forward accepted unpaid contract evidence to your own company D10, who reports to Chief D. Never conflate this company with the other fleet."
 )
 STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
@@ -49,7 +49,9 @@ TASK=IDENTITY["task"]
 report={
     "worker_id":WORKER,
     "receiving_account":PAYMENT_MISSION["account"],
-    "logical_payment_director":PAYMENT_DIRECTOR,
+    "local_payment_director":FLEET+"/"+PAYMENT_DIRECTOR,
+    "company_director_id":FLEET+"/"+DIRECTOR,
+    "chief_director_id":COLLECTION_CONFIG["hierarchy"]["chief_director"],
     "director_function":DIRECTOR_FUNCTION,
     "external_payer_acceptance_verified":False,
     "receiving_asset":PAYMENT_MISSION["asset"],
