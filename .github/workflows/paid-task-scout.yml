@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/paid-task-scout.yml'
+      - 'crypto-agents/paid_task_scout.py'
   schedule:
     - cron: '9 * * * *'
 concurrency:
