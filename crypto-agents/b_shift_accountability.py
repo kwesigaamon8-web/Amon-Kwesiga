@@ -123,8 +123,102 @@ def summarize(folder, run_url=""):
     }
     return summary
 
+
+def build_shared_cooperation_queue(summary):
+    """Propose one coordinated next action per REAL completed worker.
+
+    This is a deterministic handoff plan, not new model inference or a
+    simulated supervisor/customer action. Unverified public leads stay blocked
+    at the payer/eligibility gate until independent evidence exists.
+    """
+    completed=[
+        x for x in summary.get("individual_worker_evidence",[])
+        if x.get("actual_model_completed") and x.get("trained_with_real_separate_model_call")
+    ]
+    groups={}
+    without_source=[]
+    for x in completed:
+        source=str(x.get("source_url") or "").strip()
+        if source.startswith("https://"):
+            groups.setdefault(source,[]).append(x)
+        else:
+            without_source.append(x)
+
+    assignments=[]
+    duplicate_count=0
+    for source, workers in sorted(groups.items()):
+        workers=sorted(workers,key=lambda x:(
+            not bool(x.get("delivered_original_draft_needs_review")),
+            x["company"],x["worker"]))
+        if len(workers)>1:duplicate_count+=len(workers)-1
+        for index,x in enumerate(workers):
+            assignments.append({
+                "actual_executed_worker":x["company"]+"/"+x["worker"],
+                "source_url":source,
+                "same_source_workers":len(workers),
+                "proposed_role":"SOURCE_OWNER_VERIFY_PAYER" if index==0 else "INDEPENDENT_ELIGIBILITY_OR_QUALITY_REVIEW",
+                "priority_action":(
+                    "Check sponsor, original issue comments, outside-contributor eligibility, "
+                    "reward funding, live claim and acceptance terms before applying or building"
+                    if index==0 else
+                    "Challenge source owner's payment assumptions; check restrictions, awards, duplicates "
+                    "and competing work. Do NOT create a second speculative implementation"
+                ),
+                "existing_model_quality":x.get("training_grade") or "UNKNOWN",
+                "action_has_actually_run":False,
+                "buyer_accepted_or_payment_proven":False,
+            })
+    for x in sorted(without_source,key=lambda y:(y["company"],y["worker"])):
+        assignments.append({
+            "actual_executed_worker":x["company"]+"/"+x["worker"],
+            "source_url":None,"same_source_workers":0,
+            "proposed_role":"FIND_ONE_ORIGINAL_BUYER",
+            "priority_action":"Find and cite a genuinely paying buyer/source, then verify eligibility, funds and scope",
+            "existing_model_quality":x.get("training_grade") or "UNKNOWN",
+            "action_has_actually_run":False,
+            "buyer_accepted_or_payment_proven":False,
+        })
+    return {
+        "schema":"B_SHARED_ACTUAL_WORKER_HANDOFF_QUEUE_V1",
+        "source_shift_run_url":summary.get("run_url",""),
+        "defined_role_count_both_companies":750377265360,
+        "defined_roles_are_not_active_models":True,
+        "actually_completed_worker_count":len(completed),
+        "unique_unverified_source_count":len(groups),
+        "redundant_same_source_assignments_detected":duplicate_count,
+        "source_missing_worker_count":len(without_source),
+        "handoffs_for_NEXT_actually_activated_shift":assignments,
+        "supervisor_or_peer_review_already_executed_by_this_queue":False,
+        "genuine_customer_acceptance_verified_by_this_queue":False,
+        "verified_coins_by_this_queue":"NOT_ASSESSED",
+        "mining_note":"AI task roles contribute zero SHA-256 hashpower without authorized actual miners",
+        "rule":"One evidence-backed queue across B1 and B2; only independently executed jobs count as working. Pending recommendations are not completed actions.",
+    }
+
+
+def write_shared_queue(out, queue):
+    out=Path(out)
+    (out/"CHIEF_D_SHARED_COOPERATION_QUEUE.json").write_text(
+        json.dumps(queue,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+    lines=[
+        "# Chief D — B1/B2 collaborative next-shift work queue","",
+        f"Actual completed workers evaluated: **{queue['actually_completed_worker_count']}**",
+        f"Different original sources, NOT yet qualified for payout: **{queue['unique_unverified_source_count']}**",
+        f"Duplicate same-source slots to review: **{queue['redundant_same_source_assignments_detected']}**",
+        f"Workers missing an original source: **{queue['source_missing_worker_count']}**","",
+        "A proposed handoff does NOT mean an autonomous agent is running, a payer accepted the work, or BTC was received.","",
+        "| Actual worker | Proposed next role | Original evidence |",
+        "|---|---|---|"
+    ]
+    for x in queue["handoffs_for_NEXT_actually_activated_shift"]:
+        lines.append("| "+x["actual_executed_worker"]+" | "+x["proposed_role"]+" | "+(x["source_url"] or "SOURCE MISSING")+" |")
+    lines += ["","Every source must pass current eligibility, funding and payer checks before any genuine contact/delivery. Pooled mining requires separate consenting real SHA-256 hardware; model workers do not mine by inference."]
+    (out/"CHIEF_D_SHARED_COOPERATION_QUEUE.md").write_text(
+        "\n".join(lines)+"\n",encoding="utf-8")
+
 def write(out,summary):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    write_shared_queue(out,build_shared_cooperation_queue(summary))
     (out/"CHIEF_D_SHIFT.json").write_text(json.dumps(summary,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     lines=["# Chief D — two independent B-company REAL worker shift","",
      "Executed AI workers: **"+str(summary["actually_completed_model_workers"])+"/"+str(summary["expected_total_actual_worker_slots"])+"**",
@@ -161,6 +255,11 @@ def selftest():
         assert x["quality_graded_original_work_drafts"]==1,x
         assert x["company_reports"]["BountyScoutAI"]["missing_or_unverified_slots"]==5,x
         assert x["actual_paid_contracts_verified"]==0
+        handoffs=build_shared_cooperation_queue(x)
+        assert handoffs["actually_completed_worker_count"]==1
+        assert handoffs["unique_unverified_source_count"]==1
+        assert handoffs["redundant_same_source_assignments_detected"]==0
+        assert handoffs["handoffs_for_NEXT_actually_activated_shift"][0]["action_has_actually_run"] is False
         row=x["individual_worker_evidence"][0]
         assert row["upward_route_to_human_owner"]==[
             "transferexperiment/D01-M01-W01","transferexperiment/D01-M01",
