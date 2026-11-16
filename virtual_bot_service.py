@@ -28,6 +28,7 @@ from flask import Blueprint, Response, jsonify, request
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "crypto-agents"))
 from ability_based_dispatch import dispatch as choose_capability
+from superworker_protocol import create as superworker_create
 from role_ai_identity import resolve_role
 
 bot_routes = Blueprint("b_agent_bots", __name__)
@@ -70,6 +71,7 @@ def _role_spec(fleet, role_id):
     )
     lane = capability["primary_lane"]
     name, purpose = LANES[lane]
+    super_profile = superworker_create(fleet,role_id,identity["specialty"],identity["level"])
     return {
         "fleet": fleet, "role_id": role_id,
         "display_name": name,
@@ -77,6 +79,9 @@ def _role_spec(fleet, role_id):
         "specialty": identity["specialty"],
         "capability_lane": lane,
         "parent": capability["reports_to"],
+        "superworker_chain":super_profile["supervisor_chain"],
+        "work_phases":super_profile["phases"],
+        "superworker_live_model_started":False,
         "service_status": "configured_identity_not_live_model",
         "external_actions_available": False,
         "bitcoin_mining_power_created": False,
@@ -195,6 +200,8 @@ def _invoke_model(role, messages):
         f"Your specialist title: {role['display_name']}. "
         f"Capability: {role['capability_lane']} / {role['specialty']}. "
         f"Company: {role['fleet']}. Internal role: {role['role_id']}. "
+        f"Original direct parent: {role['parent']}, then local D and Chief D to owner. "
+        "Self-review every useful task: verify, plan, build, QA, deliver only where permitted, reconcile actual payment, report. "
         "Give helpful, clear, original, actionable answers with uncertainty. "
         "Only assist with text. Do NOT claim you searched the web, signed into "
         "accounts, contacted buyers, mined BTC, accepted a contract, verified "

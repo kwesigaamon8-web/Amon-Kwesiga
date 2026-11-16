@@ -36,6 +36,7 @@ from b_owner_account_link import agent_packet as owner_multichain_account_packet
 from b_registered_account_worker_map import packet as registered_agent_worker_packet
 from hosting_scout import plan as hosting_research_plan, probe as hosting_research_probe
 from ability_based_dispatch import dispatch as capability_dispatch
+from superworker_protocol import create as superworker_create
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -115,6 +116,7 @@ TASK=IDENTITY["task"]
 CAPABILITY_TASK=capability_dispatch(FLEET,WORKER,SPEC["role_name"],DIRECTOR,IDENTITY["level"])
 if CAPABILITY_TASK["reports_to"]!=FLEET+"/"+PARENT:
     raise SystemExit("Capability-specific assignment broke worker direct-parent chain")
+SUPERWORKER=superworker_create(FLEET,WORKER,SPEC["role_name"],IDENTITY["level"])
 OWNER_OATH=owner_oath_envelope(FLEET,WORKER)
 UNIVERSAL_TASK=universal_assign(FLEET,WORKER)
 CERTIFIED_AGENT_SERVICE=certified_agent_assignment(FLEET,WORKER)
@@ -162,6 +164,7 @@ report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
     "coordinated_owner_btc_mining_research":{"owner_order_id":"OWNER-20261116-134732-COORDINATED-MINING-750377265361","distinct_from_cash_first_paid_work":True,"role_positions_are_not_miners":True,"actual_consented_physical_rigs_verified":0,"live_actual_hashrate_verified":False,"accepted_pool_shares_verified":False,"owner_BTC_revenue_verified":False,"source":"crypto-agents/BITCOIN_MINING_COLLABORATION_REALITY.md","no_cloud_mining_or_unapproved_hardware":True},
+    "owner_superworker_protocol":SUPERWORKER,
     "owner_capability_first_assignment":{
        "current_owner_order":"OWNER-20261116-135013-EACH-WORKER-DO-WHAT-IT-CAN",
        "independent_primary_task":CAPABILITY_TASK,
@@ -423,6 +426,7 @@ try:
         " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
+        "\nYOU ARE ONE CAPABILITY-BASED SUPERWORKER, NOT BILLIONS OF LIVE MACHINES. Follow VERIFY SOURCE > PLAN > BUILD ORIGINAL > SELF-REVIEW > AUTHORIZED DELIVERY > PAID RECEIPT VERIFICATION BY LOCAL D10 > REPORT TO YOUR ORIGINAL PARENT "+SUPERWORKER["supervisor_chain"][0]+". Use only actually enabled tools, select one viable paid job, show tested original output and precise blocker. Never claim an unstated customer, mining device, host or payment."+
         "\nYOUR CAPABILITY-FIRST OWNER TASK: ROLE "+CAPABILITY_TASK["role_id"]+"; PRIMARY lane "+CAPABILITY_TASK["primary_lane"]+" because "+CAPABILITY_TASK["why_suitable"]+". ACTION: "+CAPABILITY_TASK["one_actual_primary_action"]+". If blocked: "+CAPABILITY_TASK["if_missing_prerequisite"]+". OPTIONAL SECONDARY only if tools/time/permission exist: "+CAPABILITY_TASK["optional_secondary_lane"]+"; "+CAPABILITY_TASK["second_action_only_if_capable_and_permitted"]+". EVIDENCE not claims. Keep only your original direct parent "+CAPABILITY_TASK["reports_to"]+"; never claim the 750,377,265,361 configured positions are online or earning. "+
         "\nTHIRD COORDINATED BTC MINING TASK (RESEARCH AND CONSENT ONLY): Find legitimate willing owners of REAL permitted SHA-256 ASIC rigs, check public-pool.io PPLNS versus SOLO and Braiins FPPS (do NOT confuse), current pool fees/threshold, electricity economics, authorized hardware, observed live hash and accepted shares, true pool accrual then actual owner BTC transaction. The 750,377,265,361 numbers are logical roles, NOT physical miners or hash power. No cloud/GitHub mining, no unauthorized hardware setup, no promised profit."+
         "\nSECOND REQUIRED HOSTING RESEARCH TASK (NEVER REPLACE PAID WORK): Evaluate "+HOSTING_PLAN["assigned"]["name"]+" at "+HOSTING_PLAN["assigned"]["official_url"]+"; observed source status "+HOSTING_SOURCE_PROBE["status"]+"; fit "+HOSTING_PLAN["assigned"]["fit"]+"; verify eligibility/cost/hosting policy, availability, always-on/CPU/cron and account connection, compare "+HOSTING_PLAN["independent_alternative"]["name"]+" at "+HOSTING_PLAN["independent_alternative"]["official_url"]+". Do NOT claim a deployment, income, a connected account or 750B online agents; report source, limits, obstacle, recommendation." +

@@ -9,6 +9,8 @@ on:
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/superworker_protocol.py'
+      - 'crypto-agents/test_superworker_protocol.py'
       - 'crypto-agents/ability_based_dispatch.py'
       - 'crypto-agents/test_ability_based_dispatch.py'
       - 'crypto-agents/hosting_scout.py'
@@ -45,6 +47,7 @@ jobs:
         run: |
           python crypto-agents/ability_based_dispatch.py --self-test
           python crypto-agents/test_ability_based_dispatch.py
+          python crypto-agents/test_superworker_protocol.py
       - name: Check currently open GitHub task candidates once per shift
         continue-on-error: true
         env:
