@@ -9,6 +9,9 @@ on:
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/hosting_scout.py'
+      - 'crypto-agents/test_hosting_scout.py'
+      - 'crypto-agents/HOSTING_RESEARCH_FOR_ALL_WORKERS.md'
       - 'crypto-agents/b_registered_account_worker_map.py'
       - 'crypto-agents/b_delegated_prospect_batch.py'
       - 'crypto-agents/b_shift_accountability.py'
@@ -34,6 +37,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Check distinct official online host assignments and account safety
+        run: python crypto-agents/hosting_scout.py --self-test
       - name: Check currently open GitHub task candidates once per shift
         continue-on-error: true
         env:
