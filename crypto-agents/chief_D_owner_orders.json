@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-130512-247-AUTONOMY-HIERARCHY",
+  "current_owner_order_id": "OWNER-20261116-130851-TENMIN-0P5BTC-COLLECTIVE-SPRINT",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -521,6 +521,23 @@
       "reporting_policy": "each actual child -> exact canonical parent -> company director -> sole Chief D -> human owner",
       "hosting_policy": "eligible owner-connected $0 platforms only; no unapproved bills and no free-host cryptomining",
       "active_process_claim": "no additional running worker or 24/7 deployed host proven by configuration"
+    },
+    {
+      "id": "OWNER-20261116-130851-TENMIN-0P5BTC-COLLECTIVE-SPRINT",
+      "as_of_utc": "2026-11-16T13:08:51Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT via connected authenticated GitHub repository",
+      "instruction": "HUMAN OWNER TEN-MINUTE BTC TARGET — ALL 750,377,265,361 CONFIGURED ROLE POSITIONS INCLUDING CHIEF D, WORK TOGETHER TO PURSUE 0.5 BTC ACTUALLY CREDITED TO THE OWNER'S AUTHORIZED BITCOIN MAINNET RECEIVING ACCOUNT(S) BY 2026-11-16T13:18:51Z (16:18:51 Africa/Kampala), START 2026-11-16T13:08:51Z. PRIMARY B1 RECEIVING ADDRESS bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 COMPANY RECEIVING ADDRESS bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Do not substitute another address; company-specific settlement remains under the owner’s existing routing and D10 checks. A payment to either owner-approved mainnet address counts toward the owner's combined target only after independently verified transaction/address/asset/network, without double-counting. The target is aspirational, not a guarantee. 750,377,265,361 is a mathematical configured-role total INCLUDING ONE CHIEF D, NOT LIVE AI agents or miners. Preserve chief D -> company B1/B2 -> original director -> direct parent reporting, autonomous legal work and zero-cost policies in OWNER-20261116-130512-247-AUTONOMY-HIERARCHY. Chief D use actual independent activated workers and real capabilities to urgently find HIGH-PROBABILITY existing accepted receivables, previously earned crypto owed to owner, actual eligible funded urgent paid tasks with immediate payer approval, honest voluntary support requests in compliant places, and real BTC deposits already pending verification. Rank by near-term feasibility. Assign distinct source/payer/eligibility, actual authorized contact, deliverable/QA, and correct-network wallet confirmation roles. A requested 0.5 BTC cannot be conjured or mined in 10 minutes by CPU/free hosting and is not guaranteed; do not claim it has been obtained. Do not spam or harass, impersonate AI agents, promise guaranteed investment returns, conduct unauthorized transfers, solicit seed phrases, pay advance fees, use cloud cryptomining or provision paid hosting without approval. Do NOT claim every configured role was informed or active. Each genuinely executed worker reports to exact direct parent with real run ID, action, evidence, source, acceptance and confirmed wallet payment. Chief D reports before/at deadline actual engaged agent count, actual contacted payers, work accepted, BTC amount confirmed with TXIDs, outstanding target, and honest blockers. If no funding arrives, plainly say 0.5 BTC NOT RECEIVED rather than fabricate results. Record status NEW/UNVERIFIED until independent evidence. AFTER 10 MINUTES keep the lawful existing 24/7 earning mission, but do not retroactively claim this deadline met.",
+      "status": "ten_minute_target_issued_not_payment_verified",
+      "authenticated_external_execution_not_implied": true,
+      "deadline_utc": "2026-11-16T13:18:51Z",
+      "target_btc": "0.50000000",
+      "objective": "actually credited owner-approved BTC mainnet address(es)",
+      "primary_b1_address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+      "secondary_b2_address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
+      "previous_standing_24_7_order": "OWNER-20261116-130512-247-AUTONOMY-HIERARCHY",
+      "acknowledgement": "configured role identifiers do not imply live workers",
+      "spend_authorization": false
     }
   ],
   "strict_per_worker_reporting": {
