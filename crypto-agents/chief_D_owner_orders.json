@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-132449-750377265361-WORK-NOW",
+  "current_owner_order_id": "OWNER-20261116-133042-HOSTING-SEARCH-EVERY-WORKER",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -559,6 +559,22 @@
         "crypto-agents/REAL_PAYING_WORK_ROUTE_2026-11-16.md",
         "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md"
       ]
+    },
+    {
+      "id": "OWNER-20261116-133042-HOSTING-SEARCH-EVERY-WORKER",
+      "as_of_utc": "2026-11-16T13:30:42Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT via authenticated GitHub connector",
+      "instruction": "HUMAN OWNER 16 NOV 2026 13:30:42 UTC: DIRECT ALL 750,377,265,361 CONFIGURED ROLE POSITIONS (750,377,265,360 B1/B2 LOGICAL POSITIONS PLUS CHIEF D) TO ALSO RESEARCH WHERE THEIR ACTUAL AUTHORIZED AI WORKERS AND SMALL SERVICES CAN BE HOSTED ONLINE. This is a SECOND PARALLEL TASK IN ADDITION TO THE PRIMARY GOAL of getting real accepted paid work and verifying correct-chain crypto receipts. Every actually executing B1/B2 worker, and each director in both boards, should independently find and evaluate real web/VM/serverless/agent hosting candidates worldwide, prioritizing sustainable legitimate $0 plans with an account genuinely available to owner; classify each host into (A) static dashboard, (B) small queue/orchestrator, (C) scheduled data collection, (D) actual CPU model inference, (E) always-on worker/VM, and (F) supported competition code-agent environment. Document exact official product, source URL, current free eligibility, required account/verification or credit card, permitted commercial compute and mining policy, uptime/sleep/CPU and storage limits, network, cron, security and secret support, predicted possible zero-charge use, platform discontinuation risk, actual connected account and deployment proof. Compare at least ONE assigned platform and ONE independent alternative when feasible. Use source evidence and truthfully log whether the page was actually fetched. Rank existing Render repair separately (service exists but deploy failed; current CI passing does not prove Render live). Cloudflare Workers Free is edge routing, not sustained LLM inference; Oracle Always Free VM may host limited legal CPU work but is account/capacity dependent; Render/Koyeb free services sleep and are not guaranteed 24/7; Hugging Face Static Spaces and GitHub Pages are static only, and paid compute requires authorization; Vercel Hobby is noncommercial and unsuitable for commercial earning farm; Deno Deploy may be sunsetting; avoid hidden-cost providers. Do NOT create, purchase, sign in or deploy to new external accounts without authenticated authority and explicit owner approval; do not mine crypto or misuse GitHub Actions/free compute; no account duplication/fair-use bypass. Directors D01-D04 compare platform terms and accounts, D05-D06 prepare minimal compliant source code/test, D07-D08 validate official onboarding/access and independent research, D09 safety+cost, local D10 only payment verification; Chief D consolidates provider/capability proof without inflating logical role count. Each real worker reports source URL, observed evidence/time, practical fit, blocker, next action, immediate parent, model run ID, and one unique alternative. Hierarchy and all prior lawful 24/7 paid work orders remain in force. Unactivated roles inherit at actual execution; no claim 750,377,265,361 agents are running. NO actual host counts as deployed until independently healthy; NO actual funds count as earned without correct-chain receipt and payer evidence.",
+      "status": "HOSTING_RESEARCH_ORDER_REGISTERED_NOT_PROOF_OF_WORKER_EXECUTION_OR_DEPLOYMENTS",
+      "authenticated_external_execution_not_implied": true,
+      "applies_to_configured_roles": 750377265361,
+      "secondary_assignment": "independently research free/authorized online hosting",
+      "parallel_priority": "continue real accepted paid work and verified crypto collection",
+      "deployment_authorized": false,
+      "spend_authorized": false,
+      "security_policy": "no credentials, crypto mining, ToS bypass, or account duplications",
+      "previous_order": "OWNER-20261116-132449-750377265361-WORK-NOW"
     }
   ],
   "strict_per_worker_reporting": {
