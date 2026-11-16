@@ -1,0 +1,12 @@
+# Render Blueprint for the existing public status dashboard only.
+# Free hosting is for a small read-only app; it is NOT a Bitcoin miner or LLM host.
+# This file does not automatically modify an already created Render service
+# unless the user explicitly connects or syncs that service with a Blueprint.
+services:
+  - type: web
+    name: Amon-Kwesiga
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 30
+    healthCheckPath: /health

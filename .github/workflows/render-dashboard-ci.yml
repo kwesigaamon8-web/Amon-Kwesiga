@@ -1,0 +1,28 @@
+name: Free Render Status Dashboard — Build and Health Tests
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'app.py'
+      - 'requirements.txt'
+      - 'render.yaml'
+      - 'Procfile'
+      - 'tests/test_render_status.py'
+      - '.github/workflows/render-dashboard-ci.yml'
+permissions:
+  contents: read
+jobs:
+  test-read-only-dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install only the dashboard's small web dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
+      - name: Check syntax and run Flask health/status tests without external calls
+        run: |
+          python -m py_compile app.py
+          python -m unittest discover -s tests -p 'test_render_status.py' -v
