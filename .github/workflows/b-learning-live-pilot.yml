@@ -278,6 +278,7 @@ jobs:
           python crypto-agents/b_shift_accountability.py --self-test
           python crypto-agents/b_shift_accountability.py --inputs shift-evidence --output shift-chief-D --run-url "$B_RUN_URL"
           cat shift-chief-D/CHIEF_D_SHIFT.md >> "$GITHUB_STEP_SUMMARY"
+          cat shift-chief-D/CHIEF_D_SHARED_COOPERATION_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
       - name: Retrieve actual inter-company peer lesson evidence
         if: always()
         uses: actions/download-artifact@v4
