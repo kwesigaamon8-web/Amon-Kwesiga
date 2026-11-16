@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-133042-HOSTING-SEARCH-EVERY-WORKER",
+  "current_owner_order_id": "OWNER-20261116-134541-AGGRESSIVE-REAL-MONEY-CONVERSION",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -575,6 +575,20 @@
       "spend_authorized": false,
       "security_policy": "no credentials, crypto mining, ToS bypass, or account duplications",
       "previous_order": "OWNER-20261116-132449-750377265361-WORK-NOW"
+    },
+    {
+      "id": "OWNER-20261116-134541-AGGRESSIVE-REAL-MONEY-CONVERSION",
+      "as_of_utc": "2026-11-16T13:45:41Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub connector",
+      "instruction": "OWNER DIRECTIVE 16 NOVEMBER 2026 13:45:41Z: KEEP THE SEARCH FOR MONEY AGGRESSIVE. This is Chief D's CURRENT highest-priority ongoing instruction across B1 transferexperiment and B2 BountyScoutAI, including each of 20 separate local director roles, any actually invoked W/S/G/H model workers, and mathematical 750,377,265,360 configured role positions + single Chief D. It is NOT permission to claim 750,377,265,361 active agents. Real goal is legitimate, truly accepted and actually paid work, evidenced in owner-controlled crypto or agreed legal payment; zero fake entries, fake account roles, or inflated revenue. Independently and quickly scan new source-verified paying opportunities worldwide, reject contested, expired, unverified or pay-to-play gigs, source-check sponsor, open spots, explicit price and escrow/award or agreement, sender eligibility, competition restrictions, due dates and existing competing submissions before spending time. Proceed with original practical work/test and permitted authentic customer submission through existing authorized accounts when genuine access exists; do not pretend Github status comment is submission. If no authorized supported recording harness for make.fun contests, mark BLOCKED_SUPPORTED_HARNESS, pivot promptly to genuine authorized commercial work. SOURCE: make.fun live public contest page on Nov 16 lists $250 USDC ai-excited-01 and $1000 USDC best-game-01 with historical https://make.fun/payouts payment records, but prize is shared/competitive and NOT owner money. Avoid Github https://github.com/overturn-ai/overturn/issues/20 $150 issue unless maintainer expressly reopens acceptance: many other claimed PRs. Aggressiveness means accelerate eligibility checks, genuine paid agreements, completion and collection, NOT spam/harassment/unauthorized access/mining/free-host abuse/account farms or wallet signing. Preserve optional second online-hosting investigation from OWNER-20261116-133042-HOSTING-SEARCH-EVERY-WORKER, correct chain monitored crypto receipts and per-company approved BTC + owner existing SOL candidates, 24/7 best-effort legal cadence. Local D01–D09 differentiate NEW real clients and funded prospects, D10 reconciles own company valid accepted receivables and inbound correct-chain verified transactions. Every actual run returns at least one BEST candidate with link, sponsor, payout terms, competing status, objective testing/completion/submission evidence or reason blocked; one distinct alternative candidate; exact next action, no patronizing empty status. Chief D reports to owner actual run count vs configured slots, buyer contact evidence, accepted contracted work, paid TXIDs and correct amount/chain, blocked submission instruments and conversion rate. Never infer past balance is payment, old BTC target now expired. All meaningful spending, legal commitments, new authentication/accounts and wallet transactions require specific owner approval. Continue independently within genuine connected services; do not claim unexecuted action.",
+      "status": "LATEST_ACTIVE_ORDER_REGISTERED_EXECUTION_SUBJECT_TO_ACTUAL_RUNNING_WORKERS",
+      "authenticated_external_execution_not_implied": true,
+      "highest_priority": "source-verified paid work to paid receipts",
+      "parallel_secondary": "free eligible hosting discovery remains required",
+      "public_earning_claim": "NONE_VERIFIED_BY_ORDER",
+      "role_total": 750377265361,
+      "previous_order": "OWNER-20261116-133042-HOSTING-SEARCH-EVERY-WORKER"
     }
   ],
   "strict_per_worker_reporting": {
