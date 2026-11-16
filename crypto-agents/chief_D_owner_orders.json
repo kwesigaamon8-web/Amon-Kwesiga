@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-135013-EACH-WORKER-DO-WHAT-IT-CAN",
+  "current_owner_order_id": "OWNER-20261116-135606-ONDEMAND-BOT-MONETIZATION",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -621,6 +621,22 @@
       "any_unactivated_role_status": "DORMANT_UNASSIGNED_UNTIL_ACTUAL_RUN",
       "spending_or_outreach_without_auth": false,
       "previous_order": "OWNER-20261116-134732-COORDINATED-MINING-750377265361"
+    },
+    {
+      "id": "OWNER-20261116-135606-ONDEMAND-BOT-MONETIZATION",
+      "as_of_utc": "2026-11-16T13:56:06Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "authenticated GitHub project connector",
+      "instruction": "OWNER NEW HIGHEST-PRIORITY DIRECTIVE on 16 November 2026 at 13:56:06 UTC: \"monetize that reconfigure each to be like chatgptn bot.\" Translate the B1 transferexperiment/B2 BountyScoutAI capability-first hierarchy into honest, useful, commercially marketable conversational assistant SERVICES. Every valid logical B1/B2 role ID may resolve on demand to an individual skill/role-specific chat persona using ONE shared permitted backend, not 750 billion simultaneous OpenAI/ChatGPT instances, physical miners or external accounts. An initial secure, testable PRIVATE PILOT is already in GitHub: virtual_bot_service.py, app.py /bots, /api/bots/catalog, /api/bots/role/<fleet>/<role>, /api/bots/chat, and crypto-agents/AGENT_BOT_MONETIZATION_PILOT.md; 9 offline endpoint/auth/quotas tests passed in https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/43880909541. \"Like ChatGPT\" means useful text conversational assistant, NEVER claim official OpenAI affiliation nor brand product \"ChatGPT\" or \"GPT\" and NEVER invent live paid model inference. Full 750,377,265,360 B mathematical roles are virtual, resolved when a real customer selects a valid role; the one Chief D oversees operations and 20 local directors retain separate payer evidence. Model calls require owner-approved separately billed API credentials (no key in repo), named model, BOT_SERVICE_ENABLED=1, real hosted app, verified customer subscription/access and quotas. Chat currently disabled by default; no active hosted service, signed customer, actual API credentials or earned crypto is proven. Chief D must aggressively validate genuine paying customers seeking remote AI assistant writing/QA/code/data/hosting research offerings, choose profitable narrowly-scoped specialist pilot services, prepare original demonstrations, test cost and customer demand, and pursue contextual one-to-one outreach ONLY with permission and authenticated connected customer channels, then onboard after owner approval. Suggested INTERNAL prices are $15/30 capped chat requests and $45/120 capped chat requests/month, but strictly hypothetical until cost-based pricing, buyer acceptance, local taxes and fee safeguards are verified; never market them as paid customers or revenue. No automatic payment processor integrated. Customer account remains inactive until confirmed legitimate invoice payment and its approved correct-chain/memo and exact payer evidence, or explicitly authorized free test. A private BOT_CLIENTS_JSON high-entropy per-client token digest restricts exact role, quantity and time; quotas currently in-memory (unsafe production billing without shared database). The API cannot sign wallets, crawl internet, mine Bitcoin, autonomously contact customers or execute external tasks; no fake assistant outputs if API is not enabled. Render account's prior deployment failed; passing CI means tested source only. DO NOT spend owner money, open billing/API accounts, submit legally binding customer agreements, expose secrets or request wallet seed phrases. Actual worker tasks must build, test, sell, demonstrate or qualify a viable B Assistant service only where their skill/tools genuinely allow; mining/hosting research remain secondary opportunities. Report distinct paid buyer leads, real demos created, actual contacts, plan cost, signed acceptance, verified charges and correct-chain onchain owner receipt, or exact blockers. Distinguish business income from role counts, use actual public source and timestamp.",
+      "status": "IMPLEMENTED_PRIVATE_PROTOTYPE_NOT_DEPLOYED_OR_REVENUE_VERIFIED",
+      "configured_company_role_positions": 750377265360,
+      "chief_D_positions": 1,
+      "chat_provider_connection_confirmed": false,
+      "host_deployment_verified": false,
+      "new_customers_verified": 0,
+      "new_income_verified": false,
+      "existing_money_first_directives_retained": true,
+      "previous_order": "OWNER-20261116-135013-EACH-WORKER-DO-WHAT-IT-CAN"
     }
   ],
   "strict_per_worker_reporting": {
