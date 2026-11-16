@@ -1,0 +1,32 @@
+name: B1 B2 Public Multichain Balance Verification
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'crypto-agents/multichain_receipt_audit.py'
+      - '.github/workflows/b-multichain-balances.yml'
+permissions:
+  contents: read
+jobs:
+  public-multichain-audit:
+    name: Check known public wallet addresses without keys or transfers
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and query public Bitcoin Solana Base Ethereum TRON Stellar APIs
+        run: |
+          python -m py_compile crypto-agents/multichain_receipt_audit.py
+          python crypto-agents/multichain_receipt_audit.py
+          cat multichain-payment-reports/balances.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish audit data and exact errors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: owner-public-multichain-balances
+          path: multichain-payment-reports/
+          retention-days: 14
+          if-no-files-found: warn
