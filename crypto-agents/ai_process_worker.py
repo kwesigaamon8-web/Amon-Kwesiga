@@ -53,6 +53,18 @@ SAFE_B_WALLET_ROUTES=safe_receiving_routes()
 CHIEF_D_ORDERS=json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
 STRICT_OWNER_ORDER_ID=CHIEF_D_ORDERS["current_owner_order_id"]
 LATEST_CHIEF_D_INSTRUCTION=CHIEF_D_ORDERS["orders"][-1]["instruction"]
+# Public, source-linked operational context: safe for a real B worker model.
+# This is separate from private owner/account history and is NOT execution proof.
+SHARED_INTELLIGENCE_FILE=ROOT/"CHIEF_D_SHARED_OPERATIONAL_INTELLIGENCE.md"
+SHARED_INTELLIGENCE_TEXT=SHARED_INTELLIGENCE_FILE.read_text(encoding="utf-8")
+SHARED_INTELLIGENCE_START="<!-- WORKER_BRIEF_START -->"
+SHARED_INTELLIGENCE_END="<!-- WORKER_BRIEF_END -->"
+if SHARED_INTELLIGENCE_START not in SHARED_INTELLIGENCE_TEXT or SHARED_INTELLIGENCE_END not in SHARED_INTELLIGENCE_TEXT:
+    raise SystemExit("Missing bounded Chief D worker briefing markers")
+WORKER_SHARED_INTELLIGENCE=(SHARED_INTELLIGENCE_TEXT.split(SHARED_INTELLIGENCE_START,1)[1]
+    .split(SHARED_INTELLIGENCE_END,1)[0].strip())
+if not WORKER_SHARED_INTELLIGENCE or len(WORKER_SHARED_INTELLIGENCE)>1900:
+    raise SystemExit("Worker intelligence briefing must be nonempty and under 1,900 characters")
 STRICT_MODEL_ORDER=(
  "OWNER "+STRICT_OWNER_ORDER_ID+": FULL INDEPENDENT LEGITIMATE COMMERCIAL INITIATIVE. "
  "You are a separately running B company worker with authority to CHOOSE your "
@@ -67,7 +79,7 @@ STRICT_MODEL_ORDER=(
  "approved wallet; B1 and B2 have distinct mainnet BTC addresses. "
  "A buyer may pay only after genuine agreement; do not claim receipts from "
  "wishlists. Report through your one company parent to Chief D and owner. "
- "The CURRENT objective is confirmed liquid crypto receipts worth 1 BTC in total across supported owner-controlled accounts. Never count a lead, worker ID or promise as money."
+ "The current owner directive is actual lawful paid work, genuine customer acceptance and correctly verified owner-owned crypto receipts; old ten-minute sprint targets have expired. Never count a lead, worker ID or promise as money."
 )
 
 PAYMENT_DIRECTOR=COLLECTION_CONFIG["director_operations"]["payment_director_id"]
@@ -142,6 +154,7 @@ OWNER_ACTIVATION_PROOF={
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "shared_chief_D_operating_brief":{"source":"crypto-agents/CHIEF_D_SHARED_OPERATIONAL_INTELLIGENCE.md", "public_brief_loaded_for_model":True, "private_owner_or_client_data_included":False, "read_from_repo_at_actual_process_start":STAMP},
     "owner_activation_order_coverage_proof":OWNER_ACTIVATION_PROOF,
     "entrepreneurial_autonomy":{
         "owner_order_id":STRICT_OWNER_ORDER_ID,
@@ -368,7 +381,7 @@ try:
     examples=[{"title":x["title"],"url":x["url"]}
               for x in report["source_items"][:2]]
     prompt=[
-      {"role":"system","content":"You are one genuinely running B company agent. YOU MAY ALSO OFFER REAL AUTHORIZED ASSISTANT SERVICES TO EXTERNALLY CERTIFIED AI AGENTS WHO HAVE VERIFIED CREDENTIALS, EXPLICITLY OPTED IN AND AGREED THE SPECIFIC LEGAL TASK AND OWNER WALLET PAYMENT; NEVER CLAIM SUCH A CUSTOMER EXISTS WITHOUT ACTUAL PROOF. This is an additional task market for existing company roles, not a new workforce. HUMAN OWNER grants broad creative and commercial initiative: you MAY self-select any lawful original product, service, source-check, software idea or useful buyer task WORLDWIDE, change sectors, try multiple distinct hypotheses and create concrete useful work without asking a manager to preapprove each internal idea. Your specific preassigned location/specialty/source is a STARTING POINT ONLY, not a restriction. Prefer real sponsor identity, actual payer readiness and deliverable over repeating instructions. You cannot invent buyer consent, platform access, hiring, workers or payments. Permitted external posting or selling requires actual authorized account, venue permission and willing counterparties. All mutually agreed payment must go to the owner-approved BTC mainnet address for YOUR company's account; never use arbitrary or other-fleet wallet. Preserve one-parent reporting and owner authority. A verified $100 real-receipt target remains, not a guaranteed or already realized sum."},
+      {"role":"system","content":"You are one genuinely running B company agent. YOU MAY ALSO OFFER REAL AUTHORIZED ASSISTANT SERVICES TO EXTERNALLY CERTIFIED AI AGENTS WHO HAVE VERIFIED CREDENTIALS, EXPLICITLY OPTED IN AND AGREED THE SPECIFIC LEGAL TASK AND OWNER WALLET PAYMENT; NEVER CLAIM SUCH A CUSTOMER EXISTS WITHOUT ACTUAL PROOF. This is an additional task market for existing company roles, not a new workforce. HUMAN OWNER grants broad creative and commercial initiative: you MAY self-select any lawful original product, service, source-check, software idea or useful buyer task WORLDWIDE, change sectors, try multiple distinct hypotheses and create concrete useful work without asking a manager to preapprove each internal idea. Your specific preassigned location/specialty/source is a STARTING POINT ONLY, not a restriction. Prefer real sponsor identity, actual payer readiness and deliverable over repeating instructions. You cannot invent buyer consent, platform access, hiring, workers or payments. Permitted external posting or selling requires actual authorized account, venue permission and willing counterparties. All mutually agreed payment must go to the owner-approved BTC mainnet address for YOUR company's account; never use arbitrary or other-fleet wallet. Preserve one-parent reporting and owner authority. The active owner goal is truly received correct-chain crypto for accepted real work, not a guaranteed cash target."},
       {"role":"user","content":(universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
         "\nREGISTERED AGENT DELEGATION: You are a genuinely invoked AI model WORKER inside the owned "+REGISTERED_AGENT_DELEGATION["registered_agent_handle"]+" organization on Moltbook. This is NOT a separate platform account or proof you have an active Moltbook API key. Act only as an INTERNAL assistant under the correct account identity; NEVER post, comment, DM, represent as a new external account or impersonate another user unless an actually connected OWNER-authorized platform session is present. You are one actual independent execution drawn from "+str(REGISTERED_AGENT_DELEGATION["company_original_role_capacity"])+" addressable original roles for your company. Your internal global role ordinal is "+str(REGISTERED_AGENT_DELEGATION["original_role_global_index"])+". Perform original actual useful assigned work and log proof, not made-up sales. "+
         "\nOWNER SHARED MULTICHAIN RECEIVING ROUTES: This worker can negotiate legitimate crypto-paid work in BTC and, only once owner verified, compatible EVM, Solana, TRON or Stellar assets. The public receiving directory indexes 10 owner self-custody candidates and 6 Binance deposit candidates. Other-company BTC mainnet address is NOT interchangeable. ALL non-BTC and ALL exchange deposit options are ON HOLD pending owner approval plus precise payer asset, chain, token/issuer, required memo and receiving compatibility. Never promise a working exchange deposit, claim account login, withdraw, trade or transfer funds. Owner review required; propose ONE confirmed route, never send entire account list to a payer. Route IDs available: "+",".join(x["route_id"] for x in OWNER_RECEIVING_ACCOUNT_LINK["owner_shared_secondary_receiving_options_held"])+". "+
@@ -385,6 +398,7 @@ try:
         " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
+        "\nCHIEF D SHARED PUBLIC OPERATING INTELLIGENCE (on execution, not live access): "+WORKER_SHARED_INTELLIGENCE+
         "\nOPEN EVIDENCE POLICY share only public non-sensitive research, checks and useful cross-company insights; never reveal keys, passwords or confidential client information."+
         "\nWALLET ROUTING AND CHIEF D TRAINING "+address_training_prompt(FLEET)[:900]+
         "\nCOLLECTION ORDER "+PAYMENT_MISSION["primary_instruction"][:500]+"; BTC mainnet receiving address "+PAYMENT_MISSION["address"]+"; public support notice "+PAYMENT_MISSION["approved_public_notice"]+
