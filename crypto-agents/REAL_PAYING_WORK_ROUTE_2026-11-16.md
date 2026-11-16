@@ -10,7 +10,20 @@
 | 3 | https://make.fun/bounty/markdown-render-speed-02 | $250 USDC shared among top 20, on Solana | 2026-11-16 20:30 | marked 18.1.3 byte-identical 720 cases and faster CPU; strict sealed transcripts; very hard, 500+ entries shown on leaderboard | **SOURCE CONFIRMED, HIGH COMPETITION; NOT ENTERED, NO PAYOUT** |
 | 4 | https://make.fun/bounty/tiny-chess-01 | $500 prize pool from platform's reward wallet, no escrow on this one | 2026-11-24 17:00 | <=4,096-byte deterministic Python 3.13 chess engine, beat house sunfish baseline, approved agent transcript | **SOURCE CONFIRMED, TOUGH REWARD BAR; NOT ENTERED** |
 
-**Important:** Public competition pages assert their escrow amounts and display funding transactions; independently re-check source/escrow on chain and eligibility before treating a prize as guaranteed. A competition is NOT a fixed customer contract, reward is only for placing, prize is shared, winner must claim. It pays **Solana USDC**, NOT Bitcoin mainnet. Owner needs a correctly mapped owner-controlled Solana USDC receiver, with explicit prior approval to use it; NEVER reroute to BTC, EVM Base, or exchange deposit memo address.
+**Important:** Public competition pages assert their escrow amounts and display funding transactions; independently re-check source/escrow on chain and eligibility before treating a prize as guaranteed. A competition is NOT a fixed customer contract, reward is only for placing, prize is shared, winner must claim. It pays **Solana USDC**, NOT Bitcoin mainnet. Owner ALREADY SUPPLIED two Solana self-custody receiving ADDRESS CANDIDATES: SOL-01 `B2THff7E6KpGdkaeE2xcLqLfinyJmbcQSzJSRURKgW4C`, SOL-02 `9PspGLrFawD8GXWqCwSTpJh6kESHvF2mQksVQZ8LVbBM` (source: `crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md`). Their strings independently decode to valid 32-byte Solana public keys. DO NOT ask owner to resupply an existing address. Still verify the exact payout token mint/network, eligible self-custody wallet **signer** connection, and explicit per-payment/competition address selection before use. A public receiving address is NOT a connected wallet that can sign prize claims. NEVER substitute BTC mainnet, EVM Base USDC or an unverified Binance Solana deposit candidate.
+
+## Confirmed existing owner Solana receiving options — no missing-address request
+
+Owner previously supplied and published **two self-custody Solana address candidates**; both are 32-byte base58 public-key format (syntax validated; no on-chain ownership/signature verified).
+
+| Published ID | Exact Solana receiving address | Status |
+|---|---|---|
+| SOL-01 | `B2THff7E6KpGdkaeE2xcLqLfinyJmbcQSzJSRURKgW4C` | EXISTING OWNER-SUPPLIED CANDIDATE; pending wallet connection, token mint and selected contest payout route |
+| SOL-02 | `9PspGLrFawD8GXWqCwSTpJh6kESHvF2mQksVQZ8LVbBM` | EXISTING OWNER-SUPPLIED CANDIDATE; pending wallet connection, token mint and selected contest payout route |
+
+B1/B2 BTC mainnet primary destinations remain `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z` and `bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9`, respectively. The potential Binance Solana deposit route is explicitly **UNVERIFIED — DO NOT SEND** and should not be used for third-party contest claims. The EVM Base USDC candidate is **not** Solana USDC.
+
+**Remaining blocker is NOT the missing address:** It is an authenticated, eligible supported **recorded coding-agent session** and a **wallet able to sign** where the contest requires a prize claim. Do not request seed phrases or wallet exports; owner-controlled wallet connection happens only through the original platform flow and with explicit consent. Before a real payment or claim, owner must select exactly ONE existing SOL route and verify it supports the correct USDC token mint/associated token account.
 
 ## Exactly what would make this pay
 1. Read https://make.fun/skill.md and read **the selected bounty's** machine-readable `GET https://make.fun/api/competitions/<slug>/requirements` before registering. Do not guess unmet prerequisites or fabricate status. Current API may require a session; failure to access means BLOCKED_REQUIREMENTS.
