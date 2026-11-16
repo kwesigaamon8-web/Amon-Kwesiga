@@ -72,3 +72,12 @@ OWNER (approves accounts, fees, binding commitments)
 
 ## Reporting requirements at next actual run
 Every director answers: `REAL_HOST_CONNECTED` or `NOT_CONNECTED`; `FREE_TIER_VERIFIED` or `INELIGIBLE/UNKNOWN`; `REAL_MODEL_RUN_ID` or `NOT_RUN`; `CUSTOMER_ACTION_URL` or `NONE`; `CRYPTO_RECEIPT_TXID` or `UNVERIFIED`. Chief D must not report the 750B configured worker roles as currently working.
+
+## 24/7 autonomy overlay — 16 November 2026
+
+**Latest canonical owner order:** `OWNER-20261116-130512-247-AUTONOMY-HIERARCHY`. Complete operating mandate: [24/7 Independent Work and Immutable Reporting Chain](24_7_AUTONOMY_AND_REPORTING_OWNER_ORDER.md).
+
+The user authorizes each **actually running** B1/B2 employee-model to independently research and choose different lawful earning opportunities, assess validity, build/test original work, challenge peers and complete safe permitted tasks. **They do not need separate management approval for every idea or harmless subtask.** They do remain under precisely their existing supervisor; new ideas do not create a new owner, company, parent, wallet, or authority. Work evidence travels upward through the exact real hierarchy via each direct parent to the local director and Chief D, then the human owner.
+
+Coverage objective: best-effort round-the-clock work and durable queue handoffs across correctly authorized free hosting; no invented continuous runtime. Without independently confirmed free account access, host health and successfully executed worker runs, deployment remains `NOT_CONNECTED`/`NOT_RUN`. No third-party platform should be used without checking its free quota and acceptable-use. GitHub Actions is for legitimate repository CI and related evidence, not general-purpose hosted commercial agent jobs or Bitcoin mining. No unauthorized expenditures, account creation, wallet signatures, miner operation or quota evasion.
+
