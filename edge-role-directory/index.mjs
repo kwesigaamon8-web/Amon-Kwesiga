@@ -1,5 +1,7 @@
 // On-demand B1/B2 role directory for one edge worker.
 // Does not run LLMs, create Bitcoin hashrate, send payments or provision servers.
+import {relayChat} from "./chat_proxy.mjs";
+import {CHAT_HTML} from "./chat_page.mjs";
 export const CONFIGURED_B_ROLE_POSITIONS="750377265360";
 export const TOTAL_CONFIGURED_POSITIONS="750377265361"; // plus one Chief D
 const fleets={B1:"transferexperiment",B2:"BountyScoutAI"};
@@ -75,7 +77,7 @@ const page=[
  '<label>Role ID <input id="r" value="D01-M01-W01" maxlength="95" autocomplete="off"></label>',
  '<button id="find">Find earning assignment</button><pre id="o">Choose a role to look up.</pre>',
  '<p class="note">Possible legal earning work: coding, QA, data services, customer-support assistants, writing, funded bounties, payment verification, and voluntary ASIC-mining partnerships.</p>',
- '<p><a href="/api/capacity">Capacity disclosure</a> · <a href="/api/opportunities">Opportunity categories</a> · <a href="/api/mining">Mining requirements</a></p>',
+ '<p><a href="/chat">Chat with a provisioned specialist</a> · <a href="/api/capacity">Capacity disclosure</a> · <a href="/api/opportunities">Opportunity categories</a> · <a href="/api/mining">Mining requirements</a></p>',
  '<p class="note">This web directory is not a cryptocurrency miner, a payment processor, or a live LLM hosting backend. The existing /bots private pilot is a separate Flask app.</p>',
  '</main><script>',
  'document.getElementById("find").addEventListener("click",async()=>{',
@@ -85,11 +87,15 @@ const page=[
  '</script></body></html>'
 ].join("");
 export default {
- async fetch(req) {
-  if(req.method!=="GET"&&req.method!=="HEAD")return reply({error:"Read-only"},405);
+ async fetch(req,env={}) {
+  const requestedPath=new URL(req.url).pathname;
+  if(requestedPath==="/api/chat")return relayChat(req,env,route);
+  if(req.method!=="GET"&&req.method!=="HEAD")return reply({error:"Read-only except customer-provisioned chat"},405);
   const url=new URL(req.url);
   if(url.pathname==="/"||url.pathname==="/directory")
    return new Response(req.method==="HEAD"?null:page,{headers:{"content-type":"text/html; charset=utf-8","cache-control":"public,max-age=120","x-content-type-options":"nosniff"}});
+  if(url.pathname==="/chat")return new Response(req.method==="HEAD"?null:CHAT_HTML,
+    {headers:{"content-type":"text/html; charset=utf-8","cache-control":"public,max-age=120","x-content-type-options":"nosniff"}});
   if(url.pathname==="/health")return reply({status:"identity_directory_responding",llm_model_running:false,mining_hardware_running:false});
   if(url.pathname==="/api/role"){
    const data=route(url.searchParams.get("company"),url.searchParams.get("role"));

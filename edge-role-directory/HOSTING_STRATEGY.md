@@ -38,3 +38,20 @@ One web endpoint *resolves all 750,377,265,360 configured B1/B2 worker role iden
 
 ## Consent-first pooled SHA-256 operator setup template
 The latest user instruction emphasizes real shared mining into existing B1/B2 receiving addresses. The read-only public `GET /api/mining/setup?company=B1&worker=rig01` generates a **non-executing** Public Pool PPLNS setup example using exactly that company's existing native BTC mainnet address and public TLS 14333 port. It does not invent a new wallet, connect hardware, change any device, recruit a miner or earn BTC. Only an operator who owns or expressly controls a real physical ASIC device may choose to configure it and must knowingly agree to use the named owner receiving address, including any voluntary donation/profit-sharing conditions. A pool-side share is NOT an onchain BTC payment, and no operator is claimed until actual dashboard proof. Each operator can retain its own separate rightful rewards rather than participate; no unilateral reward diversion.
+
+## Working chatbot integration (2026-11-16)
+
+The new \`/chat\` page and \`POST /api/chat\` handler connect the edge identity directory to the previously implemented Flask \`POST /api/bots/chat\` specialist model backend, **but only after real backend deployment and authorization**. The new modules are \`edge-role-directory/chat_proxy.mjs\` and \`chat_page.mjs\`. The router checks role, fleet, customer bearer token syntax, strict message/size limits and forwards only to an operator-configured, HTTPS-only \`BOT_BACKEND_ORIGIN\`, never a caller-supplied address. The Flask backend still independently verifies per-customer secret digest, confirmed paid invoice/explicit authorization, allowed exact role and per-process quota and uses only the budgeted owner-selected model. No fake reply or external action fallback.
+
+\`\`\`bash
+# This is a suggested command for a REAL owner-authorized Cloudflare deployment.
+# Requires login, correct domain and a hosted Flask app; never paste API keys in git.
+npx wrangler login
+cd edge-role-directory
+npx wrangler deploy
+# In Workers Settings > Variables configure
+# BOT_BACKEND_ORIGIN = https://YOUR-AUTHORIZED-BOT-BACKEND.EXAMPLE
+# Flask separately requires BOT_SERVICE_ENABLED=1, BOT_OPENAI_API_KEY, BOT_MODEL, BOT_CLIENTS_JSON.
+\`\`\`
+
+**Caution:** Backend may still be unavailable due to the prior Render deployment failure and absent API account access. No public Cloudflare deployment or real customer chat has been verified. The in-memory customer quota in Flask does NOT survive restarts or scale across multiple hosts, so a durable database-backed counter and real invoice ledger are required before marketing production subscriptions. No bulk trial/anonymous access and no free infrastructure mining.
