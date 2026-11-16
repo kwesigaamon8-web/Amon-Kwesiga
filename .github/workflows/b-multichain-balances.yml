@@ -1,6 +1,8 @@
 name: B1 B2 Public Multichain Balance Verification
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '26 * * * *'
   push:
     paths:
       - 'crypto-agents/multichain_receipt_audit.py'
