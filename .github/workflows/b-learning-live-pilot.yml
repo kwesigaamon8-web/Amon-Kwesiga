@@ -230,6 +230,9 @@ jobs:
           pattern: practical-work-*
           path: shift-evidence
           merge-multiple: false
+      - name: Build B1/B2 shared executed-worker collaboration queue
+        run: |
+          python crypto-agents/b_shift_accountability.py --inputs shift-evidence --output shift-peer-cooperation
       - name: Verify peer teaching selection cannot fabricate execution or payment
         run: python crypto-agents/b_live_peer_teaching.py --self-test
       - name: Install small CPU model to learn FROM the opposite real B worker
