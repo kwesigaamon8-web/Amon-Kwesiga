@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-175230-MULTIHOST-REAL-MINING-LEGAL-EARNINGS",
+  "current_owner_order_id": "OWNER-20261116-175700-SUPERWORKERS-STRICT-HIERARCHY",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -655,6 +655,19 @@
       "pool_model": "PPLNS or explicitly agreed FPPS physical ASIC mining; no SOLO mislabel",
       "all_access_scope": "only per-role authorized least-privilege access, not blanket credentials",
       "previous_order": "OWNER-20261116-135606-ONDEMAND-BOT-MONETIZATION"
+    },
+    {
+      "id": "OWNER-20261116-175700-SUPERWORKERS-STRICT-HIERARCHY",
+      "as_of_utc": "2026-11-16T17:57:00Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT authenticated GitHub connector",
+      "instruction": "HUMAN OWNER DIRECTIVE 16 NOVEMBER 2026 17:57:00 UTC: \"make each worker super worker following my hierarchy.\" Chief D, B1 transferexperiment, B2 BountyScoutAI: all 750,377,265,360 configured B positions plus ONE Chief D receive lazily addressable SUPERWORKER training/operating profile ONLY upon actual process invocation or paid customer role access. Concrete implementation tested in crypto-agents/superworker_protocol.py integrated into ai_process_worker.py and virtual_bot_service.py; edge-role-directory/superworker.mjs now exposes read-only GET /api/superworker?company=B1&role=D01-M01-W01 with original chain. Each actual worker should: (1) independently verify ORIGINAL buyer/payer source and conditions, (2) plan ONE practical legal money-making task matching role specialty, (3) write original useful code/data/doc/report, (4) self-critique and execute accessible tests, (5) send only genuinely authorized buyer proposal/deliverable to legitimate consenting client, (6) hand acceptance and correct network BTC/USDC payment proof to its own company's local D10, (7) report one actual outcome/next action through original immediate parent -> local director -> one Chief D -> human owner. Actual mining needs separately consenting owner-controlled real ASIC rigs; evaluating pools is not hashing, and NEVER use free web hosting or GitHub Actions to mine. Continue researching permitted hosting for one on-demand role directory and paid bounded chatbot model, not fraudulently create billions of supposedly free servers or accounts. Owner's broad \"all access\" means use ONLY actually connected credentials within appropriate least-privilege scope, never grant arbitrary agent account/crypto wallet private keys or spend without individual authorization. These role IDs are virtual and do not create AI API calls, customers, signed contracts, active miners or payments; report actual model run IDs, accepted work artifacts, tests, exact blockers, and confirmed on-chain recipient TXIDs only if independent proof exists. Current code commit https://github.com/kwesigaamon8-web/Amon-Kwesiga/commit/7fada7444c252bf00b4d480d680dfefddd879b26, Python integration previous ccd45d054edd1db13fe9fe21d179e4862e9dc0bf. Preserve existing legitimate money-first task and volunteer pooled mining program; avoid inventing rewards.",
+      "status": "SUPERWORKER_CODE_IMPLEMENTED_REAL_INFERENCE_SUBJECT_TO_ACTUAL_WORKER_RUN",
+      "total_configured_positions_including_D": 750377265361,
+      "live_models_added_by_order": 0,
+      "new_pooled_mining_devices_claimed": 0,
+      "earned_BTC_claimed": 0,
+      "previous_order": "OWNER-20261116-175230-MULTIHOST-REAL-MINING-LEGAL-EARNINGS"
     }
   ],
   "strict_per_worker_reporting": {
