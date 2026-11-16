@@ -13,8 +13,10 @@ import time
 import urllib.error
 import urllib.request
 from flask import Flask, Response, jsonify
+from virtual_bot_service import bot_routes
 
 app = Flask(__name__)
+app.register_blueprint(bot_routes)
 GITHUB_REPO = "kwesigaamon8-web/Amon-Kwesiga"
 RUNS_API = f"https://api.github.com/repos/{GITHUB_REPO}/actions/runs?per_page=12"
 RUNS_PAGE = f"https://github.com/{GITHUB_REPO}/actions"

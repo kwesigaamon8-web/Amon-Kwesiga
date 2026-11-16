@@ -1,0 +1,35 @@
+name: B Agent Assistants — Private Pilot Safety Tests
+on:
+  push:
+    paths:
+      - 'virtual_bot_service.py'
+      - 'app.py'
+      - 'tests/test_virtual_bots.py'
+      - 'crypto-agents/AGENT_BOT_MONETIZATION_PILOT.md'
+      - '.github/workflows/b-agent-bot-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-on-demand-assistants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install only existing Flask test dependencies
+        run: pip install -r requirements.txt
+      - name: Confirm syntax and offline customer/access tests
+        env:
+          BOT_SERVICE_ENABLED: "0"
+          BOT_OPENAI_API_KEY: ""
+          BOT_MODEL: ""
+          BOT_CLIENTS_JSON: "{}"
+        run: |
+          python -m py_compile app.py virtual_bot_service.py
+          python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Report evidence limitation
+        run: |
+          echo "PUBLIC PILOT CODE TESTED, NO OPENAI MODEL API CALLS, NO PAYING CUSTOMERS, NO CRYPTO PAYMENT VERIFIED" >> "$GITHUB_STEP_SUMMARY"
