@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-134541-AGGRESSIVE-REAL-MONEY-CONVERSION",
+  "current_owner_order_id": "OWNER-20261116-134732-COORDINATED-MINING-750377265361",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -589,6 +589,23 @@
       "public_earning_claim": "NONE_VERIFIED_BY_ORDER",
       "role_total": 750377265361,
       "previous_order": "OWNER-20261116-133042-HOSTING-SEARCH-EVERY-WORKER"
+    },
+    {
+      "id": "OWNER-20261116-134732-COORDINATED-MINING-750377265361",
+      "as_of_utc": "2026-11-16T13:47:32Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT authenticated GitHub repository order",
+      "instruction": "HUMAN OWNER'S EXPANDED MONEY-FIRST ORDER, 16 NOVEMBER 2026 13:47:32 UTC: \"include 750,377,265,361 mining together use the billions.\" Chief D MUST include Bitcoin SHA-256 mining-pool collaboration as a parallel additional legitimate BTC earning channel across both B1 transferexperiment and B2 BountyScoutAI, while preserving the PRIMARY highest-ROI objective of accepted paid work and verified receipts plus the SECONDARY online-host search. Precise count: 750,377,265,360 CONFIGURED LOGICAL ROLES and ONE CHIEF D = 750,377,265,361; logical role IDs are NOT physically running miners, CPUs, ASICs, GPUs, paid computing instances or hashing power. \"Together\" means coordinating AUTHORIZED ACTUAL miner operators who voluntarily opt in, not presenting all logical roles as network hash contributors. Every actual executed AI worker may independently research current legitimate Bitcoin mining pools (actual payout formula, payout threshold, fees, solo versus proportional PPLNS/PPS/FPPS, ASIC and electricity economics, eligibility, local laws, proven address payment history, miner trust) and find potential willing real ASIC operators in permitted channels; prepare original comparison, technical assistance and a clear value proposition. Any external operator must expressly consent to use their own hardware; never secretly redirect pool worker name or payout, use others' devices, recruit by false promises or demand they transfer coins. Existing owner primary BTC receiving destinations are B1 bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Source as of 16 NOV 2026: https://web.public-pool.io/ lists SOLO stratum+tcp://public-pool.io:3333 and SOLO TLS 4333 where reward only if a miner finds a block, and separately PPLNS pool stratum+tcp://public-pool.io:13333 / TLS 14333, proportional recent valid-work rewards if the pool finds block; note NOT FPPS. User's earlier i5-8350U CPU ~10 MH/s on cpuminer-opt and share acceptance is only past experimental telemetry, not profit/payout, and negligible beside ~1000 EH/s network. https://braiins.com/pool and https://academy.braiins.com/braiins-pool/rewards-and-payouts describe alternative FPPS and payout thresholds. No ASIC owners verified, no newly activated physical mining rig or actual hashrate measurement from this order. To record true \"miners mining together,\" require host/hardware owner consent, true miner rig ID (redacted as necessary), ASIC make/hashrate Watts, mining address, correct pool worker authentication, live pool dashboard current accepted/rejected share telemetry and UTC time, fees/payout terms, electricity cost, actual per-miner account balance and independently verified wallet credit TXID; distinguish PPLNS expected share, accepted pool share, mined block, accrued account reward, confirmed owner payment and net proceeds. If no authorized rig, set BLOCKED_NO_CONSENTING_MINER_HARDWARE and pursue paid work, don't waste prohibited/paid cloud CPU mining; do not use GitHub Actions, Render, Hugging Face free tier or random servers to mine. Host discovery for lawful AI model task routing remains, not unlimited free mining. Every running B worker gets a TWO-CHANNEL money task: actual accepted paid work first, pool/mining collaboration economics second; still evaluate hosting as a separate assignment. D01-D02 discover consenting mining parties; D03-D04 validate authentic pool and payout rules; D05-D06 model cost and provide legitimate miner setup documentation only when asked; D07-D08 consent-based partner outreach and independent source QA; D09 enforces energy cost, platform rules and anti-abuse; each distinct local D10 monitors actual registered miner hashwork and BTC wallet receipt, never claim pending shares are BTC paid. Chief D gives truthful consolidated project progress with separately counted configured roles, actually executing AI workers, actual consented physical miners, pool hashrate, verified BTC, total cost, accepted paid jobs and blocked conditions. No spending, material agreement, new platform sign-up, private API keys, seed phrases, wallet signing, mining service order or crypto transfers without explicit owner permission. Continue all legitimate revenue research aggressively and verifiably.",
+      "status": "ACTIVE_OWNER_PARALLEL_MINING_RESEARCH_AND_VERIFICATION_ORDER",
+      "authenticated_external_execution_not_implied": true,
+      "logical_role_positions_including_chief_D": 750377265361,
+      "actual_physical_miners_authorized_by_this_order": 0,
+      "actual_mining_hashrate_proved_by_this_order": 0,
+      "bitcoin_receipts_proved_by_this_order": 0,
+      "priority_1": "genuine paid work and verified actual receipts",
+      "priority_2": "authorized pooled bitcoin mining partnership research and truthful telemetry",
+      "priority_3": "legal no-cost online agent-host research",
+      "historic_parent_order": "OWNER-20261116-134541-AGGRESSIVE-REAL-MONEY-CONVERSION"
     }
   ],
   "strict_per_worker_reporting": {
