@@ -38,6 +38,29 @@ export function route(company,role) {
   money_earned_from_this_role:"NOT_VERIFIED",account_authentication_available:false,
   evidence_required:"real source, authenticated buyer/owner permission, delivered work, acceptance, confirmed correct-chain payment"};
 }
+export function voluntaryPoolTemplate(company,workerName){
+ const addresses={
+  B1:"bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+  B2:"bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+ };
+ if(!addresses[company]||typeof workerName!=="string"||!/^[a-zA-Z0-9_-]{1,32}$/.test(workerName))return null;
+ return {
+  company,owner_receiving_address:addresses[company],
+  pool:"Public Pool PPLNS (NOT SOLO)",
+  source:"https://web.public-pool.io/",
+  stratum_tls:"stratum+tls://public-pool.io:14333",
+  stratum_tcp:"stratum+tcp://public-pool.io:13333",
+  miner_username:addresses[company]+"."+workerName,
+  miner_password:"consult_miner_manufacturer_pool_setup",
+  hardware_requirement:"ACTUAL operator-owned SHA-256 ASIC with explicit operator consent",
+  approval_required:"Physical rig operator must independently authorize payout to the named Bitcoin address and agree any compensation/allocation",
+  payouts:"PPLNS rewards are only distributed after actual pool block rewards and eligible recorded work; never guarantee income",
+  participating_ASICs_verified_by_endpoint:0,
+  new_BTC_payouts_verified_by_endpoint:0,
+  mining_activated_by_template:false,
+  no_transfer_or_hardware_configuration_performed:true
+ };
+}
 const page=[
  '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
  '<title>B Agent Network — On-demand Role Directory</title><style>',
@@ -83,6 +106,10 @@ export default {
   });
   if(url.pathname==="/api/opportunities")return reply({lanes:lanes.map(x=>({name:x[0],possible_work:x[1]})),
    live_funded_jobs_verified:false,customer_acceptance_or_income_verified:false});
+  if(url.pathname==="/api/mining/setup"){
+    const data=voluntaryPoolTemplate(url.searchParams.get("company"),url.searchParams.get("worker"));
+    return data?reply(data):reply({error:"Only B1/B2 and a short alphanumeric real miner name allowed"},422);
+  }
   if(url.pathname==="/api/mining")return reply({
    source:"https://web.public-pool.io/",
    pool_pplns:"stratum+tls://public-pool.io:14333",

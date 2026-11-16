@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import worker,{route,CONFIGURED_B_ROLE_POSITIONS,TOTAL_CONFIGURED_POSITIONS} from "./index.mjs";
+import worker,{route,voluntaryPoolTemplate,CONFIGURED_B_ROLE_POSITIONS,TOTAL_CONFIGURED_POSITIONS} from "./index.mjs";
 test("role count honest",()=>{assert.equal(CONFIGURED_B_ROLE_POSITIONS,"750377265360");assert.equal(TOTAL_CONFIGURED_POSITIONS,"750377265361")});
 test("valid deepest roles both fleets and preserved parent",()=>{
  for(const fleet of ["B1","B2"]){
@@ -33,4 +33,22 @@ test("public endpoints are truthful and read only",async()=>{
  assert.equal((await get("/api/role?company=B1&role=D01-M01-W01")).status,200);
  assert.equal((await get("/api/role?company=B1&role=D00-M01-W01")).status,404);
  assert.equal((await worker.fetch(new Request("https://example.com/api/capacity",{method:"POST"}))).status,405);
+});
+
+test("real opt-in pool template uses actual existing BTC address and PPLNS not solo",async()=>{
+ for(const company of ["B1","B2"]){
+ const tpl=voluntaryPoolTemplate(company,"consented_rig_01");
+ assert.equal(tpl.pool,"Public Pool PPLNS (NOT SOLO)");
+ assert.equal(tpl.stratum_tls,"stratum+tls://public-pool.io:14333");
+ assert.equal(tpl.new_BTC_payouts_verified_by_endpoint,0);
+ assert.equal(tpl.mining_activated_by_template,false);
+ assert.ok(tpl.miner_username.startsWith(tpl.owner_receiving_address+"."));
+ }
+ for(const bad of ["x/y","a.b","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",""]){
+ assert.equal(voluntaryPoolTemplate("B1",bad),null);
+ }
+ assert.equal(voluntaryPoolTemplate("B3","rig1"),null);
+ const res=await worker.fetch(new Request("https://example.com/api/mining/setup?company=B1&worker=rig01"));
+ assert.equal(res.status,200);
+ assert.equal((await res.json()).company,"B1");
 });
