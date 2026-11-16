@@ -1,0 +1,22 @@
+name: B Agent Network Directory — Honest Scale Validation
+on:
+  push:
+    paths:
+      - 'edge-role-directory/**'
+      - '.github/workflows/b-role-directory-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-mass-identity-routing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test role range and no phantom miners, server or buyers
+        run: node --test edge-role-directory/index.test.mjs
+      - name: Record capacity truth
+        run: echo "PASS verifies code role routing; no live web site, AI process, Bitcoin miner or customer deployment proven." >> "$GITHUB_STEP_SUMMARY"
