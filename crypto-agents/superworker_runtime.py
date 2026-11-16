@@ -26,6 +26,7 @@ def run():
         raise ValueError("HTTPS model endpoint required")
     ROOT.mkdir(exist_ok=True)
     outputs=[]
+    failures=0
     for i,(role,task) in enumerate(zip(ROLES,TASKS)):
         wid=f"pilot-{i+1}"
         start=utc()
@@ -41,9 +42,16 @@ def run():
             output=data["choices"][0]["message"]["content"]
             record.update({"status":"COMPLETED","end_utc":utc(),"provider_response_id":data.get("id"),"model":data.get("model",model),"output":output,"output_sha256":hashlib.sha256(output.encode()).hexdigest()})
             outputs.append({"worker_id":wid,"output":output})
+        except urllib.error.HTTPError as e:
+            failures+=1
+            record.update({"end_utc":utc(),"error_type":"HTTPError","http_status":e.code,"diagnostic":"Provider rejected the request; check Gemini key, model access, billing and quota. Response body intentionally omitted to protect credentials."})
         except Exception as e:
+            failures+=1
             record.update({"end_utc":utc(),"error_type":type(e).__name__})
         path=ROOT/(wid+"-"+uuid.uuid4().hex[:8]+".json")
         path.write_text(json.dumps(record,indent=2,ensure_ascii=False))
-        print(json.dumps({"worker_id":wid,"status":record["status"],"evidence_file":str(path)}))
+        print(json.dumps({"worker_id":wid,"status":record["status"],"http_status":record.get("http_status"),"error_type":record.get("error_type"),"evidence_file":str(path)}))
+    print(json.dumps({"attempted":len(ROLES),"completed":len(ROLES)-failures,"failed":failures}))
+    if failures:
+        raise SystemExit(1)
 if __name__=="__main__":run()
