@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-134732-COORDINATED-MINING-750377265361",
+  "current_owner_order_id": "OWNER-20261116-135013-EACH-WORKER-DO-WHAT-IT-CAN",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -606,6 +606,21 @@
       "priority_2": "authorized pooled bitcoin mining partnership research and truthful telemetry",
       "priority_3": "legal no-cost online agent-host research",
       "historic_parent_order": "OWNER-20261116-134541-AGGRESSIVE-REAL-MONEY-CONVERSION"
+    },
+    {
+      "id": "OWNER-20261116-135013-EACH-WORKER-DO-WHAT-IT-CAN",
+      "as_of_utc": "2026-11-16T13:50:13Z",
+      "origin": "direct_user_owner_instruction",
+      "relayed_by": "authenticated GitHub connector",
+      "instruction": "OWNER LATEST ORDER 16 NOVEMBER 2026 AT 13:50:13 UTC: \"tell 750,377,265,361 to do what each can do.\" Chief D must distribute a DIFFERENT, FEASIBLE, capability-appropriate piece of the money-earning mission to each real B1/B2 model process by its actual skill/specialty, current live tools, permission set, context budget and direct parent. The owner intends all 750,377,265,360 lazily configured B1+B2 software positions plus single Chief D to contribute IF AND WHEN each role is genuinely activated, not 750B active cloud AI processes. No role may be credited as having executed work before an independent inference result, source check, tangible file and/or authenticated external action is logged. Assign each actual worker one PRIMARY concrete action and at most one feasible SECONDARY action, not endless identical universal prompts. Select from (1) paying-buyer sourcing with current direct original URLs, (2) independent funding/eligibility/competition/competing-PR checks, (3) original coding or data/docs/service deliverable, (4) unit/QA/security review, (5) permission-checked human-scale buyer communications/eligible submission, (6) accepted unpaid receivables and multi-chain correct-token receipt verification, (7) economic screening of real consenting physical ASIC mining partners and pool proof, (8) official allowed zero-cost hosting/access/cost/CPU capacity checks, (9) evidence and workflow audit, (10) safe model-prompt/infrastructure repair. Roles lacking network access should prepare and test original useful work offline or explicitly say BLOCKED_ACCESS; roles lacking permission to contact customers must not fabricate contact; roles lacking hardware cannot mine; LLM text is not SHA-256 hashrate. A worker with no viable paid opportunity must independently choose next best attainable source and report an evidence-backed blocked status, not produce generic fantasies. D01–D09 in each company supervise these specialized categories, own company D10 verifies its RECEIVABLES/CRYPTO EARNINGS exclusively, single Chief D consolidates and reassigns the next legal action only within each original single-parent hierarchy. Paid accepted work and verified funds remain FIRST, consenting actual physical mining pool collaboration SECOND, legal no-charge AI host discovery THIRD; assign based on individual ability and deadline so not all roles waste CPU doing all three at once. Do not create unconsented outside AI agents, impersonate clients, spam, mine on prohibited GitHub/cloud, sign/transact with private wallets, spend funds or claim prize/payout without evidence. Use existing B1 BTC mainnet bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z, B2 BTC mainnet bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9 and known Solana candidates for approved exact-chain USDC only. Each activated role's deliverable: its company and original direct parent, owner order, one practical chosen lane with why it fits model capabilities and connected tools, one original source, actual work produced/reviewed, authentication/submission evidence only if genuine, real receipt TXID only if matched, specific blocker, next unblocked task. Separate 750B mathematical indices from actual model/worker count; no false \"everyone started\" claim. Chief D should send one concise truthful revenue and activity report to owner with accurate active jobs and money evidence.",
+      "status": "CAPABILITY_DISPATCH_ORDER_REGISTERED_REAL_EXECUTION_NOT_IMPLIED",
+      "authenticated_external_execution_not_implied": true,
+      "configured_B_roles": 750377265360,
+      "chief_D_roles": 1,
+      "one_primary_feasible_action_per_active_worker": true,
+      "any_unactivated_role_status": "DORMANT_UNASSIGNED_UNTIL_ACTUAL_RUN",
+      "spending_or_outreach_without_auth": false,
+      "previous_order": "OWNER-20261116-134732-COORDINATED-MINING-750377265361"
     }
   ],
   "strict_per_worker_reporting": {
