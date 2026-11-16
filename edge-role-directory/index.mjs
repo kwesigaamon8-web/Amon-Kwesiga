@@ -1,5 +1,6 @@
 // On-demand B1/B2 role directory for one edge worker.
 // Does not run LLMs, create Bitcoin hashrate, send payments or provision servers.
+import {profile as superworkerProfile} from "./superworker.mjs";
 import {relayChat} from "./chat_proxy.mjs";
 import {CHAT_HTML} from "./chat_page.mjs";
 export const CONFIGURED_B_ROLE_POSITIONS="750377265360";
@@ -97,6 +98,10 @@ export default {
   if(url.pathname==="/chat")return new Response(req.method==="HEAD"?null:CHAT_HTML,
     {headers:{"content-type":"text/html; charset=utf-8","cache-control":"public,max-age=120","x-content-type-options":"nosniff"}});
   if(url.pathname==="/health")return reply({status:"identity_directory_responding",llm_model_running:false,mining_hardware_running:false});
+  if(url.pathname==="/api/superworker"){
+   const r=route(url.searchParams.get("company"),url.searchParams.get("role"));
+   return r?reply(superworkerProfile(r)):reply({error:"Unknown role"},404);
+  }
   if(url.pathname==="/api/role"){
    const data=route(url.searchParams.get("company"),url.searchParams.get("role"));
    return data?reply(data):reply({error:"No such role ID/company"},404);
