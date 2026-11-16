@@ -1,0 +1,28 @@
+name: B1 B2 Independent Superworker Pilot
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      SUPERWORKER_API_URL: ${{ vars.SUPERWORKER_API_URL }}
+      SUPERWORKER_MODEL: ${{ vars.SUPERWORKER_MODEL }}
+      SUPERWORKER_API_KEY: ${{ secrets.SUPERWORKER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run evidence-based B1/B2 worker pilot
+        run: python crypto-agents/superworker_runtime.py
+      - name: Save execution evidence (no credentials)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b-superworker-pilot-evidence
+          path: superworker-evidence/
+          retention-days: 7
+          if-no-files-found: ignore
