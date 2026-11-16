@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261114-193834-INDEPENDENT-WORKERS-COIN-APPROVAL",
+  "current_owner_order_id": "OWNER-20261116-130512-247-AUTONOMY-HIERARCHY",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -507,6 +507,20 @@
       "financial_unit_of_account": "native asset units and BTC-equivalent; USD secondary",
       "supervision": "per-company D10 -> sole Chief D -> owner",
       "target_btc_equivalent": 1
+    },
+    {
+      "id": "OWNER-20261116-130512-247-AUTONOMY-HIERARCHY",
+      "as_of_utc": "2026-11-16T13:05:12Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT from owner's direct request for 24/7 operations on free platforms, autonomous workers and unchanged reporting chain",
+      "instruction": "OWNER MANDATE — 24 HOURS PER DAY, SEVEN DAYS PER WEEK, INDEPENDENT WORK WITH ONE UNBROKEN SUPERVISOR CHAIN. Full owner directive: crypto-agents/24_7_AUTONOMY_AND_REPORTING_OWNER_ORDER.md (commit 43c187ae089ef3484bafa1e933693b99953de137). Sole human OWNER commands single CHIEF D over B1 transferexperiment and B2 BountyScoutAI, each of ten company D01-D10 directors; assistants report to their own company directors; every real M/W/S/G/H worker reports to its ONE recorded immediate parent up through the company's director, Chief D and OWNER. No worker changes its boss, team, assigned canonical parent, receiving wallet, strategic mandate or budget. B1 and B2 can cross-review and share the same original evidence/queue, but cannot impersonate or commandeer each other's roles.\n\nAUTONOMY: Every genuinely running AI worker may independently choose distinct lawful globally available paying opportunities, reject ineligible/duplicate leads, perform source/payer checks, develop original useful deliverables, test, peer-review, learn, correct errors, take already permitted safe buyer action, and report with authentic evidence. No request to Chief D is required for every safe idea or draft. Accounts, payments, new commitments, wallet signing, sensitive data disclosure, billing or material authority changes REQUIRE explicit applicable owner approval and available credentials; no fake external agent access or spam.\n\n24/7: Keep the legitimate earning mission continuous through lawful best-effort schedules and recoverable across-shift handoffs wherever connected authorized zero-cost free-tier services permit. A perpetual mission does NOT mean 750,377,265,360 independently running AI models; these are configured role IDs, not deployed processes, hashes, proof of source contact, mining rigs or income. Hosting choices must pass provider current official terms, no-cost quotas, authenticated owner account access and per-provider allowed workload. GitHub is source/legitimate project CI, not general commercial cloud backend or cryptomining. Survey Cloudflare Workers Free/D1 for a lightweight task queue and Oracle Always Free for suitable small CPU inference only when linked/eligible; static free hosted dashboards are not model compute. No prohibited hosted mining, unwanted account farming, billing charges, paid cloud, evasion of free-tier terms, unapproved secrets, account signup or spends. If not deployed, say ACCESS_REQUIRED/NOT_CONNECTED. Record real authorized host health and worker model run URLs; don't claim uptime that wasn't measured.\n\nPRODUCTION: one shared B1/B2 deduplicated genuine buyer queue; independent workers each choose real unique tasks then collaborate. For each candidate: verify original payer, reward, eligibility, active claim, honest deliverable, quality tests, authenticated genuine submission, client acceptance, due amount, exact correct-chain TXID/confirmed wallet credit. Opposite company peer-learning and supervisors review only actually completed output. Every real worker reports identity, parent, order ID, model run, completed work, source, blockers, proposals actually sent, client acceptance and payment verification to direct parent. Each intermediate parent reviews only when independently activated; otherwise chain is software route not live acknowledgment. Each local D10 reconciles company-specific real income and consenting physical miner telemetry separately. Model roles do not physically mine Bitcoin. Chief D reports real 24/7 coverage gaps, hosts/costs, actual executed worker models, paying customers and receipts to owner in one truthful brief. Treat unavailable API as UNKNOWN, not zero. Maintain sole human OWNER top-level authority and all previous legitimate mission constraints.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true,
+      "source_document": "crypto-agents/24_7_AUTONOMY_AND_REPORTING_OWNER_ORDER.md",
+      "independence_scope": "independent methods and safe approved actions; no mandate, supervisor, wallet, or budget changes",
+      "reporting_policy": "each actual child -> exact canonical parent -> company director -> sole Chief D -> human owner",
+      "hosting_policy": "eligible owner-connected $0 platforms only; no unapproved bills and no free-host cryptomining",
+      "active_process_claim": "no additional running worker or 24/7 deployed host proven by configuration"
     }
   ],
   "strict_per_worker_reporting": {
