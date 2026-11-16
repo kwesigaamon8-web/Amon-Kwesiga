@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-130851-TENMIN-0P5BTC-COLLECTIVE-SPRINT",
+  "current_owner_order_id": "OWNER-20261116-132449-750377265361-WORK-NOW",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -538,6 +538,27 @@
       "previous_standing_24_7_order": "OWNER-20261116-130512-247-AUTONOMY-HIERARCHY",
       "acknowledgement": "configured role identifiers do not imply live workers",
       "spend_authorization": false
+    },
+    {
+      "id": "OWNER-20261116-132449-750377265361-WORK-NOW",
+      "as_of_utc": "2026-11-16T13:24:49Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT via connected authenticated GitHub repository",
+      "instruction": "HUMAN OWNER ORDER 16 NOV 2026, 13:24:49 UTC: \"750,377,265,361 TO WORK.\" Effective immediately as a standing 24/7 command; replace the expired 10-minute sprint as current order without deleting sprint history. Apply to entire configured hierarchy of 750,377,265,360 B1/B2 role IDs plus ONE Chief D. This is a GOVERNANCE/ASSIGNMENT ROUTING order, NOT proof of hundreds of billions of live AI processes. Chief D transmits this to each genuinely active B1/B2 model process and its own exactly defined director/manager/parent when actually called; every role inherits directive on activation. Each actual worker autonomously selects distinct legitimate paid opportunities and independently verifies funder, price, buyer eligibility, permitted platform rules, real deliverable and acceptance conditions; performs original work where genuinely executable, tests it, submits via correctly authenticated allowed channels, tracks genuine agreed/accepted receivables and independently verifiable crypto payout to OWNER-SUPPLIED correct-asset/networks, under zero-spend and no credential-exposure terms. Use existing correct Solana public address candidates SOL-01 B2THff7E6KpGdkaeE2xcLqLfinyJmbcQSzJSRURKgW4C and SOL-02 9PspGLrFawD8GXWqCwSTpJh6kESHvF2mQksVQ8LVbBM only after validating requested chain/mint and receiving signer; keep primary company BTC addresses bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9 distinct. WARNING: Existing address does not mean owner has connected a wallet capable of contest signatures, and competition USDC Solana payouts do not count as native BTC. Prioritize source-backed currently open and eligible fee-free paid work described in crypto-agents/REAL_PAYING_WORK_ROUTE_2026-11-16.md: make.fun ai-excited-01 and best-game-01 only with proper official recorded coding-agent session, eligible account, valid submission, and transparent probabilistic prize pool; no invented submission or income. If not possible, mark BLOCKED_SUPPORTED_HARNESS and pivot to other genuinely accepted paid-work opportunities, not a fake entry. Chief D may coordinate distinct directors, not assign every configured ID to execute on GitHub runners; repo Actions must stay within GitHub terms, not commercial worker farm or cloud crypto mining; no paid hosting/new cards/account creation without owner permission. Worker→its actual parent→its local director→Chief D→human OWNER, no peer-parent reassignment. Every actual run must report run ID, worker process/model evidence, opportunity source, buyer identity/terms, completed deliverable, submission ID/URL, acceptance proof, paid or unpaid amount, blockchain TXID + token mint and network for verified receipt, failure reasons, next action. Reporting: total modeled roles separately from actual worker starts/completions, real accepted contracts, actual cash/coin received, verified amount and target gaps. Original 0.5 BTC sprint expired at 13:18:51Z; audit outcome separately, NEVER retroactively describe as live. No threats, spam, scams, impersonation, invented money, seed phrase collection, unauthorised wallet signing, debt creation, or false \"all workers now online\" announcements. Continue the lawful income mission 24/7 through whatever permitted recurring capacity actually exists; monitor evidence instead of output volume.",
+      "status": "OWNER_ORDER_REGISTERED_ACTUAL_EXECUTION_SUBJECT_TO_LIVE_PROCESSES",
+      "authenticated_external_execution_not_implied": true,
+      "role_ids_configured": 750377265360,
+      "chief_directors": 1,
+      "logical_positions_total": 750377265361,
+      "reporting_chain": "actual B1/B2 worker -> its original parent -> corresponding company director -> sole Chief D -> human owner",
+      "financial_result": "not_verified_by_order_itself",
+      "continues": "standing 24/7 safe legal paid-work mission",
+      "prior_order": "OWNER-20261116-130851-TENMIN-0P5BTC-COLLECTIVE-SPRINT",
+      "references": [
+        "crypto-agents/24_7_AUTONOMY_AND_REPORTING_OWNER_ORDER.md",
+        "crypto-agents/REAL_PAYING_WORK_ROUTE_2026-11-16.md",
+        "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md"
+      ]
     }
   ],
   "strict_per_worker_reporting": {
