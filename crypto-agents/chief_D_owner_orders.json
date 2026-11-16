@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261116-135606-ONDEMAND-BOT-MONETIZATION",
+  "current_owner_order_id": "OWNER-20261116-175230-MULTIHOST-REAL-MINING-LEGAL-EARNINGS",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -637,6 +637,24 @@
       "new_income_verified": false,
       "existing_money_first_directives_retained": true,
       "previous_order": "OWNER-20261116-135013-EACH-WORKER-DO-WHAT-IT-CAN"
+    },
+    {
+      "id": "OWNER-20261116-175230-MULTIHOST-REAL-MINING-LEGAL-EARNINGS",
+      "as_of_utc": "2026-11-16T17:52:30Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT authenticated GitHub connector",
+      "instruction": "Human owner's latest consolidated online-scale mission (2026-11-16 UTC 17:49:54–17:52:30): \"find a way of hosting all the billions\", \"find billions of servers ... figure it out\", \"mission everyone should be hosted and get ability to do bitcoin mining\", \"or any other money making opportunities\", \"the billions can mine together to get me an address, shared mining\", \"get many free sites you have all access, let them have all access\". Chief D and both B1 transferexperiment and B2 BountyScoutAI must maximize LEGITIMATE earning work by capability while maintaining a huge logically addressable role namespace, using few actual authorized servers/backends and on-demand instantiation rather than pretending 750,377,265,361 physical computers or independently running agents exist. IMPLEMENTED in repository: edge-role-directory/index.mjs, index.test.mjs, wrangler.toml and edge-role-directory/HOSTING_STRATEGY.md, plus earlier real Flask virtual_bot_service.py. Edge role directory returns a deterministic legitimate earning lane (coding, QA, data, documentation, customer support, buyer scouting, funding evidence, hosting, opt-in ASIC, payment verification); each valid ID is addressable via single O(1) handler but NO per-role model process, service deployment or bitcoin network hashrate is created. The 5 initial offline GitHub CI tests passed 16 NOV 17:53:34 UTC at https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/43923069639; this is code quality only and NOT live deployment. For actual hosting evaluate current legitimate free tiers: Cloudflare Workers for front-end identity and lightweight request routing (free 100,000 requests/day, 10ms CPU/request, not LLM hashing), Netlify static/functions with credits, Render/Koyeb sleepy free web prototypes, Oracle Always Free VM subject to account/capacity and use restrictions, and approved commercial paid/budgeted autoscaling backends when REAL customer revenue exists. Only provision through real user-connected deployment credentials and agreement; DO NOT impersonate owner access, make millions of trial accounts, break API quotas, violate free host terms, grant blanket all-account/financial/secret access to role IDs or mine on GitHub Actions/free web hosts. Owner may connect Render app through plugin with explicit action. No claim of auto deployment until health URL is independently checked. Pooled Bitcoin mining: shared real SHA-256 mining possible ONLY with willing physical ASIC owners and approved sharing agreement, under PPLNS (public-pool.io 13333 TCP /14333 TLS) or FPPS eligible operator such as Braiins; SOLO 3333/4333 is NOT shared reward mining. Mining usernames as published by public-pool.io = <approved B1 or B2 BTC mainnet address>.<consenting unique worker name> with actual rig/authorized setup; every operator MUST explicitly consent to receiving-address allocation; an external miner's rightful work/reward cannot be redirected without agreement. Owner already has B1 native BTC bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9; do not create or guess a new receiving address. Confirm real active rig hashrate/accepted shares, pool payout thresholds and settled native BTC TXIDs into correct network, not AI role counts, mere accepted CPU shares, pending balances or deposits on wrong chain. Beyond mining, proactively pursue original accepted paid work, authentic buyers, build/use chat assistants once real API provider and funded customers authorized; verify submissions and payment. Each actual active B worker gets ONE strongest feasible primary action and at most one secondary action. Current realities: 750,377,265,360 configured logical B role IDs plus Chief D = 750,377,265,361 addressable namespace; no billions of actual servers, miners, paid subscriptions or coin receipts verified; render previously failed to deploy; Hosting still requires actual provider connection/permission. Chief D reports actual deployed URLs, live real model inference count, consenting ASIC physical miners and TH/s, accepted shares, payouts and verified real customer earnings, and detailed blockers without claims. Keep no new spending or external agreements/keys without owner-specific authorization.",
+      "status": "MULTIHOST_DIRECTORY_SOURCE_TESTED_AND_MINING_COLLABORATION_CONFIGURED_NOT_RUNNING",
+      "latest_owner_goal": "all logical roles addressable across legal hosts; real opt-in pooled Bitcoin mining and paid jobs",
+      "configured_B_positions": 750377265360,
+      "chief_D_positions": 1,
+      "verified_new_hosted_servers": 0,
+      "verified_new_consenting_ASIC_miners": 0,
+      "verified_new_mining_BTC": 0,
+      "verified_new_paid_clients": 0,
+      "pool_model": "PPLNS or explicitly agreed FPPS physical ASIC mining; no SOLO mislabel",
+      "all_access_scope": "only per-role authorized least-privilege access, not blanket credentials",
+      "previous_order": "OWNER-20261116-135606-ONDEMAND-BOT-MONETIZATION"
     }
   ],
   "strict_per_worker_reporting": {
