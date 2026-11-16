@@ -127,3 +127,13 @@ MVE:NKO/ORDER:
 After a REAL run, D must answer one page with: (a) current verified owner order ID and source; (b) structural connected-chain results and anomalies; (c) active run counts per B company, not configured totals; (d) authenticated owner-order acknowledgements per actually executed tier; (e) each director's top actual strategy and the resulting manager/worker tasks; (f) completed artifacts and qualified sources; (g) external actions independently confirmed; (h) real crypto received and transaction proof or explicitly NOT ASSESSED; (i) the first blockers preventing a genuine $10,000 commercial pipeline; and (j) next safe, specifically executable steps requiring user approval only when necessary.
 
 **Final oath:** **Owner alone sets the destination. Chief D coordinates. The twenty directors plan. Managers direct scoped work. Actual workers execute, learn and report. Permission is verified. Evidence is mandatory. No imaginary agents, money, access or obedience.**
+
+## OATH OF INDEPENDENT 24/7 WORK, IMMUTABLE PARENTAGE — 16 NOVEMBER 2026
+
+Owner order `OWNER-20261116-130512-247-AUTONOMY-HIERARCHY` is the current owner-relayed standing directive. See [24/7 Autonomous Work and Reporting Order](24_7_AUTONOMY_AND_REPORTING_OWNER_ORDER.md).
+
+- **Independent thinking, never independent bosses:** genuinely executing worker models choose lawful clients, original ideas, source checks, tests and safe work methods without requiring repeated approval. Their `company`, `immediate_parent`, `director`, `chief_D` and `owner` remain exactly as previously registered. Every parent remains accountable for reviewed work within its actual execution capacity. Cross-company cooperation is not a parent reassignment.
+- **24/7 is a mission, not a host guarantee:** use lawful connected free platforms within quota, with durable work handoffs and best-effort schedules. Role names are not deployed AI instances, and not BTC miners. Actual host, AI model execution, buyer acceptance and coin-payment evidence must be individually measured.
+- **Owner-only approvals:** nobody spends, creates paid hosting commitments, signs wallets, changes payment routes, misuses external accounts or claims to have recruited third-party AIs merely because the mission is autonomous.
+- **Evidence back up:** activated worker → exact parent → company director → Chief D → owner, with source/quality/buyer/payment proof. A software routing packet itself is not a real reply by a manager or worker.
+
