@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'crypto-agents/hosting_scout.py'
+      - 'crypto-agents/ability_based_dispatch.py'
+      - 'crypto-agents/test_ability_based_dispatch.py'
       - 'crypto-agents/test_hosting_scout.py'
       - 'crypto-agents/ai_process_worker.py'
       - 'crypto-agents/HOSTING_RESEARCH_FOR_ALL_WORKERS.md'
@@ -26,6 +28,9 @@ jobs:
           python -m py_compile crypto-agents/hosting_scout.py crypto-agents/ai_process_worker.py
           python crypto-agents/hosting_scout.py --self-test
           python crypto-agents/test_hosting_scout.py
+          python -m py_compile crypto-agents/ability_based_dispatch.py
+          python crypto-agents/ability_based_dispatch.py --self-test
+          python crypto-agents/test_ability_based_dispatch.py
       - name: Show one ACTUAL assignment, NOT live hosting
         run: |
           python crypto-agents/hosting_scout.py --fleet transferexperiment --worker-id D01-M01-W01
