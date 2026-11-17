@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-050325-D-FIRST-PAID-PILOT",
+  "current_owner_order_id": "OWNER-20261117-051023-BILLIONS-WORLDWIDE-COOPERATE",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -705,6 +705,15 @@
       "status": "commercial_offer_and_public_buyer_intake_published_no_paid_contract_yet",
       "authenticated_external_execution_not_implied": true,
       "deliverable": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/17"
+    },
+    {
+      "id": "OWNER-20261117-051023-BILLIONS-WORLDWIDE-COOPERATE",
+      "as_of_utc": "2026-11-17T05:10:23Z",
+      "origin": "direct_owner_conversation",
+      "relayed_by": "ChatGPT authenticated GitHub connector",
+      "instruction": "HUMAN OWNER DIRECTIVE 17 NOV 2026 ~05:10 UTC: \"live work around the world\"; \"tell D to work and work together\"; \"send the order to everyone\"; \"billions work\"; \"i want billions to work\". SINGLE COMMAND SOURCE: Owner → one Chief D → both distinct company local director boards (B1 transferexperiment and B2 BountyScoutAI) → manager/adviser chains → individually invoked W/S/G/H workers, with reports back up the exact parent route. Publish this directive to every configured role via the current lazy order lookup and ensure each ACTUALLY launched worker reads, acknowledges and uses the latest instruction when started. The configured role universe is 750,377,265,360 B1/B2 positions plus one Chief D, but those are virtual definitions, NOT billions of running AI models, servers, accounts, employees, or miners. Chief D should SCALE GENUINE independent worker processes within authorized compute limits while keeping CPU quotas and costs safe, tracking actual launched OS process/model inference count, real receipts and failures. Every actually running worker is assigned a distinct worldwide lawful revenue job with a real original source, no upfront fee, geographically valid buyer/market, attainable payment terms and proven payer; worker must independently build or test a helpful deliverable, then use ONLY legitimately authenticated permitted channels for buyer contact/submission. B1 and B2 must work COOPERATIVELY: exchange reviewed opportunity evidence, divide tasks to prevent duplication, peer-review each other's deliverables, share useful code only where licensed, and aggregate buyer-response/payment evidence through own D10 directors to Chief D. Examples include customer-paid data cleaning/CSV-JSON conversions (public pilot https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/17), QA, documentation, remote accounting and real eligible crypto work. Prioritize an actual consenting payer and short fully accepted deliverable over high-bounty speculation, copied code, worker count and unprofitable mining. Use only owner-approved correct-token/network payment addresses, no signing/spending, unauthorized access, deceptive outreach, fabricated income, bulk unsolicited messages or use of third-party servers for mining. Publish an evidence-only owner scoreboard for each real deployed company: workers ACTUALLY run, buyers verified, contacted legitimately, paid jobs accepted, original deliverables sent, actual collected cash/crypto, on-chain TXID proof if available, and exact blocker if none. Strictly distinguish logically propagated order from actually delivered/reviewed instructions by an active model. The owner wants money received; no paid work/verified receipt = report zero confirmed, then continue legitimate practical search on next authorized scheduled run.",
+      "status": "recorded_for_lazy_universal_cascade_not_proof_of_execution",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
