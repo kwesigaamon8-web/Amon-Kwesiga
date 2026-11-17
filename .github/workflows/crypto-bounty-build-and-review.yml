@@ -35,7 +35,9 @@ jobs:
           # This is never a fake shim or a hand-coded Python ini substitute.
           lateralus py stdlib/ini.ltl -o ini.py
           python -m py_compile ini.py
-          lateralus run examples/ini_tutorial.ltl | tee ../b1-real-compiler-output.txt
+          # The toolchain launches the translated script from /tmp, so export
+          # the repo path for Python's import resolution of the real generated ini.py.
+          PYTHONPATH="$(pwd):${PYTHONPATH:-}" lateralus run examples/ini_tutorial.ltl | tee ../b1-real-compiler-output.txt
           python - <<'PY'
           from pathlib import Path
           p=Path('../b1-real-compiler-output.txt')
