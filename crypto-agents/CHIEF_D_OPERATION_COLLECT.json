@@ -26,11 +26,12 @@
   ],
   "sprint": {
     "start": "WHEN_INDIVIDUAL_JOB_ACTUALLY_RUNS",
-    "phase_1": "FIRST 15 MINUTES — verify one real buyer, outstanding reply or payable task; produce evidence",
-    "phase_2": "NEXT 30 MINUTES — legitimate buyer-specific work, QA, quotation or authenticated permissible submission",
-    "phase_3": "FINAL 15 MINUTES — independent verification and concise command report",
+    "phase_1": "FIRST 5 MINUTES — verify one real buyer, outstanding reply or payable task; record evidence",
+    "phase_2": "NEXT 20 MINUTES — legitimate buyer-specific work, QA, quotation or permitted authenticated submission",
+    "phase_3": "FINAL 5 MINUTES — independent verification and concise command report",
     "cadence": "EVERY ACTUAL EXECUTION / SCHEDULED MONITORING CYCLE",
-    "deadline_claim": "Clock starts only for real executable run, not virtual worker namespace"
+    "deadline_claim": "Clock starts only for real executable run, not virtual worker namespace",
+    "duration_minutes": 30
   },
   "directors": [
     {
