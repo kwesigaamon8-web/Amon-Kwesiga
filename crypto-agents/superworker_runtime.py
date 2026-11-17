@@ -42,7 +42,7 @@ def run():
     key=os.getenv("SUPERWORKER_API_KEY","")
     if not (endpoint and model and key):
         print(json.dumps({"status":"NOT_DEPLOYED","reason":"No approved model endpoint/model/key configured","roles_defined":750377265361,"verified_active":0,"concurrent_verified":0}))
-        return
+        raise SystemExit(2)
     if not endpoint.startswith("https://"):
         raise ValueError("HTTPS model endpoint required")
     ROOT.mkdir(exist_ok=True)
@@ -72,18 +72,35 @@ def run():
             candidates=[model]
             if model=="gemini-2.5-flash" and endpoint=="https://generativelanguage.googleapis.com/v1beta/openai":
                 candidates.append("gemini-3.8-flash")
+            data=None
             for attempted_model in candidates:
                 body=json.dumps({"model":attempted_model,"messages":[{"role":"system","content":"You are an independent assistant. Do original useful work. Be truthful and cite evidence. Never claim a payment, active worker, or successful action without proof."},{"role":"user","content":prompt}],"temperature":0.3,"max_tokens":1600}).encode()
                 request=urllib.request.Request(endpoint+"/chat/completions",data=body,headers={"Authorization":"Bearer "+key,"Content-Type":"application/json"},method="POST")
-                try:
-                    with urllib.request.urlopen(request,timeout=45) as response:
-                        data=json.loads(response.read(300000))
+                fallback_to_next=False
+                for retry in range(3):
+                    try:
+                        with urllib.request.urlopen(request,timeout=45) as response:
+                            data=json.loads(response.read(300000))
+                        break
+                    except urllib.error.HTTPError as e:
+                        if e.code==404 and attempted_model!=candidates[-1]:
+                            print(json.dumps({"worker_id":wid,"retry_model":candidates[-1],"reason":"legacy model returned 404"}))
+                            fallback_to_next=True
+                            break
+                        # Recover from temporary provider/gateway errors only.
+                        # Never auto-retry quota, authorization, or billing errors.
+                        if e.code in (500,502,503,504) and retry<2:
+                            delay=(retry+1)*2
+                            print(json.dumps({"worker_id":wid,"transient_http_status":e.code,"retry_number":retry+1,"max_retries":2,"backoff_seconds":delay}))
+                            time.sleep(delay)
+                            continue
+                        raise
+                if data is not None:
                     break
-                except urllib.error.HTTPError as e:
-                    if e.code==404 and attempted_model!=candidates[-1]:
-                        print(json.dumps({"worker_id":wid,"retry_model":candidates[-1],"reason":"legacy model returned 404"}))
-                        continue
-                    raise
+                if fallback_to_next:
+                    continue
+            if data is None:
+                raise RuntimeError("No provider model completed a request")
             output=data["choices"][0]["message"]["content"]
             record.update({"status":"COMPLETED","end_utc":utc(),"provider_response_id":data.get("id"),"model":data.get("model",attempted_model),"output":output,"output_sha256":hashlib.sha256(output.encode()).hexdigest()})
             outputs.append({"worker_id":wid,"output":output})
