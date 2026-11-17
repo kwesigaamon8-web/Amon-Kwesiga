@@ -1,6 +1,11 @@
 name: B1 B2 Independent Superworker Pilot
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/superworker_runtime.py'
+      - '.github/workflows/b-superworker-pilot.yml'
 permissions:
   contents: read
 jobs:
