@@ -1,0 +1,73 @@
+name: Render Service Real Boot and Health Smoke
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/render-start-smoke.yml"
+      - "app.py"
+      - "virtual_bot_service.py"
+      - "render.yaml"
+      - "Procfile"
+      - "requirements.txt"
+      - "tests/test_render_status.py"
+      - "tests/test_virtual_bots.py"
+      - "crypto-agents/ability_based_dispatch.py"
+      - "crypto-agents/role_ai_identity.py"
+      - "crypto-agents/superworker_protocol.py"
+permissions:
+  contents: read
+jobs:
+  live-boot:
+    name: Install production dependencies, test, boot Gunicorn and check HTTP
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build exactly the declared production requirements
+        run: |
+          python -m pip install --no-cache-dir -r requirements.txt
+          python -m pip check
+      - name: Test dashboard and virtual-bot endpoints without external accounts or keys
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Start production Gunicorn using render.yaml command and request real HTTP health
+        env:
+          PORT: "10000"
+          BOT_SERVICE_ENABLED: "0"
+        run: |
+          set -eu
+          gunicorn app:app --bind "127.0.0.1:${PORT}" --workers 1 --threads 2 --timeout 30 > /tmp/gunicorn.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" >/dev/null 2>&1 || true' EXIT
+          for attempt in $(seq 1 20); do
+            if ! kill -0 "$pid" 2>/dev/null; then
+              cat /tmp/gunicorn.log
+              exit 1
+            fi
+            if curl --fail --silent --show-error "http://127.0.0.1:${PORT}/health" > /tmp/health.json 2>/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/health.json"))
+          assert d.get("status")=="ok"
+          assert d.get("running_agents_claim") is False
+          print("REAL_RENDER_BOOT_HEALTH_OK",json.dumps(d))
+          PY
+          curl --fail --silent "http://127.0.0.1:${PORT}/api/bots/catalog" > /tmp/catalog.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/catalog.json"))
+          assert d.get("configured_role_count_not_live_agents")==750377265360
+          assert d.get("service_online") is False
+          print("REAL_RENDER_BOT_CATALOG_HTTP_OK")
+          PY
+          echo "Production Gunicorn HTTP probe completed; this tests a GitHub runner only, NOT Render deployment." >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish startup log for diagnosis when failed
+        if: failure()
+        run: |
+          if [ -f /tmp/gunicorn.log ]; then cat /tmp/gunicorn.log; fi
