@@ -42,6 +42,10 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
     top=[x for x in items if priority(x)==best_priority]
     seed=hashlib.sha256((fleet+"/"+worker_id).encode()).digest()
     initial=int.from_bytes(seed[:8],"big")%len(top)
+    # After an overstated high-priority candidate is rejected, try other
+    # original opportunities instead of making all five workers repeat it.
+    alternates=[x for x in items if priority(x)!=best_priority]
+    ordered=[top[(initial+i)%len(top)] for i in range(len(top))]+alternates
     def default_fetch(url):
         headers={"Accept":"application/vnd.github+json","User-Agent":"IndependentBReadOnlyTaskInspector/1.0"}
         token=os.environ.get("GH_TOKEN","")
@@ -54,8 +58,7 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
     chosen=None
     link=None
     eligibility=None
-    for step in range(min(5,len(top))):
-        candidate=top[(initial+step)%len(top)]
+    for candidate in ordered[:5]:
         url=candidate["original_url"]
         match=ISSUE.fullmatch(url)
         api="https://api.github.com/repos/"+match.group(1)+"/"+match.group(2)+"/issues/"+match.group(3)
@@ -69,10 +72,21 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
             # Comments reveal permission warnings, submitted fixes and payout
             # restrictions that search results and issue descriptions omit.
             if n>0:
-                comments=fetch(api+"/comments?per_page=100")
+                # Inspect the latest page, not only the first 100 stale comments.
+                page=(n-1)//100+1
+                comments=fetch(api+"/comments?per_page=100&page="+str(page))
                 if not isinstance(comments,list):
                     skipped.append({"url":url,"reason":"COMMENTS_UNAVAILABLE"})
                     continue
+            # Multiple already-linked pull requests are evidence that a
+            # first-merged paid fix may have been taken. Do not send model workers
+            # into competing duplicate submissions without sponsor reconfirmation.
+            text="\\n".join(str(c.get("body") or "")[:2000] for c in comments if isinstance(c,dict))
+            pr_numbers=set(re.findall(r"(?i)(?:/pull/|\\bPR\\s*#|\\bpull request\\s*#)\\s*(\\d+)",text))
+            if len(pr_numbers)>=2:
+                skipped.append({"url":url,"reason":"MULTIPLE_EXISTING_PR_CLAIMS_REQUIRES_SPONSOR_RECONFIRMATION",
+                                "existing_pr_count_at_least":len(pr_numbers)})
+                continue
             eligibility=evaluate_eligibility(issue,comments)
             if eligibility["critical_blocker"]:
                 skipped.append({"url":url,"reason":"EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION_OR_OTHER_CRITICAL","flags":eligibility["flags"]})
@@ -144,6 +158,17 @@ def self_test():
         blocked=choose("transferexperiment","D01-M01-W01",f,restricted_fetch)
         assert blocked["source_item"] is None
         assert any("EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION" in z.get("flags",[]) for z in blocked["rejected_source_candidates"])
+
+        # A single older paid issue with several competing PRs must not
+        # consume the fleet's real AI inference resources repeatedly.
+        def contested_fetch(url):
+            if "comments?" in url:
+                return [{"body":"Implemented in PR #25 and PR #27; now PR #33 is active."}]
+            return {"state":"open","html_url":"https://github.com/example/repo/issues/16",
+                    "title":"$75 bounty fix","body":"Repair retry bug","comments":3}
+        contested=choose("transferexperiment","D01-M01-W01",f,contested_fetch)
+        assert contested["source_item"] is None
+        assert contested["rejected_source_candidates"][0]["reason"]=="MULTIPLE_EXISTING_PR_CLAIMS_REQUIRES_SPONSOR_RECONFIRMATION"
 
     print("PASS original task source fed to each real B only, no imaginary payer or D10 speculation")
 if __name__=="__main__":self_test()
