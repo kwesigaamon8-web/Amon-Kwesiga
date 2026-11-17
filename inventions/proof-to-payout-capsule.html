@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Proof-to-Payout Capsule — Prototype</title>
+<title>Proof-to-Payout Capsule — Read-only BTC verification</title>
 <style>
 :root{font:16px system-ui,-apple-system,Segoe UI,sans-serif;color:#17212b;background:#f5f7fb}
 *{box-sizing:border-box}body{max-width:1000px;margin:0 auto;padding:25px 15px}
@@ -29,29 +29,30 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5f9;padding:15px;
 <label>BTC mainnet receiving address<input id="address" placeholder="bc1..."></label>
 <label>BTC mainnet transaction ID (if genuinely known)<input id="txid" placeholder="64-character transaction hash"></label>
 </div><label>Scope and acceptance criteria<textarea id="scope" placeholder="What precisely must the buyer accept?"></textarea></label>
-<button id="make">Build evidence capsule</button><button class="secondary" id="download">Download JSON</button>
+<button id="verify" type="button">Verify BTC output (read-only)</button><button id="make">Build evidence capsule</button><button class="secondary" id="download">Download JSON</button>
 </section>
 <section class="panel"><h2>2. Evidence classification</h2>
-<div id="stages"></div><p class="warn">All fields are manually entered claims. A TXID must be independently checked for the specified output/address, amount, confirmations and payer relationship. A blockchain transfer alone does not prove payment for the project. This app sends no data to a server.</p>
-<pre id="preview">Enter task details and click “Build evidence capsule”.</pre>
+<div id="stages"></div><p class="warn">All fields are manually entered claims. A TXID must be independently checked for the specified output/address, amount, confirmations and payer relationship. A blockchain transfer alone does not prove payment for the project. The optional Verify button sends the public address and TXID to mempool.space; all other inputs stay in the browser.</p>
+<p id="chainResult" role="status" aria-live="polite">No Bitcoin on-chain check performed.</p><pre id="preview">Enter task details and click “Build evidence capsule”.</pre>
 </section>
 <script>
 "use strict";
 const ids=["project","buyer","offer","amount","deliverable","acceptance","address","txid","scope"];
-let record=null;
+let record=null;let chainCheck={status:"NOT_CHECKED",note:"No blockchain check has been made."};
 const el=id=>document.getElementById(id);
 function safeUrl(s){try{const x=new URL(s);return ["https:","http:"].includes(x.protocol)?x.href:null}catch{return null}}
 function makeRecord(){
-  const r={schema:"proof-to-payout-capsule/v0.1",created_at:new Date().toISOString()};
+  const r={schema:"proof-to-payout-capsule/v0.2",created_at:new Date().toISOString()};
   for(const id of ids)r[id]=el(id).value.trim();
   r.links={offer:safeUrl(r.offer),deliverable:safeUrl(r.deliverable),acceptance:safeUrl(r.acceptance)};
   r.evidence_level={
     offer:r.links.offer?"PUBLIC OFFER LINK SUPPLIED":"NOT DOCUMENTED",
     delivered:r.links.deliverable?"DELIVERABLE LINK SUPPLIED":"NOT DOCUMENTED",
     accepted:r.links.acceptance?"ACCEPTANCE LINK SUPPLIED; NOT INDEPENDENTLY VERIFIED":"NOT DOCUMENTED",
-    received:/^[a-fA-F0-9]{64}$/.test(r.txid)&&r.address.startsWith("bc1")?"POSSIBLE BTC TXID; NOT VERIFIED":"NOT VERIFIED"
+    received:chainCheck.status
   };
-  r.warning="This is a self-reported evidence capsule, NOT independent payment verification.";
+  r.blockchain_output_check=chainCheck;
+  r.warning="Offer, delivery and acceptance are self-reported. A matching BTC transaction does not prove customer identity or payment purpose.";
   return r;
 }
 function render(){
@@ -69,5 +70,41 @@ el("download").addEventListener("click",()=>{
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");a.href=url;a.download="proof-to-payout-capsule.json";a.click();
  setTimeout(()=>URL.revokeObjectURL(url),500);
+});
+
+function invalidateChainCheck(){chainCheck={status:"NOT_CHECKED",note:"Payment inputs changed; prior check invalidated."};el("chainResult").textContent=chainCheck.note;render();}
+el("address").addEventListener("input",invalidateChainCheck);
+el("txid").addEventListener("input",invalidateChainCheck);
+el("verify").addEventListener("click",async()=>{
+ const address=el("address").value.trim(),txid=el("txid").value.trim().toLowerCase();
+ if(!/^bc1[023456789acdefghjklmnpqrstuvwxyz]{11,87}$/.test(address)||!(/^[0-9a-f]{64}$/.test(txid))){
+  chainCheck={status:"INVALID_INPUT",note:"Enter a bc1 Bitcoin mainnet address and a 64-character hexadecimal TXID."};
+  el("chainResult").textContent=chainCheck.note;render();return;
+ }
+ const button=el("verify");button.disabled=true;el("chainResult").textContent="Checking mempool.space public transaction outputs…";
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+ try{
+  const r=await fetch("https://mempool.space/api/tx/"+encodeURIComponent(txid),{cache:"no-store",signal:controller.signal});
+  if(!r.ok)throw new Error("Explorer HTTP "+r.status);
+  const tx=await r.json();if(!Array.isArray(tx.vout)||!tx.status)throw new Error("Unexpected explorer response");
+  const outputs=tx.vout.map((v,index)=>({...v,index})).filter(v=>v.scriptpubkey_address===address&&Number.isSafeInteger(v.value)&&v.value>=0).map(v=>({vout:v.index,sats:v.value}));
+  const sats=outputs.reduce((sum,v)=>sum+v.sats,0);
+  let confirmations=null;
+  if(tx.status.confirmed&&Number.isSafeInteger(tx.status.block_height)){
+   try{const h=await fetch("https://mempool.space/api/blocks/tip/height",{cache:"no-store",signal:controller.signal});
+    if(h.ok){const top=Number((await h.text()).trim());if(Number.isSafeInteger(top)&&top>=tx.status.block_height)confirmations=top-tx.status.block_height+1;}}
+   catch(err){}
+  }
+  if(el("address").value.trim()!==address||el("txid").value.trim().toLowerCase()!==txid){invalidateChainCheck();return;}
+  chainCheck={status:!outputs.length?"NO_MATCHING_OUTPUT":tx.status.confirmed?"CONFIRMED_OUTPUT_MATCH":"UNCONFIRMED_OUTPUT_MATCH",
+   txid,address,output_matches:outputs,satoshis:sats,btc:(sats/1e8).toFixed(8),confirmed:!!tx.status.confirmed,
+   confirmations,verified_at:new Date().toISOString(),source:"https://mempool.space/tx/"+txid,
+   note:"The chain shows outputs, not the payer's identity or purpose."};
+  el("chainResult").textContent=outputs.length?("Outputs to this address: "+sats+" sats. "+(tx.status.confirmed?"Confirmed.":"Unconfirmed.")+" Payer still unverified."):
+   "Transaction exists, but no output matches the entered address.";
+ }catch(error){
+  chainCheck={status:"UNKNOWN_CHECK_FAILED",note:String(error.message||error).slice(0,140),checked_at:new Date().toISOString()};
+  el("chainResult").textContent="Explorer check unavailable (not proof of zero payment): "+chainCheck.note;
+ }finally{clearTimeout(timer);button.disabled=false;render();}
 });
 </script></body></html>
