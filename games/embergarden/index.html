@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMBERGARDEN — The Last Light</title>
+<meta name="description" content="An original offline cosmic-garden action game. Defend the seed of dawn through five nights.">
+<style>
+:root{color-scheme:dark;--ivory:#f1e7d4;--muted:#9ca6ad;--gold:#ecc58b;--mint:#7be2ce;--line:rgba(255,238,214,.16)}
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;background:#070e19;color:var(--ivory);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{display:grid;place-items:center;overflow-x:hidden;background:radial-gradient(ellipse at 65% 10%,#142939 0%,#090f1b 44%,#04080e 100%)}
+.shell{width:min(1440px,96vw);margin:14px auto 24px;position:relative}
+.top{display:flex;align-items:center;justify-content:space-between;gap:15px;height:54px;letter-spacing:.12em;text-transform:uppercase}
+.brand{font-size:13px;letter-spacing:.26em;color:#f7e4c5;font-weight:750}.brand .sigil{color:var(--mint);padding-right:10px;font-size:18px}
+.top-right{display:flex;gap:22px;color:#9aabad;font-size:10px;font-weight:700}.top-right strong{color:#e3d5b7}
+.frame{position:relative;aspect-ratio:12/7;border:1px solid #4c4f55;border-radius:14px;overflow:hidden;background:#08111d;box-shadow:0 30px 100px #0008,0 0 70px rgba(70,162,173,.08),inset 0 0 0 4px #101c27}
+canvas{width:100%;height:100%;display:block;cursor:crosshair}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:screen;background-image:url('data:image/svg+xml,%3Csvg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="120" height="120" filter="url(%23n)"/%3E%3C/svg%3E')}
+.hud{position:absolute;top:24px;left:26px;right:26px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;gap:12px}
+.panel{background:linear-gradient(145deg,rgba(10,24,38,.92),rgba(12,24,35,.65));border:1px solid rgba(226,239,223,.2);border-radius:9px;padding:12px 15px;min-width:165px;box-shadow:0 7px 25px #0003;backdrop-filter:blur(7px)}
+.kicker{font-size:9px;letter-spacing:.19em;color:#c8ae8b;text-transform:uppercase;font-weight:800}.big{font-family:Georgia,serif;font-size:24px;line-height:1.4;color:#f4e6ce;letter-spacing:.02em}
+.mini{color:#b0bbc0;font-size:11px;line-height:1.5}.progress{margin-top:7px;height:5px;background:#25313b;border-radius:5px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#76d1bb,#dedb9c);width:100%;transition:width .15s}
+.side{display:flex;gap:10px}.side .panel{min-width:100px;text-align:right}
+.bottom{position:absolute;left:25px;right:25px;bottom:23px;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none;gap:10px}
+.keys{display:flex;gap:5px;flex-wrap:wrap}.key{padding:7px 9px;border:1px solid #d9d5c83d;border-radius:5px;color:#acbfc2;font-size:9px;background:#07131d8c}.key b{color:#f0d9b4}
+.action{display:flex;align-items:center;gap:10px;background:#081925b8;padding:8px 13px;border:1px solid #7ccdbb44;border-radius:9px;color:#c7d0cb;font-size:11px}
+.screen{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at center,#06131dc9,#030911ea);z-index:3;transition:opacity .3s}.screen.hidden{opacity:0;pointer-events:none}
+.screen-card{width:min(640px,84%);text-align:center;padding:36px 35px 34px;border:1px solid #c4bd9570;border-radius:14px;background:linear-gradient(140deg,#0e2639e8,#0b141eee 70%);box-shadow:0 25px 80px #0009, inset 0 0 85px #5bc3a00c;position:relative}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.35em;color:#9fd6c4;font-weight:750}
+h1{font-family:Georgia,serif;font-size:clamp(45px,6vw,90px);font-weight:400;letter-spacing:-.04em;line-height:.95;margin:18px 0 9px;color:#f1dcbb;text-shadow:0 6px 35px #d2ad6459}
+.italic{font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:.11em;color:#ecbb80;font-size:16px;margin-bottom:25px}
+.desc{font-size:14px;line-height:1.85;color:#c0ccd0;max-width:450px;margin:0 auto 23px}.rules{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:16px 0 24px;color:#a7bfc1;font-size:11px}
+button{border:1px solid #eddcaf90;background:linear-gradient(130deg,#eac892,#c79e65);color:#142433;border-radius:5px;padding:14px 34px;cursor:pointer;font-weight:850;letter-spacing:.14em;text-transform:uppercase;font-size:11px;box-shadow:0 7px 35px #d5bd9340}
+button:hover{filter:brightness(1.09);transform:translateY(-1px)}button:focus-visible{outline:3px solid #68dfce;outline-offset:3px}
+.score-line{margin-top:20px;color:#9cbab8;font-size:12px;letter-spacing:.06em}
+.footer{display:flex;justify-content:space-between;color:#8e9fa4;font-size:11px;margin-top:13px;gap:10px}.footer b{color:#e1c590} .status{color:#9fdccf}
+@media(max-width:760px){.top-right{display:none}.hud{top:12px;left:12px;right:12px}.panel{padding:6px 8px;min-width:90px}.big{font-size:17px}.mini{font-size:9px}.kicker{font-size:8px}.bottom{bottom:8px;left:10px;right:10px}.key{font-size:8px;padding:5px}.action{display:none}.screen-card{padding:15px}.screen-card h1{font-size:40px}.desc{font-size:11px}.rules{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top"><div class="brand"><span class="sigil">✦</span> NIGHTFALL STUDIOS / AN ORIGINAL GAME</div><div class="top-right"><span>CHAPTER 01 · <strong>THE STARLESS GARDEN</strong></span><span>OFFLINE · <strong>2026</strong></span></div></header>
+  <main class="frame" id="frame"><canvas id="scene" width="1200" height="700" role="img" aria-label="Playable top-down action defense game with a luminous tree at its center"></canvas><div class="grain"></div>
+    <div class="hud" id="hud"><div class="panel"><div class="kicker">The last seed</div><div class="big" id="heartText">100 / 100</div><div class="progress"><div class="fill" id="heartFill"></div></div><div class="mini" id="waveText">Night 1 of 5</div></div><div class="side"><div class="panel"><div class="kicker">Stardust</div><div class="big" id="dustText">0</div><div class="mini">Harvest the fallen</div></div><div class="panel"><div class="kicker">Score</div><div class="big" id="scoreText">00000</div><div class="mini" id="comboText">0 × bloom chain</div></div></div></div>
+    <div class="bottom"><div class="keys"><span class="key"><b>WASD</b> MOVE</span><span class="key"><b>MOUSE</b> AIM + FIRE</span><span class="key"><b>SPACE</b> DASH</span><span class="key"><b>1</b> HEAL (15 ✧)</span><span class="key"><b>2</b> BURST (25 ✧)</span><span class="key"><b>ESC</b> PAUSE</span></div><div class="action"><span id="actionIcon">✦</span><span id="actionText">Keep the ancient seed alive</span></div></div>
+    <div class="screen" id="screen"><div class="screen-card"><div class="eyebrow" id="screenEye">an atmospheric arcade odyssey</div><h1 id="screenTitle">Ember<br>garden</h1><div class="italic" id="screenSub">the last light is yours to keep</div><p class="desc" id="screenDesc">Five nights. One living star. Drift through a ruined celestial garden, weave luminous spells, harvest fallen stardust, and defend the last seed of dawn.</p><div class="rules" id="screenRules"><span>✧ DEFEND THE HEART</span><span>✧ SURVIVE FIVE NIGHTS</span><span>✧ BLOOM AGAIN</span></div><button id="startBtn">ENTER THE GARDEN →</button><div class="score-line" id="scoreLine">NO NETWORK · NO ACCOUNTS · JUST PLAY</div></div></div>
+  </main>
+  <footer class="footer"><span>✦ <b>EMBERGARDEN</b> / A handmade universe of light and shadow</span><span class="status" id="status">◉ GAME READY · DESKTOP CONTROLS</span></footer>
+</div>
+<script>
+/* EMBERGARDEN © 2026 — original canvas survival game, no external dependencies. */
+(()=>{
+'use strict';
+const cv=document.querySelector('#scene'),ctx=cv.getContext('2d');
+const W=1200,H=700,CX=600,CY=355,TAU=Math.PI*2;
+const el=id=>document.getElementById(id);const screen=el('screen');
+let state='menu', tick=0, last=0, elapsed=0, wave=1, score=0, dust=15, combo=0,heart=100;
+let enemies=[],shots=[],particles=[],pickups=[],flares=[],runes=[],roofs=[],decor=[],toast='',toastT=0;
+const keys=new Set();const mouse={x:CX+200,y:CY,down:false};
+let audio, seed=1865, spawnT=0, shootT=0, dashT=0, invuln=0, pulseT=0, waveTimer=0, waveDuration=24, gameTime=0;
+let player={x:CX-140,y:CY+120,angle:0,r:14,hp:100,vx:0,vy:0};
+const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+const between=(a,b)=>a+rand()*(b-a);const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);const emit=(x,y,n,color,power=1)=>{for(let i=0;i<n;i++){const a=rand()*TAU,sp=between(15,115)*power;particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:between(.3,1),max:1,r:between(1,3.4),color})}};
+const sound=(f=300,d=.1,type='sine',gain=.045)=>{try{audio??=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=f;o.connect(g);g.connect(audio.destination);g.gain.setValueAtTime(gain,audio.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+d);o.start();o.stop(audio.currentTime+d)}catch(_){}};
+const makeWorld=()=>{seed=1865;decor=[];runes=[];roofs=[];for(let i=0;i<220;i++)decor.push({x:between(0,W),y:between(0,H),r:between(.2,1.6),a:between(.1,.7),tw:rand()*8});for(let i=0;i<22;i++){let a=rand()*TAU,r=between(100,570);roofs.push({x:CX+Math.cos(a)*r,y:CY+Math.sin(a)*r,r:between(18,63),rot:rand()*TAU})}for(let i=0;i<10;i++){let a=i*TAU/10;runes.push({x:CX+Math.cos(a)*245,y:CY+Math.sin(a)*200,a,glow:rand()})}};
+function reset(){makeWorld();state='playing';tick=0;elapsed=0;wave=1;score=0;dust=15;combo=0;heart=100;enemies=[];shots=[];particles=[];pickups=[];flares=[];spawnT=2.0;shootT=0;dashT=0;invuln=0;pulseT=0;waveTimer=0;gameTime=0;player={x:CX-140,y:CY+120,angle:0,r:14,hp:100,vx:0,vy:0};screen.classList.add('hidden');el('status').textContent='◉ NIGHT 1 · THE GARDEN AWAKENS';toast='THE FIRST NIGHT BEGINS';toastT=2.5;sound(480,.3);setTimeout(()=>sound(720,.25),160)}
+function end(won){state=won?'won':'lost';screen.classList.remove('hidden');el('screenEye').textContent=won?'the light endures':'the garden falls silent';el('screenTitle').innerHTML=won?'Dawn<br>returns':'Ashes<br>to ashes';el('screenSub').textContent=won?'You made the stars remember':'Every eclipse has an end';el('screenDesc').textContent=won?'The ancient seed bloomed into a new constellation. For one more age, the universe will have a sunrise.':'The seed has faded beneath the dark. The garden remembers each fallen star. Gather your courage and try another night.';el('screenRules').style.display='none';el('startBtn').textContent=won?'GROW ANOTHER UNIVERSE →':'TRY AGAIN →';el('scoreLine').textContent=`FINAL SCORE ${score.toLocaleString()} · NIGHT ${wave} / 5`;sound(won?740:155,.35,'sine',.08);if(won)setTimeout(()=>sound(1020,.5),150)}
+function pause(){if(state==='playing'){state='paused';screen.classList.remove('hidden');el('screenEye').textContent='a moment between stars';el('screenTitle').innerHTML='Time<br>rests';el('screenSub').textContent='The garden awaits its guardian';el('screenDesc').textContent='Take your time. The shadows will remain where you left them.';el('screenRules').style.display='none';el('startBtn').textContent='CONTINUE THE NIGHT →';el('scoreLine').textContent=`NIGHT ${wave} / 5 · SCORE ${score.toLocaleString()}`;}else if(state==='paused'){state='playing';screen.classList.add('hidden')}}
+function spawn(){const a=rand()*TAU,side=Math.floor(rand()*4);let x,y;if(side===0){x=-20;y=rand()*H}else if(side===1){x=W+20;y=rand()*H}else if(side===2){x=rand()*W;y=-20}else{x=rand()*W;y=H+20}const type=rand()<(wave>2?.19:.08)?'heavy':rand()<.32?'fast':'normal';const hp=type==='heavy'?9+wave*2:type==='fast'?2+wave*.3:3.5+wave*.6;enemies.push({x,y,r:type==='heavy'?23:type==='fast'?10:14,type,hp,max:hp,speed:(type==='fast'?105:type==='heavy'?38:62)+wave*6,ang:a,wig:rand()*TAU,phase:0})}
+function shoot(){if(shootT>0)return;shootT=.17;const angle=Math.atan2(mouse.y-player.y,mouse.x-player.x);player.angle=angle;for(let k=0;k<1+(wave>=4?1:0);k++){let a=angle+(k?-.1:0);const ox=Math.cos(a)*23,oy=Math.sin(a)*23;shots.push({x:player.x+ox,y:player.y+oy,vx:Math.cos(a)*660,vy:Math.sin(a)*660,life:1.2,r:5});emit(player.x+ox,player.y+oy,4,'#f5dbac',.5)}sound(330+rand()*60,.065,'triangle',.018)}
+function useAbility(n){if(state!=='playing')return;if(n===1){if(dust<15||heart>=100)return;dust-=15;heart=Math.min(100,heart+30);emit(CX,CY,45,'#7ce9c5');flares.push({x:CX,y:CY,r:20,t:1.2,max:1.2,color:'#71e4ae'});toast='THE HEART IS HEALING';toastT=2;sound(690,.5)}else{if(dust<25)return;dust-=25;for(const e of enemies){e.hp-=10;emit(e.x,e.y,10,'#ffc78f')}enemies=enemies.filter(e=>e.hp>0);flares.push({x:CX,y:CY,r:5,t:1.5,max:1.5,color:'#f2dca9'});toast='STARBURST UNLEASHED';toastT=2;sound(120,.8,'sawtooth',.05)}}
+function update(dt){tick+=dt;for(let p of particles){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=1-dt*1.4;p.vy*=1-dt*1.4}particles=particles.filter(p=>p.life>0);for(let f of flares){f.t-=dt;f.r+=(540*dt)}flares=flares.filter(f=>f.t>0);if(toastT>0)toastT-=dt;if(state!=='playing')return;gameTime+=dt;shootT-=dt;dashT-=dt;invuln-=dt;pulseT-=dt;waveTimer+=dt;spawnT-=dt;const px=(keys.has('d')||keys.has('ArrowRight')?1:0)-(keys.has('a')||keys.has('ArrowLeft')?1:0),py=(keys.has('s')||keys.has('ArrowDown')?1:0)-(keys.has('w')||keys.has('ArrowUp')?1:0);let l=Math.hypot(px,py)||1;player.vx=px/l*250;player.vy=py/l*250;player.x=clamp(player.x+player.vx*dt,30,W-30);player.y=clamp(player.y+player.vy*dt,30,H-30);player.angle=Math.atan2(mouse.y-player.y,mouse.x-player.x);if((mouse.down||keys.has('f'))&&shootT<=0)shoot();if(keys.has(' ')&&dashT<=0){dashT=2.4;invuln=.4;player.x=clamp(player.x+Math.cos(player.angle)*95,25,W-25);player.y=clamp(player.y+Math.sin(player.angle)*95,25,H-25);emit(player.x,player.y,20,'#74dac6',.85);sound(260,.28)}
+if(spawnT<=0){spawn();spawnT=Math.max(.4,2.4-wave*.32)*between(.6,1.2)}if(waveTimer>=waveDuration){if(wave>=5){end(true);return}else{wave++;waveTimer=0;heart=Math.min(100,heart+10);dust+=10;toast=`NIGHT ${wave} — THE SHADOWS DEEPEN`;toastT=3;emit(CX,CY,65,'#f0d1a2',1.5);sound(440,.45);setTimeout(()=>sound(660,.3),130)}}
+for(let i=shots.length-1;i>=0;i--){const s=shots[i];s.x+=s.vx*dt;s.y+=s.vy*dt;s.life-=dt;let hit=false;for(let j=enemies.length-1;j>=0;j--){const e=enemies[j];if(Math.hypot(s.x-e.x,s.y-e.y)<e.r+s.r){e.hp-=2.15;emit(s.x,s.y,8,e.type==='heavy'?'#ef9b86':'#89edc8',.5);hit=true;if(e.hp<=0){enemies.splice(j,1);combo++;score+=Math.floor((e.type==='heavy'?130:60)*(1+Math.min(combo,15)*.08));pickups.push({x:e.x,y:e.y,r:7,ttl:10,spin:rand()*TAU});emit(e.x,e.y,16,'#f1bc83',.9);sound(440,.075,'triangle',.02)}else sound(250,.045,'sine',.012);break}}if(hit||s.life<0||s.x<0||s.x>W||s.y<0||s.y>H)shots.splice(i,1)}
+for(let i=enemies.length-1;i>=0;i--){const e=enemies[i],tx=CX+(e.type==='fast'?Math.sin(gameTime*2+e.wig)*40:0),ty=CY;let a=Math.atan2(ty-e.y,tx-e.x);e.wig+=dt*2;e.x+=Math.cos(a)*e.speed*dt+Math.sin(e.wig)*dt*8;e.y+=Math.sin(a)*e.speed*dt+Math.cos(e.wig)*dt*8;e.ang=a;if(Math.hypot(e.x-CX,e.y-CY)<e.r+43){heart-=e.type==='heavy'?16:7;combo=0;emit(e.x,e.y,24,'#e0a08a',1);flares.push({x:CX,y:CY,r:25,t:.6,max:.6,color:'#ed9976'});enemies.splice(i,1);sound(115,.3,'sawtooth',.04);if(heart<=0){heart=0;end(false);return}}else if(invuln<=0&&Math.hypot(e.x-player.x,e.y-player.y)<e.r+player.r){invuln=.5;player.x=clamp(player.x+Math.cos(a)*-12,20,W-20);player.y=clamp(player.y+Math.sin(a)*-12,20,H-20);dust=Math.max(0,dust-2);emit(player.x,player.y,12,'#b3e7d7',.5)}}
+for(let i=pickups.length-1;i>=0;i--){const p=pickups[i];p.ttl-=dt;p.spin+=dt*2;if(Math.hypot(p.x-player.x,p.y-player.y)<30){dust+=3;score+=10;emit(p.x,p.y,5,'#e9db8b');pickups.splice(i,1);sound(840,.07,'sine',.02)}else if(p.ttl<=0)pickups.splice(i,1)}
+heart=clamp(heart,0,100);el('heartText').textContent=`${Math.round(heart)} / 100`;el('heartFill').style.width=heart+'%';el('waveText').textContent=`NIGHT ${wave} / 5 · ${Math.ceil(waveDuration-waveTimer)}s left`;el('dustText').textContent=String(dust);el('scoreText').textContent=String(score).padStart(5,'0');el('comboText').textContent=`${combo} × bloom chain`;el('actionText').textContent=dust>=25?'STAR BURST READY · PRESS 2':dust>=15?'HEAL AVAILABLE · PRESS 1':'Harvest fallen stars';el('status').textContent=`◉ NIGHT ${wave} / 5 · ${enemies.length} SHADOWS APPROACHING`;
+}
+const line=(x1,y1,x2,y2,color,width=1)=>{ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()};
+function circle(x,y,r,fill,blur=0){ctx.save();if(blur){ctx.shadowColor=fill;ctx.shadowBlur=blur}ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();ctx.restore()}
+function render(){const t=tick;let bg=ctx.createRadialGradient(CX,CY,30,CX,CY,800);bg.addColorStop(0,'#103337');bg.addColorStop(.4,'#081b2b');bg.addColorStop(1,'#040a15');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+// Astral contour map
+ctx.save();ctx.globalAlpha=.32;ctx.strokeStyle='#368c8b';ctx.lineWidth=.7;for(let r=72;r<690;r+=58){ctx.beginPath();ctx.ellipse(CX,CY,r,r*.72,-.19,0,TAU);ctx.stroke()}ctx.restore();for(let i=0;i<28;i++){let x=i*57-50;line(x,0,x,H,'#9edacf06');line(0,i*58-100,W,i*58-100,'#9edacf06')}
+// Constellation network and stars
+for(let i=0;i<decor.length;i++){const d=decor[i],a=.35+Math.sin(t*1.5+d.tw)*.25;circle(d.x,d.y,d.r,`rgba(224,225,195,${d.a*a})`,d.r*2)}
+for(let i=0;i<roofs.length;i++){const p=roofs[i];ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.strokeStyle='rgba(123,218,193,.10)';ctx.lineWidth=1;ctx.strokeRect(-p.r,-p.r*.42,p.r*2,p.r*.84);for(let j=-2;j<=2;j++)line(-p.r,j*8,p.r,j*8,'#65bcb40a');ctx.restore()}
+// ground rift garden paths
+ctx.save();ctx.translate(CX,CY);ctx.rotate(-.19);for(let i=0;i<3;i++){ctx.beginPath();ctx.ellipse(0,0,160+i*80,(160+i*80)*.65,0,0,TAU);ctx.strokeStyle=i===0?'#e4ce8b35':'#80c5aa22';ctx.lineWidth=i===0?2:1;ctx.setLineDash([2,7]);ctx.stroke();}ctx.setLineDash([]);ctx.restore();
+// floating runes
+for(const p of runes){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a+t*.03);ctx.strokeStyle='#83b5b24f';ctx.lineWidth=1.2;ctx.strokeRect(-7,-7,14,14);line(-10,0,10,0,'#7fc2c480');line(0,-10,0,10,'#7fc2c480');ctx.restore()}
+// core halo
+for(let i=5;i>0;i--){const rr=30+i*15+Math.sin(t*1.3)*2;ctx.strokeStyle=`rgba(142,231,195,${.11/i})`;ctx.lineWidth=i===1?3:1;ctx.beginPath();ctx.arc(CX,CY,rr,0,TAU);ctx.stroke()}
+const g=ctx.createRadialGradient(CX,CY,5,CX,CY,145);g.addColorStop(0,'rgba(220,254,211,.23)');g.addColorStop(.28,'rgba(95,205,173,.14)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(CX-155,CY-155,310,310);
+// flower petals of the seed: pulsating living architecture
+for(let ring=0;ring<3;ring++)for(let i=0;i<8;i++){const a=i*TAU/8+ring*.18+t*(ring%2?.019:-.015),rad=15+ring*13;ctx.save();ctx.translate(CX+Math.cos(a)*rad*.4,CY+Math.sin(a)*rad*.4);ctx.rotate(a+Math.PI/2);ctx.fillStyle=['#e8dba656','#80dbb957','#9ce8c94c'][ring];ctx.strokeStyle='#ddedc37b';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(0,-20-ring*7,7+ring*2,21+ring*6,0,0,TAU);ctx.fill();ctx.stroke();ctx.restore()}
+circle(CX,CY,22,'#bdeaca',27);circle(CX,CY,14,'#eff1c1',32);circle(CX,CY,6,'#fff7d6',20);
+// orbit satellites
+for(let i=0;i<6;i++){let a=i*TAU/6+t*.35,r=76+Math.sin(t+i)*5;const x=CX+Math.cos(a)*r,y=CY+Math.sin(a)*r;circle(x,y,3,'#e9d5a9',8);line(x,y,CX,CY,'#d8c69715')}
+for(const p of pickups){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.spin);ctx.shadowColor='#f5dc97';ctx.shadowBlur=18;ctx.fillStyle='#edc486';ctx.beginPath();ctx.moveTo(0,-10);ctx.lineTo(7,0);ctx.lineTo(0,10);ctx.lineTo(-7,0);ctx.closePath();ctx.fill();ctx.restore()}
+for(const e of enemies){ctx.save();ctx.translate(e.x,e.y);ctx.rotate(e.ang);const heavy=e.type==='heavy',fast=e.type==='fast';circle(0,0,e.r+4,'#aa6a6840',12);ctx.fillStyle=heavy?'#5a415e':fast?'#915767':'#4b415e';ctx.strokeStyle=heavy?'#e8a4a0':'#d18c9e';ctx.lineWidth=2;ctx.beginPath();const sides=heavy?8:fast?3:6;for(let k=0;k<sides;k++){const a=k*TAU/sides+t*.3,rr=e.r*(k%2===0?1.05:.7);if(k===0)ctx.moveTo(Math.cos(a)*rr,Math.sin(a)*rr);else ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}ctx.closePath();ctx.fill();ctx.stroke();circle(0,0,heavy?7:4,'#ffb6a4',13);if(heavy){for(let k=0;k<4;k++){const a=k*TAU/4+t*.6;circle(Math.cos(a)*e.r*.7,Math.sin(a)*e.r*.7,3,'#e4b5a0')}}ctx.restore()}
+for(const s of shots){circle(s.x,s.y,s.r+2,'#a6f4d0',19);circle(s.x,s.y,s.r-1,'#fff5c9',11);line(s.x-s.vx*.022,s.y-s.vy*.022,s.x,s.y,'#9af6c8b9',3)}
+// player vessel
+ctx.save();ctx.translate(player.x,player.y);ctx.rotate(player.angle);ctx.shadowColor='#85f1cf';ctx.shadowBlur=20;ctx.fillStyle=invuln>0?'#f6e4ad':'#72d2c3';ctx.strokeStyle='#e8f7d3';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(19,0);ctx.lineTo(-12,-11);ctx.lineTo(-5,0);ctx.lineTo(-12,11);ctx.closePath();ctx.fill();ctx.stroke();ctx.shadowBlur=0;line(-9,0,-20,0,'#f0b788bb',3);ctx.restore();
+for(const f of flares){ctx.save();ctx.globalAlpha=clamp(f.t/f.max,0,1)*.5;ctx.strokeStyle=f.color;ctx.lineWidth=3;ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,TAU);ctx.stroke();ctx.restore()}
+for(const p of particles){ctx.save();ctx.globalAlpha=clamp(p.life/p.max,0,1);circle(p.x,p.y,p.r,p.color,p.r*3);ctx.restore()}
+// in-world typography
+ctx.save();ctx.textAlign='center';ctx.font='italic 14px Georgia';ctx.fillStyle='#b6d4c59e';ctx.fillText('T H E   L A S T   S E E D',CX,CY+128);ctx.font='11px system-ui';ctx.fillStyle='#adc6cb78';ctx.fillText('✧  WILD CONSTELLATION  ✧',CX,CY-147);ctx.restore();
+if(toastT>0){ctx.save();ctx.textAlign='center';ctx.globalAlpha=clamp(toastT,0,1);ctx.font='25px Georgia';ctx.shadowColor='#e8c28c';ctx.shadowBlur=14;ctx.fillStyle='#e8dcb7';ctx.fillText(toast,CX,194);ctx.restore()}
+// dramatic vignetting
+let v=ctx.createRadialGradient(CX,CY,210,CX,CY,690);v.addColorStop(0,'transparent');v.addColorStop(1,'#01030ab8');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);
+}
+function animate(ts){const dt=Math.min((ts-last)/1000||.016,.045);last=ts;update(dt);render();requestAnimationFrame(animate)}
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse.x=(e.clientX-r.left)*W/r.width;mouse.y=(e.clientY-r.top)*H/r.height});cv.addEventListener('pointerdown',e=>{if(e.button===0){mouse.down=true;if(state==='playing')shoot()}});window.addEventListener('pointerup',()=>mouse.down=false);
+window.addEventListener('keydown',e=>{if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();keys.add(e.key.toLowerCase());if(e.code==='Space')keys.add(' ');if(e.key==='Escape')pause();if(e.key==='1')useAbility(1);if(e.key==='2')useAbility(2);if(e.key.toLowerCase()==='r'&&['lost','won'].includes(state))reset()});window.addEventListener('keyup',e=>{keys.delete(e.key.toLowerCase());if(e.code==='Space')keys.delete(' ')});
+el('startBtn').addEventListener('click',()=>state==='paused'?pause():reset());makeWorld();requestAnimationFrame(animate);
+// Internal deterministic QA hooks; real game state rendered by the same engine.
+Object.defineProperty(window,'embergardenTest',{value:Object.freeze({status:()=>({state,wave,score,heart,dust,enemies:enemies.length}),start:reset,step:seconds=>{for(let t=0;t<seconds;t+=.016)update(Math.min(.016,seconds-t))},win:()=>{if(state==='playing')end(true)},lose:()=>{if(state==='playing')end(false)}}),configurable:false});
+})();
+
+</script>
+</body></html>
