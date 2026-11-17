@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-17T08:54:38Z",
-  "command_id": "OWNER-20261117-085438-ONE-MISSION-775B",
+  "issued_at_utc": "2026-11-17T10:58:41Z",
+  "command_id": "OWNER-20261117-105841-50B-OMNICHANNEL",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -26,7 +26,7 @@
     "exact_current_configured_role_namespace": "750377265360",
     "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "LATEST OWNER PRIORITY 2026-11-17 10:14 UTC: BITCOIN FIRST. Deliver real earned BTC in the owner's B1/B2 Bitcoin-mainnet receiving addresses, with target UGX 5,000,000 equivalent truly RECEIVED. Seek a real funded payer, permissioned authentic submission and acceptance before writing speculative sample work; diversify only genuinely claimable BTC jobs and obtain chain proof. Lightning rewards are BTC but require a separately owner-approved Lightning wallet/invoice; do NOT direct Lightning to bc1 mainnet addresses. No emails, no wallet spending or signing, no invented activations, no deceptive promotions. Previous owner hierarchy, one-order relay and safety requirements continue.",
+  "owner_command": "LATEST EXPLICIT HUMAN OWNER ORDER: Do real work to grow toward UGX 50,000,000,000 legitimately COLLECTED, using any lawful profitable work and ALL genuinely accessible verified payment rails: Uganda UGX bank/mobile money, cross-border bank/approved processors, BTC/BTC Lightning with separately configured invoice, ETH, USDC, stablecoins, other coins on owner-verified matching chains. BTC is not the exclusive priority anymore. Chief D may delegate operational tasks/meetings/peer audits and independently pivot buyer sectors within owner's constraints; cannot claim millions of dormant 775B worker roles as active, fake agreements, fiat/crypto receipts, or external permissions. Buyer-specific genuine sales, customer deposits and recurring collections are the leading KPI. Each director must own distinct buyer/offer and assistants must independently verify eligibility and acceptance; D10 reconciles owner-specific actual settlement. No wallet spending/signing or funding fees, no spam, no unauthorized accounts or invented payment details. ",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -159,42 +159,44 @@
     "owner_wallet_signing_spending_allowed": false
   },
   "latest_owner_priority": {
-    "issued_at_utc": "2026-11-17T10:14:16Z",
-    "exact_user_instruction": "focuson bitcoin",
-    "priority": "ACTUAL_RECEIVED_BITCOIN_NOT_GENERIC_CRYPTO_OR_PREPARED_DEMOS",
-    "near_term_target": "At least UGX 5,000,000 equivalent ACTUALLY RECEIVED in BTC; not promised, estimated or merely offered",
-    "receiving_routes": {
-      "B1": {
-        "asset": "BTC",
-        "network": "Bitcoin mainnet",
-        "address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z"
-      },
-      "B2": {
-        "asset": "BTC",
-        "network": "Bitcoin mainnet",
-        "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
-      }
+    "issued_at_utc": "2026-11-17T10:58:41Z",
+    "exact_user_instruction": "work, other coins and payment methods, dont rely ononly myorders, makeorders that will get me my 50b ugx",
+    "priority": "MULTICHANNEL_ACTUALLY_EARNED_AND_COLLECTED_VALUE_WITH_CUSTOMERS_FIRST",
+    "long_term_goal_ugx": 50000000000,
+    "not_guaranteed_or_received": true,
+    "near_term": "Secure and collect first verified customer payment; then grow real accepted contracts, retainers and honest receipts",
+    "permitted_payment_options": [
+      "UGX via owner-supplied authenticated bank transfer or mobile money",
+      "USD/EUR via verified owner-approved bank or online payment processor",
+      "BTC mainnet B1/B2 where exactly compatible",
+      "Bitcoin Lightning sats only with separate owner-approved LN receiving invoice/account",
+      "USDC on Base or other specific stablecoin contract only when exact address/network verified",
+      "ETH and other lawful assets on owner-confirmed compatible receive-only networks"
+    ],
+    "never_assume_unknown_payment_details": true,
+    "authority": "Chief D can originate subordinate operational tasks and meetings within explicit owner's commercial mission; only user originates overriding top-level directives",
+    "top_outcomes_in_order": [
+      "verified settled value with provenance and correct beneficiary",
+      "accepted legitimate payable work or retainer",
+      "external authenticated bid/quotation/engagement",
+      "completed tested buyer-specific deliverable",
+      "screened credible new customer lead"
+    ],
+    "role_rules": {
+      "each_director": "distinct actual paying customer/service opportunity, not generic brainstorming",
+      "assistant_A": "independently verify buyer legitimacy/eligibility/scope/submission and pricing",
+      "assistant_B": "independently QA deliverables/customer acceptance and settlement channel",
+      "D10": "independently verify actual payment/receivable records, per company, avoid double count",
+      "Chief_D": "chair real evidence-based coordination, report accepted revenue and cash separately"
     },
-    "lightningsats": "Bitcoin Lightning rewards require a separately authorised Lightning invoice or LN wallet. A bc1 mainnet address cannot directly receive sats through Lightning. Do not provide LN invoice or invent compatible destination.",
-    "conversion_hierarchy": [
-      "independently verified paid BTC receipt to owner-approved route",
-      "accepted BTC payable deliverable with actual buyer acceptance",
-      "authenticated live BTC submission",
-      "source-tested work with claimable verified BTC terms",
-      "unclaimed BTC listings requiring account access"
-    ],
-    "deprioritize": [
-      "USDC/altcoins unless explicit separate owner instruction",
-      "fiat collections for B/D campaign",
-      "unpayable expired/contested bounties",
-      "writing demo code with no actual authorised submission path"
-    ],
+    "registered_worker_count_proven_by_this_manifest": 0,
     "constraints": [
-      "no emails in B/D crypto operation",
-      "no wallet spending/signing",
-      "no unsolicited spam or impersonation",
-      "no invented live agents, receipts or funding"
+      "zero unsolicited bulk spam or account impersonation",
+      "no wallet sending/signatures/staking/swaps",
+      "no worker spending or unapproved business costs",
+      "no fictional bank/mobile money numbers or memos",
+      "no guessed client acceptance, income, or live 775B workers"
     ],
-    "actual_live_broadcast_claimed": false
+    "owner_wallet_directory": "https://raw.githubusercontent.com/kwesigaamon8-web/Amon-Kwesiga/main/crypto-agents/public_payment_routes.json"
   }
 }
