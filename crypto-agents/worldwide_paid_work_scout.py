@@ -114,7 +114,52 @@ def hour_rotation(items,hour,count):
     start=hour%len(items)
     return [items[(start+i)%len(items)] for i in range(min(count,len(items)))]
 
-def run(now=None,loader=fetch,config=None):
+def indexed_github_candidates(report):
+    """Re-use independent recent GitHub original-issue checks from same CI run.
+
+    'open' and a title's price are NOT proof of real funding, consent or a
+    confirmed payout. This fallback works when freelancer sites block cloud IPs.
+    """
+    if not isinstance(report,dict):
+        return {"status":"upstream_report_missing","index_candidates_unverified":[]}
+    items=report.get("candidates") or []
+    if not isinstance(items,list):
+        return {"status":"upstream_report_invalid","index_candidates_unverified":[]}
+    clean=[]
+    seen=set()
+    for row in items:
+        if not isinstance(row,dict) or row.get("status")!="POSSIBLE_PAID_TASK_UNVERIFIED":
+            continue
+        url=str(row.get("original_url") or "")
+        if not (url.startswith("https://github.com/") and "/issues/" in url):
+            continue
+        checks=row.get("checks") or {}
+        if not isinstance(checks,dict) or not checks or not all(v is True for v in checks.values()):
+            continue
+        if url in seen:continue
+        seen.add(url)
+        clean.append({
+            "title":str(row.get("title") or "")[:150],
+            "original_url":url,
+            "created_at_utc":row.get("created_at"),
+            "company_director_to_verify":str(row.get("assigned_company_director") or "Chief D"),
+            "still_open_requires_original_comment_recheck":True,
+            "advertised_reward_funded_verified":False,
+            "client_legitimacy_and_country_eligibility_verified":False,
+            "authenticated_application_sent":False,
+            "outgoing_wallet_transactions_authorized":False,
+            "income_received":False,
+        })
+    clean.sort(key=lambda x:x["created_at_utc"] or "",reverse=True)
+    return {
+        "status":"index_candidates_unverified" if clean else "none_qualified_or_source_failed",
+        "github_indexed_candidates_unverified":clean[:10],
+        "total_index_candidates_unverified":len(clean),
+        "upstream_source_errors":len(report.get("source_errors") or []),
+        "buyer_funding_and_contracts_confirmed":False,
+    }
+
+def run(now=None,loader=fetch,config=None,github_data=None):
     now=now or dt.datetime.now(dt.timezone.utc)
     conf=config or json.loads(CONFIG.read_text(encoding="utf-8"))
     assert conf["schema"]=="B1_B2_WORLDWIDE_PUBLIC_PAID_WORK_SEEDS_V1"
@@ -158,6 +203,13 @@ def run(now=None,loader=fetch,config=None):
                 "all_links_require_original_task_review":True,
                 "wallet_spend_or_account_signing_not_authorized":True,
                 "errors":check.get("error")})
+    if github_data is None:
+        github_path=OUTPUT/"new-earning-lanes.json"
+        try:
+            github_data=json.loads(github_path.read_text(encoding="utf-8"))
+        except (OSError,ValueError):
+            github_data={}
+    github_index=indexed_github_candidates(github_data)
     return {
         "schema":"CHIEF_D_WORLDWIDE_PAID_WORK_SCOUT_V1",
         "checked_at_utc":now.isoformat(),
@@ -172,6 +224,7 @@ def run(now=None,loader=fetch,config=None):
         "external_application_account_connected":False,
         "source_candidate_review":results,
         "rotated_board_discovery":discoveries,
+        "recent_github_original_issue_index":github_index,
         "next_required_human_authorization":"An actual marketplace account connection or owner's own application submission; must verify buyers and payment terms."
     }
 
@@ -200,6 +253,21 @@ def self_test():
     assert extract_public_links("https://musedin.com/jobs",fake("https://musedin.com/jobs")["body"])==[
         "https://musedin.com/jobs/123","https://musedin.com/jobs/456"]
     assert not safe_public_https("http://127.0.0.1/a")
+    fake_github={"candidates":[{
+        "status":"POSSIBLE_PAID_TASK_UNVERIFIED",
+        "original_url":"https://github.com/test/repo/issues/12",
+        "title":"$20 original script fix", "created_at":"2026-11-17T06:00:00Z",
+        "checks":{"open_issue":True,"not_a_mirror":True},
+        "assigned_company_director":"transferexperiment/D01",
+    },{
+        "status":"REVIEW_OR_REJECT",
+        "original_url":"https://github.com/test/repo/issues/13",
+        "title":"Fake", "checks":{"paid":False}
+    }],"source_errors":[]}
+    ix=indexed_github_candidates(fake_github)
+    assert ix["total_index_candidates_unverified"]==1
+    assert ix["github_indexed_candidates_unverified"][0]["income_received"] is False
+    assert ix["buyer_funding_and_contracts_confirmed"] is False
     print("WORLDWIDE_PAID_WORK_SCOUT_SELF_TEST_PASS",json.dumps({
         "distinct_fleets":2,"rotated_checks":4,"true_payer_or_payment_claims":0,
         "source_failure_reported":True,"duplicate_board_links_ignored":True}))
@@ -221,6 +289,13 @@ def save(report):
     for p in report["rotated_board_discovery"]:
         lines.append("- ["+p["source"]+"]("+p["discovery_url"]+"): "+p["status"]+
            "; "+str(len(p["latest_public_links_unverified"]))+" unverified detail links seen.")
+    ix=report["recent_github_original_issue_index"]
+    lines+=["","## Independent recent GitHub issue index (UNVERIFIED sponsor rewards)",
+            "Indexed candidate issues: "+str(ix.get("total_index_candidates_unverified",0))]
+    for row in ix.get("github_indexed_candidates_unverified",[]):
+        lines.append("- "+row["company_director_to_verify"]+
+            " to examine ["+row["title"].replace("]","")[:90]+"]("+row["original_url"]+
+            "): no proven funding, hire or usable payout.")
     lines+=["","## Real next action",
         "B1: verify still-paying real customer, Uganda eligibility, payout and actual authorized submission route.",
         "B2: supply one useful original sample and QA; DO NOT use client records until permitted.",
@@ -242,4 +317,5 @@ if __name__=="__main__":
             "sources_checked":r["rotated_source_checks"],
             "source_readable":r["source_readable_count"],
             "directory_pages_checked":len(r["rotated_board_discovery"]),
+            "github_original_issue_candidates_needing_review":r["recent_github_original_issue_index"].get("total_index_candidates_unverified",0),
             "application_sent":0,"buyer_contracts":0,"payments":0}))
