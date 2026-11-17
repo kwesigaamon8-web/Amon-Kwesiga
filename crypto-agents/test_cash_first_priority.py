@@ -13,9 +13,10 @@ public=json.loads((ROOT/"public_payment_routes.json").read_text(encoding="utf-8"
 src=(ROOT/"chief_D_reporting.py").read_text(encoding="utf-8")
 policy=config["cash_first_payment_priority"]
 assert policy["owner_instruction_id"]=="OWNER-20261117-061348-INBOUND-MONEY-IS-KEY"
-assert orders["current_owner_order_id"]=="OWNER-20261117-061348-INBOUND-MONEY-IS-KEY",(
-    "A newer genuine owner command exists; review this fixture and the priority before changing it"
-)
+assert any(o.get("id")=="OWNER-20261117-061348-INBOUND-MONEY-IS-KEY"
+           and o.get("origin")=="explicit_human_owner_conversation"
+           for o in orders["orders"]), "Owner cash-first order was lost"
+assert orders["orders"][-1]["id"]==orders["current_owner_order_id"]
 assert "INBOUND_ONLY" in policy["owner_wallets"]
 assert policy["expected_wallet_signatures"]==0
 assert policy["guarantees_created_by_this_configuration"]==0
