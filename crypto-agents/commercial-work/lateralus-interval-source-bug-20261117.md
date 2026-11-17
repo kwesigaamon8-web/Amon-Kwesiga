@@ -39,4 +39,4 @@ if __name__ == "__main__":
 - Verify these five input/expected vectors after #114 is fixed; include parser+runtime regression tests before declaring full fix.
 
 ## Commercial status
-Submitted as original evidence for the project's recurring **$10 high-signal bug report micro-bounty** if eligible. This is a source-level proof and is not an accepted bounty, merge, invoice, or payment. Public B1 native BTC mainnet receiving route if sponsor independently agrees to settle: `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z`. No email or wallet signing.
+Published **only in the owner's own GitHub repository** as original source-level evidence for possible consideration under a stated **$10 high-signal bug report micro-bounty**. An attempted external GitHub issue submission was rejected with `403 Resource not accessible by integration` on 17 Nov 2026. It has **NOT been submitted to the external project, accepted, merged, invoiced or paid**. Sponsor funding/eligibility and owner-controlled payout are unverified. Public B1 native BTC mainnet receiving route if sponsor independently agrees to settle: `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z`. No email or wallet signing.
