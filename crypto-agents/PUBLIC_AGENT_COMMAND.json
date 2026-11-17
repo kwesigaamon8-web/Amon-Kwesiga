@@ -26,7 +26,7 @@
     "exact_current_configured_role_namespace": "750377265360",
     "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "ONE MASTER ORDER: Each actually running B1/B2 director, assistant, manager or W/S/G/H worker independently finds a different legitimate crypto-paying current buyer or bounty, verifies source, payer, country eligibility, asset and network, produces original useful work, tests/QA, submits only via permitted authenticated channels, secures acceptance, then verifies incoming payment to its own owner-approved company wallet. Do not stall on one bounty. Eight existing practical research lanes are starting options, not exclusive or proof of payment. Each active worker reports task URL, genuine run ID, parent, delivered/tested artifact, actual submission URL and client acceptance, and on-chain TXID+amount or NO VERIFIED PAYMENT. Chief D compares work output and real deposits, fixes blockers and directs both company boards. Do not imply dormant IDs performed work.",
+  "owner_command": "LATEST OWNER PRIORITY 2026-11-17 10:14 UTC: BITCOIN FIRST. Deliver real earned BTC in the owner's B1/B2 Bitcoin-mainnet receiving addresses, with target UGX 5,000,000 equivalent truly RECEIVED. Seek a real funded payer, permissioned authentic submission and acceptance before writing speculative sample work; diversify only genuinely claimable BTC jobs and obtain chain proof. Lightning rewards are BTC but require a separately owner-approved Lightning wallet/invoice; do NOT direct Lightning to bc1 mainnet addresses. No emails, no wallet spending or signing, no invented activations, no deceptive promotions. Previous owner hierarchy, one-order relay and safety requirements continue.",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -157,5 +157,44 @@
     ],
     "chain_token_memo_must_be_reverified_before_any_payment": true,
     "owner_wallet_signing_spending_allowed": false
+  },
+  "latest_owner_priority": {
+    "issued_at_utc": "2026-11-17T10:14:16Z",
+    "exact_user_instruction": "focuson bitcoin",
+    "priority": "ACTUAL_RECEIVED_BITCOIN_NOT_GENERIC_CRYPTO_OR_PREPARED_DEMOS",
+    "near_term_target": "At least UGX 5,000,000 equivalent ACTUALLY RECEIVED in BTC; not promised, estimated or merely offered",
+    "receiving_routes": {
+      "B1": {
+        "asset": "BTC",
+        "network": "Bitcoin mainnet",
+        "address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z"
+      },
+      "B2": {
+        "asset": "BTC",
+        "network": "Bitcoin mainnet",
+        "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+      }
+    },
+    "lightningsats": "Bitcoin Lightning rewards require a separately authorised Lightning invoice or LN wallet. A bc1 mainnet address cannot directly receive sats through Lightning. Do not provide LN invoice or invent compatible destination.",
+    "conversion_hierarchy": [
+      "independently verified paid BTC receipt to owner-approved route",
+      "accepted BTC payable deliverable with actual buyer acceptance",
+      "authenticated live BTC submission",
+      "source-tested work with claimable verified BTC terms",
+      "unclaimed BTC listings requiring account access"
+    ],
+    "deprioritize": [
+      "USDC/altcoins unless explicit separate owner instruction",
+      "fiat collections for B/D campaign",
+      "unpayable expired/contested bounties",
+      "writing demo code with no actual authorised submission path"
+    ],
+    "constraints": [
+      "no emails in B/D crypto operation",
+      "no wallet spending/signing",
+      "no unsolicited spam or impersonation",
+      "no invented live agents, receipts or funding"
+    ],
+    "actual_live_broadcast_claimed": false
   }
 }
