@@ -17,25 +17,30 @@ OUT=Path("director-communications")
 OUT.mkdir(exist_ok=True)
 NOW=datetime.now(timezone.utc).isoformat()
 D=[f"D{i:02d}" for i in range(1,11)]
-# Ten distinct buyer lanes all require genuine Bitcoin BTC/LN payments.
-# D10 reconciles receipts independently; a listing or running model is not paid work.
+# Owner 17 November 2026: real UGX 50B long-term collected-revenue mission.
+# Assign distinct genuine paying-customer lanes, not ten variations on crypto listings.
+# D10 checks actual receipts, refunds, owner entitlement and payment rails per company.
 STRENGTHS={
-    "D01":"BTC-paying original bug fixes",
-    "D02":"Bitcoin Lightning bounty buyer verification",
-    "D03":"BTC-funded AI and agent implementation",
-    "D04":"Bitcoin merchant and invoice reconciliation",
-    "D05":"Bitcoin open-source software contribution",
-    "D06":"Bitcoin QA and technical documentation",
-    "D07":"Bitcoin direct-paid client contracts",
-    "D08":"BTC-funded developer milestones and coding tasks",
-    "D09":"Payer funding and BTC payout/acceptance legitimacy",
-    "D10":"B1/B2 own-company verified incoming Bitcoin only"
+    "D01":"Existing Uganda client receivables and approved recurring extensions",
+    "D02":"International bookkeeping and monthly finance retainers",
+    "D03":"Financial statement preparation and licensed audit partnerships",
+    "D04":"Original AI process automation and business software for paid buyers",
+    "D05":"Funded open-source bounties paid in BTC USDC other assets or fiat",
+    "D06":"QuickBooks Excel data cleanup and reconciliation implementation",
+    "D07":"Direct corporate proposals and signed recurring service contracts",
+    "D08":"Original saleable digital tools and contract development milestones",
+    "D09":"Customer legitimacy scope price terms and verified payment channels",
+    "D10":"Company-specific bank mobile money payment processor and blockchain receipt audit"
 }
 KEYWORDS={
-    "D01":["bitcoin","btc","bug"],"D02":["bitcoin","lightning","sats","ln"],
-    "D03":["bitcoin","agent","automation"],"D04":["bitcoin","accounting","reconcil","invoice"],
-    "D05":["bitcoin","bounty","open source"],"D06":["bitcoin","quality","test","documentation"],
-    "D07":["bitcoin","client","freelance","contractor"],"D08":["bitcoin","code","developer","bounty"]
+    "D01":["invoice","outstanding","client","recurring"],
+    "D02":["accounting","bookkeeping","remote","finance"],
+    "D03":["audit","financial","statement","assurance"],
+    "D04":["automation","software","ai","integration"],
+    "D05":["bounty","paid","open source","bitcoin","crypto"],
+    "D06":["quickbooks","excel","spreadsheet","reconcil","data"],
+    "D07":["contract","retainer","client","consulting"],
+    "D08":["digital","developer","software","product"]
 }
 def canonical(s):
     try:
