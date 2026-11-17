@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/paid-task-scout.yml'
       - 'crypto-agents/paid_task_scout.py'
+      - 'crypto-agents/worldwide_paid_work_seeds.json'
+      - 'crypto-agents/worldwide_paid_work_scout.py'
       - 'crypto-agents/b_inbound_buyer_watch.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/b_fleet_integrity.py'
@@ -126,6 +128,12 @@ jobs:
               f.write('- Check status: '+d['status']+'; missing issue checks: '+str(len(d['failed_issue_checks']))+'\n')
               f.write('- Confirmed contracts or payments from this check: **0**\n')
           PY
+      - name: Regression check source-backed global B1/B2 income scout without sending crypto
+        run: python crypto-agents/worldwide_paid_work_scout.py --self-test
+      - name: Rotate through global paying buyers and agent-work boards
+        run: |
+          python crypto-agents/worldwide_paid_work_scout.py
+          cat paid-opportunity-reports/worldwide.md >> "$GITHUB_STEP_SUMMARY"
       - name: Scan public listings and original sponsor issues
         env:
           GH_TOKEN: ${{ github.token }}
