@@ -22,7 +22,7 @@
       "observed_hires": null,
       "scope": "Original tutorial, runnable example, pinned test; draft already prepared on owner branch",
       "source_last_checked_utc_date": "2026-11-17",
-      "precondition": "GITHUB_ISSUE_BLOCKED_INTEGRATION_403: no email outreach allowed. Owner must claim on GitHub directly if desired; confirm BTC mainnet payout and maintainer approval.",
+      "precondition": "BLOCKED_NATIVE_RUNTIME; no email; connected GitHub cannot open third-party issue/PR. Do not repeat as an immediately collectible bounty.",
       "payout_crypto_confirmed": true,
       "payout_assets": [
         "BTC",
@@ -33,7 +33,12 @@
       "upfront_wallet_spend_required": false,
       "external_wallet_signing_or_auth_required": false,
       "application_channel": "GitHub issue/PR on original maintainer repo only; owner required",
-      "submission_sent": false
+      "submission_sent": false,
+      "eligible_for_active_pursuit": false,
+      "source_code_test_status": "BLOCKED_REAL_UPSTREAM_RUNTIME_IMPORTS: first missing ini Python module; after genuine Lateralus stdlib transpilation and PYTHONPATH fix NameError split undefined",
+      "actual_execution_evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44043117100",
+      "no_external_buyer_or_acceptance_verified": true,
+      "payout_network_verified_for_owner": false
     },
     {
       "key": "makefun-game-sol-usdc",
@@ -59,7 +64,8 @@
       "upfront_wallet_spend_required": false,
       "external_wallet_signing_or_auth_required": true,
       "application_channel": "make.fun authorized competition entry only",
-      "submission_sent": false
+      "submission_sent": false,
+      "eligible_for_active_pursuit": true
     },
     {
       "key": "makefun-tiny-chess",
@@ -85,7 +91,8 @@
       "upfront_wallet_spend_required": false,
       "external_wallet_signing_or_auth_required": true,
       "application_channel": "make.fun contest authenticated entry",
-      "submission_sent": false
+      "submission_sent": false,
+      "eligible_for_active_pursuit": true
     },
     {
       "key": "makefun-git-forge",
@@ -111,7 +118,8 @@
       "upfront_wallet_spend_required": false,
       "external_wallet_signing_or_auth_required": true,
       "application_channel": "make.fun contest authenticated entry",
-      "submission_sent": false
+      "submission_sent": false,
+      "eligible_for_active_pursuit": true
     }
   ],
   "discovery_pages": [
