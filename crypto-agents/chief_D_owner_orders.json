@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-071444-NO-EMAIL-CRYPTO-PAYOUTS",
+  "current_owner_order_id": "OWNER-20261117-075029-ONE-LINK-ALL-AI-AGENTS",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -785,6 +785,15 @@
       "relayed_by": "ChatGPT via authenticated GitHub connector",
       "instruction": "OWNER EXACT WORDING: 'no emaails payments by bitcoin orothercoins'. This supersedes prior email outreach plans: STOP all new email pitches, bounty reservation emails, email drafts, email sends and email-based settlement requests initiated for the B1/B2 crypto project. Do NOT send the pending Lateralus bounty draft. Work for legitimate opt-in crypto-paying customers and valid funded on-platform bounties accepting BTC, USDC, or other cryptocurrencies with accurately verified chain/token/recipient address. Proceed via permitted publicly documented native platform submission mechanisms and owner-controlled service pages, not emails. Where a platform requires email verification, direct the OWNER to take the explicit step; never bypass it or claim the task is submitted. No wallet transfers FROM owner-controlled addresses, no wallet signatures or authentication, no upfront payments, staking, deposits, joining fees or scams. Owner's two Bitcoin mainnet receive-only addresses remain B1 bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Other chain/token addresses need exact verification; do not suggest Bitcoin-mainnet addresses for USDC or another chain. Real income is independently confirmed correct-network incoming payment + buyer/source; a possible bounty, prepared code, GitHub activity, or email draft is NOT money. Chief D and B1/B2 operations focus on accepted on-platform work, original deliverables and incoming crypto receipts, reporting only verified approvals and deposits to the owner.",
       "status": "no_email_contact_crypto_payment_priority_recorded_external_contracts_unconfirmed",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261117-075029-ONE-LINK-ALL-AI-AGENTS",
+      "as_of_utc": "2026-11-17T07:50:29Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT via authenticated GitHub connector",
+      "instruction": "Exact owner request: 'useother platforms like github or any other discuss with other ai agentslet all billions work, a link to all of them to receive an order through you'. Chief D must use one canonical public command URL https://raw.githubusercontent.com/kwesigaamon8-web/Amon-Kwesiga/main/crypto-agents/PUBLIC_AGENT_COMMAND.json to distribute each future owner-approved order to any ACTUALLY ACTIVE B1/B2 operational worker, including all mathematically valid D/A/M/W/S/G/H roles and two company branches. A single dynamic lookup endpoint can address the entire 750,377,265,360-role namespace lazily but this DOES NOT start 750B separate AI models, send 750B messages, recruit outside agents, grant logins, provide GPU or ASIC power, or generate any crypto income. Real external independent AI collaborators are optional opt-ins only; use on-platform permitted discussion rooms on GitHub, Moltbook bounties, AIBTC and verified external agent marketplaces where real authenticated accounts exist, and request original paid-work collaborations; no spam, unsanctioned DMs, impersonation or mass begging. Offer source-backed legitimate BTC or other crypto-paying work, perform original tested deliverables, seek payer acceptance and verify incoming blockchain TXID to an owner-approved compatible receiving address. Existing owner hard limits remain binding: NO EMAILS, CRYPTO PAYMENTS ONLY, RECEIVE-ONLY WALLETS (no spending/signing/transferring/withdrawals), no upfront fees. Chief D should report actual active agent participation, authenticated discussion URLs, accepted work and real blockchain receipts only. For every new direct user order ChatGPT may update this canonical file through authorized GitHub connector, but this chat cannot by itself send notifications to dormant role IDs; actual workers must poll/read it when invoked.",
+      "status": "canonical_link_published_and_dynamic_router_code_committed_external_activations_not_claimed",
       "authenticated_external_execution_not_implied": true
     }
   ],
