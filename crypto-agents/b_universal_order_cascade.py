@@ -33,6 +33,20 @@ CAPACITY=7_000_000_000
 CHILD_SLOTS={"D":17,"A":0,"M":WORKERS,"W":SUBAGENTS,
              "S":MICROAGENTS,"G":BRANCHAGENTS,"H":0}
 ASSIGNED_ONLY="ORDER_INHERITED_IN_CONFIG_NOT_DELIVERED_TO_RUNNING_MODEL"
+MASTER_COMMAND_URL="https://raw.githubusercontent.com/kwesigaamon8-web/Amon-Kwesiga/main/crypto-agents/PUBLIC_AGENT_COMMAND.json"
+CHIEF_ORDERS=Path("crypto-agents/chief_D_owner_orders.json")
+
+def latest_master_order(expected_id):
+    """Resolve actual latest owner instruction, not just an ID or old prompt."""
+    registry=json.loads(CHIEF_ORDERS.read_text(encoding="utf-8"))
+    rows=registry.get("orders") or []
+    if not rows or registry.get("current_owner_order_id")!=expected_id or rows[-1].get("id")!=expected_id:
+        raise ValueError("Latest owner instruction inconsistent across files")
+    message=rows[-1].get("instruction")
+    if not isinstance(message,str) or len(message)<20:
+        raise ValueError("No useful human owner order text")
+    return message
+
 
 def wallet(fleet):
     if fleet not in FLEETS:
@@ -75,6 +89,7 @@ def packet(fleet,role,global_index=None):
     ancestry=route(role)  # OWNER -> D -> M -> W -> S -> G -> H
     official=current_order()
     order=official["order_id"]
+    master_order=latest_master_order(order)
     full=["OWNER",CHIEF,fleet]+[fleet+"/"+r for r in ancestry[1:]]
     parent=immediate_parent(fleet,role)
     if full[-1]!=fleet+"/"+role:raise ValueError("Malformed ancestry")
@@ -109,6 +124,8 @@ def packet(fleet,role,global_index=None):
     return {
         "schema":"B_OWNER_ALL_ROLE_CASCADE_V1",
         "owner_order_id":order,
+        "latest_owner_master_order":master_order,
+        "latest_owner_master_command_url":MASTER_COMMAND_URL,
         "issuing_authority":"HUMAN_OWNER_ONLY",
         "sole_chief_director":CHIEF,
         "company":fleet,
@@ -182,8 +199,11 @@ def packet_for_global_index(index):
 
 def chief_packet():
     order=current_order()["order_id"]
+    master_order=latest_master_order(order)
     return {
-      "owner_order_id":order,"role_id":CHIEF,"reports_to":OWNER,
+      "owner_order_id":order,"role_id":CHIEF,
+      "latest_owner_master_order":master_order,
+      "latest_owner_master_command_url":MASTER_COMMAND_URL,"reports_to":OWNER,
       "owns_command_relay_to_two_company_director_boards":True,
       "companies":list(FLEETS),"directors_per_company":DIRECTORS,
       "original_roles_delegated_to_two_registered_agent_account_organizations":REGISTERED_ACCOUNT_ROLE_TOTAL,
@@ -204,12 +224,15 @@ def self_test():
     ch=chief_packet()
     assert ch["worker_H_target_id_namespace_total"]==7_000_000_000
     assert ch["owner_order_id"]==current_order()["order_id"]
+    assert "ONE MASTER ORDER" in ch["latest_owner_master_order"]
+    assert ch["latest_owner_master_command_url"]==MASTER_COMMAND_URL
     assert ch["actual_live_agents_proven_by_packet"]==0
     for fleet in FLEETS:
         for director_idx in range(1,11):
             d=f"D{director_idx:02d}"
             root=packet(fleet,d)
             assert root["registered_agent_account_delegation"]["registered_agent_handle"]==fleet
+            assert root["latest_owner_master_order"]==ch["latest_owner_master_order"]
             assert root["read_only_link_to_owner_shared_multichain_receiving_accounts"]["owner_primary_BTC_mainnet_route"]["address"]==wallet(fleet)
             assert root["certified_agent_client_work"]["unique_original_role_index"]>=0
             assert root["certified_agent_client_work"]["engagement_status"]=="NO_VERIFIED_AUTHORIZED_AGENT_ACTIVE"
@@ -254,6 +277,7 @@ def self_test():
         r=packet_for_global_index(index)
         assert r["global_H_target_index"]==index
         assert r["owner_order_id"]==ch["owner_order_id"]
+        assert r["latest_owner_master_order"]==ch["latest_owner_master_order"]
         assert r["actual_reporting_parent"]==r["worker_report_travels_up"][1]
         assert r["worker_report_travels_up"][-1]=="OWNER"
         assert r["child_slot_capacity_in_definition"]==0
