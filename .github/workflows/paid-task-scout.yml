@@ -7,6 +7,8 @@ on:
       - 'crypto-agents/paid_task_scout.py'
       - 'crypto-agents/worldwide_paid_work_seeds.json'
       - 'crypto-agents/worldwide_paid_work_scout.py'
+      - 'crypto-agents/social_scan.py'
+      - 'crypto-agents/social_work_pipeline.py'
       - 'crypto-agents/b_inbound_buyer_watch.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/b_fleet_integrity.py'
@@ -139,6 +141,12 @@ jobs:
         run: |
           python crypto-agents/worldwide_paid_work_scout.py
           cat paid-opportunity-reports/worldwide.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify social lead screening without posting
+        run: python crypto-agents/social_work_pipeline.py --self-test
+      - name: Search public Bluesky and Reddit hiring posts for B1/B2 worldwide work
+        run: |
+          python crypto-agents/social_work_pipeline.py
+          cat paid-opportunity-reports/social-work.md >> "$GITHUB_STEP_SUMMARY"
       - name: Scan public listings and original sponsor issues
         env:
           GH_TOKEN: ${{ github.token }}
