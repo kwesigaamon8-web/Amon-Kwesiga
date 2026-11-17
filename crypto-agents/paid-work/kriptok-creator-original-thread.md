@@ -52,3 +52,9 @@ My takeaway: control is a responsibility, not a promise of profit. Sources: http
 - Re-check Superteam country rules, accepted payouts, required promotion tags, contest deadline and final prize terms at time of submission.
 - Full future completion sequence: authorised human/operator publishes thread to X → authentic community participation under contest rules → owner-approved authenticated Superteam Earn submission of live public link → sponsor's selection (if any) → correct owner-approved Solana USDC payout and separately verified receipt.
 - Owner-provided Solana receiving addresses are not assumed to be correct payout destinations without owner and network verification. The two B1/B2 BTC mainnet addresses cannot receive Solana USDC.
+
+## Independent buyer-conversion reality check — 17 November 2026
+
+The **official** https://superteam.fun/earn/listing/kriptok-creator-challenge-01/ showed **251 submitted entries** during the latest live inspection, in contrast to a stale earlier 9-submission page snapshot. The prize is **200 USDC total split between 10 winners, with a maximum of 50 USDC for first place**, and the sponsor explicitly scores audience engagement/conversation on X and Telegram at **40%**. This is a low-probability competitive promotional contest, **not** an immediately collectible paid work order. A draft thread passing length/QA checks is not an entry, accepted job or earned payout. Its marketing promise must not be ranked above identified consenting buyers, accepted work or direct-pay contracts.
+
+Status: **DEPRIORITIZED FOR URGENT CASH; source sample retained only.** No authenticated X/Telegram/Superteam submissions were made. No coin receipt was verified.
