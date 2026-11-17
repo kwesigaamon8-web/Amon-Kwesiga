@@ -17,18 +17,25 @@ OUT=Path("director-communications")
 OUT.mkdir(exist_ok=True)
 NOW=datetime.now(timezone.utc).isoformat()
 D=[f"D{i:02d}" for i in range(1,11)]
+# Ten distinct buyer lanes all require genuine Bitcoin BTC/LN payments.
+# D10 reconciles receipts independently; a listing or running model is not paid work.
 STRENGTHS={
-    "D01":"BTC-paid work","D02":"USDC contracts","D03":"AI-agent tasks",
-    "D04":"Accounting and bookkeeping","D05":"Open source bounties",
-    "D06":"AI evaluation microtasks","D07":"Direct clients",
-    "D08":"Competitions and grants","D09":"Payer and payment legitimacy",
-    "D10":"Mission quality and earnings accountability"
+    "D01":"BTC-paying original bug fixes",
+    "D02":"Bitcoin Lightning bounty buyer verification",
+    "D03":"BTC-funded AI and agent implementation",
+    "D04":"Bitcoin merchant and invoice reconciliation",
+    "D05":"Bitcoin open-source software contribution",
+    "D06":"Bitcoin QA and technical documentation",
+    "D07":"Bitcoin direct-paid client contracts",
+    "D08":"BTC-funded developer milestones and coding tasks",
+    "D09":"Payer funding and BTC payout/acceptance legitimacy",
+    "D10":"B1/B2 own-company verified incoming Bitcoin only"
 }
 KEYWORDS={
-    "D01":["bitcoin","btc"],"D02":["usdc","stablecoin"],
-    "D03":["agent","automation"],"D04":["accounting","bookkeep","quickbooks","payroll"],
-    "D05":["bounty","open source"],"D06":["annotation","model evaluation"],
-    "D07":["client","freelance","contractor"],"D08":["grant","prize","competition"]
+    "D01":["bitcoin","btc","bug"],"D02":["bitcoin","lightning","sats","ln"],
+    "D03":["bitcoin","agent","automation"],"D04":["bitcoin","accounting","reconcil","invoice"],
+    "D05":["bitcoin","bounty","open source"],"D06":["bitcoin","quality","test","documentation"],
+    "D07":["bitcoin","client","freelance","contractor"],"D08":["bitcoin","code","developer","bounty"]
 }
 def canonical(s):
     try:
