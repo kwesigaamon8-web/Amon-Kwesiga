@@ -140,5 +140,22 @@
     "no_wallet_spending_or_signing": true,
     "actual_runtime_recipients_automatic": false,
     "demand_receipts_not_activity_counts": true
+  },
+  "published_complete_owner_address_reference": {
+    "updated_on": "2026-11-17",
+    "url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/COMMERCE-PAYMENT-NOTICE.md",
+    "machine_readable_url": "https://raw.githubusercontent.com/kwesigaamon8-web/Amon-Kwesiga/main/crypto-agents/public_payment_routes.json",
+    "previously_shared_distinct_public_receiving_candidates": 16,
+    "counts": {
+      "self_custody": 10,
+      "exchange_custodial_unverified_do_not_send": 6
+    },
+    "any_custodial_auto_deposit_authorized": false,
+    "approved_B1_B2_native_BTC_mainnet_routes_only": [
+      "BTC-01",
+      "BTC-02"
+    ],
+    "chain_token_memo_must_be_reverified_before_any_payment": true,
+    "owner_wallet_signing_spending_allowed": false
   }
 }
