@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proof-to-Payout Capsule — Prototype</title>
+<style>
+:root{font:16px system-ui,-apple-system,Segoe UI,sans-serif;color:#17212b;background:#f5f7fb}
+*{box-sizing:border-box}body{max-width:1000px;margin:0 auto;padding:25px 15px}
+h1{font-size:2rem;margin-bottom:0}p{line-height:1.55}.muted{color:#536171}
+.panel{background:white;border:1px solid #d5dce5;border-radius:14px;padding:20px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:block;font-weight:600;font-size:14px}input,textarea,select{display:block;width:100%;margin-top:5px;padding:10px;border:1px solid #b9c5d2;border-radius:7px;font:inherit}
+textarea{min-height:80px}button{padding:11px 16px;border-radius:7px;border:0;background:#15395b;color:white;cursor:pointer;margin:4px 8px 4px 0;font-weight:600}button.secondary{background:#56667a}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5f9;padding:15px;border-radius:8px}
+.stage{display:inline-block;padding:6px 9px;margin:5px 5px 5px 0;border:1px solid #bec9d5;border-radius:20px;font-size:13px}
+.warn{border-left:4px solid #ad742a;padding-left:13px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
+</style>
+</head><body>
+<h1>Proof-to-Payout Capsule</h1>
+<p class="muted">Experimental open-source receipt builder for tiny paid projects. Keep offer, delivery, buyer acceptance and payment evidence separate. It cannot prove who controls a wallet or that a buyer paid you.</p>
+<section class="panel"><h2>1. Record the opportunity and work</h2><div class="grid">
+<label>Project / task name<input id="project" placeholder="Example: Python CSV cleaner"></label>
+<label>Buyer / public project (no private data)<input id="buyer" placeholder="Example: Example Org"></label>
+<label>Public offer URL<input id="offer" type="url" placeholder="https://..."></label>
+<label>Offered amount and currency<input id="amount" placeholder="Example: 0.0002 BTC"></label>
+<label>Deliverable URL<input id="deliverable" type="url" placeholder="https://github.com/..."></label>
+<label>Buyer acceptance evidence URL<input id="acceptance" type="url" placeholder="https://..."></label>
+<label>BTC mainnet receiving address<input id="address" placeholder="bc1..."></label>
+<label>BTC mainnet transaction ID (if genuinely known)<input id="txid" placeholder="64-character transaction hash"></label>
+</div><label>Scope and acceptance criteria<textarea id="scope" placeholder="What precisely must the buyer accept?"></textarea></label>
+<button id="make">Build evidence capsule</button><button class="secondary" id="download">Download JSON</button>
+</section>
+<section class="panel"><h2>2. Evidence classification</h2>
+<div id="stages"></div><p class="warn">All fields are manually entered claims. A TXID must be independently checked for the specified output/address, amount, confirmations and payer relationship. A blockchain transfer alone does not prove payment for the project. This app sends no data to a server.</p>
+<pre id="preview">Enter task details and click “Build evidence capsule”.</pre>
+</section>
+<script>
+"use strict";
+const ids=["project","buyer","offer","amount","deliverable","acceptance","address","txid","scope"];
+let record=null;
+const el=id=>document.getElementById(id);
+function safeUrl(s){try{const x=new URL(s);return ["https:","http:"].includes(x.protocol)?x.href:null}catch{return null}}
+function makeRecord(){
+  const r={schema:"proof-to-payout-capsule/v0.1",created_at:new Date().toISOString()};
+  for(const id of ids)r[id]=el(id).value.trim();
+  r.links={offer:safeUrl(r.offer),deliverable:safeUrl(r.deliverable),acceptance:safeUrl(r.acceptance)};
+  r.evidence_level={
+    offer:r.links.offer?"PUBLIC OFFER LINK SUPPLIED":"NOT DOCUMENTED",
+    delivered:r.links.deliverable?"DELIVERABLE LINK SUPPLIED":"NOT DOCUMENTED",
+    accepted:r.links.acceptance?"ACCEPTANCE LINK SUPPLIED; NOT INDEPENDENTLY VERIFIED":"NOT DOCUMENTED",
+    received:/^[a-fA-F0-9]{64}$/.test(r.txid)&&r.address.startsWith("bc1")?"POSSIBLE BTC TXID; NOT VERIFIED":"NOT VERIFIED"
+  };
+  r.warning="This is a self-reported evidence capsule, NOT independent payment verification.";
+  return r;
+}
+function render(){
+ record=makeRecord();
+ el("preview").textContent=JSON.stringify(record,null,2);
+ const stages=el("stages");stages.textContent="";
+ for(const [name,status] of Object.entries(record.evidence_level)){
+  const span=document.createElement("span");span.className="stage";span.textContent=name.toUpperCase()+": "+status;stages.appendChild(span);
+ }
+}
+el("make").addEventListener("click",render);
+el("download").addEventListener("click",()=>{
+ render();
+ const blob=new Blob([JSON.stringify(record,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download="proof-to-payout-capsule.json";a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),500);
+});
+</script></body></html>
