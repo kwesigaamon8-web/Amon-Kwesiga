@@ -1,0 +1,41 @@
+name: Chief D Learn From Failures — Evidence, Repair, Retest
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/chief-d-learn-from-failures.yml'
+      - 'crypto-agents/failure_learning_loop.py'
+  schedule:
+    - cron: '37 */3 * * *'
+concurrency:
+  group: chief-d-failure-learning
+  cancel-in-progress: false
+permissions:
+  actions: read
+  contents: read
+jobs:
+  actual-failure-feedback:
+    name: Inspect failed jobs and generate actionable next corrections
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and run deterministic failure classification self-test
+        run: python -m py_compile crypto-agents/failure_learning_loop.py
+      - name: Read actual recent GitHub workflow failures and classify repeats
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python crypto-agents/failure_learning_loop.py
+          cat failure-learning-reports/CHIEF_D_FAILURE_REVIEW.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive repair evidence for directors and assistants
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chief-D-failure-learning
+          path: failure-learning-reports/
+          if-no-files-found: warn
+          retention-days: 15
