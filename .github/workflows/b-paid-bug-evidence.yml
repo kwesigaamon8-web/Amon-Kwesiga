@@ -1,0 +1,21 @@
+name: B1 B2 BTC Microbounty Evidence
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/paid-work/reproduce_lateralus_quoted_boolean.py'
+      - '.github/workflows/b-paid-bug-evidence.yml'
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute exact upstream-source bug reproducer
+        run: python crypto-agents/paid-work/reproduce_lateralus_quoted_boolean.py
