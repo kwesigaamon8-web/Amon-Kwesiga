@@ -23,8 +23,6 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
-      - key: BOT_SERVICE_ENABLED
-        value: "0"
     buildCommand: pip install --no-cache-dir -r requirements.txt
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 30
     healthCheckPath: /health
