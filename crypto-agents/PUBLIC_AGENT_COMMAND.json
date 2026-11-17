@@ -215,5 +215,17 @@
     "failure_dashboard": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/chief-d-learn-from-failures.yml",
     "financial_success_separate_from_ci_success": true,
     "applied_research_can_not_impersonate_actual_deployed_agents": true
+  },
+  "chief_D_strict_execution_order": {
+    "id": "CHIEF-D-FIELD-ORDER-20261117-111448",
+    "issued_at_utc": "2026-11-17T11:14:48Z",
+    "status": "PUBLISHED_TO_SOURCE; LIVE EXECUTION MUST BE VERIFIED BY JOB LOGS",
+    "codename": "OPERATION COLLECT",
+    "url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/CHIEF_D_OPERATION_COLLECT.json",
+    "directive": "MILITARY-STYLE OPERATIONAL PRIORITY: REAL BUYERS, AUTHORIZED DELIVERY, VERIFIED COLLECTIONS. Every actual B1/B2 director owns a distinct customer or paid-service lane; both assistants independently verify buyer and test acceptance. D10 verifies bank/mobile/processor/compatible crypto payments. Chief D rejects phantom 775B model activations, fictional submissions and unproved earnings. Repeat failures require specific cause, corrective change and passing retest; stop repeated unchanged failed attempts. Real 30-minute activated-worker cycle 5m buyer evidence +20m practical commercial execution +5m QA/report. No illegal, unsafe or unauthorized spending or outreach.",
+    "evidence_gate": "One actual workflow job or model invocation plus buyer, original deliverable, authenticated submission, acceptance and settled payment proof at the appropriate stage; never conflate them.",
+    "mission_ugx_collected_long_term": 50000000000,
+    "equal_payment_methods": "approved UGX bank/mobile money, card/processor, USD/EUR, Bitcoin or correctly network-verified other crypto",
+    "current_real_collections_verified_by_instruction": "NOT_ASSESSED"
   }
 }
