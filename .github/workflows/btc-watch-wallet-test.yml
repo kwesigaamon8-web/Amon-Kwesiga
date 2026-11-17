@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test BTC Bech32, BIP21 invoices and transaction checks
-        run: node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/wallet_core.test.mjs
+      - name: Test wallet plus accounting-safe read-only transaction allocation ledger
+        run: node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/*.test.mjs
       - name: Summarize verified scope without claiming money
         run: |
           echo "Tested receive-only Bitcoin mainnet wallet primitives." >> "$GITHUB_STEP_SUMMARY"
