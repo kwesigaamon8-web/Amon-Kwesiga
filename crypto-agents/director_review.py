@@ -71,9 +71,12 @@ for d in directors:
         "director_id": d,
         "director_name": ROLE_NAMES[d],
         "owner_brief_version": OWNER_BRIEF["version"],
-        "owner_profile_understood": OWNER_BRIEF["professional_profile"],
-        "owner_objectives": OWNER_BRIEF["objectives"],
-        "owner_working_style": OWNER_BRIEF["working_style"],
+        # Keep legacy output fields for downstream reports but draw their
+        # values from the current pseudonymous, commercial-purpose brief.
+        # Do not resurrect removed personal/professional profile fields.
+        "owner_profile_understood": OWNER_BRIEF["visibility_note"],
+        "owner_objectives": OWNER_BRIEF["owner_mission"],
+        "owner_working_style": OWNER_BRIEF["approach"],
         "review_timestamp_utc": now,
         "own_research_report_present": sources[0] is not None,
         "assistant_a_report_present": sources[1] is not None,
