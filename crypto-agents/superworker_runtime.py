@@ -62,16 +62,30 @@ def run():
                 "private signing, no fees or wallet spending.")
         if role=="D6-reviewer":
             prompt+="\nResearcher outputs to review:\n"+json.dumps(outputs,ensure_ascii=False)[:16000]
-        body=json.dumps({"model":model,"messages":[{"role":"system","content":"You are an independent assistant. Do original useful work. Be truthful and cite evidence. Never claim a payment, active worker, or successful action without proof."},{"role":"user","content":prompt}],"temperature":0.3}).encode()
-        request=urllib.request.Request(endpoint+"/chat/completions",data=body,headers={"Authorization":"Bearer "+key,"Content-Type":"application/json"},method="POST")
         record={"worker_id":wid,"role":role,"task":task,"start_utc":start,"status":"FAILED",
                 "order_link":COMMAND_URL,"owner_order_id":current_order["id"],
                 "wallet_transactions_authorized":False,"email_contact_authorized":False}
         try:
-            with urllib.request.urlopen(request,timeout=45) as response:
-                data=json.loads(response.read(300000))
+            # A newer Google Gemini project can receive HTTP 404 for legacy 2.5.
+            # Retry once with Google's documented 3.8 Flash compatibility model.
+            # This is one bounded retry per pilot worker, not another invented worker.
+            candidates=[model]
+            if model=="gemini-2.5-flash" and endpoint=="https://generativelanguage.googleapis.com/v1beta/openai":
+                candidates.append("gemini-3.8-flash")
+            for attempted_model in candidates:
+                body=json.dumps({"model":attempted_model,"messages":[{"role":"system","content":"You are an independent assistant. Do original useful work. Be truthful and cite evidence. Never claim a payment, active worker, or successful action without proof."},{"role":"user","content":prompt}],"temperature":0.3,"max_tokens":1600}).encode()
+                request=urllib.request.Request(endpoint+"/chat/completions",data=body,headers={"Authorization":"Bearer "+key,"Content-Type":"application/json"},method="POST")
+                try:
+                    with urllib.request.urlopen(request,timeout=45) as response:
+                        data=json.loads(response.read(300000))
+                    break
+                except urllib.error.HTTPError as e:
+                    if e.code==404 and attempted_model!=candidates[-1]:
+                        print(json.dumps({"worker_id":wid,"retry_model":candidates[-1],"reason":"legacy model returned 404"}))
+                        continue
+                    raise
             output=data["choices"][0]["message"]["content"]
-            record.update({"status":"COMPLETED","end_utc":utc(),"provider_response_id":data.get("id"),"model":data.get("model",model),"output":output,"output_sha256":hashlib.sha256(output.encode()).hexdigest()})
+            record.update({"status":"COMPLETED","end_utc":utc(),"provider_response_id":data.get("id"),"model":data.get("model",attempted_model),"output":output,"output_sha256":hashlib.sha256(output.encode()).hexdigest()})
             outputs.append({"worker_id":wid,"output":output})
         except urllib.error.HTTPError as e:
             failures+=1
