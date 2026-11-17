@@ -81,8 +81,8 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
             # Multiple already-linked pull requests are evidence that a
             # first-merged paid fix may have been taken. Do not send model workers
             # into competing duplicate submissions without sponsor reconfirmation.
-            text="\\n".join(str(c.get("body") or "")[:2000] for c in comments if isinstance(c,dict))
-            pr_numbers=set(re.findall(r"(?i)(?:/pull/|\\bPR\\s*#|\\bpull request\\s*#)\\s*(\\d+)",text))
+            text="\n".join(str(c.get("body") or "")[:2000] for c in comments if isinstance(c,dict))
+            pr_numbers=set(re.findall(r"(?i)(?:/pull/|\bPR\s*#|\bpull request\s*#)\s*(\d+)",text))
             if len(pr_numbers)>=2:
                 skipped.append({"url":url,"reason":"MULTIPLE_EXISTING_PR_CLAIMS_REQUIRES_SPONSOR_RECONFIRMATION",
                                 "existing_pr_count_at_least":len(pr_numbers)})
