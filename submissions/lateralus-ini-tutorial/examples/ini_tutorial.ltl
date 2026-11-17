@@ -1,0 +1,29 @@
+// Original stdlib.ini tutorial example (synthetic, contains no keys or secrets).
+// Based on upstream bad-antics/lateralus-lang stdlib/ini.ltl.
+// Actual upstream Lateralus compiler execution is STILL PENDING.
+
+import ini
+
+fn main() {
+    let sample = "# demo configuration\n[app]\nname = demo\nthreads = 4\nenabled = yes\n\n[paths]\ncache = /tmp/data\n"
+    let cfg = ini.parse(sample)
+
+    print(ini.get(cfg, "app", "name", "missing"))
+    print(str(ini.get_int(cfg, "app", "threads", 0)))
+
+    if ini.get_bool(cfg, "app", "enabled", false) {
+        print("enabled=yes")
+    } else {
+        print("enabled=no")
+    }
+
+    print(ini.get(cfg, "paths", "cache", "missing"))
+
+    if ini.has_key(cfg, "app", "missing") {
+        print("missing=present")
+    } else {
+        print("missing=absent")
+    }
+}
+
+main()
