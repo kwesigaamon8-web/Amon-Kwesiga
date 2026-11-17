@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-105841-50B-OMNICHANNEL",
+  "current_owner_order_id": "OWNER-20261117-120707-3M-CRYPTO-DIRECT",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -813,6 +813,16 @@
       "instruction": "ONE MASTER ORDER — 50B UGX MULTICHANNEL REVENUE. HUMAN OWNER'S NEW TOP PRIORITY — build toward UGX 50,000,000,000 in GENUINELY EARNED AND COLLECTED money through lawful B1/B2/Chief D operations. The owner explicitly lifts the earlier BTC-only and crypto-only channel restriction: accept real clients and payments in UGX, USD, EUR, native Bitcoin, ETH, stablecoins and other legitimate coins on a separately verified matching network; payment may use a payer-approved regulated bank transfer, Ugandan mobile money, authorized online invoicing/payment processing or receiving-only approved crypto wallet. Never fabricate an owner bank/mobile-money account, wallet network/memo, accepted job, or transfer. The UGX 50B is a long-term ambition, not currently contracted/received or promised soon; the immediate practical objective is first verified customer acceptance, deposit or paid contract and then repeatable monthly collections. Clearly report cash collected versus pipeline/quotes.\nChief D has standing owner-approved discretion to propose and assign operational task orders, role-specific objectives, meetings, peer review and pragmatic pivots without waiting for another user prompt. Such delegated orders must remain subordinate to the actual owner's latest instructions, applicable law, contract authority and platform permissions. Chief D cannot rewrite human owner authority or authorize expenditure/wallet signing, access to absent accounts, hiring commitments or false representations.\nEach company (B1 transferexperiment and B2 BountyScoutAI) directs its 10 director roles and two assistants per director on distinct, buyer-specific revenue lanes: existing customer receivable confirmation; signed recurring bookkeeping/compliance services; audit/review opportunities with licensed signing partners; AI/software and automated testing for paying clients; data conversion and financial reconciliation implementation; Bitcoin/crypto paid open-source and QA tasks; authentic global contract work; digital subscriptions or original software products with real demand; permitted affiliate/referral partnerships with disclosure; collection and bank/crypto receipt evidence. Assistant A verifies real customer need, eligibility, terms and allowed outreach; assistant B tests work quality, milestones, customer acceptance and payment information. D10 in each fleet reconciles approved payments and excludes double counts/refunds, separately maintaining actual UGX and crypto network credit proof.\nUse existing actual allowed accounts and warm counterparties for buyer negotiations, respecting earlier specific no-cold-spam/no unsolicited bulk email constraints. Do not send crypto-mission email blasts. External contact must be relevant, authenticated, consent-permitted and truthful. Real wallet payments: never sign, send, stake or swap from owner's wallet; no upfront fees, unsafe investments, gambling, fake identities, false employment claims, unauthorised agents or use of external mining hardware. A configured namespace of 750,377,265,360 roles is NOT active processes; activate only real approved runnable jobs.\nExecution order per director: identify buyer and their specific willingness to pay -> verify service scope and channel -> original deliverable/test or credible quotation -> real authorised submission/negotiation -> signed or documented acceptance -> payment instructions on owner-approved network/bank -> verified settled money -> repeat or expand. Directors independently review each other's findings in a meeting and Chief D sends a concise owner report listing verified cash, accepted billables, submitted proposals and the largest evidence-based blocker. Prioritise a real payer over hypothetical multibillion virtual worker counts.\nLATEST USER OPERATIONAL RESTRICTION 2026-11-17 11:56 UTC: LEAVE EMAILS ALONE. DO NOT ACCESS OR PROCESS GMAIL, SEND EMAILS OR AUTOMATE EMAIL MONITORING. FOR THIS CRYPTO EARNING MISSION, PRIORITIZE ACTUALLY EARNED PAYMENTS SENT TO OWNER SHARED B1/B2 BTC MAINNET ADDRESSES AFTER REAL CUSTOMER ACCEPTANCE. Other published network and exchange routes stay HOLD pending exact owner-verified compatibility. No Bitcoin Lightning payout can go directly to a bc1 mainnet address. Stop stale/unfunded/noncash bounties; only authentic authorized work, payout proof, no wallet spending, signing, spam or false reports. Long-term UGX 50B goal remains an aspiration, not received income.",
       "status": "new owner-authorized omnichannel 50B growth order pending individual real worker runtime delivery",
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261117-120707-3M-CRYPTO-DIRECT",
+      "origin": "explicit_human_owner_conversation",
+      "as_of_utc": "2026-11-17T12:07:07Z",
+      "relayed_by": "ChatGPT authorized GitHub write",
+      "instruction": "ONE MASTER ORDER — RECOVER REAL CRYPTO PAYMENTS WORTH UGX 3,000,000 TO OWNER SHARED VERIFIED RECEIVING ADDRESSES. Chief D and both B1/B2 boards SHALL pursue genuine buyer-defined funded work and verified direct crypto transfer only, not fiat or user accounting client collections. Do not touch, search, send, read, monitor, draft or rely on Gmail or any email. Full executable 10-director orders, 40 assistants across 2 companies, live source checks, payout-asset network gates, repeated-failure learning, deadlines and receipt standard are at crypto-agents/OPERATION_3M_DIRECT_CRYPTO.json. B1 Bitcoin mainnet bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 Bitcoin mainnet bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Other chain candidates only if exact asset, network, wallet ownership and memos are independently reconfirmed for genuine payer. Mainnet bitcoin cannot directly receive Lightning or Stacks sBTC. Every actual activated director picks ONE distinct live credible funded buyer; assistant A challenges funding, authenticity, eligible region and current acceptance; assistant B tests original work, authenticated submission and settlement; D10 verifies independently received money. No 775B virtual identities counted as active jobs. NO invented payer, no spam, no unauthorized wallet signatures, transactions, fees, account registration or token transfers. Owner UGX 50B long-term goal remains strategic; UGX 3M crypto receipt is the new near-term operating target, not verified or guaranteed. Correct failed workflows or switch to credible alternative; only genuine payer acceptance and receipt are success.",
+      "instruction_scope": "operational parent authority to Chief D, subordinate to human owner and safety/payment authorization",
+      "status": "QUEUED_EXECUTION_IN_ACTUAL_GITHUB_WORKFLOWS_NOT_PAYMENT_RECEIVED",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -1126,10 +1136,11 @@
     "chief_D_operational_discretion_from_latest_owner_order": true
   },
   "latest_explicit_user_operational_constraint": {
-    "as_of_utc": "2026-11-17T11:56:48Z",
-    "emails": "DO_NOT_ACCESS_OR_SEND",
-    "crypto_payments": "CRYPTO_FIRST_OWNER_SHARED_B1_B2_MAINNET_OR_EXPLICITLY_RECONFIRMED_OTHER_ROUTES_ONLY",
-    "settlement_proof_required": true,
-    "retroactive_payment_claims": false
+    "as_of_utc": "2026-11-17T12:07:07Z",
+    "emails": "ABSOLUTELY_DO_NOT_ACCESS",
+    "target_asset": "LEGITIMATELY_EARNED_CRYPTO_IN_OWNER_SHARED_CORRECT_NETWORK_RECEIVING_ADDRESSES",
+    "target_ugx_equivalent": 3000000,
+    "no_spending": true,
+    "success_proof": "accepted work plus confirmed owner wallet settlement"
   }
 }
