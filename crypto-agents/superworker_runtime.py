@@ -8,6 +8,22 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT=Path("superworker-evidence")
+COMMAND_URL="https://raw.githubusercontent.com/kwesigaamon8-web/Amon-Kwesiga/main/crypto-agents/PUBLIC_AGENT_COMMAND.json"
+COMMAND_PATH=Path("crypto-agents/PUBLIC_AGENT_COMMAND.json")
+CHIEF_ORDERS_PATH=Path("crypto-agents/chief_D_owner_orders.json")
+def owner_command():
+    """Load the exact authenticated-repo order before any actual worker invocation."""
+    d=json.loads(COMMAND_PATH.read_text(encoding="utf-8"))
+    c=json.loads(CHIEF_ORDERS_PATH.read_text(encoding="utf-8"))
+    if not d.get("command_id") or not d.get("hard_constraints") or not c.get("current_owner_order_id"):
+        raise ValueError("Owner command is not current and complete")
+    if not c["orders"] or c["orders"][-1]["id"]!=c["current_owner_order_id"]:
+        raise ValueError("Latest owner command does not match chief order history")
+    if "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW" not in d["hard_constraints"]:
+        raise ValueError("No-email owner boundary missing")
+    return {"id":c["current_owner_order_id"],"direct_user_instruction":c["orders"][-1]["instruction"],
+            "public_link":COMMAND_URL,"hard_limits":d["hard_constraints"]}
+
 ROLES=["B1-researcher","B2-researcher","D6-reviewer"]
 TASKS=[
  "Find three legitimate public paid tasks that explicitly permit AI-assisted original deliverables. Provide source URLs and verification steps. Do not contact buyers or claim payment.",
@@ -16,6 +32,11 @@ TASKS=[
 ]
 def utc():return datetime.now(timezone.utc).isoformat()
 def run():
+    current_order=owner_command()
+    print(json.dumps({"public_owner_command_link":current_order["public_link"],
+        "current_owner_order_id":current_order["id"],
+        "real_workers_receive_on_actual_invocation_only":True,
+        "configured_role_namespace_not_live_agent_count":750377265360}))
     endpoint=os.getenv("SUPERWORKER_API_URL","").rstrip("/")
     model=os.getenv("SUPERWORKER_MODEL","")
     key=os.getenv("SUPERWORKER_API_KEY","")
@@ -30,12 +51,22 @@ def run():
     for i,(role,task) in enumerate(zip(ROLES,TASKS)):
         wid=f"pilot-{i+1}"
         start=utc()
-        prompt=task
+        prompt=("CURRENT HUMAN OWNER INSTRUCTION "+current_order["id"]+"\n"+
+                current_order["direct_user_instruction"][:2600]+"\n"+
+                "Canonical command: "+current_order["public_link"]+"\n"+
+                "Non-negotiable limits: "+", ".join(current_order["hard_limits"])+"\n"+
+                "Work task: "+task+"\n"+
+                "Only actual authenticated allowed external posts count as contacts. "+
+                "Only independently verified incoming onchain settled crypto to correct "+
+                "owner-approved chain/address counts as received money. No email, no "+
+                "private signing, no fees or wallet spending.")
         if role=="D6-reviewer":
             prompt+="\nResearcher outputs to review:\n"+json.dumps(outputs,ensure_ascii=False)[:16000]
         body=json.dumps({"model":model,"messages":[{"role":"system","content":"You are an independent assistant. Do original useful work. Be truthful and cite evidence. Never claim a payment, active worker, or successful action without proof."},{"role":"user","content":prompt}],"temperature":0.3}).encode()
         request=urllib.request.Request(endpoint+"/chat/completions",data=body,headers={"Authorization":"Bearer "+key,"Content-Type":"application/json"},method="POST")
-        record={"worker_id":wid,"role":role,"task":task,"start_utc":start,"status":"FAILED"}
+        record={"worker_id":wid,"role":role,"task":task,"start_utc":start,"status":"FAILED",
+                "order_link":COMMAND_URL,"owner_order_id":current_order["id"],
+                "wallet_transactions_authorized":False,"email_contact_authorized":False}
         try:
             with urllib.request.urlopen(request,timeout=45) as response:
                 data=json.loads(response.read(300000))
