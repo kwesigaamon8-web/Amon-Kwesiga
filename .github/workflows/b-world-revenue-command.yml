@@ -17,6 +17,8 @@ on:
       - 'crypto-agents/b_delegated_prospect_batch.py'
       - 'crypto-agents/b_shift_accountability.py'
       - 'crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md'
+      - 'crypto-agents/public_payment_routes.json'
+      - 'crypto-agents/test_public_payment_routes.py'
       - 'crypto-agents/owner_order_distribution.py'
       - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/chief_D_owner_orders.json'
@@ -55,6 +57,7 @@ jobs:
           python crypto-agents/b_70b_assistant_24_7.py --index 69999999999 > chief-D-global/B2-assistant-24-7-last-index.json
           python crypto-agents/b_certified_agent_service_router.py --self-test
           python crypto-agents/b_owner_account_link.py --self-test
+          python crypto-agents/test_public_payment_routes.py
           python crypto-agents/b_registered_account_worker_map.py --self-test
           python crypto-agents/b_delegated_prospect_batch.py --self-test
           python crypto-agents/b_shift_accountability.py --self-test
