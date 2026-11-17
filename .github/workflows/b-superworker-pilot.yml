@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 8
     env:
       SUPERWORKER_API_URL: ${{ vars.SUPERWORKER_API_URL }}
-      SUPERWORKER_MODEL: ${{ vars.SUPERWORKER_MODEL }}
+      SUPERWORKER_MODEL: ${{ vars.SUPERWORKER_API_URL == 'https://generativelanguage.googleapis.com/v1beta/openai' && 'gemini-3.8-flash' || vars.SUPERWORKER_MODEL }}
       SUPERWORKER_API_KEY: ${{ secrets.SUPERWORKER_API_KEY }}
     steps:
       - uses: actions/checkout@v4
