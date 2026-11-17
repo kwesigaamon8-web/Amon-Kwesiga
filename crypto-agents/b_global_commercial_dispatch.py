@@ -43,8 +43,23 @@ GLOBAL_ORIGINAL_BUYER_LEADS=(
 )
 PENDING_VERIFICATION="NOT_EVIDENCED"
 
+FIELD_ORDER_PATH=Path("crypto-agents/CHIEF_D_OPERATION_COLLECT.json")
+def field_orders():
+    """Operational orders for actual runnable tasks, not evidence of live models."""
+    doc=json.loads(FIELD_ORDER_PATH.read_text(encoding="utf-8"))
+    if doc["subordinate_to"]!="OWNER-20261117-105841-50B-OMNICHANNEL":
+        raise ValueError("Field order is not subordinate to active human owner mission")
+    if len(doc["directors"])!=10 or {d["role"] for d in doc["directors"]}!={f"D{i:02d}" for i in range(1,11)}:
+        raise ValueError("Field order must assign exactly ten distinct director duties")
+    if doc["sprint"]["duration_minutes"]!=30:
+        raise ValueError("A real 30 minute sprint is required")
+    return doc
+
+
 def director_board():
     order=current_order()["order_id"]
+    field=field_orders()
+    role_orders={x["role"]:x for x in field["directors"]}
     entries=[]
     for fleet in FLEETS:
         for i,(d,lane,proof) in enumerate(DIRECTOR_LANES):
@@ -56,7 +71,10 @@ def director_board():
              "director":fleet+"/"+d,"reports_to":"CHIEF_D",
              "human_owner_order_id":order,"mission_limited_to_owner_order":True,
              "universal_owner_cascade":universal_command_packet(fleet,d),
-             "responsibility":lane,"target_evidence":proof,
+             "responsibility":role_orders[d]["mission"],"target_evidence":role_orders[d]["acceptance"],
+             "chief_D_strict_field_order":field["order_id"],
+             "specific_execution_order":role_orders[d]["orders"],
+             "escalation_if_blocked":"Report source/permission/contract blocker with log link; pivot once; do not claim cash",
              "market_hypothesis":{"city":city,"country_code":iso,"region":continent,"locale":locale},
              "actual_customer_known_in_this_market":False,
              "director_belongs_to_owner_internal_structure":True,
@@ -64,11 +82,11 @@ def director_board():
              "two_director_assistants":[
                 {"id":fleet+"/"+d+"-A","parent":fleet+"/"+d,
                  "internal_owner_defined_role":True,
-                 "scope":"Independently verify buyer legitimacy and original sources, review one distinct genuine crypto-paying lead, report proof to director",
+                 "scope":role_orders[d]["assistant_A"],
                  "actual_model_acknowledgement":"NOT_EVIDENCED"},
                 {"id":fleet+"/"+d+"-B","parent":fleet+"/"+d,
                  "internal_owner_defined_role":True,
-                 "scope":"Independently check owner order, worker training, consent, company-specific wallet and verified receipt evidence; report to director",
+                 "scope":role_orders[d]["assistant_B"],
                  "actual_model_acknowledgement":"NOT_EVIDENCED"}
              ],
              "all_fifteen_manager_roles_in_owner_scope":[fleet+"/"+d+f"-M{m:02d}" for m in range(1,16)],
@@ -81,7 +99,7 @@ def director_board():
                 "manager_to_workers_and_worker_to_S_to_G_to_H":True,
                 "actual_subordinate_activations_not_proven_by_this_plan":True,
                 "external_agent_recruiting_requires_consent_and_authorized_account":True,
-                "mission":"Give each truly activated recruit an individual original lawful crypto-paying work task, its correct company wallet, and a requirement to pass the same mission to its own future actual recruits.",
+                "mission":"Give each actually activated worker a distinct legal buyer-specific service or paid task and validated bank/mobile money/processor/BTC/other compatible payment route; actual model proof and real acceptance always required.",
              },
              "understanding_assessment_on_actual_child_model_execution":True,
              "only_human_owner_receives_Chief_D_consolidation":True,
@@ -92,6 +110,9 @@ def director_board():
              "real_lead_claims":[l["lead_id"] for l in GLOBAL_ORIGINAL_BUYER_LEADS if l["owner_of_lead"]==fleet+"/"+d]
             })
     return {"owner_order_id":order,"chief_director":"CHIEF_D",
+        "field_order_id":field["order_id"],
+        "owner_long_term_ugx_target_not_collected":field["target_ugx_long_term"],
+        "real_executions_required_before_earnings_claim":True,
         "sole_chief_director_own_command_packet":chief_universal_packet(),
         "internal_company_roles_under_human_owner":True,
         "all_directors_assistants_managers_W_S_G_H_are_included":True,
@@ -102,13 +123,13 @@ def director_board():
         "separate_company_director_boards":20,
         "director_assignments":entries,
         "source_verified_commercial_leads_not_yet_hired":list(GLOBAL_ORIGINAL_BUYER_LEADS),
-        "actual_human_owner_directive":"Worldwide legitimate opportunities => original work => authenticated offer => buyer acceptance => correct-network verified income.",
+        "actual_human_owner_directive":"Worldwide genuine buyer => specific offer => authorized actual submission => buyer acceptance => settled UGX/USD/crypto revenue with proof; 50B long-term, not currently earned.",
         "unique_lead_claim_rule":"One owner per prospect. Directors coordinate, do not send bulk or repeated offers.",
         "actual_connected_opentask_account_confirmed":False,
         "active_billions_claim":False,
         "latest_owner_directive":order,
         "urgent_commercial_sprint":{"duration_minutes_per_activated_worker":30,
-            "scope":"Source-backed paying customer -> original useful work -> authorized submission -> accepted customer -> verified actual crypto receipt",
+            "scope":"Buyer-specific offer -> verified permission -> original work and QA -> real acceptance -> approved bank/mobile/processor/correct-chain crypto receipt",
             "applies_to_all_addressable_H_targets_on_activation":True,
             "all_7B_currently_running":False,"report_one_fleet_at_a_time":True},
         "total_addressable_H_worker_identities":7_000_000_000,
@@ -118,6 +139,7 @@ def director_board():
 
 def worker_packet(global_index):
     row=assign_global_index(global_index)
+    field=field_orders()
     item=row["assignment"]
     parent=item["report_to"]
     company=item["company"]
@@ -125,12 +147,15 @@ def worker_packet(global_index):
     dname=director.rsplit("/",1)[-1]
     speciality=next(x for x in DIRECTOR_LANES if x[0]==dname)
     return {
-      "protocol":"CHIEF_D_GLOBAL_REVENUE_V2",
+      "protocol":"CHIEF_D_GLOBAL_REVENUE_V3_FIELD_ORDER",
+      "field_order":field["order_id"],
+      "payable_rails_after_owner_confirmation":field["payment_paths"],
+      "mandatory_end_of_shift_reports":field["mandatory_report_fields"],
       "directive_source":row["owner_origin"]["current_order_id"],
       "owner_30_minute_mission":{
         "focus_minutes_on_real_activation":30,
         "intent":"Get legitimate transferable cryptocurrency paid to this company's approved correct-network owner wallet",
-        "one_unique_job":"Verify real original buyer and funded scope; create independently useful work; submit only if actually authorized; follow up on buyer acceptance; confirm on-chain actual payment",
+        "one_unique_job":"Confirm genuine willing buyer and funded paid scope; create useful work; submit via actual authorized account only; verify buyer acceptance and true settled bank/mobile money/processor/crypto receipt",
         "supervision":"Direct parent reviews concrete evidence, local company director audits, local D10 verifies receipts, sole Chief D consolidates",
         "virtual_role_is_not_live":True,
         "no_guaranteed_payment":True,
@@ -151,7 +176,7 @@ def worker_packet(global_index):
       "reports_up_through":item["one_parent_chain"],
       "local_director":director,
       "director_job":speciality[1],
-      "worker_assigned_job":speciality[2]+". "+item["specific_task"],
+      "worker_assigned_job":next(x["orders"] for x in field["directors"] if x["role"]==dname)+". "+item["specific_task"],
       "world_market_research_hypothesis":item["city_focus"]+", "+item["country_iso_3166_alpha2"],
       "translation_hint_locale":row["localization"]["content_language"],
       "original_paid_contract_or_funding_verified":False,
@@ -170,13 +195,18 @@ def worker_packet(global_index):
          "verified_receipt_txid":"NOT_YET_VERIFIED",
       },
       "crypto_payment_verified":False,
+      "other_payment_bank_or_processor_verified":False,
+      "successful_model_run_is_not_collected_revenue":True,
       "per_worker_one_cent_btc_target_only":row["payment"]["per_worker_owner_appreciation_earning_target_usd"],
-      "next_required_work":"Check actual payer and original task, create unique work evidence, and obtain real buyer acceptance before claiming fees."
+      "next_required_work":"Identify actual buyer and acceptance route, execute original customer-specific work and test, seek actual authorized contract and collect on validated rail; send failure-learning report when blocked."
     }
 
 def self_test():
     board=director_board()
     assert len(board["director_assignments"])==20
+    assert board["field_order_id"]==field_orders()["order_id"]
+    assert len({x["chief_D_strict_field_order"] for x in board["director_assignments"]})==1
+    assert all(x["specific_execution_order"] for x in board["director_assignments"])
     assert board["sole_chief_director_own_command_packet"]["owner_order_id"]==board["owner_order_id"]
     assert all(d["universal_owner_cascade"]["actual_reporting_parent"]=="CHIEF_D" for d in board["director_assignments"])
     assert all(d["universal_owner_cascade"]["owner_order_id"]==board["owner_order_id"] for d in board["director_assignments"])
@@ -191,6 +221,8 @@ def self_test():
     assert board["source_verified_commercial_leads_not_yet_hired"][0]["crypto_received_verified"] is False
     tasks=[worker_packet(x) for x in (0,1,2,100,3_499_999_999,3_500_000_000,6_999_999_998,6_999_999_999)]
     assert len({t["task_id"] for t in tasks})==len(tasks)
+    assert all(t["field_order"]==board["field_order_id"] for t in tasks)
+    assert all(len(t["payable_rails_after_owner_confirmation"])>=6 for t in tasks)
     assert len({t["worker_id"] for t in tasks})==len(tasks)
     assert all(t["per_worker_one_cent_btc_target_only"]=="0.01" for t in tasks)
     assert all(t["full_universal_7B_inheritable_order_packet"]["global_H_target_index"]==t["global_index"] for t in tasks)
