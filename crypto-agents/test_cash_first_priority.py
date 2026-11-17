@@ -27,8 +27,12 @@ assert policy["chief_D_report_order"][0]=="INCOMING_SETTLED_MONEY_CONFIRMED"
 assert public["routing_direction"]=="INBOUND_RECEIVING_ONLY"
 assert public["any_outgoing_transaction_authorized"] is False
 assert all(x["allowed_to_send"] is False for x in public["self_custody_candidate_routes"])
-assert all(x["status"]=="BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND"
+assert all(x["status"]=="PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND"
+           and x["public_payment_route"] is False
            for x in public["blocked_exchange_reference_only"])
+assert public["public_reference_not_deposit_authorization"] is True
+assert orders["current_owner_order_id"]=="OWNER-20261117-105841-50B-OMNICHANNEL"
+assert orders["active_mission"]["owner_long_term_collected_target_ugx"]==50000000000
 assert "## ACTUAL INCOMING MONEY — OWNER'S TOP PRIORITY" in src
 assert "incoming_paid_client_receipts_independently_classified_in_this_report" in src
 assert "new_payment_NOT_PROVEN_is_not_a_claim_of_zero_wallet_balance" in src
