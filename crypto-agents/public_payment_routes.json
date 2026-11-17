@@ -1,0 +1,166 @@
+{
+  "schema": "B1_B2_PUBLIC_RECEIVING_DIRECTORY_V1",
+  "published_date": "2026-11-17",
+  "description": "Owner-supplied public read-only payment reference; NOT a login, wallet software connection, deposit instruction for unverified assets, or earnings evidence",
+  "owner_route_directory_source": "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
+  "user_controlled_intake_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18",
+  "no_private_keys_or_exchange_memos": true,
+  "no_signing_or_transfer_privileges": true,
+  "not_verified_wallet_ownership": true,
+  "payment_instructions_require": "A willing actual payer, confirmed ownership, chain, exact asset/token/issuer, memo/trustline if applicable, and recipient compatibility; choose ONE route only",
+  "separate_B1_B2_BTC_mainnet_routes": [
+    "BTC-01",
+    "BTC-02"
+  ],
+  "self_custody_candidate_routes": [
+    {
+      "route_id": "BTC-01",
+      "network_description": "Bitcoin mainnet (native BTC)",
+      "receiving_address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+      "company": "transferexperiment",
+      "asset": "BTC",
+      "chain": "bitcoin-mainnet",
+      "payment_status": "owner_shared_btc_mainnet_reconfirm_before_invoice",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "BTC-02",
+      "network_description": "Bitcoin mainnet (native BTC)",
+      "receiving_address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
+      "company": "BountyScoutAI",
+      "asset": "BTC",
+      "chain": "bitcoin-mainnet",
+      "payment_status": "owner_shared_btc_mainnet_reconfirm_before_invoice",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "EVM-01",
+      "network_description": "EVM-format; choose and verify a specific network",
+      "receiving_address": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "EVM-02",
+      "network_description": "EVM-format; choose and verify a specific network",
+      "receiving_address": "0x4A1fd580da92B82E2e5353410a30A93cecc7F0fb",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "SOL-01",
+      "network_description": "Solana",
+      "receiving_address": "B2THff7E6KpGdkaeE2xcLqLfinyJmbcQSzJSRURKgW4C",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "SOL-02",
+      "network_description": "Solana",
+      "receiving_address": "9PspGLrFawD8GXWqCwSTpJh6kESHvF2mQksVQZ8LVbBM",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "TRX-01",
+      "network_description": "TRON",
+      "receiving_address": "TEmngrwxxHqvPUMVDiWzNk3PDyqGuzF1tU",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "TRX-02",
+      "network_description": "TRON",
+      "receiving_address": "TNkfqx57edT2tAHRFSqPpnWWczFY61443u",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "XLM-01",
+      "network_description": "Stellar",
+      "receiving_address": "GCXTQFEXZIOEKK4XLCA6JSSDIOCSH2ELZ44JIWVDR6WNTP4O37O3WVD4",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    },
+    {
+      "route_id": "XLM-02",
+      "network_description": "Stellar",
+      "receiving_address": "GD245DHDCHSCBPBOAVTKMZULW6YYTI65XGV57EXHD4F67EG36J2XX7BD",
+      "company": null,
+      "asset": null,
+      "chain": null,
+      "payment_status": "HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY",
+      "ownership_independently_verified": false,
+      "authorised_for_auto_transfers": false
+    }
+  ],
+  "blocked_exchange_reference_only": [
+    {
+      "route_id": "EXCH-EVM",
+      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "public_payment_route": false,
+      "address_withheld_from_payer_manifest": true
+    },
+    {
+      "route_id": "EXCH-SOL",
+      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "public_payment_route": false,
+      "address_withheld_from_payer_manifest": true
+    },
+    {
+      "route_id": "EXCH-XLM",
+      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "public_payment_route": false,
+      "address_withheld_from_payer_manifest": true
+    },
+    {
+      "route_id": "EXCH-HBAR",
+      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "public_payment_route": false,
+      "address_withheld_from_payer_manifest": true
+    },
+    {
+      "route_id": "EXCH-DOT",
+      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "public_payment_route": false,
+      "address_withheld_from_payer_manifest": true
+    },
+    {
+      "route_id": "EXCH-ALGO",
+      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "public_payment_route": false,
+      "address_withheld_from_payer_manifest": true
+    }
+  ],
+  "verified_new_income_from_this_directory": false
+}
