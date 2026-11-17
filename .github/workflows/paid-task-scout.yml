@@ -14,6 +14,9 @@ on:
       - 'crypto-agents/chief_D_reporting.py'
       - 'crypto-agents/b_two_company_census.py'
       - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/b_collection_assignments.json'
+      - 'crypto-agents/test_cash_first_priority.py'
+      - 'crypto-agents/chief_D_reporting.py'
       - 'crypto-agents/everyone_peer_audit.py'
       - 'crypto-agents/test_everyone_peer_audit.py'
       - 'crypto-agents/command_chain_receipts.py'
@@ -78,6 +81,8 @@ jobs:
         run: python crypto-agents/hierarchical_idea_governance.py
       - name: Validate independent B1/B2 boards and one overarching Chief D
         run: python crypto-agents/b_fleet_integrity.py
+      - name: Test incoming-money-first and strict receiving-only wallet instruction
+        run: python crypto-agents/test_cash_first_priority.py
       - name: Two independent local D10 payments audits and read-only BTC snapshots
         run: python crypto-agents/d10_payment_director.py
       - name: Show D10 payment audit in workflow summary
