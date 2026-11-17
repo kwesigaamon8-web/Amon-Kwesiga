@@ -87,6 +87,8 @@ def agent_packet(fleet):
       "schema":"B_AGENT_OWNER_MULTICHAIN_RECEIVING_LINK_V1",
       "agent":fleet,
       "linked_to_owner_public_read_only_receiving_directory":True,
+      "owner_public_route_manifest":"https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/public_payment_routes.json",
+      "machine_readable_routes_are_read_only":True,
       "connected_to_actual_wallet_software_or_exchange_login":False,
       "authorized_to_send_move_or_withdraw_crypto":False,
       "automated_wallet_access_granted":False,
@@ -137,6 +139,8 @@ def self_test():
     for fleet in FLEETS:
         p=agent_packet(fleet)
         assert p["linked_to_owner_public_read_only_receiving_directory"]
+        assert p["machine_readable_routes_are_read_only"] is True
+        assert p["owner_public_route_manifest"].endswith("/public_payment_routes.json")
         assert p["authorized_to_send_move_or_withdraw_crypto"] is False
         assert p["connected_to_actual_wallet_software_or_exchange_login"] is False
         assert len(p["owner_shared_secondary_receiving_options_held"])==8
