@@ -1,0 +1,26 @@
+name: Bitcoin Watch Wallet — Core Tests
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/**'
+      - '.github/workflows/btc-watch-wallet-test.yml'
+permissions:
+  contents: read
+jobs:
+  test-wallet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test BTC Bech32, BIP21 invoices and transaction checks
+        run: node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/wallet_core.test.mjs
+      - name: Summarize verified scope without claiming money
+        run: |
+          echo "Tested receive-only Bitcoin mainnet wallet primitives." >> "$GITHUB_STEP_SUMMARY"
+          echo "No buyer, delivery acceptance, incoming transaction, wallet ownership or prize established by this code." >> "$GITHUB_STEP_SUMMARY"
+          echo "No email access or wallet transactions." >> "$GITHUB_STEP_SUMMARY"
