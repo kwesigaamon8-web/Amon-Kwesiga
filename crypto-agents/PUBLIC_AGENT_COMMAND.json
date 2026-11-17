@@ -228,5 +228,21 @@
     "mission_ugx_collected_long_term": 50000000000,
     "equal_payment_methods": "approved UGX bank/mobile money, card/processor, USD/EUR, Bitcoin or correctly network-verified other crypto",
     "current_real_collections_verified_by_instruction": "NOT_ASSESSED"
+  },
+  "owner_success_only_reporting": {
+    "issued_at_utc": "2026-11-17T12:14:35Z",
+    "owner_request": "stop sendingme fails if failed tell 775b to fix unrtil i get correct.. only good news is what i want",
+    "rule": "Keep failed workflow traces, rejected pitches and operational rework internal to Chief D's authenticated GitHub evidence logs. Direct each actually activated director and assistant to independently reproduce, repair and retest (or switch to a better opportunity). Only proactively notify the owner about independently verified fresh received crypto or an authenticated accepted payable crypto contract requiring owner action. Do not turn virtual 775B defined roles into claimed running agents. Do not fabricate positive financial results.",
+    "failure_correction_cycle": [
+      "read actual job traceback",
+      "assign responsible actually executing reviewer",
+      "repair code/eligibility/source problem",
+      "rerun same real test",
+      "check genuine buyer acceptance and owner-controlled settlement separately",
+      "record outcome internally"
+    ],
+    "if_no_real_success": "NO_UNSOLICITED_OWNER_NOTIFICATION",
+    "necessary_exception": "Do not suppress material wallet/security risks or misrepresent any financial result when specifically asked.",
+    "email_policy": "NEVER_ACCESS_OWNER_EMAIL"
   }
 }
