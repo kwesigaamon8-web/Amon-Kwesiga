@@ -169,6 +169,7 @@ def run(now=None,loader=fetch,config=None,github_data=None):
     assert conf.get("outreach_policy")=="NO_EMAILS_NO_EMAIL_DRAFTS_NO_EMAIL_SENDS"
     assert conf.get("crypto_only_owner_order")=="OWNER-20261117-071444-NO-EMAIL-CRYPTO-PAYOUTS"
     lanes={fleet:[x for x in seeds if x["fleet"]==fleet
+           and x.get("eligible_for_active_pursuit",True) is True
            and x.get("payout_crypto_confirmed") is True
            and x.get("payout_assets")
            and x.get("upfront_wallet_spend_required") is False]
@@ -259,6 +260,7 @@ def self_test():
     assert report["crypto_payout_only"] is True and report["email_outreach_allowed"] is False
     assert all(row["payout_assets_advertised"] for row in report["source_candidate_review"])
     assert all(row["upfront_wallet_spend_required"] is False for row in report["source_candidate_review"])
+    assert all(row["key"]!="lateralus-ini-btc" for row in report["source_candidate_review"])
     for x in report["source_candidate_review"]:
         assert x["wallet_receipt_verified"] is False
         assert x["buyer_has_authorized_hire"] is False
