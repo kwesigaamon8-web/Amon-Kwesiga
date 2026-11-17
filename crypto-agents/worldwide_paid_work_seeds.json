@@ -9,6 +9,27 @@
   "prohibit_upfront_funding_using_owner_wallets": true,
   "seeded_leads": [
     {
+      "key": "accounting-software-36-platform-1500",
+      "title": "Forbes Advisor freelance product tester — 36 accounting software platforms",
+      "platform": "Upwork",
+      "source_url": "https://www.upwork.com/freelance-jobs/apply/Freelance-Product-Tester-Accounting-Software_~022120444039866237398/",
+      "listed_utc_date": "2026-11-11",
+      "budget_usd": 1500,
+      "category": "accounting-software-qa",
+      "fleet": "B2",
+      "market": "worldwide",
+      "competition": "Fewer than five proposals at 17 November public check; client interviewing one, availability can change",
+      "observed_hires": 0,
+      "scope": "Hands-on test 36 accounting platforms, fictional company setup, four invoices and full/partial payments, three expenses, CSV bank reconciliation, exported P&L, dated screenshots, 1-5 rubric and detailed testing notes",
+      "source_last_checked_utc_date": "2026-11-17",
+      "precondition": "Authenticated Upwork application and contract; only client-provided trial data and rubric; explicitly settle platform subscription costs and reimbursement via Upwork before any spend",
+      "original_relevant_tested_sample": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/accounting-product-test-pilot/README.md",
+      "third_party_buyer_contacted": false,
+      "submission_made": false,
+      "contract_signed": false,
+      "crypto_settlement_authorized": false
+    },
+    {
       "key": "invoice-po-automation",
       "title": "Invoice and PO processing automation",
       "platform": "Upwork",
