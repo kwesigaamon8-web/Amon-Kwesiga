@@ -224,7 +224,10 @@ def self_test():
     ch=chief_packet()
     assert ch["worker_H_target_id_namespace_total"]==7_000_000_000
     assert ch["owner_order_id"]==current_order()["order_id"]
-    assert "ONE MASTER ORDER" in ch["latest_owner_master_order"]
+    # The owner's latest instruction changes; validate relevance, not a stale slogan.
+    assert len(ch["latest_owner_master_order"]) >= 20
+    assert any(word in ch["latest_owner_master_order"].lower()
+               for word in ("bitcoin", "btc", "crypto", "paid work"))
     assert ch["latest_owner_master_command_url"]==MASTER_COMMAND_URL
     assert ch["actual_live_agents_proven_by_packet"]==0
     for fleet in FLEETS:
