@@ -3,6 +3,7 @@
 import {profile as superworkerProfile} from "./superworker.mjs";
 import {relayChat} from "./chat_proxy.mjs";
 import {CHAT_HTML} from "./chat_page.mjs";
+import {commandFor,rootCommandInfo} from "./agent_command.mjs";
 export const CONFIGURED_B_ROLE_POSITIONS="750377265360";
 export const TOTAL_CONFIGURED_POSITIONS="750377265361"; // plus one Chief D
 const fleets={B1:"transferexperiment",B2:"BountyScoutAI"};
@@ -78,7 +79,7 @@ const page=[
  '<label>Role ID <input id="r" value="D01-M01-W01" maxlength="95" autocomplete="off"></label>',
  '<button id="find">Find earning assignment</button><pre id="o">Choose a role to look up.</pre>',
  '<p class="note">Possible legal earning work: coding, QA, data services, customer-support assistants, writing, funded bounties, payment verification, and voluntary ASIC-mining partnerships.</p>',
- '<p><a href="/chat">Chat with a provisioned specialist</a> · <a href="/api/capacity">Capacity disclosure</a> · <a href="/api/opportunities">Opportunity categories</a> · <a href="/api/mining">Mining requirements</a></p>',
+ '<p><a href="/chat">Chat with a provisioned specialist</a> · <a href="/api/command">All-agent command link</a> · <a href="/api/capacity">Capacity disclosure</a> · <a href="/api/opportunities">Opportunity categories</a> · <a href="/api/mining">Mining requirements</a></p>',
  '<p class="note">This web directory is not a cryptocurrency miner, a payment processor, or a live LLM hosting backend. The existing /bots private pilot is a separate Flask app.</p>',
  '</main><script>',
  'document.getElementById("find").addEventListener("click",async()=>{',
@@ -98,6 +99,13 @@ export default {
   if(url.pathname==="/chat")return new Response(req.method==="HEAD"?null:CHAT_HTML,
     {headers:{"content-type":"text/html; charset=utf-8","cache-control":"public,max-age=120","x-content-type-options":"nosniff"}});
   if(url.pathname==="/health")return reply({status:"identity_directory_responding",llm_model_running:false,mining_hardware_running:false});
+  if(url.pathname==="/api/command"||url.pathname==="/api/command/latest"){
+   const company=url.searchParams.get("company"),role=url.searchParams.get("role");
+   if(!company&&!role)return reply(rootCommandInfo());
+   if(!company||!role)return reply({error:"Both company and role required"},422);
+   const data=commandFor(company,role,route);
+   return data?reply(data):reply({error:"Invalid or unconfigured role/company"},404);
+  }
   if(url.pathname==="/api/superworker"){
    const r=route(url.searchParams.get("company"),url.searchParams.get("role"));
    return r?reply(superworkerProfile(r)):reply({error:"Unknown role"},404);
