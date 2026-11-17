@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-044449-CASH-FIRST",
+  "current_owner_order_id": "OWNER-20261117-050104-CHIEF-D-EXECUTION-CHAIN",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -684,6 +684,15 @@
       "origin": "explicit_human_owner_conversation",
       "relayed_by": "ChatGPT authenticated GitHub connector",
       "instruction": "OWNER'S 17 NOV 2026 04:44:49 UTC URGENT ORDER: 'tell workers i want cash'. Chief D, B1 transferexperiment and B2 BountyScoutAI: the owner urgently wants LEGITIMATE CASH RECEIVED, not further elaborate reports or abstract virtual worker counts. Pass a concise cash-first directive down BOTH hierarchies to each actually executed authorized worker. Prioritize (1) collectible legitimate existing receivables and owner-approved client reminders, (2) authentic short paid customer tasks and deliverables with direct buyer acceptance and payments, (3) genuine eligible crypto bounties only where actual payment is plausible without fees. Pursue both conventional cash/UGX and crypto; label them separately, and NEVER count UGX as on-chain BTC. Use only owner-approved payment routes, verify recipient chain/token/memo before payment instructions, never expose sensitive financial details in public. Each active worker must give one verified source/customer, specific actionable deliverable, authorized submission/contact, amount collectible, status, next blocking approval, and cleared payment evidence/real confirmed TXID if any. Chief D is accountable for proving what money actually arrived, for stopping speculative busywork, for telling the truth about how many actual processes ran, and for no fabricated earnings, spam, gambling, unauthorized logins, mining on unapproved hardware or spend. This order supersedes lower-priority speculative worker-growth initiatives but preserves other lawful, safe tasks and owner approvals. Recording it does NOT itself run workers, submit jobs or produce payments.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261117-050104-CHIEF-D-EXECUTION-CHAIN",
+      "as_of_utc": "2026-11-17T05:01:04Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub connection",
+      "instruction": "HUMAN OWNER'S DIRECT COMMAND AT 2026-11-17 05:01:04 UTC: 'your real work is order D'. CHAIN OF COMMAND: ChatGPT is the human owner's delegated messenger to ONE Chief D; Chief D is responsible for assigning and managing ACTUALLY DEPLOYED agents across the TWO distinct fleets B1=transferexperiment and B2=BountyScoutAI, with independent local directors/managers and auditable parent links. CHIEF D — treat the owner's urgent cash/deposit goal as your TOP operational priority now. YOU, not the owner, must coordinate execution: (A) shortlist real, active, no-upfront-fee paying customers/tasks and eligible bounties; (B) match actual available worker capabilities to ONE specific deliverable per operational assignment; (C) produce, test and seek lawful authorized submission of useful original work to verified payers rather than endless prospecting; (D) pursue genuine customer agreement, acceptance, invoice and payment request on correct owner-approved network/cash route; (E) make local D10 check each reported actual crypto TXID and never report unverified deposits; (F) report only measurable progress: named opportunity/source, acceptance, delivered paid work, actual money credited, and external blockers/approvals needed. The owner does not want ChatGPT to substitute unrelated client outreach, repeat a theoretical 750B-role hierarchy, gambling, unprofitable mining or ceremonial reports for the Chief D command channel. A recorded order is not work execution: prove B1/B2 actual model invocation, purchaser consent and verified paid results separately. Use only authorized accounts and permissions, no unsolicited mass messages/spam, no fabricated agents, submissions, buyers or wallet credits, no funds/keys spending, and ask the owner only for truly necessary approval. Chief D must cascade the current order to EVERY REAL invoked worker and apply honest job-status gates; emphasize real deposits rather than worker counts.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
