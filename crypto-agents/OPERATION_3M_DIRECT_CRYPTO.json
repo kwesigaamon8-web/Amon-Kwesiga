@@ -1,0 +1,120 @@
+{
+  "schema": "B1_B2_DIRECT_CRYPTO_PAYMENT_OPERATION_V1",
+  "order_id": "OWNER-20261117-120707-3M-CRYPTO-DIRECT",
+  "issued_at_utc": "2026-11-17T12:07:07Z",
+  "owner_exact_instruction": "you are being stupid, think, be exceptional work, i have created a system of 775b woekers with instructions like an armyuse that. get 3m ugx on my addresses",
+  "metric": "At least UGX 3,000,000 equivalent of genuinely settled, owner-controlled crypto deposits, evidenced by network, address, TXID, confirmations, beneficiary, independent source. Long-term UGX 50B aspiration remains separate.",
+  "target_ugx_equivalent": 3000000,
+  "email_account_access": "ABSOLUTELY_PROHIBITED",
+  "receiving_routes": [
+    {
+      "fleet": "B1",
+      "asset": "BTC",
+      "network": "bitcoin-mainnet",
+      "address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+      "status": "OWNER_SUPPLIED_RECEIVE_ONLY_NO_SIGNING"
+    },
+    {
+      "fleet": "B2",
+      "asset": "BTC",
+      "network": "bitcoin-mainnet",
+      "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
+      "status": "OWNER_SUPPLIED_RECEIVE_ONLY_NO_SIGNING"
+    }
+  ],
+  "other_routes": "DO_NOT_SEND_PENDING_OWNER_NETWORK_ASSET_AND_MEMO_VALIDATION",
+  "verified_revenue_initially": "NONE_VERIFIED_BY_ISSUING_INSTRUCTION",
+  "mission_rules": [
+    "Never count virtual 775B role IDs as real executing workers. Only GitHub job model invocation and artifact logs prove actual processes.",
+    "Prioritize real existing payer -> genuine buyer-defined scope -> verified eligibility and correct payout network -> tested original work -> authenticated submission -> buyer acceptance -> independently confirmed receipt.",
+    "Reject expired, no-cash, fake-escrow, bonded, transfer-required and wrong-network opportunities before doing work.",
+    "Do not use Gmail or any user email in discovery, outreach, reporting, or collection.",
+    "No mining fleet fantasy, wallet transfers, spending, wallet signing, unauthorized accounts, mass unsolicited messaging or fabricated proof.",
+    "Always learn from failed tests, actual rejected offers, blocked authentication and unverified buyer payouts; do not repeat unchanged failure."
+  ],
+  "director_work_orders": [
+    {
+      "role": "D01",
+      "task": "Find and verify actual buyer requests offering to pay Bitcoin on-chain to native bc1; no generic tip solicitation",
+      "deliverable": "Real payer URL and concrete payable scope, or NOT_FOUND"
+    },
+    {
+      "role": "D02",
+      "task": "Track BTC/altcoin funding and only genuinely settled confirmations on correct receiving networks",
+      "deliverable": "Chain TXID + amount + owner-match, or NOT_VERIFIED"
+    },
+    {
+      "role": "D03",
+      "task": "Research funded stablecoin rewards without claiming held network routes are payable",
+      "deliverable": "Payout rail compatibility PASS/STOP with actual token/network terms"
+    },
+    {
+      "role": "D04",
+      "task": "Validate current work bounty with author, exact acceptance, date, budget, no upfront fees",
+      "deliverable": "Genuine claim route and ability to actually submit via authenticated integration"
+    },
+    {
+      "role": "D05",
+      "task": "Build a buyer-specific original executable contribution only after D04 payer pass",
+      "deliverable": "Source artifact + test evidence + exact opportunity"
+    },
+    {
+      "role": "D06",
+      "task": "Review BTC-related open-source tasks with direct mainnet payout preference; separately flag Lightning and Stacks sBTC",
+      "deliverable": "Eligible mainnet task or network incompatibility explanation"
+    },
+    {
+      "role": "D07",
+      "task": "Use owner-operated public GitHub communication channels to respond to warm genuine buyer inquiries only, never spam",
+      "deliverable": "Permitted source-linked buyer request/submission or NONE"
+    },
+    {
+      "role": "D08",
+      "task": "Identify viable coding competitions with transferable crypto, enough reward and genuine entry access; never infer winning",
+      "deliverable": "Actual submission eligibility and kit/auth blockers"
+    },
+    {
+      "role": "D09",
+      "task": "Audit every candidate independently for current funding, status, competitor claims, proof requirements and fake payment claims",
+      "deliverable": "PASS/HOLD/REJECT, independent URLs"
+    },
+    {
+      "role": "D10",
+      "task": "Reconcile only independently verified newly received B1/B2 native BTC or owner-confirmed other-network deposits",
+      "deliverable": "One transaction-level proof line, or NOT_VERIFIED"
+    }
+  ],
+  "assistant_A": "Independently verify source authenticity, payer, eligibility, terms and real claim/auth route; reject hypothetical ROI.",
+  "assistant_B": "Independently test deliverable, verify submission and acceptance evidence, and cross-check settlement network and recipient.",
+  "active_operator_definitions": "Twenty director IDs and forty assistants are *assigned role definitions*. Running jobs/inferences counted separately. No 775 billion concurrently hosted agents exist in present proof.",
+  "real_current_opportunity_checks": [
+    {
+      "source": "https://make.fun/bounty/best-game-01",
+      "date_checked": "2026-11-17",
+      "prize_pool": "1,000 USDC on Solana shared by top 10; not an individual promised payment",
+      "deadline": "2026-11-18T18:00:00Z",
+      "stage": "Genuine-looking funded prize; ENTRY BLOCKED by unavailable authenticated account, official kit, original run transcripts and wallet claim; original game work sample tested in offline simulated JS only, not an eligible submitted entry.",
+      "network_compatible_with_B1_B2_BTC": false
+    },
+    {
+      "source": "https://elgora.ai/bounties",
+      "date_checked": "2026-11-17",
+      "prize_pool": "181 USDC across available escrows, no guaranteed individual earning",
+      "stage": "Platform private submission and wallet authentication not connected; higher-priority opportunities may need this setup",
+      "network_compatible_with_B1_B2_BTC": false
+    },
+    {
+      "source": "https://aibtc.com/bounties",
+      "date_checked": "2026-11-17",
+      "stage": "Payout uses Stacks sBTC, not native bitcoin-mainnet bc1 address",
+      "network_compatible_with_B1_B2_BTC": false
+    },
+    {
+      "source": "https://github.com/bitcoin-dot-org/Bitcoin.org/issues/4805",
+      "date_checked": "2026-11-17",
+      "stage": "Bounty program disputed/frozen since 2018; reject until official funding reconfirmed",
+      "network_compatible_with_B1_B2_BTC": "UNVERIFIED"
+    }
+  ],
+  "next_actual_revenue_gate": "Real buyer accepting real work with directly compatible receiving route; no such buyer or owner-verified new payment established at creation."
+}
