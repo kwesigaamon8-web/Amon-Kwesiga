@@ -74,7 +74,11 @@ def run():
                 candidates.append("gemini-3.8-flash")
             data=None
             for attempted_model in candidates:
-                body=json.dumps({"model":attempted_model,"messages":[{"role":"system","content":"You are an independent assistant. Do original useful work. Be truthful and cite evidence. Never claim a payment, active worker, or successful action without proof."},{"role":"user","content":prompt}],"temperature":0.3,"max_tokens":1600}).encode()
+                payload={"model":attempted_model,"messages":[{"role":"system","content":"You are an independent assistant. Do original useful work. Be truthful and cite evidence. Never claim a payment, active worker, or successful action without proof."},{"role":"user","content":prompt}],"max_tokens":1600}
+                # Gemini 3.8 Flash no longer accepts sampling parameters such as temperature.
+                if not attempted_model.startswith("gemini-3"):
+                    payload["temperature"]=0.3
+                body=json.dumps(payload).encode()
                 request=urllib.request.Request(endpoint+"/chat/completions",data=body,headers={"Authorization":"Bearer "+key,"Content-Type":"application/json"},method="POST")
                 fallback_to_next=False
                 for retry in range(3):
