@@ -150,5 +150,32 @@
     "top_level_executive_count": 1,
     "reporting_order": "Each fleet's D01-D09 owns new earning work; that fleet's D10 handles its own verified payments. Both separate boards report results to one overarching Chief D, who alone reports to the owner for both companies. No mixing of accounts, work, or receipts.",
     "note": "These are named software director roles in independently configured workflows. Only confirmed model executions count as actual AI activity; a configured hierarchy is not a continuously active organization."
+  },
+  "cash_first_payment_priority": {
+    "owner_instruction_id": "OWNER-20261117-061348-INBOUND-MONEY-IS-KEY",
+    "success_definition": "Correct-chain funds actually received at one of the user's owner-approved receive-only addresses, supported by independently checked TXID/settlement evidence and classified as paid work or genuine voluntary support when payer purpose is confirmed.",
+    "owner_wallets": "INBOUND_ONLY_NO_SENDING_SIGNING_WITHDRAWAL_SWAPPING_STAKING_OR_FEES",
+    "expected_customer_journey": [
+      "REAL_WILLING_BUYER_FOUND",
+      "PERMITTED_AUTHENTICATED_CONTACT",
+      "SCOPE_PRICE_CURRENCY_NETWORK_ACCEPTED",
+      "ORIGINAL_DELIVERABLE_ACCEPTED",
+      "PAYER_APPROVED_EXACT_SINGLE_RECEIVING_ROUTE",
+      "ONCHAIN_INCOMING_TRANSACTION_CHECKED",
+      "PAYMENT_CLASSIFIED_WITH_INDEPENDENT_EVIDENCE"
+    ],
+    "local_d10_obligation": "Each company D10 independently verifies only incoming correct-chain receipts to its own company account and separately labels unknown-purpose payments, unaccepted proposals, accepted-unpaid invoices and confirmed earnings.",
+    "chief_D_report_order": [
+      "INCOMING_SETTLED_MONEY_CONFIRMED",
+      "CURRENT_CHAIN_EVIDENCE_AND_FAILURES",
+      "ACCEPTED_CLIENT_WORK_AWAITING_PAYMENT",
+      "REAL_AUTHENTICATED_BUYER_CONTACT_AND_CONTRACTS",
+      "NEXT_REVENUE_ACTION",
+      "WORKER_EXECUTION_AND_IDENTITY_CONFIG_COUNTS_LAST"
+    ],
+    "guarantees_created_by_this_configuration": 0,
+    "expected_wallet_signatures": 0,
+    "public_income_claims_without_TXID": 0,
+    "source_of_truth": "Independent matching blockchain TX evidence plus original accepted client or support source; a GitHub workflow cannot certify third-party income merely by scanning an address."
   }
 }
