@@ -44,6 +44,15 @@ STRONG_REWARD=re.compile(r'(?i)(?:\b(?:bounty|reward|payout|compensation|payment
 ZERO_OFFER=re.compile(r'(?i)(?:\b(?:bounty|reward|compensation|payment|price)\s*[:=]?\s*\$0(?:\D|$)|\[\$0\]|\b(?:zero[- ]bounty|unpaid|volunteer-only|no reward|no payout|not paid)\b)')
 SECONDARY_SOURCE=re.compile(r'(?i)(?:\b(?:digest|roundup|alert|scanner|mirror|aggregat(?:or|ion)|newsletter|vote:|discussion only|not (?:reviewed|accepted) on this mirror|no manual pull requests)\b|(?:^\s*###\s*(?:original link|source url)\s*$))')
 UNRELATED_MONEY=re.compile(r'(?i)(?:\b(?:state|sales)[ -]?tax\b|\b(?:taxable|income tax|payroll|vat)\b|\b\$[\d.,]+\s*(?:sale|purchase|invoice)\b)')
+PAID_WORK_INTENT=re.compile(
+    r'(?i)(?:\b(?:bounty|paid\s+(?:task|work|gig|job)|we\s+(?:will|can)\s+pay|'
+    r'offering\s+(?:a\s+)?(?:reward|bounty)|reward\s+for|'
+    r'budget\s*[:=]|payout\s*[:=]|compensation\s*[:=])\b|'
+    r'\bprice\s*[:=]\s*[$€£]?[0-9])'
+)
+# Block rewards and mining subsidy facts are not buyer commissions.
+NOT_WORK_PAYMENT=re.compile(r'(?i)\b(?:block reward|halving reward|mining reward|staking reward)\b')
+
 QUESTIONS_ONLY=re.compile(r'(?i)(?:\b(?:could the current docs|clarify|question routes|request for information|eligibility question|is the bounty|vote:|how to claim)\b)')
 AUTO_USERNAME=re.compile(r'(?i)(?:\[bot\]$|^github-actions(?:\[bot\])?$|^dependabot(?:\[bot\])?$)')
 EXCLUDED_ORIGIN_REPOS=("bountyscout","bounty-plaza")
@@ -74,7 +83,10 @@ def normalize(issue):
        "open_issue":issue.get("state")=="open" and not issue.get("pull_request"),
        "original_link":url.startswith("https://github.com/"),
        "mentions_specific_reward_amount":bool(MONEY.search(full)),
-       "explicit_paid_work_reward":bool(STRONG_REWARD.search(full)) and not bool(ZERO_OFFER.search(full)),
+       "explicit_paid_work_reward":bool(STRONG_REWARD.search(full)) and not bool(ZERO_OFFER.search(full)) and
+           bool(PAID_WORK_INTENT.search(full)) and
+           not (bool(NOT_WORK_PAYMENT.search(full)) and not
+                bool(re.search(r'(?i)\b(?:bounty|paid\s+(?:task|work)|we\s+will\s+pay)\b',title))),
        "describes_actual_work":bool(SCOPE.search(full)),
        "not_automated_digest_or_secondary_mirror":not mirror_or_digest,
        "author_not_obvious_bot":not bool(AUTO_USERNAME.search(str(from_user.get("login") or ""))),
@@ -199,6 +211,18 @@ def selftest():
            "state":"open","html_url":"https://github.com/aib/landing/issues/9",
            "repository_url":"https://api.github.com/repos/aib/landing","user":{"login":"aria"}}
     assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
+    issue={"title":"Stale block reward and halving date in How to Mine Bitcoin",
+           "body":"The current block reward is 3.125 BTC. Please update the docs.",
+           "state":"open", "html_url":"https://github.com/fvjh/fvjh.github.io/issues/1",
+           "repository_url":"https://api.github.com/repos/fvjh/fvjh.github.io",
+           "user":{"login":"guest"}}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT", "Do not confuse block subsidy with work payments"
+    issue={"title":"posso fazer ?",
+           "body":"Can I do the task? The repo has a reward of $50 for other PRs.",
+           "state":"open","html_url":"https://github.com/example/repo/issues/5",
+           "repository_url":"https://api.github.com/repos/example/repo",
+           "user":{"login":"outside-contributor"}}
+    assert normalize(issue)["status"]=="REVIEW_OR_REJECT", "A claim question is not sponsor-funded work"
     issue={"title":"YouTube digest — 2026-11-14",
            "body":"Financial video: $35.5 billion debt and audits",
            "state":"open","html_url":"https://github.com/r/trading/issues/3",
