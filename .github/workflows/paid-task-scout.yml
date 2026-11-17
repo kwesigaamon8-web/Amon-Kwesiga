@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/paid-task-scout.yml'
       - 'crypto-agents/paid_task_scout.py'
+      - 'crypto-agents/paid-work/revenue_conversion_gate.py'
+      - 'crypto-agents/paid-work/conversion-targets.json'
       - 'crypto-agents/worldwide_paid_work_seeds.json'
       - 'crypto-agents/worldwide_paid_work_scout.py'
       - 'crypto-agents/social_scan.py'
@@ -99,6 +101,19 @@ jobs:
         run: python crypto-agents/new_earning_lanes.py
       - name: Show new job-scout results and genuine miner opt-in limitations
         run: cat paid-opportunity-reports/new-earning-lanes.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Filter unpayable, region-restricted, unauthenticated offers before converting work
+        run: |
+          python crypto-agents/paid-work/revenue_conversion_gate.py
+          python - <<'PY'
+          import json,os
+          rows=json.load(open("paid-opportunity-reports/conversion-scorecard.json"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("\n### Payment acceptance gates — no paper income\n")
+              for row in rows:
+                  f.write("- "+row["id"]+": "+row["status"]+
+                          (" — "+", ".join(row["reasons"]) if row["reasons"] else "")+"\n")
+              f.write("Confirmed new crypto receipts from this filter: NOT ESTABLISHED.\n")
+          PY
       - name: Test two-company real-model idea provenance, dedup and action queue
         run: python crypto-agents/cross_fleet_idea_exchange.py test
       - name: Share latest REAL B1/B2 idea digests and assign cross-company source reviews
