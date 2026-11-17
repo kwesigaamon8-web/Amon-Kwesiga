@@ -34,9 +34,22 @@ These addresses are included in response to the owner's request to advertise **a
 | XLM-01 | Stellar address; issuer/trustline/memo support TBD | `GCXTQFEXZIOEKK4XLCA6JSSDIOCSH2ELZ44JIWVDR6WNTP4O37O3WVD4` |
 | XLM-02 | Stellar address; issuer/trustline/memo support TBD | `GD245DHDCHSCBPBOAVTKMZULW6YYTI65XGV57EXHD4F67EG36J2XX7BD` |
 
-### Exchange deposit candidates: NOT ADVERTISED AS PAYMENT ROUTES
+### Complete public exchange-address reference — NOT PAYMENT-READY
 
-The owner also previously provided **six Binance/exchange candidate identifiers** for EVM, Solana, Stellar, Hedera, Polkadot and Algorand. They are cataloged in [the original public address directory](PUBLIC_RECEIVING_ADDRESSES.md) for owner review only. **NONE is payment-ready or safe to send to based on this notice**, and some require an exact memo or exchange-specific live deposit screen. We intentionally do **not** solicit transfers to any of them.
+At the owner's explicit request on 17 November 2026, **all sixteen distinct previously supplied addresses/account identifiers are now visible together in this public notice** (ten self-custody candidates above and the six exchange-deposit identifiers below). Public listing is NOT approval to deposit. These six custodial identifiers are **DO NOT SEND** until the owner reviews a fresh authenticated deposit screen for that precise token, network and required memo/tag. A missing or wrong memo can irreversibly lose the funds. Exchange deposit addresses can change, and some chains need a separate memo; no private memo is provided as a universal instruction.
+
+| Candidate type | Publicly owner-supplied account/address | Current safety status |
+|---|---|---|
+| Exchange EVM-format candidate | `0xa43e96d28f37bacf5441fcd9a3e7b662f299a785` | **DO NOT SEND** — exact chain/token and account linkage unverified |
+| Exchange Solana-format candidate | `8by2RbnKEwwDDg9PAgNZwWE8XXiGLCsVFQEE11urvgMr` | **DO NOT SEND** — exact mint/account compatibility unverified |
+| Exchange Stellar candidate | `GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5SZVTGWUKULZJNL6` | **DO NOT SEND** — mandatory memo must be freshly confirmed |
+| Exchange Hedera candidate | `0.0.1873771` | **DO NOT SEND** — mandatory memo and token/network must be freshly confirmed |
+| Exchange Polkadot-format candidate | `16fbLg3p45xwjdH9FwiqBVy5RDB5VRSfjsdmSd7LEeHTMK9p` | **DO NOT SEND** — chain/token and live deposit support unverified |
+| Exchange Algorand-format candidate | `NYAGJ5YZR5KZBEZZCU7MRJP5XU64M6265OT3GQOUC6VHRUMT7FEF4UAYXU` | **DO NOT SEND** — current exchange compatibility unverified |
+
+The owner also supplied three 0x-prefixed **32-byte identifiers** in earlier discussions. They cannot be reliably classified as receiving addresses (they may be transaction hashes or identifiers), so they are not represented as deposit destinations.
+
+**One-click complete indexed reference:** [PUBLIC_RECEIVING_ADDRESSES.md](PUBLIC_RECEIVING_ADDRESSES.md). **Machine-readable route list:** [public_payment_routes.json](public_payment_routes.json). Both Bitcoin mainnet routes above can be used as potential native BTC receiving addresses subject to owner confirmation; do not use BTC addresses for USDC/ETH, Solana or other tokens.
 
 ## How an actual payment works
 
