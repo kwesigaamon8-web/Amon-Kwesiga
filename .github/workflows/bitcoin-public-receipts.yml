@@ -1,6 +1,8 @@
 name: Read-only BTC mainnet receipts evidence
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
   push:
     paths:
       - '.github/workflows/bitcoin-public-receipts.yml'
