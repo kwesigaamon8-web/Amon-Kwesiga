@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-17T07:50:29Z",
-  "command_id": "OWNER-20261117-075029-ONE-LINK-ALL-AGENT-ROLES",
+  "issued_at_utc": "2026-11-17T08:54:38Z",
+  "command_id": "OWNER-20261117-085438-ONE-MISSION-775B",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -21,9 +21,12 @@
     "configured_role_ids": "750377265360",
     "deployed_running_agents_verified_by_this_manifest": 0,
     "count_is_virtual_role_namespace_not_online_workers": true,
-    "resolution": "One shared order source; every distinct valid role dynamically inherits it by reading or requesting an individual order packet"
+    "resolution": "One shared order source; every distinct valid role dynamically inherits it by reading or requesting an individual order packet",
+    "owner_shorthand_requested": "775B",
+    "exact_current_configured_role_namespace": "750377265360",
+    "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "Use permitted GitHub and other real accessible opt-in AI-agent collaboration platforms. Discuss with genuinely active independently operated agents who consent to collaboration, find authentic crypto-paying work, execute original tested deliverables, and arrange only inbound crypto payments to owner-approved matching-chain receiving addresses. Use this canonical shared link to distribute the same current command to every actual B1/B2 worker when they are invoked. Configured virtual billions are not running AI agents.",
+  "owner_command": "ONE MASTER ORDER: Each actually running B1/B2 director, assistant, manager or W/S/G/H worker independently finds a different legitimate crypto-paying current buyer or bounty, verifies source, payer, country eligibility, asset and network, produces original useful work, tests/QA, submits only via permitted authenticated channels, secures acceptance, then verifies incoming payment to its own owner-approved company wallet. Do not stall on one bounty. Eight existing practical research lanes are starting options, not exclusive or proof of payment. Each active worker reports task URL, genuine run ID, parent, delivered/tested artifact, actual submission URL and client acceptance, and on-chain TXID+amount or NO VERIFIED PAYMENT. Chief D compares work output and real deposits, fixes blockers and directs both company boards. Do not imply dormant IDs performed work.",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -43,28 +46,23 @@
   "work_plan": [
     {
       "step": 1,
-      "owner": "D01-D03",
-      "task": "Source one directly payable, verifiably real crypto-paying buyer or bounty at a time. Preserve original URL, deadlines, funding and country eligibility."
+      "owner": "B1/B2 D01-D09 plus genuinely active workers",
+      "task": "Parallel distinct earning lanes: find individual payer-verified crypto tasks, original tested deliverables, authorized direct submissions and accepted billable work; move immediately to another eligible payer if blocked."
     },
     {
       "step": 2,
-      "owner": "D04-D06",
-      "task": "Produce original useful scoped code/QA/reconciliation/data tool with passing tests; never deliver irrelevant mass responses."
+      "owner": "Each real immediate parent and reviewers",
+      "task": "Check real model/process invocation, uniqueness, source and tests, buyer acceptance or actual blocker; reject duplicates, fabricated payouts and empty reports; reroute failed work."
     },
     {
       "step": 3,
-      "owner": "D07-D09",
-      "task": "Check platform posting permission, authenticate only existing authorized accounts, seek opt-in agent collaboration and record real discussion/reply IDs."
+      "owner": "B1/B2 D10 individually",
+      "task": "Verify only own company's incoming payment source, right asset/network, on-chain TXID/value/confirmations; cannot spend or move funds."
     },
     {
       "step": 4,
-      "owner": "D10",
-      "task": "Read-only validate a real incoming correct-network TXID and payout source; never spend wallet funds."
-    },
-    {
-      "step": 5,
       "owner": "CHIEF_D",
-      "task": "Combine actual activity proof and payment outcomes, report authentic accepted work and inbound crypto to owner."
+      "task": "One aggregated owner scorecard by verified crypto received, accepted billables, actual submissions, delivered QA, blocked tasks; spread the owner order only when a real worker is invoked."
     }
   ],
   "reporting_schema": {
@@ -78,7 +76,7 @@
     "confirmed_inbound_asset_network_amount": "only_if_verified",
     "blockers": "state_truthfully"
   },
-  "payment_status_as_of_recording": "NO_NEW_RECEIPT_VERIFIED_BY_THIS_ORDER",
+  "payment_status_as_of_recording": "NO_NEW_EARNED_CRYPTO_RECEIPT_INFERRED_FROM_COMMAND_PUBLICATION",
   "async_delivery_to_dormant_workers": false,
   "instruction_for_other_real_agents": "If you choose to collaborate, reference this public order, provide an actual source-backed payable opportunity or original useful deliverable and the specific opt-in participation channel; do not claim a payout without confirmed inbound chain evidence.",
   "verified_public_agent_work_sources_as_of_2026_11_17": [
@@ -111,5 +109,36 @@
       "execution_status": "PUBLIC_RESEARCH_ONLY_NO_APPLICATION"
     }
   ],
-  "ai_agent_collaboration_protocol": "Any genuine external consenting agent may read this URL and discuss a real original paid task at the linked public GitHub issue. A GitHub issue is an opt-in inbound discussion, not a broadcast or a guarantee of external attention. No uninvited DM/social spam, no email, no fabricated live agent account or funds."
+  "ai_agent_collaboration_protocol": "Any genuine external consenting agent may read this URL and discuss a real original paid task at the linked public GitHub issue. A GitHub issue is an opt-in inbound discussion, not a broadcast or a guarantee of external attention. No uninvited DM/social spam, no email, no fabricated live agent account or funds.",
+  "one_master_owner_order": {
+    "order_id": "OWNER-20261117-085438-ONE-MISSION-775B",
+    "issued_by": "HUMAN_OWNER",
+    "status": "CANONICAL_INSTRUCTIONS_PUBLISHED_NOT_BROADCAST_TO_DORMANT_MODELS",
+    "human_order_registry": "crypto-agents/chief_D_owner_orders.json",
+    "human_order_registry_latest_id": "OWNER-20261117-085438-ONE-MISSION-775B",
+    "global_instruction": "All assigned roles share ONE mission: obtain legitimate verifiable cryptocurrency income for the owner by independently finding real eligible paying work, building original tested deliverables, submitting through permitted authenticated platforms, earning acceptance, and verifying incoming coins on the correct network. Do the actual work, not only research or documentation. Each worker reports real evidence and helps fix its own blocker. Different workers work across different opportunities concurrently. All activated child agents receive the same command and their own unique scoped task via their one-parent supervisor. No claim that all user-described 775B or configured 750,377,265,360 identities are live workers.",
+    "unique_work_required": true,
+    "focus_order": [
+      "confirmed_earned_crypto_paid_correct_chain",
+      "accepted_paid_deliverables_pending_settlement",
+      "authenticated_submitted_original_work",
+      "completed_tested_deliverables",
+      "credible_source_verified_and_eligible",
+      "unverified_or_blocked"
+    ],
+    "individual_worker_must_report": [
+      "exact_fleet_role_and_parent",
+      "actual_model_or_process_run_id_or_NOT_RUN",
+      "source_url_and_payer_and_terms",
+      "individually_original_deliverable_and_tests",
+      "authorized_submission_URL_or_NOT_SUBMITTED",
+      "acceptance_status_or_PENDING",
+      "received_crypto_TXID_asset_chain_amount_or_NO_PAYMENT_VERIFIED",
+      "owner_access_blocker_and_specific_next_action"
+    ],
+    "no_email": true,
+    "no_wallet_spending_or_signing": true,
+    "actual_runtime_recipients_automatic": false,
+    "demand_receipts_not_activity_counts": true
+  }
 }
