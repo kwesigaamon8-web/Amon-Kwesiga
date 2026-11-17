@@ -1,0 +1,128 @@
+name: B1 B2 Real Crypto Bounty Build and Independent QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/crypto-bounty-build-and-review.yml'
+permissions:
+  contents: read
+jobs:
+  b1-build:
+    name: B1 real upstream Lateralus compiler verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the actual original open-source compiler and copy the owner-owned draft
+        run: |
+          set -eu
+          git clone --depth 1 https://github.com/bad-antics/lateralus-lang.git upstream
+          git show origin/bounty-lateralus-ini-tutorial-20261117:submissions/lateralus-ini-tutorial/examples/ini_tutorial.ltl > upstream/examples/ini_tutorial.ltl
+          git show origin/bounty-lateralus-ini-tutorial-20261117:submissions/lateralus-ini-tutorial/docs/blog/ini-tutorial.md > upstream/docs/blog/ini-tutorial.md
+          python -m pip install -e ./upstream
+      - name: Run actual Lateralus compiler and compare pinned example output
+        run: |
+          set -euo pipefail
+          cd upstream
+          lateralus run examples/ini_tutorial.ltl | tee ../b1-real-compiler-output.txt
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('../b1-real-compiler-output.txt')
+          lines=[x.strip() for x in p.read_text().splitlines() if x.strip()]
+          expected=['demo','4','enabled=yes','/tmp/data','missing=absent']
+          if lines[-5:] != expected:
+              raise SystemExit('B1 REAL COMPILER OUTPUT DIFFERENT FROM EXPECTED: '+repr(lines[-12:]))
+          print('B1_UPSTREAM_COMPILER_EXECUTION_MATCHED_PINNED_VECTOR')
+          PY
+      - name: Publish B1 execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1-compiler-evidence
+          path: b1-real-compiler-output.txt
+          if-no-files-found: warn
+          retention-days: 7
+  b2-quality-review:
+    name: B2 independent owner-paid-task source and payout-boundary QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Get original maintainer source separately for source contract verification
+        run: |
+          set -eu
+          git clone --depth 1 --filter=blob:none https://github.com/bad-antics/lateralus-lang.git upstream
+          mkdir -p work
+          git show origin/bounty-lateralus-ini-tutorial-20261117:submissions/lateralus-ini-tutorial/examples/ini_tutorial.ltl > work/ini_tutorial.ltl
+          git show origin/bounty-lateralus-ini-tutorial-20261117:submissions/lateralus-ini-tutorial/docs/blog/ini-tutorial.md > work/ini-tutorial.md
+      - name: Independent QA on actual upstream API names, safety and expectation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re,json,hashlib
+          src=Path('upstream/stdlib/ini.ltl').read_text()
+          example=Path('work/ini_tutorial.ltl').read_text()
+          tutorial=Path('work/ini-tutorial.md').read_text()
+          api={x for x in re.findall(r'pub fn (\w+)\s*\(',src)}
+          used=set(re.findall(r'ini\.(\w+)\(',example))
+          missing=sorted(used-api)
+          assert not missing, f'B2 unknown public API symbols: {missing}'
+          assert all(x in tutorial for x in ['get_int','get_bool','missing=absent'])
+          assert all(x in example for x in ['enabled=yes','missing=absent'])
+          assert 'NO EMAILS' in Path('crypto-agents/PUBLIC_AGENT_COMMAND.json').read_text() or 'NO_EMAILS' in Path('crypto-agents/PUBLIC_AGENT_COMMAND.json').read_text()
+          assert all(not(0x2500<=ord(c)<=0x257f) for c in example+tutorial)
+          body={'status':'SOURCE_CONTRACT_CHECKED_COMPILER_NOT_RUN_BY_B2',
+                'upstream_public_api_count':len(api),
+                'source_calls_checked':sorted(used),
+                'unknown_public_symbols':missing,
+                'example_sha256':hashlib.sha256(example.encode()).hexdigest(),
+                'actual_client_acceptance_verified':False,
+                'crypto_payment_verified':False,
+                'third_party_PR_submitted':False}
+          Path('b2-review.json').write_text(json.dumps(body,indent=2)+'\n')
+          print('B2_INDEPENDENT_QA_PASS',json.dumps(body))
+          PY
+      - name: Publish B2 independent quality record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b2-independent-review
+          path: b2-review.json
+          if-no-files-found: warn
+          retention-days: 7
+  chief-d-supervision:
+    name: Chief D checks actual B1/B2 completion rather than worker counts
+    needs: [b1-build,b2-quality-review]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Download actual real worker proof when available
+        uses: actions/download-artifact@v4
+        with:
+          pattern: b*-*evidence
+          merge-multiple: true
+          path: chief-D-proof
+        continue-on-error: true
+      - name: Publish Chief D disposition and exact blockers
+        env:
+          B1_RESULT: '${{ needs.b1-build.result }}'
+          B2_RESULT: '${{ needs.b2-quality-review.result }}'
+        run: |
+          echo '## Chief D / B1+B2 BTC bounty execution results' >> "$GITHUB_STEP_SUMMARY"
+          echo "B1 actual compiler job: $B1_RESULT" >> "$GITHUB_STEP_SUMMARY"
+          echo "B2 independent QA job: $B2_RESULT" >> "$GITHUB_STEP_SUMMARY"
+          echo 'External maintainer acceptance: NOT VERIFIED' >> "$GITHUB_STEP_SUMMARY"
+          echo 'BTC payment received: NOT VERIFIED' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Bounty claim GitHub issue/PR creation: GitHub integration lacked upstream permission; NO EMAIL outreach.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No wallets signed, sent, swapped, staked or spent.' >> "$GITHUB_STEP_SUMMARY"
