@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-120707-3M-CRYPTO-DIRECT",
+  "current_owner_order_id": "OWNER-20261117-153239-COINS-NO-EMAIL",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -822,6 +822,14 @@
       "instruction": "ONE MASTER ORDER — RECOVER REAL CRYPTO PAYMENTS WORTH UGX 3,000,000 TO OWNER SHARED VERIFIED RECEIVING ADDRESSES. Chief D and both B1/B2 boards SHALL pursue genuine buyer-defined funded work and verified direct crypto transfer only, not fiat or user accounting client collections. Do not touch, search, send, read, monitor, draft or rely on Gmail or any email. Full executable 10-director orders, 40 assistants across 2 companies, live source checks, payout-asset network gates, repeated-failure learning, deadlines and receipt standard are at crypto-agents/OPERATION_3M_DIRECT_CRYPTO.json. B1 Bitcoin mainnet bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 Bitcoin mainnet bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Other chain candidates only if exact asset, network, wallet ownership and memos are independently reconfirmed for genuine payer. Mainnet bitcoin cannot directly receive Lightning or Stacks sBTC. Every actual activated director picks ONE distinct live credible funded buyer; assistant A challenges funding, authenticity, eligible region and current acceptance; assistant B tests original work, authenticated submission and settlement; D10 verifies independently received money. No 775B virtual identities counted as active jobs. NO invented payer, no spam, no unauthorized wallet signatures, transactions, fees, account registration or token transfers. Owner UGX 50B long-term goal remains strategic; UGX 3M crypto receipt is the new near-term operating target, not verified or guaranteed. Correct failed workflows or switch to credible alternative; only genuine payer acceptance and receipt are success.",
       "instruction_scope": "operational parent authority to Chief D, subordinate to human owner and safety/payment authorization",
       "status": "QUEUED_EXECUTION_IN_ACTUAL_GITHUB_WORKFLOWS_NOT_PAYMENT_RECEIVED",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261117-153239-COINS-NO-EMAIL",
+      "as_of_utc": "2026-11-17T15:32:39Z",
+      "relayed_by": "ChatGPT, authenticated GitHub update upon owner's direct instruction",
+      "instruction": "OWNER DIRECT ORDER 17 NOV 2026 15:32:39 UTC: You have NO PERMISSION to access any email. No ChatGPT/B1/B2/Chief D/assistant/agent/automation may read, search, monitor, prepare drafts, send, forward, or otherwise use Gmail or ANY owner's email account, even to look for payments, unless the human owner separately explicitly authorizes the particular email action. Execute legitimate worldwide paying work to earn REAL Bitcoin or other crypto deposits to the OWNER'S PREVIOUSLY VERIFIED receiving addresses. B1 BTC native mainnet: bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z. B2 BTC native mainnet: bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Other-chain or custodial addresses remain HOLD pending exact asset, network, memo and ownership compatibility; BTC Lightning and Stacks sBTC DO NOT directly pay a native bc1 mainnet address. Prioritize genuine willing, properly funded buyers, original tested deliverables, permitted authenticated submission, acceptance, and actually confirmed correct-network incoming payments with TXIDs. Do not spend, sign, stake, transfer, register paid services, pay funding/gas fees, spam or impersonate. Virtual 750B namespace entries are not active workers. Audit model invocations and source/acceptance evidence honestly. Avoid repetitive orders or false claim of earnings; report only independently verified paid outcomes or required concrete owner actions.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
     }
   ],
