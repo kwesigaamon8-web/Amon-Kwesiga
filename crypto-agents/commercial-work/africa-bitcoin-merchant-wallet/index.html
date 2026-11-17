@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A free, open-source read-only Bitcoin receiving wallet for merchants. Build a BTC invoice and independently inspect transaction outputs.">
+<title>Bitcoin Merchant Watch Wallet — Africa</title>
+<style>
+:root {color-scheme:light;--ink:#122332;--sub:#4b5d67;--bg:#f3f6f5;--line:#d7dfdc;--accent:#125d50}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+header,main,footer{max-width:860px;margin:auto;padding:20px}header{padding-top:44px}header span{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:750}
+h1{font-size:clamp(1.9rem,5vw,3.1rem);line-height:1.1;margin:12px 0}h2{font-size:1.3rem;margin:0 0 15px}
+p{line-height:1.5}p.sub{color:var(--sub);max-width:60ch}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+label{display:block;font-weight:650;font-size:14px}input,select{display:block;width:100%;border-radius:8px;border:1px solid #aabbb5;padding:12px;margin-top:7px;font:inherit;color:var(--ink);background:#fff}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid #64bba8;outline-offset:2px}
+button{font:inherit;border:0;border-radius:8px;padding:11px 15px;cursor:pointer;font-weight:700;background:var(--accent);color:white}
+button.secondary{background:#e8eeeb;color:var(--ink)}button:disabled{opacity:.65;cursor:wait}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+a#paymentLink{display:inline-block;font-weight:700;color:var(--accent);overflow-wrap:anywhere}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#edf2ef;border-radius:8px;padding:15px;font-size:13px;max-height:450px;overflow:auto}
+.notice{border-left:4px solid #b47727;padding:8px 13px;background:#fbf5eb;border-radius:3px;line-height:1.5}
+small{font-size:13px;color:var(--sub)}.result{padding:14px;background:#edf5f2;border:1px solid #cfddd7;border-radius:8px;overflow-wrap:anywhere}
+footer{color:var(--sub);padding-bottom:44px}a{color:var(--accent)}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.card{padding:18px}header{padding-top:25px}}
+</style>
+</head>
+<body>
+<header>
+<span>Open source • Native BTC • No spending keys</span>
+<h1>Bitcoin Merchant Watch Wallet</h1>
+<p class="sub">Make a Bitcoin payment request, then check whether a specified transaction actually pays its receiving address. Built for small merchants, freelancers and low-bandwidth devices.</p>
+</header>
+<main>
+<section class="card" aria-labelledby="invoiceTitle">
+<h2 id="invoiceTitle">1. Create a receive-only invoice</h2>
+<div class="grid">
+<label>Receiving wallet
+<select id="receiver">
+<option value="B1">B1 — transferexperiment</option>
+<option value="B2">B2 — BountyScoutAI</option>
+<option value="custom">My own Bitcoin address</option>
+</select></label>
+<label>Bitcoin mainnet address
+<input id="address" required autocomplete="off" spellcheck="false" aria-describedby="addressHelp"></label>
+<label>Price in satoshis (1 BTC = 100 million sats)
+<input id="sats" inputmode="numeric" value="10000" required></label>
+<label>Invoice reference (optional)
+<input id="label" value="Merchant test invoice" maxlength="100" autocomplete="off"></label>
+</div>
+<small id="addressHelp">Only bc1 Bitcoin mainnet SegWit addresses are supported. Never paste seed phrases or private keys.</small>
+<div class="controls">
+<button id="create">Create payment request</button>
+<button class="secondary" id="copy" disabled>Copy Bitcoin payment link</button>
+</div>
+<div id="invoiceArea" hidden>
+<p><strong>Payment link:</strong> <a id="paymentLink" href="#">Open in a Bitcoin wallet</a></p>
+<pre id="invoicePreview"></pre>
+</div>
+</section>
+<section class="card" aria-labelledby="checkTitle">
+<h2 id="checkTitle">2. Check the transaction (read-only)</h2>
+<label>Bitcoin transaction ID
+<input id="txid" placeholder="64-character hexadecimal TXID" spellcheck="false" autocomplete="off"></label>
+<div class="controls"><button id="verify">Look up transaction outputs</button></div>
+<p id="result" class="result" role="status" aria-live="polite">No blockchain check yet. A payment request is not a payment.</p>
+<pre id="proof" hidden></pre>
+<p class="notice"><strong>Important:</strong> An address match is not proof that your particular customer paid, that you own the address, or that an amount is still unspent. An unconfirmed transaction can disappear. This tool does not manage funds or verify sales contracts.</p>
+</section>
+<section class="card">
+<h2>How to use it safely</h2>
+<p>Create an invoice using an address you personally control. Share its payment link with a willing customer. When the customer provides a TXID, check the output address, amount and confirmation count. Keep the customer's separate order/acceptance evidence. If an address is reused, matching outputs cannot reliably assign a transaction to a particular order.</p>
+<p><small>Only the public TXID is sent to mempool.space during verification. No wallet secrets are collected, there is no login, and no private data are intentionally stored. Address ownership is not established by this demo. A hosted copy needs internet access for explorer lookups.</small></p>
+</section>
+</main>
+<footer>Independent open-source prototype • Not a custodial wallet, exchange or payment processor • No guaranteed earnings</footer>
+<script type="module">
+import {RECEIVERS,validateMainnetAddress,makeInvoice,validateTxid,inspectTx} from "./wallet_core.mjs";
+const el=id=>document.getElementById(id);
+let invoice=null;
+let inflight=0;
+function invalidate(){
+  invoice=null;
+  el("invoiceArea").hidden=true;
+  el("copy").disabled=true;
+  el("result").textContent="Invoice changed. Create the new payment request before verifying.";
+  el("proof").hidden=true;
+  inflight++;
+}
+function selectReceiver(){
+  const choice=el("receiver").value;
+  if(choice!=="custom")el("address").value=RECEIVERS[choice];
+  invalidate();
+}
+el("receiver").addEventListener("change",selectReceiver);
+for(const id of ["address","sats","label"])el(id).addEventListener("input",invalidate);
+selectReceiver();
+function showError(err){el("result").textContent="Check incomplete: "+String(err.message||err).slice(0,250);}
+el("create").addEventListener("click",()=>{
+  try{
+    invoice=makeInvoice({address:el("address").value,amountSats:el("sats").value,label:el("label").value});
+    el("invoicePreview").textContent=JSON.stringify(invoice,null,2);
+    el("paymentLink").href=invoice.bitcoin_uri;
+    el("invoiceArea").hidden=false;
+    el("copy").disabled=false;
+    el("result").textContent="Payment request created. No payment has been verified.";
+  }catch(err){invalidate();showError(err);}
+});
+el("copy").addEventListener("click",async()=>{
+  if(!invoice)return;
+  try{
+    await navigator.clipboard.writeText(invoice.bitcoin_uri);
+    el("result").textContent="Bitcoin payment link copied; still awaiting actual payment.";
+  }catch(err){showError(new Error("Clipboard not available; copy the link manually."));}
+});
+el("verify").addEventListener("click",async()=>{
+  if(!invoice){showError(new Error("Create an invoice first."));return;}
+  if(!validateMainnetAddress(invoice.address)){showError(new Error("Invalid Bitcoin mainnet receiving address."));return;}
+  const txid=el("txid").value.trim().toLowerCase();
+  if(!validateTxid(txid)){showError(new Error("Use a real 64-character Bitcoin transaction ID."));return;}
+  const ticket=++inflight, button=el("verify");
+  button.disabled=true;el("result").textContent="Checking public Bitcoin transaction outputs…";
+  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
+  try{
+    const res=await fetch("https://mempool.space/api/tx/"+txid,{cache:"no-store",signal:ctrl.signal});
+    if(!res.ok)throw new Error("Explorer HTTP "+res.status);
+    const transaction=await res.json();
+    let tip=null;
+    if(transaction?.status?.confirmed===true){
+      try{
+        const t=await fetch("https://mempool.space/api/blocks/tip/height",{cache:"no-store",signal:ctrl.signal});
+        if(t.ok){const n=Number((await t.text()).trim());if(Number.isSafeInteger(n))tip=n;}
+      }catch{ /* unknown confirmations do not become fabricated confirmations */ }
+    }
+    if(ticket!==inflight)return;
+    const proof=inspectTx(transaction,invoice,tip);
+    const result={...proof,txid,source:"https://mempool.space/tx/"+txid,
+      verified_at_utc:new Date().toISOString()};
+    el("proof").hidden=false;
+    el("proof").textContent=JSON.stringify(result,null,2);
+    el("result").textContent=proof.status+": "+proof.matched_sats+
+      " sats output to address. Confirmation count: "+
+      (proof.confirmations===null?"unknown":proof.confirmations)+
+      ". Customer identity and payment purpose NOT verified.";
+  }catch(err){
+    if(ticket===inflight)showError(new Error("Blockchain lookup unavailable or failed; this does NOT mean zero payment. "+String(err.message||err)));
+  }finally{clearTimeout(timer);button.disabled=false;}
+});
+</script>
+</body>
+</html>
