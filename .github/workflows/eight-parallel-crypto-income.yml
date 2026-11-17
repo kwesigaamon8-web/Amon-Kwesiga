@@ -1,0 +1,68 @@
+name: B1 B2 Eight Parallel Crypto Revenue Source Checks
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '19 */6 * * *'
+  push:
+    paths:
+      - '.github/workflows/eight-parallel-crypto-income.yml'
+      - 'crypto-agents/parallel_crypto_revenue_scout.py'
+      - 'crypto-agents/parallel-crypto-revenue-lanes.json'
+concurrency:
+  group: b-eight-lane-${{ github.workflow }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  verify-planning:
+    name: Verify eight distinct revenue channels and 20 director assignments
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate unique sources, owner-authorized domain list, and no fictional agents
+        run: |
+          python -m py_compile crypto-agents/parallel_crypto_revenue_scout.py
+          python crypto-agents/parallel_crypto_revenue_scout.py --self-test
+  check-sources-independently:
+    needs: verify-planning
+    name: Source check ${{ matrix.lane }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        lane:
+          - btc-open-source
+          - escrowed-game
+          - other-ai-coding
+          - web3-dev
+          - web3-content
+          - web3-remote-gigs
+          - global-usdc-offers
+          - customer-paid-products
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently check actual public payment-opportunity source
+        run: python crypto-agents/parallel_crypto_revenue_scout.py --lane "${{ matrix.lane }}"
+      - name: Publish source facts, limits and missing payment separately
+        if: always()
+        run: |
+          if [ -f "parallel-revenue-reports/${{ matrix.lane }}.md" ]; then
+            cat "parallel-revenue-reports/${{ matrix.lane }}.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Preserve evidence per lane even when source is blocked
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crypto-income-lane-${{ matrix.lane }}
+          path: parallel-revenue-reports/
+          if-no-files-found: warn
+          retention-days: 7
