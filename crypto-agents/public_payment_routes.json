@@ -1,7 +1,7 @@
 {
-  "schema": "B1_B2_PUBLIC_RECEIVING_DIRECTORY_V1",
+  "schema": "B1_B2_PUBLIC_RECEIVING_DIRECTORY_V2",
   "published_date": "2026-11-17",
-  "description": "Owner-supplied public read-only payment reference; NOT a login, wallet software connection, deposit instruction for unverified assets, or earnings evidence",
+  "description": "Owner-requested public read-only reference for 10 self-custody candidates and six custodial exchange candidates. Only owner-confirmed exact-chain/token routes can become payment-ready; all exchange candidates are DO NOT SEND.",
   "owner_route_directory_source": "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
   "user_controlled_intake_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18",
   "no_private_keys_or_exchange_memos": true,
@@ -147,45 +147,69 @@
   "blocked_exchange_reference_only": [
     {
       "route_id": "EXCH-EVM",
-      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "status": "PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
       "public_payment_route": false,
-      "address_withheld_from_payer_manifest": true,
-      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY"
+      "address_withheld_from_payer_manifest": false,
+      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY",
+      "public_receiving_identifier": "0xa43e96d28f37bacf5441fcd9a3e7b662f299a785",
+      "network_format": "EVM-compatible format",
+      "verification_needed": "exact current chain and asset required",
+      "memo_unverified_or_required": false
     },
     {
       "route_id": "EXCH-SOL",
-      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "status": "PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
       "public_payment_route": false,
-      "address_withheld_from_payer_manifest": true,
-      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY"
+      "address_withheld_from_payer_manifest": false,
+      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY",
+      "public_receiving_identifier": "8by2RbnKEwwDDg9PAgNZwWE8XXiGLCsVFQEE11urvgMr",
+      "network_format": "Solana-compatible format",
+      "verification_needed": "exact current token mint and exchange support required",
+      "memo_unverified_or_required": false
     },
     {
       "route_id": "EXCH-XLM",
-      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "status": "PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
       "public_payment_route": false,
-      "address_withheld_from_payer_manifest": true,
-      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY"
+      "address_withheld_from_payer_manifest": false,
+      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY",
+      "public_receiving_identifier": "GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5SZVTGWUKULZJNL6",
+      "network_format": "Stellar",
+      "verification_needed": "mandatory memo plus issuer/trustline/asset required",
+      "memo_unverified_or_required": true
     },
     {
       "route_id": "EXCH-HBAR",
-      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "status": "PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
       "public_payment_route": false,
-      "address_withheld_from_payer_manifest": true,
-      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY"
+      "address_withheld_from_payer_manifest": false,
+      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY",
+      "public_receiving_identifier": "0.0.1873771",
+      "network_format": "Hedera",
+      "verification_needed": "mandatory memo and supported asset required",
+      "memo_unverified_or_required": true
     },
     {
       "route_id": "EXCH-DOT",
-      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "status": "PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
       "public_payment_route": false,
-      "address_withheld_from_payer_manifest": true,
-      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY"
+      "address_withheld_from_payer_manifest": false,
+      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY",
+      "public_receiving_identifier": "16fbLg3p45xwjdH9FwiqBVy5RDB5VRSfjsdmSd7LEeHTMK9p",
+      "network_format": "Polkadot-compatible format",
+      "verification_needed": "correct chain/asset and current account support required",
+      "memo_unverified_or_required": false
     },
     {
       "route_id": "EXCH-ALGO",
-      "status": "BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
+      "status": "PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND",
       "public_payment_route": false,
-      "address_withheld_from_payer_manifest": true,
-      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY"
+      "address_withheld_from_payer_manifest": false,
+      "direction": "REFERENCE_ONLY_NOT_PAYMENT_READY",
+      "public_receiving_identifier": "NYAGJ5YZR5KZBEZZCU7MRJP5XU64M6265OT3GQOUC6VHRUMT7FEF4UAYXU",
+      "network_format": "Algorand-compatible format",
+      "verification_needed": "correct network/asset and current account support required",
+      "memo_unverified_or_required": false
     }
   ],
   "verified_new_income_from_this_directory": false,
@@ -204,5 +228,9 @@
     "AUTOMATED_SWAPS",
     "ACTIVATE_UNVERIFIED_EXCHANGE_DEPOSITS"
   ],
-  "any_outgoing_transaction_authorized": false
+  "any_outgoing_transaction_authorized": false,
+  "owner_instructed_to_publish_all_candidates": true,
+  "all_known_16_candidate_destinations_public_reference": true,
+  "public_reference_not_deposit_authorization": true,
+  "total_distinct_listed_addresses": 16
 }
