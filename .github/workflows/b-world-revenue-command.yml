@@ -28,6 +28,7 @@ on:
       - 'crypto-agents/commercial-work/csv-to-json/**'
       - 'crypto-agents/commercial-work/invoice-payment-reconciliation/**'
       - 'crypto-agents/commercial-work/duplicate-order-ids/**'
+      - 'crypto-agents/commercial-work/accounting-product-test-pilot/**'
   workflow_dispatch:
   schedule:
     - cron: '13 * * * *'
@@ -116,6 +117,10 @@ jobs:
           python -m unittest -q test_reconcile
           cd ../duplicate-order-ids
           python -m unittest -q test_duplicate_order_ids
+          cd ../accounting-product-test-pilot
+          python -m unittest -q test_rubric
+          python rubric.py init --providers 36 --out /tmp/accounting-36-platform-template.csv
+          python rubric.py validate /tmp/accounting-36-platform-template.csv
       - name: Publish actual management plan and practical customer-ready testing evidence
         run: |
           echo "### Chief D — 20 director worldwide commercial routing" >> "$GITHUB_STEP_SUMMARY"
