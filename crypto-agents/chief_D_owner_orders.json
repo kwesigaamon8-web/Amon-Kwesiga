@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-050104-CHIEF-D-EXECUTION-CHAIN",
+  "current_owner_order_id": "OWNER-20261117-050325-D-FIRST-PAID-PILOT",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -695,6 +695,16 @@
       "instruction": "HUMAN OWNER'S DIRECT COMMAND AT 2026-11-17 05:01:04 UTC: 'your real work is order D'. CHAIN OF COMMAND: ChatGPT is the human owner's delegated messenger to ONE Chief D; Chief D is responsible for assigning and managing ACTUALLY DEPLOYED agents across the TWO distinct fleets B1=transferexperiment and B2=BountyScoutAI, with independent local directors/managers and auditable parent links. CHIEF D — treat the owner's urgent cash/deposit goal as your TOP operational priority now. YOU, not the owner, must coordinate execution: (A) shortlist real, active, no-upfront-fee paying customers/tasks and eligible bounties; (B) match actual available worker capabilities to ONE specific deliverable per operational assignment; (C) produce, test and seek lawful authorized submission of useful original work to verified payers rather than endless prospecting; (D) pursue genuine customer agreement, acceptance, invoice and payment request on correct owner-approved network/cash route; (E) make local D10 check each reported actual crypto TXID and never report unverified deposits; (F) report only measurable progress: named opportunity/source, acceptance, delivered paid work, actual money credited, and external blockers/approvals needed. The owner does not want ChatGPT to substitute unrelated client outreach, repeat a theoretical 750B-role hierarchy, gambling, unprofitable mining or ceremonial reports for the Chief D command channel. A recorded order is not work execution: prove B1/B2 actual model invocation, purchaser consent and verified paid results separately. Use only authorized accounts and permissions, no unsolicited mass messages/spam, no fabricated agents, submissions, buyers or wallet credits, no funds/keys spending, and ask the owner only for truly necessary approval. Chief D must cascade the current order to EVERY REAL invoked worker and apply honest job-status gates; emphasize real deposits rather than worker counts.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261117-050325-D-FIRST-PAID-PILOT",
+      "as_of_utc": "2026-11-17T05:03:25Z",
+      "origin": "explicit_human_owner_request interpreted as practical pay-first experiment",
+      "relayed_by": "ChatGPT authenticated GitHub connector",
+      "instruction": "OWNER asks Chief D 'think of something' in the context of urgent lack of deposits. NEW CONCRETE COMMERCIAL EXPERIMENT: ChatGPT published a real buyer-facing, fixed-scope US$25 custom CSV/TSV/JSON conversion pilot offer in crypto-agents/commercial-work/CUSTOM-ORDER-OFFER.md with two already built and tested original sample scripts, plus public opt-in buyer intake GitHub Issue #17. Chief D must not count this public offer as a sale. D DIRECTS operational B1 and B2 directors: (1) inspect exact offer, keep separate company BTC mainnet addresses, (2) find ONE authentic potential buyer per company who actually requested such data work and has a lawful reachable channel; no spam or false accounts, (3) verify buyer need, willingness to pay, permissible payment route, and explicit acceptance criteria before committing, (4) nominate one ACTUALLY invoked worker to tailor a fully original conversion script/tests for an accepted job, (5) request payment only after buyer agreement and supply correct-network wallet, (6) consolidate proof source -> contact -> agreement -> tested deliverable -> submission -> buyer acceptance -> receipt and actual TXID; report exact blockers. Continue monitoring credible alternative sponsored contracts, but reject bounties already closed or crowded with competing PRs. Observed 17 Nov: falsely advertised projectdiscovery/nuclei $100 Algora bounties #6532/#6674 are CLOSED; overt urn-ai/overturn #20-22 have many competing submitted PRs despite open status; no buyer guaranteed. Explicitly prioritize buyer-first commercial conversion rather than racing unpaid open-source bounties. If no confirmed buyer, mark zero bookings and seek verified paying leads, without claiming cash.",
+      "status": "commercial_offer_and_public_buyer_intake_published_no_paid_contract_yet",
+      "authenticated_external_execution_not_implied": true,
+      "deliverable": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/17"
     }
   ],
   "strict_per_worker_reporting": {
