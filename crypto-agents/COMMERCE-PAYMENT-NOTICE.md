@@ -2,6 +2,8 @@
 
 **Published 17 November 2026 — authorized owner-requested public advertising.**
 
+**System-wide read-only route integration:** [Open the machine-readable public B1/B2 receiving-route manifest](public_payment_routes.json). It is also linked into each B-company worker's account routing packet and checked by Chief D CI. This directory lists only public receiving candidates; it is **not** a wallet login, transaction signer, payment request for unsupported tokens, or proof of wallet ownership.
+
 We invite legitimate, permission-based commissions for useful original digital work worldwide: custom spreadsheet/CSV/JSON cleanup, invoice-to-payment reconciliations, factual public-source research, technical testing/documentation, product catalog conversion, and permitted bookkeeping-data preparation.
 
 **Are you looking to commission a small, useful task?** See our [worldwide services and prices](commercial-work/WORLDWIDE-DIGITAL-SERVICES.md), [tested custom data-conversion sample](commercial-work/opentask-json-csv/README.md), and [invoice/payment reconciliation demonstration](commercial-work/invoice-payment-reconciliation/README.md). [Request an estimate and discuss an anonymized sample in our opt-in commercial intake](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18). We agree scope, acceptance criteria and the permitted payment route with each actual customer before starting.
