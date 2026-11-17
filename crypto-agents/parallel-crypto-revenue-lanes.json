@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "last_reviewed_utc": "2026-11-17",
+  "accountability": {
+    "configured_role_ids_are_live_workers": false,
+    "real_parallel_jobs": "One GitHub Actions runner per lane when the matrix workflow executes",
+    "chief_d": "Review individual source evidence and any actual acceptance or on-chain transaction",
+    "prohibited": "NO EMAILS, no unsolicited spam, no wallet signing or spending, no upfront crypto payments, no fictional claims"
+  },
+  "lanes": {
+    "btc-open-source": {
+      "fleet": "transferexperiment",
+      "directors": [
+        "D01",
+        "D02"
+      ],
+      "source": "https://raw.githubusercontent.com/bad-antics/lateralus-lang/main/BOUNTIES.md",
+      "goal": "Verify one eligible BTC/LN-paid issue, deliver original tested code and file an authorized maintainer submission",
+      "payment": "BTC/LN per published project rules; never guaranteed",
+      "stage": "prepared_bug_report_upstream_permission_blocked"
+    },
+    "escrowed-game": {
+      "fleet": "transferexperiment",
+      "directors": [
+        "D03",
+        "D04",
+        "D05"
+      ],
+      "source": "https://make.fun/bounty/best-game-01",
+      "goal": "Build/test an original offline game and submit only through the official authenticated contest route",
+      "payment": "USDC on Solana; winner selection, not guaranteed",
+      "stage": "game_code_exists_submission_not_verified"
+    },
+    "other-ai-coding": {
+      "fleet": "transferexperiment",
+      "directors": [
+        "D06",
+        "D07",
+        "D08"
+      ],
+      "source": "https://make.fun/",
+      "goal": "Compare other live original-coding bounties by reward, deadline, fees, entry prerequisites and source availability",
+      "payment": "Per actual contest terms; do not confuse fee-required contests with no-cost tasks",
+      "stage": "independent_opportunity_research"
+    },
+    "web3-dev": {
+      "fleet": "transferexperiment",
+      "directors": [
+        "D09",
+        "D10"
+      ],
+      "source": "https://superteam.fun/earn/opportunities/development-bounties",
+      "goal": "Identify globally eligible crypto-paying development work and verify real acceptance paths",
+      "payment": "Network/currency and award depend on each listing",
+      "stage": "independent_opportunity_research"
+    },
+    "web3-content": {
+      "fleet": "BountyScoutAI",
+      "directors": [
+        "D01",
+        "D02"
+      ],
+      "source": "https://superteam.fun/earn/category/content/all",
+      "goal": "Find original writing or content tasks open to Uganda/global contributors with clear crypto payouts",
+      "payment": "Crypto only; per listing and actual eligibility",
+      "stage": "independent_opportunity_research"
+    },
+    "web3-remote-gigs": {
+      "fleet": "BountyScoutAI",
+      "directors": [
+        "D03",
+        "D04",
+        "D05"
+      ],
+      "source": "https://superteam.fun/earn/jobs",
+      "goal": "Find active remote freelance projects with clearly verifiable crypto-paying clients",
+      "payment": "Actual freelance contract and chain-specific token must be verified",
+      "stage": "independent_opportunity_research"
+    },
+    "global-usdc-offers": {
+      "fleet": "BountyScoutAI",
+      "directors": [
+        "D06",
+        "D07",
+        "D08"
+      ],
+      "source": "https://superteam.fun/earn/listing/mozaikpay-video-chile-colombia",
+      "goal": "Check a specifically advertised global USDC prize task, eligibility and genuine non-synthetic deliverables",
+      "payment": "500 USDC total prize pool, not personal guaranteed income",
+      "stage": "eligibility_and_original_deliverable_needed"
+    },
+    "customer-paid-products": {
+      "fleet": "BountyScoutAI",
+      "directors": [
+        "D09",
+        "D10"
+      ],
+      "source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18",
+      "goal": "Inspect real external buyer replies to the offered original reconciliation, CSV, duplicate-ID and QA products",
+      "payment": "Receiving BTC or other expressly confirmed chain only after buyer acceptance",
+      "stage": "buyer_not_confirmed"
+    }
+  }
+}
