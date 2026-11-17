@@ -29,6 +29,12 @@ jobs:
         run: |
           set -euo pipefail
           cd upstream
+          # The Lateralus run backend transpiles 'import ini' to Python 'import ini'.
+          # Compile upstream's *actual* Lateralus stdlib ini source to a Python
+          # importable module before running the user-authored original example.
+          # This is never a fake shim or a hand-coded Python ini substitute.
+          lateralus py stdlib/ini.ltl -o ini.py
+          python -m py_compile ini.py
           lateralus run examples/ini_tutorial.ltl | tee ../b1-real-compiler-output.txt
           python - <<'PY'
           from pathlib import Path
