@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - 'edge-role-directory/**'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - 'crypto-agents/chief_D_owner_orders.json'
       - '.github/workflows/b-role-directory-tests.yml'
   workflow_dispatch:
 permissions:
@@ -17,6 +19,9 @@ jobs:
         with:
           node-version: "22"
       - name: Test role range and no phantom miners, server or buyers
-        run: node --test edge-role-directory/index.test.mjs
+        run: node --test edge-role-directory/index.test.mjs edge-role-directory/agent_command.test.mjs
+      - name: Verify publicly read-only order manifest source and safe owner restrictions
+        run: |
+          node -e 'const m=require("./crypto-agents/PUBLIC_AGENT_COMMAND.json"); if(!m.command_id||m.applies_to.configured_role_ids!=="750377265360"||!m.hard_constraints.includes("NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW")||m.async_delivery_to_dormant_workers!==false)process.exit(1); console.log("OWNER_COMMAND_MANIFEST_VALID")'
       - name: Record capacity truth
         run: echo "PASS verifies code role routing; no live web site, AI process, Bitcoin miner or customer deployment proven." >> "$GITHUB_STEP_SUMMARY"
