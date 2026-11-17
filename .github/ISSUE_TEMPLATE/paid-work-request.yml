@@ -1,0 +1,71 @@
+name: "Commission a small digital task"
+description: "Request a quote for original CSV/JSON conversion, spreadsheet reconciliation, public-source research, technical QA or documentation. Do not post private data."
+title: "[Paid work request] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before posting:** This is a public GitHub issue. Describe the work using fictional or anonymized examples only. **Never** share bank statements, account numbers, personal client data, credentials, wallet secrets, or confidential documents.
+        We agree on fees, acceptance criteria, scope and the permitted exact currency/network before any paid engagement. This form does not imply a contract.
+  - type: dropdown
+    id: service
+    attributes:
+      label: Requested service
+      options:
+        - CSV / Excel / JSON conversion
+        - Payment or invoice reconciliation
+        - Workbook cleanup
+        - Public-data research and analysis
+        - Technical testing / software documentation
+        - Product catalog / marketing copy review
+        - Other original digital service
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What result do you need?
+      description: Provide a clear outcome and a synthetic/anonymized example. Avoid private records.
+      placeholder: "Example: turn a 100-row synthetic CSV into one JSON object per customer, with columns A, B and C..."
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: How should we test that the work is complete?
+      description: Outline one or two acceptance checks, preferably with artificial sample data.
+      placeholder: "Example: 100 rows processed; duplicate IDs flagged; totals match; no missing output keys."
+    validations:
+      required: true
+  - type: input
+    id: budget
+    attributes:
+      label: Proposed budget and currency
+      placeholder: "e.g., USD 25, BTC equivalent, or request a quote"
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: Desired delivery date (UTC or local timezone)
+      placeholder: "e.g., 2026-11-21 UTC"
+    validations:
+      required: false
+  - type: dropdown
+    id: payment
+    attributes:
+      label: Preferred settlement method (to be confirmed privately)
+      options:
+        - Agreed native BTC on Bitcoin mainnet
+        - Another owner-confirmed crypto asset/network
+        - Other agreed lawful payment method
+        - Not decided
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public issue privacy check
+      options:
+        - label: "I have not included passwords, private keys, personal client records, bank details, or confidential files in this public request."
+          required: true
