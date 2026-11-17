@@ -1,0 +1,180 @@
+{
+  "schema": "CHIEF_D_50B_OPERATION_ORDER_V1",
+  "order_id": "CHIEF-D-FIELD-ORDER-20261117-111448",
+  "issued_by": "Human owner delegated operational authority; ChatGPT relay to GitHub",
+  "issued_at_utc": "2026-11-17T11:14:48Z",
+  "subordinate_to": "OWNER-20261117-105841-50B-OMNICHANNEL",
+  "codename": "OPERATION COLLECT — B1/B2 REVENUE",
+  "mission": "Secure legitimate real clients, convert buyer-specific work into accepted deliverables and collect actual payments toward UGX 50,000,000,000 long-term owner ambition. Do not represent target as achieved or guaranteed.",
+  "target_ugx_long_term": 50000000000,
+  "immediate_objective": "First verified accepted paid engagement or properly settled receipt, followed by repeatable collections.",
+  "chains_of_command": [
+    {
+      "fleet": "transferexperiment",
+      "code": "B1",
+      "directors": 10,
+      "assistants_per_director": 2,
+      "chief": "CHIEF_D"
+    },
+    {
+      "fleet": "BountyScoutAI",
+      "code": "B2",
+      "directors": 10,
+      "assistants_per_director": 2,
+      "chief": "CHIEF_D"
+    }
+  ],
+  "sprint": {
+    "start": "WHEN_INDIVIDUAL_JOB_ACTUALLY_RUNS",
+    "phase_1": "FIRST 15 MINUTES — verify one real buyer, outstanding reply or payable task; produce evidence",
+    "phase_2": "NEXT 30 MINUTES — legitimate buyer-specific work, QA, quotation or authenticated permissible submission",
+    "phase_3": "FINAL 15 MINUTES — independent verification and concise command report",
+    "cadence": "EVERY ACTUAL EXECUTION / SCHEDULED MONITORING CYCLE",
+    "deadline_claim": "Clock starts only for real executable run, not virtual worker namespace"
+  },
+  "directors": [
+    {
+      "role": "D01",
+      "mission": "Existing customer collections",
+      "orders": "Reconcile outstanding client invoices against confirmed receipt and owner share; prioritize due and acknowledged receivables",
+      "acceptance": "One verified live debtor/response and collection action or PROOF_OF_SETTLED; no duplicate chasing",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D02",
+      "mission": "Recurring finance services",
+      "orders": "Review warm qualified customers for monthly bookkeeping, reporting, compliance and QuickBooks",
+      "acceptance": "One buyer-specific monthly service scope, price basis and permitted close path",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D03",
+      "mission": "Financial statements and licensed audit delivery",
+      "orders": "Advance actual FS/audit engagements with an authorized qualified signatory where statutory opinion required",
+      "acceptance": "One legitimate scoped assignment, engagement approval or factual blocker",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D04",
+      "mission": "AI automation and practical code",
+      "orders": "Match one original software/AI capability to a named payer request",
+      "acceptance": "One original tested feature and authentic buyer submission route",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D05",
+      "mission": "Crypto and software bounties",
+      "orders": "Identify live funded Bitcoin, stablecoin or fiat paid developer tasks; reject stales/fees",
+      "acceptance": "One confirmed current payer terms and accepted submission route, or explicit rejection",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D06",
+      "mission": "Excel data and reconciliations",
+      "orders": "Offer reconciliation, data cleanup, QuickBooks migration and existing buyer-specific deliverables",
+      "acceptance": "One buyer-defined sample/test and executable authorized offer",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D07",
+      "mission": "Commercial closing",
+      "orders": "Negotiate only with genuinely permitted warm customers and authenticated platforms; avoid duplicate unsolicited messages",
+      "acceptance": "One authentic proposal/submission, approval, or exact platform access blocker",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D08",
+      "mission": "Digital tools and recurring revenue",
+      "orders": "Validate demand for a legitimate product/service and the first willing buyer before building",
+      "acceptance": "One paid demand test or buyer evidence; not a product speculation",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D09",
+      "mission": "Intelligence and adversarial QA",
+      "orders": "Independently challenge each buyer, affordability, scope, regional availability, legal/licensing and payment route",
+      "acceptance": "Evidence-backed PASS/HOLD/REJECT with source and named issue",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    },
+    {
+      "role": "D10",
+      "mission": "Treasury and settlement",
+      "orders": "Verify company owner entitlement and incoming bank/mobile money, processor, BTC or exact-chain crypto receipts; reconcile refunds",
+      "acceptance": "Only verified receipt line with amount, beneficiary, source, time and bank/chain proof, else NOT VERIFIED",
+      "assistant_A": "Independently verify actual payer, budget, source freshness, buyer country eligibility and permitted contact/submission; mark PASS/HOLD/REJECT with source",
+      "assistant_B": "Independently test original deliverable, customer acceptance, exact settlement rail and false payment claims; mark TESTED/NOT_TESTED and receipt status",
+      "chain_of_command": "ASSISTANTS -> LOCAL DIRECTOR -> CHIEF_D -> HUMAN OWNER",
+      "reporting_status": "UNEXECUTED_UNTIL_JOB_AND_ARTIFACT_PROVEN"
+    }
+  ],
+  "daily_authorized_sales_rule": "Warm genuine customer outreach and existing authorized platforms only; no invented logins, bulk unsolicited marketing, impersonation, or unauthorised procurement.",
+  "payment_paths": [
+    "UGX owner-confirmed bank",
+    "UGX owner-confirmed mobile money",
+    "approved payment link/processor",
+    "USD/EUR verified bank/processor",
+    "BTC mainnet",
+    "BTC Lightning with independent authorised invoice",
+    "USDC/ETH/other lawful crypto only on verified token, chain, recipient and memo"
+  ],
+  "must_not": [
+    "no invented payment bank/mobile account numbers",
+    "no wallet signing, swaps, outgoing transfers or upfront expenditure",
+    "no claims that 750,377,265,360 virtual role IDs are active workers",
+    "no claiming submitted jobs or earned cash from GitHub test success",
+    "no fake customer references, payment screenshot or TXID",
+    "no repeating an unchanged failed attempt twice"
+  ],
+  "mandatory_report_fields": [
+    "fleet",
+    "director",
+    "real_run_or_authentication_evidence",
+    "named_payer_or_reason_unknown",
+    "original_offer_and_price",
+    "permitted_submitted_contact_or_NOT_SUBMITTED",
+    "tested_deliverable",
+    "buyer_accepted_or_NOT_ACCEPTED",
+    "owner_share_if_known",
+    "settled_payment_trace_or_NOT_VERIFIED",
+    "failure_and_learning",
+    "one_next_action"
+  ],
+  "chief_report_order": [
+    "CONFIRMED_RECEIVED_UGX_EQUIVALENT_WITH_PROOF",
+    "ACCEPTED_PAYABLE_CONTRACTS",
+    "REAL_EXTERNAL_SUBMISSIONS",
+    "TESTED_BUYER_SPECIFIC_WORK",
+    "FAILED_GATES_AND_FIXES",
+    "NEXT_HIGHEST_IMPACT_ACTION"
+  ],
+  "failure_rule": "OBSERVE -> FIND VERIFIED CAUSE -> CORRECT OR PIVOT -> RETEST -> CHECK BUYER AND SETTLEMENT; pause unchanged retries after repeated failures.",
+  "nonfiction": "An assigned role, meeting agenda, queued workflow or configured 775B namespace is not evidence of model execution or collected cash.",
+  "approved_no_private_account_data_in_public_order": true
+}
