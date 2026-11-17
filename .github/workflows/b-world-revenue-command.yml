@@ -27,6 +27,7 @@ on:
       - 'crypto-agents/commercial-work/opentask-json-csv/**'
       - 'crypto-agents/commercial-work/csv-to-json/**'
       - 'crypto-agents/commercial-work/invoice-payment-reconciliation/**'
+      - 'crypto-agents/commercial-work/duplicate-order-ids/**'
   workflow_dispatch:
   schedule:
     - cron: '13 * * * *'
@@ -113,6 +114,8 @@ jobs:
           python -m pytest -q
           cd ../invoice-payment-reconciliation
           python -m unittest -q test_reconcile
+          cd ../duplicate-order-ids
+          python -m unittest -q test_duplicate_order_ids
       - name: Publish actual management plan and practical customer-ready testing evidence
         run: |
           echo "### Chief D — 20 director worldwide commercial routing" >> "$GITHUB_STEP_SUMMARY"
@@ -121,7 +124,7 @@ jobs:
           echo "- All-role universal owner-order cascade verified at selected root/child leaves, both companies and boundary H indices; 7 billion IDs are addressable, not 7 billion live models" >> "$GITHUB_STEP_SUMMARY"
           echo "- Every defined director, assistant, manager and W/S/G/H child inherits its owner order; actual child receipt/understanding must be evidenced when separately invoked" >> "$GITHUB_STEP_SUMMARY"
           echo "- Exact owner-order coverage audit checks all 20 directors, 40 assistants, 300 managers, representative W/S/G/H roles and sampled all-range 7B H IDs; file archived in chief-D-global/" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Original JSON-to-CSV, CSV-to-JSON and nine invoice-payment-matching tests executed; customer acceptance and payment remain UNVERIFIED, no sale assumed" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Original JSON-to-CSV, CSV-to-JSON, nine invoice-matching and eight duplicate-order tests executed; customer acceptance and payment remain UNVERIFIED, no sale assumed" >> "$GITHUB_STEP_SUMMARY"
           echo "- Authorized internal lead namespace supports on-demand 200B assistant IDs per lead; ID capacity is not executed AI processes, customers or funds" >> "$GITHUB_STEP_SUMMARY"
           echo "- Original 750,377,265,360 D/A/M/W/S/G/H roles can be mapped without double counting to explicitly consented externally verified certified-agent service work; actual registry has no verified external agent contract yet" >> "$GITHUB_STEP_SUMMARY"
           echo "- Confirmed new crypto revenue from this workflow: not assessed" >> "$GITHUB_STEP_SUMMARY"
