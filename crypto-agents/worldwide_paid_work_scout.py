@@ -251,10 +251,10 @@ def self_test():
             return {"http":200,"final_url":url,"body":'<a href="/jobs/123">Job</a><a href="/jobs/123">Same</a><a href="/jobs/456">Other</a>'}
         return {"http":200,"final_url":url,"body":"An original public job listing describing the role."}
     report=run(fixed,fake,config)
-    assert report["rotated_source_checks"]==4
-    assert len({x["source_url"] for x in report["source_candidate_review"]})==4
+    assert report["rotated_source_checks"]==3  # One proved compiler-blocked bounty was excluded
+    assert len({x["source_url"] for x in report["source_candidate_review"]})==3
     assert {x["fleet"] for x in report["source_candidate_review"]}=={"B1","B2"}
-    assert report["source_readable_count"]==4
+    assert report["source_readable_count"]==3
     assert report["incoming_payments_verified"]==report["applications_sent"]==0
     assert report["read_only_receiving_no_wallet_spending"] is True
     assert report["crypto_payout_only"] is True and report["email_outreach_allowed"] is False
