@@ -35,24 +35,24 @@
   {
     "id": "OPENTASK_OPENAPI_500_USDC",
     "reward_kind": "transferable_crypto",
-    "region": "global",
+    "region": "unknown",
     "source_url": "https://opentask.ai/tasks",
     "ready_deliverable": true,
     "auth_submission_available": false,
     "submission_verified": false,
     "receipt_verified": false,
-    "owner_action": "8-test owner-made OpenAPI portfolio example exists; submit authenticated offer only after confirming buyer and real terms; customer API/spec not yet received; no guaranteed funding."
+    "owner_action": "8-test owner-made OpenAPI portfolio example exists; submit authenticated offer only after confirming buyer and real terms; customer API/spec not yet received; no guaranteed funding. Buyer country eligibility, sponsor response and real funding remain UNVERIFIED; May/June 2026 old listing should not consume ongoing B research until a current payer reply."
   },
   {
     "id": "OPENTASK_JSONCSV_50_USDC",
     "reward_kind": "transferable_crypto",
-    "region": "global",
+    "region": "unknown",
     "source_url": "https://opentask.ai/tasks",
     "ready_deliverable": true,
     "auth_submission_available": false,
     "submission_verified": false,
     "receipt_verified": false,
-    "owner_action": "Existing JSON to CSV code/test sample; canonical old task URL returns 404; new authentic OpenTask account route and buyer acceptance needed, no promised payout."
+    "owner_action": "Existing JSON to CSV code/test sample; canonical old task URL returns 404; new authentic OpenTask account route and buyer acceptance needed, no promised payout. Buyer country eligibility, sponsor response and real funding remain UNVERIFIED; May/June 2026 old listing should not consume ongoing B research until a current payer reply."
   },
   {
     "id": "SUPERTEAM_UKRAINE_VALIDATOR_2500_USDC",
