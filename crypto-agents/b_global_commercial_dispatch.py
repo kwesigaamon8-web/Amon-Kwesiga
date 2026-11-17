@@ -41,6 +41,14 @@ GLOBAL_ORIGINAL_BUYER_LEADS=(
   "next_gate":"An authenticated account must make a tailored offer, customer must accept hiring terms, then submit work and verify actual USDC settlement."
  },
 )
+def crypto_direct_order():
+    data=json.loads(Path("crypto-agents/OPERATION_3M_DIRECT_CRYPTO.json").read_text(encoding="utf-8"))
+    if data["target_ugx_equivalent"] != 3000000 or len(data["director_work_orders"])!=10:
+        raise ValueError("Owner 3M direct crypto order invalid")
+    if data["email_account_access"] != "ABSOLUTELY_PROHIBITED":
+        raise ValueError("Owner no-email constraint not inherited")
+    return data
+
 PENDING_VERIFICATION="NOT_EVIDENCED"
 
 FIELD_ORDER_PATH=Path("crypto-agents/CHIEF_D_OPERATION_COLLECT.json")
@@ -60,6 +68,8 @@ def director_board():
     order=current_order()["order_id"]
     field=field_orders()
     role_orders={x["role"]:x for x in field["directors"]}
+    crypto=crypto_direct_order()
+    crypto_roles={x["role"]:x for x in crypto["director_work_orders"]}
     entries=[]
     for fleet in FLEETS:
         for i,(d,lane,proof) in enumerate(DIRECTOR_LANES):
@@ -74,6 +84,10 @@ def director_board():
              "responsibility":role_orders[d]["mission"],"target_evidence":role_orders[d]["acceptance"],
              "chief_D_strict_field_order":field["order_id"],
              "specific_execution_order":role_orders[d]["orders"],
+             "owner_priority_3m_crypto_order_id":crypto["order_id"],
+             "crypto_revenue_specific_order":crypto_roles[d]["task"],
+             "crypto_revenue_required_deliverable":crypto_roles[d]["deliverable"],
+             "no_email_for_crypto_operation":True,
              "escalation_if_blocked":"Report source/permission/contract blocker with log link; pivot once; do not claim cash",
              "market_hypothesis":{"city":city,"country_code":iso,"region":continent,"locale":locale},
              "actual_customer_known_in_this_market":False,
@@ -111,6 +125,9 @@ def director_board():
             })
     return {"owner_order_id":order,"chief_director":"CHIEF_D",
         "field_order_id":field["order_id"],
+        "urgent_direct_crypto_order_id":crypto["order_id"],
+        "urgent_crypto_collection_target_ugx":crypto["target_ugx_equivalent"],
+        "all_email_access_prohibited":True,
         "owner_long_term_ugx_target_not_collected":field["target_ugx_long_term"],
         "real_executions_required_before_earnings_claim":True,
         "sole_chief_director_own_command_packet":chief_universal_packet(),
@@ -140,6 +157,7 @@ def director_board():
 def worker_packet(global_index):
     row=assign_global_index(global_index)
     field=field_orders()
+    crypto=crypto_direct_order()
     item=row["assignment"]
     parent=item["report_to"]
     company=item["company"]
@@ -149,6 +167,8 @@ def worker_packet(global_index):
     return {
       "protocol":"CHIEF_D_GLOBAL_REVENUE_V3_FIELD_ORDER",
       "field_order":field["order_id"],
+      "urgent_3m_crypto_command":crypto["order_id"],
+      "no_email":True,
       "payable_rails_after_owner_confirmation":field["payment_paths"],
       "mandatory_end_of_shift_reports":field["mandatory_report_fields"],
       "directive_source":row["owner_origin"]["current_order_id"],
@@ -176,7 +196,7 @@ def worker_packet(global_index):
       "reports_up_through":item["one_parent_chain"],
       "local_director":director,
       "director_job":speciality[1],
-      "worker_assigned_job":next(x["orders"] for x in field["directors"] if x["role"]==dname)+". "+item["specific_task"],
+      "worker_assigned_job":next(x["task"] for x in crypto["director_work_orders"] if x["role"]==dname)+". "+item["specific_task"],
       "world_market_research_hypothesis":item["city_focus"]+", "+item["country_iso_3166_alpha2"],
       "translation_hint_locale":row["localization"]["content_language"],
       "original_paid_contract_or_funding_verified":False,
@@ -204,6 +224,8 @@ def worker_packet(global_index):
 def self_test():
     board=director_board()
     assert len(board["director_assignments"])==20
+    assert board["urgent_crypto_collection_target_ugx"]==3000000
+    assert board["all_email_access_prohibited"] is True
     assert board["field_order_id"]==field_orders()["order_id"]
     assert len({x["chief_D_strict_field_order"] for x in board["director_assignments"]})==1
     assert all(x["specific_execution_order"] for x in board["director_assignments"])
@@ -221,6 +243,7 @@ def self_test():
     assert board["source_verified_commercial_leads_not_yet_hired"][0]["crypto_received_verified"] is False
     tasks=[worker_packet(x) for x in (0,1,2,100,3_499_999_999,3_500_000_000,6_999_999_998,6_999_999_999)]
     assert len({t["task_id"] for t in tasks})==len(tasks)
+    assert all(t["urgent_3m_crypto_command"]==board["urgent_direct_crypto_order_id"] and t["no_email"] for t in tasks)
     assert all(t["field_order"]==board["field_order_id"] for t in tasks)
     assert all(len(t["payable_rails_after_owner_confirmation"])>=6 for t in tasks)
     assert len({t["worker_id"] for t in tasks})==len(tasks)
