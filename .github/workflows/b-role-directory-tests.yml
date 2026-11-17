@@ -5,6 +5,7 @@ on:
       - 'edge-role-directory/**'
       - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
       - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/superworker_runtime.py'
       - '.github/workflows/b-role-directory-tests.yml'
   workflow_dispatch:
 permissions:
@@ -23,5 +24,21 @@ jobs:
       - name: Verify publicly read-only order manifest source and safe owner restrictions
         run: |
           node -e 'const m=require("./crypto-agents/PUBLIC_AGENT_COMMAND.json"); if(!m.command_id||m.applies_to.configured_role_ids!=="750377265360"||!m.hard_constraints.includes("NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW")||m.async_delivery_to_dormant_workers!==false)process.exit(1); console.log("OWNER_COMMAND_MANIFEST_VALID")'
+      - name: Prove actual superworker loads new owner command without claiming phantom model calls
+        env:
+          SUPERWORKER_API_URL: ''
+          SUPERWORKER_MODEL: ''
+          SUPERWORKER_API_KEY: ''
+        run: |
+          python -m py_compile crypto-agents/superworker_runtime.py
+          python crypto-agents/superworker_runtime.py > /tmp/owner-command-evidence.jsonl
+          python - <<'PY'
+          import json
+          d=[json.loads(line) for line in open('/tmp/owner-command-evidence.jsonl')]
+          assert d[0]['public_owner_command_link'].endswith('/PUBLIC_AGENT_COMMAND.json')
+          assert d[0]['current_owner_order_id']=='OWNER-20261117-075029-ONE-LINK-ALL-AI-AGENTS'
+          assert d[1]['status']=='NOT_DEPLOYED' and d[1]['verified_active']==0
+          print('REAL_WORKER_COMMAND_LOADED_AND_NO_FALSE_MODEL_CLAIMS')
+          PY
       - name: Record capacity truth
         run: echo "PASS verifies code role routing; no live web site, AI process, Bitcoin miner or customer deployment proven." >> "$GITHUB_STEP_SUMMARY"
