@@ -1,12 +1,30 @@
-# Render Blueprint for the existing public status dashboard only.
-# Free hosting is for a small read-only app; it is NOT a Bitcoin miner or LLM host.
-# This file does not automatically modify an already created Render service
-# unless the user explicitly connects or syncs that service with a Blueprint.
+# Render Blueprint for the existing small public status dashboard.
+# This is a Flask/Gunicorn HTTP service, not a mining or LLM compute fleet.
+# An existing manually-created Render service must be linked/synced to this
+# Blueprint (or its settings updated in Render) for these settings to take effect.
 services:
   - type: web
     name: Amon-Kwesiga
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    rootDir: .
+    autoDeployTrigger: commit
+    buildFilter:
+      paths:
+        - app.py
+        - virtual_bot_service.py
+        - requirements.txt
+        - .python-version
+        - render.yaml
+        - Procfile
+        - crypto-agents/ability_based_dispatch.py
+        - crypto-agents/role_ai_identity.py
+        - crypto-agents/superworker_protocol.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: BOT_SERVICE_ENABLED
+        value: "0"
+    buildCommand: pip install --no-cache-dir -r requirements.txt
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 30
     healthCheckPath: /health
