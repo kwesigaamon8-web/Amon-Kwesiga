@@ -24,7 +24,7 @@ MAX_FAILED_RUNS_TO_EXPAND = 12
 # Specific, evidence-based failure modes; mitigation is a suggested next
 # engineering action, not a claim that the root cause is certainly fixed.
 RULES = (
-    ("OLD_SCHEMA_CONTRACT", re.compile(r"test[\\s_-]+cash[\\s_-]+first[\\s_-]+priority|test[\\s_-]+public[\\s_-]+payment[\\s_-]+routes|schema|route.contract", re.I),
+    ("OLD_SCHEMA_CONTRACT", re.compile(r"test[\s_-]+cash[\s_-]+first[\s_-]+priority|test[\s_-]+public[\s_-]+payment[\s_-]+routes|schema|route.contract", re.I),
      "Check manifest version and compare test expectations to public route safety invariants; keep exchange deposits blocked. Re-run exact tests."),
     ("PAYMENT_ROUTE_UNSAFE", re.compile(r"wallet|balance|receiv|memo|deposit|address|chain", re.I),
      "Check source token/network and beneficiary, require independent receipt proof; do not issue a payer instruction on an unverified exchange route."),
