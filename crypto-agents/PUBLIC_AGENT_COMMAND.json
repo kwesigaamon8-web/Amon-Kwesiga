@@ -198,5 +198,22 @@
       "no guessed client acceptance, income, or live 775B workers"
     ],
     "owner_wallet_directory": "https://raw.githubusercontent.com/kwesigaamon8-web/Amon-Kwesiga/main/crypto-agents/public_payment_routes.json"
+  },
+  "continuous_failure_learning_rule": {
+    "owner_instruction_received_utc": "2026-11-17T11:04:01Z",
+    "exact_instruction": "always learn from failures",
+    "instruction": "Chief D, every activated director, assistant and real B worker must analyze their own unsuccessful actual tasks, distinguish source/permission/buyer/quality/deployment failures, propose a concrete fix, test it and only then retry. Repeated identical failures must be paused, not met with copied orders or more hypothetical worker counts.",
+    "required_cycle": [
+      "Observe a genuine failed step or customer rejection with exact evidence URL",
+      "Identify a cause supported by logs, and flag hypotheses as unverified",
+      "Assign one specific repair or commercially viable pivot to a real active director/assistant",
+      "Execute repair or different authenticated buyer route within actual allowed permissions",
+      "Retest same failure and independent buyer-payment/acceptance gate",
+      "Keep failure open until confirmed technical result and payment outcome are separately proven"
+    ],
+    "no_unchanged_repeat_after_two_identical_failures": true,
+    "failure_dashboard": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/chief-d-learn-from-failures.yml",
+    "financial_success_separate_from_ci_success": true,
+    "applied_research_can_not_impersonate_actual_deployed_agents": true
   }
 }
