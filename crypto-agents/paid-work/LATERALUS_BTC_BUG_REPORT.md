@@ -12,7 +12,11 @@
 - Upstream module: https://github.com/bad-antics/lateralus-lang/blob/d078809df3f5db544b7efa7b0979c7a43ebb25e6/lateralus_lang/query_engine.py
 - Self-contained read-only reproduction script: [reproduce_lateralus_quoted_boolean.py](reproduce_lateralus_quoted_boolean.py)
 - Runner: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/b-paid-bug-evidence.yml
-- Note: Run completion has not yet been independently inspected. The source itself proves a likely defect but unexecuted tests must not be called passing.
+- Bug reproduction actually passed in GitHub Actions: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44046857798
+- **Original quote-aware parser fix** generated and verified against the pinned upstream Python source: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44054259155
+- **Tested unified patch and 9-case regression evidence:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44054259155/artifacts/14315625476
+- Patch SHA-256: `4966987bb57d9d9100cadfda3d8d4440a5848241703702b497489202b4305d29`
+- Regression result: all nine original test cases passed using Python 3.11; no third-party submission or approval implied.
 
 ## Issue title
 `[bounty] bug-report: LQL WHERE splits AND inside a quoted string literal`
@@ -49,7 +53,7 @@ A user of the string-based LQL interface can silently receive wrong results for 
 3. Actual unquoted `AND` and `OR` clauses still work.
 4. Escaped quotes and parentheses do not break parsing.
 
-A fix should split boolean operators only outside quoted string values, with correct precedence. This report does not claim an upstream patch or maintainer acceptance.
+The owner now has a tested original upstream patch that splits boolean operators only outside quoted strings and nested groups, with SQL-style AND-before-OR precedence. The patch remains owner-hosted: the connected GitHub integration cannot create an upstream issue or PR on the maintainer's repository (HTTP 403). Maintainer acceptance has not been established.
 
 ## Payment request after acceptance
 Please confirm whether this new report meets the micro-bounty requirements and whether BTC mainnet is an accepted payout route. The owner's published **receive-only B1 BTC mainnet** address is `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z`. No upfront fees, wallet signing, or outbound transfers are authorized.
