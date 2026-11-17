@@ -31,7 +31,13 @@ assert all(x["status"]=="PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NO
            and x["public_payment_route"] is False
            for x in public["blocked_exchange_reference_only"])
 assert public["public_reference_not_deposit_authorization"] is True
-assert orders["current_owner_order_id"]=="OWNER-20261117-120707-3M-CRYPTO-DIRECT"
+# Latest owner order is allowed to advance without breaking an active cash-work job.
+assert orders["current_owner_order_id"]==orders["orders"][-1]["id"]
+assert orders["orders"][-1].get("origin")=="explicit_human_owner_conversation"
+assert orders["orders"][-1]["id"].startswith("OWNER-")
+assert "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW" in json.loads(
+    (ROOT/"PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8")
+)["hard_constraints"]
 assert orders["active_mission"]["owner_long_term_collected_target_ugx"]==50000000000
 assert orders["latest_explicit_user_operational_constraint"]["emails"]=="ABSOLUTELY_DO_NOT_ACCESS"
 assert orders["latest_explicit_user_operational_constraint"]["target_ugx_equivalent"]==3000000
