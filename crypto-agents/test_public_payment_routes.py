@@ -28,6 +28,10 @@ def validate():
     assert CAT["schema"]=="B1_B2_PUBLIC_RECEIVING_DIRECTORY_V1"
     assert CAT["no_private_keys_or_exchange_memos"] is True
     assert CAT["no_signing_or_transfer_privileges"] is True
+    assert CAT["routing_direction"]=="INBOUND_RECEIVING_ONLY"
+    assert CAT["any_outgoing_transaction_authorized"] is False
+    assert "SEND_FROM_OWNER_WALLETS" in CAT["prohibited_actions"]
+    assert "VERIFY_INCOMING_PUBLIC_TRANSACTIONS_READ_ONLY" in CAT["allowed_actions"]
     assert CAT["not_verified_wallet_ownership"] is True
     assert CAT["verified_new_income_from_this_directory"] is False
     rows=CAT["self_custody_candidate_routes"]
@@ -37,6 +41,7 @@ def validate():
     assert len({x["receiving_address"] for x in rows})==len(rows)
     assert all(x["receiving_address"]==source[x["route_id"]] for x in rows)
     assert all(x["ownership_independently_verified"] is False and x["authorised_for_auto_transfers"] is False for x in rows)
+    assert all(x["direction"]=="RECEIVE_ONLY" and x["allowed_to_send"] is False for x in rows)
     for r in rows:
         rid=r["route_id"]
         if rid in PAYABLE:
@@ -52,6 +57,7 @@ def validate():
             assert r["payment_status"]=="HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY"
     ex=CAT["blocked_exchange_reference_only"]
     assert len(ex)==6 and len({x["route_id"] for x in ex})==6
+    assert all(x["direction"]=="REFERENCE_ONLY_NOT_PAYMENT_READY" for x in ex)
     assert all(x["status"]=="BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND" and
                x["public_payment_route"] is False and x["address_withheld_from_payer_manifest"] is True
                and "address" not in x
