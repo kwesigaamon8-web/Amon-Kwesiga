@@ -1,0 +1,34 @@
+name: B1 B2 Payment Conversion and Eligibility Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 */6 * * *'
+  push:
+    paths:
+      - '.github/workflows/b-crypto-payment-conversion-gate.yml'
+      - 'crypto-agents/paid-work/conversion-targets.json'
+      - 'crypto-agents/paid-work/revenue_conversion_gate.py'
+permissions:
+  contents: read
+jobs:
+  payment-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prove no credit-grant, ineligible or unsubmitted lead is counted as earned cryptocurrency
+        run: |
+          python -m py_compile crypto-agents/paid-work/revenue_conversion_gate.py
+          python crypto-agents/paid-work/revenue_conversion_gate.py | tee /tmp/payment-gate-summary.txt
+          cat /tmp/payment-gate-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive payer-specific next action instead of false income
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b-crypto-conversion-gate
+          path: paid-opportunity-reports/conversion-scorecard.json
+          if-no-files-found: warn
+          retention-days: 7
