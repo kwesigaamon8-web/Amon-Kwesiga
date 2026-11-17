@@ -1,0 +1,37 @@
+name: B1 Real Lateralus Quote-Aware Fix — Original Patch and Regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/lateralus-original-bugfix-tests.yml'
+      - 'crypto-agents/paid-work/build_lateralus_quoted_boolean_patch.py'
+permissions:
+  contents: read
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile original bug fix tool
+        run: python -m py_compile crypto-agents/paid-work/build_lateralus_quoted_boolean_patch.py
+      - name: Build unified patch against pinned upstream and run real regression tests
+        run: python crypto-agents/paid-work/build_lateralus_quoted_boolean_patch.py
+      - name: Publish original source patch, tests, and independent evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lateralus-quoted-boolean-original-patch
+          path: lateralus-fix-evidence/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Evidence only — source not submitted or paid
+        if: always()
+        run: |
+          echo "Original LQL patch and actual test results archived if created." >> "$GITHUB_STEP_SUMMARY"
+          echo "Upstream issue/PR accepted: NOT VERIFIED" >> "$GITHUB_STEP_SUMMARY"
+          echo "Cryptocurrency received: NOT VERIFIED" >> "$GITHUB_STEP_SUMMARY"
