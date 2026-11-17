@@ -827,10 +827,11 @@
     {
       "id": "OWNER-20261117-153239-COINS-NO-EMAIL",
       "as_of_utc": "2026-11-17T15:32:39Z",
-      "relayed_by": "ChatGPT, authenticated GitHub update upon owner's direct instruction",
+      "relayed_by": "ChatGPT on direct human owner's authenticated request",
       "instruction": "OWNER DIRECT ORDER 17 NOV 2026 15:32:39 UTC: You have NO PERMISSION to access any email. No ChatGPT/B1/B2/Chief D/assistant/agent/automation may read, search, monitor, prepare drafts, send, forward, or otherwise use Gmail or ANY owner's email account, even to look for payments, unless the human owner separately explicitly authorizes the particular email action. Execute legitimate worldwide paying work to earn REAL Bitcoin or other crypto deposits to the OWNER'S PREVIOUSLY VERIFIED receiving addresses. B1 BTC native mainnet: bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z. B2 BTC native mainnet: bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Other-chain or custodial addresses remain HOLD pending exact asset, network, memo and ownership compatibility; BTC Lightning and Stacks sBTC DO NOT directly pay a native bc1 mainnet address. Prioritize genuine willing, properly funded buyers, original tested deliverables, permitted authenticated submission, acceptance, and actually confirmed correct-network incoming payments with TXIDs. Do not spend, sign, stake, transfer, register paid services, pay funding/gas fees, spam or impersonate. Virtual 750B namespace entries are not active workers. Audit model invocations and source/acceptance evidence honestly. Avoid repetitive orders or false claim of earnings; report only independently verified paid outcomes or required concrete owner actions.",
       "status": "recorded_in_versioned_owner_instruction_channel",
-      "authenticated_external_execution_not_implied": true
+      "authenticated_external_execution_not_implied": true,
+      "origin": "explicit_human_owner_conversation"
     }
   ],
   "strict_per_worker_reporting": {
