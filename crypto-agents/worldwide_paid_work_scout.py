@@ -166,7 +166,12 @@ def run(now=None,loader=fetch,config=None,github_data=None):
     hour=int(now.timestamp()//3600)
     seeds=conf["seeded_leads"]
     assert len({s["source_url"] for s in seeds})==len(seeds)
-    lanes={fleet:[x for x in seeds if x["fleet"]==fleet]
+    assert conf.get("outreach_policy")=="NO_EMAILS_NO_EMAIL_DRAFTS_NO_EMAIL_SENDS"
+    assert conf.get("crypto_only_owner_order")=="OWNER-20261117-071444-NO-EMAIL-CRYPTO-PAYOUTS"
+    lanes={fleet:[x for x in seeds if x["fleet"]==fleet
+           and x.get("payout_crypto_confirmed") is True
+           and x.get("payout_assets")
+           and x.get("upfront_wallet_spend_required") is False]
            for fleet in ("B1","B2")}
     # Config uses B1/B2, never pretend these assignments activate agents.
     chosen=hour_rotation(lanes["B1"],hour,2)+hour_rotation(lanes["B2"],hour+2,2)
@@ -176,6 +181,12 @@ def run(now=None,loader=fetch,config=None,github_data=None):
                                "listed_utc_date","budget_usd","category","fleet",
                                "competition","observed_hires","precondition")}
         days=(now.date()-dt.date.fromisoformat(item["listed_utc_date"])).days
+        row["payout_assets_advertised"]=item["payout_assets"]
+        row["crypto_payout_network_advertised"]=item["payout_chain"]
+        row["requires_external_wallet_signing_or_auth"]=item["external_wallet_signing_or_auth_required"]
+        row["upfront_wallet_spend_required"]=item["upfront_wallet_spend_required"]
+        row["email_outreach_allowed"]=False
+        row["budget_usd_is_potential_reward_not_income"]=True
         row["listing_age_days"]=days
         row["older_than_two_weeks"]=days>14
         check=evaluate_source(item["source_url"],loader)
@@ -221,6 +232,9 @@ def run(now=None,loader=fetch,config=None,github_data=None):
         "applications_sent":0,"contracts_signed":0,"paid_work_accepted":0,
         "incoming_payments_verified":0,
         "read_only_receiving_no_wallet_spending":True,
+        "crypto_payout_only":True,
+        "email_outreach_allowed":False,
+        "wallet_auth_required_but_not_available_here":True,
         "external_application_account_connected":False,
         "source_candidate_review":results,
         "rotated_board_discovery":discoveries,
@@ -242,6 +256,9 @@ def self_test():
     assert report["source_readable_count"]==4
     assert report["incoming_payments_verified"]==report["applications_sent"]==0
     assert report["read_only_receiving_no_wallet_spending"] is True
+    assert report["crypto_payout_only"] is True and report["email_outreach_allowed"] is False
+    assert all(row["payout_assets_advertised"] for row in report["source_candidate_review"])
+    assert all(row["upfront_wallet_spend_required"] is False for row in report["source_candidate_review"])
     for x in report["source_candidate_review"]:
         assert x["wallet_receipt_verified"] is False
         assert x["buyer_has_authorized_hire"] is False
@@ -279,11 +296,13 @@ def save(report):
            "Rotated primary-source checks: "+str(report["rotated_source_checks"]),
            "Readable pages (not verified hiring): "+str(report["source_readable_count"]),
            "Jobs applied / accepted / payments received: **0 verified in this scan**.","",
-           "| Assignment | Role | Advertised USD | Source status | Original source |",
-           "|---|---|---:|---|---|"]
+           "Only crypto-payout sources are screened; NO EMAIL CONTACT OR WALLET SPENDING.", "",
+           "| Assignment | Fleet | Pool/Reward in USD equivalent (NOT earnings) | Advertised crypto | Source status | Original source |",
+           "|---|---|---:|---|---|---|"]
     for row in report["source_candidate_review"]:
         lines.append("| "+row["title"].replace("|","/")[:55]+" | "+row["fleet"]+
-                     " | $"+str(row["budget_usd"])+" | "+
+                     " | $"+str(row["budget_usd"])+" | "+", ".join(row["payout_assets_advertised"])+
+                     " ("+row["crypto_payout_network_advertised"]+") | "+
                      row["source_check"]["status"]+" | [Review buyer]("+row["source_url"]+") |")
     lines+=["","## Rotated public discovery boards"]
     for p in report["rotated_board_discovery"]:
@@ -297,9 +316,9 @@ def save(report):
             " to examine ["+row["title"].replace("]","")[:90]+"]("+row["original_url"]+
             "): no proven funding, hire or usable payout.")
     lines+=["","## Real next action",
-        "B1: verify still-paying real customer, Uganda eligibility, payout and actual authorized submission route.",
+        "B1: verify genuine crypto-paying sponsor/escrow, eligibility, expected award, zero upfront cost and ACTUAL direct platform submission. NO EMAILS.",
         "B2: supply one useful original sample and QA; DO NOT use client records until permitted.",
-        "D10: check only genuine agreed incoming payment evidence on a matching approved wallet network.",
+        "D10: check only independently evidenced incoming payments on a matching owner-confirmed coin and chain; prizes are never income until paid.",
         "No wallet transfers, signatures, staking, bonds, seed phrases or unauthorized mass posting.",
         "All links and prices need re-checking: this report is not a claim of an open hire or contract."]
     (OUTPUT/"worldwide.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
