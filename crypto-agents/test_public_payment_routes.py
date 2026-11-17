@@ -25,7 +25,11 @@ def src_routes():
     return entries
 
 def validate():
-    assert CAT["schema"]=="B1_B2_PUBLIC_RECEIVING_DIRECTORY_V1"
+    assert CAT["schema"]=="B1_B2_PUBLIC_RECEIVING_DIRECTORY_V2"
+    assert CAT["owner_instructed_to_publish_all_candidates"] is True
+    assert CAT["all_known_16_candidate_destinations_public_reference"] is True
+    assert CAT["public_reference_not_deposit_authorization"] is True
+    assert CAT["total_distinct_listed_addresses"]==16
     assert CAT["no_private_keys_or_exchange_memos"] is True
     assert CAT["no_signing_or_transfer_privileges"] is True
     assert CAT["routing_direction"]=="INBOUND_RECEIVING_ONLY"
@@ -58,10 +62,20 @@ def validate():
     ex=CAT["blocked_exchange_reference_only"]
     assert len(ex)==6 and len({x["route_id"] for x in ex})==6
     assert all(x["direction"]=="REFERENCE_ONLY_NOT_PAYMENT_READY" for x in ex)
-    assert all(x["status"]=="BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND" and
-               x["public_payment_route"] is False and x["address_withheld_from_payer_manifest"] is True
+    assert all(x["status"]=="PUBLIC_REFERENCE_BUT_BLOCKED_UNVERIFIED_CUSTODIAL_DO_NOT_SEND" and
+               x["public_payment_route"] is False and x["address_withheld_from_payer_manifest"] is False
+               and x["direction"]=="REFERENCE_ONLY_NOT_PAYMENT_READY"
+               and x["public_receiving_identifier"]
+               and x["verification_needed"]
                and "address" not in x
                for x in ex)
+    assert {x["route_id"] for x in ex}=={"EXCH-EVM","EXCH-SOL","EXCH-XLM","EXCH-HBAR","EXCH-DOT","EXCH-ALGO"}
+    assert all(x["memo_unverified_or_required"] is True for x in ex if x["route_id"] in {"EXCH-XLM","EXCH-HBAR"})
+    # Public reference is not a deposit directive; non-BTC routes stay held.
+    assert len({x["public_receiving_identifier"] for x in ex})==6
+    assert not ({x["public_receiving_identifier"] for x in ex} &
+                {x["receiving_address"] for x in rows})
+    assert CAT["payment_instructions_require"].find("ONE route")>=0
     assert tuple(CAT["separate_B1_B2_BTC_mainnet_routes"])==("BTC-01","BTC-02")
     return {"passed":True,"self_custody_records":len(rows),"btc_company_routes":2,
         "held_other_network_records":8,"held_exchange_identifiers":len(ex),
