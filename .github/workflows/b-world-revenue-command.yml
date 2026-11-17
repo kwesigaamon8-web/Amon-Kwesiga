@@ -20,6 +20,8 @@ on:
       - 'crypto-agents/owner_order_distribution.py'
       - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/director_review.py'
+      - 'crypto-agents/test_director_review_contract.py'
       - 'crypto-agents/commercial-work/opentask-json-csv/**'
       - 'crypto-agents/commercial-work/csv-to-json/**'
       - 'crypto-agents/commercial-work/invoice-payment-reconciliation/**'
@@ -41,6 +43,7 @@ jobs:
       - name: Validate 7B-worker lazy routing and sole-owner director chain
         run: |
           python crypto-agents/owner_first_oath.py
+          python crypto-agents/test_director_review_contract.py
           python crypto-agents/b_global_commercial_dispatch.py --self-test
           python crypto-agents/b_universal_work_protocol.py --self-test
           python crypto-agents/system_understanding_check.py
