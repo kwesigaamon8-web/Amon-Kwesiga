@@ -1,0 +1,78 @@
+[
+  {
+    "id": "LATERALUS_BUG_REPORT_BTC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://github.com/bad-antics/lateralus-lang/blob/main/BOUNTIES.md",
+    "ready_deliverable": true,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Submit tested $10 report via signed-in GitHub; connected GitHub App gets 403 to upstream. No emails."
+  },
+  {
+    "id": "MAKEDOTFUN_1000_USDC_GAME",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://make.fun/bounty/best-game-01",
+    "ready_deliverable": false,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Free entry closes 2026-11-18 18:00 UTC; needs actually compliant new repo or source bundle, true screenshots, agent transcripts, signed-in make.fun, Solana wallet; no signing from these agents."
+  },
+  {
+    "id": "RAPTORX_125_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://superteam.fun/earn/listing/raptorx-research-challenge-ask-better-questions-find-better-alpha/",
+    "ready_deliverable": false,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Must use authenticated RaptorX app to generate a real report, ask REX AI specific questions, screenshot and submit through signed-in Superteam Earn."
+  },
+  {
+    "id": "OPENTASK_OPENAPI_500_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://opentask.ai/tasks",
+    "ready_deliverable": true,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "8-test owner-made OpenAPI portfolio example exists; submit authenticated offer only after confirming buyer and real terms; customer API/spec not yet received; no guaranteed funding."
+  },
+  {
+    "id": "OPENTASK_JSONCSV_50_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://opentask.ai/tasks",
+    "ready_deliverable": true,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Existing JSON to CSV code/test sample; canonical old task URL returns 404; new authentic OpenTask account route and buyer acceptance needed, no promised payout."
+  },
+  {
+    "id": "SUPERTEAM_UKRAINE_VALIDATOR_2500_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "ukraine",
+    "source_url": "https://superteam.fun/earn/listing/inside-the-block-how-solana-validators-order-transactions/",
+    "spend_required": true,
+    "ready_deliverable": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Reject: Ukraine-only and real mainnet fee spend required."
+  },
+  {
+    "id": "VAULTLINE_SECURITY_4000_USDC",
+    "reward_kind": "service_credit",
+    "region": "global",
+    "source_url": "https://superteam.fun/earn/listing/vaultline-security-audit-grants-for-colosseum-projects-up-to-4000-usdc-each",
+    "ready_deliverable": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Reject: paid in audit service credit, not transferable cryptocurrency, deadline ended."
+  }
+]
