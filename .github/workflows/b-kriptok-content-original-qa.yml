@@ -1,0 +1,28 @@
+name: B1 B2 KriptoK Original USDC Content Entry — Validate
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b-kriptok-content-original-qa.yml'
+      - 'crypto-agents/paid-work/kriptok-creator-original-thread.md'
+      - 'crypto-agents/paid-work/validate_kriptok_thread.py'
+permissions:
+  contents: read
+jobs:
+  original-content-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate 8 original factual posts and absent payment claims
+        run: |
+          python -m py_compile crypto-agents/paid-work/validate_kriptok_thread.py
+          python crypto-agents/paid-work/validate_kriptok_thread.py | tee /tmp/kriptok-qa.txt
+          cat /tmp/kriptok-qa.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Record scope
+        run: |
+          echo "Original content drafted only; not posted to X or submitted to Superteam." >> "$GITHUB_STEP_SUMMARY"
+          echo "No paid prize, publisher approval, transfer or TXID is proven by this test." >> "$GITHUB_STEP_SUMMARY"
