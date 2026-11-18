@@ -2,6 +2,12 @@
 
 An original static service site and client-only CSV/JSON data workbench. It makes **no** claim of customers, earned money, submitted bids or received crypto. No confidential information should be entered in public GitHub requests.
 
+## Publicly deployed temporary preview (independently checked)
+
+**Live site:** https://utopian-femur-oczcu.ship.place/ — anonymous static-host deployment confirmed 18 November 2026; [GitHub deploy run](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44288043215) and [independent external HTTP smoke check](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44288291852) both succeeded. This is a **temporary** free preview, expiring 25 November 2026 at 10:43 UTC. It is public but unlisted/noindex; it is NOT a permanent indexed marketing website. Its published quote form is a public GitHub issue, so buyer must sign into GitHub. No client contract or incoming crypto payment is established by publishing it.
+
+For a durable URL and automatic deployment, enable GitHub Pages in repo Settings > Pages (source main /docs). Do not replace the public preview with an assumed GitHub Pages URL before activation.
+
 ## Preview
 
 From repository root: `python -m http.server 8000 --directory docs`. Open `http://localhost:8000`.
