@@ -1,0 +1,26 @@
+name: B1 B2 AUREN Risk Threshold Bug Evidence
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/paid-work/auren-risk-threshold-repro.py'
+      - '.github/workflows/b1-b2-auren-original-bug-evidence.yml'
+permissions:
+  contents: read
+jobs:
+  verify-auren-readonly-repro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run a pinned upstream AUREN engine score reproducer
+        run: python crypto-agents/paid-work/auren-risk-threshold-repro.py
+      - name: Record truthful scope
+        if: always()
+        run: |
+          echo 'A successful run reproduces an existing diagnostic issue against a pinned public AUREN file.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'It does not imply maintainer acceptance, bounty eligibility, or USDC payment.' >> "$GITHUB_STEP_SUMMARY"
