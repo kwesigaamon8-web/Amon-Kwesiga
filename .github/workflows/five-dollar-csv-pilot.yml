@@ -26,6 +26,8 @@ jobs:
             crypto-agents/commercial-work/five-dollar-csv-pilot/sample.csv \
             --clean /tmp/b1b2-clean-sample.csv \
             --report /tmp/b1b2-clean-quality.json
+          diff -u crypto-agents/commercial-work/five-dollar-csv-pilot/expected_clean.csv /tmp/b1b2-clean-sample.csv
+          diff -u crypto-agents/commercial-work/five-dollar-csv-pilot/expected_report.json /tmp/b1b2-clean-quality.json
           python - <<'PY'
           import json, csv
           p=json.load(open('/tmp/b1b2-clean-quality.json'))
