@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offline, read-only CSV reconciliation for Bitcoin mainnet and Base USDC transactions against general-ledger exports.">
+  <title>Crypto Ledger Reconciliation Workbench</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">B1 / B2 Digital Work Studio · Offline-first · No custody</p>
+    <h1>Crypto Ledger Reconciliation Workbench</h1>
+    <p class="intro">Compare exported blockchain or exchange rows with your general-ledger export. Match by transaction ID and output/log index; flag missing, duplicated, ambiguous and mismatched records without moving funds.</p>
+  </header>
+
+  <main>
+    <section class="panel safety" aria-label="Safety and scope">
+      <strong>Read-only reconciliation aid.</strong> All processing stays in this browser tab. No wallet connection, private keys, network requests, uploads or saved data. Supported labels: BTC on Bitcoin mainnet and USDC on Base mainnet. This page does not query the chain, validate token contracts or chain IDs, or check confirmations; it only compares supplied exports. Fee columns are not reconciled or allocated.
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="step">01 · INPUTS</p>
+          <h2>Load the two exports</h2>
+        </div>
+        <button id="demoButton" class="button secondary" type="button">Load fictional demo</button>
+      </div>
+      <div class="input-grid">
+        <div>
+          <label for="chainFile">Blockchain / exchange CSV</label>
+          <input id="chainFile" type="file" accept=".csv,text/csv">
+          <textarea id="chainCsv" rows="9" spellcheck="false" placeholder="txid,output_index,asset,network,direction,amount&#10;..." aria-describedby="chainHelp"></textarea>
+          <p id="chainHelp" class="hint">Use <code>output_index</code> for Bitcoin vout or EVM log index. Decimal amounts are accepted exactly, or use <code>amount_atomic</code>.</p>
+        </div>
+        <div>
+          <label for="ledgerFile">General-ledger CSV</label>
+          <input id="ledgerFile" type="file" accept=".csv,text/csv">
+          <textarea id="ledgerCsv" rows="9" spellcheck="false" placeholder="txid,output_index,asset,network,direction,amount&#10;..." aria-describedby="ledgerHelp"></textarea>
+          <p id="ledgerHelp" class="hint">Include the transaction ID, asset, network, direction and amount. Include output index where available for stronger matching.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="runButton" class="button" type="button">Run reconciliation</button>
+        <button id="clearButton" class="button secondary" type="button">Clear inputs</button>
+      </div>
+      <p id="runMessage" class="message" role="status" aria-live="polite">No reconciliation run yet.</p>
+    </section>
+
+    <section id="resultsSection" class="panel" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="step">02 · RESULTS</p>
+          <h2>Reconciliation report</h2>
+        </div>
+        <button id="exportButton" class="button secondary" type="button" disabled>Export report CSV</button>
+      </div>
+      <div id="summary" class="summary-grid" aria-live="polite"></div>
+      <div id="errors" class="errors" hidden></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th><th>Transaction</th><th>Output / log</th><th>Asset · network</th>
+              <th>Chain amount</th><th>Ledger amount</th><th>Difference</th><th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+      <p class="hint">A match proves only that the imported rows agree on the selected fields. It does not prove customer identity, business purpose, ownership of an address, completeness of the export, fair value, or accounting classification.</p>
+    </section>
+
+    <section class="panel">
+      <p class="step">03 · METHOD</p>
+      <h2>Matching rules</h2>
+      <ul class="rules">
+        <li>Exact transaction ID and output/log index are preferred.</li>
+        <li>If each source has exactly one row for a transaction ID, the tool can match by transaction ID alone and labels that weaker method.</li>
+        <li>Duplicate keys, multiple rows without indexes, asset/network differences and amount differences are flagged for human review.</li>
+        <li>BTC amounts use 8 decimal places; Base USDC uses 6. Integer arithmetic prevents floating-point rounding.</li>
+        <li>Network fees are not allocated across outputs. Reconcile fees separately to avoid double-counting.</li>
+      </ul>
+      <p class="notice">Do not post journal entries from this report without reviewing source completeness, transaction purpose, valuation at the relevant date, fees and the applicable accounting policy. This tool does not provide tax, audit or IFRS advice.</p>
+    </section>
+
+    <section class="panel offer">
+      <p class="step">SCOPED COMMERCIAL PILOT</p>
+      <h2>Need a wallet-to-ledger reconciliation?</h2>
+      <p>A fixed-scope pilot can clean and reconcile up to 500 exported transaction rows, document exceptions and provide a reviewable CSV evidence pack. Indicative fee: <strong>US$50 equivalent in native BTC on Bitcoin mainnet</strong>, subject to an agreed scope, exact satoshi quote and acceptance checks before work begins. No advance fee or wallet access is required.</p>
+      <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml" target="_blank" rel="noopener noreferrer">Request a scoped pilot through the public intake</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fictional demo data only. No customer, payment, wallet balance or earned revenue is represented by the sample.</p>
+    <p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga">Source repository</a></p>
+  </footer>
+</body>
+</html>
