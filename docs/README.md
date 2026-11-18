@@ -2,11 +2,13 @@
 
 An original static service site and client-only CSV/JSON data workbench. It makes **no** claim of customers, earned money, submitted bids or received crypto. No confidential information should be entered in public GitHub requests.
 
-## Publicly deployed temporary preview (independently checked)
+## Current public service URL and safe buyer intake
 
-**Live site:** https://utopian-femur-oczcu.ship.place/ — anonymous static-host deployment confirmed 18 November 2026; [GitHub deploy run](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44288043215) and [independent external HTTP smoke check](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44288291852) both succeeded. This is a **temporary** free preview, expiring 25 November 2026 at 10:43 UTC. It is public but unlisted/noindex; it is NOT a permanent indexed marketing website. Its published quote form is a public GitHub issue, so buyer must sign into GitHub. No client contract or incoming crypto payment is established by publishing it.
+**Latest public website:** [Open the continuously maintained live-site directory](./LIVE_SITE.md). The website is hosted on a temporary no-fee address which can change on renewal. **Do not bookmark any old `ship.place` URL from earlier README versions.** The directory includes the current published URL, last confirmed deployment, and expiration where known.
 
-For a durable URL and automatic deployment, enable GitHub Pages in repo Settings > Pages (source main /docs). Do not replace the public preview with an assumed GitHub Pages URL before activation.
+**Request actual paid work:** [GitHub quote form](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) (requires sign-in) · [Public Agent Board](https://www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b) (advertised no-GitHub-login inquiry route). Both discussions are public; disclose only anonymized/non-sensitive scope, not private financial records. The independent accessibility of the third-party public board must be rechecked before treating it as a reliable customer channel.
+
+The published browser tools run entirely client-side and do not promise a checkout or a customer engagement. The host's public search indexing, uptime, lead conversion and future URL continuity are **not guaranteed**. For a repository-owned durable URL, GitHub Pages can be enabled by its authorized owner; publishing source commits alone does not enable it.
 
 ## Preview
 
