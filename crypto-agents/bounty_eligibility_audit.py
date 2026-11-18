@@ -12,7 +12,7 @@ import urllib.request
 from urllib.error import HTTPError,URLError
 from bounty_source_safety import unsafe_bounty_source, self_test as test_source_safety
 
-RESTRICTED=re.compile(r"(?i)(?:must be (?:a )?(?:core team member|collaborator|administrator)|only (?:collaborators|core team|maintainers|invited)|reserved for an invited contributor|unsolicited (?:claims|pull requests).*(?:closed|rejected)|not open to external contributors)")
+RESTRICTED=re.compile(r"(?i)(?:must be (?:a )?(?:core team member|collaborator|administrator)|only (?:collaborators|core team|maintainers|invited)|reserved for an invited contributor|unsolicited (?:claims|pull requests).*(?:closed|rejected)|not open to external contributors|external contributors? (?:are |is )?not eligible(?: for (?:rewards?|payment|bount(?:y|ies)))?|(?:rewards?|bount(?:y|ies)) (?:are )?(?:available|reserved) (?:for|to) (?:the )?core team only|(?:we are )?preserving resources for (?:the )?core team only|core team only)")
 SUBMITTED=re.compile(r"(?i)(?:PR submitted|pull requests? (?:submitted|opened|merged)|clean, tested fix ready|existing (?:PR|pull request))")
 RISK=re.compile(r"(?i)(?:pay to claim|fee before apply|deposit to start|private key|seed phrase|stake required)")
 PRICE=re.compile(r"(?i)(?:\bPrice:\s*\d+(?:\.\d+)?\s*USD|\b(?:bounty|reward|payment|pays?)\b[^\n]{0,50}?\$\s*\d+(?:\.\d+)?|\[\$\d+(?:\.\d+)?\])")
@@ -89,6 +89,13 @@ def self_test():
     x=evaluate(i,bot)
     assert x["critical_blocker"] and "EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION" in x["flags"]
     assert x["incoming_crypto_verified"] is False and x["accepted_paid_job_verified"] is False
+    # Real public bot rejection observed on an unclaimable $600 source issue.
+    genuine_bot=[{"user":{"login":"ubiquity-os-beta[bot]"},
+                  "body":"> [!WARNING]\\n> External contributors are not eligible for rewards at this time. We are preserving resources for core team only."}]
+    denied=evaluate({**i,"html_url":"https://github.com/ubiquity-os/plugins-wishlist/issues/78"},genuine_bot)
+    assert denied["critical_blocker"],denied
+    assert "EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION" in denied["flags"]
+    assert denied["eligibility"]=="BLOCKED_DO_NOT_CLAIM"
     reserved={**i,"body":"Reserved for an invited contributor. Unsolicited pull requests will be closed."}
     assert evaluate(reserved,[])["critical_blocker"]
     ordinary=evaluate(i,[{"user":{"login":"bob"},"body":"What is the payment process?"}])
