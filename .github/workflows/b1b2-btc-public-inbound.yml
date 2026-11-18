@@ -1,0 +1,34 @@
+name: B1 B2 BTC Public Inbound Read-Only Snapshot
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/b1b2-btc-public-inbound.yml'
+      - 'crypto-agents/paid-work/read-only-btc-inbound.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  public-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fixture validation and syntax check
+        run: |
+          node --check crypto-agents/paid-work/read-only-btc-inbound.mjs
+          node crypto-agents/paid-work/read-only-btc-inbound.mjs --self-test
+      - name: Check public BTC mainnet address statistics without secrets
+        run: node crypto-agents/paid-work/read-only-btc-inbound.mjs
+      - name: Keep auditable read-only JSON evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: btc-public-mainnet-inbound-snapshot
+          path: btc-mainnet-inbound-snapshot.json
+          retention-days: 7
+          if-no-files-found: error
