@@ -1,0 +1,81 @@
+{
+  "source_url": "https://opwork.vercel.app/",
+  "observation_utc": "2026-11-18T06:05:36.219128Z",
+  "independent_observation_utc": "2026-11-18T06:14:41Z",
+  "method": "Read public HTML as text; inspect inline source without executing it",
+  "snapshot": {
+    "sha256": "dd45b6a8b146e8ef140414a3cdd77225ade4bcd184c93e57f2cba61666f312e0",
+    "utf8_bytes": 66645,
+    "unicode_characters": 64474,
+    "line_count": 1502
+  },
+  "segments": [
+    {
+      "id": "job_data",
+      "first_line": 994,
+      "last_line": 1030,
+      "sha256_lf_no_trailing_newline": "1e83196b5ca39e04d3af712b9fe3e8f2bce2c80a0de49212248270666fd40763"
+    },
+    {
+      "id": "event_data",
+      "first_line": 1042,
+      "last_line": 1048,
+      "sha256_lf_no_trailing_newline": "93e2c2ab44ba66c28886bc53e066332e2e98b779ba29fcb1a9eb126a950c5be3"
+    },
+    {
+      "id": "event_rotation",
+      "first_line": 1104,
+      "last_line": 1133,
+      "sha256_lf_no_trailing_newline": "4c93e026c80c192cba287d762bf914cd987177b80efea61ffab0c2fe6c229023"
+    },
+    {
+      "id": "apply_handler",
+      "first_line": 1448,
+      "last_line": 1456,
+      "sha256_lf_no_trailing_newline": "ee54f86b79c930c26be77625cf11890c46d4ee8fefd25a49b687c14fa7612aac"
+    },
+    {
+      "id": "post_handler",
+      "first_line": 1461,
+      "last_line": 1471,
+      "sha256_lf_no_trailing_newline": "3486fddf524dc46103287edf182faa870e9304b4d9750804147c82d5bb06ef8a"
+    },
+    {
+      "id": "toast_helper",
+      "first_line": 1483,
+      "last_line": 1490,
+      "sha256_lf_no_trailing_newline": "9241e8ada928e289f4c11e1abb0a712fd35549b3e6962599666677b5473056dd"
+    }
+  ],
+  "source_flags": {
+    "jobs_literal_found": true,
+    "events_literal_found": true,
+    "random_feed_selection_found": true,
+    "external_script_elements": 0,
+    "wallet_provider_invocation_found": true
+  },
+  "boundaries": {
+    "javascript_executed": false,
+    "wallet_connected": false,
+    "application_submitted": false,
+    "job_posted": false,
+    "funding_verified": false,
+    "buyer_commission_verified": false,
+    "fraud_determination": false
+  },
+  "validation": {
+    "snapshot_digest_checked": true,
+    "line_references_inspected": true,
+    "independent_source_review": true,
+    "runtime_network_behavior_tested": false
+  },
+  "service_hypothesis": {
+    "name": "Marketplace action trace review",
+    "named_public_market": "OPWork and Bitcoin marketplace maintainers; no commissioning buyer validated",
+    "pilot_scope": "Two public frontend action paths, source locations, an evidence table and suggested acceptance tests",
+    "proposed_fee_sats": 15000,
+    "fee_agreed": false,
+    "native_btc_mainnet_payment_agreed": false,
+    "novelty_claim": "Differentiated work sample, not claimed invention of a new category"
+  }
+}

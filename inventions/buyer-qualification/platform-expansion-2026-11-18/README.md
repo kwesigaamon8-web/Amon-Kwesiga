@@ -59,3 +59,7 @@ Proposed, unagreed pilot: **10,000 sats** for a source-cited review of three req
 General alternatives include marketplace search filters and platform comparison articles, such as [Spark's freelancer payment comparison](https://www.spark.money/tools/bitcoin-freelancer-payment-comparison). This sample's narrower value is checking the specific listing, actual payment network and permitted application path together. It does not claim a new category of product or absolute novelty. It also does not replace the repository's existing bounty acceptance gate: this is a researched dataset and report, not another gate implementation.
 
 Validation: ten platform records, four individual job listings and the current Quantum Visualizer funding clarification were inspected. A separate reviewer checked HackerOne, LaborX and CryptoTask. The JSON is checked for unique platforms, required source URLs, explicit unknowns, distinct current prospects and stale examples, and consistency with the zero-action/zero-award record. This is evidence about the review process, not proof of platform safety, buyer acceptance or payment.
+
+## Follow-up: evidence behind marketplace success messages
+
+A separate [OPWork source review](opwork-source-review.md) records a public-page observation, independent review and a proposed action-trace service. It does not establish a commissioned job or locked funds, and no application or wallet action was performed.
