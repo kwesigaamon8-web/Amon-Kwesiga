@@ -1,0 +1,7 @@
+status,txid,output_index,asset,network,direction,chain_amount,ledger_amount,difference,chain_row,ledger_row,match_method,note
+MATCHED,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,0,BTC,BITCOIN-MAINNET,in,0.0012,0.0012,0,2,2,txid+output_index,"Exact transaction/output, asset, network, direction and amount match."
+MATCHED,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,3,USDC,BASE-MAINNET,in,250,250,0,3,3,txid+output_index,"Exact transaction/output, asset, network, direction and amount match."
+AMOUNT_MISMATCH,cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc,1,BTC,BITCOIN-MAINNET,out,0.0005,0.0004,0.0001,4,4,txid+output_index,Difference is chain amount minus ledger amount. Fees and exchange-rate valuation are not netted here.
+MISSING_IN_LEDGER,dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd,0,BTC,BITCOIN-MAINNET,in,0.0007,,,5,,,Chain output has no matching ledger row.
+MISSING_IN_LEDGER,eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,0,USDC,BASE-MAINNET,in,100,,,6,,,Chain output has no matching ledger row.
+MISSING_ON_CHAIN,ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,0,BTC,BITCOIN-MAINNET,in,,0.002,,,5,,Ledger row has no matching transaction in the chain export.
