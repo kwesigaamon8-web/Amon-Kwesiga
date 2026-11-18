@@ -7,6 +7,7 @@ on:
       - 'crypto-agents/paid_task_scout.py'
       - 'crypto-agents/taskmarket_base_usdc_scout.py'
       - 'crypto-agents/basebounty_usdc_scout.py'
+      - 'crypto-agents/bounty_eligibility_audit.py'
       - 'crypto-agents/paid-work/revenue_conversion_gate.py'
       - 'crypto-agents/paid-work/conversion-targets.json'
       - 'crypto-agents/worldwide_paid_work_seeds.json'
