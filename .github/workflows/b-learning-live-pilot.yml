@@ -71,7 +71,9 @@ jobs:
     needs: current-original-sources
     name: ${{ matrix.fleet }} / slot ${{ matrix.slot }} — actual B model + applied work
     runs-on: ubuntu-latest
-    timeout-minutes: 14
+    # The 18 Nov real shift cancelled one 14-minute worker before D could consolidate.
+    # Give a bounded first-time model fetch a little room to finish, not unlimited runtime.
+    timeout-minutes: 21
     strategy:
       fail-fast: false
       max-parallel: 6
@@ -130,6 +132,11 @@ jobs:
           python crypto-agents/b_paid_feed_fallback.py
           python crypto-agents/owner_first_oath.py
           python crypto-agents/b_universal_work_protocol.py --self-test
+      - name: Reuse downloaded public Qwen model across scheduled shifts
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub
+          key: b1-b2-qwen25-05b-hf-hub-${{ runner.os }}-v1
       - name: Install open-source CPU inference runtime
         run: |
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
