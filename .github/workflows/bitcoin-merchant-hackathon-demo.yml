@@ -30,7 +30,8 @@ jobs:
           test -s index.html
           test -s wallet_core.mjs
           test -s invoice_ledger.mjs
-          zip -q "$GITHUB_WORKSPACE/merchant-bitcoin-watch-public.zip" index.html wallet_core.mjs invoice_ledger.mjs
+          test -s fictional_demo.mjs
+          zip -q "$GITHUB_WORKSPACE/merchant-bitcoin-watch-public.zip" index.html wallet_core.mjs invoice_ledger.mjs fictional_demo.mjs
           cd "$GITHUB_WORKSPACE"
           unzip -Z1 merchant-bitcoin-watch-public.zip | sort
           if unzip -Z1 merchant-bitcoin-watch-public.zip | grep -E '(\.env|\.pem|\.key|seed|private|\.json$)'; then
@@ -54,7 +55,7 @@ jobs:
           if not(p.scheme=='https' and p.hostname and p.hostname.endswith('.ship.place')):
               raise SystemExit('Deployment URL not returned by approved anonymous host')
           files=set(data.get('files') or [])
-          if not {'index.html','wallet_core.mjs','invoice_ledger.mjs'}.issubset(files):
+          if not {'index.html','wallet_core.mjs','invoice_ledger.mjs','fictional_demo.mjs'}.issubset(files):
               raise SystemExit('Hosted file manifest incomplete')
           expires=data.get('expires_at','unknown')
           pathlib.Path('published-url.txt').write_text(url+'\n',encoding='utf-8')
@@ -70,12 +71,13 @@ jobs:
               f.write('- Hackathon application restricted to eligible students using Devpost; reward is conditional and not earned\n')
           PY
           url="$(cat published-url.txt)"
-          for path in '' 'wallet_core.mjs' 'invoice_ledger.mjs'; do
+          for path in '' 'wallet_core.mjs' 'invoice_ledger.mjs' 'fictional_demo.mjs'; do
             curl -fSsL --max-time 20 "$url$path" -o "/tmp/mw-$([[ -z "$path" ]] && echo index || echo "$path")"
           done
           grep -q 'Bitcoin Merchant Watch Wallet' /tmp/mw-index
           grep -q 'makeInvoice' /tmp/mw-wallet_core.mjs
           grep -q 'recordTxEvidence' /tmp/mw-invoice_ledger.mjs
+          grep -q 'FICTIONAL_OFFLINE_TRANSACTION' /tmp/mw-fictional_demo.mjs
           echo 'MERCHANT_PUBLIC_HTTPS_SMOKE_PASS' "$url"
           rm -f deploy-response.json
       - name: Retain public URL only (not credentials)
