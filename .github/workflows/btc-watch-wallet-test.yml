@@ -1,6 +1,10 @@
 name: Bitcoin Watch Wallet — Core Tests
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/**'
+      - '.github/workflows/btc-watch-wallet-test.yml'
   push:
     branches: [main]
     paths:
