@@ -62,7 +62,8 @@ footer{color:var(--sub);padding-bottom:44px}a{color:var(--accent)}
 <h2 id="checkTitle">2. Check the transaction (read-only)</h2>
 <label>Bitcoin transaction ID
 <input id="txid" placeholder="64-character hexadecimal TXID" spellcheck="false" autocomplete="off"></label>
-<div class="controls"><button id="verify">Look up transaction outputs</button></div>
+<div class="controls"><button id="verify">Look up transaction outputs</button><button id="fictional-demo" class="secondary" type="button">Run fictional offline demo</button></div>
+<p><small>The fictional offline demo uses made-up local data and does not read the blockchain or prove a deposit.</small></p>
 <p id="result" class="result" role="status" aria-live="polite">No blockchain check yet. A payment request is not a payment.</p>
 <pre id="proof" hidden></pre>
 <p class="notice"><strong>Important:</strong> An address match is not proof that your particular customer paid, that you own the address, or that an amount is still unspent. An unconfirmed transaction can disappear. This tool does not manage funds or verify sales contracts.</p>
@@ -76,6 +77,7 @@ footer{color:var(--sub);padding-bottom:44px}a{color:var(--accent)}
 <footer>Independent open-source prototype • Not a custodial wallet, exchange or payment processor • No guaranteed earnings</footer>
 <script type="module">
 import {RECEIVERS,validateMainnetAddress,makeInvoice,validateTxid,inspectTx} from "./wallet_core.mjs";
+import {fictionalPaymentScenario} from "./fictional_demo.mjs";
 const el=id=>document.getElementById(id);
 let invoice=null;
 let inflight=0;
@@ -112,6 +114,23 @@ el("copy").addEventListener("click",async()=>{
     await navigator.clipboard.writeText(invoice.bitcoin_uri);
     el("result").textContent="Bitcoin payment link copied; still awaiting actual payment.";
   }catch(err){showError(new Error("Clipboard not available; copy the link manually."));}
+});
+el("fictional-demo").addEventListener("click",()=>{
+  // Never label synthetic local data as an actual Bitcoin receipt.
+  try{
+    const demo=fictionalPaymentScenario({
+      address:el("address").value,amountSats:el("sats").value,label:el("label").value
+    });
+    ++inflight;
+    invoice=demo.invoice;
+    el("invoicePreview").textContent=JSON.stringify(invoice,null,2);
+    el("paymentLink").href=invoice.bitcoin_uri;
+    el("invoiceArea").hidden=false;
+    el("copy").disabled=false;
+    el("proof").hidden=false;
+    el("proof").textContent=JSON.stringify(demo,null,2);
+    el("result").textContent="FICTIONAL OFFLINE DEMO ONLY: Matching outputs shown for made-up sample data. NO real BTC transfer, confirmation, customer payment, or income was observed.";
+  }catch(error){invalidate();showError(error);}
 });
 el("verify").addEventListener("click",async()=>{
   if(!invoice){showError(new Error("Create an invoice first."));return;}
