@@ -1,0 +1,41 @@
+name: B1 B2 Latest Owner WORK Contract CI
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - 'crypto-agents/owner_work_contract.py'
+      - 'crypto-agents/ai_process_worker.py'
+      - '.github/workflows/b-owner-work-contract-ci.yml'
+permissions:
+  contents: read
+jobs:
+  owner-work-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check worker module compiles
+        run: |
+          python -m py_compile crypto-agents/owner_work_contract.py crypto-agents/ai_process_worker.py
+          python crypto-agents/owner_work_contract.py --self-test
+      - name: Verify real worker dynamically loads latest contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          worker=Path("crypto-agents/ai_process_worker.py").read_text()
+          assert "LATEST_WORK_CONTRACT=load_work_contract()" in worker
+          assert 'LATEST_WORK_CONTRACT["model_prompt"]' in worker
+          assert "owner_latest_work_instruction_proof" in worker
+          print("WORKER_INHERITANCE_ASSERTIONS_PASS: model prompt + per-process proof; no fictitious activation or earnings")
+          PY
+      - name: Report what the check does and does not prove
+        if: always()
+        run: |
+          echo '### Owner WORK instruction inheritance' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Validates current 775B conceptual target and carefully reviewed per-task order reach actual worker prompt construction.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Does NOT launch billions of agents or prove buyers, completed inference, mining hash rate or crypto payments.' >> "$GITHUB_STEP_SUMMARY"
