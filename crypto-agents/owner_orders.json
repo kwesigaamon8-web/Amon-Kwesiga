@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-18T06:29:00Z",
+  "updated_utc": "2026-11-18T07:44:07Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -855,6 +855,22 @@
       "reported_status": "needs_audit",
       "last_verified_payment_receipt": null,
       "external_action": "Synchronized order file makes these owner rules visible to repository scripts that read it; propagation and execution must be separately proven from actual GitHub run outputs."
+    },
+    {
+      "id": "ORD-052",
+      "title": "Owner 18 November 2026 UGX 3m equivalent received-crypto sprint by 18:00 Kampala",
+      "accountable_director": "D03",
+      "standing_requirement": "At 10:44 EAT on 18 Nov 2026 the owner directed real B1/B2/Chief D work toward UGX 3,000,000 in genuine legally earned and credited cryptocurrency before 18:00 EAT (15:00 UTC). Deadline is a TARGET not a guarantee or payment. Execute available public-source checks and genuine funded buyer selection; validate current scope, accepted work, publisher or platform access, Uganda eligibility, BTC-mainnet correct receiving address and real payer; deliver original tested work only with authorization and actual need. A buyer's authenticated payable acceptance and matching correct-chain credit TXID are required for earnings. Avoid promoting theoretical bounty totals, agent counts, self-posted GitHub offers or open but ineligible issues as money. Recorded new public commercial proposal consists of three indicative UGX 1m BTC-equivalent pilots for CSV export review, JSON/API validation and BTC payment evidence, not accepted orders. Preserve absolute user prohibition on Gmail or any email access/search/drafting/sending, wallet signing/spending/transfer, account impersonation or creation, fees and unsolicited bulk outreach. Human consent necessary for external binding commercial obligations. The clock target expires after 18:00 EAT this date; thereafter return to the continuing legitimate income mission without treating the target as achieved.",
+      "evidence_files": [
+        "crypto-agents/CHIEF_D_SHARED_OPERATIONAL_INTELLIGENCE.md",
+        "crypto-agents/commercial-work/crypto-data-integrity-btc-settlement-offer-20261118.md",
+        "crypto-agents/owner_orders.json",
+        ".github/workflows/owner-orders-audit.yml"
+      ],
+      "verification_condition": "Check whether a real external customer agreed and accepted delivery and independent blockchain evidence shows new correct-chain cryptocurrency received before 2026-11-18T15:00:00Z; distinguish current GitHub runner success from payment and correctly state zero/unknown otherwise.",
+      "reported_status": "ongoing_no_verified_payment",
+      "last_verified_payment_receipt": null,
+      "external_action": "Work through authorized connected GitHub account; only real authenticated external opportunities and user-authorized social/application accounts; do not claim any unavailable third-party access."
     }
   ],
   "broadcast_aliases": {
