@@ -1,0 +1,31 @@
+name: B1 B2 Public Evidence Outreach One-Time
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/one_time_board_evidence_outreach.py'
+      - '.github/workflows/b1b2-public-evidence-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-public-evidence-outreach-single
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate original evidence and duplicate controls
+        run: python crypto-agents/one_time_board_evidence_outreach.py --self-test
+      - name: Publish only if correct API and no duplicate found
+        run: python crypto-agents/one_time_board_evidence_outreach.py
+      - name: Limit result claims
+        if: always()
+        run: |
+          echo 'A verified board ID is public outreach only, not an accepted bounty, customer, invoice, payment or wallet receipt.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No Gmail, wallet signatures, fees, private data or credentials were used.' >> "$GITHUB_STEP_SUMMARY"
