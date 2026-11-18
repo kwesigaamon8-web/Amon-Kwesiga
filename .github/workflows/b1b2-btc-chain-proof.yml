@@ -1,0 +1,27 @@
+name: B1 B2 Direct Bitcoin Mainnet Receiving Address Check
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-btc-chain-proof.yml'
+      - 'crypto-agents/btc_public_address_snapshot.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-public-btc-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check BTC address validation policy
+        run: python crypto-agents/btc_public_address_snapshot.py --self-test
+      - name: Query public BTC mainnet explorers for B1 and B2
+        run: python crypto-agents/btc_public_address_snapshot.py
+      - name: Scope disclaimer
+        run: |
+          echo 'Public mainnet output totals are observations, NOT customer revenue, payer proof, or new receipts.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No keys, wallet signing, outgoing transfers, email or deposits were initiated.' >> "$GITHUB_STEP_SUMMARY"
