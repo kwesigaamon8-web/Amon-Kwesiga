@@ -16,6 +16,7 @@ on:
       - 'crypto-agents/social_scan.py'
       - 'crypto-agents/social_work_pipeline.py'
       - 'crypto-agents/b_inbound_buyer_watch.py'
+      - 'crypto-agents/public_board_buyer_watch.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/b_fleet_integrity.py'
       - 'crypto-agents/d10_payment_director.py'
@@ -223,6 +224,20 @@ jobs:
                   f.write('- '+x['task_id']+': '+x['status']+'; '+str(x['advertised_usdc'])+
                           ' USDC; '+x['detail_url']+'; blockers: '+','.join(x['blockers'])+'\n')
               f.write('- No claims, purchases, keys, wallet signatures, submissions, acceptance or owner deposits from the scout.\n')
+          PY
+      - name: Check verified published public Board thread for possible buyer replies
+        run: |
+          python crypto-agents/public_board_buyer_watch.py --self-test
+          python crypto-agents/public_board_buyer_watch.py
+          python - <<'PY'
+          import json,os
+          d=json.load(open('paid-opportunity-reports/public-board-buyer-watch.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('\n### New public sales post — possible buyer responses\n')
+              f.write('- Public post: '+d['public_thread']+'\n')
+              f.write('- Read status: '+d['status']+'\n')
+              f.write('- Visible replies (not confirmed buyers): '+str(d.get('visible_reply_count'))+'\n')
+              f.write('- Customer contracts, accepted bounty or wallet deposits from this check: NONE VERIFIED.\n')
           PY
       - name: Archive all checked candidate leads and blockers
         uses: actions/upload-artifact@v4
