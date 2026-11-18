@@ -23,6 +23,8 @@ jobs:
           python-version: '3.11'
       - name: Compile receipt probe
         run: python -m py_compile crypto-agents/bitcoin_mainnet_receipt_probe.py
+      - name: Verify synthetic multi-source balance and missing-explorer safety gates
+        run: python crypto-agents/bitcoin_mainnet_receipt_probe.py --self-test
       - name: Inspect two public Bitcoin mainnet addresses without wallet access
         run: python crypto-agents/bitcoin_mainnet_receipt_probe.py
       - name: Publish proof and uncertainty to job summary
