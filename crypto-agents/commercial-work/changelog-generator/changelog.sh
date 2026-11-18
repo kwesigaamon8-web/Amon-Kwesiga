@@ -24,8 +24,8 @@ for line in commits:
     else:
         desc=msg
         category='Removed' if re.search(r'\b(remove|delete|drop)\b',msg,re.I) else 'Changed'
-    groups[category].append(f'- {desc} (`${sha}`)')
-sections=['# Changelog','',f'Changes since `${tag}`.' if tag else 'Changes from repository history.','']
+    groups[category].append(f'- {desc} (`{sha}`)')
+sections=['# Changelog','',f'Changes since `{tag}`.' if tag else 'Changes from repository history.','']
 for category,items in groups.items():
     sections.extend([f'## {category}',*(items or ['- None']),''])
 Path(sys.argv[1]).write_text('\n'.join(sections).rstrip()+'\n',encoding='utf-8')
