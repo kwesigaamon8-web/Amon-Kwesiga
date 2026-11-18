@@ -1,0 +1,11 @@
+# Anchor Rename Handoff
+
+18 November 2026 (Kampala). Problem: a documentation heading rename can invalidate same-page references. Proposed service: review one public guide's explicit old-to-new anchor mapping and deliver a suggested link-change inventory plus test fixtures. Proposed 15,000 sats for up to30 mappings, only after buyer agrees. Named market: GitHub documentation maintainers and BitcoinTalk Services guide publishers. No verified payer, regional eligibility, accepted price or buyer mainnet support established. Only separately agreed BTC-mainnet payment is in scope.
+
+Competition checked: https://lychee.cli.rs/guides/cli/ and https://github.com/lycheeverse/lychee . Lychee already supports fragment checks and offline operation; a new generic checker is unnecessary. This narrower prototype consumes an explicit human-approved rename map and target inventory. It is not automatic semantic matching, a crawler, a browser or a replacement for Lychee. No absolute novelty claimed. Existing repository prototypes were reviewed for duplication; this concerns navigation migration, not alt text or general file differences.
+
+Run `python anchor_rename_handoff.py`: five tests passed locally for a rename, missing target, excluded external links, encoded fragments and no automatic application. Import `plan(hrefs, renames, available_ids)` to use. Only hash-only links are considered. Caller must establish the document base, target uniqueness and validity, and inspect resulting navigation. Empty/text fragments and cross-document links are excluded. No files are changed; no network or email checks occur.
+
+Public owner issue10 and collective issue1 had no new comments after the existing offers. Both approved BTC addresses returned zero confirmed and mempool funded outputs via mempool.space. One actually running research worker rejected two closed Freelancer writing/proofreading listings posted years ago; no current commissioned work established. No outreach, login, spending, email or commitments.
+
+Next commercial gate: an independent buyer agrees exact scope, fee, deadline, acceptance and BTC-mainnet payout. Original prototype publication is not a customer submission, accepted job or settlement.
