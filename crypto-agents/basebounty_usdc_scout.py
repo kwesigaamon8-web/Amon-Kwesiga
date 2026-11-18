@@ -82,7 +82,8 @@ def classify(row, now):
     status = str(row.get("status") or "").lower()
     audience = str(first(row, ("audience", "workerType", "eligibility")) or "").lower()
     title = str(first(row, ("title", "name")) or "")[:140]
-    description = str(first(row, ("descriptionText", "description", "task")) or "")[:1000]
+    # API list 'description' is an IPFS CID; only 'descriptionText' from ?full=1 is task text.
+    description = str(row.get("descriptionText") or "")[:64000]
     deadline = expiry_utc(first(row, ("deadline", "deadlineAt", "expiry", "expiresAt", "endTime")))
     reasons = []
     if status != "open":
@@ -93,8 +94,12 @@ def classify(row, now):
         reasons.append("eligibility_unknown")
     if deadline and deadline <= now:
         reasons.append("expired")
-    if not description and not title:
-        reasons.append("no_task_spec_in_listing_check_full_record")
+    if row.get("reservedFor"):
+        reasons.append("reserved_for_another_unverified_wallet")
+    if row.get("workerBondRequired") is not False:
+        reasons.append("worker_bond_missing_or_required")
+    if not description:
+        reasons.append("full_task_description_unavailable")
     if RISK.search(description + " " + title):
         reasons.append("unsafe_description")
     if payout < Decimal("2"):
@@ -105,6 +110,10 @@ def classify(row, now):
         "api_url": "https://www.basebounty.app/api/v1/bounties/" + str(uid) + "?full=1",
         "chain_id": 8453, "asset": "USDC",
         "title": title, "description_excerpt": description[:250],
+        "description_url": row.get("descriptionUrl"),
+        "source_listing_url": row.get("url") if str(row.get("url") or "").startswith("https://www.basebounty.app/") else "https://www.basebounty.app/",
+        "reserved_for": row.get("reservedFor"),
+        "worker_bond_required": row.get("workerBondRequired"),
         "worker_payout_usdc_advertised": str(payout),
         "audience": audience or "not_supplied",
         "deadline_utc": deadline.isoformat() if deadline else None,
@@ -135,15 +144,18 @@ def self_test():
     base = {"jobId": 17, "title": "Python CSV reconciliation",
             "descriptionText": "Fix invoice reconciliation tests",
             "status": "open", "audience": "anyone", "workerPayoutUsdc": "25.5",
-            "deadline": "2026-11-21T12:00:00Z"}
+            "deadline": "2026-11-21T12:00:00Z", "workerBondRequired": False}
     payload = {"data": {"bounties": [
         base, dict(base, jobId=18, audience="agents"),
         dict(base, jobId=19, deadline="2026-11-01T00:00:00Z"),
         dict(base, jobId=20, descriptionText="Send private key for reward"),
         dict(base, jobId=21, workerPayoutUsdc="0.30"),
-        dict(base, jobId=22, workerPayoutUsdc="NaN") ]}}
+        dict(base, jobId=22, workerPayoutUsdc="NaN"),
+        dict(base, jobId=23, reservedFor="0x1234567890123456789012345678901234567890"),
+        dict(base, jobId=24, workerBondRequired=True),
+        dict(base, jobId=25, descriptionText=None) ]}}
     rows, found = screen(payload, now)
-    assert len(rows) == 6 and len(found) == 5
+    assert len(rows) == 9 and len(found) == 8
     assert found[0]["job_id"] == "17" and found[0]["status"].startswith("SOURCE_OPEN")
     assert all(x["status"] == "HOLD" for x in found[1:])
     assert all(x["deposit_verified"] is False for x in found)
@@ -160,7 +172,7 @@ def main():
     if args.self_test:
         return self_test()
     errors = []
-    rows, found = [], []
+    rows, found, detail_errors = [], [], []
     try:
         req = urllib.request.Request(API, headers={"Accept": "application/json",
                                                    "User-Agent": "B1B2-ReadOnlyEarningScout/1.0"})
@@ -169,7 +181,34 @@ def main():
         if not isinstance(payload, (list, dict)) or (
                 isinstance(payload, dict) and any(k in payload for k in ("error", "errors"))):
             raise ValueError("source returned error payload")
-        rows, found = screen(payload)
+        rows = rows_from_payload(payload)
+        # Read up to 8 highest-value OPEN, non-bonded, non-reserved tasks. Never sign.
+        eligible = sorted(
+            (r for r in rows if str(r.get("status") or "").lower() == "open"
+             and r.get("workerBondRequired") is False and not r.get("reservedFor")
+             and str(r.get("audience") or "") not in ("agents", "agent", "agents_only")
+             and (amount_decimal(r.get("workerPayoutUsdc")) or Decimal(0)) >= Decimal(2)),
+            key=lambda r: amount_decimal(r.get("workerPayoutUsdc")) or Decimal(0),
+            reverse=True
+        )[:8]
+        expanded = {}
+        for item in eligible:
+            jid = str(item.get("jobId") or "")
+            if not re.fullmatch(r"[0-9]{1,20}", jid):
+                continue
+            url = "https://www.basebounty.app/api/v1/bounties/" + jid + "?full=1"
+            try:
+                req2 = urllib.request.Request(url, headers={"Accept": "application/json",
+                                                            "User-Agent": "B1B2-ReadOnlyEarningScout/1.0"})
+                with urllib.request.urlopen(req2, timeout=8) as response:
+                    detail = json.load(response)
+                full = detail.get("bounty") if isinstance(detail, dict) else None
+                if not isinstance(full, dict) or str(full.get("jobId")) != jid:
+                    raise ValueError("detail schema or job ID mismatch")
+                expanded[jid] = {**item, **full}
+            except Exception as ex:
+                detail_errors.append(jid + ": " + type(ex).__name__ + ": " + str(ex)[:90])
+        rows, found = screen([expanded.get(str(r.get("jobId")), r) for r in rows])
         if not rows and isinstance(payload, dict) and not any(
                 k in payload for k in ("bounties", "jobs", "items", "data", "results")):
             raise ValueError("unrecognized response schema; empty market not verified")
@@ -181,7 +220,7 @@ def main():
         "network": "Base mainnet", "chain_id": 8453,
         "read_only": True, "source_rows": len(rows),
         "candidate_count": len(found), "candidates_unverified": found[:40],
-        "source_errors": errors,
+        "source_errors": errors, "detail_errors": detail_errors,
         "status": "SOURCE_ERROR_DO_NOT_CLAIM_ZERO" if errors else "SOURCE_SCREENED",
         "funds_spent": 0, "signed_actions": 0, "verified_deposits": 0,
         "next_action": "Read full original bounty; independently verify escrow, eligibility and payout. Wallet signature requires separate authorization. Never count listing as earnings."
@@ -189,7 +228,7 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("BASEBOUNTY_READ_ONLY_SCOUT", json.dumps({
-        "rows": len(rows), "candidates": len(found), "errors": errors,
+        "rows": len(rows), "candidates": len(found), "errors": errors, "detail_errors": len(detail_errors),
         "top": [(x["job_id"], x["worker_payout_usdc_advertised"], x["status"])
                 for x in found[:5]]
     }))
