@@ -29,14 +29,28 @@ def parse_works(payload):
     return []
 
 def _usdc(work):
-    reward = work.get("reward")
-    if not isinstance(reward, dict):
-        return decimal.Decimal(0)
-    try:
-        amount = decimal.Decimal(str(reward.get("usdc", "0") or "0"))
-    except decimal.InvalidOperation:
-        return decimal.Decimal(0)
-    return amount if amount.is_finite() and amount > 0 else decimal.Decimal(0)
+    # Public API uses reward={amount, unit:"credit"} plus
+    # standing.tiers=[{name, credits, usdc}], not the marketing-page format.
+    reward=work.get("reward") or {}
+    standing=work.get("standing") or {}
+    if not isinstance(reward,dict):reward={}
+    if not isinstance(standing,dict):standing={}
+    candidates=[reward.get("usdc"),reward.get("usdc_amount")]
+    if str(reward.get("unit") or "").lower()=="usdc":
+        candidates.append(reward.get("amount"))
+    for tier in standing.get("tiers") or []:
+        if isinstance(tier,dict):candidates.append(tier.get("usdc"))
+    direct=work.get("reward_usdc")
+    if isinstance(direct,dict):candidates.append(direct.get("amount"))
+    elif isinstance(direct,(str,int,float)):candidates.append(direct)
+    amounts=[]
+    for v in candidates:
+        try:
+            n=decimal.Decimal(str(v if v is not None else "0"))
+            if n.is_finite() and n>0:amounts.append(n)
+        except decimal.InvalidOperation:
+            pass
+    return max(amounts,default=decimal.Decimal(0))
 
 def screen(payload, when=None):
     when=when or dt.datetime.now(dt.timezone.utc)
@@ -54,9 +68,12 @@ def screen(payload, when=None):
         deadline=w.get("deadline") or w.get("expires_at")
         if deadline:
             try:
-                ending=dt.datetime.fromisoformat(str(deadline).replace("Z","+00:00"))
-                if ending.tzinfo is None:ending=ending.replace(tzinfo=dt.timezone.utc)
-            except ValueError:
+                if isinstance(deadline,(int,float)):
+                    ending=dt.datetime.fromtimestamp(deadline,tz=dt.timezone.utc)
+                else:
+                    ending=dt.datetime.fromisoformat(str(deadline).replace("Z","+00:00"))
+                    if ending.tzinfo is None:ending=ending.replace(tzinfo=dt.timezone.utc)
+            except (ValueError,OverflowError,OSError):
                 ending=None
         else:
             ending=None
@@ -108,12 +125,19 @@ def self_test():
       {"id":"d","state":"closed","reward":{"usdc":"1.0"},"standing":{"open":2}},
       {"id":"e","state":"open","reward":{"usdc":"0.2"}},
       {"id":"f","state":"open","reward":{"usdc":"0.2"},"standing":{"open":1},"deadline":"2026-11-17T12:00:00Z"},
+      {"id":"g","state":"open","reward":{"amount":500,"unit":"credit"},
+       "standing":{"open":1,"tiers":[{"name":"notable","credits":80,"usdc":"0.10"}]}},
+      {"id":"h","state":"open","reward":{"amount":300,"unit":"credit"},
+       "standing":{"open":0,"tiers":[{"name":"brief","credits":30,"usdc":"0.02"}]}},
+      {"id":"i","state":"open","reward":{"amount":300,"unit":"credit"},
+       "standing":{"open":1,"tiers":[{"name":"brief","credits":30,"usdc":"0.02"}]},
+       "deadline":1794900000},
     ]
     result=screen({"data":{"works":cases}},when=now)
-    assert len(result["possible_nonzero_usdc_tasks"])==1
+    assert len(result["possible_nonzero_usdc_tasks"])==2
     assert result["possible_nonzero_usdc_tasks"][0]["id"]=="a"
     assert all(x["id"]!="b" for x in result["blocked_or_unknown_usdc_tasks"])
-    assert len(result["blocked_or_unknown_usdc_tasks"])==4
+    assert len(result["blocked_or_unknown_usdc_tasks"])==6
     assert result["paid_receipts_independently_verified"]==0
     assert result["read_only"] and not result["external_identity_created"]
     assert parse_works({"data":{"items":cases}})==cases
