@@ -161,6 +161,17 @@ def self_test():
         blocked=choose("transferexperiment","D01-M01-W01",f,restricted_fetch)
         assert blocked["source_item"] is None
         assert any("EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION" in z.get("flags",[]) for z in blocked["rejected_source_candidates"])
+        # A single older paid issue with several competing PRs must not
+        # consume the fleet's real AI inference resources repeatedly.
+        def contested_fetch(url):
+            if "comments?" in url:
+                return [{"body":"Implemented in PR #25 and PR #27; now PR #33 is active."}]
+            return {"state":"open","html_url":"https://github.com/example/repo/issues/16",
+                    "title":"$75 bounty fix","body":"Repair retry bug","comments":3}
+        contested=choose("transferexperiment","D01-M01-W01",f,contested_fetch)
+        assert contested["source_item"] is None
+        assert contested["rejected_source_candidates"][0]["reason"]=="MULTIPLE_EXISTING_PR_CLAIMS_REQUIRES_SPONSOR_RECONFIRMATION"
+
         # Many active workers must not all process the first appealing issue.
         f.write_text(json.dumps({"candidates":[{
             "status":"POSSIBLE_PAID_TASK_UNVERIFIED",
@@ -179,16 +190,6 @@ def self_test():
                  for n in range(1,10)}
         assert len(choices)>=3,choices
 
-        # A single older paid issue with several competing PRs must not
-        # consume the fleet's real AI inference resources repeatedly.
-        def contested_fetch(url):
-            if "comments?" in url:
-                return [{"body":"Implemented in PR #25 and PR #27; now PR #33 is active."}]
-            return {"state":"open","html_url":"https://github.com/example/repo/issues/16",
-                    "title":"$75 bounty fix","body":"Repair retry bug","comments":3}
-        contested=choose("transferexperiment","D01-M01-W01",f,contested_fetch)
-        assert contested["source_item"] is None
-        assert contested["rejected_source_candidates"][0]["reason"]=="MULTIPLE_EXISTING_PR_CLAIMS_REQUIRES_SPONSOR_RECONFIRMATION"
 
     print("PASS original task source fed to each real B only, no imaginary payer or D10 speculation")
 if __name__=="__main__":self_test()
