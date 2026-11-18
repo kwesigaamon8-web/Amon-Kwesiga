@@ -35,7 +35,7 @@ UNPUBLISHED_REQUIRED_SOURCE=re.compile(
     r"(?i)(?:\b(?:reviewed|required|implementation|source)\s+(?:head|branch|code|files?)\b[^\n.]{0,90}\bnot\s+(?:pushed|published|available)\b"
     r"|\b(?:proposed|required|implementation|source)\s+(?:directory|path|files?|branch)\b[^\n.]{0,90}\b(?:does\s+not\s+exist|is\s+(?:not\s+)?(?:public|published|available))\b"
     r"|\b(?:does\s+not\s+exist|not\s+present|missing)\s+on\s+(?:live\s+)?main\b"
-    r"|\b(?:publish\s+the\s+branch|attach\s+the\s+patch)\b"
+    r"|\b(?:publish\s+the\s+branch|attach\s+the\s+patch)\b)"
 )
 
 def evaluate(issue,comments,repo=None):
