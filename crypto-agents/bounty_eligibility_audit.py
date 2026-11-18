@@ -23,6 +23,11 @@ NO_EXTERNAL_SUBMISSION=re.compile(r"(?is)\b(?:manual|human|external|community)\s
 ISSUE_URL=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\d+)$")
 ZERO_BOUNTY=re.compile(r"(?i)(?:\bzero[- ]bounty\b|\[\$0\]|\b(?:bounty|reward|payment|price|worker price)\s*[:=]?\s*\$\s*0(?:\b|\D)|\b(?:no payout|unpaid|no monetary reward)\b)")
 FILLED_OR_DELIVERED=re.compile(r"(?i)(?:\bstatus\s*:\s*(?:delivered|completed|paid|awarded)\b|\bslots?\s*:\s*\d+\s*\(filled\)|\bslots?\s*:\s*0\b|\bno slots available\b)")
+# Do not send workers to 'bounty' issues that explicitly promise no money,
+# advertise a fake/decoy bounty label, or disallow PRs before assignment.
+POINTS_ONLY=re.compile(r"(?i)(?:\bpoints?\s+only\b|\brecognition\s+points?\b|\bno\s+monetary\s+(?:payment|reward)\b)")
+SELF_LABELED_DECOY=re.compile(r"(?i)(?:\bself[- ]labeled\s+decoy\s+(?:bounty|reward)\b|\bdecoy\s+bounty\s+without\s+escrow\b|\bbounty\s+bot\s+trap\b)")
+ASSIGN_FIRST=re.compile(r"(?i)(?:\bassign[- ]first\b|\bdo\s+not\s+open\s+(?:a\s+)?pull\s+request\s+until\s+(?:a\s+)?maintainer\s+(?:officially\s+)?assigns\b)")
 
 def evaluate(issue,comments,repo=None):
     repo=repo or {}
@@ -43,6 +48,12 @@ def evaluate(issue,comments,repo=None):
         flags.append("ZERO_PAYMENT_EXPLICIT")
     if FILLED_OR_DELIVERED.search(issue_text) or any(str(x).lower() in ("delivered","filled","already-awarded","paid") for x in labels):
         flags.append("ALL_SLOTS_FILLED_OR_DELIVERED")
+    if POINTS_ONLY.search(issue_text):
+        flags.append("NON_MONETARY_POINTS_ONLY")
+    if SELF_LABELED_DECOY.search(issue_text):
+        flags.append("SELF_LABELED_DECOY_BOUNTY")
+    if ASSIGN_FIRST.search(issue_text) and not (issue.get("assignee") or issue.get("assignees")):
+        flags.append("ASSIGNMENT_REQUIRED_BEFORE_PR")
     if RISK.search(issue_text):
         flags.append("ADVANCE_FEE_OR_SECRET_RISK")
     if unsafe_bounty_source(issue.get("html_url"),issue_text):
@@ -55,7 +66,7 @@ def evaluate(issue,comments,repo=None):
         flags.append("NO_EXPLICIT_REWARD_IN_SOURCE")
     if int(issue.get("comments") or 0)>len(comments):
         flags.append("SOME_COMMENTS_UNREAD")
-    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE"))
+    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR"))
     return {
       "schema":"B_COMMERCIAL_ELIGIBILITY_V1",
       "source_url":issue.get("html_url"),"issue_title":title,
@@ -126,7 +137,15 @@ def self_test():
     price_only={**i,"title":"[$250] New paid issue","body":"Code task with no buyer acceptance evidence","comments":0}
     z=evaluate(price_only,[])
     assert not z["reward_funded_verified"] and not z["accepted_paid_job_verified"]
-    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: nine independent checks including zero-payout, filled slots, prior submitted PR and bot permission failures")
+    points={**i,"body":"This task awards 100 recognition points. Points only; no cash payment."}
+    assert "NON_MONETARY_POINTS_ONLY" in evaluate(points,[])["flags"]
+    decoy={**i,"labels":[{"name":"Bounty $500 Self-labeled decoy bounty without escrow bot"}]}
+    assert "SELF_LABELED_DECOY_BOUNTY" in evaluate(decoy,[])["flags"]
+    assign={**i,"body":"Assign-First: do not open a Pull Request until a maintainer officially assigns you."}
+    assert "ASSIGNMENT_REQUIRED_BEFORE_PR" in evaluate(assign,[])["flags"]
+    assign_ok={**assign,"assignee":{"login":"assigned-dev"}}
+    assert "ASSIGNMENT_REQUIRED_BEFORE_PR" not in evaluate(assign_ok,[])["flags"]
+    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: including non-cash points, decoy labels and assign-first restrictions")
 
 def main():
     p=argparse.ArgumentParser()
