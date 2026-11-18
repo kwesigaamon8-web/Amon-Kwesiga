@@ -58,7 +58,7 @@ NOT_WORK_PAYMENT=re.compile(r'(?i)\b(?:block reward|halving reward|mining reward
 QUESTIONS_ONLY=re.compile(r'(?i)(?:\b(?:could the current docs|clarify|question routes|request for information|eligibility question|is the bounty|vote:|how to claim)\b)')
 AUTO_USERNAME=re.compile(r'(?i)(?:\[bot\]$|^github-actions(?:\[bot\])?$|^dependabot(?:\[bot\])?$)')
 EXCLUDED_ORIGIN_REPOS=("bountyscout","bounty-plaza")
-ISSUE_URL=re.compile(r"^https://github\\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\\d+)$")
+ISSUE_URL=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\d+)$")
 # Only genuine sponsor-owned, still-open original issues may reach scarce AI jobs.
 # A third-party index is not authoritative; no CI/model work on closed offers.
 MAX_PRIMARY_SOURCE_PREFLIGHTS=14
