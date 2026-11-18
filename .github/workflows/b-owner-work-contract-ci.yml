@@ -7,6 +7,7 @@ on:
       - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
       - 'crypto-agents/owner_work_contract.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/director_grade_work.py'
       - '.github/workflows/b-owner-work-contract-ci.yml'
 permissions:
   contents: read
@@ -23,6 +24,7 @@ jobs:
         run: |
           python -m py_compile crypto-agents/owner_work_contract.py crypto-agents/ai_process_worker.py
           python crypto-agents/owner_work_contract.py --self-test
+          python crypto-agents/director_grade_work.py --self-test
       - name: Verify real worker dynamically loads latest contract
         run: |
           python - <<'PY'
@@ -31,6 +33,9 @@ jobs:
           assert "LATEST_WORK_CONTRACT=load_work_contract()" in worker
           assert 'LATEST_WORK_CONTRACT["model_prompt"]' in worker
           assert "owner_latest_work_instruction_proof" in worker
+          assert "DIRECTOR_GRADE_WORK=assign_director_grade_work" in worker
+          assert 'DIRECTOR_GRADE_WORK["model_prompt"]' in worker
+          assert '"director_grade_work":DIRECTOR_GRADE_WORK' in worker
           print("WORKER_INHERITANCE_ASSERTIONS_PASS: model prompt + per-process proof; no fictitious activation or earnings")
           PY
       - name: Report what the check does and does not prove
