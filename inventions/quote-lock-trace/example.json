@@ -1,0 +1,7 @@
+{
+  "snapshots": [
+    {"quote_id":"synthetic-quote-1","observed_at":"2026-11-18T09:09:59+03:00","expires_at":"2026-11-18T06:10:00Z","locked_claim_visible":true,"pay_button_enabled":true},
+    {"quote_id":"synthetic-quote-1","observed_at":"2026-11-18T09:10:00+03:00","expires_at":"2026-11-18T06:10:00Z","locked_claim_visible":true,"pay_button_enabled":false},
+    {"quote_id":"synthetic-quote-1","observed_at":"2026-11-18T09:12:00+03:00","expires_at":null,"locked_claim_visible":false,"pay_button_enabled":true}
+  ]
+}
