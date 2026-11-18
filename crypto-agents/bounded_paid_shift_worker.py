@@ -100,8 +100,10 @@ def main(fleet):
             "is NOT money received. Avoid invented buyers. "
             "No emails, wallet signatures or fees. Answer in short sentences:"
         )
-        generated = gen(prompt, max_new_tokens=52, do_sample=False,
-                        return_full_text=False)
+        generated = gen([
+            {"role": "system", "content": "You are a careful real paid-task eligibility reviewer. Never invent buyers, money or account actions."},
+            {"role": "user", "content": prompt}
+        ], max_new_tokens=96, do_sample=False, return_full_text=False)
         output = generated[0].get("generated_text", "")
         if isinstance(output, list):
             output = " ".join(str(x.get("content") or "") for x in output)
