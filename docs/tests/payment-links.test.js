@@ -40,3 +40,10 @@ test('two usable independent customer contact routes are present',()=>{
  assert.ok(html.includes('issues/new?template=paid-work-request.yml'));
  assert.ok(html.includes('www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121'));
 });
+test('small paid pilot has a bounded non-binding quote and correctly routed public enquiry',()=>{
+ assert.ok(html.includes('id="micro-pilot"'));
+ assert.ok(html.includes('New $5 BTC-equivalent trial quote:'));
+ assert.ok(html.includes('up to 100 rows and 20 columns'));
+ assert.ok(html.includes('No upfront transfer required'));
+ assert.ok(html.includes('https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121'));
+});
