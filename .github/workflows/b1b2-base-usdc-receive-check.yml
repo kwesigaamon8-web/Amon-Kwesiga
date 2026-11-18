@@ -1,0 +1,28 @@
+name: B1 Base USDC Read-only Official Token Balance Check
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-base-usdc-receive-check.yml'
+      - 'crypto-agents/base_usdc_readonly_balance.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect-native-base-usdc-no-signing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test public read-only native-USDC policy
+        run: python crypto-agents/base_usdc_readonly_balance.py --self-test
+      - name: Independently query current token balance on official Base USDC contract
+        run: python crypto-agents/base_usdc_readonly_balance.py
+      - name: State strict financial boundaries
+        run: |
+          echo 'Owner-supplied B1 Base address scanned read-only; wallet ownership, correct receiving configuration and token recoverability NOT verified.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Current balance is not earnings, not a deposit event, not customer acceptance and not a wallet operation.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No key, gas, signature, outgoing tx, credential or email used.' >> "$GITHUB_STEP_SUMMARY"
