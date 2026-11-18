@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261117-153239-COINS-NO-EMAIL",
+  "current_owner_order_id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -832,6 +832,15 @@
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true,
       "origin": "explicit_human_owner_conversation"
+    },
+    {
+      "id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
+      "as_of_utc": "2026-11-18T13:44:56Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT via authorized GitHub connector",
+      "instruction": "OWNER CLARIFICATION — INBOUND DEPOSITS TO MY ACCOUNT ARE PERMITTED. Chief D, B1 transferexperiment, B2 BountyScoutAI and actual authorized worker processes may pursue real paying clients and ask legitimately willing payers to make incoming payments directly to the owner's correctly verified receiving accounts. Receive/credit incoming BTC mainnet or other compatible approved crypto, and any other owner-approved incoming payment methods, ONLY when the exact recipient asset, network, account ownership and required memo are verified. Giving a public receiving address to an authenticated payer for a genuine accepted service is permitted; independent voluntary incoming support is also permitted. Do not mistake the no-outgoing-wallet-signatures restriction for a prohibition on incoming deposits. INBOUND RECEIVING IS AUTHORIZED; this does NOT authorize spending, sending cryptocurrency, signing wallet transactions, paying gas, staking, swapping, moving funds, connecting private keys, releasing banking credentials, or directing money away from the owner. Previously unverified other-chain/custodial routes remain HOLD until confirmed; no new accounts are invented. No email account access, drafts or sends without specific separate approval. Record new payment as earned/received only after independent settlement evidence: matching receiving account, correct asset/network, transaction identifier and payer/contract context. The 3M UGX immediate and 50B UGX long-term targets are ambitions, not deposited money. Continue genuinely accepted paid work, collection, and accountable reporting without false receipts.",
+      "status": "recorded_in_versioned_owner_instruction_channel",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -916,7 +925,7 @@
     "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
     "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
     "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise.",
-    "latest_instruction": "OWNER-20261117-105841-50B-OMNICHANNEL",
+    "latest_instruction": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
     "owner_long_term_collected_target_ugx": 50000000000,
     "accepted_payment_classes": [
       "bank_transfer",
@@ -1150,6 +1159,8 @@
     "target_asset": "LEGITIMATELY_EARNED_CRYPTO_IN_OWNER_SHARED_CORRECT_NETWORK_RECEIVING_ADDRESSES",
     "target_ugx_equivalent": 3000000,
     "no_spending": true,
-    "success_proof": "accepted work plus confirmed owner wallet settlement"
+    "success_proof": "accepted work plus confirmed owner wallet settlement",
+    "inbound_deposits_permitted": true,
+    "inbound_deposit_order_id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED"
   }
 }
