@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
+  "current_owner_order_id": "OWNER-20261118-162935-BOOTS-ON-GROUND-CASH-FIRST",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -864,6 +864,20 @@
       ],
       "authenticated_external_agent_execution_not_implied": true,
       "status": "versioned_instruction_relay_not_cash_receipt"
+    },
+    {
+      "id": "OWNER-20261118-162935-BOOTS-ON-GROUND-CASH-FIRST",
+      "as_of_utc": "2026-11-18T16:29:35Z",
+      "relayed_by": "ChatGPT following owner's explicit 'everyone on fighting mode' order",
+      "instruction": "OWNER: EVERYONE ON FIGHTING MODE, BOOTS ON GROUND. Chief D to B1 transferexperiment and B2 BountyScoutAI: execute aggressively but lawfully for independently verified cash-in-wallet, not for imaginary headcount. Use only actually active authenticated workers and their directors. D01/D03 source-vet new genuinely funded jobs and real customers worldwide, reject expired, duplicate, core-team-only, pay-first or region-ineligible bounties; D02/D04/D05 complete original narrow customer-relevant code/data deliverables with passing tests and public proof; D06/D07 seek and respond to opt-in real buyers only through authenticated authorized channels with individualized, non-spammy replies; D08/D09 check acceptance evidence, receiving network and customer requirements; local D10 in each company verify external payable status and actual matching-network BTC/USDC wallet receipts; one Chief D consolidate evidence. One actual free public outreach was posted at https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121; watch for genuine buyer response and qualify it, do not mass-post duplicates. Tested Lateralus TOML patch exists at https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/21 with eight actual upstream passing regressions but no maintainer acceptance or contract; seek authorized maintainer approval before claiming reward. Prioritize source -> permitted submission -> buyer acceptance -> payment with exact traceable evidence. No Gmail access/drafts/sending, no spending, signing, funding gas or deposits, no impersonation or mass solicitation. Report exact execution logs and failures; do not claim configured 750B role IDs equal 750B live agents, do not count public posts, test passes or wallet monitoring as money.",
+      "status": "current_cash_first_operational_priority_unverified_income",
+      "authenticated_external_execution_not_implied": true,
+      "evidence_references": [
+        "https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121",
+        "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44345997319",
+        "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/21"
+      ],
+      "verified_receipts_as_of_order": 0
     }
   ],
   "strict_per_worker_reporting": {
