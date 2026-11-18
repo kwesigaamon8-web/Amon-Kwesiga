@@ -15,8 +15,9 @@ Then open **http://localhost:8000**. On a basic smartphone or low-bandwidth conn
 1. Select **B1**, **B2** or **My own Bitcoin address**.
 2. Enter a price in whole **satoshis** and an optional non-private reference.
 3. Generate a `bitcoin:bc1...?amount=...` payment URI; it is a request **only**, not an actual deposit.
-4. With a real, publicly available Bitcoin **transaction ID**, click **Look up transaction outputs**.
-5. The result differentiates no address match, underpayment, unconfirmed matching output and confirmed matching output. If the explorer reports a tip height, confirmation count is included.
+4. Or click **Run fictional offline demo** to exercise a successful *synthetic* output match with no network or payment. Its proof is explicitly labelled fictional and not a real BTC receipt.
+5. With a real, publicly available Bitcoin **transaction ID**, click **Look up transaction outputs**.
+6. A real lookup differentiates no address match, underpayment, unconfirmed matching output and confirmed matching output. If the explorer reports a tip height, confirmation count is included.
 
 No seed phrase, private key, credentials, email or wallet spending is requested. There is no persistence.
 
@@ -54,3 +55,9 @@ The code can serve as a reproducible sample for a legitimately contracted mercha
 ## QA evidence
 
 Unit tests are designed to fail if any owner B1/B2 address is not a checksum-valid Bitcoin mainnet address. This is important because a plausible-looking `bc1` string alone can still be invalid.
+
+## Public demo, hackathon package, and no-key replay
+
+- **Latest tested public demo:** [Live public MVP workflow](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/bitcoin-merchant-hackathon-demo.yml) — open the latest successful run summary for its temporary HTTPS URL and expiry.
+- **Dakar Bitcoin Hack 2026 application material:** [Submission package](./DAKAR_BITCOIN_HACK_2026_SUBMISSION.md), including eligibility restrictions, project pitch, safety model and presentation script. This is not a Devpost registration or accepted application.
+- **Tests:** `node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/*.test.mjs` from the repository root. The offline demo tests check that synthetic outputs are never marked as actual received coins.
