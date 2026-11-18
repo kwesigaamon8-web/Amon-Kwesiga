@@ -78,7 +78,7 @@ def evaluate(issue,comments,repo=None):
     # duplicated work unless an authorized maintainer explicitly reopens entry.
     pr_refs=set()
     for comment in comments:
-        for match in re.finditer(r"https://github\\.com/[\\w.-]+/[\\w.-]+/pull/(\\d+)",str(comment.get("body") or "")):
+        for match in re.finditer(r"https://github[.]com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/pull/[0-9]+",str(comment.get("body") or "")):
             pr_refs.add(match.group(0))
     sponsor_reopened=any(
         str(comment.get("author_association") or "").upper() in ("OWNER","MEMBER","COLLABORATOR")
