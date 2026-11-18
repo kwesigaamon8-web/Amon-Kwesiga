@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-18T05:28:41.162626+00:00",
+  "checked_at_utc": "2026-11-18T05:40:35.958214+00:00",
   "scope": "Public-source feasibility review, not a platform endorsement or proof of buyer funding",
   "policy": {
     "receiving_network": "Bitcoin mainnet",
@@ -84,6 +84,58 @@
       "access": "Public official terms read; no account or wallet accessed",
       "finding": "Payment FAQ lists WBTC on Ethereum and BTCB on BNB Chain. Neither is native BTC mainnet. No approved conversion or alternate receiving route exists for this review.",
       "next_gate": "Explicit native-mainnet arrangement permitted by platform and buyer; resolve fee terms first"
+    },
+    {
+      "platform": "CryptoTask",
+      "kind": "freelance marketplace",
+      "sources": [
+        "https://www.cryptotask.org/en/info",
+        "https://www.cryptotask.org/en/terms",
+        "https://www.cryptotask.org/en/tasks/technical-and-content-writer/1709",
+        "https://www.cryptotask.org/en/tasks/crypto-research-assistant/3958"
+      ],
+      "native_btc_payout": "advertised_bitcoin_network_unconfirmed",
+      "fee": "0% basic usage; 3% escrow advertised",
+      "access": "Public sources reviewed; no account connected or application sent. Published terms restrict automated access and off-platform contact before contract.",
+      "finding": "Inspected writer/research listings dated 2021 and 2024 retain application badges. No current funded buyer or exact BTC-mainnet agreement established.",
+      "next_gate": "Current independent buyer, permitted application access, eligibility, scope and verified payout network"
+    },
+    {
+      "platform": "Coincruit",
+      "kind": "bounty board",
+      "sources": [
+        "https://concruit.net/bounties"
+      ],
+      "native_btc_payout": "unverified_per_listing",
+      "fee": "Not established",
+      "access": "Public bounty page only; no account connected",
+      "finding": "Page rendering exposed no readable live bounty rows. Search snippets with historical offers do not establish current availability. Rendering absence is not proof of an empty underlying marketplace.",
+      "next_gate": "Readable current listing, independent sponsor and exact terms"
+    },
+    {
+      "platform": "BitcoinEconomy Agent Marketplace",
+      "kind": "Nostr work-request directory",
+      "sources": [
+        "https://marketplace.bitcoineconomy.ai/live/bounties.json",
+        "https://marketplace.bitcoineconomy.ai/spec/agent-payable-work-request.md"
+      ],
+      "native_btc_payout": "no_mainnet_agreement_zaps_lightning_cashu_l402_spec",
+      "fee": "Directory states no custody, escrow or fee; offers are not funds held",
+      "access": "Public snapshot and specification read; no Nostr key or signed event created",
+      "finding": "Snapshot generated 2026-11-18T04:47:49.860Z has count=0 and open_actionable=0, coverage incomplete (3 of 4 relays complete). Counts are lower bounds. A provider zap receipt is not independently established payment.",
+      "next_gate": "Actual current buyer request and permitted identity/application/payment route"
+    },
+    {
+      "platform": "Lightning Bounties",
+      "kind": "GitHub contribution bounty platform",
+      "sources": [
+        "https://www.lightningbounties.com/"
+      ],
+      "native_btc_payout": "lightning_workflow_only_in_reviewed_source",
+      "fee": "Exact worker fee not established",
+      "access": "Official public workflow read; no external GitHub authorization or account connection attempted",
+      "finding": "Workflow uses GitHub sign-in, a qualifying merged PR and reward claim with Lightning payout. No funded issue or compatible mainnet arrangement qualified.",
+      "next_gate": "Named funded sponsor, contributor permission, uncontested issue and approved receiving route"
     }
   ],
   "buyer_leads": [
@@ -117,5 +169,35 @@
     "wallet_operations": 0,
     "accepted_engagements": 0,
     "verified_receipts": 0
-  }
+  },
+  "excluded_listing_examples": [
+    {
+      "platform": "CryptoTask",
+      "url": "https://www.cryptotask.org/en/tasks/technical-and-content-writer/1709",
+      "posted_date": "2021-11-05",
+      "advertised_fee": "USD 50/project negotiable",
+      "observed_badge": "Accepting applications",
+      "finding": "Current buyer funding and BTC-mainnet commitment unverified; stale discovery example, not a current prospect"
+    },
+    {
+      "platform": "CryptoTask",
+      "url": "https://www.cryptotask.org/en/tasks/crypto-research-assistant/3958",
+      "posted_date": "2024-02-05",
+      "advertised_fee": "USD 3/hour",
+      "observed_badge": "Accepting applications",
+      "finding": "Current buyer funding and BTC-mainnet commitment unverified; stale discovery example, not a current prospect"
+    },
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/1btc-news/news-client/issues/33",
+      "advertised_fee": "Historic 250000-sat pool",
+      "observed_badge": "Open",
+      "funding_status": "paid_window_closed",
+      "sources": [
+        "https://github.com/1btc-news/news-client/issues/33#issuecomment-6321310248",
+        "https://github.com/1btc-news/news-client/issues/33#issuecomment-6918511662"
+      ],
+      "finding": "DRI explicitly closed paid window 21 October 2026 and reiterated voluntary contributions 15 November; no current bounty work started"
+    }
+  ]
 }
