@@ -10,6 +10,94 @@ from bounty_eligibility_audit import evaluate as evaluate_eligibility
 
 ISSUE=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\d+)$")
 FLEETS=("transferexperiment","BountyScoutAI")
+
+# A live ORIGINAL marketplace fallback, never a granted contract or a payout.
+# These are explicit, approved-by-publication payout *offers*, not issues
+# posted by freelancing claimants or mirrored directories. Keep each endpoint
+# on a closed exact HTTPS allowlist. Never sign wallets or submit automatically.
+MARKETPLACE_PAGES=(
+    {
+        "url":"https://elgora.ai/bounties/3",
+        "title":"ElgoraHub Escrow Security Bounty — local Foundry proof",
+        "reward_claim":"36 USDC escrow advertised on Base",
+        "asset":"USDC","network":"Base",
+        "markers":("ElgoraHub Escrow Security Bounty","36.00 USDC","Funded escrow"),
+        "avoid_markers":("Timed out","Awarded","No valid Submission"),
+        "last_day":"2026-11-21",
+        "terms":"Offline reproducible local Foundry exploit against specifically pinned escrow contracts, submit with registered compatible solver identity before deadline; first qualifying entry wins; no live exploit, wallet fees or signing by this worker.",
+    },
+    {
+        "url":"https://www.actiontokens.org/bounties/b8d50db5-a3ce-495a-9b33-c5537a8ba5d9",
+        "title":"Action Tokens authorized security bug report",
+        "reward_claim":"Up to 50 USDC on Stellar, review and severity dependent",
+        "asset":"USDC","network":"Stellar",
+        "markers":("Find a security bug","1 of 5 claims left","50 USDC"),
+        "avoid_markers":("Fully claimed","Submissions are now closed"),
+        "last_day":None,
+        "terms":"Find and privately disclose a real reproducible vulnerability with screenshot. No unauthorized access, harm, public exposure, or claim without verified Stellar USDC trustline.",
+    },
+)
+
+def marketplace_source(fleet,worker_id,fetch_html=None,now=None):
+    """One verified public LIVE market page per worker; no external claiming.
+
+    This is research-only evidence that an offer's page currently advertises
+    a reward and appears open. It does not prove on-chain escrow, owner account
+    eligibility, accepted original work, or a credited incoming payment.
+    """
+    import datetime as dt
+    from html.parser import HTMLParser
+    now=now or dt.datetime.now(dt.timezone.utc)
+    if fleet not in FLEETS:raise ValueError("Invalid B fleet")
+    if worker_id.startswith("D10-"):
+        return {"status":"LOCAL_D10_PAYMENT_ONLY_NO_SPECULATIVE_BOUNTY","source_item":None}
+    class Plain(HTMLParser):
+        def __init__(self):
+            super().__init__();self.parts=[]
+        def handle_data(self,data):self.parts.append(data)
+    seed=hashlib.sha256((fleet+"/"+worker_id).encode()).digest()
+    item=MARKETPLACE_PAGES[int.from_bytes(seed[:4],"big")%len(MARKETPLACE_PAGES)]
+    if item["last_day"] and now.date()>dt.date.fromisoformat(item["last_day"]):
+        return {"status":"MARKETPLACE_BOUNTY_EXPIRED","source_item":None}
+    def default_fetch(url):
+        if url not in (x["url"] for x in MARKETPLACE_PAGES):
+            raise ValueError("Unapproved marketplace URL")
+        req=urllib.request.Request(url,headers={"User-Agent":"B1B2ReadOnlyMarketOfferCheck/1.0","Accept":"text/html"})
+        with urllib.request.urlopen(req,timeout=8) as resp:
+            return resp.read(850000).decode("utf-8","replace")
+    try:
+        html=fetch_html(item["url"]) if fetch_html else default_fetch(item["url"])
+        if not isinstance(html,str):raise ValueError("Marketplace reply not text")
+        parser=Plain();parser.feed(html)
+        visible=" ".join(parser.parts)
+        # Check text actually rendered to users, not a hidden JSON blob or a
+        # script prompt. Include only our fixed safe one-paragraph task summary.
+        markers_ok=all(x.casefold() in visible.casefold() for x in item["markers"])
+        unclaimed=not any(x.casefold() in visible.casefold() for x in item["avoid_markers"])
+        if not markers_ok or not unclaimed:
+            return {"status":"MARKETPLACE_OFFER_NOT_CONFIRMED_OPEN_AT_THIS_CHECK","source_item":None,
+                    "source_checked":item["url"]}
+    except Exception as e:
+        return {"status":"MARKETPLACE_READ_UNAVAILABLE","source_item":None,
+                "error":type(e).__name__,"source_checked":item["url"]}
+    return {
+        "status":"ORIGINAL_MARKETPLACE_ADVERTISED_OPEN_NOT_BUYER_ACCEPTANCE",
+        "source_item":{
+            "title":item["title"],"url":item["url"],
+            "status":"public_reward_offer_read_only_not_accepted_or_submitted",
+            "payment_funding_accepted":False,
+            "reward_advertised":item["reward_claim"],
+            "payout_asset":item["asset"],"payout_network":item["network"],
+            "original_source_read_only":True,
+            "public_issue_body_excerpt":item["terms"],
+            "eligibility_screener_status":"NEEDS_AUTHENTICATED_SUBMISSION_AND_OWNER_RECEIVER_CHECK",
+            "commercial_terms_independently_agreed":False,
+        },
+        "buyer_acceptance":False,"payout_verified":False,
+        "external_contact_sent":False,
+        "next_action":"Use only safe original offline/public research. Do not claim, submit, reveal a non-BTC receiving route, sign or spend without authorized platform and compatible wallet. Confirm source freshness and actual sponsor payout acceptance.",
+    }
+
 def choose(fleet,worker_id,feed_path,fetch_json=None):
     if fleet not in FLEETS:raise ValueError("Invalid B fleet")
     if worker_id.startswith("D10-"):
@@ -22,7 +110,9 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
            isinstance(x,dict) and x.get("assigned_fleet")==fleet and
            x.get("status")=="POSSIBLE_PAID_TASK_UNVERIFIED" and
            ISSUE.fullmatch(str(x.get("original_url","")))]
-    if not items:return {"status":"NO_MATCHING_ORIGINAL_TASK_CANDIDATES","source_item":None}
+    if not items:
+        return (marketplace_source(fleet,worker_id) if fetch_json is None else
+                {"status":"NO_MATCHING_ORIGINAL_TASK_CANDIDATES","source_item":None})
     # Work on real paying-origin issues, not automated mirrors, FAQ, or
     # "reward mentioned in discussion" pseudo-opportunities.
     def priority(row):
@@ -42,7 +132,8 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
         return 5
     items=sorted(items,key=lambda x:(priority(x),x["original_url"]))
     if priority(items[0])>=9:
-        return {"status":"NO_COMMERCIALLY_USABLE_ORIGINAL_ISSUES","source_item":None}
+        return (marketplace_source(fleet,worker_id) if fetch_json is None else
+                {"status":"NO_COMMERCIALLY_USABLE_ORIGINAL_ISSUES","source_item":None})
     # Independent workers were wasting real model executions on the SAME
     # top-ranked issue when its priority tier held only one entry. Rotate
     # across a meaningful source window, including secondary candidates.
@@ -114,6 +205,11 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
         except Exception as exc:
             skipped.append({"url":url,"reason":"ORIGINAL_SOURCE_OR_COMMENT_READ_FAILED","error":type(exc).__name__})
     if original is None:
+        if fetch_json is None:
+            fallback=marketplace_source(fleet,worker_id)
+            fallback["rejected_source_candidates"]=skipped
+            if fallback.get("source_item"):
+                return fallback
         return {"status":"NO_OPEN_ACCESSIBLE_PAID_ISSUE_FOUND_AFTER_ELIGIBILITY_CHECK",
                 "source_item":None,"rejected_source_candidates":skipped}
     return {
@@ -137,6 +233,20 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
     }
 
 def self_test():
+    # Test the public-funding-page fallback offline. Never generate
+    # acceptance or payer evidence from a page title or unverified contents.
+    import datetime as dt
+    now=dt.datetime(2026,11,18,tzinfo=dt.timezone.utc)
+    def valid_page(url):
+        item=next(x for x in MARKETPLACE_PAGES if x["url"]==url)
+        return "<main>"+(" ".join(item["markers"]))+"</main>"
+    hit=marketplace_source("BountyScoutAI","D01-M01-W01",fetch_html=valid_page,now=now)
+    assert hit["source_item"] and hit["source_item"]["payment_funding_accepted"] is False
+    assert hit["payout_verified"] is False and hit["external_contact_sent"] is False
+    assert hit["source_item"]["url"].startswith("https://")
+    empty=marketplace_source("BountyScoutAI","D01-M01-W01",fetch_html=lambda u:"<main>Closed</main>",now=now)
+    assert empty["source_item"] is None
+    assert marketplace_source("BountyScoutAI","D10-M01-W01",fetch_html=valid_page,now=now)["source_item"] is None
     with __import__("tempfile").TemporaryDirectory() as temp:
         f=Path(temp)/"candidate.json"
         f.write_text(json.dumps({"candidates":[
