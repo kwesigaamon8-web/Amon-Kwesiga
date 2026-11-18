@@ -10,6 +10,8 @@ import os
 import re
 import sys
 import urllib.request
+import urllib.error
+import urllib.parse
 import zipfile
 
 REPO="kwesigaamon8-web/Amon-Kwesiga"
@@ -22,26 +24,41 @@ HEADERS={"Accept":"application/vnd.github+json",
  "X-GitHub-Api-Version":"2022-11-28"}
 if TOKEN:HEADERS["Authorization"]="Bearer "+TOKEN
 
+class NoCrossHostAuthRedirect(urllib.request.HTTPRedirectHandler):
+    """Never forward the GitHub token to artifact storage on HTTP redirect."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        nxt=super().redirect_request(req,fp,code,msg,headers,newurl)
+        if nxt and urllib.parse.urlsplit(req.full_url).netloc.lower()!=urllib.parse.urlsplit(newurl).netloc.lower():
+            nxt.remove_header("Authorization")
+        return nxt
+
+OPENER=urllib.request.build_opener(NoCrossHostAuthRedirect)
+
 def api(path,payload=None,raw=False):
     if not path.startswith("/repos/"+REPO+"/"):raise ValueError("Invalid API path")
     data=json.dumps(payload).encode() if payload is not None else None
     headers=dict(HEADERS)
     if data:headers["Content-Type"]="application/json"
     req=urllib.request.Request("https://api.github.com"+path,data=data,headers=headers)
-    with urllib.request.urlopen(req,timeout=25) as response:
+    with OPENER.open(req,timeout=25) as response:
         blob=response.read(16000000)
     if raw:return blob
     return json.loads(blob)
 
 def audited(r,name):
     if not r or r.get("status")!="completed":return {}
+    stage="artifact_index"
     try:
         entries=api("/repos/"+REPO+"/actions/runs/"+str(r["id"])+"/artifacts?per_page=100").get("artifacts",[])
         desired="real-ai-workers-overall-audit" if name==WORKER else "consolidated-opportunity-report"
         a=next((a for a in entries if a.get("name")==desired and not a.get("expired")),None)
-        if not a:return {}
+        if not a:
+            print("AUDIT_ARTIFACT_ABSENT",name,"run",r["id"])
+            return {}
+        stage="artifact_zip_download"
         blob=api("/repos/"+REPO+"/actions/artifacts/"+str(a["id"])+"/zip",raw=True)
         wanted=["ai-process-summary.json","director-D-results/DIRECTOR_D_RESULTS.json"] if name==WORKER else ["summary.json","delivery-audit/REPORT.json"]
+        stage="artifact_zip_parse"
         result={}
         with zipfile.ZipFile(io.BytesIO(blob)) as z:
             for path in wanted:
@@ -49,8 +66,11 @@ def audited(r,name):
                 if match:
                     with z.open(match) as file:result[path]=json.loads(file.read(1200000))
         return result
+    except urllib.error.HTTPError as exc:
+        print("AUDIT_ARTIFACT_HTTP_ERROR",name,"run",r["id"],"stage",stage,"http_status",exc.code)
+        return {}
     except Exception as exc:
-        print("AUDIT_ARTIFACT_NOT_READABLE",name,type(exc).__name__)
+        print("AUDIT_ARTIFACT_NOT_READABLE",name,"run",r["id"],"stage",stage,type(exc).__name__)
         return {}
 
 def job_result_fallback(run):
@@ -137,6 +157,11 @@ def main():
     print("DIRECTOR_D_POSTED",r.get("html_url"))
 
 def test():
+    req=urllib.request.Request("https://api.github.com/repos/example/repo/actions/artifacts/1/zip",headers={"Authorization":"Bearer fake-test-only"})
+    offsite=NoCrossHostAuthRedirect().redirect_request(req,None,302,"Found",{},"https://objects.githubusercontent.com/artifact")
+    onsite=NoCrossHostAuthRedirect().redirect_request(req,None,302,"Found",{},"https://api.github.com/artifact")
+    assert offsite.get_header("Authorization") is None
+    assert onsite.get_header("Authorization")=="Bearer fake-test-only"
     a={WORKER:{"id":1,"status":"completed","conclusion":"success"},
        RESEARCH:{"id":2,"status":"completed","conclusion":"failure"}}
     result=digest(a,a,{WORKER:{"ai-process-summary.json":{
