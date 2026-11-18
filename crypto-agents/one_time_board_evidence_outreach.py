@@ -89,10 +89,12 @@ def selftest():
     print("ONE_TIME_PUBLIC_OUTREACH_SELF_TEST_PASS")
 
 def main():
-    query = API + "?" + urllib.parse.urlencode({"q": "reproducible TOML manifest repair"})
+    query = API + "?" + urllib.parse.urlencode({"q": "TOML"})
     try:
+        print("BOARD_SEARCH_CHECK: keyword")
         found = rows(get(query))
-        found += rows(get(API + "?limit=100"))
+        print("BOARD_SEARCH_CHECK: recent")
+        found += rows(get(API))
     except Exception as exc:
         code = getattr(exc, "code", None)
         print("BOARD_POST_HOLD: search unavailable; no post; " + type(exc).__name__ + (" HTTP " + str(code) if code is not None else ""))
