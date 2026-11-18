@@ -36,16 +36,19 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
         if payer_history and pay=="upwork":return 2
         return 5
     items=sorted(items,key=lambda x:(priority(x),x["original_url"]))
-    best_priority=priority(items[0])
-    if best_priority>=9:
+    if priority(items[0])>=9:
         return {"status":"NO_COMMERCIALLY_USABLE_ORIGINAL_ISSUES","source_item":None}
-    top=[x for x in items if priority(x)==best_priority]
+    # Independent workers were wasting real model executions on the SAME
+    # top-ranked issue when its priority tier held only one entry. Rotate
+    # across a meaningful source window, including secondary candidates.
+    # Every selected source still needs a fresh original-issue eligibility
+    # and latest-comment check. Determinism makes runs reproducible.
+    eligible=[item for item in items if priority(item)<9]
+    shortlist=eligible[:min(len(eligible),max(8,(len(eligible)+1)//2))]
     seed=hashlib.sha256((fleet+"/"+worker_id).encode()).digest()
-    initial=int.from_bytes(seed[:8],"big")%len(top)
-    # After an overstated high-priority candidate is rejected, try other
-    # original opportunities instead of making all five workers repeat it.
-    alternates=[x for x in items if priority(x)!=best_priority]
-    ordered=[top[(initial+i)%len(top)] for i in range(len(top))]+alternates
+    initial=int.from_bytes(seed[:8],"big")%len(shortlist)
+    ordered=(shortlist[initial:]+shortlist[:initial]
+             +eligible[len(shortlist):])
     def default_fetch(url):
         headers={"Accept":"application/vnd.github+json","User-Agent":"IndependentBReadOnlyTaskInspector/1.0"}
         token=os.environ.get("GH_TOKEN","")
@@ -158,6 +161,23 @@ def self_test():
         blocked=choose("transferexperiment","D01-M01-W01",f,restricted_fetch)
         assert blocked["source_item"] is None
         assert any("EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION" in z.get("flags",[]) for z in blocked["rejected_source_candidates"])
+        # Many active workers must not all process the first appealing issue.
+        f.write_text(json.dumps({"candidates":[{
+            "status":"POSSIBLE_PAID_TASK_UNVERIFIED",
+            "assigned_fleet":"transferexperiment",
+            "original_url":f"https://github.com/example/repo/issues/{n}",
+            "title":f"$40 original patch {n}"}
+            for n in range(21,33)]}))
+        def all_open(url):
+            n=url.split("/issues/")[1].split("?")[0]
+            return {"state":"open","title":"$40 small Python fix",
+                    "body":"Bounty $40 after accepted verified tests",
+                    "html_url":"https://github.com/example/repo/issues/"+n,
+                    "comments":0}
+        choices={choose("transferexperiment",
+                        f"D{n:02d}-M01-W01",f,all_open)["source_item"]["url"]
+                 for n in range(1,10)}
+        assert len(choices)>=3,choices
 
         # A single older paid issue with several competing PRs must not
         # consume the fleet's real AI inference resources repeatedly.
