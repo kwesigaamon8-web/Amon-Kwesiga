@@ -1,0 +1,44 @@
+{
+  "added": [],
+  "archive_bytes_equal": false,
+  "changed": [],
+  "left": {
+    "bytes": 146,
+    "payloads": {
+      "example.txt": {
+        "bytes": 26,
+        "sha256": "851f28dd13c77c959474c95ea98b799057b37f9ee1a2db47215823d9b7218a23"
+      }
+    },
+    "sha256": "40f0251233f1fe630322d857de60b85cc877c5c787d708f23d74503fb2c511a7"
+  },
+  "limits": {
+    "archive_bytes": 67108864,
+    "member_bytes": 33554432,
+    "members": 2000,
+    "total_bytes": 134217728
+  },
+  "metadata": {
+    "archive_comment_changed": true,
+    "changed_members": [
+      "example.txt"
+    ],
+    "directories_added": [],
+    "directories_removed": [],
+    "member_order_changed": false
+  },
+  "payloads_equal": true,
+  "removed": [],
+  "right": {
+    "bytes": 163,
+    "payloads": {
+      "example.txt": {
+        "bytes": 26,
+        "sha256": "851f28dd13c77c959474c95ea98b799057b37f9ee1a2db47215823d9b7218a23"
+      }
+    },
+    "sha256": "e223f757a5a03214705319e3959db6f53cd2c7cc37fa1ae7a9cefa659eda1e42"
+  },
+  "schema": "zip-payload-diff-v1",
+  "scope": "Payload comparison only; not build reproducibility or trust verification."
+}
