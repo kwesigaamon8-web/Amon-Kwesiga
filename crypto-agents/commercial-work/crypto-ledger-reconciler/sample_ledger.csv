@@ -1,0 +1,5 @@
+txid,output_index,asset,network,direction,amount,date,account,reference
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,0,BTC,bitcoin-mainnet,in,0.00120000,2026-11-18,Crypto asset,invoice-001
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,3,USDC,base-mainnet,in,250.000000,2026-11-18,Stablecoin asset,invoice-002
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc,1,BTC,bitcoin-mainnet,out,0.00040000,2026-11-18,Operating expense,expense-003
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,0,BTC,bitcoin-mainnet,in,0.00200000,2026-11-18,Crypto asset,ledger-only-006
