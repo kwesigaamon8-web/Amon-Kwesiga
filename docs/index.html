@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="B1/B2 Digital Work Studio: original data cleanup, CSV/JSON conversion, research, and software QA. Try our free privacy-first browser data quality tool or request a fixed-scope quote.">
+  <meta name="theme-color" content="#071a2a">
+  <title>B1/B2 Digital Work Studio | Small digital jobs, done carefully</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="logo" href="#home" aria-label="B1 B2 Digital Work Studio home"><span class="logo-icon" aria-hidden="true">B1·B2</span><span>Digital Work Studio</span></a>
+      <nav aria-label="Primary navigation"><a href="#services">Services</a><a href="#try-it">Free tools</a><a href="#how-it-works">How it works</a><a class="pill-link" href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml" target="_blank" rel="noopener noreferrer">Request a quote ↗</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Independent digital services · Worldwide</div>
+            <h1>Messy data in.<br>Useful work out.</h1>
+            <p>Original CSV and JSON conversion, spreadsheet checks, public-source research and software QA. You define the result; we agree the scope and test it.</p>
+            <div class="hero-actions"><a class="btn btn-light" href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml" target="_blank" rel="noopener noreferrer">Commission a small task <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#try-it">Try the free tool ↓</a></div>
+            <div class="bar"><span><strong>Clear deliverables</strong> · Acceptance checks</span><span><strong>Transparent quotes</strong> · No guaranteed claims</span></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="window-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:12px">/projects/data-check</span></div>
+            <div style="padding-top:17px">
+              <div class="code-line code-dim">// from a real, testable sample</div>
+              <div class="code-line">invoice_id,amount,status</div>
+              <div class="code-line">INV-101,120.50,paid</div>
+              <div class="code-line">INV-102,75.00,pending</div>
+              <div class="code-line">INV-102,75.00,pending</div>
+              <div class="code-line code-dim">// automated checks</div>
+              <div class="code-line code-green">✓ 3 records parsed</div>
+              <div class="code-line code-green">✓ 1 duplicate identifier flagged</div>
+              <div class="code-line code-green">✓ sum: 270.50</div>
+            </div>
+            <div class="window-footer"><span>Local processing · Sample data only</span><span>Source available ↗</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="services" class="section"><div class="wrap">
+      <div class="section-head"><div class="section-kicker">What we can deliver</div><h2>Small jobs. Specific outcomes.</h2><p>Introductory starting quotes for an agreed, original piece of work. The public samples below are free; paid work means buyer-specific customization, independent QA or a new deliverable.</p></div>
+      <div class="cards">
+        <article class="service-card"><h3>CSV / JSON conversion</h3><p>Custom mapping, transformation scripts, data validation and documented output checks.</p><div class="price">$25 <span>introductory USD quote</span></div></article>
+        <article class="service-card"><h3>Data quality & reconciliation</h3><p>Find mismatches, duplicates and missing values in a client-approved anonymized workbook.</p><div class="price">$40 <span>introductory USD quote</span></div></article>
+        <article class="service-card"><h3>Technical QA & guides</h3><p>Original reproduction cases, small automated test sets and practical software documentation.</p><div class="price">$35 <span>introductory USD quote</span></div></article>
+        <article class="service-card"><h3>Public-source research</h3><p>A concise factual brief with dated citations, evidence and clearly stated limits.</p><div class="price">$35 <span>introductory USD quote</span></div></article>
+      </div>
+      <p class="fine" style="margin-top:22px">Quotes are indicative, not accepted contracts. We do not purchase accounts, provide regulated assurances, or sell personal/customer records. See <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/WORLDWIDE-DIGITAL-SERVICES.md" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">full scope and terms</a>.</p>
+    </div></section>
+    <section id="try-it" class="section demo"><div class="wrap">
+      <div class="section-head"><div class="section-kicker">Try before you hire</div><h2>Free data quality workbench.</h2><p>Upload a small CSV or JSON file, inspect duplicate references and empty fields, or convert records. The data stays in your browser; no server or API receives it.</p></div>
+      <div class="demo-shell">
+        <div class="demo-top"><div><h3>Data workbench</h3><p class="muted" style="margin:0">Interactive sample · No login · No upload</p></div><span class="tag">Runs locally</span></div>
+        <div class="demo-controls">
+          <div class="field"><label for="tool-mode">Action</label><select id="tool-mode"><option value="audit">Check data quality</option><option value="json">Convert to JSON</option><option value="csv">Convert to CSV</option></select></div>
+          <div class="field"><label for="source-format">Input format</label><select id="source-format"><option value="csv">CSV</option><option value="json">JSON array</option></select></div>
+          <div class="field"><label for="file-input">Or choose a small file</label><input id="file-input" type="file" accept=".csv,.json,text/csv,application/json" aria-describedby="file-tip"><div id="file-tip" class="fine">Up to 5 MB; fictional samples recommended</div></div>
+        </div>
+        <div class="field"><label for="data-input">Input data</label><textarea id="data-input" rows="8" spellcheck="false" placeholder="invoice_id,amount,status&#10;INV-001,120.50,paid"></textarea></div>
+        <div class="run-controls"><div class="field"><label for="key-field">Duplicate key column</label><select id="key-field"><option value="">Auto-detect on run</option></select></div><div class="field"><label for="amount-field">Numeric amount column</label><select id="amount-field"><option value="">Auto-detect on run</option></select></div></div>
+        <div class="data-toolbar"><div><button id="load-sample" class="btn btn-ghost" type="button">Load sample</button><button id="clear-data" class="btn btn-ghost" type="button">Clear</button></div><div><button id="run-check" class="btn" type="button">Run check</button><button id="download" class="btn btn-ghost" type="button" disabled>Download result ↓</button></div></div>
+        <div id="tool-status" class="notice" hidden role="status" aria-live="polite"></div>
+        <pre id="result" class="result" aria-label="Result preview" tabindex="0">Select a tool, load sample data or upload a non-sensitive file, and click Run check.</pre>
+        <p class="fine">Note: This free browser tool is a preview of the service, not a paid accounting audit, security assessment or blockchain payment verification. All input is held in your tab and is lost when the page closes. Do not paste private keys or confidential data into public issue requests.</p>
+      </div>
+    </div></section>
+    <section id="how-it-works" class="section"><div class="wrap"><div class="section-head"><div class="section-kicker">A simple process</div><h2>How to commission work.</h2></div><div class="process"><article class="step"><span class="number">01</span><h3>Describe an outcome</h3><p>Open a public GitHub intake with only a fictional or anonymized example and acceptance checks.</p></article><article class="step"><span class="number">02</span><h3>Agree on scope</h3><p>Confirm what will be produced, price, deadline and correct settlement route before the assignment begins.</p></article><article class="step"><span class="number">03</span><h3>Review real evidence</h3><p>Receive an original result with documented tests. Payment applies only to an actual agreed engagement.</p></article></div></div></section>
+    <section class="section" style="padding-top:0"><div class="wrap"><div class="cta"><div><div class="section-kicker" style="color:#8bd9bd">Got a small task?</div><h2>Show us the expected result.</h2><p>Start with a simple, non-sensitive example. Work requests are public GitHub issues. Native BTC and other compatible cryptocurrency payments may be discussed, subject to exact-network verification and mutual agreement.</p></div><a class="btn btn-light" href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml" target="_blank" rel="noopener noreferrer">Request a quote ↗</a></div></div></section>
+  </main>
+  <footer><div class="wrap"><div>© <span id="year">2026</span> B1/B2 Digital Work Studio · Independent, owner-directed digital services.<div>Public demonstration, not evidence of client engagement, warranty or earnings.</div></div><div><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga" target="_blank" rel="noopener noreferrer">Source repository</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18" target="_blank" rel="noopener noreferrer">Open enquiries</a></div></div></footer>
+  <script src="assets/engine.js"></script><script src="assets/app.js" defer></script>
+</body>
+</html>
