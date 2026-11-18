@@ -36,6 +36,27 @@ jobs:
       - name: Install pinned dependencies without lifecycle scripts
         working-directory: /tmp/ubiquity-upstream
         run: bun install --frozen-lockfile --ignore-scripts
+      - name: Prove the new regression fails against the exact unpatched upstream source
+        working-directory: /tmp/ubiquity-upstream
+        run: |
+          set -euo pipefail
+          cp scripts/export-antigravity-quota.ts /tmp/1377-patched-source.ts
+          git checkout -- scripts/export-antigravity-quota.ts
+          set +e
+          bun --no-env-file test tests/admin-gemini-quota.test.ts > /tmp/1377-baseline-fail.log 2>&1
+          status=$?
+          set -e
+          cp /tmp/1377-patched-source.ts scripts/export-antigravity-quota.ts
+          if [ "$status" -eq 0 ]; then
+            echo 'Unexpected baseline pass: regression did not detect the old code' >&2
+            exit 1
+          fi
+          if ! grep -F 'identical relative countdowns 14 seconds apart' /tmp/1377-baseline-fail.log; then
+            echo 'Baseline failed for an unrelated reason; reject red-green evidence' >&2
+            sed -n '1,110p' /tmp/1377-baseline-fail.log
+            exit 1
+          fi
+          echo "UPSTREAM_ISSUE_1377_ORIGINAL_FAILS_NEW_TEST: expected red; source fix restored"
       - name: Run actual upstream Gemini quota tests under Bun
         working-directory: /tmp/ubiquity-upstream
         run: bun --no-env-file test tests/admin-gemini-quota.test.ts
