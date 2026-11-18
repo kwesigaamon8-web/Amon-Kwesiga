@@ -1,0 +1,43 @@
+name: Lateralus manifest TOML pinned upstream regression
+on:
+  push:
+    paths:
+      - 'crypto-agents/paid-work/lateralus-manifest-roundtrip/**'
+      - '.github/workflows/lateralus-manifest-regression.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reproduce-upstream:
+    name: Verify real upstream manifestation and clean control
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkout exact public Lateralus upstream revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir /tmp/lateralus-public
+          cd /tmp/lateralus-public
+          git init
+          git fetch --depth=1 https://github.com/bad-antics/lateralus-lang.git 599cda9f9f4d18d9054e8f315d117d3cb74126b8
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "599cda9f9f4d18d9054e8f315d117d3cb74126b8"
+          test -f lateralus_lang/package_manager.py
+      - name: Execute source-level reproduction and passing control
+        shell: bash
+        run: |
+          set -euo pipefail
+          python crypto-agents/paid-work/lateralus-manifest-roundtrip/repro.py /tmp/lateralus-public/lateralus_lang/package_manager.py | tee /tmp/repro.txt
+          grep -F 'PINNED_UPSTREAM_TOML_BUG_REPRODUCED' /tmp/repro.txt
+          {
+            echo '### Lateralus upstream TOML manifest reproducibility'
+            echo 'This is a source-level defect reproduction only. No external issue/bounty was claimed or submitted.'
+            echo '- Pinned upstream commit: 599cda9f9f4d18d9054e8f315d117d3cb74126b8'
+            echo '- Two failure cases plus one passing control; Python 3.11 tomllib and project parser compared'
+            echo '- No payment, buyer acceptance, wallet transaction, expense or email.'
+          } >> "$GITHUB_STEP_SUMMARY"
