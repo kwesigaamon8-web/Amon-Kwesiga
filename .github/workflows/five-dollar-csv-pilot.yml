@@ -1,0 +1,43 @@
+name: B1 B2 Five-Dollar BTC Pilot Deliverable Tests
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/five-dollar-csv-pilot.yml'
+      - 'crypto-agents/commercial-work/five-dollar-csv-pilot/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-cleanup-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run original CSV cleaning tests
+        run: python -m unittest discover -s crypto-agents/commercial-work/five-dollar-csv-pilot -p 'test_*.py' -v
+      - name: Demonstrate a real synthetic dataset conversion
+        run: |
+          set -euo pipefail
+          python crypto-agents/commercial-work/five-dollar-csv-pilot/clean_csv.py \
+            crypto-agents/commercial-work/five-dollar-csv-pilot/sample.csv \
+            --clean /tmp/b1b2-clean-sample.csv \
+            --report /tmp/b1b2-clean-quality.json
+          python - <<'PY'
+          import json, csv
+          p=json.load(open('/tmp/b1b2-clean-quality.json'))
+          rows=list(csv.DictReader(open('/tmp/b1b2-clean-sample.csv')))
+          assert p['source_rows']==5, p
+          assert p['clean_rows']==3, p
+          assert p['exact_duplicate_rows_removed']==1, p
+          assert p['blank_rows_removed']==1, p
+          assert len(rows)==3
+          print('FIVE_DOLLAR_CSV_PAID_DELIVERABLE_SYNTHETIC_DEMO_PASS')
+          PY
+      - name: Distinguish work deliverable from paid work
+        run: |
+          echo 'Original CSV cleaner/test sample has been built. Not submitted to a paying client.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No buyer has approved scope, no work accepted or BTC earned/deposited by this job.' >> "$GITHUB_STEP_SUMMARY"
