@@ -17,6 +17,9 @@ SUBMITTED=re.compile(r"(?i)(?:PR submitted|pull requests? (?:submitted|opened|me
 RISK=re.compile(r"(?i)(?:pay to claim|fee before apply|deposit to start|private key|seed phrase|stake required)")
 PRICE=re.compile(r"(?i)(?:\bPrice:\s*\d+(?:\.\d+)?\s*USD|\b(?:bounty|reward|payment|pays?)\b[^\n]{0,50}?\$\s*\d+(?:\.\d+)?|\[\$\d+(?:\.\d+)?\])")
 DISPUTE=re.compile(r"(?i)(?:payment not received|bounty not paid|unable to pay|fake bounty|scam bounty)")
+# Only the payer/maintainer can revoke a posted prize; an outsider's speculation
+# must never be treated as official revocation.
+WITHDRAWN_BY_SPONSOR=re.compile(r"(?i)(?:\bbount(?:y|ies)\b[^.\\n]{0,120}\bwithdrawn\b|\bbounty program withdrawn\b|\bno bounty will be paid\b|\bno cash budget\b|\bwe (?:have )?(?:cancelled|canceled|withdrawn) (?:the|this|our) bounty\b|\breward (?:has been |is )?(?:cancelled|canceled|withdrawn)\b)")
 # A cash-labelled conformance mirror is not an accepted contributor route if its
 # own sponsor explicitly refuses manual PRs. Never mistake its price for escrow.
 NO_EXTERNAL_SUBMISSION=re.compile(r"(?is)\b(?:manual|human|external|community)\s+(?:pull requests?|PRs?|contributions?)[^\n.]{0,80}\b(?:are not|is not|will not be|won.t be)\s+(?:reviewed|accepted|merged)\b")
@@ -71,6 +74,15 @@ def evaluate(issue,comments,repo=None):
         flags.append("HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK")
     if DISPUTE.search(issue_text) or DISPUTE.search(all_comments):
         flags.append("PAYMENT_DISPUTE_REVIEW_REQUIRED")
+    # Issues can remain open after a payer cancels *all* payouts (real example:
+    # overturn-ai/overturn #20/#21/#22 on 17 Nov 2026). This is an explicit
+    # payout blocker and takes precedence over a listed price or old PRs.
+    if WITHDRAWN_BY_SPONSOR.search(issue_text) or any(
+        str(c.get("author_association") or "").upper() in ("OWNER", "MEMBER", "COLLABORATOR")
+        and WITHDRAWN_BY_SPONSOR.search(str(c.get("body") or "")[:8000])
+        for c in comments
+    ):
+        flags.append("REWARD_WITHDRAWN_BY_SPONSOR")
     if SUBMITTED.search(all_comments):
         flags.append("ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS")
     # A nominally open bounty with several distinct already-submitted PRs is
@@ -92,7 +104,7 @@ def evaluate(issue,comments,repo=None):
         flags.append("NO_EXPLICIT_REWARD_IN_SOURCE")
     if int(issue.get("comments") or 0)>len(comments):
         flags.append("SOME_COMMENTS_UNREAD")
-    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR","REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED","MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING"))
+    critical=any(x in flags for x in ("REWARD_WITHDRAWN_BY_SPONSOR","NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR","REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED","MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING"))
     return {
       "schema":"B_COMMERCIAL_ELIGIBILITY_V1",
       "source_url":issue.get("html_url"),"issue_title":title,
@@ -145,6 +157,13 @@ def self_test():
     mirror_result=evaluate(mirror,[])
     assert mirror_result["critical_blocker"] and "NO_EXTERNAL_SUBMISSION_ROUTE" in mirror_result["flags"]
     assert evaluate({**mirror,"body":"Manual pull requests from human engineers are reviewed. Reward $600 USDC."},[])["critical_blocker"] is False
+    withdrawal={"author_association":"OWNER","user":{"login":"shireenkadhium"},
+                "body":"The bounties on #20, #21 and #22 are withdrawn. No bounty will be paid, including for work already submitted."}
+    withdrawn=evaluate(i,[withdrawal])
+    assert withdrawn["critical_blocker"] and "REWARD_WITHDRAWN_BY_SPONSOR" in withdrawn["flags"],withdrawn
+    # An outsider cannot revoke sponsor funding by commenting on an issue.
+    third_party={**withdrawal,"author_association":"NONE","user":{"login":"random-outsider"}}
+    assert "REWARD_WITHDRAWN_BY_SPONSOR" not in evaluate(i,[third_party])["flags"]
     ordinary=evaluate(i,[{"user":{"login":"bob"},"body":"What is the payment process?"}])
     assert ordinary["eligibility"]=="UNVERIFIED_CONFIRM_WITH_SPONSOR"
     assert ordinary["reward_funded_verified"] is False
@@ -190,7 +209,7 @@ def self_test():
     assert u["critical_blocker"] and "REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED" in u["flags"],u
     published={**i,"body":"Fix proposal-router/main.js published on main and add regression tests for the title change."}
     assert "REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED" not in evaluate(published,[])["flags"]
-    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: points, decoys, assign-first and unpublished required code")
+    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: sponsor withdrawal, points, decoys, assignment and unpublished required code")
 
 def main():
     p=argparse.ArgumentParser()
