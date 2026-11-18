@@ -25,7 +25,7 @@ def load_work_contract(manifest_path: Path | str = DEFAULT_MANIFEST) -> dict:
         raise ValueError("Owner no-email/no-wallet-signing constraints not inherited")
     if len(method.get("mandatory_per_task_checklist", [])) < 7:
         raise ValueError("Incomplete owner per-task careful-work instruction")
-    if "NOT a count of active" not in updated["distinctions"]:
+    if "not proof of concurrent independent active agents" not in updated["distinctions"].lower():
         raise ValueError("Role target is being confused with running processes")
 
     return {
