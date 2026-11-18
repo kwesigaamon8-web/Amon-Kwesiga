@@ -42,9 +42,22 @@ def btc(x,get):
     if isinstance(p,dict) and isinstance(p.get("chain_stats"),dict):
         a=p["chain_stats"];f=a.get("funded_txo_sum");s=a.get("spent_txo_sum")
         if isinstance(f,int) and isinstance(s,int):
-            x["native_balance"]=str((f-s)/100000000)
+            # Decimal avoids false precision for full satoshi balances.
+            x["confirmed_satoshis"]=f-s
+            x["native_balance"]=str(Decimal(f-s)/Decimal(100000000))
             x["status"]="CURRENT_BALANCE_OBSERVED_NOT_EARNINGS"
         x["reported_tx_count"]=a.get("tx_count")
+        # Mempool activity can disappear or be replaced; NOT confirmed,
+        # not a verified paying customer, and never added to income.
+        m=p.get("mempool_stats")
+        if isinstance(m,dict):
+            uf=m.get("funded_txo_sum")
+            us=m.get("spent_txo_sum")
+            if isinstance(uf,int) and isinstance(us,int):
+                x["unconfirmed_satoshis"]=uf-us
+                x["unconfirmed_btc"]=str(Decimal(uf-us)/Decimal(100000000))
+            x["unconfirmed_tx_count"]=m.get("tx_count")
+            x["mempool_is_not_verified_earned_payment"]=True
 
 def sol(x,get):
     ep="https://api.mainnet-beta.solana.com"
