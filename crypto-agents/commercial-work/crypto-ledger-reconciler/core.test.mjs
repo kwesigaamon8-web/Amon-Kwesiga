@@ -51,6 +51,23 @@ test('flags amount and output-index mismatches', () => {
   assert.equal(result.rows[0].difference, '0.0001');
 });
 
+
+test('normalizes output indexes with leading zeroes', () => {
+  const result = reconcile(
+    [row(txA, '00', 'BTC', 'bitcoin-mainnet', 'in', '0.001')],
+    [row(txA, '0', 'BTC', 'bitcoin-mainnet', 'in', '0.001')],
+  );
+  assert.equal(result.rows[0].status, 'MATCHED');
+});
+
+test('preserves the sign of chain amount minus ledger amount', () => {
+  const result = reconcile(
+    [row(txA, '0', 'BTC', 'bitcoin-mainnet', 'in', '0.0004')],
+    [row(txA, '0', 'BTC', 'bitcoin-mainnet', 'in', '0.0005')],
+  );
+  assert.equal(result.rows[0].difference, '-0.0001');
+});
+
 test('flags chain-only and ledger-only records separately', () => {
   const result = reconcile(
     [row(txA, '0', 'BTC', 'bitcoin-mainnet', 'in', '0.1')],
