@@ -81,15 +81,25 @@ jobs:
           print('PUBLIC_DEPLOYMENT_CONFIRMED',json.dumps({'url':url,'expiry':exp,'files':len(payload.get('files',[]))}))
           PY
           rm -f publish-private.json studio-preview.zip
-      - name: Independently check new deployed site by HTTPS before publishing its link
+      - name: Independently check all live site assets before publishing link
         run: |
           set -euo pipefail
           url="$(grep -Eo 'https://[a-z0-9-]+\.ship\.place/' docs/LIVE_SITE.md | head -1)"
           [ -n "$url" ]
-          curl -fSsL --max-time 25 "$url" | grep -q 'Digital Work Studio'
-          curl -fSsL --max-time 25 "${url}assets/engine.js" | grep -q 'function'
-          curl -fSsL --max-time 25 "${url}assets/reconcile.js" | grep -q 'function'
-          curl -fSsL --max-time 25 "${url}assets/reconcile-ui.js" | grep -q 'function'
+          scratch="$(mktemp -d)"
+          trap 'rm -rf "$scratch"' EXIT
+          curl -fSsL --max-time 25 "$url" -o "$scratch/home.html"
+          curl -fSsL --max-time 25 "$url"assets/engine.js -o "$scratch/engine.js"
+          curl -fSsL --max-time 25 "$url"assets/app.js -o "$scratch/app.js"
+          curl -fSsL --max-time 25 "$url"assets/reconcile.js -o "$scratch/reconcile.js"
+          curl -fSsL --max-time 25 "$url"assets/reconcile-ui.js -o "$scratch/reconcile-ui.js"
+          curl -fSsL --max-time 25 "$url"assets/styles.css -o "$scratch/styles.css"
+          grep -q 'Digital Work Studio' "$scratch/home.html"
+          grep -q 'assets/reconcile.js' "$scratch/home.html"
+          grep -q 'function' "$scratch/engine.js"
+          grep -q 'function' "$scratch/reconcile.js"
+          grep -q 'function' "$scratch/reconcile-ui.js"
+          [ -s "$scratch/styles.css" ]
           echo "INDEPENDENT_HTTPS_CHECK_PASS $url"
       - name: Publish stable latest-site directory in owner repository
         run: |
