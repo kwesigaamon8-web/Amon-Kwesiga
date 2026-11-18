@@ -16,6 +16,7 @@ import urllib.request
 from pathlib import Path
 from b_paid_feed_fallback import fetch as backup_paid_issue_feed
 from bounty_source_safety import unsafe_bounty_source, self_test as test_source_safety
+from bounty_eligibility_audit import evaluate as evaluate_eligibility
 
 OUT=Path("paid-opportunity-reports")
 OUT.mkdir(exist_ok=True)
@@ -57,6 +58,10 @@ NOT_WORK_PAYMENT=re.compile(r'(?i)\b(?:block reward|halving reward|mining reward
 QUESTIONS_ONLY=re.compile(r'(?i)(?:\b(?:could the current docs|clarify|question routes|request for information|eligibility question|is the bounty|vote:|how to claim)\b)')
 AUTO_USERNAME=re.compile(r'(?i)(?:\[bot\]$|^github-actions(?:\[bot\])?$|^dependabot(?:\[bot\])?$)')
 EXCLUDED_ORIGIN_REPOS=("bountyscout","bounty-plaza")
+ISSUE_URL=re.compile(r"^https://github\\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\\d+)$")
+# Only genuine sponsor-owned, still-open original issues may reach scarce AI jobs.
+# A third-party index is not authoritative; no CI/model work on closed offers.
+MAX_PRIMARY_SOURCE_PREFLIGHTS=14
 
 
 def github_get(url):
@@ -117,6 +122,42 @@ def normalize(issue):
       "next_step":"Read current issue AND current comments, confirm sponsor authority, funding, exact deliverable, eligibility and payout network before claiming, doing work, or requesting BTC.",
     }
 
+def preflight_original_issue(candidate, fetch=github_get):
+    """Read the REAL original issue, its publisher and its latest comments.
+
+    All verdicts are *source checks only*. Even PASS does not establish
+    actual funding, payout compatibility, buyer acceptance, or earnings.
+    """
+    link=str(candidate.get("original_url") or "")
+    m=ISSUE_URL.fullmatch(link)
+    if not m:
+        return {"status":"REJECT_INVALID_ORIGINAL_GITHUB_ISSUE_URL"}
+    owner,repository,number=m.groups()
+    prefix=f"https://api.github.com/repos/{owner}/{repository}"
+    try:
+        issue=fetch(prefix+"/issues/"+number)
+        if not isinstance(issue,dict) or issue.get("html_url")!=link or issue.get("state")!="open" or issue.get("pull_request"):
+            return {"status":"REJECT_NOT_OPEN_AT_ORIGINAL_SOURCE"}
+        association=str(issue.get("author_association") or "").upper()
+        if association not in ("OWNER","MEMBER","COLLABORATOR"):
+            return {"status":"HOLD_ISSUER_AUTHORITY_NOT_ESTABLISHED","association":association}
+        n=max(0,int(issue.get("comments") or 0))
+        if n>100:
+            return {"status":"HOLD_TOO_MANY_UNREAD_SPONSOR_COMMENTS","comments":n}
+        comments=fetch(prefix+"/issues/"+number+"/comments?per_page=100") if n else []
+        if not isinstance(comments,list) or len(comments)<n:
+            return {"status":"HOLD_COMMENTS_UNAVAILABLE_OR_INCOMPLETE"}
+        metadata=fetch(prefix)
+        if not isinstance(metadata,dict) or metadata.get("archived") is True:
+            return {"status":"REJECT_ARCHIVED_OR_METADATA_UNAVAILABLE"}
+        result=evaluate_eligibility(issue,comments,metadata)
+        if result["critical_blocker"]:
+            return {"status":"REJECT_BOUNTY_ELIGIBILITY_BLOCKER","flags":result["flags"]}
+        return {"status":"ORIGINAL_ISSUE_OPEN_ISSUER_CONFIRMED_FUNDING_UNVERIFIED",
+                "flags":result["flags"],"comments_checked":len(comments)}
+    except (ValueError,TypeError,KeyError,urllib.error.URLError,TimeoutError,OSError) as exc:
+        return {"status":"HOLD_ORIGINAL_SOURCE_UNAVAILABLE","error":type(exc).__name__}
+
 def assign_company_review(candidate):
     digest=hashlib.sha256(candidate["original_url"].encode("utf-8")).digest()
     fleet=("transferexperiment","BountyScoutAI")[digest[0]%2]
@@ -166,8 +207,22 @@ def scan():
                     secondary_count+=1
         except Exception as exc:
             backup_status="SECONDARY_FEED_ERROR:"+type(exc).__name__+":"+str(exc)[:140]
+    # In the past, a Pacta $25 listing was resurfaced by multiple boards
+    # after the FIRST-PARTY bounty issue had closed. Check that source live
+    # before passing a candidate to a real LLM worker. Bound API calls.
+    preflight_results=[]
+    approved={}
+    for candidate in list(selected.values())[:MAX_PRIMARY_SOURCE_PREFLIGHTS]:
+        verdict=preflight_original_issue(candidate)
+        row={"url":candidate["original_url"],**verdict}
+        preflight_results.append(row)
+        if verdict["status"]=="ORIGINAL_ISSUE_OPEN_ISSUER_CONFIRMED_FUNDING_UNVERIFIED":
+            approved[candidate["original_url"]]={
+                **candidate,"original_source_preflight":verdict,
+                "funding_still_unverified":True}
+    selected=approved
     if not selected:
-        backup_status=backup_status+"; NO CANDIDATE AVAILABLE — SOURCE OUTAGE"
+        backup_status=backup_status+"; NO ORIGINAL ISSUE PASSED LIVE ISSUER AND OPEN-STATUS PREFLIGHT"
     return {
       "checked_utc":T.isoformat(),
       "companies":["transferexperiment","BountyScoutAI"],
@@ -176,6 +231,10 @@ def scan():
       "source_errors":source_errors,
       "secondary_directory_status":backup_status,
       "secondary_unverified_candidate_count":secondary_count,
+      "original_source_preflight_results":preflight_results,
+      "original_sources_checked":len(preflight_results),
+      "original_sources_passed":len(approved),
+      "original_source_checks_are_not_payout_verification":True,
       "rejected_nonmatching_or_risky_issues":rejected,
       "candidate_count":len(selected),
       "candidates":list(selected.values())[:45],
@@ -265,7 +324,22 @@ def selftest():
            "state":"open","html_url":"https://github.com/owner/repo/issues/7",
            "labels":[{"name":"bounty"},{"name":"zero-bounty"}]}
     assert normalize(issue)["status"]=="REVIEW_OR_REJECT"
-    print("PAID_CANDIDATE_QUALITY_TESTS_PASS — reject digest, reward FAQ, mirror and zero-bounty; retain real scoped paid issue")
+    base={"original_url":"https://github.com/tester/repo/issues/21"}
+    issue_url="https://api.github.com/repos/tester/repo/issues/21"
+    repo_url="https://api.github.com/repos/tester/repo"
+    def fixture_fetch(data):
+        return lambda url: data[url]
+    issuer={"html_url":base["original_url"],"state":"open",
+        "title":"$25 bounty: fix conversion","body":"Bounty reward $25 after reviewed patch",
+        "author_association":"OWNER","labels":[],"comments":0}
+    good=preflight_original_issue(base,fixture_fetch({issue_url:issuer,repo_url:{"archived":False}}))
+    assert good["status"]=="ORIGINAL_ISSUE_OPEN_ISSUER_CONFIRMED_FUNDING_UNVERIFIED"
+    assert preflight_original_issue(base,fixture_fetch({issue_url:{**issuer,"state":"closed"}}))["status"]=="REJECT_NOT_OPEN_AT_ORIGINAL_SOURCE"
+    assert preflight_original_issue(base,fixture_fetch({issue_url:{**issuer,"author_association":"NONE"}}))["status"]=="HOLD_ISSUER_AUTHORITY_NOT_ESTABLISHED"
+    assert preflight_original_issue(base,fixture_fetch({issue_url:issuer,repo_url:{"archived":True}}))["status"]=="REJECT_ARCHIVED_OR_METADATA_UNAVAILABLE"
+    assert preflight_original_issue(base,fixture_fetch({issue_url:{**issuer,"body":"No monetary reward; points only"},repo_url:{"archived":False}}))["status"]=="REJECT_BOUNTY_ELIGIBILITY_BLOCKER"
+    assert preflight_original_issue(base,fixture_fetch({issue_url:{**issuer,"comments":151}}))["status"]=="HOLD_TOO_MANY_UNREAD_SPONSOR_COMMENTS"
+    print("PAID_CANDIDATE_QUALITY_TESTS_PASS — excludes closed primary source, outsider issuer, archived origin, points-only and unread sponsor comments")
 
 if __name__=="__main__":
     selftest()
