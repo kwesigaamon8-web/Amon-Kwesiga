@@ -38,6 +38,7 @@ from hosting_scout import plan as hosting_research_plan, probe as hosting_resear
 from ability_based_dispatch import dispatch as capability_dispatch
 from superworker_protocol import create as superworker_create
 from owner_work_contract import load_work_contract
+from director_grade_work import assign as assign_director_grade_work
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -116,6 +117,7 @@ STAMP=datetime.now(timezone.utc).isoformat()
 START=time.monotonic()
 TASK=IDENTITY["task"]
 CAPABILITY_TASK=capability_dispatch(FLEET,WORKER,SPEC["role_name"],DIRECTOR,IDENTITY["level"])
+DIRECTOR_GRADE_WORK=assign_director_grade_work(FLEET,WORKER,PARENT,CAPABILITY_TASK["primary_lane"])
 if CAPABILITY_TASK["reports_to"]!=FLEET+"/"+PARENT:
     raise SystemExit("Capability-specific assignment broke worker direct-parent chain")
 SUPERWORKER=superworker_create(FLEET,WORKER,SPEC["role_name"],IDENTITY["level"])
@@ -165,6 +167,7 @@ OWNER_ACTIVATION_PROOF={
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "director_grade_work":DIRECTOR_GRADE_WORK,
     "owner_latest_work_instruction_proof":{
       "manifest_loaded_by_actual_worker_process":LATEST_WORK_CONTRACT["manifest"],
       "conceptual_worker_role_target":LATEST_WORK_CONTRACT["conceptual_role_target"],
@@ -437,6 +440,7 @@ try:
         " DIRECT BOSS "+GOVERNED_IDEA_ORDER["direct_supervisor"]+
         " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
         "\nLATEST OWNER WORK COMMAND "+LATEST_WORK_CONTRACT["model_prompt"]+
+        "\nDIRECTOR-GRADE OWNER WORK "+DIRECTOR_GRADE_WORK["model_prompt"]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
         "\nYOU ARE ONE CAPABILITY-BASED SUPERWORKER, NOT BILLIONS OF LIVE MACHINES. Follow VERIFY SOURCE > PLAN > BUILD ORIGINAL > SELF-REVIEW > AUTHORIZED DELIVERY > PAID RECEIPT VERIFICATION BY LOCAL D10 > REPORT TO YOUR ORIGINAL PARENT "+SUPERWORKER["supervisor_chain"][0]+". Use only actually enabled tools, select one viable paid job, show tested original output and precise blocker. Never claim an unstated customer, mining device, host or payment."+
