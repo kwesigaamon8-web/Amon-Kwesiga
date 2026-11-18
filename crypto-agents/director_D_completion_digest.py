@@ -146,7 +146,7 @@ def main():
             (latest[n] or {}).get("conclusion"),(complete[n] or {}).get("id"))
            for n in NAMES]
     key=hashlib.sha256(json.dumps(state).encode()).hexdigest()[:18]
-    marker="<!-- b-owner-digest-v2:"+key+" -->"
+    marker="<!-- b-owner-digest-v3:"+key+" -->"
     comments=api("/repos/"+REPO+"/issues/6/comments?per_page=100&sort=created&direction=desc")
     if any(marker in x.get("body","") for x in comments):
         print("DIRECTOR_D_UNCHANGED",key);return
