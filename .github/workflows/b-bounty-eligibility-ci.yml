@@ -1,0 +1,31 @@
+name: B1 B2 Bounty Eligibility Safety Tests
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/bounty_eligibility_audit.py'
+      - 'crypto-agents/bounty_source_safety.py'
+      - 'crypto-agents/b_worker_buyer_source.py'
+      - '.github/workflows/b-bounty-eligibility-ci.yml'
+permissions:
+  contents: read
+jobs:
+  paid-task-source-safety:
+    name: No fake paid tasks, decoys, unauthorized claims, or secret leaks
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test bounty source safety and eligibility
+        run: python crypto-agents/bounty_eligibility_audit.py --self-test
+      - name: Test live-source selection without paid-claim fiction
+        run: python crypto-agents/b_worker_buyer_source.py --self-test
+      - name: Evidence is a test result, not a receipt
+        if: always()
+        run: |
+          echo '## Source safety and source eligibility' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This checks only filtering logic. No paid work, acceptance or crypto deposit is inferred.' >> "$GITHUB_STEP_SUMMARY"
