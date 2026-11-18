@@ -94,7 +94,8 @@ def main():
         found = rows(get(query))
         found += rows(get(API + "?limit=100"))
     except Exception as exc:
-        print("BOARD_POST_HOLD: search unavailable; no post; " + type(exc).__name__)
+        code = getattr(exc, "code", None)
+        print("BOARD_POST_HOLD: search unavailable; no post; " + type(exc).__name__ + (" HTTP " + str(code) if code is not None else ""))
         return
     if duplicates(found):
         print("BOARD_POST_ALREADY_PRESENT: no duplicate created")
