@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/paid-task-scout.yml'
       - 'crypto-agents/paid_task_scout.py'
+      - 'crypto-agents/taskmarket_base_usdc_scout.py'
       - 'crypto-agents/paid-work/revenue_conversion_gate.py'
       - 'crypto-agents/paid-work/conversion-targets.json'
       - 'crypto-agents/worldwide_paid_work_seeds.json'
@@ -171,6 +172,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python crypto-agents/paid_task_scout.py
+      - name: Run safe Taskmarket Base-USDC read-only scout
+        run: |
+          python crypto-agents/taskmarket_base_usdc_scout.py --self-test
+          python crypto-agents/taskmarket_base_usdc_scout.py
+          python - <<'PY'
+          import json, os
+          d=json.load(open('paid-opportunity-reports/taskmarket-base-usdc.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('\n### Taskmarket Base USDC bounty source (unverified potential, NOT income)\n')
+              f.write('- Public task rows: '+str(d['source_rows_checked'])+'; screened candidates: '+str(d['candidate_count'])+'\n')
+              f.write('- Errors: '+str(d['source_errors'])+'\n')
+              for c in d['candidate_unverified'][:5]:
+                  f.write('- '+c['id']+': '+c['advertised_usdc_base']+' USDC — '+c['status']+' — '+c['source_url']+'\n')
+              f.write('- Signed applications, accepted deliveries, and confirmed owner deposits: NONE from this scout.\n')
+          PY
       - name: Archive all checked candidate leads and blockers
         uses: actions/upload-artifact@v4
         if: always()
