@@ -1,0 +1,6 @@
+invoice_id,amount,customer_note
+INV-001,001.20, Kampala 
+INV-001,001.20,Kampala
+INV-002,15.00, Paid
+, , 
+INV-003,9.40,"Rush, please"
