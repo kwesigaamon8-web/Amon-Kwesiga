@@ -1,0 +1,87 @@
+name: Bitcoin Merchant Watch Wallet - Live Public MVP
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bitcoin-merchant-hackathon-demo.yml'
+      - 'crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/**'
+
+permissions:
+  contents: read
+
+jobs:
+  public-mvp:
+    name: Test merchant BTC wallet and publish an accessible no-key static MVP
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run zero-dependency original wallet and invoice evidence tests
+        run: node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/*.test.mjs
+      - name: Bundle only public files, no customer data or credentials
+        run: |
+          set -euo pipefail
+          cd crypto-agents/commercial-work/africa-bitcoin-merchant-wallet
+          test -s index.html
+          test -s wallet_core.mjs
+          test -s invoice_ledger.mjs
+          zip -q "$GITHUB_WORKSPACE/merchant-bitcoin-watch-public.zip" index.html wallet_core.mjs invoice_ledger.mjs
+          cd "$GITHUB_WORKSPACE"
+          unzip -Z1 merchant-bitcoin-watch-public.zip | sort
+          if unzip -Z1 merchant-bitcoin-watch-public.zip | grep -E '(\.env|\.pem|\.key|seed|private|\.json$)'; then
+            echo 'Unexpected sensitive or private file in public website bundle' >&2
+            exit 1
+          fi
+      - name: Publish anonymous read-only MVP and verify hosted HTML plus JS files
+        run: |
+          set -euo pipefail
+          umask 077
+          curl -fsS --retry 2 --retry-delay 2 --max-time 55 \
+            -X POST 'https://ship.page/deploy' \
+            -H 'Content-Type: application/zip' \
+            --data-binary @merchant-bitcoin-watch-public.zip \
+            -o deploy-response.json
+          python - <<'PY'
+          import json,os,pathlib,urllib.parse
+          data=json.loads(pathlib.Path('deploy-response.json').read_text())
+          url=data.get('url','')
+          p=urllib.parse.urlsplit(url)
+          if not(p.scheme=='https' and p.hostname and p.hostname.endswith('.ship.place')):
+              raise SystemExit('Deployment URL not returned by approved anonymous host')
+          files=set(data.get('files') or [])
+          if not {'index.html','wallet_core.mjs','invoice_ledger.mjs'}.issubset(files):
+              raise SystemExit('Hosted file manifest incomplete')
+          expires=data.get('expires_at','unknown')
+          pathlib.Path('published-url.txt').write_text(url+'\n',encoding='utf-8')
+          print('MERCHANT_WALLET_LIVE_MVP',json.dumps({'url':url,'expires_at':expires,
+                 'static_files':sorted(files),'read_only':True,'no_wallet_signing':True,
+                 'no_hackathon_submission':True,'no_verified_payment':True}))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('## Bitcoin Merchant Watch Wallet — publicly hosted MVP\n\n')
+              f.write('- **Live demo:** '+url+'\n')
+              f.write('- **Hosting expires:** '+str(expires)+'; re-deployment changes URL\n')
+              f.write('- Tested: native-BTC address checksum, BIP21 receive requests, no duplicate TXID:vout allocations, confirmation statuses\n')
+              f.write('- No seeds, keys, wallet signing, spending, on-chain transaction, emails, or authenticated hackathon submission\n')
+              f.write('- Hackathon application restricted to eligible students using Devpost; reward is conditional and not earned\n')
+          PY
+          url="$(cat published-url.txt)"
+          for path in '' 'wallet_core.mjs' 'invoice_ledger.mjs'; do
+            curl -fSsL --max-time 20 "$url$path" -o "/tmp/mw-$([[ -z "$path" ]] && echo index || echo "$path")"
+          done
+          grep -q 'Bitcoin Merchant Watch Wallet' /tmp/mw-index
+          grep -q 'makeInvoice' /tmp/mw-wallet_core.mjs
+          grep -q 'recordTxEvidence' /tmp/mw-invoice_ledger.mjs
+          echo 'MERCHANT_PUBLIC_HTTPS_SMOKE_PASS' "$url"
+          rm -f deploy-response.json
+      - name: Retain public URL only (not credentials)
+        uses: actions/upload-artifact@v4
+        with:
+          name: bitcoin-merchant-public-demo-url
+          path: published-url.txt
+          retention-days: 7
+          if-no-files-found: error
