@@ -17,6 +17,9 @@ SUBMITTED=re.compile(r"(?i)(?:PR submitted|pull requests? (?:submitted|opened|me
 RISK=re.compile(r"(?i)(?:pay to claim|fee before apply|deposit to start|private key|seed phrase|stake required)")
 PRICE=re.compile(r"(?i)(?:\bPrice:\s*\d+(?:\.\d+)?\s*USD|\b(?:bounty|reward|payment|pays?)\b[^\n]{0,50}?\$\s*\d+(?:\.\d+)?|\[\$\d+(?:\.\d+)?\])")
 DISPUTE=re.compile(r"(?i)(?:payment not received|bounty not paid|unable to pay|fake bounty|scam bounty)")
+# A cash-labelled conformance mirror is not an accepted contributor route if its
+# own sponsor explicitly refuses manual PRs. Never mistake its price for escrow.
+NO_EXTERNAL_SUBMISSION=re.compile(r"(?is)\b(?:manual|human|external|community)\s+(?:pull requests?|PRs?|contributions?)[^\n.]{0,80}\b(?:are not|is not|will not be|won.t be)\s+(?:reviewed|accepted|merged)\b")
 ISSUE_URL=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\d+)$")
 ZERO_BOUNTY=re.compile(r"(?i)(?:\bzero[- ]bounty\b|\[\$0\]|\b(?:bounty|reward|payment|price|worker price)\s*[:=]?\s*\$\s*0(?:\b|\D)|\b(?:no payout|unpaid|no monetary reward)\b)")
 FILLED_OR_DELIVERED=re.compile(r"(?i)(?:\bstatus\s*:\s*(?:delivered|completed|paid|awarded)\b|\bslots?\s*:\s*\d+\s*\(filled\)|\bslots?\s*:\s*0\b|\bno slots available\b)")
@@ -34,6 +37,8 @@ def evaluate(issue,comments,repo=None):
         flags.append("NOT_OPEN_OR_ARCHIVED")
     if RESTRICTED.search(issue_text) or RESTRICTED.search(bot_comments):
         flags.append("EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION")
+    if NO_EXTERNAL_SUBMISSION.search(issue_text):
+        flags.append("NO_EXTERNAL_SUBMISSION_ROUTE")
     if ZERO_BOUNTY.search(issue_text) or any(str(x).lower() in ("zero-bounty","no-bounty","unpaid","no-payment") for x in labels):
         flags.append("ZERO_PAYMENT_EXPLICIT")
     if FILLED_OR_DELIVERED.search(issue_text) or any(str(x).lower() in ("delivered","filled","already-awarded","paid") for x in labels):
@@ -50,7 +55,7 @@ def evaluate(issue,comments,repo=None):
         flags.append("NO_EXPLICIT_REWARD_IN_SOURCE")
     if int(issue.get("comments") or 0)>len(comments):
         flags.append("SOME_COMMENTS_UNREAD")
-    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED"))
+    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE"))
     return {
       "schema":"B_COMMERCIAL_ELIGIBILITY_V1",
       "source_url":issue.get("html_url"),"issue_title":title,
@@ -98,6 +103,11 @@ def self_test():
     assert denied["eligibility"]=="BLOCKED_DO_NOT_CLAIM"
     reserved={**i,"body":"Reserved for an invited contributor. Unsolicited pull requests will be closed."}
     assert evaluate(reserved,[])["critical_blocker"]
+    mirror={**i,"title":"[Escrowed $600 USDC] CI conformance work",
+            "body":"Automated CI Conformance Mirror Notice: manual pull requests from human engineers are not reviewed. Reward $600 USDC."}
+    mirror_result=evaluate(mirror,[])
+    assert mirror_result["critical_blocker"] and "NO_EXTERNAL_SUBMISSION_ROUTE" in mirror_result["flags"]
+    assert evaluate({**mirror,"body":"Manual pull requests from human engineers are reviewed. Reward $600 USDC."},[])["critical_blocker"] is False
     ordinary=evaluate(i,[{"user":{"login":"bob"},"body":"What is the payment process?"}])
     assert ordinary["eligibility"]=="UNVERIFIED_CONFIRM_WITH_SPONSOR"
     assert ordinary["reward_funded_verified"] is False
