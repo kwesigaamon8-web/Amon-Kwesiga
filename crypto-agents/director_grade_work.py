@@ -72,6 +72,49 @@ def assign(fleet: str, worker: str, parent: str, lane: str) -> dict:
         "changes_original_parent": False,
     }
 
+
+def payable_gate(candidate: dict) -> dict:
+    """Reject unverified offers before any work or external submission.
+
+    This is a conservative evidence gate, not a claim that a payer is solvent.
+    """
+    checks = {
+        "original_sponsor_url": bool(candidate.get("original_sponsor_url")),
+        "named_payer": bool(candidate.get("named_payer")),
+        "currently_open": candidate.get("currently_open") is True,
+        "funding_verified": candidate.get("funding_verified") is True,
+        "eligibility_verified": candidate.get("eligibility_verified") is True,
+        "submission_authorized": candidate.get("submission_authorized") is True,
+        "acceptance_criteria": bool(candidate.get("acceptance_criteria")),
+        "correct_network": candidate.get("network") in ("BTC-mainnet", "Base-USDC-verified"),
+        "no_upfront_payment": candidate.get("upfront_payment_required") is False,
+    }
+    return {
+        "ready_for_payer_specific_work": all(checks.values()),
+        "missing_or_failed_checks": [name for name, passed in checks.items() if not passed],
+        "buyer_acceptance_verified": False,
+        "incoming_txid_verified": False,
+    }
+
+def payable_gate_self_test() -> None:
+    good = dict(original_sponsor_url="https://github.com/example/owner/issues/1",
+                named_payer="Example", currently_open=True, funding_verified=True,
+                eligibility_verified=True, submission_authorized=True,
+                acceptance_criteria="Tests pass", network="BTC-mainnet",
+                upfront_payment_required=False)
+    assert payable_gate(good)["ready_for_payer_specific_work"]
+    for key in good:
+        bad = dict(good)
+        bad.pop(key)
+        result = payable_gate(bad)
+        assert not result["ready_for_payer_specific_work"], key
+        assert result["missing_or_failed_checks"], key
+    for network in ("BTC-testnet", "Stacks-sBTC", "USDC-unknown", ""):
+        bad = dict(good, network=network)
+        assert not payable_gate(bad)["ready_for_payer_specific_work"]
+    assert not payable_gate(dict(good, upfront_payment_required=True))["ready_for_payer_specific_work"]
+    print("PAYABLE_GATE_PASS: complete positive, 9 missing fields, 4 wrong networks, upfront-payment guard")
+
 def self_test() -> None:
     examples=[
         ("D01-M01-W01","D01-M01","BUYER_SOURCE"),
@@ -99,6 +142,7 @@ def self_test() -> None:
         try: assign(*item)
         except ValueError: pass
         else: raise AssertionError("Unsafe worker passed validation")
+    payable_gate_self_test()
     print("TEN_DIRECTOR_GRADE_PASS: 8 valid worker packets, 4 negative guards, no fabricated earning")
 
 if __name__ == "__main__":
