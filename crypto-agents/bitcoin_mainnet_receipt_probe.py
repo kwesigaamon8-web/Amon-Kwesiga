@@ -72,7 +72,7 @@ def parse_address_summary(payload):
     adjustment=pending["funded_txo_sum"]-pending["spent_txo_sum"]
     return {
         "confirmed_sats":confirmed,
-        "confirmed_btc":f"{confirmed/100_000_000:.8f}",
+        "confirmed_btc":f"{confirmed//100_000_000}.{confirmed%100_000_000:08d}",
         "unconfirmed_net_change_sats":adjustment,
         "combined_sats_including_mempool":confirmed+adjustment,
         "confirmed_tx_count":chain["tx_count"],
