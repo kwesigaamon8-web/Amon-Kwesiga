@@ -139,6 +139,15 @@ def main():
         result["api_status"]="RESPONSE_PARSED_OR_SOURCE_SCHEMA_UNKNOWN"
         result["response_root_keys"]=list(payload)[:15] if isinstance(payload,dict) else []
         result["response_row_count"]=len(parse_works(payload))
+        result["sample_public_row_shapes"]=[
+          {"keys":list(w)[:25],
+           "id":str(w.get("id") or "")[:80],
+           "title":str(w.get("title") or "")[:90],
+           "reward":w.get("reward"),
+           "state":w.get("state"),
+           "standing":w.get("standing") if isinstance(w.get("standing"),dict) else None}
+          for w in parse_works(payload)[:15] if isinstance(w,dict)
+        ]
         if result["response_row_count"]==0:
             result["api_status"]="NO_RECOGNIZED_ROWS_DO_NOT_DECLARE_NO_USDC"
     except Exception as exc:
