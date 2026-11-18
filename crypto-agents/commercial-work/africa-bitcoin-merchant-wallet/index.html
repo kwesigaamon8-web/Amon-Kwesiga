@@ -68,6 +68,24 @@ footer{color:var(--sub);padding-bottom:44px}a{color:var(--accent)}
 <pre id="proof" hidden></pre>
 <p class="notice"><strong>Important:</strong> An address match is not proof that your particular customer paid, that you own the address, or that an amount is still unspent. An unconfirmed transaction can disappear. This tool does not manage funds or verify sales contracts.</p>
 </section>
+<section class="card" aria-labelledby="ledgerTitle">
+<h2 id="ledgerTitle">3. Keep a read-only invoice evidence ledger</h2>
+<p class="sub">Track several invoices in this tab. Save an invoice from step 1, then attach only a genuine transaction that was independently looked up in step 2. No customer identity is verified. Nothing is uploaded or permanently stored.</p>
+<div class="grid">
+<label>Invoice ID (letters, numbers, - or _)
+<input id="invoiceId" maxlength="64" value="ORDER-001" autocomplete="off"></label>
+<label>Invoice to inspect or link transaction
+<select id="invoiceList" aria-label="Saved local invoices"><option value="">Save an invoice first</option></select></label>
+</div>
+<div class="controls">
+<button id="saveInvoice" type="button">Save current invoice to local ledger</button>
+<button id="linkEvidence" type="button" class="secondary">Link last real TX lookup</button>
+<button id="exportLedger" type="button" class="secondary">Export evidence JSON</button>
+</div>
+<p id="ledgerStatus" class="result" role="status" aria-live="polite">No invoice saved. The ledger is temporary until you export it.</p>
+<pre id="ledgerSummary" hidden></pre>
+<p class="notice"><strong>Not an automatic receipt:</strong> Reusing a Bitcoin address across invoices prevents automatic customer attribution. Linking outputs requires a manual choice and must not establish customer identity, final sale settlement, ownership or proof of income.</p>
+</section>
 <section class="card" aria-labelledby="merchantHire">
 <h2 id="merchantHire">Need Bitcoin payments working for your shop?</h2>
 <p>Commission a bounded, buyer-specific adaptation of this original open-source demo. A small pilot can include your <em>public receiving address</em>, safe invoice references, custom checkout instructions and repeatable transaction-output checks.</p>
@@ -88,10 +106,14 @@ footer{color:var(--sub);padding-bottom:44px}a{color:var(--accent)}
 <script type="module">
 import {RECEIVERS,validateMainnetAddress,makeInvoice,validateTxid,inspectTx} from "./wallet_core.mjs";
 import {fictionalPaymentScenario} from "./fictional_demo.mjs";
+import {newLedger,addInvoice,recordTxEvidence,invoiceEvidenceSummary,exportLedgerJSON} from "./invoice_ledger.mjs";
 const el=id=>document.getElementById(id);
 let invoice=null;
 let inflight=0;
+let ledger=newLedger();
+let lastRealLookup=null;
 function invalidate(){
+  lastRealLookup=null;
   invoice=null;
   el("invoiceArea").hidden=true;
   el("copy").disabled=true;
@@ -110,6 +132,7 @@ selectReceiver();
 function showError(err){el("result").textContent="Check incomplete: "+String(err.message||err).slice(0,250);}
 el("create").addEventListener("click",()=>{
   try{
+    lastRealLookup=null;
     invoice=makeInvoice({address:el("address").value,amountSats:el("sats").value,label:el("label").value});
     el("invoicePreview").textContent=JSON.stringify(invoice,null,2);
     el("paymentLink").href=invoice.bitcoin_uri;
@@ -127,6 +150,7 @@ el("copy").addEventListener("click",async()=>{
 });
 el("fictional-demo").addEventListener("click",()=>{
   // Never label synthetic local data as an actual Bitcoin receipt.
+  lastRealLookup=null;
   try{
     const demo=fictionalPaymentScenario({
       address:el("address").value,amountSats:el("sats").value,label:el("label").value
@@ -143,6 +167,7 @@ el("fictional-demo").addEventListener("click",()=>{
   }catch(error){invalidate();showError(error);}
 });
 el("verify").addEventListener("click",async()=>{
+  lastRealLookup=null;
   if(!invoice){showError(new Error("Create an invoice first."));return;}
   if(!validateMainnetAddress(invoice.address)){showError(new Error("Invalid Bitcoin mainnet receiving address."));return;}
   const txid=el("txid").value.trim().toLowerCase();
@@ -163,6 +188,7 @@ el("verify").addEventListener("click",async()=>{
     }
     if(ticket!==inflight)return;
     const proof=inspectTx(transaction,invoice,tip);
+    lastRealLookup={txid,transaction,tipHeight:tip};
     const result={...proof,txid,source:"https://mempool.space/tx/"+txid,
       verified_at_utc:new Date().toISOString()};
     el("proof").hidden=false;
@@ -175,6 +201,59 @@ el("verify").addEventListener("click",async()=>{
     if(ticket===inflight)showError(new Error("Blockchain lookup unavailable or failed; this does NOT mean zero payment. "+String(err.message||err)));
   }finally{clearTimeout(timer);button.disabled=false;}
 });
+function renderLedger(){
+  const list=el("invoiceList"), chosen=list.value;
+  list.replaceChildren();
+  if(ledger.invoices.length===0){
+    const o=document.createElement("option");o.value="";o.textContent="Save an invoice first";list.append(o);
+  }else{
+    for(const inv of ledger.invoices){
+      const o=document.createElement("option");o.value=inv.id;o.textContent=inv.id+" — "+inv.sats+" sats";list.append(o);
+    }
+    if(ledger.invoices.some(v=>v.id===chosen))list.value=chosen;
+  }
+  const current=list.value;
+  if(current){
+    const summary=invoiceEvidenceSummary(ledger,current);
+    el("ledgerSummary").hidden=false;
+    el("ledgerSummary").textContent=JSON.stringify(summary,null,2);
+  }else el("ledgerSummary").hidden=true;
+}
+el("invoiceList").addEventListener("change",renderLedger);
+el("saveInvoice").addEventListener("click",()=>{
+  try{
+    if(!invoice)throw new Error("Create the payment request in step 1 first.");
+    const id=el("invoiceId").value.trim();
+    ledger=addInvoice(ledger,{id,address:invoice.address,amountSats:invoice.sats,label:invoice.reference});
+    renderLedger();
+    el("invoiceList").value=id;
+    renderLedger();
+    el("ledgerStatus").textContent="Invoice "+id+" saved in this browser tab. It is NOT paid. Export JSON before leaving.";
+  }catch(err){el("ledgerStatus").textContent="Not saved: "+String(err.message||err).slice(0,230);}
+});
+el("linkEvidence").addEventListener("click",()=>{
+  try{
+    const invoiceId=el("invoiceList").value;
+    if(!invoiceId)throw new Error("Save and select an invoice first.");
+    if(!lastRealLookup)throw new Error("No genuine explorer lookup available in this tab. Run step 2 with a real TXID.");
+    ledger=recordTxEvidence(ledger,{invoiceId,...lastRealLookup});
+    renderLedger();
+    el("ledgerStatus").textContent="Read-only explorer output linked to "+invoiceId+". This is NOT proof of customer payment or ownership.";
+  }catch(err){el("ledgerStatus").textContent="Evidence NOT linked: "+String(err.message||err).slice(0,230);}
+});
+el("exportLedger").addEventListener("click",()=>{
+  try{
+    if(!ledger.invoices.length)throw new Error("Save at least one invoice first.");
+    const blob=new Blob([exportLedgerJSON(ledger)],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;a.download="btc-watch-invoice-evidence.json";
+    document.body.append(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    el("ledgerStatus").textContent="Export started. Save your file securely; nothing was uploaded.";
+  }catch(err){el("ledgerStatus").textContent="Export not started: "+String(err.message||err).slice(0,230);}
+});
+renderLedger();
 </script>
 </body>
 </html>
