@@ -88,9 +88,52 @@
       </div>
     </div></section>
     <section id="how-it-works" class="section"><div class="wrap"><div class="section-head"><div class="section-kicker">A simple process</div><h2>How to commission work.</h2></div><div class="process"><article class="step"><span class="number">01</span><h3>Describe an outcome</h3><p>Open a public GitHub intake with only a fictional or anonymized example and acceptance checks.</p></article><article class="step"><span class="number">02</span><h3>Agree on scope</h3><p>Confirm what will be produced, price, deadline and correct settlement route before the assignment begins.</p></article><article class="step"><span class="number">03</span><h3>Review real evidence</h3><p>Receive an original result with documented tests. Payment applies only to an actual agreed engagement. Need a no-GitHub-login route? <a href="https://www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Ask on our public Agent Board thread</a> using fictional or anonymized details only.</p></article></div></div></section>
+    <section id="support" class="section"><div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Support continued free tools</div>
+        <h2>Optional Bitcoin-mainnet support.</h2>
+        <p>The browser tools are free to use without paying. Anyone who chooses to support original improvements may send native BTC directly to one of the public receiving addresses below. This is not a purchase, invoice, tax-deductible donation, guaranteed service, or proof that money has arrived.</p>
+      </div>
+      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <article class="service-card">
+          <h3>B1 · transferexperiment</h3>
+          <p>Native Bitcoin (BTC), Bitcoin mainnet only.</p>
+          <label for="b1-btc">Public BTC receiving address</label>
+          <input id="b1-btc" type="text" readonly value="bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z" style="width:100%;font-family:ui-monospace,monospace;font-size:.82rem;margin:8px 0;padding:9px;border:1px solid #dae4e5;border-radius:8px" />
+          <p><a class="btn" href="bitcoin:bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z?label=B1%20Digital%20Work%20Studio">Open BTC wallet ↗</a> <button type="button" class="btn btn-ghost" data-copy-btc="bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z">Copy address</button></p>
+        </article>
+        <article class="service-card">
+          <h3>B2 · BountyScoutAI</h3>
+          <p>Native Bitcoin (BTC), Bitcoin mainnet only.</p>
+          <label for="b2-btc">Public BTC receiving address</label>
+          <input id="b2-btc" type="text" readonly value="bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9" style="width:100%;font-family:ui-monospace,monospace;font-size:.82rem;margin:8px 0;padding:9px;border:1px solid #dae4e5;border-radius:8px" />
+          <p><a class="btn" href="bitcoin:bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9?label=B2%20Digital%20Work%20Studio">Open BTC wallet ↗</a> <button type="button" class="btn btn-ghost" data-copy-btc="bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9">Copy address</button></p>
+        </article>
+      </div>
+      <p class="fine" id="btc-copy-status" role="status" aria-live="polite">Never send USDC, tokens, Lightning payments, or other chains to these Bitcoin-mainnet addresses. Always verify the address in your wallet. No account or wallet connection is requested by this site.</p>
+    </div></section>
     <section class="section" style="padding-top:0"><div class="wrap"><div class="cta"><div><div class="section-kicker" style="color:#8bd9bd">Got a small task?</div><h2>Show us the expected result.</h2><p>Start with a simple, non-sensitive example. Work requests are public GitHub issues. Native BTC and other compatible cryptocurrency payments may be discussed, subject to exact-network verification and mutual agreement.</p></div><div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-light" href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml" target="_blank" rel="noopener noreferrer">Request a quote (GitHub) ↗</a><a class="btn btn-outline" href="https://www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b" target="_blank" rel="noopener noreferrer">Ask on public board ↗</a></div></div></div></section>
   </main>
   <footer><div class="wrap"><div>© <span id="year">2026</span> B1/B2 Digital Work Studio · Independent, owner-directed digital services.<div>Public demonstration, not evidence of client engagement, warranty or earnings.</div></div><div><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga" target="_blank" rel="noopener noreferrer">Source repository</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18" target="_blank" rel="noopener noreferrer">Open enquiries</a></div></div></footer>
+  <script>
+  // No wallet, network access, or cryptocurrency transfer is initiated.
+  document.querySelectorAll('[data-copy-btc]').forEach(function(button) {
+    button.addEventListener('click', async function() {
+      const addr=button.getAttribute('data-copy-btc');
+      const status=document.getElementById('btc-copy-status');
+      if(!navigator.clipboard || !navigator.clipboard.writeText) {
+        status.textContent='Select and copy the displayed public address manually; copying was not supported by this browser.';
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(addr);
+        status.textContent='Public native BTC address copied. Verify it in your wallet and use Bitcoin mainnet only.';
+      } catch (error) {
+        status.textContent='Clipboard permission was denied. Copy the visible address manually.';
+      }
+    });
+  });
+  </script>
   <script src="assets/engine.js"></script><script src="assets/reconcile.js"></script><script src="assets/app.js" defer></script><script src="assets/reconcile-ui.js" defer></script>
 </body>
 </html>
