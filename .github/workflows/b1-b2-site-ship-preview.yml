@@ -1,0 +1,61 @@
+name: B1 B2 Digital Work Studio - Public Preview
+on:
+  push:
+    paths:
+      - '.github/workflows/b1-b2-site-ship-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ship-preview:
+    name: Test and publish static buyer-facing site
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout original public source
+        uses: actions/checkout@v4
+      - name: Validate actual browser data tools
+        run: |
+          set -euo pipefail
+          node --test docs/tests/engine.test.js
+          test -s docs/index.html
+          test -s docs/assets/engine.js
+          test -s docs/assets/app.js
+          test -s docs/assets/styles.css
+      - name: Bundle ONLY public website files
+        run: |
+          set -euo pipefail
+          cd docs
+          zip -q -r ../b1b2-studio-public.zip index.html assets/engine.js assets/app.js assets/styles.css
+          cd ..
+          unzip -Z1 b1b2-studio-public.zip | sort
+      - name: Publish one free anonymous seven-day preview with no account or private data
+        run: |
+          set -euo pipefail
+          umask 077
+          curl -fsS --retry 2 --retry-delay 3 --max-time 45 \
+            -X POST 'https://ship.page/deploy' \
+            -H 'Content-Type: application/zip' \
+            --data-binary @b1b2-studio-public.zip \
+            -o response.json
+          python - <<'PY'
+          import json, pathlib, urllib.parse
+          body=json.loads(pathlib.Path('response.json').read_text())
+          url=body.get('url','')
+          dest=urllib.parse.urlsplit(url)
+          assert dest.scheme=='https' and dest.hostname and dest.hostname.endswith('.ship.place'), 'Hosting provider did not return a valid preview URL'
+          assert {'index.html','assets/app.js','assets/engine.js','assets/styles.css'} <= set(body.get('files',[])), 'Published file manifest incomplete'
+          expires=body.get('expires_at') or 'unspecified'
+          print('B1_B2_ACTUAL_PUBLIC_PREVIEW',json.dumps({'url':url,'expires_at':expires,'files':len(body['files']),'not_a_payment':True}))
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('## B1/B2 Studio live public storefront preview\n\n')
+              f.write(f'- **Public website:** {url}\n')
+              f.write(f'- **Preview expiry:** {expires}\n')
+              f.write('- Temporary static hosting; public and unlisted, no account/email required.\n')
+              f.write('- Visitors can test the browser-side tools and request a genuine service quote on GitHub.\n')
+              f.write('- No accepted buyer, signed engagement or crypto receipt is implied.\n')
+          # Deliberately do not print or upload anonymous claim_token/claim_url.
+          PY
+          rm -f response.json
