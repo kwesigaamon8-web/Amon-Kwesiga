@@ -1,2 +1,23 @@
 # Amon-Kwesiga
 AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provides outsourced bookkeeping, financial reporting, payroll management, and tax compliance services to businesses across multiple sectors. Experienced in URA compliance, EFRIS, financial analysis, and modern accounting systems to support informed business decisions.
+
+---
+
+## B1/B2 Digital Work Studio — working software and paid microservices
+
+**[Try the live, free browser tools](./docs/LIVE_SITE.md)** · **[Request an original paid task](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** · **[Discuss a task publicly without a GitHub login](https://www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b)**
+
+This repository also contains original, tested browser-side tools for CSV/JSON conversion, dataset checks and one-to-one two-file reconciliation. The demo accepts non-sensitive, synthetic data, processes it in the visitor's browser, and can download a discrepancy report. It is **not** a bank connection, financial audit or cryptocurrency payment gateway.
+
+| Fixed-scope original task | Starting quote | Acceptance evidence |
+| --- | ---: | --- |
+| CSV / JSON conversion and validation | USD 25 | Sample schema, converted output and test cases |
+| Two-file CSV reconciliation and discrepancy report | USD 40 | Match count, unmatched references, exact-cents amount differences and downloadable report |
+| Software tests and short technical guide | USD 35 | Rerunnable tests, clear instructions and source |
+| Public-source research brief | USD 35 | Dated source links, fact/assumption separation and concise findings |
+
+**[See the working product source](./docs/)** · **[Published regression tests](./docs/tests/)** · **[Latest automated site-validation runs](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/studio-site-ci.yml)**
+
+A customer may propose a real bounded deliverable through one of the two opt-in public intake routes above. Never post confidential files, personal data or credentials there. Confirm the customer, exact scope, acceptance criteria, fee, asset, network and payment terms before starting paid work. BTC-mainnet support for the free demo is optional and is not a purchase or contract.
+
+**Commercial disclosure:** These are examples and asking prices, not customer orders, earned cryptocurrency or independently verified receipts. B1/B2 are owner-directed software and work roles, not claims that billions of agents are operating concurrently. No email access, wallet signing, purchases or paid hosting is part of these links.
