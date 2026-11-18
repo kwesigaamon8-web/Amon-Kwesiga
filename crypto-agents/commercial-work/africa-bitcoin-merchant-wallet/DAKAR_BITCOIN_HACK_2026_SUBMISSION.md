@@ -15,7 +15,7 @@ Small merchants, market vendors and independent freelancers across Africa can re
 
 ### What we built
 
-Bitcoin Merchant Watch Wallet is a tiny open-source, browser-run receive-only wallet tool. A merchant chooses a verified Bitcoin mainnet address (or enters their own), chooses an integer price in satoshis and an invoice reference, and creates a BIP21 payment URI usable by a compatible Bitcoin wallet. After the buyer sends a transaction ID, the app reads a public Bitcoin explorer and compares every output against the intended address and satoshi amount. It distinguishes unconfirmed, insufficient, missing, and confirmed output matches. A separate original invoice ledger module supports multiple invoices and rejects assigning one TXID/output to different invoices.
+Bitcoin Merchant Watch Wallet is a tiny open-source, browser-run receive-only wallet tool. A merchant chooses a verified Bitcoin mainnet address (or enters their own), chooses an integer price in satoshis and an invoice reference, and creates a BIP21 payment URI usable by a compatible Bitcoin wallet. After the buyer sends a transaction ID, the app reads a public Bitcoin explorer and compares every output against the intended address and satoshi amount. It distinguishes unconfirmed, insufficient, missing, and confirmed output matches. The responsive page now exposes an in-memory, multi-invoice evidence ledger: merchants save unique invoice IDs, manually link only public-explorer-checked outputs, inspect confirmed and unconfirmed satoshi totals, reject duplicate TXID:vout assignments between invoices, and export JSON. A fictional offline demo cannot masquerade as a genuine lookup. The ledger is temporary and is not proof that a named buyer paid.
 
 The project deliberately does **not** claim to be a full private-key wallet, exchange, mobile-money interface or proof that a specific buyer paid. The merchant retains control of their existing Bitcoin wallet. No key, signature, funds, custody or outgoing transaction ever enters the app.
 
@@ -51,7 +51,7 @@ One merchant can run this on an inexpensive Android browser, supply only an **ex
 
 **01:25–02:10 — Transaction evidence.** Paste a real publicly available Bitcoin TXID provided independently by the viewer, with no private transaction or buyer details. Verify whether that transaction actually sends sats to the chosen address; show unconfirmed/partial/no-match and confirmation count as available. Never claim a synthetic example is a real payment.
 
-**02:10–02:35 — Correctness.** Run `node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/*.test.mjs` from the repository root. Explain how the ledger rejects a transaction output reused for multiple invoices.
+**02:10–02:35 — Accounting evidence.** Show step 3: save a local invoice, select it, manually link a genuine public TX lookup if one was actually checked, and export the evidence JSON. If no real public transaction has been checked, demonstrate invoice creation and explain why fictional examples cannot be linked as real receipts. Run the repository Node tests to show that reusing the same TXID:vout for another invoice is rejected.
 
 **02:35–03:00 — African impact and scope.** Emphasize smartphone-friendly front end, no server-side merchant data, no credentials, and the limits: not a signing wallet, not Lightning, no conversion of UGX to BTC, no sender identity verification, not proof the output remains unspent.
 
