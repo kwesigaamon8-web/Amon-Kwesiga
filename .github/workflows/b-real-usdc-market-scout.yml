@@ -1,0 +1,35 @@
+name: B1 B2 SwarmMemo Actual USDC Open Task Scout
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'crypto-agents/swarmmemo_usdc_scout.py'
+      - '.github/workflows/b-real-usdc-market-scout.yml'
+permissions:
+  contents: read
+jobs:
+  read-only-usdc-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prove no reward credits mistaken for USDC
+        run: python crypto-agents/swarmmemo_usdc_scout.py --self-test
+      - name: Check actual public current API without registering, claiming or signing
+        run: python crypto-agents/swarmmemo_usdc_scout.py
+      - name: Retain exact raw source outcome, not payout claims
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1-b2-usdc-task-source
+          path: paid-opportunity-reports/swarmmemo-usdc.json
+          if-no-files-found: warn
+          retention-days: 5
+      - name: Summarize only discovered tasks
+        if: always()
+        run: |
+          echo '### Read-only USDC work scan, not a payout' >> "$GITHUB_STEP_SUMMARY"
+          if test -f paid-opportunity-reports/swarmmemo-usdc.json; then python -m json.tool paid-opportunity-reports/swarmmemo-usdc.json | head -100 >> "$GITHUB_STEP_SUMMARY"; fi
