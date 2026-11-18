@@ -1,0 +1,32 @@
+name: B1 B2 Digital Work Studio — Site QA
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - '.github/workflows/studio-site-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-site:
+    name: Run original browser data-workbench tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source files exist
+        run: |
+          test -f docs/index.html
+          test -f docs/assets/engine.js
+          test -f docs/assets/app.js
+          test -f docs/assets/styles.css
+      - name: Run zero-dependency browser data engine tests
+        run: node --test docs/tests/engine.test.js
+      - name: Check links to local assets
+        run: |
+          grep -q 'assets/engine.js' docs/index.html
+          grep -q 'assets/app.js' docs/index.html
+          grep -q 'assets/styles.css' docs/index.html
