@@ -11,10 +11,10 @@ from urllib.parse import urlsplit
 BLOCKED_ORIGIN_PREFIXES=("/clankernation/openagents/",)
 PROMPT_EXFIL=re.compile(
     r"(?is)(?:"
-    r"\\b(?:paste|copy|reveal|disclose|include|print|provide|expose|show)\\b.{0,180}"
-    r"\\b(?:pre[- ]?(?:session|conversation)|startup|hidden|system|developer|initialization|platform[-_ ]?(?:instructions|config(?:uration)?))\\b"
-    r"|\\b(?:pre[- ]?(?:conversation|session)\\s+instructions|platform_instructions|"
-    r"(?:full|complete|raw|verbatim)\\s+(?:startup|initialization|system|developer)\\s+(?:prompts?|instructions|text))\\b"
+    r"\b(?:paste|copy|reveal|disclose|include|print|provide|expose|show)\b.{0,180}"
+    r"\b(?:pre[- ]?(?:session|conversation)|startup|hidden|system|developer|initialization|platform[-_ ]?(?:instructions|config(?:uration)?))\b"
+    r"|\b(?:pre[- ]?(?:conversation|session)\s+instructions|platform_instructions|"
+    r"(?:full|complete|raw|verbatim)\s+(?:startup|initialization|system|developer)\s+(?:prompts?|instructions|text))\b"
     r")"
 )
 
