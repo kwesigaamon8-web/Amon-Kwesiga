@@ -13,6 +13,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from bounty_eligibility_audit import evaluate as audit_paid_bounty
+
 OUT=Path("paid-opportunity-reports")
 OUT.mkdir(exist_ok=True)
 HEADERS={"User-Agent":"OwnerPaidWorkScout/1.0",
@@ -68,6 +70,17 @@ for line in feed.splitlines():
         # Fetch the actual final comment page, not Github's first comment page.
         last_page=max(1,(count+99)//100)
         comments=json.loads(get(api+"/comments?per_page=100&page="+str(last_page),h))[-15:]
+        # Screening the actual latest source/maintainer comments is necessary:
+        # a nominally open, price-labelled issue may have been explicitly
+        # withdrawn or prohibit manual contributions (Nov 2026 cases).
+        adjudication=audit_paid_bounty(sponsor,comments)
+        if adjudication["critical_blocker"]:
+            watchlist.append({"original_url":url,
+                "reason":"source bounty eligibility gate blocked",
+                "flags":adjudication["flags"],
+                "issue_created":str(sponsor.get("created_at") or "")[:10],
+                "last_comments_checked":len(comments)})
+            continue
         closed_claim=re.compile(r"\b(bounty (?:is )?claimed|already awarded|winner announced|bounty paid|no longer available|reward.*paid|task completed|no more submissions)\b",re.I)
         if any(closed_claim.search(str(msg.get("body") or "")[:1800]) for msg in comments):
             continue
