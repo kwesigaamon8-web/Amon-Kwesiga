@@ -1,6 +1,6 @@
 {
   "schema": "B1_B2_WORLDWIDE_PUBLIC_PAID_WORK_SEEDS_V1",
-  "curated_at_utc": "2026-11-17T06:08:17Z",
+  "curated_at_utc": "2026-11-18T16:50:53Z",
   "purpose": "Observed lead registry, not accepted jobs or paid contracts",
   "currency": "USD equivalent advertised pools only; payouts in real crypto asset specified per record; winnings not guaranteed",
   "source_verification": "Public source advertises cryptocurrency reward; no claim of user eligibility, platform authentication, escrow sufficiency or accepted work; check original page before pursuing",
@@ -120,6 +120,62 @@
       "application_channel": "make.fun contest authenticated entry",
       "submission_sent": false,
       "eligible_for_active_pursuit": true
+    },
+    {
+      "key": "microworker-bsc-usdc-verified-cashout-lane",
+      "title": "Microworker small tasks, USDC or USDT BNB Smart Chain payments",
+      "platform": "Microworker.app",
+      "source_url": "https://microworker.app/about/",
+      "listed_utc_date": "2026-11-18",
+      "budget_usd": null,
+      "category": "data-entry-testing-surveys",
+      "fleet": "B1",
+      "market": "Uganda listed as eligible; individual tasks may geo-restrict",
+      "competition": "Task-by-task, worker approvals and minimum $5 cashout",
+      "scope": "Potential small paid data checking and research jobs; worker can only claim after own authenticated account signup; 3-day earning maturity",
+      "payout_assets": [
+        "USDC",
+        "USDT"
+      ],
+      "payout_chain": "BNB Smart Chain BEP20; NOT Bitcoin mainnet, NOT Base USDC",
+      "payout_crypto_confirmed": "Platform discloses transaction-linked other-user payouts, individually independently verify if using",
+      "verified_escrow": false,
+      "upfront_wallet_spend_required": false,
+      "external_wallet_signing_or_auth_required": true,
+      "application_channel": "Authenticated worker account; email-code or Google login; account not connected in current ChatGPT execution",
+      "submission_sent": false,
+      "eligible_for_active_pursuit": false,
+      "precondition": "HOLD: no authenticated account; owner has barred assistants from reading/searching/drafting/sending Gmail/email. Dedicated confirmed BEP20 receiving route not yet owner-approved; cannot assume an existing Base or Bitcoin address is safe. $5 cash-out minimum. Public source cannot confirm live individual tasks.",
+      "source_last_checked_utc_date": "2026-11-18",
+      "verifiable_first_party_payout_evidence_url": "https://microworker.app/payouts/",
+      "zero_confirmed_owner_income": true
+    },
+    {
+      "key": "btctasks-static-unverified-lead",
+      "title": "BTCTasks advertised native BTC jobs; employer and escrow not substantiated",
+      "platform": "BTCTasks.com",
+      "source_url": "https://btctasks.com/jobs",
+      "listed_utc_date": "2026-11-18",
+      "budget_usd": null,
+      "category": "unverified-btc-freelance",
+      "fleet": "B2",
+      "market": "advertised global",
+      "competition": "Unknown; 12 listings with relative dates, unverified external payer",
+      "scope": "Examples shown include $0.008 BTC ten SEO articles but no named client or on-chain escrow evidence",
+      "payout_assets": [
+        "BTC"
+      ],
+      "payout_chain": "native BTC advertised, not verified",
+      "payout_crypto_confirmed": false,
+      "verified_escrow": false,
+      "upfront_wallet_spend_required": false,
+      "external_wallet_signing_or_auth_required": true,
+      "application_channel": "Web application form requiring full name, email and wallet, inaccessible from connected integration",
+      "submission_sent": false,
+      "eligible_for_active_pursuit": false,
+      "precondition": "REJECT / verify first: terms link https://btctasks.com/terms returned 404 on 2026-11-18; no named paying client, independent escrow TXID, or authenticated submission proof. Do not represent platform homepage numbers as paid owner earnings.",
+      "source_last_checked_utc_date": "2026-11-18",
+      "zero_confirmed_owner_income": true
     }
   ],
   "discovery_pages": [
