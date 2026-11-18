@@ -364,3 +364,5 @@ if __name__=="__main__":
         lines.append("- "+fleet+": "+str(len(queue))+" leads needing independent sponsor verification; local D10 handles only genuine accepted unpaid claims")
     (OUT/"new-earning-lanes.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     print("NEW_EARNING_LANES",json.dumps({"candidates":out["candidate_count"],"rejected":rejected if False else out["rejected_nonmatching_or_risky_issues"],"source_errors":len(out["source_errors"]),"verified_paid_receipts":0}))
+    for row in out["candidates"][:10]:
+        print("FIRST_PARTY_CANDIDATE", json.dumps({"url":row["original_url"],"title":row["title"],"preflight":row.get("original_source_preflight"),"assigned_company":row.get("assigned_fleet"),"buyer_paid":False,"contacted":False}))
