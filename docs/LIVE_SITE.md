@@ -1,12 +1,12 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://laser-plier-qbvts.ship.place/
+**Open the latest working digital service site:** https://crystal-hound-2cmw5.ship.place/
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, and two-file reconciliation and a fixed-scope services catalogue. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
-**New deployment confirmed:** 18 November 2026 23:14 UTC
+**New deployment confirmed:** 18 November 2026 23:27 UTC
 
-**Temporary host expires:** 2026-11-25T23:14:30.408Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-25T23:27:44.674Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
