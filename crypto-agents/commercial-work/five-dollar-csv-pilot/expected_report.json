@@ -1,0 +1,11 @@
+{
+  "source_rows": 5,
+  "columns": 3,
+  "clean_rows": 3,
+  "exact_duplicate_rows_removed": 1,
+  "blank_rows_removed": 1,
+  "formula_like_cells_not_evaluated": 0,
+  "action": "Trim each header/cell, drop fully blank rows, remove identical normalized rows; preserve text IDs and order",
+  "scope": "Fixed trial, not accounting assurance; no external data uploaded",
+  "caution": "If loading as an Excel spreadsheet, review formula-like cells first. This tool does not escape or execute spreadsheet formulas."
+}
