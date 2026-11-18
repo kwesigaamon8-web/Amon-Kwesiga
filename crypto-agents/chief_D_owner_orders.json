@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
+  "current_owner_order_id": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -841,6 +841,29 @@
       "instruction": "OWNER CLARIFICATION — INBOUND DEPOSITS TO MY ACCOUNT ARE PERMITTED. Chief D, B1 transferexperiment, B2 BountyScoutAI and actual authorized worker processes may pursue real paying clients and ask legitimately willing payers to make incoming payments directly to the owner's correctly verified receiving accounts. Receive/credit incoming BTC mainnet or other compatible approved crypto, and any other owner-approved incoming payment methods, ONLY when the exact recipient asset, network, account ownership and required memo are verified. Giving a public receiving address to an authenticated payer for a genuine accepted service is permitted; independent voluntary incoming support is also permitted. Do not mistake the no-outgoing-wallet-signatures restriction for a prohibition on incoming deposits. INBOUND RECEIVING IS AUTHORIZED; this does NOT authorize spending, sending cryptocurrency, signing wallet transactions, paying gas, staking, swapping, moving funds, connecting private keys, releasing banking credentials, or directing money away from the owner. Previously unverified other-chain/custodial routes remain HOLD until confirmed; no new accounts are invented. No email account access, drafts or sends without specific separate approval. Record new payment as earned/received only after independent settlement evidence: matching receiving account, correct asset/network, transaction identifier and payer/contract context. The 3M UGX immediate and 50B UGX long-term targets are ambitions, not deposited money. Continue genuinely accepted paid work, collection, and accountable reporting without false receipts.",
       "status": "recorded_in_versioned_owner_instruction_channel",
       "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
+      "as_of_utc": "2026-11-18T14:47:43Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT via authorized GitHub repository integration",
+      "instruction": "OWNER: '775b work'. All 775,000,000,000 intended B1/B2 configured roles inherit Chief D's cash-first mandate, but only actual authenticated processes/agents that genuinely execute can report work. D01–D10 across both companies: give each actually activated worker a distinct legitimate payer-backed opportunity; prioritize buyer conversion and eligible deliverables, not repeated directory search, proof-of-concept counts, meetings or modeled headcounts. A fully tested watch-only Bitcoin Merchant Wallet public MVP and paid merchant pilot proposal are available in crypto-agents/commercial-work/africa-bitcoin-merchant-wallet; offer only to willing legitimate customers and pursue mutually agreed payment. The Dakar Bitcoin Hack 2026 submission materials are ready but the competition requires a Devpost-authenticated eligible individual student entry; NEVER claim we entered or won without evidence. Official rules and main page disagree on prize values (sats vs USD in BTC), so payout amount is HOLD. Ubiquity Antigravity issue #1377 offers a $75 label but funding, payment conditions and outside assignment require verification; GitHub app has no upstream issue write permission. Existing TaskBounty public board is unpaid collaboration, not a contract. Do not spend resources on repeated false candidates. No email reads, drafts, monitoring or sends; no wallet signing/spending. Owner allows inbound deposits to correct verified recipient/network, including B1/B2 BTC mainnet. Check payer acceptance, transaction TXID, recipient, amount and asset before reporting earned funds. Thirty actual GitHub Actions agent jobs succeeded in earlier cycle; do not misstate them as 775B models or accepted jobs. Every actually activated worker must report a distinct tested deliverable or a verifiable blocker, source, authenticated submission state, and correct-chain payment evidence, then adjust strategy.",
+      "priority": "OBTAIN_ACTUAL_OWNER_ENTITLED_PAYMENT",
+      "roles_requested": 775000000000,
+      "roles_executed_by_order": 0,
+      "latest_observable_completed_parallel_agent_jobs": 30,
+      "projects": [
+        "crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/README.md",
+        "crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/DAKAR_BITCOIN_HACK_2026_SUBMISSION.md"
+      ],
+      "permission_constraints": [
+        "NO_EMAIL_ACCOUNT_ACTIONS",
+        "NO_OUTGOING_WALLET_ACTIONS",
+        "NO_UNCONSENTED_SPAM",
+        "INBOUND_DEPOSITS_PERMITTED"
+      ],
+      "authenticated_external_agent_execution_not_implied": true,
+      "status": "versioned_instruction_relay_not_cash_receipt"
     }
   ],
   "strict_per_worker_reporting": {
@@ -925,7 +948,7 @@
     "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
     "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
     "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise.",
-    "latest_instruction": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
+    "latest_instruction": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
     "owner_long_term_collected_target_ugx": 50000000000,
     "accepted_payment_classes": [
       "bank_transfer",
@@ -936,7 +959,8 @@
       "other_crypto_only_on_confirmed_matching_chain"
     ],
     "delegated_operations_without_per_action_prompt": true,
-    "no_unverified_income_claims": true
+    "no_unverified_income_claims": true,
+    "latest_cash_first_work_note": "775B conceptual roles are lazily assigned; actually executed workers focus on eligible original paid deliverables and confirmed correct-chain receipts. Public BTC merchant wallet pilot is tested and hosted; hackathon entry still requires individual eligible authenticated Devpost submission."
   },
   "ten_ideas_exercise": {
     "order_id": "OWNER-20261114-075553",
@@ -1161,6 +1185,8 @@
     "no_spending": true,
     "success_proof": "accepted work plus confirmed owner wallet settlement",
     "inbound_deposits_permitted": true,
-    "inbound_deposit_order_id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED"
+    "inbound_deposit_order_id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
+    "latest_775b_cash_first_order": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
+    "no_email_action_without_specific_permission": true
   }
 }
