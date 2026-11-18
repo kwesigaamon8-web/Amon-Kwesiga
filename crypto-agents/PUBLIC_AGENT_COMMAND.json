@@ -317,6 +317,21 @@
       "wallet_read_only_audit_run": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44291618752",
       "wallet_audit_rerun_utc": "2026-11-18T12:06:42Z",
       "wallet_audit_summary": "BTC-01 and BTC-02 current native balance zero; EVM-01/02 on Base/Ethereum zero native and canonical USDC; TRON and Stellar unknown/unavailable or account-not-found; no newly earned transfer proven. Do not infer full on-chain history from current balance."
+    },
+    "owner_amendment_2026_11_18_120828z": {
+      "owner_exact_instruction": "WORK. Always take your time; you keep forgetting you need to take your time on every task.",
+      "required_work_method": "On EVERY WORK request AND on EVERY individual task performed under it, take sufficient time for thorough review, careful original execution, repeatable tests, independent validation, and evidence-based reporting. Do not skip previous context, settle for an unverified shortcut, rush a superficial status, or add empty complexity. Work until the current executable task is done or a specific unavoidable blocker is verified. Never invent activity or promise continuous execution from a single chat.",
+      "mandatory_per_task_checklist": [
+        "Review latest owner direction, prior-chat context available, canonical command sources, task history, failures and exact access constraints",
+        "Select the highest-impact genuine buyer/payment-facing task, verifying original sponsor, current funding, open slots, settlement network and claims rules",
+        "Study exact requirements and existing work to avoid duplicate or invalid submissions",
+        "Produce original substantive work and test it against real source/controlled samples, with negative controls and source pinning as applicable",
+        "Try authorized actual delivery or customer/sponsor acceptance route; log precise access restrictions without bypassing them",
+        "Check on-chain read-only payment evidence when applicable; distinguish current balance, earnings attribution, unpaid expected rewards and confirmed TXID",
+        "Record source, tests, outcomes, blockers and next executable action in owner-controlled persistent files and scheduled task instructions",
+        "Only report independently established steps and exact financial receipts; no email or wallet spending, no mass unsolicited posts"
+      ],
+      "persistence_limit": "This repository record is available to GitHub-enabled workers that read it. It is not global ChatGPT long-term memory and does not itself activate workers."
     }
   }
 }
