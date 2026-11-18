@@ -1,0 +1,61 @@
+name: B1 B2 One Bounded Real Model Fix and Live Paid-Job Preflight
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-bounded-cash-research-model.yml'
+      - 'crypto-agents/bounded_paid_shift_worker.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-bounded-model-timeout-repair
+  cancel-in-progress: false
+jobs:
+  model-proof:
+    name: ${{ matrix.fleet }} real short paid-work model
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        fleet: [B1, B2]
+    env:
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      OMP_NUM_THREADS: '2'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax and fleet identity checks
+        run: |
+          python -m py_compile crypto-agents/bounded_paid_shift_worker.py
+          python crypto-agents/bounded_paid_shift_worker.py --self-test
+      - name: Install independent CPU-only inference runtime
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Preload original small model ONCE before process timeout
+        run: |
+          python - <<'PY'
+          from transformers import pipeline
+          import torch
+          torch.set_num_threads(2)
+          p=pipeline('text-generation',model='HuggingFaceTB/SmolLM2-135M-Instruct',device=-1)
+          a=p('Review this evidence.',max_new_tokens=6,do_sample=False,return_full_text=False)
+          assert a and str(a[0].get('generated_text','')).strip()
+          print('ONE_SHARED_MODEL_PRELOAD_AND_GENERATION_PASS')
+          PY
+      - name: Produce one actual source-backed bounded worker result, never customer acceptance
+        run: python crypto-agents/bounded_paid_shift_worker.py --fleet ${{ matrix.fleet }}
+      - name: Keep actual output and explicit financial status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bounded-real-paid-work-${{ matrix.fleet }}
+          path: bounded-paid-shift-evidence/
+          if-no-files-found: warn
+          retention-days: 7
