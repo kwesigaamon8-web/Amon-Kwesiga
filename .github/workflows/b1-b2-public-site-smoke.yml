@@ -1,0 +1,39 @@
+name: B1 B2 Public Site Live Smoke Check
+on:
+  push:
+    paths:
+      - '.github/workflows/b1-b2-public-site-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-site-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Verify independent third-party public HTTPS hosting without credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='https://utopian-femur-oczcu.ship.place/'
+          tempdir="$(mktemp -d)"
+          trap 'rm -rf "$tempdir"' EXIT
+          curl -fSsL --max-time 25 "$root" -o "$tempdir/index.html"
+          curl -fSsL --max-time 25 "${root}assets/engine.js" -o "$tempdir/engine.js"
+          curl -fSsL --max-time 25 "${root}assets/app.js" -o "$tempdir/app.js"
+          curl -fSsL --max-time 25 "${root}assets/styles.css" -o "$tempdir/styles.css"
+          grep -q 'Digital Work Studio' "$tempdir/index.html"
+          grep -q 'Request a quote' "$tempdir/index.html"
+          grep -q 'function' "$tempdir/engine.js"
+          grep -q 'function' "$tempdir/app.js"
+          grep -q '{' "$tempdir/styles.css"
+          echo "PUBLIC_WEBSITE_FETCH_PASS $root"
+          {
+            echo "### B1/B2 Digital Work Studio public HTTP smoke test"
+            echo "- Public URL: $root"
+            echo "- External GET passed for HTML, engine JS, app JS and CSS"
+            echo "- Service links point to owner-controlled GitHub quote-request intake"
+            echo "- Hosting is temporary; this run does not prove buyer engagement, orders or crypto receipt"
+          } >> "$GITHUB_STEP_SUMMARY"
