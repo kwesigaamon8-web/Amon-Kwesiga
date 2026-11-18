@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261118-162935-BOOTS-ON-GROUND-CASH-FIRST",
+  "current_owner_order_id": "OWNER-20261118-163602-775B-KILL-MEANS-EARN-COINS",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -879,6 +879,25 @@
       ],
       "verified_receipts_as_of_order": 0,
       "origin": "explicit_human_owner_conversation"
+    },
+    {
+      "id": "OWNER-20261118-163602-775B-KILL-MEANS-EARN-COINS",
+      "as_of_utc": "2026-11-18T16:36:02Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT with explicit owner instruction",
+      "instruction": "The owner's order 'soldier kill' is strictly NONVIOLENT cash-work shorthand: earn legitimately earned cryptocurrency and arrange incoming deposits to the correct owner-approved B1/B2 address; never injure, threaten, coerce, steal, hack, exploit without authorization, scam, or cause harm. OWNER: this applies to the 775B conceptual B1/B2 worker-role organization; propagate the mandate only to genuinely activated models and authenticated workers, not imaginary millions or billions of live agents. Chief D to each company D01–D09: aggressively but lawfully select live, unclaimed, sponsor-authorized tasks and willing customers worldwide, confirm real payout rails, produce reproducible original deliverables, submit only through authorized authenticated paths and secure acceptance. Local company D10: require independently verified matching-chain receiving-address BTC/USDC transaction amount and confirmations before marking payment; any current 0 or unverified remains 0. Prioritize newly earned coins over repeated reports or empty process busywork; reject dead sponsors, competing already-completed bounty tasks, pay-to-earn gas/fees and incompatible payout chains; switch promptly to concrete original customer work. NEW public offer correctly published at https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121; current buyer replies are 0 as observed in paid scout 44347725210, so monitor read-only. Proven Lateralus bug patch tested 8/8 at run 44345997319; upstream issue/claim blocked 403, hence not earned. No sending or reading/searching/drafting any emails or Gmail; no unauthorized external accounts, outgoing crypto transactions, gas purchase, wallet signature, mass spam, coercion or private keys. Owner can authorize specific safe permitted external actions in conversation. Execution output must be one traceable source, task, test, submission, acceptance, received TXID/network/amount or explicit missing fact.",
+      "status": "active_owner_order_relay_only_no_new_payment_claimed",
+      "authenticated_external_execution_not_implied": true,
+      "verified_receipts_as_of_order": 0,
+      "key_terms": {
+        "kill": "earn lawful cryptocurrency and obtain voluntary accepted-payment inbound deposits ONLY; NEVER physical/psychological harm",
+        "soldier": "role in conceptual organizational hierarchy, not a claimed deployed agent",
+        "requested_scale": "775B role shorthand is not real concurrent activation"
+      },
+      "evidence_references": [
+        "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44345997319",
+        "https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121"
+      ]
     }
   ],
   "strict_per_worker_reporting": {
