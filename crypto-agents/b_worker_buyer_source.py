@@ -29,8 +29,13 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
         pay=row.get("secondary_payment_channel")
         payer_history=row.get("secondary_payer_history_claim") is True
         title=str(row.get("title") or "").lower()
-        if any(t in title for t in ("digest","bounty alert","eligibility question","referral reward","[radar]","site credit")):
+        if any(t in title for t in ("digest","bounty alert","eligibility question","referral reward","[radar]","site credit","discussion about rewards","availability and scope")):
             return 9
+        # An actual original GitHub-search result outranks a third-party
+        # payout-history claim. The previous priority-0 directory cluster
+        # repeatedly consumed all five checks on ineligible Ubiquity issues,
+        # before any newly posted original source was reached.
+        if row.get("source")=="GitHub public issues: original repository":return -1
         if payer_history and pay=="crypto":return 0
         if payer_history and pay=="stripe":return 1
         if payer_history and pay=="upwork":return 2
@@ -61,7 +66,9 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
     chosen=None
     link=None
     eligibility=None
-    for candidate in ordered[:5]:
+    # Bounded but deeper: the top five are often already claimed or core-team
+    # restricted. Do not waste an entire model shift before testing other leads.
+    for candidate in ordered[:min(len(ordered),12)]:
         url=candidate["original_url"]
         match=ISSUE.fullmatch(url)
         api="https://api.github.com/repos/"+match.group(1)+"/"+match.group(2)+"/issues/"+match.group(3)
@@ -69,6 +76,14 @@ def choose(fleet,worker_id,feed_path,fetch_json=None):
             issue=fetch(api)
             if issue.get("state")!="open" or issue.get("pull_request") or issue.get("html_url")!=url:
                 skipped.append({"url":url,"reason":"NOT_OPEN_OR_SOURCE_URL_MISMATCH"})
+                continue
+            # Most third-party search 'bounties' are actually submissions or
+            # reservation questions posted by unaffiliated contributors.
+            # Without an issuer relationship, a bounty is not a buyer order.
+            relation=str(issue.get("author_association") or "").upper()
+            if relation in ("NONE","CONTRIBUTOR","FIRST_TIME_CONTRIBUTOR","FIRST_TIMER"):
+                skipped.append({"url":url,"reason":"UNVERIFIED_OUTSIDER_AUTHOR_NOT_SPONSOR",
+                                "author_association":relation})
                 continue
             n=int(issue.get("comments") or 0)
             comments=[]
@@ -171,6 +186,53 @@ def self_test():
         contested=choose("transferexperiment","D01-M01-W01",f,contested_fetch)
         assert contested["source_item"] is None
         assert contested["rejected_source_candidates"][0]["reason"]=="MULTIPLE_EXISTING_PR_CLAIMS_REQUIRES_SPONSOR_RECONFIRMATION"
+
+        # An external claimant's submission is not a sponsor-issued paid task.
+        f.write_text(json.dumps({"candidates":[{
+            "status":"POSSIBLE_PAID_TASK_UNVERIFIED",
+            "assigned_fleet":"transferexperiment",
+            "original_url":"https://github.com/example/repo/issues/50",
+            "title":"$25 API integration submission",
+            "source":"GitHub public issues: original repository"},
+            {"status":"POSSIBLE_PAID_TASK_UNVERIFIED",
+             "assigned_fleet":"transferexperiment",
+             "original_url":"https://github.com/example/repo/issues/51",
+             "title":"$80 bug fix sponsor request",
+             "source":"GitHub public issues: original repository"}]}))
+        def outsider_then_maintainer(url):
+            n=url.split("/issues/")[1].split("?")[0]
+            return {"state":"open","title":"$80 repair test",
+                    "html_url":"https://github.com/example/repo/issues/"+n,
+                    "author_association":"NONE" if n=="50" else "OWNER",
+                    "comments":0}
+        verified_relation=choose("transferexperiment","D01-M01-W01",f,outsider_then_maintainer)
+        assert verified_relation["source_item"]["url"].endswith("/51"),verified_relation
+        assert any(x["reason"]=="UNVERIFIED_OUTSIDER_AUTHOR_NOT_SPONSOR"
+                   for x in verified_relation["rejected_source_candidates"])
+
+        # Bounded checks must reach a fresh original listing, even when a
+        # secondary directory includes more than five unusable reward claims.
+        primary={"status":"POSSIBLE_PAID_TASK_UNVERIFIED",
+                 "assigned_fleet":"transferexperiment",
+                 "original_url":"https://github.com/example/repo/issues/80",
+                 "title":"$50 genuine maintainer task",
+                 "source":"GitHub public issues: original repository"}
+        secondaries=[{"status":"POSSIBLE_PAID_TASK_UNVERIFIED",
+                      "assigned_fleet":"transferexperiment",
+                      "original_url":f"https://github.com/example/repo/issues/{i}",
+                      "title":"$300 old reward",
+                      "secondary_directory_url":"https://example.org/directory",
+                      "secondary_payment_channel":"crypto",
+                      "secondary_payer_history_claim":True}
+                     for i in range(81,93)]
+        f.write_text(json.dumps({"candidates":secondaries+[primary]}))
+        def many_restricted(url):
+            n=url.split("/issues/")[1].split("?")[0]
+            return {"state":"open","html_url":"https://github.com/example/repo/issues/"+n,
+                    "title":"$50 paid task","comments":0,
+                    "author_association":"OWNER" if n=="80" else "NONE"}
+        chosen=choose("transferexperiment","D01-M01-W01",f,many_restricted)
+        assert chosen["source_item"]["url"].endswith("/80"),chosen
 
         # Many active workers must not all process the first appealing issue.
         f.write_text(json.dumps({"candidates":[{
