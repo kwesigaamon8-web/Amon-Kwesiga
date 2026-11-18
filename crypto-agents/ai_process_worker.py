@@ -37,6 +37,7 @@ from b_registered_account_worker_map import packet as registered_agent_worker_pa
 from hosting_scout import plan as hosting_research_plan, probe as hosting_research_probe
 from ability_based_dispatch import dispatch as capability_dispatch
 from superworker_protocol import create as superworker_create
+from owner_work_contract import load_work_contract
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -68,6 +69,7 @@ WORKER_SHARED_INTELLIGENCE=(SHARED_INTELLIGENCE_TEXT.split(SHARED_INTELLIGENCE_S
     .split(SHARED_INTELLIGENCE_END,1)[0].strip())
 if not WORKER_SHARED_INTELLIGENCE or len(WORKER_SHARED_INTELLIGENCE)>2300:
     raise SystemExit("Worker intelligence briefing must be nonempty and under 2,300 characters")
+LATEST_WORK_CONTRACT=load_work_contract()
 STRICT_MODEL_ORDER=(
  "OWNER "+STRICT_OWNER_ORDER_ID+": FULL INDEPENDENT LEGITIMATE COMMERCIAL INITIATIVE. "
  "You are a separately running B company worker with authority to CHOOSE your "
@@ -163,6 +165,15 @@ OWNER_ACTIVATION_PROOF={
 report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
+    "owner_latest_work_instruction_proof":{
+      "manifest_loaded_by_actual_worker_process":LATEST_WORK_CONTRACT["manifest"],
+      "conceptual_worker_role_target":LATEST_WORK_CONTRACT["conceptual_role_target"],
+      "owner_work_amendment":LATEST_WORK_CONTRACT["owner_work_amendment"],
+      "instruction_read_at_start_utc":STAMP,
+      "model_instruction_injected":True,
+      "worker_role_count_not_live_process_count":True,
+      "owner_payment_receipt_not_proved_by_this_instruction":True,
+    },
     "coordinated_owner_btc_mining_research":{"owner_order_id":"OWNER-20261116-134732-COORDINATED-MINING-750377265361","distinct_from_cash_first_paid_work":True,"role_positions_are_not_miners":True,"actual_consented_physical_rigs_verified":0,"live_actual_hashrate_verified":False,"accepted_pool_shares_verified":False,"owner_BTC_revenue_verified":False,"source":"crypto-agents/BITCOIN_MINING_COLLABORATION_REALITY.md","no_cloud_mining_or_unapproved_hardware":True},
     "owner_superworker_protocol":SUPERWORKER,
     "owner_capability_first_assignment":{
@@ -425,6 +436,7 @@ try:
         "; legal reuse requires actual license/attribution verification; do not copy proprietary or unlicensed code."+
         " DIRECT BOSS "+GOVERNED_IDEA_ORDER["direct_supervisor"]+
         " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
+        "\nLATEST OWNER WORK COMMAND "+LATEST_WORK_CONTRACT["model_prompt"]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
         "\nYOU ARE ONE CAPABILITY-BASED SUPERWORKER, NOT BILLIONS OF LIVE MACHINES. Follow VERIFY SOURCE > PLAN > BUILD ORIGINAL > SELF-REVIEW > AUTHORIZED DELIVERY > PAID RECEIPT VERIFICATION BY LOCAL D10 > REPORT TO YOUR ORIGINAL PARENT "+SUPERWORKER["supervisor_chain"][0]+". Use only actually enabled tools, select one viable paid job, show tested original output and precise blocker. Never claim an unstated customer, mining device, host or payment."+
