@@ -252,5 +252,58 @@
     "if_no_real_success": "NO_UNSOLICITED_OWNER_NOTIFICATION",
     "necessary_exception": "Do not suppress material wallet/security risks or misrepresent any financial result when specifically asked.",
     "email_policy": "NEVER_ACCESS_OWNER_EMAIL"
+  },
+  "work_shorthand_2026_11_18": {
+    "exact_triggers": [
+      "work",
+      "WORK",
+      "continue work",
+      "keep working"
+    ],
+    "owner_confirmed_at_utc": "2026-11-18T11:26:58Z",
+    "owner_instruction": "When I say WORK, FIRST remember/review all relevant previous chats, commands, decisions, resources and failures; take the time needed, and then actually execute the legitimate crypto earning mission. Do not forget context and do not merely report or repeat instructions.",
+    "continuity": "For a ChatGPT turn, retrieve relevant earlier-conversation context before deciding the next action. A separate GitHub-hosted worker cannot read private ChatGPT chats; it must use this public owner-controlled manifest and linked source-of-truth files. Never claim all past chats were literally read unless that happened.",
+    "mission": "Earn legitimate owner-entitled cryptocurrency into the specific approved correct-network receiving addresses, favoring native Bitcoin mainnet. One verified deposit beats hundreds of speculative leads, meetings or agent-role counts.",
+    "priority_sequence": [
+      "Independently verifiable newly received owner-entitled crypto by exact address, chain, asset, TXID, amount and confirmations",
+      "Payer-accepted original completed paid deliverable awaiting payable settlement",
+      "Actual externally submitted eligible job/PR/contest entry with evidence and clear payout terms",
+      "Buyer-specific original tested work deliverable with authorized claim route",
+      "Verified real funded eligible buyer/opportunity ready for work",
+      "Internal project/tool/website/agent infrastructure only if it removes a proven blocker to the above"
+    ],
+    "operating_sequence": [
+      "Reload latest owner instructions, previous failed attempts, tasks and blockers before taking a new action",
+      "Identify one genuinely open payer-backed eligible opportunity with compatible payout and permitted access; use worldwide free lawful resources",
+      "Reject fee-to-claim, already-completed, restricted, decoy, points-only, spam, wrong-chain and unverifiable sponsor listings",
+      "Build and test an original scoped solution rather than repeating an unproductive proposal or collecting more speculative links",
+      "Submit only on authorized external accounts and channels under each platform's rules, without impersonation or unsolicited spam; no emails",
+      "Secure buyer acceptance when possible; verify only genuine incoming credited cryptocurrency independently",
+      "If blocked, document the specific failure and change source/platform/strategy instead of repeating unchanged attempts",
+      "Report committed code, actual submissions, acceptance, payer, and TXIDs precisely; never mistake CI pass, worker output or website for revenue"
+    ],
+    "original_owner_method": "B1 transferexperiment + B2 BountyScoutAI, directed/audited by Chief D; genuinely activated unique model/process workers work in parallel across distinct paying tasks and review one another. The 750377265360 configured roles are not simultaneously running workers.",
+    "recent_failure_lessons": [
+      "GitHub Actions workflow successes measure software execution, not deposits or customer acceptance",
+      "Existing Render deployments have failed; prefer verified no-fee working storefront and do not repeatedly deploy blindly",
+      "Most public issues mentioning rewards are closed, crowded, unpaid, restricted or unverified; screen sponsor, eligibility, real funding and conflicts",
+      "A public site or own GitHub issue does not mean a paying customer has appeared",
+      "Lightning/sBTC do not directly settle to BTC mainnet bc1 addresses; EVM/Solana/TRON/Stellar/exchange routes remain on hold until matching asset, network, ownership, token and memo verification",
+      "Unrecorded competition exercises, unofficial builds and virtual agents cannot be described as eligible entries or running personnel"
+    ],
+    "current_deadline": "2026-11-18T18:00:00+03:00",
+    "urgent_target_ugx_equivalent": 3000000,
+    "long_term_aspiration_ugx_equivalent": 50000000000,
+    "no_guaranteed_target_or_unverified_payment_claims": true,
+    "permissions": "No email account read/search/monitor/draft/send/forward. No owner-wallet signing, spending, swaps, transfers, paid registrations, mass unsolicited outreach or impersonation. Read-only public chains and owner-authorized GitHub code/issue workflows are permitted.",
+    "canonical_context_files": [
+      "crypto-agents/PUBLIC_AGENT_COMMAND.json",
+      "crypto-agents/OPERATION_3M_DIRECT_CRYPTO.json",
+      "crypto-agents/owner_command_chain.json",
+      "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
+      "crypto-agents/REAL_PAYING_WORK_ROUTE_2026-11-16.md",
+      "docs/LIVE_SITE.md"
+    ],
+    "notes": "This records a durable operating instruction in the owner's GitHub repository. It does not activate all dormant agents, guarantee a future model remembers every private conversation, earn coins, or create background execution."
   }
 }
