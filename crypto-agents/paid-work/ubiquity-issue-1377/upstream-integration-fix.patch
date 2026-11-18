@@ -1,0 +1,74 @@
+diff --git a/scripts/export-antigravity-quota.ts b/scripts/export-antigravity-quota.ts
+--- a/scripts/export-antigravity-quota.ts
++++ b/scripts/export-antigravity-quota.ts
+@@ -54,6 +54,11 @@
+     const { reset_time: time, reset_in_seconds: seconds, ...values } = bucket;
+     const { reset_time: priorTime, reset_in_seconds: priorSeconds, ...priorValues } = previous.quota[id];
+     if (!isDeepStrictEqual(values, priorValues)) return false;
++    // Identical relative countdown readings are unchanged inside the throttle.
++    // Comparing instants derived from separate clocks makes these look new.
++    // Preserve the original instant comparison for absolute-time transitions.
++    if (time === undefined && priorTime === undefined &&
++        seconds !== undefined && seconds === priorSeconds) return true;
+     const reset = resetInstant(time, seconds, current.observed_at_ms);
+     const priorReset = resetInstant(priorTime, priorSeconds, previous.observed_at_ms);
+     if (reset === priorReset) return true;
+diff --git a/tests/admin-gemini-quota.test.ts b/tests/admin-gemini-quota.test.ts
+--- a/tests/admin-gemini-quota.test.ts
++++ b/tests/admin-gemini-quota.test.ts
+@@ -179,15 +179,46 @@
+   });
+ }
+ 
+-test("the hook saves reset changes and transitions in fraction, amount, and disabled state", async () => {
+-  await withStatusLine(async (directory, send) => {
+-    const previousAt = Date.now() - 3_000;
+-    const previous = { version: 1, observed_at_ms: previousAt, ...projectAntigravityStatusLine(EVENT) };
+-    await writeFile(join(directory, GEMINI_QUOTA_FILE), JSON.stringify(previous), { mode: 0o600 });
+-    await send(EVENT);
+-    const shifted = await readGeminiQuotaSnapshot(directory);
+-    assert.equal(shifted.status, "observed");
+-    assert.ok(shifted.observed_at_ms > previousAt);
++test("identical relative countdowns 14 seconds apart preserve the snapshot and inode", async () => {
++  await withStatusLine(async (directory, send) => {
++    const observedAt = Date.now() - 14_000;
++    const previous = { version: 1, observed_at_ms: observedAt, ...projectAntigravityStatusLine(EVENT) };
++    const destination = join(directory, GEMINI_QUOTA_FILE);
++    await writeFile(destination, JSON.stringify(previous), { mode: 0o600 });
++    const originalInode = (await lstat(destination)).ino;
++
++    await send(EVENT);
++    assert.deepEqual(await readGeminiQuotaSnapshot(directory), previous);
++    assert.equal((await lstat(destination)).ino, originalInode);
++
++    // A true countdown change must still replace the stored data.
++    const changed = { ...EVENT, quota: { weekly: { ...EVENT.quota.weekly, reset_in_seconds: 7210 } } };
++    await send(changed);
++    const updated = await readGeminiQuotaSnapshot(directory);
++    assert.equal(updated.status, "observed");
++    assert.ok(updated.observed_at_ms > observedAt);
++    assert.deepEqual(updated.quota, changed.quota);
++  });
++});
++
++test("the hook saves reset changes and transitions in fraction, amount, and disabled state", async () => {
++  await withStatusLine(async (directory, send) => {
++    const previousAt = Date.now() - 3_000;
++    const previous = { version: 1, observed_at_ms: previousAt, ...projectAntigravityStatusLine(EVENT) };
++    await writeFile(join(directory, GEMINI_QUOTA_FILE), JSON.stringify(previous), { mode: 0o600 });
++    // An unchanged relative countdown must not refresh the observation timestamp.
++    await send(EVENT);
++    assert.deepEqual(await readGeminiQuotaSnapshot(directory), previous);
++
++    // A genuinely changed countdown still forces a fresh snapshot.
++    await send({
++      ...EVENT,
++      quota: { weekly: { ...EVENT.quota.weekly, reset_in_seconds: EVENT.quota.weekly.reset_in_seconds + 10 } },
++    });
++    const shifted = await readGeminiQuotaSnapshot(directory);
++    assert.equal(shifted.status, "observed");
++    assert.ok(shifted.observed_at_ms > previousAt);
++    assert.equal(shifted.quota.weekly.reset_in_seconds, EVENT.quota.weekly.reset_in_seconds + 10);
+ 
+     const reset = Date.now() + 60_000;
+     const resetTime = new Date(reset + 500).toISOString();
