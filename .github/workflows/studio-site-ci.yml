@@ -22,11 +22,15 @@ jobs:
           test -f docs/index.html
           test -f docs/assets/engine.js
           test -f docs/assets/app.js
+          test -f docs/assets/reconcile.js
+          test -f docs/assets/reconcile-ui.js
           test -f docs/assets/styles.css
       - name: Run zero-dependency browser data engine tests
-        run: node --test docs/tests/engine.test.js
+        run: node --test docs/tests/*.test.js
       - name: Check links to local assets
         run: |
           grep -q 'assets/engine.js' docs/index.html
           grep -q 'assets/app.js' docs/index.html
+          grep -q 'assets/reconcile.js' docs/index.html
+          grep -q 'assets/reconcile-ui.js' docs/index.html
           grep -q 'assets/styles.css' docs/index.html
