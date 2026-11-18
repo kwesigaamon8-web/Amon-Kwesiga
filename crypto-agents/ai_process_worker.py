@@ -476,7 +476,7 @@ if model is not None and report["inference_status"]=="model_completed":
     try:
         training_output=model(
             practical_training_prompt(practical_lesson,TASK,PAYMENT_MISSION["address"]),
-            max_new_tokens=175,do_sample=False,return_full_text=False)
+            max_new_tokens=225,do_sample=False,return_full_text=False)
         practical_text=training_output[0].get("generated_text","")
         if isinstance(practical_text,list):
             practical_text=practical_text[-1].get("content","")
@@ -488,11 +488,39 @@ if model is not None and report["inference_status"]=="model_completed":
         practical_error=type(exc).__name__+": "+str(exc)[:200]
 practical_result=grade_practical_training(
     practical_lesson,practical_text,practical_completed)
+# Only a real, successfully checked original source can qualify for a
+# corrected work sample. One bounded extra model call may repair weak text,
+# but no retry turns unverified demand into verified income or contract.
+practical_revision_status="NOT_NEEDED_OR_UNQUALIFIED_SOURCE"
+if (model is not None and practical_completed
+        and practical_lesson["source_status"]=="source_checked"
+        and practical_lesson["real_original_research_url"].startswith("https://")
+        and practical_result["status"]!="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW"):
+    try:
+        repaired_output=model(
+            practical_training_prompt(
+                practical_lesson,TASK,PAYMENT_MISSION["address"],retry=True),
+            max_new_tokens=230,do_sample=False,return_full_text=False)
+        revised=repaired_output[0].get("generated_text","")
+        if isinstance(revised,list):
+            revised=revised[-1].get("content","")
+        revised=str(revised or "").strip()
+        revised_grade=grade_practical_training(
+            practical_lesson,revised,bool(revised))
+        if revised_grade["status"]=="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW":
+            practical_text=revised
+            practical_result=revised_grade
+            practical_revision_status="REAL_RETRY_PASSED_ORIGINAL_DRAFT_NEEDS_REVIEW"
+        else:
+            practical_revision_status="REAL_RETRY_STILL_WEAK"
+    except Exception as exc:
+        practical_revision_status="REAL_RETRY_FAILED:"+type(exc).__name__
 practical_path=write_worker_sample(OUT,practical_lesson,practical_result)
 report["practical_training_while_working"]={
     "assignment":practical_lesson,
     "result":practical_result,
     "independent_model_call_status":"MODEL_COMPLETED" if practical_completed else "NOT_COMPLETED",
+    "corrective_model_retry_status":practical_revision_status,
     "model_error":practical_error,
     "actual_work_sample_file":practical_path,
     "external_job_submission_or_payment_verified":False,
