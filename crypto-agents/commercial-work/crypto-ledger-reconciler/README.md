@@ -48,6 +48,7 @@ Its narrower proposition is an independent, local-only exception check for a buy
 - All processing runs locally in the browser tab. There are no external scripts, APIs, uploads, cookies, analytics, wallet connections, private keys, signatures, spending functions or persistent storage.
 - The fictional demo uses fabricated transaction IDs and amounts. It does not represent real deposits or earned revenue.
 - Do not import seed phrases, private keys, credentials or unnecessary personal/customer information.
+- The tool does not query the blockchain or verify that a TXID exists, is confirmed, or pays the supplied address. It also does not validate chain IDs, token contracts or the USDC issuer; asset/network labels are taken from the CSV and must be checked against trusted source documentation.
 - The report is a reconciliation aid, not an audit opinion, tax calculation, IFRS conclusion or proof of customer identity, address ownership, source of funds, transaction completeness or fair value.
 - Do not post accounting entries without reviewing the original exports, transaction purpose, valuation date, fees and the entity's accounting policy.
 
