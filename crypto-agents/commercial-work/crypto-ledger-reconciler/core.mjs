@@ -99,7 +99,8 @@ function normalizeRows(rows, source) {
     const network = String(raw.network ?? '').trim().toUpperCase();
     const direction = normalizeDirection(raw.direction);
     const outputIndexInput = raw.output_index ?? raw.vout ?? raw.log_index ?? '';
-    const outputIndex = String(outputIndexInput).trim();
+    const rawOutputIndex = String(outputIndexInput).trim();
+    const outputIndex = INTEGER_RE.test(rawOutputIndex) ? BigInt(rawOutputIndex).toString() : rawOutputIndex;
     const amountInput = String(raw.amount_atomic ?? raw.amount ?? '').trim();
     let amountAtomic = '';
 
