@@ -3,6 +3,9 @@ on:
   push:
     paths:
       - '.github/workflows/b1-b2-free-studio-renewal.yml'
+      - 'docs/index.html'
+      - 'docs/assets/**'
+      - 'docs/tests/**'
   schedule:
     # Twice weekly, not mining/inference. A new anonymous preview lasts 7 days.
     - cron: '17 5 * * 1,4'
@@ -25,10 +28,12 @@ jobs:
       - name: Original source automated tests
         run: |
           set -euo pipefail
-          node --test docs/tests/engine.test.js
+          node --test docs/tests/*.test.js
           test -s docs/index.html
           test -s docs/assets/engine.js
           test -s docs/assets/app.js
+          test -s docs/assets/reconcile.js
+          test -s docs/assets/reconcile-ui.js
           test -s docs/assets/styles.css
       - name: Deploy public-only static files using anonymous free API, not Render
         id: publish
@@ -36,7 +41,7 @@ jobs:
           set -euo pipefail
           umask 077
           cd docs
-          zip -q -r ../studio-preview.zip index.html assets/styles.css assets/engine.js assets/app.js
+          zip -q -r ../studio-preview.zip index.html assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js
           cd ..
           curl -fSs --retry 2 --retry-delay 5 --max-time 50 \
             -X POST 'https://ship.page/deploy' \
@@ -50,7 +55,7 @@ jobs:
           url=payload.get('url','')
           parsed=urllib.parse.urlsplit(url)
           assert parsed.scheme=='https' and (parsed.hostname or '').endswith('.ship.place'), 'invalid live page URL'
-          assert {'index.html','assets/styles.css','assets/engine.js','assets/app.js'}<=set(payload.get('files') or []), 'missing published asset'
+          assert {'index.html','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js'}<=set(payload.get('files') or []), 'missing published asset'
           exp=payload.get('expires_at')
           assert exp and 'T' in exp, 'anonymous expiry not provided'
           now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
@@ -58,7 +63,7 @@ jobs:
 
           **Open the latest working digital service site:** {url}
 
-          This public, no-login website contains original in-browser CSV/JSON conversion and data-quality tools and a fixed-scope services catalogue. Its customer quote-request link leads to a public GitHub issue form (posting requires a GitHub account). Never post private records in that form.
+          This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, and two-file reconciliation and a fixed-scope services catalogue. Its customer quote-request link leads to a public GitHub issue form (posting requires a GitHub account). Never post private records in that form.
 
           **New deployment confirmed:** {now}
 
@@ -72,7 +77,7 @@ jobs:
           '''
           Path('docs/LIVE_SITE.md').write_text(body,encoding='utf-8')
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
-              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Permanent link directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md\n- **All 4 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
+              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Permanent link directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md\n- **All 6 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
           print('PUBLIC_DEPLOYMENT_CONFIRMED',json.dumps({'url':url,'expiry':exp,'files':len(payload.get('files',[]))}))
           PY
           rm -f publish-private.json studio-preview.zip
@@ -83,6 +88,8 @@ jobs:
           [ -n "$url" ]
           curl -fSsL --max-time 25 "$url" | grep -q 'Digital Work Studio'
           curl -fSsL --max-time 25 "${url}assets/engine.js" | grep -q 'function'
+          curl -fSsL --max-time 25 "${url}assets/reconcile.js" | grep -q 'function'
+          curl -fSsL --max-time 25 "${url}assets/reconcile-ui.js" | grep -q 'function'
           echo "INDEPENDENT_HTTPS_CHECK_PASS $url"
       - name: Publish stable latest-site directory in owner repository
         run: |
