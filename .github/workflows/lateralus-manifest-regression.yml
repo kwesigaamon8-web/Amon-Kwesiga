@@ -34,6 +34,14 @@ jobs:
           set -euo pipefail
           python crypto-agents/paid-work/lateralus-manifest-roundtrip/repro.py /tmp/lateralus-public/lateralus_lang/package_manager.py | tee /tmp/repro.txt
           grep -F 'PINNED_UPSTREAM_TOML_BUG_REPRODUCED' /tmp/repro.txt
+      - name: Apply original narrow bug fix to pinned upstream source only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/lateralus-public
+          git apply --check "$GITHUB_WORKSPACE/crypto-agents/paid-work/lateralus-manifest-roundtrip/lateralus-toml-string-roundtrip.patch"
+          git apply "$GITHUB_WORKSPACE/crypto-agents/paid-work/lateralus-manifest-roundtrip/lateralus-toml-string-roundtrip.patch"
+          python "$GITHUB_WORKSPACE/crypto-agents/paid-work/lateralus-manifest-roundtrip/test_patched.py" /tmp/lateralus-public/lateralus_lang/package_manager.py
           {
             echo '### Lateralus upstream TOML manifest reproducibility'
             echo 'This is a source-level defect reproduction only. No external issue/bounty was claimed or submitted.'
