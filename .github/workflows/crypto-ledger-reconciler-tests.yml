@@ -1,0 +1,29 @@
+name: Crypto Ledger Reconciler — Offline Tests
+
+on:
+  push:
+    paths:
+      - 'crypto-agents/commercial-work/crypto-ledger-reconciler/**'
+      - '.github/workflows/crypto-ledger-reconciler-tests.yml'
+  pull_request:
+    paths:
+      - 'crypto-agents/commercial-work/crypto-ledger-reconciler/**'
+      - '.github/workflows/crypto-ledger-reconciler-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check
+        run: |
+          node --check crypto-agents/commercial-work/crypto-ledger-reconciler/core.mjs
+          node --check crypto-agents/commercial-work/crypto-ledger-reconciler/app.js
+      - name: Run offline tests
+        run: node --test crypto-agents/commercial-work/crypto-ledger-reconciler/core.test.mjs
