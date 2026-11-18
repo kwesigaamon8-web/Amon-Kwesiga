@@ -73,11 +73,26 @@ def evaluate(issue,comments,repo=None):
         flags.append("PAYMENT_DISPUTE_REVIEW_REQUIRED")
     if SUBMITTED.search(all_comments):
         flags.append("ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS")
+    # A nominally open bounty with several distinct already-submitted PRs is
+    # not a realistic new assignment. Do not waste paid worker inference on
+    # duplicated work unless an authorized maintainer explicitly reopens entry.
+    pr_refs=set()
+    for comment in comments:
+        for match in re.finditer(r"https://github\\.com/[\\w.-]+/[\\w.-]+/pull/(\\d+)",str(comment.get("body") or "")):
+            pr_refs.add(match.group(0))
+    sponsor_reopened=any(
+        str(comment.get("author_association") or "").upper() in ("OWNER","MEMBER","COLLABORATOR")
+        and re.search(r"(?i)(?:still accepting new (?:PRs|submissions|contributors)|fresh solutions welcome|bounty available for new entrants)",
+                      str(comment.get("body") or ""))
+        for comment in comments
+    )
+    if len(pr_refs)>=3 and not sponsor_reopened:
+        flags.append("MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING")
     if not PRICE.search(issue_text):
         flags.append("NO_EXPLICIT_REWARD_IN_SOURCE")
     if int(issue.get("comments") or 0)>len(comments):
         flags.append("SOME_COMMENTS_UNREAD")
-    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR","REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED"))
+    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR","REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED","MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING"))
     return {
       "schema":"B_COMMERCIAL_ELIGIBILITY_V1",
       "source_url":issue.get("html_url"),"issue_title":title,
@@ -139,6 +154,18 @@ def self_test():
     assert evaluate(fake,[])["critical_blocker"]
     submitted=evaluate(i,[{"user":{"login":"dev"},"body":"PR submitted #138"}])
     assert "ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS" in submitted["flags"]
+    contest_comments=[
+        {"user":{"login":f"contributor{k}"},
+         "body":f"Submitted https://github.com/example/project/pull/{k}"}
+        for k in (31,32,33)
+    ]
+    crowded=evaluate(i,contest_comments)
+    assert crowded["critical_blocker"]
+    assert "MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING" in crowded["flags"]
+    reopened=evaluate(i,contest_comments+[
+        {"author_association":"OWNER","user":{"login":"maintainer"},
+         "body":"Still accepting new PRs for this bounty."}])
+    assert "MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING" not in reopened["flags"]
     zero={**i,"body":"This is a zero-bounty task: $0. Real reward requires /reward funding.","labels":[{"name":"bounty"},{"name":"zero-bounty"}]}
     z=evaluate(zero,[])
     assert z["critical_blocker"] and "ZERO_PAYMENT_EXPLICIT" in z["flags"]
