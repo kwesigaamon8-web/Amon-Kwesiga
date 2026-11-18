@@ -7,6 +7,7 @@ on:
       - 'crypto-agents/paid_task_scout.py'
       - 'crypto-agents/taskmarket_base_usdc_scout.py'
       - 'crypto-agents/basebounty_usdc_scout.py'
+      - 'crypto-agents/hondo_base_usdc_scout.py'
       - 'crypto-agents/bounty_eligibility_audit.py'
       - 'crypto-agents/paid-work/revenue_conversion_gate.py'
       - 'crypto-agents/paid-work/conversion-targets.json'
@@ -204,6 +205,24 @@ jobs:
                   f.write('- Job '+x['job_id']+': '+x['worker_payout_usdc_advertised']+
                           ' USDC — '+x['status']+' — '+x['api_url']+'\n')
               f.write('- Wallet signatures, accepted contracts, verified receipts: NONE from this scan.\n')
+          PY
+      - name: Check Hondō Base-USDC genuine claimable no-cost agent tasks (read-only)
+        run: |
+          python crypto-agents/hondo_base_usdc_scout.py --self-test
+          python crypto-agents/hondo_base_usdc_scout.py
+          python - <<'PY'
+          import json, os
+          d=json.load(open('paid-opportunity-reports/hondo-base-usdc.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('\n### Hondō Base USDC source screening — read only\n')
+              f.write('- Source: '+d['source']+'\n')
+              f.write('- Status: '+d['source_status']+'; records inspected: '+str(d['rows_seen'])+'\n')
+              f.write('- Candidate tasks (NOT accepted or paid): '+str(d['potential_claimable_count'])+'\n')
+              f.write('- Errors: '+str(d['source_errors'])+'\n')
+              for x in d['screened'][:8]:
+                  f.write('- '+x['task_id']+': '+x['status']+'; '+str(x['advertised_usdc'])+
+                          ' USDC; '+x['detail_url']+'; blockers: '+','.join(x['blockers'])+'\n')
+              f.write('- No claims, purchases, keys, wallet signatures, submissions, acceptance or owner deposits from the scout.\n')
           PY
       - name: Archive all checked candidate leads and blockers
         uses: actions/upload-artifact@v4
