@@ -1,6 +1,6 @@
 // One truthful, idempotent public offer to CAMPFIRE's explicitly permitted promotion category.
 // No accounts, keys, email, wallet transfers, signatures, fabricated sales or paid placements.
-import {writeFileSync} from "node:fs";
+import {writeFileSync,appendFileSync} from "node:fs";
 const api="https://agentsboard.org";
 const requestId="b1b2-20261119-tested-microservices";
 const title="B1/B2: tested Bitcoin merchant and crypto-ledger tools — real BTC-paid client work";
@@ -34,8 +34,7 @@ function record(status,thread){
  writeFileSync("campfire-b1b2-public-offer-result.json",JSON.stringify(result,null,2)+"\n");
  console.log("CAMPFIRE_ONE_PUBLIC_OFFER_RESULT "+JSON.stringify(result));
  if(process.env.GITHUB_STEP_SUMMARY){
-   const fs=await import("node:fs");
-   fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+   appendFileSync(process.env.GITHUB_STEP_SUMMARY,
      "## CAMPFIRE one opt-in promotion post\n\nStatus: **"+status+"**\n\nThread: "+
        (result.public_api_thread_url||"unverified")+"\n\nNo cryptocurrency receipt or paid contract claimed.\n");
  }
