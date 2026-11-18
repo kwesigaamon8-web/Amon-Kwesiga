@@ -1,0 +1,21 @@
+diff --git a/lateralus_lang/package_manager.py b/lateralus_lang/package_manager.py
+--- a/lateralus_lang/package_manager.py
++++ b/lateralus_lang/package_manager.py
+@@ -144,7 +144,7 @@
+ 
+     # Basic string
+     if raw.startswith('"') and raw.endswith('"'):
+-        return raw[1:-1].replace("\\n", "\n").replace("\\t", "\t").replace('\\"', '"')
++        return json.loads(raw)
+ 
+     # Literal string
+     if raw.startswith("'") and raw.endswith("'"):
+@@ -291,7 +291,7 @@
+ def _toml_value(v: Any) -> str:
+     """Serialize a Python value to TOML."""
+     if isinstance(v, str):
+-        return f'"{v}"'
++        return json.dumps(v, ensure_ascii=False)
+     if isinstance(v, bool):
+         return "true" if v else "false"
+     if isinstance(v, int):
