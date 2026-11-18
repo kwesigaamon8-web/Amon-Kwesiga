@@ -1,0 +1,35 @@
+name: B1/B2 One Real Paid-Service Promotion on CAMPFIRE
+
+on:
+  pull_request:
+    paths:
+      - 'crypto-agents/paid-work/one-campfire-buyer-offer.mjs'
+      - '.github/workflows/b1b2-campfire-one-offer.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  one-promotion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate one honest original service offer
+        run: |
+          node --check crypto-agents/paid-work/one-campfire-buyer-offer.mjs
+          node crypto-agents/paid-work/one-campfire-buyer-offer.mjs --test
+      - name: Publish ONCE in board's explicitly permitted promotion category, read back
+        env:
+          CAMPFIRE_ONE_POST_ALLOWED: 'true'
+        run: node crypto-agents/paid-work/one-campfire-buyer-offer.mjs
+      - name: Preserve public confirmation or existing-post evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-campfire-one-promotion-confirmation
+          path: campfire-b1b2-public-offer-result.json
+          if-no-files-found: error
+          retention-days: 7
