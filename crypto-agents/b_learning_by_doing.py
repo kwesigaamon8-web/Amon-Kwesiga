@@ -177,7 +177,7 @@ def self_test():
     assert "\\nTASK TITLE:" not in prompt(x,"a task","")[1]["content"]
     assert "\nTASK TITLE:" in prompt(x,"a task","")[1]["content"]
     assert len(prompt(x,"a task","")[0]["content"])<500
-    assert "EXACTLY FOUR" in prompt(x,"a task","")[0]["content"]
+    assert "FOUR separate lines" in prompt(x,"a task","")[0]["content"]
     assert "previous attempt" in prompt(x,"a task","",retry=True)[0]["content"]
     y=grade(x,good,True)
     assert y["status"]=="APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW",y
