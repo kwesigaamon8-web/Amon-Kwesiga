@@ -1,0 +1,51 @@
+name: Ubiquity 1377 — Pinned Upstream Bun Integration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/paid-work/ubiquity-issue-1377/upstream-integration-fix.patch'
+      - '.github/workflows/ubiquity-1377-upstream-bun.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  real-upstream-bun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out owner-authored patch without secrets
+        uses: actions/checkout@v4
+      - name: Install official Bun for dependency-compatible tests
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.0'
+      - name: Check out precise upstream revision and apply the patch
+        run: |
+          set -euo pipefail
+          git clone --depth 1 'https://github.com/ubiquity/ai.ubq.fi.git' /tmp/ubiquity-upstream
+          cd /tmp/ubiquity-upstream
+          git fetch --depth 1 origin '2ac5aae69b0f0bac77cf1c6f329995cf1187616c'
+          git checkout --detach '2ac5aae69b0f0bac77cf1c6f329995cf1187616c'
+          git apply --check "$GITHUB_WORKSPACE/crypto-agents/paid-work/ubiquity-issue-1377/upstream-integration-fix.patch"
+          git apply "$GITHUB_WORKSPACE/crypto-agents/paid-work/ubiquity-issue-1377/upstream-integration-fix.patch"
+          git diff --stat
+          grep -q 'identical relative countdowns 14 seconds apart' tests/admin-gemini-quota.test.ts
+      - name: Install pinned dependencies without lifecycle scripts
+        working-directory: /tmp/ubiquity-upstream
+        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Run actual upstream Gemini quota tests under Bun
+        working-directory: /tmp/ubiquity-upstream
+        run: bun --no-env-file test tests/admin-gemini-quota.test.ts
+      - name: Summarize scope precisely
+        if: always()
+        run: |
+          {
+            echo "## Ubiquity #1377 real upstream Bun test"
+            echo "- Upstream revision pinned: 2ac5aae69b0f0bac77cf1c6f329995cf1187616c"
+            echo "- Patch: owner-repo source and corrected original upstream test expectations"
+            echo "- Tests in this workflow are NOT a maintainer acceptance, merge, or $75 paid bounty"
+            echo "- No emails, account credentials, wallet signing or payment transfers"
+          } >> "$GITHUB_STEP_SUMMARY"
