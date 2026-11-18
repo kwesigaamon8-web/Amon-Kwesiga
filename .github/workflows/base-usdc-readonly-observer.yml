@@ -1,0 +1,56 @@
+name: B1 Base Native USDC Read-Only Observation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '21 * * * *'
+  push:
+    paths:
+      - '.github/workflows/base-usdc-readonly-observer.yml'
+      - 'crypto-agents/base_usdc_receipts.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: b1-base-usdc-readonly
+  cancel-in-progress: false
+
+jobs:
+  observe-base-usdc:
+    name: Public Base USDC address evidence only — no signing
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run synthetic security and evidence tests
+        run: python crypto-agents/base_usdc_receipts.py --self-test
+      - name: Read Base USDC public token contract and incoming logs without transaction submission
+        run: python crypto-agents/base_usdc_receipts.py
+      - name: Report observed balance and recent logs without inventing earnings
+        run: |
+          python - <<'PY'
+          import json,os
+          d=json.load(open('paid-opportunity-reports/base-usdc-receipts.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('## Owner-shared optional Base mainnet native USDC — READ ONLY\n\n')
+              f.write('- Data source status: '+d['source_status']+'\n')
+              f.write('- Chain: Base mainnet (8453), native Circle USDC contract: '+d['token_contract']+'\n')
+              f.write('- Public address: '+d['owner_shared_receiving_address']+' (owner control not independently verified)\n')
+              f.write('- Observed public token balance: '+str(d.get('current_public_usdc_balance','UNKNOWN'))+' USDC. This is NOT a new payment or earned income.\n')
+              f.write('- Recent incoming USDC Transfer logs within checked block window: '+str(len(d['recent_transfers_observed']))+'\n')
+              f.write('- Full requested window checked: '+str(d['scan_complete'])+'; errors/warnings: '+str(len(d['warnings']))+'\n')
+              for x in d['recent_transfers_observed'][:5]:
+                  f.write('- Observed transfer '+x['value_usdc']+' USDC in '+x['explorer']+' (payer/purpose unverified)\n')
+              f.write('- Verified accepted external client payments: **ZERO VERIFIED BY THIS SCAN**. This is not a lifetime statement.\n')
+              f.write('- No private keys, signatures, gas, sending, or email actions.\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: base-usdc-readonly-observation
+          path: paid-opportunity-reports/base-usdc-receipts.json
+          retention-days: 7
+          if-no-files-found: error
