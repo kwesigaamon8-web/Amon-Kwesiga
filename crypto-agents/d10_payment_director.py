@@ -70,10 +70,23 @@ def scan_public_btc_outputs(address):
                     "reason_for_payment": "unknown",
                     "proved_external_client_income": False,
                 })
+        # Observe public outputs only. Sum without claiming an earned transfer,
+        # new deposit since last check, complete historical balance, or ownership.
+        sample = matching[:25]
+        confirmed = [x for x in sample if x["confirmed"]]
+        unconfirmed = [x for x in sample if not x["confirmed"]]
+        if len({(x["txid"],x["vout"]) for x in sample}) != len(sample):
+            raise ValueError("Duplicate txid/vout in observed output snapshot")
         return {
             "status": "last_page_scanned",
             "scope": "Most recent at most 25 returned transactions, NOT a complete history",
-            "visible_matching_outputs": matching[:25],
+            "visible_matching_outputs": sample,
+            "observed_outputs_count": len(sample),
+            "observed_confirmed_outputs_count": len(confirmed),
+            "observed_confirmed_output_sats": sum(x["value_sats"] for x in confirmed),
+            "observed_unconfirmed_outputs_count": len(unconfirmed),
+            "observed_unconfirmed_output_sats": sum(x["value_sats"] for x in unconfirmed),
+            "not_earnings_or_wallet_balance": True,
             "verified_new_since_prior_run": "not_assessed_no_baseline",
             "payment_purpose_classification": "not_assessed",
             "wallet_balance_claim": "none"
@@ -187,6 +200,14 @@ for fleet, details in accounts.items():
         "Explorer status: " + scan["status"],
         "Matching recent public transaction outputs (not classified as client income): " +
            str(len(scan.get("visible_matching_outputs", []))),
+        "Confirmed observed outputs (sample only): " +
+           str(scan.get("observed_confirmed_outputs_count","UNKNOWN"))+
+           " output(s), "+str(scan.get("observed_confirmed_output_sats","UNKNOWN"))+
+           " satoshis (historical or self-transfer possible)",
+        "Unconfirmed observed outputs (sample only): "+
+           str(scan.get("observed_unconfirmed_outputs_count","UNKNOWN"))+
+           " output(s), "+str(scan.get("observed_unconfirmed_output_sats","UNKNOWN"))+" satoshis",
+        "No transaction-purpose, customer acceptance or newly received earnings inferred.",
         "Public support notice: " + details["original_account_request"],
         ""
     ])
@@ -206,5 +227,11 @@ print("D10_PAYMENT_AUDIT", json.dumps({
     "needs_validation": report["claims_awaiting_independent_validation"],
     "payment_requests_sent": 0,
     "explorer_statuses": {k: v["btc_output_snapshot"]["status"] for k, v in accounts.items()},
+    "observed_confirmed_output_sats_sample_only": {
+        k: v["btc_output_snapshot"].get("observed_confirmed_output_sats","unknown")
+        for k, v in accounts.items()},
+    "observed_unconfirmed_output_sats_sample_only": {
+        k: v["btc_output_snapshot"].get("observed_unconfirmed_output_sats","unknown")
+        for k, v in accounts.items()},
     "independently_verified_earnings": "not_assessed"
 }))
