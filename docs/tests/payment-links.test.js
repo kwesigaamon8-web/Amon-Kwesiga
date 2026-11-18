@@ -38,5 +38,5 @@ test('the support route is clearly optional and never asks for another token or 
 });
 test('two usable independent customer contact routes are present',()=>{
  assert.ok(html.includes('issues/new?template=paid-work-request.yml'));
- assert.ok(html.includes('www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b'));
+ assert.ok(html.includes('www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121'));
 });
