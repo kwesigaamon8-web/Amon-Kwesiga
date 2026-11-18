@@ -877,7 +877,8 @@
         "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44345997319",
         "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/21"
       ],
-      "verified_receipts_as_of_order": 0
+      "verified_receipts_as_of_order": 0,
+      "origin": "explicit_human_owner_conversation"
     }
   ],
   "strict_per_worker_reporting": {
