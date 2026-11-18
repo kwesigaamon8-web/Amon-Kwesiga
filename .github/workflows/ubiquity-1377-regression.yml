@@ -1,0 +1,32 @@
+name: External Ubiquity 1377 Evidence — Isolated Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/paid-work/ubiquity-issue-1377/**'
+      - '.github/workflows/ubiquity-1377-regression.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  tested-repro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run the nine original/modified comparator regression cases
+        run: node --test crypto-agents/paid-work/ubiquity-issue-1377/countdown_regression.test.mjs
+      - name: Check patch context without claiming full upstream suite
+        run: |
+          test -s crypto-agents/paid-work/ubiquity-issue-1377/issue-1377-fix.patch
+          grep -q 'seconds === priorSeconds' crypto-agents/paid-work/ubiquity-issue-1377/issue-1377-fix.patch
+          echo "ISOLATED_COUNTDOWN_REGRESSION_VALIDATED — standalone reproduction, not actual Ubiquity CI" >> "$GITHUB_STEP_SUMMARY"
+          echo "External issue: https://github.com/ubiquity/ai.ubq.fi/issues/1377" >> "$GITHUB_STEP_SUMMARY"
+          echo "Author's original comment: https://github.com/ubiquity/ai.ubq.fi/issues/1377#issuecomment-6982187597" >> "$GITHUB_STEP_SUMMARY"
+          echo "No merged fix, contracted income, payment or owner wallet transaction is implied." >> "$GITHUB_STEP_SUMMARY"
