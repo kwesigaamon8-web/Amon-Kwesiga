@@ -18,6 +18,7 @@ Then open **http://localhost:8000**. On a basic smartphone or low-bandwidth conn
 4. Or click **Run fictional offline demo** to exercise a successful *synthetic* output match with no network or payment. Its proof is explicitly labelled fictional and not a real BTC receipt.
 5. With a real, publicly available Bitcoin **transaction ID**, click **Look up transaction outputs**.
 6. A real lookup differentiates no address match, underpayment, unconfirmed matching output and confirmed matching output. If the explorer reports a tip height, confirmation count is included.
+7. In **step 3 (Local invoice ledger)**, save the current invoice using a unique invoice ID, select an invoice, and manually link the *last genuine public explorer lookup* as evidence. A fictional offline demonstration cannot be linked as a genuine TX. Rechecking the same output replaces the prior result rather than doubling it; a TXID:vout already assigned to another invoice is rejected. Export the temporary browser ledger as JSON before leaving the page. This is not a sales journal or a claim that a particular customer paid.
 
 No seed phrase, private key, credentials, email or wallet spending is requested. There is no persistence.
 
@@ -28,6 +29,10 @@ node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/wallet_
 ```
 
 No external npm dependencies. Unit tests cover real B1/B2 Bech32 mainnet checksum verification, wrong-network rejection, safe BIP21 URI generation, exact satoshi accounting, output matching, underpayment, unconfirmed funds and malformed explorer responses. End-to-end mempool.space browser access is **not** covered by offline tests. CI evidence is published by the repository's "Bitcoin Watch Wallet — Core Tests" workflow.
+
+## Public static source, ready for site deployment
+
+The wallet's four public frontend files are mirrored in [docs/bitcoin-merchant/](https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/docs/bitcoin-merchant), with a storefront entry at [docs/index.html](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/index.html). The stable source route is not proof that the current temporary HTTPS deployment already includes these files. The separate merchant-hosting workflow smoke-tests a standalone copy and records the latest hosted URL in its run summary.
 
 ## Why African merchants could use this
 
