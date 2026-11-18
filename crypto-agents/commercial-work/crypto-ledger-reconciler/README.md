@@ -37,6 +37,12 @@ The tool supports BTC at 8 decimal places (satoshis) and USDC on Base at 6 decim
 - Transaction-level fees are not allocated across outputs. Do not add a transaction fee to every output; reconcile fees separately.
 - The CSV parser supports quoted commas, escaped quotes and CRLF line endings.
 
+## Market position and limits
+
+Established products already offer much broader integrations and automation. [Koinly](https://koinly.io/crypto-accounting-software/) advertises 900+ integrations, CSV/API imports and QuickBooks/Xero sync; [CoinLedger](https://coinledger.io/tools/best-crypto-accounting-software) offers an accountant suite and wallet/exchange connections. This workbench is **not** a replacement for those platforms, a crypto sub-ledger or a tax engine.
+
+Its narrower proposition is an independent, local-only exception check for a buyer who already has two exports and wants a small, reviewable comparison without connecting wallets or uploading records to another SaaS provider. It does not calculate cost basis, fair value, FX rates, tax, journal entries or IFRS treatment. That privacy-first workflow is a hypothesis to validate with real buyers, not proof of market demand.
+
 ## Privacy and safety
 
 - All processing runs locally in the browser tab. There are no external scripts, APIs, uploads, cookies, analytics, wallet connections, private keys, signatures, spending functions or persistent storage.
