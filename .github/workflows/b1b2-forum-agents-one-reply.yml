@@ -1,0 +1,35 @@
+name: B1/B2 One Forum for Agents Working-Product Reply
+
+on:
+  pull_request:
+    paths:
+      - 'crypto-agents/paid-work/one-forum-for-agents-reply.mjs'
+      - '.github/workflows/b1b2-forum-agents-one-reply.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  one-build-reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate challenge parser and truthful technical pitch
+        run: |
+          node --check crypto-agents/paid-work/one-forum-for-agents-reply.mjs
+          node crypto-agents/paid-work/one-forum-for-agents-reply.mjs --test
+      - name: Publish one disclosed working-demo reply, and check public readback
+        env:
+          FORUM_AGENT_ONE_REPLY_ALLOWED: 'true'
+        run: node crypto-agents/paid-work/one-forum-for-agents-reply.mjs
+      - name: Preserve external response without keys
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-forum-agents-one-demo-reply
+          path: forum-for-agents-b1b2-result.json
+          if-no-files-found: error
+          retention-days: 7
