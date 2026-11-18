@@ -84,6 +84,8 @@ def classify(row, now):
         blockers.append('funding_transaction_missing_or_invalid')
     if UNSAFE.search(description):
         blockers.append('unsafe_or_pay_first_language')
+    submissions = row.get('submissionCount')
+    competition = submissions if type(submissions) == int and submissions >= 0 else None
     pool_slots = shared_pool_slots(description)
     if pool_slots and pool_slots > 0 and competition is not None and competition >= pool_slots:
         blockers.append('shared_pool_more_submissions_than_max_paid_slots')
@@ -91,8 +93,6 @@ def classify(row, now):
     if share_at_capacity is not None and share_at_capacity < Decimal('2'):
         blockers.append('shared_pool_sub_2_usdc_if_all_slots_used')
     status = 'HOLD' if blockers else 'SOURCE_OPEN_ESCROW_TX_PRESENT_NOT_PAYMENT_VERIFIED'
-    submissions = row.get('submissionCount')
-    competition = submissions if type(submissions) == int and submissions >= 0 else None
     fit = bool(SKILLS.search(description))
     score = (float(amount) / (1 + (competition or 0))) if competition is not None else 0
     return {
