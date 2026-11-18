@@ -9,6 +9,7 @@ import sys
 from collections import Counter
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from bounty_source_safety import unsafe_bounty_source
 from urllib.parse import urlparse
 
 root = Path(sys.argv[1] if len(sys.argv) > 1 else "combined-reports")
@@ -75,7 +76,8 @@ for r in reports:
         title = x.get("title", "")
         snippet = x.get("excerpt", "")[:350]
         combined = title + " " + snippet
-        if exclude.search(title):
+        if exclude.search(title) or unsafe_bounty_source(url,combined):
+            # Third-party issue text is untrusted; never reward a demand for hidden startup instructions.
             continue
         parsed = urlparse(url)
         from_github = parsed.netloc.lower() == "github.com" and "/issues/" in parsed.path
