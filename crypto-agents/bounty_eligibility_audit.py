@@ -28,6 +28,15 @@ FILLED_OR_DELIVERED=re.compile(r"(?i)(?:\bstatus\s*:\s*(?:delivered|completed|pa
 POINTS_ONLY=re.compile(r"(?i)(?:\bpoints?\s+only\b|\brecognition\s+points?\b|\bno\s+monetary\s+(?:payment|reward)\b)")
 SELF_LABELED_DECOY=re.compile(r"(?i)(?:\bself[- ]labeled\s+decoy\s+(?:bounty|reward)\b|\bdecoy\s+bounty\s+without\s+escrow\b|\bbounty\s+bot\s+trap\b)")
 ASSIGN_FIRST=re.compile(r"(?i)(?:\bassign[- ]first\b|\bdo\s+not\s+open\s+(?:a\s+)?pull\s+request\s+until\s+(?:a\s+)?maintainer\s+(?:officially\s+)?assigns\b)")
+# Public source absent: even a genuine $75 maintainer issue is not actionable
+# when the issue explicitly says the referenced patch/branch is missing
+# and live main lacks the implementation path (e.g. ubiquity/.github#137).
+UNPUBLISHED_REQUIRED_SOURCE=re.compile(
+    r"(?i)(?:\b(?:reviewed|required|implementation|source)\s+(?:head|branch|code|files?)\b[^\n.]{0,90}\bnot\s+(?:pushed|published|available)\b"
+    r"|\b(?:proposed|required|implementation|source)\s+(?:directory|path|files?|branch)\b[^\n.]{0,90}\b(?:does\s+not\s+exist|is\s+(?:not\s+)?(?:public|published|available))\b"
+    r"|\b(?:does\s+not\s+exist|not\s+present|missing)\s+on\s+(?:live\s+)?main\b"
+    r"|\b(?:publish\s+the\s+branch|attach\s+the\s+patch)\b"
+)
 
 def evaluate(issue,comments,repo=None):
     repo=repo or {}
@@ -52,6 +61,8 @@ def evaluate(issue,comments,repo=None):
         flags.append("NON_MONETARY_POINTS_ONLY")
     if SELF_LABELED_DECOY.search(issue_text):
         flags.append("SELF_LABELED_DECOY_BOUNTY")
+    if UNPUBLISHED_REQUIRED_SOURCE.search(issue_text):
+        flags.append("REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED")
     if ASSIGN_FIRST.search(issue_text) and not (issue.get("assignee") or issue.get("assignees")):
         flags.append("ASSIGNMENT_REQUIRED_BEFORE_PR")
     if RISK.search(issue_text):
@@ -66,7 +77,7 @@ def evaluate(issue,comments,repo=None):
         flags.append("NO_EXPLICIT_REWARD_IN_SOURCE")
     if int(issue.get("comments") or 0)>len(comments):
         flags.append("SOME_COMMENTS_UNREAD")
-    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR"))
+    critical=any(x in flags for x in ("NOT_OPEN_OR_ARCHIVED","EXPLICIT_EXTERNAL_CONTRIBUTOR_RESTRICTION","ADVANCE_FEE_OR_SECRET_RISK","HIDDEN_STARTUP_INSTRUCTION_DISCLOSURE_RISK","ZERO_PAYMENT_EXPLICIT","ALL_SLOTS_FILLED_OR_DELIVERED","NO_EXTERNAL_SUBMISSION_ROUTE","NON_MONETARY_POINTS_ONLY","SELF_LABELED_DECOY_BOUNTY","ASSIGNMENT_REQUIRED_BEFORE_PR","REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED"))
     return {
       "schema":"B_COMMERCIAL_ELIGIBILITY_V1",
       "source_url":issue.get("html_url"),"issue_title":title,
@@ -145,7 +156,14 @@ def self_test():
     assert "ASSIGNMENT_REQUIRED_BEFORE_PR" in evaluate(assign,[])["flags"]
     assign_ok={**assign,"assignee":{"login":"assigned-dev"}}
     assert "ASSIGNMENT_REQUIRED_BEFORE_PR" not in evaluate(assign_ok,[])["flags"]
-    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: including non-cash points, decoy labels and assign-first restrictions")
+    unpublished={**i,"body":("Fix proposal-router/main.js to preserve a custom title. "
+      "The reviewed head abc123 is not pushed to GitHub. Live main is the reviewed base; "
+      "proposal-router/ does not exist on live main. Publish the branch or attach the patch.")}
+    u=evaluate(unpublished,[])
+    assert u["critical_blocker"] and "REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED" in u["flags"],u
+    published={**i,"body":"Fix proposal-router/main.js published on main and add regression tests for the title change."}
+    assert "REQUIRED_IMPLEMENTATION_SOURCE_UNPUBLISHED" not in evaluate(published,[])["flags"]
+    print("PAID_BOUNTY_ELIGIBILITY_TEST_PASS: points, decoys, assign-first and unpublished required code")
 
 def main():
     p=argparse.ArgumentParser()
