@@ -1,0 +1,87 @@
+name: B1 B2 Owner-Ordered Extra Real AI Shift 18 Nov
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-extra-real-worker-shift-20261118.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-20261118-owner-extra-real-shift
+  cancel-in-progress: false
+jobs:
+  bounded-free-worker-shift:
+    name: ${{ matrix.fleet }} ${{ matrix.director }} actual worker processes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - fleet: transferexperiment
+            director: D01
+          - fleet: BountyScoutAI
+            director: D04
+    env:
+      WORKFORCE_ID: ${{ matrix.fleet }}
+      ROLE_ID: ${{ matrix.director }}
+      REAL_AI_PROCESSES_PER_DIRECTOR: '4'
+      MAX_BATCH_SECONDS: '500'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      OMP_NUM_THREADS: '2'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate real order, source safety and code
+        run: |
+          set -euo pipefail
+          python -m compileall -q crypto-agents
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/bounty_eligibility_audit.py --self-test
+          python -m unittest discover -s crypto-agents/commercial-work/five-dollar-csv-pilot -p 'test_*.py' -q
+      - name: Prepare director's unique role samples under latest owner order
+        run: python crypto-agents/director_activation_plan.py
+      - name: Install local zero-fee open-weight model runtime
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Actually launch four independent worker OS model processes
+        run: python crypto-agents/ai_process_launcher.py
+      - name: Independently summarize actual completions and honest income limits
+        if: always()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, os
+          f=Path('ai-process-reports/manifest-'+os.environ['ROLE_ID']+'.json')
+          if not f.exists():
+              print('EXTRA_REAL_SHIFT_NO_MANIFEST: 0 verified worker model completions')
+          else:
+              d=json.loads(f.read_text())
+              assert d['workforce_namespace']==os.environ['WORKFORCE_ID']
+              assert d['director_id']==os.environ['ROLE_ID']
+              assert d['verified_paid_crypto_receipts']==[]
+              print('EXTRA_REAL_SHIFT_EVIDENCE', json.dumps({
+                'fleet':d['workforce_namespace'],'director':d['director_id'],
+                'processes_started':d['subprocesses_invoked'],
+                'model_completed':d['real_model_completed'],
+                'model_failed_or_missing':d['real_model_failed_or_missing'],
+                'new_payment_verified_by_worker':False,
+                'run_link':'https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],
+              }))
+          PY
+      - name: Retain each genuinely executed worker's individual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extra-shift-${{ matrix.fleet }}-${{ matrix.director }}
+          path: |
+            ai-process-reports/
+            director-work-orders/
+          if-no-files-found: warn
+          retention-days: 7
