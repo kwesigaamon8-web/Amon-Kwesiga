@@ -6,6 +6,7 @@ on:
       - '.github/workflows/paid-task-scout.yml'
       - 'crypto-agents/paid_task_scout.py'
       - 'crypto-agents/taskmarket_base_usdc_scout.py'
+      - 'crypto-agents/basebounty_usdc_scout.py'
       - 'crypto-agents/paid-work/revenue_conversion_gate.py'
       - 'crypto-agents/paid-work/conversion-targets.json'
       - 'crypto-agents/worldwide_paid_work_seeds.json'
@@ -186,6 +187,22 @@ jobs:
               for c in d['candidate_unverified'][:5]:
                   f.write('- '+c['id']+': '+c['advertised_usdc_base']+' USDC — '+c['status']+' — '+c['source_url']+'\n')
               f.write('- Signed applications, accepted deliveries, and confirmed owner deposits: NONE from this scout.\n')
+          PY
+      - name: Run read-only BaseBounty USDC source scout
+        run: |
+          python crypto-agents/basebounty_usdc_scout.py --self-test
+          python crypto-agents/basebounty_usdc_scout.py
+          python - <<'PY'
+          import json, os
+          d=json.load(open('paid-opportunity-reports/basebounty-base-usdc.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('\n### BaseBounty Base USDC paying jobs (source-only; NOT collected revenue)\n')
+              f.write('- Jobs checked: '+str(d['source_rows'])+'; candidates: '+str(d['candidate_count'])+'\n')
+              f.write('- Source errors: '+str(d['source_errors'])+'\n')
+              for x in d['candidates_unverified'][:5]:
+                  f.write('- Job '+x['job_id']+': '+x['worker_payout_usdc_advertised']+
+                          ' USDC — '+x['status']+' — '+x['api_url']+'\n')
+              f.write('- Wallet signatures, accepted contracts, verified receipts: NONE from this scan.\n')
           PY
       - name: Archive all checked candidate leads and blockers
         uses: actions/upload-artifact@v4
