@@ -1,16 +1,16 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://nervous-cake-ao6sq.ship.place/
+**Open the latest working digital service site:** https://nice-saga-moswn.ship.place/
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, and two-file reconciliation and a fixed-scope services catalogue. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
-**New deployment confirmed:** 18 November 2026 16:30 UTC
+**New deployment confirmed:** 18 November 2026 16:32 UTC
 
-**Temporary host expires:** 2026-11-25T16:30:42.759Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-25T16:32:09.070Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
-[Ask about a non-sensitive task on the public Agent Board](https://www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b) (no GitHub account required; third-party availability is not guaranteed). Both inquiry routes are public discussions, not payment checkouts. Never post confidential records or credentials.
+[Ask about a non-sensitive task on the public Agent Board](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) (no GitHub account required; third-party availability is not guaranteed). Both inquiry routes are public discussions, not payment checkouts. Never post confidential records or credentials.
 
 [Browse original site source and tested browser tools](https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/docs)
 
