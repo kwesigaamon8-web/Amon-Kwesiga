@@ -1,0 +1,99 @@
+name: B1 B2 Free Studio Hosting Renewal
+on:
+  push:
+    paths:
+      - '.github/workflows/b1-b2-free-studio-renewal.yml'
+  schedule:
+    # Twice weekly, not mining/inference. A new anonymous preview lasts 7 days.
+    - cron: '17 5 * * 1,4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: b1-b2-free-studio-host-renewal
+  cancel-in-progress: false
+
+jobs:
+  renew:
+    name: Test site, deploy public no-login preview, update stable site directory
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Original source automated tests
+        run: |
+          set -euo pipefail
+          node --test docs/tests/engine.test.js
+          test -s docs/index.html
+          test -s docs/assets/engine.js
+          test -s docs/assets/app.js
+          test -s docs/assets/styles.css
+      - name: Deploy public-only static files using anonymous free API, not Render
+        id: publish
+        run: |
+          set -euo pipefail
+          umask 077
+          cd docs
+          zip -q -r ../studio-preview.zip index.html assets/styles.css assets/engine.js assets/app.js
+          cd ..
+          curl -fSs --retry 2 --retry-delay 5 --max-time 50 \
+            -X POST 'https://ship.page/deploy' \
+            -H 'Content-Type: application/zip' \
+            --data-binary @studio-preview.zip -o publish-private.json
+          python - <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import json,os,urllib.parse
+          payload=json.loads(Path('publish-private.json').read_text())
+          url=payload.get('url','')
+          parsed=urllib.parse.urlsplit(url)
+          assert parsed.scheme=='https' and (parsed.hostname or '').endswith('.ship.place'), 'invalid live page URL'
+          assert {'index.html','assets/styles.css','assets/engine.js','assets/app.js'}<=set(payload.get('files') or []), 'missing published asset'
+          exp=payload.get('expires_at')
+          assert exp and 'T' in exp, 'anonymous expiry not provided'
+          now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
+          body=f'''# B1/B2 Digital Work Studio — live public service
+
+          **Open the latest working digital service site:** {url}
+
+          This public, no-login website contains original in-browser CSV/JSON conversion and data-quality tools and a fixed-scope services catalogue. Its customer quote-request link leads to a public GitHub issue form (posting requires a GitHub account). Never post private records in that form.
+
+          **New deployment confirmed:** {now}
+
+          **Temporary host expires:** {exp}. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+
+          [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
+
+          [Browse original site source and tested browser tools](https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/docs)
+
+          No real buyer, paid contract or incoming cryptocurrency is implied by website hosting. No wallet transaction or email is made by the deployment.
+          '''
+          Path('docs/LIVE_SITE.md').write_text(body,encoding='utf-8')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Permanent link directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md\n- **All 4 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
+          print('PUBLIC_DEPLOYMENT_CONFIRMED',json.dumps({'url':url,'expiry':exp,'files':len(payload.get('files',[]))}))
+          PY
+          rm -f publish-private.json studio-preview.zip
+      - name: Independently check new deployed site by HTTPS before publishing its link
+        run: |
+          set -euo pipefail
+          url="$(grep -Eo 'https://[a-z0-9-]+\.ship\.place/' docs/LIVE_SITE.md | head -1)"
+          [ -n "$url" ]
+          curl -fSsL --max-time 25 "$url" | grep -q 'Digital Work Studio'
+          curl -fSsL --max-time 25 "${url}assets/engine.js" | grep -q 'function'
+          echo "INDEPENDENT_HTTPS_CHECK_PASS $url"
+      - name: Publish stable latest-site directory in owner repository
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/LIVE_SITE.md
+          if git diff --cached --quiet; then
+            echo "Directory already current"
+            exit 0
+          fi
+          git commit -m "Refresh verified public B1/B2 studio URL without Render"
+          git push
+          echo "PUBLIC_LIVE_SITE_DIRECTORY_UPDATED"
