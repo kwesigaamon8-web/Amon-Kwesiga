@@ -1,0 +1,60 @@
+name: B1/B2 Agent Service Catalogue Validation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/agent-services.json'
+      - 'docs/.well-known/agent.json'
+      - 'docs/llms.txt'
+      - 'docs/index.html'
+      - '.github/workflows/agent-service-catalog-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/agent-services.json'
+      - 'docs/.well-known/agent.json'
+      - 'docs/llms.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate human-supervised fixed-scope crypto service feed
+        run: |
+          node --input-type=module <<'JS'
+          import {readFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          const feed=JSON.parse(readFileSync('docs/agent-services.json','utf8'));
+          const agent=JSON.parse(readFileSync('docs/.well-known/agent.json','utf8'));
+          const page=readFileSync('docs/index.html','utf8');
+          const doc=readFileSync('docs/llms.txt','utf8');
+          assert.equal(feed.schema,'b1b2-digital-services/v1');
+          assert.equal(feed.interaction.automatic_contracts,false);
+          assert.equal(feed.interaction.payment_checkout,false);
+          assert.equal(feed.interaction.accepts_email,false);
+          assert.equal(agent.no_live_mcp_or_a2a_endpoint,true);
+          assert.equal(agent.human_approval_required,true);
+          assert.match(feed.payment.b1_address,/^bc1[a-z0-9]{20,85}$/);
+          assert.match(feed.payment.b2_address,/^bc1[a-z0-9]{20,85}$/);
+          const ids=feed.offers.map(o=>o.id);
+          assert.equal(new Set(ids).size,ids.length);
+          assert.equal(feed.offers.length,4);
+          for(const offer of feed.offers){
+            assert.ok(offer.estimated_usd_price>0);
+            assert.ok(offer.evidence.includes('github.com/kwesigaamon8-web/Amon-Kwesiga/'));
+            assert.ok(offer.included.length>0);
+            assert.ok(offer.exclusions.length>0);
+          }
+          assert.ok(page.includes('href="llms.txt"'));
+          assert.ok(page.includes('href="agent-services.json"'));
+          assert.ok(doc.includes('not')||doc.includes('NOT'));
+          console.log('PASS: four truthful service offers, routes, links and no automated payment claims');
+          JS

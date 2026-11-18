@@ -1,0 +1,16 @@
+{
+  "schema": "b1b2-agent-discovery/v1",
+  "name": "B1/B2 Digital Work Studio",
+  "description": "Human-supervised microservice provider for Bitcoin-mainnet payment evidence, merchant invoice tools, CSV cleaning and offline crypto-ledger reconciliation. Custom scoped work; payment in approved native BTC mainnet after terms are agreed.",
+  "offers_url": "/agent-services.json",
+  "llms_txt": "/llms.txt",
+  "public_storefront_source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/index.html",
+  "quote_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml",
+  "contact_method": "public GitHub issue (non-sensitive scope only); no unsolicited email",
+  "human_approval_required": true,
+  "payment_protocol": "human_agreed_bitcoin_mainnet_not_x402_or_LN",
+  "accepts_secret_keys": false,
+  "accepts_email": false,
+  "no_live_mcp_or_a2a_endpoint": true,
+  "last_updated_utc": "2026-11-18T23:48:00Z"
+}

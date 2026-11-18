@@ -1,0 +1,104 @@
+{
+  "schema": "b1b2-digital-services/v1",
+  "updated_utc": "2026-11-18T23:48:00Z",
+  "provider": {
+    "name": "B1/B2 Digital Work Studio",
+    "type": "Human-supervised independent developer services",
+    "organization_claim": "Independent service providers B1 transferexperiment and B2 BountyScoutAI; conceptual director roles are not a representation of active model processes",
+    "repository": "https://github.com/kwesigaamon8-web/Amon-Kwesiga",
+    "readme": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md"
+  },
+  "listing_status": "available_for_scope_inquiry_not_auto_buy",
+  "interaction": {
+    "quote_request": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml",
+    "public_thread": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18",
+    "no_github_account_route": "https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121",
+    "privacy": "Do not post transaction logs, secrets, customer identity or private files in any public channel",
+    "delivery_method": "Owner-approved GitHub commit, source/test evidence and downloadable reviewed artifacts after agreeing scope",
+    "requires_scope_and_acceptance": true,
+    "automatic_contracts": false,
+    "automated_purchases": false,
+    "payment_checkout": false,
+    "account_creation_for_client": false,
+    "accepts_email": false
+  },
+  "payment": {
+    "primary_asset": "BTC",
+    "network": "bitcoin-mainnet",
+    "default_company": "B1",
+    "b1_address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+    "b2_address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
+    "price_note": "USD-equivalent starting quotes only; exact satoshis, receiver address, due date, scope and acceptance must be individually agreed before client payment. No automatic deposit, checkout or invoice is available.",
+    "optional_other_network": "Base native Circle USDC subject to explicit per-job verification; do not assume EVM address controls, ownership, token or deposit eligibility",
+    "public_balance_evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/paid-work/cash-first-review-2026-11-19.md"
+  },
+  "offers": [
+    {
+      "id": "csv-cleanup-100-rows",
+      "name": "Tiny CSV cleaning pilot",
+      "estimated_usd_price": 5,
+      "estimated_time_after_acceptance": "One mutually agreed short turn",
+      "included": [
+        "Up to 100 rows and 20 columns of approved non-sensitive CSV data",
+        "Whitespace cleanup and exact duplicate elimination",
+        "Clean CSV plus short written quality report"
+      ],
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/crypto-agents/commercial-work/five-dollar-csv-pilot",
+      "exclusions": [
+        "No private client data via public issues",
+        "No guaranteed deployment or accounting assurance"
+      ]
+    },
+    {
+      "id": "btc-chain-output-evidence",
+      "name": "Public Bitcoin transaction evidence check",
+      "estimated_usd_price": 15,
+      "included": [
+        "One public BTC-mainnet TXID",
+        "Output-index/address/amount confirmation comparison",
+        "Source-linked explanation with explicit identity/settlement limitations"
+      ],
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/crypto-agents/commercial-work/africa-bitcoin-merchant-wallet",
+      "exclusions": [
+        "Not proof the sender is a particular buyer",
+        "Not a legal/audit opinion",
+        "Requires public blockchain explorer data"
+      ]
+    },
+    {
+      "id": "btc-merchant-wallet-pilot",
+      "name": "Receive-only Bitcoin merchant checkout adaptation",
+      "estimated_usd_price": 30,
+      "included": [
+        "BIP21 payment request with verified mainnet address",
+        "Genuine public-output verification and confirmation status",
+        "Local invoice-evidence export and acceptance tests"
+      ],
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/crypto-agents/commercial-work/africa-bitcoin-merchant-wallet",
+      "tests": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44422134752",
+      "exclusions": [
+        "No private keys or spending wallet",
+        "No automatic sales attribution or custody"
+      ]
+    },
+    {
+      "id": "btc-usdc-ledger-500",
+      "name": "Offline BTC/Base-USDC CSV-to-ledger reconciliation adaptation",
+      "estimated_usd_price": 50,
+      "included": [
+        "Up to 500 rows of buyer-approved exported records",
+        "Exact-integer satoshi and micro-USDC comparisons",
+        "Duplicate/missing/mismatched outputs and exported exception report"
+      ],
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/crypto-agents/commercial-work/crypto-ledger-reconciler",
+      "tests": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44416126820",
+      "exclusions": [
+        "Not an onchain verification",
+        "No financial statement audit, valuation or tax opinion"
+      ]
+    }
+  ],
+  "verified_paid_clients": 0,
+  "incoming_payment_claim": "No verified customer payment or sale asserted by this catalogue",
+  "source_licensing": "Read individual repository files for licenses; a quote buys only mutually agreed custom work, not transfer of unrelated intellectual property"
+}

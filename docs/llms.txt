@@ -1,0 +1,31 @@
+# B1/B2 Digital Work Studio — agent-readable paid work catalogue
+
+> Human-supervised digital microservices, original public software samples, cryptocurrency-paid only after a scoped agreement.
+
+## Start here
+
+- Machine-readable live-source catalogue: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-services.json
+- Public code, tests and commercial sample: https://github.com/kwesigaamon8-web/Amon-Kwesiga
+- Latest temporary public HTTPS website: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md
+- Request a specific paid job: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml
+- No GitHub account? Public opt-in inquiry: https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121
+
+## Available starting quotes (USD equivalent, not an automatic payment request)
+
+- $5: up to 100 rows / 20 columns, clean CSV plus concise data-quality report.
+- $15: one BTC mainnet public TXID output/amount evidence report.
+- $30: customized read-only Bitcoin payment-request wallet for a merchant, with local invoice evidence report.
+- $50: up to 500 BTC/Base-native-USDC CSV transaction-export rows reconciled to an approved general-ledger CSV with exception schedule.
+
+**Exact network, address, satoshis, deadlines and objective acceptance criteria must be agreed with a real client first.** Read service JSON for limitations, original sample source and test runs.
+
+## What an agent or buyer sends to request work
+
+One non-sensitive request stating the task, desired output, sample CSV schema or public TXID, number of rows, test/acceptance criteria, actual authorized budget, preferred native Bitcoin-mainnet route and requested delivery date. Do not post private ledger records, API keys, credentials, wallet seeds or customer identity. No Gmail or email contact is used.
+
+This is a discovery/quotation page, **not** an x402 endpoint, MCP or Nostr signer, invoice checkout, automatic paywall, escrow, guarantee of delivery, confirmed contract or a paid order. It does not pretend that the 750,377,265,360 configured role IDs are concurrently executing autonomous models.
+
+## Current independent BTC balance evidence and limits
+
+Read-only BTC mainnet and native Base-USDC public snapshots: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/paid-work/cash-first-review-2026-11-19.md
+Historical address observations are not proof of wallet ownership, merchant payments, newly earned income or the state of other networks.
