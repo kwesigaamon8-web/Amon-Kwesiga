@@ -19,6 +19,20 @@ jobs:
           node-version: '22'
       - name: Test wallet plus accounting-safe read-only transaction allocation ledger
         run: node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/*.test.mjs
+      - name: Syntax-check browser wallet UI module without a browser
+        run: |
+          python3 - <<'PY'
+          import pathlib,re
+          base=pathlib.Path('crypto-agents/commercial-work/africa-bitcoin-merchant-wallet')
+          html=(base/'index.html').read_text(encoding='utf-8')
+          found=re.search(r'<script type="module">([\s\S]*?)</script>',html)
+          assert found, 'Wallet inline ES module missing'
+          (base/'.wallet-ui-ci.mjs').write_text(found.group(1),encoding='utf-8')
+          assert 'recordTxEvidence(ledger' in html
+          assert 'lastRealLookup=null' in html
+          PY
+          node --check crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/.wallet-ui-ci.mjs
+          rm crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/.wallet-ui-ci.mjs
       - name: Summarize verified scope without claiming money
         run: |
           echo "Tested receive-only Bitcoin mainnet wallet primitives." >> "$GITHUB_STEP_SUMMARY"
