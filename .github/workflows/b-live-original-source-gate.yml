@@ -1,0 +1,41 @@
+name: B1 B2 Original Paid Source Gate
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/new_earning_lanes.py'
+      - 'crypto-agents/bounty_eligibility_audit.py'
+      - 'crypto-agents/bounty_source_safety.py'
+      - '.github/workflows/b-live-original-source-gate.yml'
+permissions:
+  contents: read
+jobs:
+  source-and-issuer-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate source eligibility and spoofing exclusions
+        run: |
+          python crypto-agents/bounty_eligibility_audit.py --self-test
+          python crypto-agents/new_earning_lanes.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Retain audit evidence only; no assumed customer or payment
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-source-preflight
+          path: paid-opportunity-reports/new-earning-lanes.*
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Explain tested status
+        if: always()
+        run: |
+          echo '### Real-source earning preflight' >> "$GITHUB_STEP_SUMMARY"
+          echo 'A candidate is admitted only when its original GitHub issue is currently open, issuer-controlled, accessible and not explicitly blocked.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This is eligibility research, not a submitted job, accepted commission or verified cryptocurrency receipt.' >> "$GITHUB_STEP_SUMMARY"
