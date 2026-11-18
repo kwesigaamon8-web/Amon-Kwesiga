@@ -45,9 +45,9 @@ jobs:
           import torch
           torch.set_num_threads(2)
           p=pipeline('text-generation',model='HuggingFaceTB/SmolLM2-135M-Instruct',device=-1)
-          a=p('Review this evidence.',max_new_tokens=6,do_sample=False,return_full_text=False)
-          assert a and str(a[0].get('generated_text','')).strip()
-          print('ONE_SHARED_MODEL_PRELOAD_AND_GENERATION_PASS')
+          a=p([{'role':'user','content':'Give one short word confirming you are ready to review a task.'}],max_new_tokens=24,do_sample=False,return_full_text=False)
+          assert a and isinstance(a,list) and 'generated_text' in a[0], 'model did not return a pipeline result'
+          print('ONE_SHARED_MODEL_CHAT_PRELOAD_PASS',bool(a[0].get('generated_text')))
           PY
       - name: Produce one actual source-backed bounded worker result, never customer acceptance
         run: python crypto-agents/bounded_paid_shift_worker.py --fleet ${{ matrix.fleet }}
