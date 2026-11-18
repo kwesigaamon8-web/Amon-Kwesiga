@@ -11,3 +11,9 @@ test('flat JSON only',()=>{assert.throws(()=>parseJSON('{"id":1}'),/array/);asse
 test('missing values, duplicate IDs, valid numeric amounts',()=>{const d=parseCSV('id,amount\nA,10.25\nA,5\nB,\nC,garbage\n');const x=analyze(d,'id','amount');assert.equal(x.duplicateCount,1);assert.deepEqual(x.duplicates[0],{row:3,firstRow:2,value:'A'});assert.equal(x.missing.amount,1);assert.equal(x.amountTotal,15.25);assert.deepEqual(x.invalidAmountRows,[5]);});
 test('CSV formula-like text is escaped for Excel unless opted out',()=>{const x=parseCSV('name,amount\n=1+1,5\n');assert.equal(parseCSV(toCSV(x)).items[0].name,"'=1+1");assert.equal(parseCSV(toCSV(x,{excelSafe:false})).items[0].name,'=1+1');});
 test('unexpected trailing text after CSV quoted field rejected',()=>{assert.throws(()=>parseCSV('a,b\n"hello"oops,2'),/Unexpected text/);});
+
+test('ambiguous comma amounts are flagged without silent conversion',()=>{
+ const d=parseJSON(JSON.stringify([{amount:'1,2'},{amount:'1,234.50'},{amount:'1.234,50'},{amount:'12.50'},{amount:'-2.5'}]));
+ const x=analyze(d,null,'amount');
+ assert.deepEqual(x.invalidAmountRows,[2,3,4]);assert.equal(x.amountRows,2);assert.equal(x.amountTotal,10);
+});

@@ -94,7 +94,7 @@
         const value = String(item[amountField] == null ? '' : item[amountField]).trim();
         if (value !== '') {
           // Reject thousands separators/currency characters rather than silently miscalculating.
-          const clean = value.replace(/,/g, '');
+          const clean = value;
           if (!/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(clean) || !Number.isFinite(Number(clean))) invalidAmounts.push(idx + 2);
           else { total += Number(clean); amountCount++; }
         }
