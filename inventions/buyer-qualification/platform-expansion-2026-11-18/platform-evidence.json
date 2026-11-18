@@ -1,0 +1,121 @@
+{
+  "checked_at_utc": "2026-11-18T05:28:41.162626+00:00",
+  "scope": "Public-source feasibility review, not a platform endorsement or proof of buyer funding",
+  "policy": {
+    "receiving_network": "Bitcoin mainnet",
+    "email_access": false,
+    "wallet_operations": false,
+    "new_accounts": false
+  },
+  "platforms": [
+    {
+      "platform": "GitLab",
+      "kind": "code forge",
+      "sources": [
+        "https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/7174",
+        "https://gitlab.com/api/v4/projects/gitlab-org%2Fgitlab/issues?labels=Bounty&state=opened&per_page=10"
+      ],
+      "native_btc_payout": "buyer_specific_unknown",
+      "fee": "No funded buyer/payment arrangement verified",
+      "access": "Public issue query succeeded; authenticated contributor access not established",
+      "finding": "One narrow open Bounty-labelled query returned an empty list. This does not establish that all GitLab projects lack bounties. Label discovery required authentication. The historical handbook proposal treats bounty terms as an agreement with the sponsor.",
+      "next_gate": "Named sponsor, live issue, contributor permission and explicit BTC-mainnet payment agreement"
+    },
+    {
+      "platform": "Codeberg",
+      "kind": "code forge",
+      "sources": [
+        "https://docs.codeberg.org/getting-started/faq/"
+      ],
+      "native_btc_payout": "buyer_specific_unknown",
+      "fee": "Official documentation says account use is free subject to terms",
+      "access": "Official documentation read; repository browsing was blocked to the search tool; no authenticated account established",
+      "finding": "Free software hosting is not a promise of paid contribution. No funded issue identified in the accessible material.",
+      "next_gate": "Accessible specific project with independent funded sponsor and authorized submission route"
+    },
+    {
+      "platform": "chainjobs",
+      "kind": "freelance board",
+      "sources": [
+        "https://chainjobs.app/how-it-works",
+        "https://chainjobs.app/jobs/637c25f7-a9c1-49cb-841f-ef76b565ebec",
+        "https://chainjobs.app/jobs/daccde86-c787-4e29-b7be-d537c024820a"
+      ],
+      "native_btc_payout": "negotiable_not_agreed",
+      "fee": "Official FAQ says applying/chatting has no fee and payments have no platform commission",
+      "access": "Two live public buyer listings read; applications require sign-in and are private; no account accessed",
+      "finding": "Direct settlement is negotiated. Both reviewed writing listings specify USDC or bank transfer, not an accepted BTC-mainnet agreement. GitHub sign-in is advertised but no login or authorization grant was attempted.",
+      "next_gate": "Verified buyer accepting native BTC, precise scope, permitted authenticated application and eligibility"
+    },
+    {
+      "platform": "Bitlance",
+      "kind": "freelance marketplace",
+      "sources": [
+        "https://www.bitlance.work/findwork?category=admin"
+      ],
+      "native_btc_payout": "lightning_only_in_reviewed_docs",
+      "fee": "Page advertises low fees; exact schedule not verified",
+      "access": "Public page read; its job list reported a loading error",
+      "finding": "Official page specifies Lightning wallet settlement. A mainnet address alone cannot receive that payout.",
+      "next_gate": "Separately approved Lightning route or an explicit permitted native-mainnet alternative"
+    },
+    {
+      "platform": "HackerOne",
+      "kind": "conditional security reward platform",
+      "sources": [
+        "https://docs.hackerone.com/en/articles/8395720-payment-preferences",
+        "https://docs.hackerone.com/en/articles/8365247-create-an-account",
+        "https://docs.hackerone.com/en/articles/8399426-payment-faqs"
+      ],
+      "native_btc_payout": "documented_direct_wallet",
+      "fee": "USD 15 crypto minimum; current net payout deductions not established",
+      "access": "Official docs read; no authenticated, email-free application/claim route established",
+      "finding": "Direct BTC wallet payments explicitly support Legacy and BECH32. Monetary awards require identity verification, payment setup and an approved tax form. Published setup and claim instructions involve email. A valid accepted finding is required; a program is not a guaranteed job.",
+      "next_gate": "Permitted account/claim route, program-specific authorization, eligibility and independently accepted finding"
+    },
+    {
+      "platform": "LaborX",
+      "kind": "freelance marketplace",
+      "sources": [
+        "https://laborx.com/"
+      ],
+      "native_btc_payout": "wrapped_tokens_not_native",
+      "fee": "Detailed FAQ states 10% freelancer fees; premium marketing and rebate wording differ",
+      "access": "Public official terms read; no account or wallet accessed",
+      "finding": "Payment FAQ lists WBTC on Ethereum and BTCB on BNB Chain. Neither is native BTC mainnet. No approved conversion or alternate receiving route exists for this review.",
+      "next_gate": "Explicit native-mainnet arrangement permitted by platform and buyer; resolve fee terms first"
+    }
+  ],
+  "buyer_leads": [
+    {
+      "handle": "pushpendra12jxops",
+      "platform": "chainjobs",
+      "url": "https://chainjobs.app/jobs/637c25f7-a9c1-49cb-841f-ef76b565ebec",
+      "advertised_fee": "30–50 USDC/project",
+      "status": "prospect",
+      "commissioned": false,
+      "accepted": false,
+      "receipt_proof": null,
+      "notes": "Listing posted 12 November 2026, visible until 12 December 2026. Funding, identity, BTC-mainnet willingness, deadline and exact acceptance criteria unverified."
+    },
+    {
+      "handle": "maisha",
+      "platform": "chainjobs",
+      "url": "https://chainjobs.app/jobs/daccde86-c787-4e29-b7be-d537c024820a",
+      "advertised_fee": "Negotiable/week; USDC or bank transfer",
+      "status": "prospect",
+      "commissioned": false,
+      "accepted": false,
+      "receipt_proof": null,
+      "notes": "Listing posted 11 November 2026, visible until 11 December 2026. Scope remains broad; funding, identity and BTC-mainnet willingness unverified."
+    }
+  ],
+  "actions": {
+    "applications": 0,
+    "messages": 0,
+    "new_accounts": 0,
+    "wallet_operations": 0,
+    "accepted_engagements": 0,
+    "verified_receipts": 0
+  }
+}
