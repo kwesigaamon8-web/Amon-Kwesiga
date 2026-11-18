@@ -61,7 +61,7 @@ EXCLUDED_ORIGIN_REPOS=("bountyscout","bounty-plaza")
 ISSUE_URL=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/(\d+)$")
 # Only genuine sponsor-owned, still-open original issues may reach scarce AI jobs.
 # A third-party index is not authoritative; no CI/model work on closed offers.
-MAX_PRIMARY_SOURCE_PREFLIGHTS=14
+MAX_PRIMARY_SOURCE_PREFLIGHTS=36
 
 
 def github_get(url):
