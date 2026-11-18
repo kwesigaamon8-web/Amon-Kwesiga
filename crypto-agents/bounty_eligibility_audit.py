@@ -19,7 +19,7 @@ PRICE=re.compile(r"(?i)(?:\bPrice:\s*\d+(?:\.\d+)?\s*USD|\b(?:bounty|reward|paym
 DISPUTE=re.compile(r"(?i)(?:payment not received|bounty not paid|unable to pay|fake bounty|scam bounty)")
 # Only the payer/maintainer can revoke a posted prize; an outsider's speculation
 # must never be treated as official revocation.
-WITHDRAWN_BY_SPONSOR=re.compile(r"(?i)(?:\bbount(?:y|ies)\b[^.\\n]{0,120}\bwithdrawn\b|\bbounty program withdrawn\b|\bno bounty will be paid\b|\bno cash budget\b|\bwe (?:have )?(?:cancelled|canceled|withdrawn) (?:the|this|our) bounty\b|\breward (?:has been |is )?(?:cancelled|canceled|withdrawn)\b)")
+WITHDRAWN_BY_SPONSOR=re.compile(r"(?i)(?:\bbount(?:y|ies)\b[^.\n]{0,120}\bwithdrawn\b|\bbounty program withdrawn\b|\bno bounty will be paid\b|\bno cash budget\b|\bwe (?:have )?(?:cancelled|canceled|withdrawn) (?:the|this|our) bounty\b|\breward (?:has been |is )?(?:cancelled|canceled|withdrawn)\b)")
 # A cash-labelled conformance mirror is not an accepted contributor route if its
 # own sponsor explicitly refuses manual PRs. Never mistake its price for escrow.
 NO_EXTERNAL_SUBMISSION=re.compile(r"(?is)\b(?:manual|human|external|community)\s+(?:pull requests?|PRs?|contributions?)[^\n.]{0,80}\b(?:are not|is not|will not be|won.t be)\s+(?:reviewed|accepted|merged)\b")
