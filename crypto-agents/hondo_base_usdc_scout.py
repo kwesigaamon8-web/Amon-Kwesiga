@@ -65,7 +65,7 @@ def check_one(row):
     status = str(first(row, ("status", "public_status", "task_status")) or "")[:30]
     remaining = nonnegative_number(first(row, (
         "capacity_remaining", "remaining_capacity", "remaining_slots",
-        "capacityAvailable", "available_slots", "slots_remaining")))
+        "capacityAvailable", "capacity_available", "available_slots", "slots_remaining")))
     # Some public list projections expose a nested capacity object.
     if remaining is None and isinstance(row.get("capacity"), dict):
         remaining = nonnegative_number(first(row["capacity"],
@@ -73,7 +73,9 @@ def check_one(row):
     claimable = first(row, ("claimable", "is_claimable", "can_claim"))
     if not isinstance(claimable, bool):
         claimable = None
-    reward_raw = first(row, ("reward_usdc", "reward_amount_usdc", "rewardUsdc", "reward"))
+    reward_raw = first(row, ("reward_usdc", "reward_amount_usdc", "rewardUsdc", "reward", "reward_amount"))
+    if reward_raw is None and isinstance(row.get("reward_snapshot"), dict):
+        reward_raw = row["reward_snapshot"]
     reward = nonnegative_number(reward_raw)
     if isinstance(reward_raw, dict):
         reward = nonnegative_number(first(reward_raw, ("amount", "usdc_amount", "value")))
@@ -117,6 +119,7 @@ def self_test():
     assert check_one({**sample, "task_type": "paid_service_trial.v1"})["status"] == "HOLD"
     assert check_one({**sample, "claimable": False})["status"] == "HOLD"
     assert check_one({**sample, "capacity_remaining": 0})["status"] == "HOLD"
+    assert check_one({**sample, "capacity_remaining": None, "capacity_available": 3})["status"] == "POTENTIAL_FREE_TASK_REVIEW_DEFINITION"
     assert check_one({**sample, "capacity_remaining": None})["status"] == "HOLD"
     assert check_one({**sample, "reward_usdc": 0})["status"] == "HOLD"
     assert check_one({**sample, "task_id": "../../../secret"}) is None
@@ -126,7 +129,7 @@ def self_test():
 
 def run():
     errors = []
-    rows, candidates = [], []
+    rows, candidates, payload = [], [], None
     try:
         req = urllib.request.Request(URL, headers={
             "User-Agent": "B1B2-ReadOnly-Hondo-Paid-Task-Scout/1.0",
@@ -155,6 +158,8 @@ def run():
         "network": "Base", "asset": "USDC", "chain_id": 8453,
         "source_status": "ERROR_UNKNOWN_AVAILABILITY" if errors else "READ_ONLY_LIST_CHECKED",
         "source_errors": errors, "rows_seen": len(rows),
+        "source_top_level_keys": sorted(payload.keys())[:40] if isinstance(payload, dict) else [],
+        "first_row_field_names": sorted(rows[0].keys())[:60] if rows else [],
         "potential_claimable_count": len(ready), "screened": candidates[:25],
         "buyer_acceptance_proven": False, "earnings_proven": False,
         "owner_wallet_receipts_proven": False, "actions_posted": 0,
