@@ -304,6 +304,19 @@
       "crypto-agents/REAL_PAYING_WORK_ROUTE_2026-11-16.md",
       "docs/LIVE_SITE.md"
     ],
-    "notes": "This records a durable operating instruction in the owner's GitHub repository. It does not activate all dormant agents, guarantee a future model remembers every private conversation, earn coins, or create background execution."
+    "notes": "This records a durable operating instruction in the owner's GitHub repository. It does not activate all dormant agents, guarantee a future model remembers every private conversation, earn coins, or create background execution.",
+    "latest_proven_work_2026_11_18_1206z": {
+      "external_target": "https://github.com/Ayush441-python/AUREN",
+      "sponsor_bounty_source": "https://github.com/Ayush441-python/AUREN/blob/main/BOUNTY.MD",
+      "original_deliverable": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/paid-work/auren-risk-threshold-bounty-submission.md",
+      "independently_successful_test_run": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44300605113",
+      "stage": "ORIGINAL_REPRO_TESTED_IN_OWNER_REPOSITORY_EXTERNAL_SUBMISSION_NOT_AUTHORIZED",
+      "external_submission_attempt": "FAILED HTTP 403 Resource not accessible by integration on GitHub issues.create",
+      "owner_action_only_if_later_needed": "Provide a GitHub authenticated integration with explicit permission to submit issues to the external project, or submit from owner's authorized GitHub UI. Do not retry unchanged 403 or pretend submitted.",
+      "crypto_receipts_confirmed": false,
+      "wallet_read_only_audit_run": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44291618752",
+      "wallet_audit_rerun_utc": "2026-11-18T12:06:42Z",
+      "wallet_audit_summary": "BTC-01 and BTC-02 current native balance zero; EVM-01/02 on Base/Ethereum zero native and canonical USDC; TRON and Stellar unknown/unavailable or account-not-found; no newly earned transfer proven. Do not infer full on-chain history from current balance."
+    }
   }
 }
