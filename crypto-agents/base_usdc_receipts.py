@@ -13,7 +13,7 @@ from pathlib import Path
 
 ADDRESS = '0x734989a439F146885C12907cd9Dd191b03d5B07e'
 USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
-RPC = 'https://mainnet.base.org'
+RPC = 'https://base-rpc.publicnode.com'
 CHAIN_ID = 8453
 TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 BALANCE_SELECTOR = '0x70a08231'
@@ -81,6 +81,7 @@ def parse_logs(logs, start, end):
 def scan(call=rpc):
     result={'checked_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
             'owner_shared_receiving_address':ADDRESS,'network':'Base mainnet',
+            'rpc_endpoint':RPC,
             'chain_id_expected':CHAIN_ID,'token':'native Circle USDC',
             'token_contract':USDC,'wallet_control_independently_verified':False,
             'payment_purpose_verified':False,'earned_receipts_verified':0,
@@ -111,7 +112,7 @@ def scan(call=rpc):
                 found.extend(parse_logs(logs,begin,end))
             except Exception as exc:
                 result['warnings'].append({'from_block':begin,'to_block':end,
-                                           'reason':type(exc).__name__})
+                                           'reason':type(exc).__name__+': '+str(exc)[:110]})
         result['recent_transfers_observed']=list({(t['txid'],t['block'],t['raw_micro_usdc']):t for t in found}.values())[:100]
         result['scan_complete']=not result['warnings']
         result['source_status']='PUBLIC_BALANCE_AND_LOG_WINDOW_OBSERVED' if result['scan_complete'] else 'PARTIAL_LOG_SCAN'
