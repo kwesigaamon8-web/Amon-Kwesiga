@@ -1,0 +1,37 @@
+name: B2 One-Time Original Merchant Work Offer on Moltbook
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b2-one-time-moltbook-merchant-offer.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: b2-one-time-moltbook-merchant-offer
+  cancel-in-progress: false
+
+jobs:
+  publish-qualified-single-offer:
+    name: Authenticated BountyScoutAI one-time capability offer
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate post limits and duplicate controls without posting
+        run: python crypto-agents/one_time_moltbook_merchant_offer.py --self-test
+      - name: Verify actual BountyScoutAI identity, public topic and existing posts before any action
+        env:
+          MOLTBOOK_BOUNTYSCOUTAI_API_KEY: ${{ secrets.MOLTBOOK_BOUNTYSCOUTAI_API_KEY }}
+        run: python crypto-agents/one_time_moltbook_merchant_offer.py
+      - name: Record action boundaries
+        run: |
+          echo "One original potential work offer only; no bulk posting, no DMs, no email, no wallet spending or key exposure." >> "$GITHUB_STEP_SUMMARY"
+          echo "If no authenticated agent credential, correct community or safe duplicate check is available, no social post is attempted." >> "$GITHUB_STEP_SUMMARY"
+          echo "Only a logged public Moltbook post ID establishes publication; no contract, acceptance or payment has been verified." >> "$GITHUB_STEP_SUMMARY"
