@@ -1,0 +1,78 @@
+name: B1 B2 Ten Independent Scouts
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/ten_agent_fleet.py'
+      - '.github/workflows/ten-agent-fleet.yml'
+  schedule:
+    - cron: '17 */6 * * *'
+concurrency:
+  group: b1b2-ten-scouts
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m py_compile crypto-agents/ten_agent_fleet.py
+      - run: python crypto-agents/ten_agent_fleet.py --self-test
+  ten-independent-agents:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        agent: [B1-01, B1-02, B1-03, B1-04, B1-05, B2-01, B2-02, B2-03, B2-04, B2-05]
+    name: "Scout ${{ matrix.agent }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Search and verify public original issue sources
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/ten_agent_fleet.py --agent ${{ matrix.agent }}
+      - name: Preserve individual execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ten-scout-${{ matrix.agent }}
+          path: ten-agent-reports/*.json
+          retention-days: 7
+          if-no-files-found: warn
+  review:
+    if: always()
+    needs: [validate, ten-independent-agents]
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect independently produced evidence
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ten-scout-*
+          path: ten-agent-reports
+          merge-multiple: true
+      - name: Audit agent identities, coverage, and verified vs unverified earnings
+        run: python crypto-agents/ten_agent_fleet.py --audit ten-agent-reports
+      - name: Save auditable evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ten-scout-evidence-and-audit
+          path: ten-agent-reports/
+          retention-days: 7
