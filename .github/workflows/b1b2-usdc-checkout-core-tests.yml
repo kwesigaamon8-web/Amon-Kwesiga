@@ -1,0 +1,25 @@
+name: B1 B2 Native USDC Checkout Portfolio Tests
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'crypto-agents/commercial-work/usdc-checkout-core/**'
+      - '.github/workflows/b1b2-usdc-checkout-core-tests.yml'
+permissions:
+  contents: read
+jobs:
+  checkout-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate original offline checkout logic
+        run: |
+          node --check crypto-agents/commercial-work/usdc-checkout-core/checkout.mjs
+          node --test crypto-agents/commercial-work/usdc-checkout-core/checkout.test.mjs
+      - name: Report actual scope
+        run: |
+          echo 'This is an offline synthetic test, NOT a chain payout or commissioned client acceptance.' >> "$GITHUB_STEP_SUMMARY"
