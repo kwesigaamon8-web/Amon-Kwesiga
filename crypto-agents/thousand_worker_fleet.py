@@ -38,6 +38,20 @@ SCAM = re.compile(
     r"guaranteed (?:profit|income))", re.I)
 ROOT = Path("thousand-fleet-evidence")
 
+def current_owner_order():
+    """Only the user-controlled, authenticated repository files issue commands."""
+    public = json.loads(Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8"))
+    chief = json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text(encoding="utf-8"))
+    ident = public.get("command_id")
+    if not ident or ident != chief.get("current_owner_order_id"):
+        raise ValueError("Chief D order disagrees with public worker order")
+    if not chief.get("orders") or chief["orders"][-1].get("id") != ident:
+        raise ValueError("Most recent owner instruction is missing or stale")
+    if "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW" not in public.get("hard_constraints", []):
+        raise ValueError("Email restriction missing from authenticated owner order")
+    return ident
+
+
 def utc():
     return datetime.now(timezone.utc).isoformat()
 
@@ -118,6 +132,7 @@ def child(shard, number, root):
         "task": worker,
         "source_query": snapshot["source_query"],
         "snapshot_search_success": snapshot["fetch_status"] == "ok",
+        "owner_order_id": snapshot.get("owner_order_id", "self-test-only"),
         "original_issue_source_independently_refetched": False,
         "source_issue_seen": bool(issue),
         "assessment": issue_assessment(issue, worker) if issue else None,
@@ -181,7 +196,9 @@ def run_shard(shard, root):
         raise ValueError("Unrecognized shard")
     target = root / shard
     target.mkdir(parents=True, exist_ok=True)
+    owner_order_id = current_owner_order()
     snap = fetch_snapshot(shard)
+    snap["owner_order_id"] = owner_order_id
     (target / "snapshot.json").write_text(json.dumps(snap, indent=2) + "\n", encoding="utf-8")
     executions = []
     # Spawn a separate OS process for every individual role and capture its exit code.
@@ -200,6 +217,7 @@ def run_shard(shard, root):
     all_success = all(x["exit_code"] == 0 for x in executions)
     manifest = {
         "shard": shard, "source_fetch": snap["fetch_status"],
+        "owner_order_id": owner_order_id,
         "source_error": snap["error"], "snapshot_issue_count": len(snap["items"]),
         "worker_attempts": 30,
         "child_process_successes": sum(x["exit_code"] == 0 for x in executions),
@@ -213,6 +231,7 @@ def run_shard(shard, root):
     return 0 if all_success else 1
 
 def audit(root):
+    owner_order_id = current_owner_order()
     records = []
     errors = []
     for shard in SHARDS:
@@ -222,6 +241,8 @@ def audit(root):
             errors.append(f"missing_manifest:{shard}")
             continue
         info = json.loads(manifest.read_text(encoding="utf-8"))
+        if info.get("owner_order_id") != owner_order_id:
+            errors.append(f"wrong_owner_order:{shard}")
         if info.get("child_process_successes") != 30:
             errors.append(f"missing_subprocess:{shard}")
         for idx in range(1, 31):
@@ -231,6 +252,8 @@ def audit(root):
                 errors.append(f"missing_report:{wid}")
                 continue
             data = json.loads(file.read_text(encoding="utf-8"))
+            if data.get("owner_order_id") != owner_order_id:
+                errors.append(f"worker_missed_owner_order:{wid}")
             if data.get("worker_id") != wid or not isinstance(data.get("pid"), int):
                 errors.append(f"invalid_identity:{wid}")
             if data.get("verified_paid_work") or data.get("new_wallet_receipts_verified"):
@@ -239,6 +262,7 @@ def audit(root):
                 errors.append(f"unauthorized_external_action:{wid}")
             records.append(data)
     report = {
+        "owner_order_id": owner_order_id,
         "expected_new_workers": 900,
         "independent_child_reports": len(records),
         "independent_completed_processes": len(records),
