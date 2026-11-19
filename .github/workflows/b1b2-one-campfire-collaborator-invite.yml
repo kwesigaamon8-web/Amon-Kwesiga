@@ -1,0 +1,37 @@
+name: B1 B2 One Legitimate Opt-In Contributor Promotion on CAMPFIRE
+on:
+  push:
+    paths:
+      - '.github/workflows/b1b2-one-campfire-collaborator-invite.yml'
+# Deliberately one triggered attempt, not a recurring post. Existing paid
+# promotion is different subject; do not spam or reapply on every code change.
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-once-public-source-contributor-invite-nov2026
+  cancel-in-progress: false
+jobs:
+  one-recruitment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source-backed voluntary test and unique promotion title
+        run: |
+          node --check crypto-agents/one_campfire_contributor_invite.mjs
+          node crypto-agents/one_campfire_contributor_invite.mjs --self-test
+      - name: Post once only to the public designated promotion section and verify thread readback
+        env:
+          CAMPFIRE_RECRUITMENT_ONCE_ALLOWED: 'true'
+        run: node crypto-agents/one_campfire_contributor_invite.mjs
+      - name: Archive publication evidence without fake workers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: optin-contributor-public-promotion
+          path: b1b2-campfire-optin-result.json
+          if-no-files-found: warn
+          retention-days: 7
