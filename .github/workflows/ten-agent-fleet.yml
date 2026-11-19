@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: read
+  issues: write
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -76,3 +77,29 @@ jobs:
           name: ten-scout-evidence-and-audit
           path: ten-agent-reports/
           retention-days: 7
+      - name: Post one initial audit receipt to the owner's command room (push only)
+        if: ${{ always() && github.event_name == 'push' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("ten-agent-reports/AUDIT.json")
+          if p.is_file():
+              d=json.loads(p.read_text())
+              body=("**Ten-scout deployment audit (push event)**\\n"
+                    f"Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\\n"
+                    f"Status: {d.get('status','UNKNOWN')}\\n"
+                    f"Distinct reports: {d.get('distinct_reported_processes',0)}/10\\n"
+                    f"Successful source searches: {d.get('successful_source_searches',0)}/10\\n"
+                    f"Confirmed received cryptocurrency: 0\\n"
+                    f"Missing/invalid: {d.get('missing_or_invalid',[])}")
+          else:
+              body=("**Ten-scout deployment audit (push event)**\\n"
+                    "No completed audit record; inspect failed steps: "
+                    "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}")
+          Path("/tmp/ten_scout_receipt.md").write_text(body.replace("\\n","\\n"))
+          PY
+          gh issue comment 9 --repo "${{ github.repository }}" --body-file /tmp/ten_scout_receipt.md
