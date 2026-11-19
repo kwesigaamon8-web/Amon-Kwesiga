@@ -3,7 +3,10 @@ Separate matrix runners, bounded read-only verified-public-issue checks; no emai
 wallet signing, unsolicited contact, paid commitments, or invented receipts.
 """
 import argparse
+import os
 import sys
+import time
+import urllib.error
 from pathlib import Path
 import ten_agent_fleet as fleet
 
@@ -63,6 +66,24 @@ assert len(FIFTY_AGENTS) == 50 and len(set(FIFTY_AGENTS)) == 50
 fleet.AGENTS = FIFTY_AGENTS
 fleet.OUT = Path("fifty-agent-reports")
 
+# Bounded recovery from a transient GitHub 403/429 response; no false success claims.
+_source_request = fleet.request_json
+def resilient_read_json(url):
+    try:
+        return _source_request(url)
+    except urllib.error.HTTPError as exc:
+        if exc.code not in (403, 429, 502, 503, 504):
+            raise
+        time.sleep(6)
+        return _source_request(url)
+fleet.request_json = resilient_read_json
+
+def execute_agent(agent):
+    # Spread simultaneous GitHub Search requests across different seconds.
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        time.sleep((int(agent.rsplit("-", 1)[-1]) % 4) * 2)
+    return fleet.run_agent(agent)
+
 
 def test():
     assert len([x for x in FIFTY_AGENTS if x.startswith("B1-")]) == 25
@@ -91,6 +112,6 @@ if __name__ == "__main__":
     elif args.audit is not None:
         sys.exit(fleet.audit(args.audit))
     elif args.agent:
-        sys.exit(fleet.run_agent(args.agent))
+        sys.exit(execute_agent(args.agent))
     else:
         parser.error("Choose --agent, --audit or --self-test")
