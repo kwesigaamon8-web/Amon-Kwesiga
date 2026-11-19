@@ -6,6 +6,11 @@ on:
       - 'docs/index.html'
       - 'docs/assets/**'
       - 'docs/tests/**'
+      - 'docs/crypto-ledger/**'
+      - 'docs/bitcoin-merchant/**'
+      - 'docs/agent-services.json'
+      - 'docs/llms.txt'
+      - 'docs/.well-known/**'
   schedule:
     # Twice weekly, not mining/inference. A new anonymous preview lasts 7 days.
     - cron: '17 5 * * 1,4'
@@ -35,13 +40,21 @@ jobs:
           test -s docs/assets/reconcile.js
           test -s docs/assets/reconcile-ui.js
           test -s docs/assets/styles.css
+          node --test crypto-agents/commercial-work/crypto-ledger-reconciler/*.test.mjs
+          node --test crypto-agents/commercial-work/africa-bitcoin-merchant-wallet/*.test.mjs
+          for item in docs/crypto-ledger/index.html docs/crypto-ledger/styles.css docs/crypto-ledger/core.mjs docs/crypto-ledger/app.js docs/bitcoin-merchant/index.html docs/bitcoin-merchant/wallet_core.mjs docs/bitcoin-merchant/invoice_ledger.mjs docs/bitcoin-merchant/fictional_demo.mjs docs/agent-services.json docs/llms.txt docs/.well-known/agent.json; do
+            test -s "$item"
+          done
+          grep -q 'href="crypto-ledger/index.html"' docs/index.html
+          grep -q 'href="bitcoin-merchant/index.html"' docs/index.html
+          grep -q 'href="agent-services.json"' docs/index.html
       - name: Deploy public-only static files using anonymous free API, not Render
         id: publish
         run: |
           set -euo pipefail
           umask 077
           cd docs
-          zip -q -r ../studio-preview.zip index.html assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js
+          zip -q ../studio-preview.zip index.html assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
           cd ..
           curl -fSs --retry 2 --retry-delay 5 --max-time 50 \
             -X POST 'https://ship.page/deploy' \
@@ -55,7 +68,7 @@ jobs:
           url=payload.get('url','')
           parsed=urllib.parse.urlsplit(url)
           assert parsed.scheme=='https' and (parsed.hostname or '').endswith('.ship.place'), 'invalid live page URL'
-          assert {'index.html','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js'}<=set(payload.get('files') or []), 'missing published asset'
+          assert {'index.html','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
           exp=payload.get('expires_at')
           assert exp and 'T' in exp, 'anonymous expiry not provided'
           now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
@@ -63,7 +76,7 @@ jobs:
 
           **Open the latest working digital service site:** {url}
 
-          This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, and two-file reconciliation and a fixed-scope services catalogue. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
+          This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
           **New deployment confirmed:** {now}
 
@@ -79,7 +92,7 @@ jobs:
           '''
           Path('docs/LIVE_SITE.md').write_text(body,encoding='utf-8')
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
-              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Permanent link directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md\n- **All 6 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
+              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Permanent link directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md\n- **All 17 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
           print('PUBLIC_DEPLOYMENT_CONFIRMED',json.dumps({'url':url,'expiry':exp,'files':len(payload.get('files',[]))}))
           PY
           rm -f publish-private.json studio-preview.zip
@@ -102,6 +115,16 @@ jobs:
           grep -q 'function' "$scratch/reconcile.js"
           grep -q 'function' "$scratch/reconcile-ui.js"
           [ -s "$scratch/styles.css" ]
+          for asset in crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
+            mkdir -p "$scratch/$(dirname "$asset")"
+            curl -fSsL --max-time 25 "${url}${asset}" -o "$scratch/$asset"
+            test -s "$scratch/$asset"
+          done
+          grep -q 'Crypto Ledger' "$scratch/crypto-ledger/index.html" || grep -q 'reconcil' "$scratch/crypto-ledger/index.html"
+          grep -q 'Bitcoin Merchant Watch Wallet' "$scratch/bitcoin-merchant/index.html"
+          grep -q 'b1b2-digital-services/v1' "$scratch/agent-services.json"
+          grep -q 'wallet_core.mjs' "$scratch/bitcoin-merchant/index.html"
+          echo "FULL_PUBLIC_17_ASSET_CHECK_PASS $url"
           echo "INDEPENDENT_HTTPS_CHECK_PASS $url"
       - name: Publish stable latest-site directory in owner repository
         run: |
