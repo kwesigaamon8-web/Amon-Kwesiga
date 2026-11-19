@@ -1,0 +1,111 @@
+name: B1 B2 1000 Worker Fleet - 900 Additional Executing Roles
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/thousand_worker_fleet.py'
+      - '.github/workflows/thousand-worker-fleet.yml'
+  schedule:
+    - cron: '53 */3 * * *'
+concurrency:
+  group: b1b2-thousand-worker-expansion
+  cancel-in-progress: false
+permissions:
+  contents: read
+  issues: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile source
+        run: python -m py_compile crypto-agents/thousand_worker_fleet.py
+      - name: Test unique worker IDs, source classification, and actual child execution
+        run: python crypto-agents/thousand_worker_fleet.py self-test
+  real-worker-shards:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [B1-S01, B1-S02, B1-S03, B1-S04, B1-S05, B1-S06, B1-S07, B1-S08, B1-S09, B1-S10, B1-S11, B1-S12, B1-S13, B1-S14, B1-S15, B2-S01, B2-S02, B2-S03, B2-S04, B2-S05, B2-S06, B2-S07, B2-S08, B2-S09, B2-S10, B2-S11, B2-S12, B2-S13, B2-S14, B2-S15]
+    name: "Run 30 genuine workers under ${{ matrix.shard }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch one bounded original search snapshot and spawn 30 individually audited child processes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/thousand_worker_fleet.py shard --shard ${{ matrix.shard }}
+      - name: Store 30 worker reports, process IDs, source assessments and parent audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hundred-scout-shard-${{ matrix.shard }}
+          path: thousand-fleet-evidence/
+          retention-days: 3
+          if-no-files-found: warn
+  independent-audit:
+    if: always()
+    needs: [validate, real-worker-shards]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect shard evidence for each executed process
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hundred-scout-shard-*
+          path: thousand-fleet-evidence
+          merge-multiple: true
+      - name: Independently audit 900 identities, process IDs, and forbidden financial claims
+        run: python crypto-agents/thousand_worker_fleet.py audit
+      - name: Save consolidated 900-process audit and individual output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-thousand-worker-execution-audit
+          path: thousand-fleet-evidence/
+          retention-days: 3
+          if-no-files-found: warn
+      - name: Report one initial auditable receipt to Chief D
+        if: ${{ always() && github.event_name == 'push' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("thousand-fleet-evidence/audit.json")
+          link="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if p.is_file():
+              d=json.loads(p.read_text())
+              body=(
+                  "**B1/B2 10x workforce expansion: +900 finite worker processes**\n"
+                  f"GitHub run: {link}\n"
+                  f"Independent audit pass: {d.get('pass')}\n"
+                  f"Executed process reports: {d.get('independent_completed_processes',0)}/900\n"
+                  f"Company allocations: {d.get('roles_by_company',{})}\n"
+                  f"Actual source records assessed: {d.get('snapshot_issues_inspected',0)}\n"
+                  f"Source unavailable for workers: {d.get('source_snapshot_failures',0)}\n"
+                  "Model inference count: 0; verified new earnings: 0 (not assessed).\n"
+                  "Registered fleet total: 1,000 including the existing 100; these are bounded subprocess jobs, not continuously running artificial intelligences."
+              )
+          else:
+              body="**B1/B2 +900**: No completed audit; inspect "+link
+          Path("/tmp/expanded_fleet_audit.md").write_text(body)
+          PY
+          gh issue comment 9 --repo "${{ github.repository }}" --body-file /tmp/expanded_fleet_audit.md
