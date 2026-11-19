@@ -30,7 +30,7 @@
     "auth_submission_available": false,
     "submission_verified": false,
     "receipt_verified": false,
-    "owner_action": "Must use authenticated RaptorX app to generate a real report, ask REX AI specific questions, screenshot and submit through signed-in Superteam Earn."
+    "owner_action": "Original evidence-led JUP research pack and 9 candidate questions is live: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/paid-submissions/raptorx-2026/JUP_RESEARCH_ENTRY.md . To become eligible must ACTUALLY generate in-app report at raptorx.trade, ask an in-app REX 5.0 question adapted to that report, capture real screenshots and submit signed-in to Superteam Earn. Total pool 125 USDC for two winners; 43 entries on 19 Nov, no promised payout."
   },
   {
     "id": "OPENTASK_OPENAPI_500_USDC",
@@ -74,5 +74,41 @@
     "submission_verified": false,
     "receipt_verified": false,
     "owner_action": "Reject: paid in audit service credit, not transferable cryptocurrency, deadline ended."
+  },
+  {
+    "id": "KRIPTOK_CREATOR_200_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://superteam.fun/earn/listing/kriptok-creator-challenge-01",
+    "spend_required": false,
+    "ready_deliverable": true,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Original 10-post fact-checked educational X thread prepared at https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/b1b2/kriptok-usdc-creator-20261119/crypto-agents/paid-submissions/kriptok-creator-2026/X_THREAD.md . Genuine X account not linked to Metricool as of 19 Nov; actual public thread and signed-in Superteam entry required. Do not count prize until sponsor award and correct-network payment."
+  },
+  {
+    "id": "RAENEST_13000_USDC_GLOBAL",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://superteam.fun/earn/listing/the-raenest-global-bounty-writing-video-and-animation/",
+    "spend_required": false,
+    "ready_deliverable": false,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Original sourced article and X thread drafted on repository branch b1b2/raenest-usdc-bounty-entry-20261119; sponsor requires genuine Raenest product use, referral link from owner account, original published public post and submission. Sponsor deadline 2026-12-13; prize conditional, not guaranteed."
+  },
+  {
+    "id": "GOHYBRID_WILDCARD_500_USD",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://github.com/limitlessprojects/Go-Hybrid/blob/main/BOUNTY.md",
+    "spend_required": false,
+    "ready_deliverable": true,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "receipt_verified": false,
+    "owner_action": "Original proof-DAG model and proposal at https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/b1b2/hybrid-proof-dag-wildcard-20261119/crypto-agents/paid-submissions/go-hybrid-2026/WILDCARD_SUBMISSION.md . Two upstream issue attempts returned 403, so NOT SUBMITTED. Sponsor pays only winner if accepted and later published; Base USDC payout only a proposed rail, verify before accepting any prize."
   }
 ]
