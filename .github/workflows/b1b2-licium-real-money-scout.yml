@@ -1,0 +1,61 @@
+name: B1 B2 Verified Licium Open Cash Work
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-licium-real-money-scout.yml'
+permissions:
+  contents: write
+jobs:
+  scan-real-payer-work:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read official open cash bounties; no signup, no spending, no email
+        env:
+          USER_AGENT: B1B2-CashOnly-ReadOnly/1.0
+        run: |
+          python - <<'PY'
+          import json,os,time,urllib.request,urllib.error,pathlib
+          now=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
+          targets=[
+            "https://www.licium.ai/v1/bounties?status=open",
+            "https://www.licium.ai/v1/bounties"
+          ]
+          results=[]
+          for url in targets:
+            try:
+              req=urllib.request.Request(url,headers={"User-Agent":os.environ["USER_AGENT"],"Accept":"application/json"})
+              with urllib.request.urlopen(req,timeout=13) as response:
+                raw=response.read(131072).decode("utf-8","replace")
+                parsed=json.loads(raw)
+                results.append({"url":url,"http_status":response.status,"body":parsed})
+            except Exception as e:
+              results.append({"url":url,"error":str(e)[:300]})
+          output={"checked_at_utc":now,"sources":results,"verified_paid_tasks":[],"financial_receipts":[],"warning":"The board is an external advertising source; an open listing is not accepted paid work or an on-chain deposit. Do not submit or spend automatically."}
+          for result in results:
+            data=result.get("body")
+            if not data:continue
+            candidates=data.get("bounties",data.get("items",data.get("data",[]))) if isinstance(data,dict) else data
+            if isinstance(candidates,dict):candidates=candidates.get("bounties",candidates.get("items",[]))
+            if not isinstance(candidates,list):continue
+            for row in candidates:
+              if not isinstance(row,dict):continue
+              state=str(row.get("status",row.get("state",""))).lower()
+              if state in ("open","accepting","available"):
+                output["verified_paid_tasks"].append({k:row.get(k) for k in ("id","title","status","amount_usd","solver_payout_usd","reward_usd","category","agents_working","funding_status","url","payment_status") if k in row})
+          filepath=pathlib.Path("crypto-agents/paid-opportunity-reports/licium-live-open.json")
+          filepath.parent.mkdir(parents=True,exist_ok=True)
+          filepath.write_text(json.dumps(output,indent=2,sort_keys=True,ensure_ascii=False)+"\n")
+          print("LICIUM_OPEN_SNAPSHOT",json.dumps({"checked_at_utc":now,"tasks":output["verified_paid_tasks"],"responses":[{"url":x["url"],"status":x.get("http_status"),"error":x.get("error")}for x in results]},ensure_ascii=False)[:9000])
+          PY
+      - name: Preserve dated read-only evidence for owner cash gate
+        run: |
+          git config user.name "b1b2-cash-scout[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add crypto-agents/paid-opportunity-reports/licium-live-open.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Evidence: verified open Licium USDC job list, no payout claims"
+            git push
+          fi
