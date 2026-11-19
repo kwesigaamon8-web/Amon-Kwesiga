@@ -1,16 +1,16 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://noon-sidecar-ofo8b.ship.place/
+**Open the latest working digital service site:** https://curse-apparel-tycd0.ship.place/
 
-**Browse all shared software:** [10-tool catalogue](https://noon-sidecar-ofo8b.ship.place/software.html).
+**Browse all shared software:** [10-tool catalogue](https://curse-apparel-tycd0.ship.place/software.html).
 
-**Find real opt-in project collaborators:** [Join B1/B2](https://noon-sidecar-ofo8b.ship.place/join.html) — invites only, not verified workers or mining income.
+**Find real opt-in project collaborators:** [Join B1/B2](https://curse-apparel-tycd0.ship.place/join.html) — invites only, not verified workers or mining income.
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
-**New deployment confirmed:** 19 November 2026 22:26 UTC
+**New deployment confirmed:** 19 November 2026 22:48 UTC
 
-**Temporary host expires:** 2026-11-26T22:26:18.706Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-26T22:48:32.485Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
