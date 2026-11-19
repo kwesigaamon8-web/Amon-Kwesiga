@@ -4,6 +4,8 @@ No inference-model claim, emails, wallet signing, outreach or asserted earnings.
 """
 import argparse
 import sys
+import time
+import urllib.error
 from pathlib import Path
 import ten_agent_fleet as fleet
 
@@ -54,6 +56,18 @@ assert {key.split("-")[0] for key in EXTRA_AGENTS} == {"B1", "B2"}
 # The base engine records verified source checks but NEVER fabricates buyer acceptance or deposits.
 fleet.AGENTS = EXTRA_AGENTS
 fleet.OUT = Path("forty-agent-reports")
+
+# Retry one transient GitHub source refusal without claiming a successful search.
+_source_request = fleet.request_json
+def resilient_read_json(url):
+    try:
+        return _source_request(url)
+    except urllib.error.HTTPError as exc:
+        if exc.code not in (403, 429, 502, 503, 504):
+            raise
+        time.sleep(5)
+        return _source_request(url)
+fleet.request_json = resilient_read_json
 
 
 def test():
