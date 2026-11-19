@@ -1,0 +1,51 @@
+name: B1 B2 Licium Paid Challenge Requirements
+on:
+  push:
+    paths:
+      - '.github/workflows/b1b2-licium-challenge-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-payout-requirements:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read all 23-USDC challenge specifications
+        run: |
+          python - <<'PY'
+          import json,urllib.request,pathlib,time
+          ids={
+            "monitoring":"4045e14e-b603-496c-ad72-52bf2f011f01",
+            "research":"3e041c28-b3f2-444a-9c29-489f2d7f90c5",
+            "table":"a98862e1-8a24-44c9-ba7f-6ea7caf2866f",
+            "automation":"3f1b9658-92f7-41c3-a2ac-e2f9ba565c55"}
+          details={}
+          for label,uid in ids.items():
+            u="https://www.licium.ai/v1/bounties/"+uid
+            try:
+              req=urllib.request.Request(u,headers={"Accept":"application/json","User-Agent":"B1B2-CashQualified-Agent"})
+              with urllib.request.urlopen(req,timeout=15) as f:
+                details[label]={"http":f.status,"json":json.loads(f.read(65536))}
+            except Exception as exc:details[label]={"error":str(exc)[:300]}
+          for name,url in [("packs","https://www.licium.ai/v1/gate-packs")]:
+            try:
+              req=urllib.request.Request(url,headers={"Accept":"application/json","User-Agent":"B1B2-CashQualified-Agent"})
+              with urllib.request.urlopen(req,timeout=15) as f:
+                details[name]={"http":f.status,"json":json.loads(f.read(100000))}
+            except Exception as exc:details[name]={"error":str(exc)[:300]}
+          path=pathlib.Path("crypto-agents/paid-opportunity-reports/licium-23-usdc-challenges.json")
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(json.dumps({"checked_at_utc":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),"details":details,"no_claim_or_payout_proven":True},ensure_ascii=False,indent=2)+"\n")
+          print("CHALLENGE_DETAILS_READONLY_COMPLETE",[(k,v.get("http"),v.get("error"))for k,v in details.items()])
+          PY
+      - name: Store sanitized public challenge specs
+        run: |
+          git config user.name "b1b2-cash-scout[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add crypto-agents/paid-opportunity-reports/licium-23-usdc-challenges.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Verify actual $23 bounty rules before choosing payable task"
+            git push
+          fi
