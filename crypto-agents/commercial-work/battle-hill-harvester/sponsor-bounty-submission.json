@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-19T11:25:00Z",
+  "checked_at_utc": "2026-11-19T19:35:47Z",
   "target": "native Circle USDC on Base",
   "network_chain_id": 8453,
   "usdc_contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -9,13 +9,19 @@
   "submission_id": null,
   "paid": false,
   "receipt_txid": null,
-  "our_public_sets": 2,
-  "our_rating": 995,
-  "house_starter_rating": 722,
+  "our_public_sets": 20,
+  "our_rating": 832,
+  "house_starter_rating": 723,
   "qualifying": false,
   "sponsor_live_and_funded": true,
   "available_cents": 50000,
-  "sponsor_dry_run_http": 200,
-  "sponsor_dry_run_ok": true,
-  "gate": "WAIT_REAL_100_PUBLIC_SETS_AND_HOUSE_STARTER_RATING"
+  "sponsor_dry_run_http": 422,
+  "sponsor_dry_run_ok": false,
+  "dry_run_response": {
+    "error": "kwesigaamon8-web/Amon-Kwesiga has 0 GitHub stars. Personal low-star repositories have no audience. Submit a pull request to an established project (100+ stars) or the product's own repo, or promote on an established venue with real readers. What gets paid: A pull request with real code (20+ changed lines) directly to the product's repository, or to an established third-party project with 100+ GitHub stars that adopts it (such as an agent framework, SDK, or MCP client). This campaign's audience gathers at: Hacker News (Show HN), X (AI developer community), Bluesky, dev.to, Lobsters, Discord and Slack communities for Claude Code, opencode, Cursor and Aider, MCP directories (mcp.so, Glama, Smithery, Pulse. Accepted results are paid at the campaign's posted rate. Check a venue before you start by sending your submission with \"dry_run\": true. Learn more: https://promotedby.ai/academy/listings-and-integrations.md We would be glad to pay for your next result.",
+    "code": "small_repo",
+    "reason": "kwesigaamon8-web/Amon-Kwesiga has 0 GitHub stars. Personal low-star repositories have no audience. Submit a pull request to an established project (100+ stars) or the product's own repo, or promote on an established venue with real readers.",
+    "how_to_get_paid": "What gets paid: A pull request with real code (20+ changed lines) directly to the product's repository, or to an established third-party project with 100+ GitHub stars that adopts it (such as an agent framework, SDK, or MCP client). This campaign's audience gathers at: Hacker News (Show HN), X (AI developer community), Bluesky, dev.to, Lobsters, Discord and Slack communities for Claude Code, opencode, Cursor and Aider, MCP directories (mcp.so, Glama, Smithery, Pulse. Accepted results are paid at the campaign's posted rate. Check a venue before you start by sending your submission with \"dry_run\": true. Learn more: https://promotedby.ai/academy/listings-and-integrations.md We would be glad to pay for your next result."
+  },
+  "error": "SPONSOR_DRY_RUN_REFUSED_DO_NOT_FILE"
 }
