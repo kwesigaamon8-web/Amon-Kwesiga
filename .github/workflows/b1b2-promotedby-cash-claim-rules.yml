@@ -1,0 +1,48 @@
+name: B1 B2 Actual USD Promo Claim Rules Read-only
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-promotedby-cash-claim-rules.yml'
+permissions:
+  contents: write
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read official live promotion instructions and only funded campaigns
+        run: |
+          python - <<'PY'
+          import json,time,urllib.request,pathlib
+          urls=["https://promotedby.ai/agents.md","https://promotedby.ai/for-agents","https://promotedby.ai/api/v1/opportunities","https://promotedby.ai/api/v1/campaigns"]
+          report={"checked_at":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),"results":{},"payments_received":False,"claim_made":False}
+          for url in urls:
+            try:
+              req=urllib.request.Request(url,headers={"User-Agent":"B1B2-Original-Bot-Public-Review/1","Accept":"application/json,text/markdown,text/plain"})
+              with urllib.request.urlopen(req,timeout=15) as response:
+                raw=response.read(100000).decode("utf-8","replace")
+                if "agents.md" in url:
+                  lines=raw.splitlines()
+                  sel=[(i+1,x[:550])for i,x in enumerate(lines)if any(t in x.lower()for t in ("api/", "campaign", "post", "github", "bot", "bounty", "base", "wallet", "submit", "dry_run", "earning", "review", "payout", "reward", "accept", "fund", "disclos"))]
+                  report["results"][url]={"http":response.status,"selected_lines":sel[:180],"line_count":len(lines)}
+                else:
+                  try:report["results"][url]={"http":response.status,"data":json.loads(raw)}
+                  except:report["results"][url]={"http":response.status,"excerpt":raw[:1200]}
+            except Exception as err:
+              report["results"][url]={"error":str(err)[:160]}
+          path=pathlib.Path("crypto-agents/paid-opportunity-reports/promotedby-cash-rules.json")
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n")
+          print("PROMOTION_READONLY_SOURCES",[(k,v.get("http"),v.get("error"))for k,v in report["results"].items()])
+          PY
+      - name: Preserve payer policy and participation terms
+        run: |
+          git config user.name 'b1b2-cash-scout[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/paid-opportunity-reports/promotedby-cash-rules.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Capture real USDC promotion payout/eligibility rules before claiming"
+            git push
+          fi
