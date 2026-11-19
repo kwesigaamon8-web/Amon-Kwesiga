@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/b1b2-battle-usdc-qualifier-watch.yml'
+      - 'crypto-agents/earning_loop_state_gate.py'
   schedule:
     - cron: '*/15 * * * *'
 permissions:
@@ -66,13 +67,47 @@ jobs:
           path.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
           print("REAL_CUP_MONEY_GATE",json.dumps({"checked":result["checked_at_utc"],"public_sets":result.get("public_ranked_sets"),"cup_sets":result.get("cup_ranked_sets"),"cup_qualified":result["cup_qualified"],"public_rating_above_starter":result["public_rating_above_starter"],"ready_for_sponsor":result["sponsor_bounty_ready_for_review"],"received":False}))
           PY
-      - name: Preserve actual public status only, never pretend to have USDC
+      - name: Check genuine progress gate regression tests
+        run: python crypto-agents/earning_loop_state_gate.py --self-test
+      - name: Archive latest factual cup observation without rewriting repository
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-cup-observation
+          path: crypto-agents/commercial-work/battle-hill-harvester/live-qualifier-status.json
+          retention-days: 4
+          if-no-files-found: warn
+      - name: Persist only actual cup milestones, not repeated timestamp commits
+        if: success()
         run: |
-          git config user.name 'b1b2-cup-money-watch[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add crypto-agents/commercial-work/battle-hill-harvester/live-qualifier-status.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Observe real ranked-set threshold for potential $15 Base USDC bounty"
-            git push
-          fi
+          set -euo pipefail
+          report="crypto-agents/commercial-work/battle-hill-harvester/live-qualifier-status.json"
+          cp "$report" "$RUNNER_TEMP/b1b2-current.json"
+          git config user.name "b1b2-evidence-milestone[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            set +e
+            python crypto-agents/earning_loop_state_gate.py --kind cup --old "$report" --new "$RUNNER_TEMP/b1b2-current.json"
+            code=$?
+            set -e
+            if [ "$code" -eq 3 ]; then
+              echo "NO_NEW_MATERIAL_CUP_MILESTONE"
+              exit 0
+            fi
+            if [ "$code" -ne 0 ]; then
+              echo "UNEXPECTED_MILESTONE_GATE_ERROR $code" >&2
+              exit "$code"
+            fi
+            cp "$RUNNER_TEMP/b1b2-current.json" "$report"
+            git add "$report"
+            git commit -m "Persist 25-set progress or actual cup/sponsor qualification milestone"
+            if git push origin HEAD:main; then
+              echo "PERSISTED_MATERIAL_CUP_MILESTONE"
+              exit 0
+            fi
+            sleep "$((attempt * 2))"
+          done
+          echo "MILESTONE_PERSIST_FAILED_AFTER_CONCURRENT_UPDATES" >&2
+          exit 1
