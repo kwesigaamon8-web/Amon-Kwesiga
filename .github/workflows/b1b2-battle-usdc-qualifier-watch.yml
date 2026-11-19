@@ -20,15 +20,15 @@ jobs:
           import urllib.request,json,time,pathlib
           B="b1b2-hill-harvester"
           root="https://api.battle.training"
-          urls={"bot":"/api/bots/"+B,"cup":"/api/ladders/promotedby-cup-nov-2026","ladder":"/api/ladder"}
+          urls={"bot":"/api/bots/"+B,"house_starter":"/api/bots/house-starter","cup":"/api/ladders/promotedby-cup-nov-2026","ladder":"/api/ladder"}
           result={"checked_at_utc":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),"bot":B,"evidence":{},"cup_qualified":False,"public_rating_above_starter":None,"sponsor_bounty_ready_for_review":False,"actual_usdc_received":False}
           for name,path in urls.items():
             try:
               q=urllib.request.Request(root+path,headers={"User-Agent":"B1B2-Original-Bot-RealMoneyGate/1","Accept":"application/json"})
               with urllib.request.urlopen(q,timeout=15) as f:
                 data=json.loads(f.read(220000))
-              if name=="bot":
-                result["evidence"][name]={"http":200,"public_url":"https://battle.training/bots/"+B,"data":data}
+              if name in ("bot","house_starter"):
+                result["evidence"][name]={"http":200,"public_url":"https://battle.training/bots/"+(B if name=="bot" else "house-starter"),"data":data}
               elif name=="cup":
                 entry=next((v for v in data.get("standings",[])if v.get("bot")==B),None)
                 result["evidence"][name]={"http":200,"prize_usd":data.get("prize"),"entry":entry,"enrolled":data.get("enrolled")}
@@ -46,16 +46,25 @@ jobs:
                   if isinstance(our_rate,(float,int))and isinstance(house_rate,(float,int)):
                     result["public_rating_above_starter"]=our_rate>house_rate
             except Exception as e:result["evidence"][name]={"error":str(e)[:180]}
-          public=result["evidence"].get("ladder",{}).get("ours") or {}
-          bot=result["evidence"].get("bot",{}).get("data") or {}
-          n=public.get("games",bot.get("games",0))
-          try:result["public_ranked_sets"]=int(n)
-          except:result["public_ranked_sets"]=0
+          own=result["evidence"].get("bot",{}).get("data") or {}
+          house=result["evidence"].get("house_starter",{}).get("data") or {}
+          own_armor=(own.get("theaters") or {}).get("armor") or {}
+          house_armor=(house.get("theaters") or {}).get("armor") or {}
+          result["public_ranked_sets"]=int(own_armor.get("sets") or 0)
+          result["house_public_ranked_sets"]=int(house_armor.get("sets") or 0)
+          result["cup_ranked_sets"]=int((result["evidence"].get("cup",{}).get("entry") or {}).get("games") or 0)
+          result["cup_sets_left"]=max(0,100-result["cup_ranked_sets"])
+          result["public_sets_left_for_promo"]=max(0,100-result["public_ranked_sets"])
+          if isinstance(own_armor.get("rating"),(int,float)) and isinstance(house_armor.get("rating"),(int,float)):
+            result["public_rating_above_starter"]=own_armor["rating"]>house_armor["rating"]
           result["sponsor_bounty_ready_for_review"]=result["public_ranked_sets"]>=100 and result["public_rating_above_starter"] is True
+          result["proven_new_income"]=False
+          result["credential_recoverable"]=False
+          result["credential_note"]="The account public key-encrypted record exists; corresponding private decryption key not verified. Never expose credentials in logs or create a duplicate account."
           path=pathlib.Path("crypto-agents/commercial-work/battle-hill-harvester/live-qualifier-status.json")
           path.parent.mkdir(parents=True,exist_ok=True)
           path.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
-          print("REAL_CUP_MONEY_GATE",json.dumps({"checked":result["checked_at_utc"],"public_sets":result.get("public_ranked_sets"),"cup_qualified":result["cup_qualified"],"public_rating_above_starter":result["public_rating_above_starter"],"ready_for_sponsor":result["sponsor_bounty_ready_for_review"],"received":False}))
+          print("REAL_CUP_MONEY_GATE",json.dumps({"checked":result["checked_at_utc"],"public_sets":result.get("public_ranked_sets"),"cup_sets":result.get("cup_ranked_sets"),"cup_qualified":result["cup_qualified"],"public_rating_above_starter":result["public_rating_above_starter"],"ready_for_sponsor":result["sponsor_bounty_ready_for_review"],"received":False}))
           PY
       - name: Preserve actual public status only, never pretend to have USDC
         if: always()
