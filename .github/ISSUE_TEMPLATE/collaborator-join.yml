@@ -1,0 +1,57 @@
+name: "Join the B1/B2 contributor network (opt-in)"
+description: "Introduce a real skill, test, buyer referral or authorized mining-collaboration proposal. Public; no guaranteed earnings."
+title: "[Opt-in collaborator] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a **public, voluntary inquiry**, not a job application or signed agreement. Do not share emails, phone numbers, wallet addresses, private keys, seed phrases, customer identity, copyrighted files, or confidential data. A response does not make you an employee or guarantee pay. Commercial terms and approved work are agreed separately.
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: What can you contribute?
+      options:
+        - Software development or bug fixing
+        - Testing, security review or documentation
+        - Translation or accessible design
+        - Opt-in buyer referral (with consent)
+        - Authorized Bitcoin ASIC/pool collaboration
+        - Research of verifiable paying projects
+        - Other open-source collaboration
+    validations:
+      required: true
+  - type: textarea
+    id: public-sample
+    attributes:
+      label: One concrete public example of your ability or proposal
+      description: Provide only a public source link or a synthetic example. No personal or private records.
+      placeholder: "Example: A unit test reproducing one issue in docs/assets/reconcile.js; suggested expected output..."
+    validations:
+      required: true
+  - type: textarea
+    id: project-interest
+    attributes:
+      label: Small first contribution you would like to make
+      description: State scope, required tools, and any real operating restrictions. Do not promise payments or send contact details.
+      placeholder: "I can test the watch-only Bitcoin wallet and file one issue with reproducible steps."
+    validations:
+      required: true
+  - type: dropdown
+    id: terms
+    attributes:
+      label: My collaboration expectation
+      options:
+        - Voluntary open-source contribution only
+        - Propose paid work, with separate written agreement required
+        - Discuss mining cooperation, with separate operator agreement required
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent and safe collaboration
+      options:
+        - label: "I am opting in; I understand posting creates no job, reward, ownership transfer or mining agreement."
+          required: true
+        - label: "I will not share secrets or private details publicly; any machine/miner I operate is mine or explicitly authorized."
+          required: true
