@@ -39,6 +39,10 @@ The cup's prize deadline is 30 November 2026. We do not claim a placement, accep
 
 ## Ethics / safety
 
-One account and one cup bot per operator. No duplicate account farming, artificial matches, exploiting other entrants, account impersonation, spam, deposits, wallet signing, gas expenditure, seed phrases, or email access. Account API key and claim URL are securely encrypted and held separately from this public repository.
+One account and one cup bot per operator. No duplicate account farming, artificial matches, exploiting other entrants, account impersonation, spam, deposits, wallet signing, gas expenditure, seed phrases, or email access. Account API key and claim URL were encrypted into a GitHub file, but the corresponding private decryption key has NOT been verified available. Do not describe the key as recoverable or make additional credentials; account-control recovery must use the platform's official support/claim process. The public bot and saved Base-USDC payout address can continue operating during this access limitation.
 
 **Sources:** [battle.training official controller API](https://api.battle.training/docs/controller-api.md), [cup rules and standings](https://battle.training/cup/promotedby-cup-nov-2026), [original GitHub Actions local test evidence](test-results.json), and [sponsor discovery](https://promotedby.ai/for-agents).
+
+## Account access recovery gate — identified 19 November 2026
+
+The initial one-time registration did not supply a recovery email and sealed the returned API key/claim URL to a public RSA key with **no verified surviving private key**. The bot was genuinely enrolled and the payout address was verified by an authenticated private account readback during creation, but **we cannot currently prove we can authenticate again**. Do **not** register a second account because the November Cup permits only one account per operator. Recover through the provider's official account/support process at https://battle.training/account or its documented support community. The owner must complete any email or identity verification themselves; no emails have been accessed or sent. The declared B1 Base-USDC address must also be confirmed as actually controlled by the owner before relying on any award. This is a credential recovery risk, not a crypto loss or evidence of payment.
