@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/b1b2-battle-usdc-qualifier-watch.yml'
   schedule:
-    - cron: '21 */2 * * *'
+    - cron: '*/15 * * * *'
 permissions:
   contents: write
 jobs:
