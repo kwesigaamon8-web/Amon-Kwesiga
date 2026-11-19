@@ -182,7 +182,7 @@ def audit(folder):
         "worker_outreach_confirmed": 0,
         "missing_or_invalid": problems,
         "status": "PASS" if not problems else "FAIL",
-        "note": "10 distinct finite automated scouts; not 10 continuously running LLM agents or confirmed paid workers",
+        "note": f"{len(AGENTS)} distinct finite automated scouts; not continuously running LLM agents or confirmed paid workers",
         "audited_utc": now().isoformat(),
     }
     OUT.mkdir(parents=True, exist_ok=True)
