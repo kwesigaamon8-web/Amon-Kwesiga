@@ -1,0 +1,31 @@
+name: B1 B2 Read-Only Live USDC Sponsor Offers
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-live-usdc-sponsor-scout.yml'
+      - 'crypto-agents/paid-work/promotedby_live_campaign_scout.py'
+  schedule:
+    - cron: '14 7 * * *'
+permissions:
+  contents: read
+jobs:
+  live-sponsor-market:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check public sponsor budget and list only source-backed candidates
+        run: |
+          python -m py_compile crypto-agents/paid-work/promotedby_live_campaign_scout.py
+          python crypto-agents/paid-work/promotedby_live_campaign_scout.py
+      - name: Preserve sponsor source evidence as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-usdc-sponsor-offer-scan
+          path: paid-opportunity-reports/promotedby-live-campaigns.json
+          if-no-files-found: warn
