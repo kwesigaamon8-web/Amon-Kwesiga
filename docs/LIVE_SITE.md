@@ -1,12 +1,12 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://curved-juice-0myy7.ship.place/
+**Open the latest working digital service site:** https://topaz-bird-oyhte.ship.place/
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
-**New deployment confirmed:** 19 November 2026 00:26 UTC
+**New deployment confirmed:** 19 November 2026 14:25 UTC
 
-**Temporary host expires:** 2026-11-26T00:26:34.921Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-26T14:25:40.971Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
