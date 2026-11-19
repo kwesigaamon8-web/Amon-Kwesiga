@@ -22,6 +22,7 @@ jobs:
           test -f docs/index.html
           test -s docs/software.html
           test -s docs/join.html
+          test -s docs/payment.html
           test -f docs/assets/engine.js
           test -f docs/assets/app.js
           test -f docs/assets/reconcile.js
@@ -33,6 +34,11 @@ jobs:
         run: |
           grep -q 'software.html' docs/index.html
           grep -q 'join.html' docs/index.html
+          grep -q 'payment.html' docs/index.html
+          grep -q 'payment.html' docs/software.html
+          grep -q 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' docs/payment.html
+          grep -q 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' docs/payment.html
+          grep -q 'Bitcoin mainnet' docs/payment.html
           grep -q 'collaborator-join.yml' docs/join.html
           grep -q 'Bitcoin Merchant Watch Wallet' docs/software.html
           grep -q 'crypto-ledger/index.html' docs/software.html
