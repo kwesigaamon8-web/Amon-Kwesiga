@@ -20,6 +20,7 @@ jobs:
       - name: Validate source files exist
         run: |
           test -f docs/index.html
+          test -s docs/software.html
           test -f docs/assets/engine.js
           test -f docs/assets/app.js
           test -f docs/assets/reconcile.js
@@ -29,6 +30,10 @@ jobs:
         run: node --test docs/tests/*.test.js
       - name: Check links to local assets
         run: |
+          grep -q 'software.html' docs/index.html
+          grep -q 'Bitcoin Merchant Watch Wallet' docs/software.html
+          grep -q 'crypto-ledger/index.html' docs/software.html
+          grep -q 'Bitcoin mining' docs/software.html
           grep -q 'assets/engine.js' docs/index.html
           grep -q 'assets/app.js' docs/index.html
           grep -q 'assets/reconcile.js' docs/index.html
