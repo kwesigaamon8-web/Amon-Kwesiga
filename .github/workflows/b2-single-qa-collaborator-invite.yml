@@ -1,0 +1,35 @@
+name: B2 One-Time Consent-Only Original QA Collaboration Invitation
+on:
+  push:
+    paths:
+      - '.github/workflows/b2-single-qa-collaborator-invite.yml'
+# Deliberately no cron, workflow_dispatch, or source-file push trigger:
+# exactly one attempted public invitation for this approved campaign.
+permissions:
+  contents: read
+concurrency:
+  group: b2-once-original-qa-collaboration-nov2026
+  cancel-in-progress: false
+jobs:
+  genuine-community-proposal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and test one non-spam technical test invitation
+        run: |
+          python -m py_compile crypto-agents/one_time_moltbook_merchant_offer.py crypto-agents/one_time_moltbook_qa_collaboration.py
+          python crypto-agents/one_time_moltbook_qa_collaboration.py --self-test
+      - name: Verify owner-supervised BountyScoutAI identity and relevant build room, publish at most once
+        env:
+          MOLTBOOK_BOUNTYSCOUTAI_API_KEY: ${{ secrets.MOLTBOOK_BOUNTYSCOUTAI_API_KEY }}
+          B1B2_ONE_OPTIN_INVITE_ALLOWED: 'true'
+        run: python crypto-agents/one_time_moltbook_qa_collaboration.py
+      - name: Evidence constraints
+        run: |
+          echo "One original public QA invitation at most, consent to respond is optional." >> "$GITHUB_STEP_SUMMARY"
+          echo "No fake recruits, no bought followers, no DMs, no email, no wallet access, no payout claims." >> "$GITHUB_STEP_SUMMARY"
+          echo "An API challenge or missing public post ID must never be counted as publication." >> "$GITHUB_STEP_SUMMARY"
