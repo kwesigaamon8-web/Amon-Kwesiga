@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-11-19T11:09:49Z",
+  "handle": "b1b2chiefd26",
+  "bot": "b1b2-hill-harvester",
+  "contest": "promotedby-cup-nov-2026",
+  "payout_network": "Base USDC",
+  "payout_address": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
+  "registered": true,
+  "payout_set": true,
+  "bot_created": true,
+  "version_uploaded": true,
+  "enrolled": true,
+  "prize_earned": false,
+  "received_on_chain": false,
+  "error": null,
+  "public_bot_page": "https://battle.training/bots/b1b2-hill-harvester",
+  "public_cup_page": "https://battle.training/cup/promotedby-cup-nov-2026",
+  "payout_address_seen_in_private_account": true,
+  "bot_seen_in_private_account": true
+}
