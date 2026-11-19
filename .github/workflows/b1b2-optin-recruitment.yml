@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/b1b2-optin-recruitment.yml'
       - 'crypto-agents/opt_in_collaborator_watch.py'
+      - 'crypto-agents/opt_in_greeting.py'
   # Lightweight hourly UTC checks, 24/7 while Actions schedule remains enabled.
   # No infinite runners, paid advertising, mass contact or automatic signup.
   schedule:
@@ -14,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: read
-  issues: read
+  issues: write
 jobs:
   read-only-optin:
     name: Check real third-party opt-ins and report proven state
@@ -29,10 +30,16 @@ jobs:
         run: |
           python -m py_compile crypto-agents/opt_in_collaborator_watch.py
           python crypto-agents/opt_in_collaborator_watch.py --self-test
+          python crypto-agents/opt_in_greeting.py --self-test
       - name: Review owner-owned public consent-based applications
         env:
           GH_TOKEN: ${{ github.token }}
         run: python crypto-agents/opt_in_collaborator_watch.py
+      - name: Acknowledge only explicit opt-in humans once (owner recruitment issue only)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python crypto-agents/opt_in_greeting.py --send
       - name: Publish actual third-party applicant evidence with no earnings inflation
         run: |
           python - <<'PY'
