@@ -7,7 +7,7 @@ on:
       - 'crypto-agents/ten_agent_fleet.py'
       - '.github/workflows/ten-agent-fleet.yml'
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '*/10 * * * *'
 concurrency:
   group: b1b2-ten-scouts
   cancel-in-progress: false
