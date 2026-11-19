@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-11-19T11:13:37Z",
+  "target": "native Circle USDC on Base",
+  "network_chain_id": 8453,
+  "usdc_contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payout_address": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
+  "campaign_id": "cmp_1t7ymr95q7y88msl",
+  "claim_requested": false,
+  "submission_id": null,
+  "paid": false,
+  "receipt_txid": null,
+  "our_public_sets": 1,
+  "our_rating": 1168,
+  "house_starter_rating": 697,
+  "qualifying": false,
+  "sponsor_live_and_funded": true,
+  "available_cents": 50000,
+  "sponsor_dry_run_http": 200,
+  "sponsor_dry_run_ok": true,
+  "gate": "WAIT_REAL_100_PUBLIC_SETS_AND_HOUSE_STARTER_RATING"
+}
