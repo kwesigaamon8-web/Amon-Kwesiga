@@ -41,7 +41,23 @@ def main():
     if STATUS.exists():
         prev=json.loads(STATUS.read_text())
         if prev.get("submission_id"):
-            print("ALREADY_SUBMITTED_NO_REPEAT",prev["submission_id"])
+            # The same cron continues tracking an EXISTING claim; never submits twice.
+            ref=str(prev["submission_id"])
+            code,answer=req("https://promotedby.ai/api/v1/submissions/"+ref)
+            prev["last_submission_poll_utc"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
+            if code==200 and isinstance(answer,dict):
+                detail=answer.get("submission") or answer
+                prev["platform_review_status"]=detail.get("status","unknown")
+                prev["awarded_cents"]=detail.get("awarded_cents")
+                prev["reviewer_note"]=str(detail.get("reviewer_note") or "")[:250]
+                prev["platform_reports_paid"]=detail.get("status")=="paid"
+            else:
+                prev["platform_poll_http"]=code
+            # A platform 'paid' flag is not on-chain proof. Never infer wallet receipts.
+            prev["paid"]=False
+            prev["receipt_txid"]=None
+            STATUS.write_text(json.dumps(prev,indent=2,ensure_ascii=False)+"\\n")
+            print("EXISTING_SUBMISSION_TRACKED_NO_REPEAT",ref,prev.get("platform_review_status"))
             return
     report={"checked_at_utc":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
             "target":"native Circle USDC on Base","network_chain_id":8453,
