@@ -34,7 +34,7 @@ jobs:
     timeout-minutes: 4
     strategy:
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 3
       matrix:
         agent: [B1-06, B1-07, B1-08, B1-09, B1-10, B1-11, B1-12, B1-13, B1-14, B1-15, B1-16, B1-17, B1-18, B1-19, B1-20, B1-21, B1-22, B1-23, B1-24, B1-25, B2-06, B2-07, B2-08, B2-09, B2-10, B2-11, B2-12, B2-13, B2-14, B2-15, B2-16, B2-17, B2-18, B2-19, B2-20, B2-21, B2-22, B2-23, B2-24, B2-25]
     name: "Scout ${{ matrix.agent }}"
