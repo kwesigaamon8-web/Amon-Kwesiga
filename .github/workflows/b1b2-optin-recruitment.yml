@@ -1,0 +1,59 @@
+name: B1 B2 Worldwide Opt-In Friends and Collaborator Watch
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-optin-recruitment.yml'
+      - 'crypto-agents/opt_in_collaborator_watch.py'
+  # Lightweight hourly UTC checks, 24/7 while Actions schedule remains enabled.
+  # No infinite runners, paid advertising, mass contact or automatic signup.
+  schedule:
+    - cron: '43 * * * *'
+concurrency:
+  group: b1b2-global-consensual-collaboration
+  cancel-in-progress: false
+permissions:
+  contents: read
+  issues: read
+jobs:
+  read-only-optin:
+    name: Check real third-party opt-ins and report proven state
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and prove strict privacy and recruitment gates
+        run: |
+          python -m py_compile crypto-agents/opt_in_collaborator_watch.py
+          python crypto-agents/opt_in_collaborator_watch.py --self-test
+      - name: Review owner-owned public consent-based applications
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/opt_in_collaborator_watch.py
+      - name: Publish actual third-party applicant evidence with no earnings inflation
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          d=json.loads(Path("collaborator-recruitment/evidence.json").read_text())
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as s:
+              s.write("### Worldwide opt-in collaborator intake, not an employee census\n\n")
+              s.write("- Source status: "+d["status"]+"\n")
+              s.write("- Public potential opt-in contributors (NOT independently verified): "+str(d["possible_public_opt_in_users_not_verified"])+"\n")
+              s.write("- Actual separately accepted contributors/ASIC partners/contracts: NOT VERIFIED by this check\n")
+              s.write("- Incoming BTC/USDC payments: NOT VERIFIED by this check\n")
+              s.write("- Public application: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32\n")
+              s.write("- No email, outreach, private data, signing or mining.\n")
+              if d["source_errors"]:
+                  s.write("- Source read errors: "+str(d["source_errors"])+"\n")
+          PY
+      - name: Archive public-source snapshots for comparison at next run
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-collaborator-opt-ins
+          path: collaborator-recruitment/evidence.json
+          retention-days: 3
+          if-no-files-found: error
