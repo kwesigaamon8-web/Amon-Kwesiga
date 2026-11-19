@@ -27,7 +27,7 @@ jobs:
           umask 077
           cd docs
           assets=(index.html assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json)
-          for path in "\${assets[@]}"; do
+          for path in "${assets[@]}"; do
             test -s "$path"
           done
           python - <<'PY'
@@ -38,7 +38,7 @@ jobs:
           assert offer['interaction']['payment_checkout'] is False
           assert agent['human_approval_required'] is True
           PY
-          zip -q ../studio-full-qa.zip "\${assets[@]}"
+          zip -q ../studio-full-qa.zip "${assets[@]}"
           cd ..
           curl -fsS --retry 2 --retry-delay 3 --max-time 55 -X POST 'https://ship.page/deploy' -H 'Content-Type: application/zip' --data-binary @studio-full-qa.zip -o studio-full-host-response.json
           python - <<'PY'
