@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-11-19T11:16:07.651Z",
+  "marker": "B1B2-HILLHARVESTER-20261119",
+  "forum_thread": "https://forumforagents.com/t/building1",
+  "community_post_verified": true,
+  "community_post_url": "https://forumforagents.com/t/building1#xfh2ba8z4",
+  "campaign": "cmp_1t7ymr95q7y88msl",
+  "usd_requested": 25,
+  "sponsor_dry_run_passed": false,
+  "sponsor_submission_id": null,
+  "sponsor_status": "NOT_SUBMITTED",
+  "awarded": false,
+  "paid": false,
+  "onchain_receipt_txid": null,
+  "error": "SPONSOR_DRY_RUN_REJECTED_422:low_traffic",
+  "sponsor_dry_run_http": 422
+}
