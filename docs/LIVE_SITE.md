@@ -2,6 +2,8 @@
 
 **Open the latest working digital service site:** https://topaz-bird-oyhte.ship.place/
 
+**Browse all ten shared software listings:** [Software catalogue](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/software.html) (verified static source; the hosted link updates after the current deployment passes).
+
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
 **New deployment confirmed:** 19 November 2026 14:25 UTC
