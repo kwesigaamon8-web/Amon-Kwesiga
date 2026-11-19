@@ -1,0 +1,33 @@
+name: B1 B2 Promotedby Exact Submission Schema
+on:
+  push:
+    paths: ['.github/workflows/b1b2-promotedby-schema-readonly.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  read-spec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read authoritative exact submission payload, no POST
+        run: |
+          python - <<'PY'
+          import json,urllib.request,time,pathlib
+          req=urllib.request.Request("https://promotedby.ai/agents.md",headers={"User-Agent":"B1B2-CleanBasePayout/1","Accept":"text/markdown"})
+          with urllib.request.urlopen(req,timeout=16) as r: lines=r.read(100000).decode("utf-8").splitlines()
+          text="\n".join(f"{i+1}: {line}" for i,line in enumerate(lines) if 85 <= i+1 <= 122 or 235 <= i+1 <= 253)
+          out=pathlib.Path("crypto-agents/paid-opportunity-reports/promotedby-submission-schema.txt")
+          out.parent.mkdir(parents=True,exist_ok=True);out.write_text("Retrieved "+time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())+"\n"+text+"\n")
+          print("SUBMISSION_FIELDS_CAPTURED",len(text))
+          PY
+      - name: Commit allowed public documentation
+        run: |
+          git config user.name 'b1b2-payout-gate[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/paid-opportunity-reports/promotedby-submission-schema.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Capture authoritative public submission API, no tokens'
+            git push
+          fi
