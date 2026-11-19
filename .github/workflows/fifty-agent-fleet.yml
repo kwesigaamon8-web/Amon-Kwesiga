@@ -1,0 +1,110 @@
+name: B1 B2 Fifty More Independent Scouts
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/fifty_agent_fleet.py'
+      - 'crypto-agents/ten_agent_fleet.py'
+      - '.github/workflows/fifty-agent-fleet.yml'
+  schedule:
+    - cron: '47 * * * *'
+concurrency:
+  group: b1b2-fifty-new-scouts
+  cancel-in-progress: false
+permissions:
+  contents: read
+  issues: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m py_compile crypto-agents/ten_agent_fleet.py crypto-agents/fifty_agent_fleet.py
+      - run: python crypto-agents/fifty_agent_fleet.py --self-test
+  fifty-independent-scouts:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        agent: [B1-26, B1-27, B1-28, B1-29, B1-30, B1-31, B1-32, B1-33, B1-34, B1-35, B1-36, B1-37, B1-38, B1-39, B1-40, B1-41, B1-42, B1-43, B1-44, B1-45, B1-46, B1-47, B1-48, B1-49, B1-50, B2-26, B2-27, B2-28, B2-29, B2-30, B2-31, B2-32, B2-33, B2-34, B2-35, B2-36, B2-37, B2-38, B2-39, B2-40, B2-41, B2-42, B2-43, B2-44, B2-45, B2-46, B2-47, B2-48, B2-49, B2-50]
+    name: "Scout ${{ matrix.agent }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently inspect real original public job issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/fifty_agent_fleet.py --agent ${{ matrix.agent }}
+      - name: Upload unique actual process result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-scout-${{ matrix.agent }}
+          path: fifty-agent-reports/*.json
+          retention-days: 7
+          if-no-files-found: warn
+  review:
+    if: always()
+    needs: [validate, fifty-independent-scouts]
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download separate scout execution evidence
+        uses: actions/download-artifact@v4
+        with:
+          pattern: new-scout-*
+          path: fifty-agent-reports
+          merge-multiple: true
+      - name: Account for 50 actual workers; separate source success from payment
+        run: python crypto-agents/fifty_agent_fleet.py --audit fifty-agent-reports
+      - name: Publish independently auditable reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fifty-scout-evidence-and-audit
+          path: fifty-agent-reports/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Post one new deployment audit to existing Chief D room
+        if: ${{ always() && github.event_name == 'push' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("fifty-agent-reports/AUDIT.json")
+          run_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if p.exists():
+              d=json.loads(p.read_text())
+              body=(
+                  "**B1/B2 +50 additional scouts — actual independent runner audit**\n"
+                  f"Run: {run_url}\n"
+                  f"Evidence audit: {d.get('status','UNKNOWN')}\n"
+                  f"Distinct reports: {d.get('distinct_reported_processes',0)}/50\n"
+                  f"Successful source searches: {d.get('successful_source_searches',0)}/50\n"
+                  f"Original-source issue checks: {d.get('direct_issue_rechecks',0)}\n"
+                  f"Missing reports: {d.get('missing_or_invalid',[])}\n"
+                  "Confirmed deposits via this workflow: 0 (not assessed).\n"
+                  "This is a finite research fleet, not a claim of continuously live AI agents."
+              )
+          else:
+              body="**B1/B2 +50 additional scouts** — audit missing, inspect "+run_url
+          Path("/tmp/fifty_scout_receipt.md").write_text(body)
+          PY
+          gh issue comment 9 --repo "${{ github.repository }}" --body-file /tmp/fifty_scout_receipt.md
