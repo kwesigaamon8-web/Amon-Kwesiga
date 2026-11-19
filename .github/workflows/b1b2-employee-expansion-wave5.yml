@@ -1,0 +1,172 @@
+name: B1 B2 — 20 More Independent AI Employees — Wave 5
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-employee-expansion-wave5.yml'
+      - 'crypto-agents/employee_fleet_v2.py'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5 * * *'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: b1b2-employee-cohort-wave-5
+  cancel-in-progress: false
+
+jobs:
+  validate-roster:
+    name: Validate 20 distinct employee identities and owner routing
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile employee runtime
+        run: python -m py_compile crypto-agents/employee_fleet_v2.py
+      - name: Validate unique H-tier identities, two-company routes and direct parents
+        run: |
+          python crypto-agents/employee_fleet_v2.py --self-test
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, 'crypto-agents')
+          from employee_fleet_v2 import identity
+          ids = []
+          for fleet in ('transferexperiment', 'BountyScoutAI'):
+              for director in ('D09', 'D10'):
+                  for slot in range(5):
+                      worker = identity(fleet, director, 5, slot)
+                      assert worker['level'] == 'H' and worker['parent_id'].startswith(director + '-')
+                      ids.append(worker['globally_unique_worker_id'])
+          assert len(ids) == len(set(ids)) == 20
+          print('WAVE_5_ROSTER_PASS', len(ids))
+          PY
+
+  execute-employee-cells:
+    needs: validate-roster
+    name: ${{ matrix.fleet }} / ${{ matrix.director }} — five independent employees
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - fleet: transferexperiment
+            director: D09
+          - fleet: transferexperiment
+            director: D10
+          - fleet: BountyScoutAI
+            director: D09
+          - fleet: BountyScoutAI
+            director: D10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      WORKFORCE_ID: ${{ matrix.fleet }}
+      EMPLOYEE_BATCH_KEY: ${{ matrix.fleet }}-${{ matrix.director }}
+      B_EMPLOYEE_MODEL: Qwen/Qwen2.5-0.5B-Instruct
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      OMP_NUM_THREADS: '2'
+      TOKENIZERS_PARALLELISM: 'false'
+      TRANSFORMERS_NO_ADVISORY_WARNINGS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore this cell's employee checkpoints
+        uses: actions/cache/restore@v4
+        with:
+          path: employee-state/${{ matrix.fleet }}/${{ matrix.director }}/
+          key: b1b2-employee-state-wave5-${{ matrix.fleet }}-${{ matrix.director }}-${{ github.run_id }}
+          restore-keys: |
+            b1b2-employee-state-wave5-${{ matrix.fleet }}-${{ matrix.director }}-
+      - name: Restore the free CPU model cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub
+          key: b1b2-qwen2.5-0.5b-${{ runner.os }}-v1
+          restore-keys: |
+            b1b2-qwen2.5-0.5b-${{ runner.os }}-
+      - name: Install zero-cost CPU inference dependencies
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Preload the small model before employee processes start
+        run: |
+          python - <<'PY'
+          import torch
+          from transformers import pipeline
+          torch.set_num_threads(2)
+          model = pipeline('text-generation', model='Qwen/Qwen2.5-0.5B-Instruct', device=-1)
+          result = model([{'role':'user','content':'Reply READY in one word.'}], max_new_tokens=12, do_sample=False, return_full_text=False)
+          assert result and str(result[0].get('generated_text','')).strip(), 'Model warm-up produced no response'
+          print('EMPLOYEE_MODEL_PRELOAD_PASS')
+          PY
+      - name: Execute four research employees and one independent QA reviewer as separate OS processes
+        run: python crypto-agents/employee_fleet_v2.py run-director --fleet '${{ matrix.fleet }}' --director '${{ matrix.director }}' --wave 5 --worker-timeout 180
+      - name: Preserve individual employee reports and persistent checkpoints
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: employee-batch-wave5-${{ matrix.fleet }}-${{ matrix.director }}
+          path: |
+            employee-evidence/${{ matrix.fleet }}/${{ matrix.director }}/
+            employee-state/${{ matrix.fleet }}/${{ matrix.director }}/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Save employee checkpoints for their next shift
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: employee-state/${{ matrix.fleet }}/${{ matrix.director }}/
+          key: b1b2-employee-state-wave5-${{ matrix.fleet }}-${{ matrix.director }}-${{ github.run_id }}
+
+  independent-cohort-audit:
+    name: Audit all 20 employee processes and report to Chief D
+    if: always()
+    needs: [validate-roster, execute-employee-cells]
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download individual employee process evidence from all four cells
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: employee-batch-wave5-*
+          path: combined-employees
+          merge-multiple: true
+      - name: Independently verify identity, parent, company wallet, process and model output
+        run: python crypto-agents/employee_fleet_v2.py audit --reports combined-employees/employee-evidence
+      - name: Retain consolidated audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-20-employee-cohort-audit-wave5
+          path: employee-audit/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Send evidence-only report to Chief D's existing mission room
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          if [ -f employee-audit/employee-audit.json ]; then
+            python -c 'import json,os; d=json.load(open("employee-audit/employee-audit.json")); print("B1/B2 employee cohort wave 5 audit: "+str(d.get("status"))+"; IDs "+str(d.get("unique_employee_ids",0))+"/20; model completions "+str(d.get("model_completions",0))+"/20; researchers "+str(d.get("researchers",0))+"; reviewers "+str(d.get("reviewers",0))+"; source URLs "+str(d.get("distinct_source_urls",0))+"; verified paid contracts 0; verified crypto receipts 0; live processes after job exit 0. Run: https://github.com/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"])' > /tmp/employee-cohort-report.md
+          else
+            echo "B1/B2 employee cohort run $GITHUB_RUN_ID: audit artifact not produced; no employee completion claim." > /tmp/employee-cohort-report.md
+          fi
+          gh issue comment 9 --repo "$GITHUB_REPOSITORY" --body-file /tmp/employee-cohort-report.md
