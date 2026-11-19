@@ -33,7 +33,7 @@ TYPES = ["source triage", "risk review", "acceptance review"]
 LIMIT = datetime.now(timezone.utc) - timedelta(days=120)
 REWARD = re.compile(r"\b(bounty|reward|paid|payment|funded|compensation|usdc|btc|\$[0-9]+)\b", re.I)
 SCAM = re.compile(
-    r"(seed phrase|private key|send (?:us|me) (?:a )?(?:deposit|fee)|"
+    r"(seed phrase|private key|send (?:(?:us|me) )?(?:a )?(?:deposit|fee)(?: first)?|"
     r"pay (?:a |the )?(?:fee|deposit) first|connect your wallet to claim|"
     r"guaranteed (?:profit|income))", re.I)
 ROOT = Path("thousand-fleet-evidence")
