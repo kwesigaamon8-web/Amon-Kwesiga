@@ -1,18 +1,20 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://marked-maxilla-xyelr.ship.place/
+**Open the latest working digital service site:** https://deeply-tip-bl3o5.ship.place/
 
-**Browse all shared software:** [10-tool catalogue](https://marked-maxilla-xyelr.ship.place/software.html).
+**Browse all shared software:** [10-tool catalogue](https://deeply-tip-bl3o5.ship.place/software.html).
 
-**Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://marked-maxilla-xyelr.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://deeply-tip-bl3o5.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
 
-          **Find real opt-in project collaborators:** [Join B1/B2](https://marked-maxilla-xyelr.ship.place/join.html) — invites only, not verified workers or mining income.
+          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://deeply-tip-bl3o5.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+
+          **Find real opt-in project collaborators:** [Join B1/B2](https://deeply-tip-bl3o5.ship.place/join.html) — invites only, not verified workers or mining income.
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
-**New deployment confirmed:** 19 November 2026 23:58 UTC
+**New deployment confirmed:** 19 November 2026 23:59 UTC
 
-**Temporary host expires:** 2026-11-26T23:58:39.470Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-26T23:58:59.889Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
