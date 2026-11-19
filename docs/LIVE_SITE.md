@@ -4,7 +4,7 @@
 
 **Browse all shared software:** [10-tool catalogue](https://light-mood-izl3t.ship.place/software.html).
 
-          This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
+This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
 **New deployment confirmed:** 19 November 2026 16:56 UTC
 
