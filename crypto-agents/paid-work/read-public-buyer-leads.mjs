@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 const campfireUrl="https://agentsboard.org/api/v1/threads/466";
 const forumUrl="https://forumforagents.com/api/threads/building1";
 const jobUrl="https://api.moltjobs.io/v1/jobs?status=OPEN&limit=50";
+const clawUrl="https://clawlancer.ai/api/listings?listing_type=BOUNTY";
 const trackedPost="2pni6mmqk";
 const clean=x=>String(x??"").replace(/\s+/g," ").slice(0,650);
 async function readJson(url){
@@ -39,7 +40,7 @@ function checkCampfire(d){
    replies:replies.slice(-25).map(briefPost)};
 }
 function checkJobs(d){
- const jobs=arrayFrom(d,["data.jobs","data.items","jobs","items","results"]);
+ const jobs=arrayFrom(d,["data.jobs","data.items","data.data","data","jobs","items","results"]);
  return {open_count_returned:jobs.length,
    jobs:jobs.slice(0,30).map(x=>({
      id:x.id??null,title:clean(x.title??x.name),
@@ -49,6 +50,19 @@ function checkJobs(d){
      deadline:x.deadlineAt??x.deadline_at??null
    }))};
 }
+function checkClawlancer(d){
+ const listings=arrayFrom(d,["data.listings","data.items","data","listings","items","results"]);
+ return {count_returned:listings.length,
+   listings:listings.slice(0,35).map(x=>({
+     id:x.id??null,title:clean(x.title??x.name),
+     amount_microunit:x.price??x.price_usdc??x.amount??null,
+     listing_type:x.listing_type??x.type??null,
+     status:x.status??"NOT_PRESENT_IN_PUBLIC_FEED",
+     funding_status:x.escrow_status??x.funding_status??"NOT_PRESENT_IN_PUBLIC_FEED",
+     posted_by:clean(x.seller?.name??x.agent?.name??x.creator?.name)
+   }))
+ };
+}
 async function report(name,url,parser){
   try{return {status:"PUBLIC_READ_SUCCEEDED",url,data:parser(await readJson(url))};}
   catch(e){return {status:"UNVERIFIED_NETWORK_OR_SCHEMA",url,error:clean(e.message)};}
@@ -57,16 +71,19 @@ if(process.argv.includes("--test")){
   assert.equal(checkForum({posts:[{id:"a"},{id:trackedPost},{id:"b",body:"can you help?"}]}).subsequent_posts.length,1);
   assert.equal(checkCampfire({thread:{id:466,title:"Lead"},replies:[{id:7,body:"hello"}]}).replies_count,1);
   assert.equal(checkJobs({data:{jobs:[{id:1,budgetUsdc:"5",escrowStatus:"not-funded"}]}}).jobs[0].funding_status,"not-funded");
+  assert.equal(checkJobs({data:[{id:2,escrowStatus:"FUNDED"}]}).open_count_returned,1);
+  assert.equal(checkClawlancer({data:{listings:[{id:1,listing_type:"BOUNTY"}]}}).count_returned,1);
   console.log("PUBLIC_LEAD_SELF_TESTS_PASS");
 }else{
-  const [campfire,forum,moltjobs]=await Promise.all([
+  const [campfire,forum,moltjobs,clawlancer]=await Promise.all([
     report("campfire",campfireUrl,checkCampfire),
     report("forum",forumUrl,checkForum),
-    report("moltjobs",jobUrl,checkJobs)
+    report("moltjobs",jobUrl,checkJobs),
+    report("clawlancer",clawUrl,checkClawlancer)
   ]);
   const data={
     schema:"B1B2_PUBLIC_LEADS_READ_ONLY_V1",checked_utc:new Date().toISOString(),
-    campfire,forum,moltjobs,
+    campfire,forum,moltjobs,clawlancer,
     no_external_post_or_email_or_wallet_access:true,
     buyer_acceptance_verified:false,
     payment_receipt_verified:false,
@@ -77,11 +94,12 @@ if(process.argv.includes("--test")){
   const summary=process.env.GITHUB_STEP_SUMMARY;
   if(summary){
     const lines=["## B1/B2 real-buyer lead scan ("+data.checked_utc+")",""];
-    for(const [name,item] of Object.entries({CAMPFIRE:campfire,"Forum for Agents":forum,MoltJobs:moltjobs})){
+    for(const [name,item] of Object.entries({CAMPFIRE:campfire,"Forum for Agents":forum,MoltJobs:moltjobs,Clawlancer:clawlancer})){
       lines.push("### "+name,"- "+item.status);
       if(name==="CAMPFIRE")lines.push("- Replies seen: "+(item.data?.replies_count??"not verified"));
       if(name==="Forum for Agents")lines.push("- Replies after B1/B2 post: "+(item.data?.subsequent_posts?.length??"not verified"));
       if(name==="MoltJobs")lines.push("- Public jobs returned: "+(item.data?.open_count_returned??"not verified"));
+      if(name==="Clawlancer")lines.push("- Public bounty listings: "+(item.data?.count_returned??"not verified"));
       lines.push("");
     }
     lines.push("No job has been bid on; no payment or acceptance established.");
