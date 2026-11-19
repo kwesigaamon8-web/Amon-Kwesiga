@@ -21,6 +21,7 @@ jobs:
         run: |
           test -f docs/index.html
           test -s docs/software.html
+          test -s docs/join.html
           test -f docs/assets/engine.js
           test -f docs/assets/app.js
           test -f docs/assets/reconcile.js
@@ -31,6 +32,8 @@ jobs:
       - name: Check links to local assets
         run: |
           grep -q 'software.html' docs/index.html
+          grep -q 'join.html' docs/index.html
+          grep -q 'collaborator-join.yml' docs/join.html
           grep -q 'Bitcoin Merchant Watch Wallet' docs/software.html
           grep -q 'crypto-ledger/index.html' docs/software.html
           grep -q 'Bitcoin mining' docs/software.html
