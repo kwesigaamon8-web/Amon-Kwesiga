@@ -31,7 +31,7 @@ SPECIALTIES = [
 ]
 TYPES = ["source triage", "risk review", "acceptance review"]
 LIMIT = datetime.now(timezone.utc) - timedelta(days=120)
-REWARD = re.compile(r"\\b(bounty|reward|paid|payment|funded|compensation|usdc|btc|\\$[0-9]+)\\b", re.I)
+REWARD = re.compile(r"\b(bounty|reward|paid|payment|funded|compensation|usdc|btc|\$[0-9]+)\b", re.I)
 SCAM = re.compile(
     r"(seed phrase|private key|send (?:us|me) (?:a )?(?:deposit|fee)|"
     r"pay (?:a |the )?(?:fee|deposit) first|connect your wallet to claim|"
@@ -54,7 +54,7 @@ def issue_assessment(issue, worker):
     body = str(issue.get("body") or "")[:4000]
     url = str(issue.get("html_url") or "")
     updated = parse_date(issue.get("updated_at"))
-    signal = title + "\\n" + body
+    signal = title + "\n" + body
     issues = []
     if issue.get("state") != "open" or issue.get("pull_request"):
         issues.append("not_open_issue")
@@ -130,7 +130,7 @@ def child(shard, number, root):
         "executed_utc": utc(),
     }
     path = root / shard / f"{worker['id']}.json"
-    path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
+    path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({"worker": worker["id"], "status": result["worker_status"]}))
     return 0
 
@@ -182,7 +182,7 @@ def run_shard(shard, root):
     target = root / shard
     target.mkdir(parents=True, exist_ok=True)
     snap = fetch_snapshot(shard)
-    (target / "snapshot.json").write_text(json.dumps(snap, indent=2) + "\\n", encoding="utf-8")
+    (target / "snapshot.json").write_text(json.dumps(snap, indent=2) + "\n", encoding="utf-8")
     executions = []
     # Spawn a separate OS process for every individual role and capture its exit code.
     # Keep max concurrency to 4 per runner rather than 30.
@@ -208,7 +208,7 @@ def run_shard(shard, root):
         "finish_utc": utc(),
         "all_30_subprocesses_finished": all_success,
     }
-    (target / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\\n", encoding="utf-8")
+    (target / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in manifest.items() if k != "child_statuses"}))
     return 0 if all_success else 1
 
@@ -259,7 +259,7 @@ def audit(root):
         "truth_in_reporting": "Distinct executed child OS processes; NOT 900 live LLMs, not confirmed paid opportunities, no original-source refetch",
     }
     root.mkdir(parents=True, exist_ok=True)
-    (root / "audit.json").write_text(json.dumps(report, indent=2) + "\\n", encoding="utf-8")
+    (root / "audit.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report))
     return 0 if report["pass"] else 1
 
