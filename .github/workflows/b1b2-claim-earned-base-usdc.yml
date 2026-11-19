@@ -1,0 +1,35 @@
+name: B1 B2 Claim Qualified Native Base USDC Sponsor Reward
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-claim-earned-base-usdc.yml'
+      - 'crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py'
+  schedule:
+    - cron: '47 */2 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: b1b2-sponsor-once-base-usdc-native
+  cancel-in-progress: false
+jobs:
+  no-spend-qualified-offer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read actual battle ratings, sponsor funding, dry-run then submit ONCE if eligible
+        run: |
+          python -m py_compile crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py
+          python crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py
+      - name: Preserve real sponsor response; never claim unaccepted income
+        if: always()
+        run: |
+          git config user.name 'b1b2-usdc-payout-gate[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/commercial-work/battle-hill-harvester/sponsor-bounty-submission.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record actual sponsor qualification, dry-run, and any permitted submission'
+            git pull --rebase origin main
+            git push origin main
+          fi
