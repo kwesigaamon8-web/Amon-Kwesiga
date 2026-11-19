@@ -24,6 +24,16 @@ def evaluate(x):
         fail.append("RECEIPT_WITHOUT_CHAIN_AND_PAYER_EVIDENCE")
     if x.get("submission_verified") and not x.get("submission_url"):
         fail.append("SUBMISSION_WITHOUT_ACCEPTANCE_ROUTE")
+    # Auth alone cannot make a task actionable: an account can submit an
+    # ineligible, unfunded, or wrong-network claim and still return HTTP 200.
+    if x.get("auth_submission_available") and not x.get("eligibility_verified",False):
+        fail.append("ELIGIBILITY_NOT_VERIFIED")
+    if x.get("auth_submission_available") and not x.get("funding_verified",False):
+        fail.append("FUNDING_NOT_VERIFIED")
+    if x.get("auth_submission_available") and not x.get("payout_route_verified",False):
+        fail.append("PAYOUT_ROUTE_NOT_VERIFIED")
+    if x.get("auth_submission_available") and not x.get("ready_deliverable",False):
+        fail.append("DELIVERABLE_NOT_READY")
     if fail:
         status="REJECT_OR_HOLD"
     elif x.get("receipt_verified"):
@@ -51,7 +61,13 @@ def test():
     assert "OWNER_SPENDING_PROHIBITED" in evaluate(a|{"spend_required":True})["reasons"]
     assert "RECEIPT_WITHOUT_CHAIN_AND_PAYER_EVIDENCE" in evaluate(a|{"receipt_verified":True})["reasons"]
     assert evaluate(a|{"submission_verified":True,"submission_url":"https://example.com/issue"})["status"]=="SUBMITTED_PENDING_ACCEPTANCE"
-    assert evaluate(a|{"auth_submission_available":True})["status"]=="ELIGIBLE_ACTIONABLE_WITH_PERMITTED_ACCESS"
+    waiting=evaluate(a|{"auth_submission_available":True})
+    assert waiting["status"]=="REJECT_OR_HOLD"
+    assert set(waiting["reasons"])=={"ELIGIBILITY_NOT_VERIFIED","FUNDING_NOT_VERIFIED","PAYOUT_ROUTE_NOT_VERIFIED"}
+    ready=a|{"auth_submission_available":True,"eligibility_verified":True,
+             "funding_verified":True,"payout_route_verified":True}
+    assert evaluate(ready)["status"]=="ELIGIBLE_ACTIONABLE_WITH_PERMITTED_ACCESS"
+    assert "DELIVERABLE_NOT_READY" in evaluate(ready|{"ready_deliverable":False})["reasons"]
     print("CRYPTO_PAYMENT_CONVERSION_GATE_SELF_TEST_PASS")
 
 def run():
