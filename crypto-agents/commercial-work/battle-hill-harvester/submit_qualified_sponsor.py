@@ -108,7 +108,16 @@ def main():
             if existing.get("submission_id"):
                 report["previous_submission_id"]=existing["submission_id"]
                 raise RuntimeError("PREVIOUS_SUBMISSION_ALREADY_EXISTS")
-        # Dry-run may be used before qualification: it does not claim money.
+        # Do not spam sponsor dry-run with an objectively unqualified bot.
+        # A prior live dry-run returned HTTP 422 (our personal GitHub repo has
+        # no established audience), which is a separate distribution blocker.
+        # Recheck the promo only after the independent 100-set gate is met.
+        if not qualified:
+            report["gate"]="WAIT_REAL_100_PUBLIC_SETS_AND_HOUSE_STARTER_RATING"
+            report["sponsor_dry_run_attempted"]=False
+            report["known_promotion_blocker"]="Our small personal repository failed sponsor audience requirements in prior HTTP 422. On reaching 100 sets, sponsor must independently approve an authentic accepted venue or genuine project adoption; do not assume eligibility."
+            print("NOT_YET_QUALIFIED",count,our_rating,house_rating)
+            return
         payload["dry_run"]=True
         code4,dry=req("https://promotedby.ai/api/v1/submissions","POST",payload)
         report["sponsor_dry_run_http"]=code4
@@ -116,10 +125,6 @@ def main():
         if not report["sponsor_dry_run_ok"]:
             report["dry_run_response"]={k:v for k,v in dry.items() if k in ("code","reason","error","how_to_get_paid")}
             raise RuntimeError("SPONSOR_DRY_RUN_REFUSED_DO_NOT_FILE")
-        if not qualified:
-            report["gate"]="WAIT_REAL_100_PUBLIC_SETS_AND_HOUSE_STARTER_RATING"
-            print("NOT_YET_QUALIFIED",count,our_rating,house_rating)
-            return
         payload["dry_run"]=False
         code5,answer=req("https://promotedby.ai/api/v1/submissions","POST",payload)
         if code5!=201 or not answer.get("ok"):
