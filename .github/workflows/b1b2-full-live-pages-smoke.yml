@@ -1,0 +1,72 @@
+name: Verify All B1 B2 Public Sales Pages in HTTPS Host
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/b1b2-full-live-pages-smoke.yml'
+      - 'docs/index.html'
+      - 'docs/crypto-ledger/**'
+      - 'docs/bitcoin-merchant/**'
+      - 'docs/agent-services.json'
+      - 'docs/llms.txt'
+      - 'docs/.well-known/**'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test actual public static sources and deploy anonymously
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          cd docs
+          assets=(index.html assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json)
+          for path in "\${assets[@]}"; do
+            test -s "$path"
+          done
+          python - <<'PY'
+          import json
+          offer=json.load(open('agent-services.json'))
+          agent=json.load(open('.well-known/agent.json'))
+          assert len(offer['offers'])==4
+          assert offer['interaction']['payment_checkout'] is False
+          assert agent['human_approval_required'] is True
+          PY
+          zip -q ../studio-full-qa.zip "\${assets[@]}"
+          cd ..
+          curl -fsS --retry 2 --retry-delay 3 --max-time 55 -X POST 'https://ship.page/deploy' -H 'Content-Type: application/zip' --data-binary @studio-full-qa.zip -o studio-full-host-response.json
+          python - <<'PY'
+          import json,urllib.parse
+          d=json.load(open('studio-full-host-response.json'))
+          p=urllib.parse.urlsplit(d.get('url',''))
+          assert p.scheme=='https' and (p.hostname or '').endswith('.ship.place'), d
+          required={'index.html','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}
+          files=set(d.get('files') or [])
+          assert required<=files, 'Hosted manifest incomplete '+str(required-files)
+          with open('public-url.txt','w') as f:f.write(p.geturl().rstrip('/')+'/\n')
+          print('HOSTED_ALL_FILES_PRESENT '+str(len(files)))
+          print('VERIFIED_STATIC_URL_CANDIDATE '+json.dumps({'url':p.geturl(),'expires_at':d.get('expires_at'),'files':len(files)}))
+          PY
+          url="$(cat public-url.txt)"
+          dir="$(mktemp -d)"
+          trap 'rm -rf "$dir" studio-full-qa.zip studio-full-host-response.json' EXIT
+          for asset in index.html assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
+            mkdir -p "$dir/$(dirname "$asset")"
+            curl -fsSL --max-time 22 "$url$asset" -o "$dir/$asset"
+            test -s "$dir/$asset"
+          done
+          grep -q 'Digital Work Studio' "$dir/index.html"
+          grep -q 'crypto-ledger/index.html' "$dir/index.html"
+          grep -q 'bitcoin-merchant/index.html' "$dir/index.html"
+          grep -q 'Bitcoin Merchant Watch Wallet' "$dir/bitcoin-merchant/index.html"
+          grep -q 'reconcil' "$dir/crypto-ledger/index.html"
+          grep -q 'b1b2-digital-services/v1' "$dir/agent-services.json"
+          printf 'PUBLIC_FULL_SITE_LIVE_HTTPS_PASS %s\n' "$url"
+          printf 'Full site: %s\n' "$url" >> "$GITHUB_STEP_SUMMARY"
+          printf 'All 17 public static files fetched over HTTPS; not a buyer, payment or live-chain verification.\n' >> "$GITHUB_STEP_SUMMARY"
