@@ -56,7 +56,7 @@ def main():
             # A platform 'paid' flag is not on-chain proof. Never infer wallet receipts.
             prev["paid"]=False
             prev["receipt_txid"]=None
-            STATUS.write_text(json.dumps(prev,indent=2,ensure_ascii=False)+"\\n")
+            STATUS.write_text(json.dumps(prev,indent=2,ensure_ascii=False)+"\n")
             print("EXISTING_SUBMISSION_TRACKED_NO_REPEAT",ref,prev.get("platform_review_status"))
             return
     report={"checked_at_utc":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
