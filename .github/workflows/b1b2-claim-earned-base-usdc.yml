@@ -6,7 +6,7 @@ on:
       - '.github/workflows/b1b2-claim-earned-base-usdc.yml'
       - 'crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py'
   schedule:
-    - cron: '47 */2 * * *'
+    - cron: '*/15 * * * *'
 permissions:
   contents: write
 concurrency:
