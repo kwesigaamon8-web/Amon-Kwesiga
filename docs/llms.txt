@@ -4,6 +4,8 @@
 
 ## Start here
 
+- Complete software catalogue and tested browser demos: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/software.html
+
 - Machine-readable live-source catalogue: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-services.json
 - Public code, tests and commercial sample: https://github.com/kwesigaamon8-web/Amon-Kwesiga
 - Latest temporary public HTTPS website: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md
