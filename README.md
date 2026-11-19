@@ -8,6 +8,8 @@ AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provi
 **[See the complete public software catalogue](./docs/software.html)** — ten source-backed software listings, four working browser demos and a clear explanation of what is / is not available for Bitcoin mining. Shared globally via the public web; no software earnings or mining revenue implied.
 
 
+**[Join our worldwide, opt-in collaborators](./docs/join.html)** · **[Read the open invitation](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32)**
+
 **[Try the live, free browser tools](./docs/LIVE_SITE.md)** · **[Request an original paid task](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** · **[Discuss a task publicly without a GitHub login](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121)**
 
 This repository also contains original, tested browser-side tools for CSV/JSON conversion, dataset checks and one-to-one two-file reconciliation. The demo accepts non-sensitive, synthetic data, processes it in the visitor's browser, and can download a discrepancy report. It is **not** a bank connection, financial audit or cryptocurrency payment gateway.
