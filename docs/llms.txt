@@ -4,6 +4,8 @@
 
 ## Start here
 
+- B1/B2 owner-shared BTC-mainnet payment routes for ALREADY agreed scopes, with exact network safety (no payment/buyer implied): https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/payment.html
+
 - Global opt-in contributor, real buyer referrals and authorized Bitcoin miner discussions: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/join.html
 - Public volunteer invitation: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32
 
