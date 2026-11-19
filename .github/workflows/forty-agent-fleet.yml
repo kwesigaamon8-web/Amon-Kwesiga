@@ -1,0 +1,112 @@
+name: B1 B2 Forty Expanded Independent Scouts
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/forty_agent_fleet.py'
+      - 'crypto-agents/ten_agent_fleet.py'
+      - '.github/workflows/forty-agent-fleet.yml'
+  schedule:
+    - cron: '42 * * * *'
+concurrency:
+  group: b1b2-forty-scouts
+  cancel-in-progress: false
+permissions:
+  contents: read
+  issues: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check both fleet runtimes
+        run: python -m py_compile crypto-agents/ten_agent_fleet.py crypto-agents/forty_agent_fleet.py
+      - name: Check new fleet count and safety rules
+        run: python crypto-agents/forty_agent_fleet.py --self-test
+  forty-independent-scouts:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        agent: [B1-06, B1-07, B1-08, B1-09, B1-10, B1-11, B1-12, B1-13, B1-14, B1-15, B1-16, B1-17, B1-18, B1-19, B1-20, B1-21, B1-22, B1-23, B1-24, B1-25, B2-06, B2-07, B2-08, B2-09, B2-10, B2-11, B2-12, B2-13, B2-14, B2-15, B2-16, B2-17, B2-18, B2-19, B2-20, B2-21, B2-22, B2-23, B2-24, B2-25]
+    name: "Scout ${{ matrix.agent }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently inspect paid tasks, source evidence and payout risks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/forty_agent_fleet.py --agent ${{ matrix.agent }}
+      - name: Save each actual process report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: additional-scout-${{ matrix.agent }}
+          path: forty-agent-reports/*.json
+          retention-days: 7
+          if-no-files-found: warn
+  review:
+    if: always()
+    needs: [validate, forty-independent-scouts]
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Gather 40 individual execution records
+        uses: actions/download-artifact@v4
+        with:
+          pattern: additional-scout-*
+          path: forty-agent-reports
+          merge-multiple: true
+      - name: Audit independent activity and reject invented earnings
+        run: python crypto-agents/forty_agent_fleet.py --audit forty-agent-reports
+      - name: Publish audit and source records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forty-scout-evidence-audit
+          path: forty-agent-reports/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Report single deployment audit to existing Chief D room
+        if: ${{ always() && github.event_name == 'push' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path("forty-agent-reports/AUDIT.json")
+          run_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if p.exists():
+              v=json.loads(p.read_text())
+              msg=(
+                  "**B1/B2 +40 expansion — independently checked process evidence**\n"
+                  f"Run: {run_url}\n"
+                  f"Audit: {v.get('status','UNKNOWN')}\n"
+                  f"Individual reports: {v.get('distinct_reported_processes',0)}/40\n"
+                  f"Public searches completed: {v.get('successful_source_searches',0)}/40\n"
+                  f"Original GitHub issues rechecked: {v.get('direct_issue_rechecks',0)}\n"
+                  f"Unverified/absent process reports: {v.get('missing_or_invalid',[])}\n"
+                  "Verified new payments attributable to this workflow: 0 (not assessed)\n"
+                  "These scouts are real finite cloud tasks, not persistent LLMs."
+              )
+          else:
+              msg="**B1/B2 +40 expansion** — audit absent; check failed jobs: "+run_url
+          Path("/tmp/forty_scout_receipt.md").write_text(msg)
+          PY
+          gh issue comment 9 --repo "${{ github.repository }}" --body-file /tmp/forty_scout_receipt.md
