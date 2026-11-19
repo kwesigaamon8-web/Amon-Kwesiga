@@ -153,6 +153,19 @@ def self_test():
     assert found[0]['status'].startswith('SOURCE_OPEN')
     assert all(x['status'] == 'HOLD' for x in found[1:])
     assert all(not x['owner_deposit_verified'] for x in found)
+    # Real 19 Nov 2026 listing: 5 USDC pool, first 50 qualify,
+    # already 53 entries. An open UI status does not restore paid slots.
+    full_pool = dict(base,
+        id='TSK-SATURATED',
+        description=('5 USDC total reward pool. Open bounty, no claim step. '
+                     'One qualifying public post per agent; the first 50 qualifying '
+                     'agents share the full pool equally.'),
+        reward='5000000', submissionCount=53)
+    saturated = classify(full_pool, now)
+    assert saturated['status'] == 'HOLD'
+    assert saturated['shared_reward_pool_slots'] == 50
+    assert saturated['usdc_per_winner_if_all_slots_filled'] == '0.1'
+    assert 'shared_pool_more_submissions_than_max_paid_slots' in saturated['blockers']
     assert screen({'not_tasks': rows}, now) == []
     assert classify(dict(base, reward='NAN'), now) is None
     print('TASKMARKET_READ_ONLY_SCOUT_TEST_PASS: unit conversion, deadline, stake, tx, unsafe words')
@@ -202,9 +215,15 @@ def main():
         x['status'].startswith('SOURCE_OPEN'),
         x['fit_for_existing_skills'],
         x['competition_adjusted_score']), reverse=True)
+    payable_unverified = [x for x in results if x['status'].startswith('SOURCE_OPEN')]
+    held = [x for x in results if x['status'] == 'HOLD']
     output.update({
-        'source_rows_checked': raw_count, 'candidate_count': len(results),
-        'candidate_unverified': results[:40],
+        'source_rows_checked': raw_count,
+        'screened_task_count': len(results),
+        'candidate_count': len(payable_unverified),
+        'held_task_count': len(held),
+        'candidate_unverified': payable_unverified[:40],
+        'rejected_or_held': held[:40],
         'source_errors': errors,
         'status': 'SOURCE_ERROR_DO_NOT_CLAIM_EMPTY_MARKET' if errors else 'PUBLIC_SOURCE_SCREENED',
         'next_action': 'Verify original task and escrow on Base. Submission requires a wallet signature, not authorized here.'
@@ -212,8 +231,9 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(output, indent=2) + '\n', encoding='utf-8')
     print('TASKMARKET_BASE_USDC_SCOUT', json.dumps({
-        'rows': raw_count, 'candidates': len(results), 'source_errors': errors,
-        'top': [(x['id'], x['advertised_usdc_base'], x['status']) for x in results[:5]]
+        'rows': raw_count, 'candidates': len(payable_unverified),
+        'held': len(held), 'source_errors': errors,
+        'top': [(x['id'], x['advertised_usdc_base'], x['status']) for x in payable_unverified[:5]]
     }))
 
 if __name__ == '__main__':
