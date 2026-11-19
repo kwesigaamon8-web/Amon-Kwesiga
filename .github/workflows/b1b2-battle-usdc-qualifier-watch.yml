@@ -1,0 +1,69 @@
+name: B1 B2 Real USDC Cup Qualification and $15 Payout Gate
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-battle-usdc-qualifier-watch.yml'
+  schedule:
+    - cron: '21 */2 * * *'
+permissions:
+  contents: write
+jobs:
+  qualification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify real public ranked sets and sponsored cup eligibility
+        run: |
+          python - <<'PY'
+          import urllib.request,json,time,pathlib
+          B="b1b2-hill-harvester"
+          root="https://api.battle.training"
+          urls={"bot":"/api/bots/"+B,"cup":"/api/ladders/promotedby-cup-nov-2026","ladder":"/api/ladder"}
+          result={"checked_at_utc":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),"bot":B,"evidence":{},"cup_qualified":False,"public_rating_above_starter":None,"sponsor_bounty_ready_for_review":False,"actual_usdc_received":False}
+          for name,path in urls.items():
+            try:
+              q=urllib.request.Request(root+path,headers={"User-Agent":"B1B2-Original-Bot-RealMoneyGate/1","Accept":"application/json"})
+              with urllib.request.urlopen(q,timeout=15) as f:
+                data=json.loads(f.read(220000))
+              if name=="bot":
+                result["evidence"][name]={"http":200,"public_url":"https://battle.training/bots/"+B,"data":data}
+              elif name=="cup":
+                entry=next((v for v in data.get("standings",[])if v.get("bot")==B),None)
+                result["evidence"][name]={"http":200,"prize_usd":data.get("prize"),"entry":entry,"enrolled":data.get("enrolled")}
+                result["cup_qualified"]=bool(entry and entry.get("qualified"))
+              else:
+                scores=data.get("standings",data.get("bots",data.get("ladder",[]))) if isinstance(data,dict) else data
+                if isinstance(scores,dict):scores=scores.get("bots",scores.get("standings",[]))
+                rows=scores if isinstance(scores,list) else []
+                ours=next((r for r in rows if isinstance(r,dict)and (r.get("bot")==B or r.get("name")==B)),None)
+                starter=next((r for r in rows if isinstance(r,dict)and (r.get("bot")=="house-starter" or r.get("name")=="house-starter")),None)
+                result["evidence"][name]={"http":200,"ours":ours,"house_starter":starter}
+                if ours and starter:
+                  our_rate=ours.get("rating")
+                  house_rate=starter.get("rating")
+                  if isinstance(our_rate,(float,int))and isinstance(house_rate,(float,int)):
+                    result["public_rating_above_starter"]=our_rate>house_rate
+            except Exception as e:result["evidence"][name]={"error":str(e)[:180]}
+          public=result["evidence"].get("ladder",{}).get("ours") or {}
+          bot=result["evidence"].get("bot",{}).get("data") or {}
+          n=public.get("games",bot.get("games",0))
+          try:result["public_ranked_sets"]=int(n)
+          except:result["public_ranked_sets"]=0
+          result["sponsor_bounty_ready_for_review"]=result["public_ranked_sets"]>=100 and result["public_rating_above_starter"] is True
+          path=pathlib.Path("crypto-agents/commercial-work/battle-hill-harvester/live-qualifier-status.json")
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
+          print("REAL_CUP_MONEY_GATE",json.dumps({"checked":result["checked_at_utc"],"public_sets":result.get("public_ranked_sets"),"cup_qualified":result["cup_qualified"],"public_rating_above_starter":result["public_rating_above_starter"],"ready_for_sponsor":result["sponsor_bounty_ready_for_review"],"received":False}))
+          PY
+      - name: Preserve actual public status only, never pretend to have USDC
+        if: always()
+        run: |
+          git config user.name 'b1b2-cup-money-watch[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/commercial-work/battle-hill-harvester/live-qualifier-status.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Observe real ranked-set threshold for potential $15 Base USDC bounty"
+            git push
+          fi
