@@ -1,0 +1,48 @@
+name: B1 B2 Battle Controller Read-only API Notes
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-battle-controller-notes.yml'
+permissions:
+  contents: write
+jobs:
+  controller-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract source-controlled public controller API notes
+        run: |
+          python - <<'PY'
+          import json,urllib.request,time,pathlib
+          targets=["https://api.battle.training/docs/controller-api.md","https://api.battle.training/starters/controller.js","https://api.battle.training/api/ladders/promotedby-cup-nov-2026"]
+          report={}
+          for u in targets:
+            try:
+              request=urllib.request.Request(u,headers={"User-Agent":"B1B2-FreeCupController/1"})
+              with urllib.request.urlopen(request,timeout=14) as r:
+                source=r.read(150000).decode("utf-8","replace")
+                if u.endswith(".md"):
+                  lines=source.splitlines()
+                  selected=[{"n":i+1,"line":line[:700]}for i,line in enumerate(lines)if line.startswith("#") or any(w in line.lower()for w in ("draft(", "tick(", "hello(", "orders", "order:", "return {", "apc", "mbt", "scout", "squad", "move","capture", "fire", "angle", "unit.id", "objectives"))]
+                  report[u]={"http":r.status,"linecount":len(lines),"api_lines":selected[:150]}
+                elif u.endswith(".js"):
+                  lines=source.splitlines()
+                  report[u]={"http":r.status,"linecount":len(lines),"reference_excerpt":[{"n":i+1,"line":line[:650]}for i,line in enumerate(lines[:130])]}
+                else:report[u]={"http":r.status,"data":json.loads(source)}
+            except Exception as e:report[u]={"error":str(e)[:240]}
+          path=pathlib.Path("crypto-agents/paid-opportunity-reports/battle-controller-notes.json")
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(json.dumps({"checked_at":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),"public_api_evidence":report},ensure_ascii=False,indent=2)+"\n")
+          print("CONTROLLER_API_SOURCES",[(k,v.get("http"),v.get("error"),v.get("linecount"))for k,v in report.items()])
+          PY
+      - name: Commit read-only public source pointers
+        run: |
+          git config user.name 'b1b2-cash-scout[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/paid-opportunity-reports/battle-controller-notes.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record source-credited battle controller API for independent USDC entrant"
+            git push
+          fi
