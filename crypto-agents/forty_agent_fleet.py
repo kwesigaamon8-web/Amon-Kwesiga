@@ -65,9 +65,18 @@ def resilient_read_json(url):
     except urllib.error.HTTPError as exc:
         if exc.code not in (403, 429, 502, 503, 504):
             raise
-        time.sleep(5)
+        time.sleep(8)
         return _source_request(url)
 fleet.request_json = resilient_read_json
+
+
+def execute_agent(agent):
+    # Keep GitHub search requests below secondary/abuse rate limits.
+    # This is a finite research process, not a persistent AI worker.
+    import os
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        time.sleep((int(agent.rsplit("-", 1)[-1]) % 3) * 3)
+    return fleet.run_agent(agent)
 
 
 def test():
@@ -97,6 +106,6 @@ if __name__ == "__main__":
     elif args.audit is not None:
         sys.exit(fleet.audit(args.audit))
     elif args.agent:
-        sys.exit(fleet.run_agent(args.agent))
+        sys.exit(execute_agent(args.agent))
     else:
         parser.error("Choose --agent, --audit or --self-test")
