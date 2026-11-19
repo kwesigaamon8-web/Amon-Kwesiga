@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'crypto-agents/thousand_worker_fleet.py'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - 'crypto-agents/chief_D_owner_orders.json'
       - '.github/workflows/thousand-worker-fleet.yml'
   schedule:
     - cron: '53 */3 * * *'
