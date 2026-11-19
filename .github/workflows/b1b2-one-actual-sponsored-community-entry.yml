@@ -1,0 +1,39 @@
+name: B1 B2 One Original $25 Native Base USDC Sponsored Community Entry
+on:
+  push:
+    paths:
+      - '.github/workflows/b1b2-one-actual-sponsored-community-entry.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: b1b2-one-actual-funded-community-post
+  cancel-in-progress: false
+jobs:
+  one-post-one-payer-submission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate original honest technical disclosure and puzzle parser
+        run: |
+          node --check crypto-agents/paid-work/one-battle-forum-funded-community.mjs
+          node crypto-agents/paid-work/one-battle-forum-funded-community.mjs --test
+      - name: Publish ONE actual technical reply, verify public URL, sponsor dry run, then submit
+        env:
+          ONE_PAID_COMMUNITY_ALLOWED: 'true'
+        run: node crypto-agents/paid-work/one-battle-forum-funded-community.mjs
+      - name: Save factual response; no keys, personal emails or speculative receipts
+        if: always()
+        run: |
+          git config user.name 'b1b2-paid-community[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add battle-community-paid-submission-status.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Store one real paid community sponsor acceptance result without earnings inflation'
+            git pull --rebase origin main
+            git push origin main
+          fi
