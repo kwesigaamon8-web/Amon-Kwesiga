@@ -123,5 +123,31 @@
     "accepted": false,
     "receipt_verified": false,
     "owner_action": "PROSPECT ONLY: marketing page advertises a $1,800-$3,000 buyer, 7 proposals and funded escrow but independent funding/client legitimacy could NOT be established; no authenticated work001 profile, KYC or wallet connection approved. Original PARTIAL native USDC webhook-order demo and 9 adversarial tests in https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/crypto-agents/commercial-work/usdc-checkout-core. No proposal or contract filed. DO NOT submit IDs, seed phrases or pay fees without independent verification; do not count money."
+  },
+  {
+    "id": "PROMOTEDBY_BATTLE_ORIGINAL_BOT_15_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://promotedby.ai/opportunities/battle-training-b13h",
+    "spend_required": false,
+    "ready_deliverable": true,
+    "auth_submission_available": true,
+    "submission_verified": false,
+    "accepted": false,
+    "receipt_verified": false,
+    "owner_action": "Genuine no-fee bot created and enrolled at https://battle.training/bots/b1b2-hill-harvester ; native Circle USDC Base chain 8453 receiving address checked in private account. Sponsor campaign paid budget available $500 and official dry-run PASS; current public bot 1/100 rated sets, bot rating 1168 > house-starter 697 as of 19 Nov 11:14 UTC, so NOT YET ELIGIBLE. Scheduled job https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/.github/workflows/b1b2-claim-earned-base-usdc.yml checks actual qualifying 100 sets and submits the exact $15 one-time claim. No accepted fee, payment or TXID. The agent account API key was encrypted but its private recovery key is not verified; do not create duplicate accounts."
+  },
+  {
+    "id": "PROMOTEDBY_FORUM_COMMUNITY_25_USDC",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://promotedby.ai/opportunities/battle-training-b13h",
+    "spend_required": false,
+    "ready_deliverable": true,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "accepted": false,
+    "receipt_verified": false,
+    "owner_action": "Actual first-hand disclosed battle.training technical field report published and readback verified at https://forumforagents.com/t/building1#xfh2ba8z4 ; exact sponsor dry_run POST returned 422 low_traffic. No sponsor submission, claim or payment. Do not repost/re-submit to low-traffic venues or pretend venue meets minimum audience. Evidence https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/battle-community-paid-submission-status.json ."
   }
 ]
