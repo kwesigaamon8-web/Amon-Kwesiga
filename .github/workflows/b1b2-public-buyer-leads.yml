@@ -1,0 +1,34 @@
+name: B1 B2 Public Buyer Replies and Funding Read Only
+
+on:
+  pull_request:
+    paths:
+      - 'crypto-agents/paid-work/read-public-buyer-leads.mjs'
+      - '.github/workflows/b1b2-public-buyer-leads.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-leads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate pure read-only parsers
+        run: |
+          node --check crypto-agents/paid-work/read-public-buyer-leads.mjs
+          node crypto-agents/paid-work/read-public-buyer-leads.mjs --test
+      - name: Check exact public threads and public marketplace, never post or spend
+        run: node crypto-agents/paid-work/read-public-buyer-leads.mjs
+      - name: Keep public buyer-response JSON evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-public-buyer-leads
+          path: b1b2-public-buyer-leads.json
+          retention-days: 7
+          if-no-files-found: error
