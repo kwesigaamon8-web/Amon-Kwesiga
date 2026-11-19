@@ -110,5 +110,18 @@
     "submission_verified": false,
     "receipt_verified": false,
     "owner_action": "Original proof-DAG model and proposal at https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/b1b2/hybrid-proof-dag-wildcard-20261119/crypto-agents/paid-submissions/go-hybrid-2026/WILDCARD_SUBMISSION.md . Two upstream issue attempts returned 403, so NOT SUBMITTED. Sponsor pays only winner if accepted and later published; Base USDC payout only a proposed rail, verify before accepting any prize."
+  },
+  {
+    "id": "WORK001_USDC_CHECKOUT_1800_3000",
+    "reward_kind": "transferable_crypto",
+    "region": "global",
+    "source_url": "https://work001.com/jobs/usdc-checkout-integration/",
+    "spend_required": false,
+    "ready_deliverable": false,
+    "auth_submission_available": false,
+    "submission_verified": false,
+    "accepted": false,
+    "receipt_verified": false,
+    "owner_action": "PROSPECT ONLY: marketing page advertises a $1,800-$3,000 buyer, 7 proposals and funded escrow but independent funding/client legitimacy could NOT be established; no authenticated work001 profile, KYC or wallet connection approved. Original PARTIAL native USDC webhook-order demo and 9 adversarial tests in https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/crypto-agents/commercial-work/usdc-checkout-core. No proposal or contract filed. DO NOT submit IDs, seed phrases or pay fees without independent verification; do not count money."
   }
 ]
