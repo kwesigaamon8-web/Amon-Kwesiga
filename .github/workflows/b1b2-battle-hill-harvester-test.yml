@@ -1,0 +1,47 @@
+name: B1 B2 Hill Harvester Original Paid Cup Controller Tests
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/b1b2-battle-hill-harvester-test.yml'
+      - 'crypto-agents/commercial-work/battle-hill-harvester/controller.js'
+permissions:
+  contents: write
+jobs:
+  no-cost-local-simulation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original controller versus genuine free simulator
+        run: |
+          mkdir -p /tmp/battle-sdk crypto-agents/commercial-work/battle-hill-harvester
+          curl -fsSL --max-time 15 https://api.battle.training/sdk/arena-sim.mjs > /tmp/battle-sdk/arena-sim.mjs
+          curl -fsSL --max-time 15 https://api.battle.training/sdk/local-test.mjs > /tmp/battle-sdk/local-test.mjs
+          cp crypto-agents/commercial-work/battle-hill-harvester/controller.js /tmp/battle-sdk/controller.js
+          node --check /tmp/battle-sdk/controller.js
+          set +e
+          timeout 140s node /tmp/battle-sdk/local-test.mjs /tmp/battle-sdk/controller.js --seeds 3 --vs brawler,holder,random,hunter > /tmp/battle-result.txt 2>&1
+          code=$?
+          set -e
+          python - <<'PY'
+          import json,time,pathlib,os
+          raw=pathlib.Path("/tmp/battle-result.txt").read_text(errors="replace")
+          path=pathlib.Path("crypto-agents/commercial-work/battle-hill-harvester/test-results.json")
+          path.write_text(json.dumps({"tested_at_utc":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),"log":raw[-22000:],"offline_synthetic_test":True,"prize_earned":False},indent=2)+"\n")
+          print(raw[-15000:])
+          PY
+          echo "SIMULATION_EXIT_CODE=$code" >> "$GITHUB_STEP_SUMMARY"
+      - name: Save reproducible pre-entry test evidence
+        if: always()
+        run: |
+          git config user.name 'b1b2-harvester[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/commercial-work/battle-hill-harvester/test-results.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record free local scrimmage stats before trying any USDC prize registration"
+            git push
+          fi
