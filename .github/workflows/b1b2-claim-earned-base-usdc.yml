@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/b1b2-claim-earned-base-usdc.yml'
       - 'crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py'
+      - 'crypto-agents/earning_loop_state_gate.py'
   schedule:
     - cron: '*/15 * * * *'
 permissions:
@@ -22,14 +23,47 @@ jobs:
         run: |
           python -m py_compile crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py
           python crypto-agents/commercial-work/battle-hill-harvester/submit_qualified_sponsor.py
-      - name: Preserve real sponsor response; never claim unaccepted income
+      - name: Check genuine progress gate regression tests
+        run: python crypto-agents/earning_loop_state_gate.py --self-test
+      - name: Archive latest factual sponsor observation without rewriting repository
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-sponsor-observation
+          path: crypto-agents/commercial-work/battle-hill-harvester/sponsor-bounty-submission.json
+          retention-days: 4
+          if-no-files-found: warn
+      - name: Persist only actual sponsor milestones, not repeated timestamp commits
+        if: success()
         run: |
-          git config user.name 'b1b2-usdc-payout-gate[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add crypto-agents/commercial-work/battle-hill-harvester/sponsor-bounty-submission.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'Record actual sponsor qualification, dry-run, and any permitted submission'
-            git pull --rebase origin main
-            git push origin main
-          fi
+          set -euo pipefail
+          report="crypto-agents/commercial-work/battle-hill-harvester/sponsor-bounty-submission.json"
+          cp "$report" "$RUNNER_TEMP/b1b2-current.json"
+          git config user.name "b1b2-evidence-milestone[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            set +e
+            python crypto-agents/earning_loop_state_gate.py --kind sponsor --old "$report" --new "$RUNNER_TEMP/b1b2-current.json"
+            code=$?
+            set -e
+            if [ "$code" -eq 3 ]; then
+              echo "NO_NEW_MATERIAL_SPONSOR_MILESTONE"
+              exit 0
+            fi
+            if [ "$code" -ne 0 ]; then
+              echo "UNEXPECTED_MILESTONE_GATE_ERROR $code" >&2
+              exit "$code"
+            fi
+            cp "$RUNNER_TEMP/b1b2-current.json" "$report"
+            git add "$report"
+            git commit -m "Persist new verified sponsor claim or independent review milestone"
+            if git push origin HEAD:main; then
+              echo "PERSISTED_MATERIAL_SPONSOR_MILESTONE"
+              exit 0
+            fi
+            sleep "$((attempt * 2))"
+          done
+          echo "MILESTONE_PERSIST_FAILED_AFTER_CONCURRENT_UPDATES" >&2
+          exit 1
