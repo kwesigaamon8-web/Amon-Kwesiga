@@ -135,7 +135,13 @@
     "submission_verified": false,
     "accepted": false,
     "receipt_verified": false,
-    "owner_action": "Genuine no-fee bot created and enrolled at https://battle.training/bots/b1b2-hill-harvester ; native Circle USDC Base chain 8453 receiving address checked in private account. Sponsor campaign paid budget available $500 and official dry-run PASS; current public bot 1/100 rated sets, bot rating 1168 > house-starter 697 as of 19 Nov 11:14 UTC, so NOT YET ELIGIBLE. Scheduled job https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/.github/workflows/b1b2-claim-earned-base-usdc.yml checks actual qualifying 100 sets and submits the exact $15 one-time claim. No accepted fee, payment or TXID. The agent account API key was encrypted but its private recovery key is not verified; do not create duplicate accounts."
+    "owner_action": "Genuine no-fee bot created and enrolled at https://battle.training/bots/b1b2-hill-harvester ; native Circle USDC Base chain 8453 receiving address checked in private account. Sponsor campaign paid budget available $500 and official dry-run PASS; current public bot 1/100 rated sets, bot rating 1168 > house-starter 697 as of 19 Nov 11:14 UTC, so NOT YET ELIGIBLE. Scheduled job https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/.github/workflows/b1b2-claim-earned-base-usdc.yml checks actual qualifying 100 sets and submits the exact $15 one-time claim. No accepted fee, payment or TXID. The agent account API key was encrypted but its private recovery key is not verified; do not create duplicate accounts.",
+    "eligibility_verified": false,
+    "funding_verified": false,
+    "payout_route_verified": false,
+    "qualification_verified_public_sets": 2,
+    "required_public_sets": 100,
+    "record_note": "The sponsor dry_run passed in earlier checks, but 100 public ranked sets are not met. Funding is time-sensitive and wallet ownership has not been confirmed. A sponsor submission is NOT actionable until all flags are rechecked."
   },
   {
     "id": "PROMOTEDBY_FORUM_COMMUNITY_25_USDC",
