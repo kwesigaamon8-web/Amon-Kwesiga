@@ -1,0 +1,71 @@
+name: B1B2 Worldwide Bitcoin Public Data and Country Atlas
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '21 5 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-world-bitcoin-intelligence.yml'
+      - 'crypto-agents/bitcoin_world_data.py'
+permissions:
+  contents: write
+concurrency:
+  group: b1b2-public-world-btc-data
+  cancel-in-progress: false
+jobs:
+  public-btc-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run safe collector and address-registry tests
+        run: |
+          python -m py_compile crypto-agents/bitcoin_world_data.py
+          python crypto-agents/bitcoin_world_data.py --self-test
+          python crypto-agents/test_btc_receiver_safety.py
+          python crypto-agents/owner_first_oath.py
+      - name: Collect live public worldwide Bitcoin evidence
+        run: python crypto-agents/bitcoin_world_data.py
+      - name: Audit completed dataset and source limitations
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('crypto-agents/bitcoin-world-data')
+          d=json.loads((p/'latest_snapshot.json').read_text())
+          assert d['schema']=='B1B2_BITCOIN_WORLD_DATA_SOURCE_VERIFIED_V1'
+          assert len(d['countries'])==249
+          assert len({x['iso3166_alpha2'] for x in d['countries']})==249
+          assert not d['btc_receipts_newly_earned_verified']
+          assert all(x['bitcoin_mining_share_pct'] is None for x in d['countries'])
+          assert all(x['bitcoin_country_specific_status']=='UNVERIFIED_NOT_ZERO' for x in d['countries'])
+          print('B1B2_WORLD_BTC_SOURCE_PROOF_PASS')
+          PY
+          cat crypto-agents/bitcoin-world-data/WORLD_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive snapshot, 249-country CSV and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: worldwide-bitcoin-data-249-countries
+          path: crypto-agents/bitcoin-world-data/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Persist only the bounded source-based snapshot into Git
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- crypto-agents/bitcoin-world-data/latest_snapshot.json crypto-agents/bitcoin-world-data/countries.csv crypto-agents/bitcoin-world-data/WORLD_REPORT.md
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Refresh worldwide Bitcoin public-source evidence and country uncertainty'
+          git fetch --quiet origin main
+          if ! git rebase origin/main; then
+            git rebase --abort || true
+            echo 'SAFE_HOLD: concurrent update; artifact retained'
+            exit 0
+          fi
+          git push origin HEAD:main || echo 'SAFE_HOLD: protected branch or race; artifact retained'
