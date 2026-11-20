@@ -1,0 +1,46 @@
+name: B1 B2 Authorized Bounty — One Program at a Time
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'crypto-agents/authorized_bounty_pipeline.py'
+      - 'crypto-agents/paid-work/BOUNTY_01_THRESHOLD_NETWORK.md'
+      - 'crypto-agents/enigma_universal_owner_order.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/public_payment_routes.json'
+      - '.github/workflows/b1b2-authorized-bounty-one-by-one.yml'
+permissions:
+  contents: read
+jobs:
+  local-role-mapping-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate first program and 30 country-based virtual divisions
+        run: |
+          python -m py_compile crypto-agents/authorized_bounty_pipeline.py
+          python crypto-agents/authorized_bounty_pipeline.py --self-test
+          python crypto-agents/authorized_bounty_pipeline.py --overview > /tmp/owner_bounty_overview.json
+          python crypto-agents/authorized_bounty_pipeline.py --index 0 > /tmp/owner_bounty_first_role.json
+          python crypto-agents/authorized_bounty_pipeline.py --index 11255658980399 > /tmp/owner_bounty_last_role.json
+          python - <<'PY'
+          import json
+          for p in ('/tmp/owner_bounty_first_role.json','/tmp/owner_bounty_last_role.json'):
+              d=json.load(open(p))
+              assert d['active_target']['id']=='IMMUNEFI-01-THRESHOLD-NETWORK'
+              assert d['paid_reward_verified'] is False
+              assert d['individual_worker_actual_execution_evidenced'] is False
+              assert d['btc_mainnet_reference_only']['transferexperiment'].startswith('bc1q')
+              assert d['btc_mainnet_reference_only']['BountyScoutAI'].startswith('bc1q')
+          print('BOUNTY_FIRST_LAST_ROLE_PACKET_PASS (NO LIVE ATTACK OR EARNINGS)')
+          PY
+      - name: Explain strict evidence boundary
+        run: |
+          echo "### B1/B2 authorized-bounty pipeline — first program" >> "$GITHUB_STEP_SUMMARY"
+          echo "Scope, public code and virtual role mapping only. No live security scanning or exploitation, no external reports, no emails, no payments." >> "$GITHUB_STEP_SUMMARY"
+          echo "First target: Threshold Network / Immunefi. 30 country-scoped divisions; 11,255,658,980,400 on-demand VIRTUAL role slots, not live agents." >> "$GITHUB_STEP_SUMMARY"
+          echo "No actual vulnerability, accepted bounty or credited cryptocurrency is evidenced by this CI." >> "$GITHUB_STEP_SUMMARY"
