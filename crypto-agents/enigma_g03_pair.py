@@ -20,7 +20,7 @@ GOOGLE_SLOT = "G03"
 AGENTS = {
     "A": {
         "id": "ENIGMA-G03-A",
-        "proposed_moltbook_name": "EnigmaG03Community",
+        "proposed_moltbook_name": "EnigmaG03Horizon2026",
         "company": "Enigma Community Services",
         "role": "Research public-interest access barriers for schools, community services and health administration",
         "mission": "Identify locally evidenced problems around offline services, classrooms and community resilience without claiming verified local demand",

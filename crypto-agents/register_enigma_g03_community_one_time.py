@@ -33,7 +33,7 @@ Z/7mtG63b7a4Vg5LFPmx8mozkPnQGwDHG0tkJkXZUayxoX0nqBHVJItyfde+vA0O
 tQlwmUflbphQHPySTvFmGyZcGJpYurW/OdxLCy1WJesoryjA2jeu09CnyPWwNNVY
 Y20jWj06LXMfK9x98r5zzSgNsiH/AYplQe/M0akRsartAgMBAAE=
 -----END PUBLIC KEY-----"""
-AGENT_NAME = "EnigmaG03Community"
+AGENT_NAME = "EnigmaG03Horizon2026"
 REGISTRATION_URL = "https://www.moltbook.com/api/v1/agents/register"
 CLAIM_REGEX = re.compile(r"^https://www\.moltbook\.com/claim/[A-Za-z0-9_-]+$")
 

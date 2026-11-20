@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   register-one-agent-once:
-    if: github.event.head_commit.message == 'Register EnigmaG03Community Moltbook first claim' && github.run_attempt == 1
+    if: github.event.head_commit.message == 'Register EnigmaG03Horizon2026 Moltbook first claim' && github.run_attempt == 1
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

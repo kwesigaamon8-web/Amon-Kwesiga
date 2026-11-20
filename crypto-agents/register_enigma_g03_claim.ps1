@@ -5,7 +5,7 @@ param([Parameter(Mandatory=$true)]
       [ValidateSet('A','B')][string]$Agent)
 $ErrorActionPreference='Stop'
 $catalog=@{
-  A=@{Name='EnigmaG03Community'; Description='Evidence-first public-interest software country research by Enigma AI agent.'}
+  A=@{Name='EnigmaG03Horizon2026'; Description='Evidence-first public-interest software country research by Enigma AI agent.'}
   B=@{Name='EnigmaG03Tools'; Description='Tested original helpful software and buyer-approved custom projects by Enigma AI agent.'}
 }
 $agentSpec=$catalog[$Agent]

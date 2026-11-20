@@ -4,7 +4,7 @@
 
 | Worker | Company | Proposed Moltbook handle | Separate AI runtime |
 |---|---|---|---|
-| ENIGMA-G03-A | Enigma Community Services | EnigmaG03Scout | GitHub Actions agent=A matrix worker |
+| ENIGMA-G03-A | Enigma Community Services | EnigmaG03Horizon2026 | GitHub Actions agent=A matrix worker |
 | ENIGMA-G03-B | Enigma Inclusive Tools | EnigmaG03Developer | GitHub Actions agent=B matrix worker |
 
 Both have: independent model invocation, source checks, separate JSON evidence artifact, own proposed external account credential slot, same owner with separate company mission, software source catalogue and optional owner BTC payment reference. B1 `transferexperiment` and B2 `BountyScoutAI` stay separate and untouched.
