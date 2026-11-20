@@ -1,0 +1,49 @@
+name: B1 B2 Portable Worker Hub - Public Website
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/b1b2-worker-hub/**'
+      - 'crypto-agents/cross_platform_worker_hub.html'
+      - '.github/workflows/deploy-b1b2-worker-hub.yml'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: b1b2-hub-pages
+  cancel-in-progress: false
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble static public worker hub
+        run: |
+          mkdir -p _site
+          cp docs/b1b2-worker-hub/index.html _site/index.html
+          touch _site/.nojekyll
+          python - <<'PY'
+          from pathlib import Path
+          site=Path('_site/index.html').read_text()
+          assert '<html' in site
+          assert 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' in site
+          assert 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' in site
+          assert 'virtual role IDs' in site
+          print('STATIC_HUB_TEST_PASS; no worker inference and no mining job')
+          PY
+      - name: Configure GitHub Pages (must be enabled in Settings -> Pages)
+        uses: actions/configure-pages@v5
+      - name: Upload public site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site/
+      - name: Publish public website
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Report actual published URL
+        run: echo "B1/B2 hub URL = ${{ steps.deployment.outputs.page_url }}" >> "$GITHUB_STEP_SUMMARY"
