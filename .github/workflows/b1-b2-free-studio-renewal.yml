@@ -154,7 +154,7 @@ jobs:
           grep -q 'function' "$scratch/reconcile.js"
           grep -q 'function' "$scratch/reconcile-ui.js"
           [ -s "$scratch/styles.css" ]
-          for asset in software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html share-free-software.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
+          for asset in software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
             mkdir -p "$scratch/$(dirname "$asset")"
             curl -fSsL --max-time 25 "${url}${asset}" -o "$scratch/$asset"
             test -s "$scratch/$asset"
