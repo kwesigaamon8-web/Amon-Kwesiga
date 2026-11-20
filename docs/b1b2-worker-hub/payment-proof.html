@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1/B2 BTC Payment Request and Receipt Proof — Free Read-only Tool</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#17283d}
+body{background:#f6f8fb;max-width:880px;margin:2.2rem auto;padding:0 1rem;line-height:1.55}
+section{background:white;border:1px solid #dbe2e8;border-radius:12px;padding:1.3rem;margin:1rem 0}
+h1{font-size:1.8rem}h2{font-size:1.2rem}
+label{display:block;font-weight:600;margin:.6rem 0 .25rem}
+input,select{font:inherit;max-width:100%;width:100%;box-sizing:border-box;padding:.6rem;border:1px solid #aab7c5;border-radius:6px}
+button{background:#175787;color:white;border:0;border-radius:7px;padding:.66rem 1rem;font:inherit;cursor:pointer;margin-top:.6rem}
+button:disabled{opacity:.5}button.secondary{background:#e8eef5;color:#174065}
+code,pre{word-break:break-all;overflow-wrap:anywhere}
+pre{padding:.85rem;border-radius:6px;background:#f4f6f8;white-space:pre-wrap}
+p.note{color:#506075} .alert{background:#fff3e0;border-left:3px solid #d19c24;padding:.75rem}
+.status{font-weight:700} a{color:#125b98} .two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+</style></head><body>
+<h1>B1/B2 Bitcoin payment kit</h1><p>Free, owner-controlled payment request builder and **read-only Bitcoin mainnet transaction proof checker**. No wallet login, private keys, mining, payment broadcasting, paid API calls or email access.</p>
+<section><h2>1. Prepare the customer's Bitcoin payment request</h2>
+<div class="two"><div><label for="fleet">Business wallet</label><select id="fleet"><option value="B1">B1 — transferexperiment</option><option value="B2">B2 — BountyScoutAI</option></select></div>
+<div><label for="amount">BTC amount to request</label><input type="text" id="amount" inputmode="decimal" value="0.0001" placeholder="0.00010000"></div></div>
+<label for="service">Customer's agreed deliverable (optional description)</label><input id="service" value="Original software delivery" maxlength="100">
+<button id="create" type="button">Create Bitcoin payment request</button>
+<div id="bill" aria-live="polite"><p class="note">Your approved BTC receiving address will appear here.</p></div></section>
+<section><h2>2. Verify the on-chain transaction independently</h2>
+<p>Ask the customer for the **64-character Bitcoin transaction ID** after sending. The checker matches the transaction outputs against the selected owner's Bitcoin mainnet address and counts block confirmations. An unconfirmed transaction is never called settled.</p>
+<label for="txid">Bitcoin mainnet transaction ID</label><input id="txid" autocomplete="off" maxlength="64" placeholder="Enter 64-character TXID">
+<button type="button" id="verify">Check Bitcoin payment proof</button>
+<div id="result" aria-live="polite"></div>
+<p class="note">Source: <a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">mempool.space public REST API</a>. Browser calls send only the TXID to this public provider. API rate limits, availability and blockchain reorganizations can affect status. Independently reconfirm before recognizing a final settlement.</p></section>
+<section><h2>3. Actual proof and next action</h2>
+<p class="alert"><strong>Important:</strong> A public transaction pays a Bitcoin address, not necessarily a particular invoice. Independently match the buyer and service; ensure the address is yours. Confirmed outputs do not prove the money is unspent or a contracted deliverable has been accepted.</p>
+<p>Company wallets: <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md">canonical owner's published addresses</a>. Non-BTC addresses require a separately verified matching chain and token and are deliberately not offered in this tool.</p>
+<p><a href="./worker-hub.html">Open all country-assigned virtual roles</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/18">View existing public buyer inquiry intake</a>.</p>
+</section>
+<script src="./payment-proof-core.js"></script><script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id),p=window.B1B2Proof;
+let current=null;
+function showError(id,error){const box=$(id);box.replaceChildren();const e=document.createElement('p');e.className='alert';e.textContent=error.message||String(error);box.appendChild(e);}
+async function copyText(value){try{await navigator.clipboard.writeText(value);window.alert('Copied to clipboard.')}catch(e){window.prompt('Copy:',value);}}
+$('create').onclick=()=>{
+  try{
+    const fleet=$('fleet').value;
+    const amount=$('amount').value.trim();
+    const label=$('service').value.trim();
+    const sats=p.amountToSats(amount);const uri=p.makeUri(fleet,amount,label);
+    current={fleet,sats,uri,label};
+    const box=$('bill');box.replaceChildren();
+    const address=document.createElement('p');address.textContent='Bitcoin mainnet receiver: '+p.BTC[fleet];box.appendChild(address);
+    const due=document.createElement('p');due.textContent='Amount requested: '+p.satsToBTC(sats)+' BTC ('+sats.toString()+' satoshis)';box.appendChild(due);
+    const code=document.createElement('pre');code.textContent=uri;box.appendChild(code);
+    const btn=document.createElement('button');btn.type='button';btn.textContent='Copy Bitcoin payment request';btn.onclick=()=>copyText(uri);box.appendChild(btn);
+    const addr=document.createElement('button');addr.className='secondary';addr.type='button';addr.textContent='Copy BTC address';addr.onclick=()=>copyText(p.BTC[fleet]);box.appendChild(addr);
+  }catch(error){current=null;showError('bill',error);}
+};
+$('verify').onclick=async()=>{
+  const btn=$('verify');btn.disabled=true;
+  const box=$('result');box.textContent='Checking the public Bitcoin blockchain for this TXID…';
+  try{
+    const fleet=$('fleet').value;const expected=p.amountToSats($('amount').value.trim());
+    const result=await p.fetchAndAssess($('txid').value.trim(),fleet,expected);
+    box.replaceChildren();
+    const status=document.createElement('p');status.className='status';
+    status.textContent='Result: '+result.status;box.appendChild(status);
+    const list=document.createElement('ul');
+    const rows=[
+      ['Receiving wallet',result.address],['Matching outputs',String(result.matching_outputs)],
+      ['Received to wallet',result.amount_to_receiver_btc+' BTC'],['Requested amount',result.expected_btc+' BTC'],
+      ['Block confirmations',String(result.confirmations)],
+      ['Meets receiver, minimum and confirmation checks',result.on_chain_receiver_and_minimum_matched?'YES':'NO']
+    ];
+    rows.forEach(item=>{const li=document.createElement('li');li.textContent=item[0]+': '+item[1];list.appendChild(li)});
+    box.appendChild(list);
+    const e=document.createElement('p');e.textContent=result.warning;box.appendChild(e);
+    const link=document.createElement('a');link.href='https://mempool.space/tx/'+result.txid;
+    link.rel='noopener noreferrer';link.target='_blank';link.textContent='View the actual Bitcoin transaction on mempool.space';
+    box.appendChild(link);
+    const button=document.createElement('button');button.type='button';button.textContent='Copy verification record JSON';
+    button.onclick=()=>copyText(JSON.stringify(result,null,2));box.appendChild(document.createElement('p'));box.appendChild(button);
+  }catch(error){showError('result',error);}
+  finally{btn.disabled=false;}
+};
+$('fleet').addEventListener('change',()=>{$('bill').textContent='Wallet selection changed. Create a new payment request.';$('result').textContent=''});
+$('amount').addEventListener('input',()=>{$('bill').textContent='Amount changed. Create a new payment request.';$('result').textContent=''});
+$('create').click();
+})();
+</script></body></html>
