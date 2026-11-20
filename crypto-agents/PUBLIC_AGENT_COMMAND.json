@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-20T15:16:00Z",
-  "command_id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
+  "issued_at_utc": "2026-11-20T15:38:11Z",
+  "command_id": "OWNER-20261120-153811-ONE-CENTRAL-COMMAND-SHARED-ROLE-CODE",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -26,7 +26,7 @@
     "exact_current_configured_role_namespace": "750377265360",
     "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "HUMAN OWNER DIRECTIVE (20 NOVEMBER 2026): Every new explicitly authorized instruction must be preserved faithfully as a practical prompt, passed through HUMAN OWNER -> sole CHIEF D -> B1/transferexperiment and B2/BountyScoutAI (the two original organizational AI agent accounts) -> every relevant assigned Enigma agent division -> separate local directors D01–D10 -> managers M01–M15 -> individually invoked W/S/G/H descendants, ending at the final H worker. EACH ACTUALLY INVOKED AI WORKER MUST 'UNDERSTAND IT': receive the full original order, its SHA, exact parent path and assigned task; independently explain in its own model-generated words the mission, relevant action, required proof, restrictions and correct reaction when faced with upfront fees, unauthorized Gmail access or wallet signing. A director must verify a real original deliverable before reporting UNDERSTANDING_SUPPORTED_BY_INDEPENDENT_ACCEPTED_TASK. A bare routing entry, copied instruction, model inference flag or order-ID echo never proves comprehension. Every hop may refine an individual task but not distort the owner command or remove restrictions; parent evidence and actual child acknowledgments must be distinguished. Uninvoked virtual roles and managers are CONFIGURED_NOT_ACTIVE and NOT_ACKNOWLEDGED, never claimed to have received, run or understood anything. Do not claim all 11,255,658,980,400 logical slots are independent active AI workers. Keep finding real customers, making professional permitted proposals, delivering accepted original work and verifying correct-network crypto receipts as the financial mission. Strict no access/read/search/monitor/draft/send Gmail/emails without separate permission, no unauthorized mass DMs, no private data scraping, no wallet sending/signing or fees, no invented buyers or payments. For every real execution, report actual process/model invocation ID, order ID and SHA, parent/route, full prompt receipt, seven-part comprehension check and task-quality evidence or explicit blocker. Canonical standards: crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md and crypto-agents/directive_understanding_gate.py.",
+  "owner_command": "HUMAN OWNER DIRECTIVE 20 NOV 2026: CENTRALIZE THE ENTIRE HIERARCHY UNDER ONE COMMAND AND ONE REUSABLE EXECUTION CODE PER ROLE TYPE. The single canonical owner command originates at the human owner and is relayed by sole Chief D to B1/transferexperiment, B2/BountyScoutAI, all assigned Enigma divisions, directors, advisers, managers, and each genuinely invoked W/S/G/H worker. Every director runs crypto-agents/role_director.py, every assistant uses role_assistant.py, every manager uses role_manager.py, and every W/S/G/H worker uses role_worker.py. ALL four programs use ONE shared engine crypto-agents/hierarchy_command_core.py, reading chief_D_owner_orders.json as sole source and checking PUBLIC_AGENT_COMMAND.json is a matching mirror. Role ID, parent, original full instruction, task, country and work evidence are parameters; never create per-person code copies or competing owner directions. Production actual B1/B2 and Enigma models must validate one owner order ID, full SHA256, supervisor path and unchanged complete standing prompt. A director reviews genuine managers, managers review their actually executed children, and final workers report real task evidence. A configured mathematical role or generated assignment packet is NOT proof of delivery, model understanding, completion, or paid work. 11,255,658,980,400 roles remain virtual until individual runtime evidence exists. Every actually invoked AI must explain its exact goal, parent, next permitted task, evidence and safety restrictions in its own response and provide independently reviewed original work before being classified as comprehending and executing. Continue genuine worldwide paying customer discovery, professional authorized introductions, useful tested deliverables and independently verified BTC/USDC receipt. Standing boundaries: no Gmail/email access/read/search/monitor/draft/send without separate specific permission, no unsolicited bulk messaging, fake buyer claims, wallet signing or spending, device mining without operator permission, or fabricated payments. All evidence categories reported separately as CONFIGURED, PROCESS_EXECUTED, ORDER_RECEIVED, MODEL_EXPLAINED, TASK_ACCEPTED, PAYMENT_CONFIRMED.",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -162,7 +162,7 @@
     "chain_token_memo_must_be_reverified_before_any_payment": true,
     "owner_wallet_signing_spending_allowed": false
   },
-  "latest_owner_priority": "FULL_OWNER_DIRECTIVE_TO_EACH_ACTUAL_AI_MODEL__MODEL_PARAPHRASE__TASK_PROOF__REAL_CUSTOMERS__NO_EMAIL",
+  "latest_owner_priority": "ONE_CANONICAL_COMMAND_ONE_CODE_PER_TIER_VERIFIED_WORK_NO_EMAIL",
   "continuous_failure_learning_rule": {
     "owner_instruction_received_utc": "2026-11-17T11:04:01Z",
     "exact_instruction": "always learn from failures",
@@ -461,7 +461,7 @@
     "external_broadcasts_to_virtual_roles_verified": 0
   },
   "strict_worker_customer_execution": {
-    "owner_order_id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
+    "owner_order_id": "OWNER-20261120-153811-ONE-CENTRAL-COMMAND-SHARED-ROLE-CODE",
     "prompt_path": "crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md",
     "buyer_introductions_path": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
     "evidence": "Only actually executed real worker jobs have proof; assigned virtual role packet does not",
@@ -482,7 +482,7 @@
     ]
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
+    "owner_order_id": "OWNER-20261120-153811-ONE-CENTRAL-COMMAND-SHARED-ROLE-CODE",
     "standard_prompt_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "requires_full_original_order_sha": true,
     "requires_leaf_actual_execution_receipt": true,
@@ -503,6 +503,18 @@
     "comprehension_gate_path": "crypto-agents/directive_understanding_gate.py",
     "understood_requires_actual_model_paraphrase": true,
     "understood_requires_independently_accepted_task": true,
-    "uninvoked_virtual_roles_are_not_delivery": true
+    "uninvoked_virtual_roles_are_not_delivery": true,
+    "one_shared_command_source": "crypto-agents/chief_D_owner_orders.json",
+    "one_shared_engine": "crypto-agents/hierarchy_command_core.py",
+    "one_shared_per_tier_code": {
+      "D": "crypto-agents/role_director.py",
+      "A": "crypto-agents/role_assistant.py",
+      "M": "crypto-agents/role_manager.py",
+      "W": "crypto-agents/role_worker.py",
+      "S": "crypto-agents/role_worker.py",
+      "G": "crypto-agents/role_worker.py",
+      "H": "crypto-agents/role_worker.py"
+    },
+    "never_claim_configured_as_active": true
   }
 }
