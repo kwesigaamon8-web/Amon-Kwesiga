@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
+  "current_owner_order_id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -997,6 +997,17 @@
       "status": "active_prompt_cascade_on_each_real_execution_not_mass_delivery",
       "full_prompt_path": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
       "external_agents_independently_acknowledged": false
+    },
+    {
+      "id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
+      "as_of_utc": "2026-11-20T15:16:00Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub write",
+      "instruction": "HUMAN OWNER DIRECTIVE (20 NOVEMBER 2026): Every new explicitly authorized instruction must be preserved faithfully as a practical prompt, passed through HUMAN OWNER -> sole CHIEF D -> B1/transferexperiment and B2/BountyScoutAI (the two original organizational AI agent accounts) -> every relevant assigned Enigma agent division -> separate local directors D01–D10 -> managers M01–M15 -> individually invoked W/S/G/H descendants, ending at the final H worker. EACH ACTUALLY INVOKED AI WORKER MUST 'UNDERSTAND IT': receive the full original order, its SHA, exact parent path and assigned task; independently explain in its own model-generated words the mission, relevant action, required proof, restrictions and correct reaction when faced with upfront fees, unauthorized Gmail access or wallet signing. A director must verify a real original deliverable before reporting UNDERSTANDING_SUPPORTED_BY_INDEPENDENT_ACCEPTED_TASK. A bare routing entry, copied instruction, model inference flag or order-ID echo never proves comprehension. Every hop may refine an individual task but not distort the owner command or remove restrictions; parent evidence and actual child acknowledgments must be distinguished. Uninvoked virtual roles and managers are CONFIGURED_NOT_ACTIVE and NOT_ACKNOWLEDGED, never claimed to have received, run or understood anything. Do not claim all 11,255,658,980,400 logical slots are independent active AI workers. Keep finding real customers, making professional permitted proposals, delivering accepted original work and verifying correct-network crypto receipts as the financial mission. Strict no access/read/search/monitor/draft/send Gmail/emails without separate permission, no unauthorized mass DMs, no private data scraping, no wallet sending/signing or fees, no invented buyers or payments. For every real execution, report actual process/model invocation ID, order ID and SHA, parent/route, full prompt receipt, seven-part comprehension check and task-quality evidence or explicit blocker. Canonical standards: crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md and crypto-agents/directive_understanding_gate.py.",
+      "status": "requires_real_model_comprehension_challenge_then_independently_accepted_task_proof",
+      "full_prompt_path": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
+      "comprehension_gate_path": "crypto-agents/directive_understanding_gate.py",
+      "all_virtual_workers_actually_acknowledged": false
     }
   ],
   "strict_per_worker_reporting": {
@@ -1081,7 +1092,7 @@
     "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
     "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
     "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise.",
-    "latest_instruction": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
+    "latest_instruction": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
     "owner_long_term_collected_target_ugx": 50000000000,
     "accepted_payment_classes": [
       "bank_transfer",
@@ -1368,7 +1379,7 @@
     "actual_trillions_broadcast_verified": 0
   },
   "strict_worker_customer_execution": {
-    "owner_order_id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
+    "owner_order_id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
     "prompt_path": "crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md",
     "all_eight_introductions_path": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
     "all_8_direct_client_contact_verified": false,
@@ -1381,7 +1392,7 @@
     "virtual_roles_not_concurrent_live_agents": true
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
+    "owner_order_id": "OWNER-20261120-151600-PROVE-COMPREHENSION-THROUGH-HIERARCHY",
     "standards_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "all_real_invoked_workers_must_read_order_text": true,
     "all_real_invoked_h_leaf_must_receive_full_prompt": true,
@@ -1399,6 +1410,10 @@
     "virtual_roles_count_not_active": 11255658980400,
     "real_invocation_receipt_mandatory": true,
     "authorized_external_delivery_not_implied": true,
-    "no_email": true
+    "no_email": true,
+    "understanding_gate": "crypto-agents/directive_understanding_gate.py",
+    "model_paraphrase_and_unsafe_lead_scenario_mandatory": true,
+    "independently_accepted_task_required_before_understood": true,
+    "individual_acknowledgment_count_not_inferred_from_role_namespace": true
   }
 }
