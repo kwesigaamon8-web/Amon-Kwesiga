@@ -1,29 +1,19 @@
-# B1/B2 Digital Work Studio — live public service
+# Enigma / B1 B2 — stable software links
 
-**Open the latest working digital service site:** https://cut-origami-vi8h3.ship.place/
+**Permanent Render studio:** https://amon-kwesiga.onrender.com/studio/
 
-**Browse all shared software:** [Original source catalogue](https://cut-origami-vi8h3.ship.place/software.html).
+**1,000 software tools:** https://amon-kwesiga.onrender.com/studio/global-1000.html — 100 original calculation methods applied to ten sectors, with SW-001 through SW-1000 deep links. Free browser software; not 1,000 different server processes.
 
-**Use the owner-authorized free suite:** [55 original browser utilities](https://cut-origami-vi8h3.ship.place/free-toolbox.html) · [6 practical mini apps](https://cut-origami-vi8h3.ship.place/mini-apps.html) · [6 new free business and marketing applications](https://cut-origami-vi8h3.ship.place/market-lab.html) · [Share the software worldwide](https://cut-origami-vi8h3.ship.place/share-free-software.html) · [MIT source license](https://cut-origami-vi8h3.ship.place/FREE_SOFTWARE_LICENSE.md).
+**Original free software:** https://amon-kwesiga.onrender.com/studio/software.html · [55 browser utilities](https://amon-kwesiga.onrender.com/studio/free-toolbox.html) · [six mini-apps](https://amon-kwesiga.onrender.com/studio/mini-apps.html) · [six marketing and business apps](https://amon-kwesiga.onrender.com/studio/market-lab.html).
 
-**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://cut-origami-vi8h3.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
+**Previous Bitcoin mining work and safe mathematical tools:** https://amon-kwesiga.onrender.com/studio/mining-software.html . Earlier mining ZIPs remain private until their source code, permissions, safety, wallet configuration and licenses have been independently checked. No silent mining or guaranteed BTC rewards.
 
-          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://cut-origami-vi8h3.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+**Direct owner BTC-mainnet addresses, payment instructions, voluntary donations and agreed custom jobs:** https://amon-kwesiga.onrender.com/studio/payment.html . No user must pay to use the free tools; a public BTC address is not proof of any deposit.
 
-          **Find real opt-in project collaborators:** [Join B1/B2](https://cut-origami-vi8h3.ship.place/join.html) — invites only, not verified workers or mining income.
+**Country research:** [249 ISO country/territory evidence-first assignments](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/marketing/country_market_research.py) distributed through internal B1/B2 virtual-role messages. These are not 775 billion live researcher accounts or verified global posts.
 
-This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
+**Open-source attribution:** [Licensing policy](https://amon-kwesiga.onrender.com/studio/OPEN_SOURCE_REUSE_POLICY.md). The extra 50 algorithms were newly written, not copied from unlicensed third-party repositories.
 
-This free release adds 55 local browser utilities and 12 original mini-apps, with public tests and voluntary project support only. Nothing in the public toolbox requires wallet access, donations or private data uploads.
+**Read-only agent and CI dashboard:** https://amon-kwesiga.onrender.com/ · [service health](https://amon-kwesiga.onrender.com/health).
 
-**New deployment confirmed:** 20 November 2026 09:42 UTC
-
-**Temporary host expires:** 2026-11-27T09:42:23.328Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
-
-[Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
-
-[Ask about a non-sensitive task on the public Agent Board](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) (no GitHub account required; third-party availability is not guaranteed). Both inquiry routes are public discussions, not payment checkouts. Never post confidential records or credentials.
-
-[Browse original site source and tested browser tools](https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/docs)
-
-No real buyer, paid contract or incoming cryptocurrency is implied by website hosting. No wallet transaction or email is made by the deployment.
+**Temporary static backup:** [TEMP_PREVIEW.md](TEMP_PREVIEW.md), if currently available. Render free instances can sleep when idle. Website availability is not evidence of paid customers, AI inference, crypto receipts, or messages sent to every country.
