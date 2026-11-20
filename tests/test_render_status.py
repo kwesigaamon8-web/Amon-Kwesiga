@@ -67,6 +67,55 @@ class PublicDashboardTests(unittest.TestCase):
                     result = fetch_run_status()
         self.assertIn("ValueError", result["error"])
 
+    def test_full_original_studio_served_on_render(self):
+        paths = (
+            ("/studio/", "B1/B2 Digital Work Studio"),
+            ("/studio/software.html", "Free Software"),
+            ("/studio/free-toolbox.html", "55 Tools"),
+            ("/studio/mini-apps.html", "Free Mini Apps"),
+            ("/studio/market-lab.html", "Marketing"),
+            ("/studio/share-free-software.html", "Share Free Software"),
+            ("/studio/payment.html", "Bitcoin payment instructions"),
+            ("/studio/bitcoin-merchant/index.html", "Bitcoin Merchant"),
+            ("/studio/crypto-ledger/index.html", "Crypto Ledger"),
+        )
+        for route, phrase in paths:
+            with self.subTest(route=route):
+                response = self.client.get(route)
+                self.assertEqual(response.status_code, 200)
+                self.assertIn(phrase, response.get_data(as_text=True))
+
+    def test_studio_static_javascript_css_and_modules(self):
+        for route in (
+            "/studio/assets/free-toolbox.js",
+            "/studio/assets/free-toolbox-extensions.js",
+            "/studio/assets/free-mini-apps.js",
+            "/studio/assets/market-lab.js",
+            "/studio/assets/styles.css",
+            "/studio/crypto-ledger/core.mjs",
+            "/studio/bitcoin-merchant/wallet_core.mjs",
+        ):
+            with self.subTest(route=route):
+                response = self.client.get(route)
+                self.assertEqual(response.status_code, 200)
+                self.assertGreater(len(response.data), 100)
+
+    def test_studio_path_traversal_and_shortlinks(self):
+        self.assertEqual(self.client.get("/studio").status_code, 308)
+        r = self.client.get("/software")
+        self.assertEqual(r.status_code, 302)
+        self.assertEqual(r.location, "/studio/software.html")
+        self.assertNotEqual(self.client.get("/studio/%2e%2e%2fapp.py").status_code, 200)
+        self.assertEqual(self.client.get("/studio/nonexistent.html").status_code, 404)
+
+    def test_payment_page_has_only_correct_network_routes(self):
+        r = self.client.get("/studio/payment.html")
+        s = r.get_data(as_text=True)
+        self.assertIn("bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z", s)
+        self.assertIn("bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9", s)
+        self.assertIn("Bitcoin mainnet only", s)
+        self.assertIn("already agreed", s)
+
     def test_homepage_renders_even_when_github_is_unavailable(self):
         with patch("app.fetch_run_status", return_value={"runs": [], "error": "temporary outage"}):
             response = self.client.get("/")

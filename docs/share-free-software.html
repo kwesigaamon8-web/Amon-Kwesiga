@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Share the B1/B2 AI Studio original free software collection responsibly with community-approved developer groups and friends. Six languages, voluntary sharing.">
-<meta property="og:type" content="website"><meta property="og:title" content="B1/B2 AI Studio — 61 free software tools"><meta property="og:description" content="55 browser utilities + 6 free mini-apps. Tested open source, no login, no payment required.">
+<meta property="og:type" content="website"><meta property="og:title" content="B1/B2 AI Studio — 67 free software tools"><meta property="og:description" content="55 browser utilities + 12 free mini-apps. Tested open source, no login, no payment required.">
 <title>Share Free Software — B1/B2 AI Studio</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.55;color:#183449;background:#f3f8fc}*{box-sizing:border-box}
@@ -13,7 +13,7 @@ small,.muted{color:#516e80}.notice{padding:12px;background:#eaf2f9;border-left:3
 </style></head><body>
 <header><nav><strong>B1/B2 AI Studio</strong><a href="index.html">Home</a><a href="free-toolbox.html">55 utilities</a><a href="mini-apps.html">6 mini-apps</a><a href="payment.html">Optional project support</a></nav></header>
 <main><h1>Share useful free software worldwide</h1>
-<p>Help more people discover 61 original free software tools. Choose a language, inspect the announcement, and share it with people or communities who actually welcome it. You control every post: this site sends no messages or social posts automatically.</p>
+<p>Help more people discover 67 original free software tools. Choose a language, inspect the announcement, and share it with people or communities who actually welcome it. You control every post: this site sends no messages or social posts automatically.</p>
 <section class="panel">
 <label for="language">Choose language</label>
 <select id="language"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="pt">Português</option><option value="ar">العربية</option></select>
@@ -32,14 +32,14 @@ small,.muted{color:#516e80}.notice{padding:12px;background:#eaf2f9;border-left:3
 (function(){
 "use strict";
 const get=x=>document.getElementById(x);
-const stable="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md";
+const stable="https://amon-kwesiga.onrender.com/studio/software.html";
 const messages={
-en:"B1/B2 AI Studio shares 55 free browser utilities and 6 practical mini-apps for data, developers, education and work. Original code, public tests, no login or donation required. Try the live software: "+stable,
-fr:"B1/B2 AI Studio propose 55 outils gratuits pour navigateur et 6 mini-applications pratiques pour les données, le développement et le travail. Code original, tests publics et aucun paiement requis. Essayer : "+stable,
-es:"B1/B2 AI Studio comparte 55 herramientas gratuitas para el navegador y 6 miniaplicaciones para datos, desarrollo y productividad. Código original, pruebas públicas, sin registro ni donación obligatoria. Pruébalas: "+stable,
-sw:"B1/B2 AI Studio inatoa zana 55 za bure za kivinjari na programu ndogo 6 kwa data, uandishi wa programu na kazi. Msimbo asilia, majaribio ya wazi, bila kujisajili wala kulipa. Jaribu: "+stable,
-pt:"O B1/B2 AI Studio oferece 55 ferramentas gratuitas de navegador e 6 miniaplicativos para dados, programação e produtividade. Código original, testes públicos, sem cadastro ou doação obrigatória. Experimente: "+stable,
-ar:"يقدم B1/B2 AI Studio عدد 55 أداة مجانية للمتصفح و6 تطبيقات صغيرة للبيانات والبرمجة والإنتاجية. الشفرة الأصلية والاختبارات متاحة للجميع، ولا يلزم التسجيل أو التبرع. جرب الأدوات: "+stable
+en:"B1/B2 AI Studio shares 55 free browser utilities and 12 practical mini-apps for data, developers, education and work. Original code, public tests, no login or donation required. Try the live software: "+stable,
+fr:"B1/B2 AI Studio propose 55 outils gratuits pour navigateur et 12 mini-applications pratiques pour les données, le développement et le travail. Code original, tests publics et aucun paiement requis. Essayer : "+stable,
+es:"B1/B2 AI Studio comparte 55 herramientas gratuitas para el navegador y 12 miniaplicaciones para datos, desarrollo y productividad. Código original, pruebas públicas, sin registro ni donación obligatoria. Pruébalas: "+stable,
+sw:"B1/B2 AI Studio inatoa zana 55 za bure za kivinjari na programu ndogo 12 kwa data, uandishi wa programu na kazi. Msimbo asilia, majaribio ya wazi, bila kujisajili wala kulipa. Jaribu: "+stable,
+pt:"O B1/B2 AI Studio oferece 55 ferramentas gratuitas de navegador e 12 miniaplicativos para dados, programação e produtividade. Código original, testes públicos, sem cadastro ou doação obrigatória. Experimente: "+stable,
+ar:"يقدم B1/B2 AI Studio عدد 55 أداة مجانية للمتصفح و12 تطبيقًا صغيرًا للبيانات والبرمجة والإنتاجية. الشفرة الأصلية والاختبارات متاحة للجميع، ولا يلزم التسجيل أو التبرع. جرب الأدوات: "+stable
 };
 function share(){
 const t=get("message").value.trim();
@@ -47,7 +47,7 @@ get("shareX").href="https://x.com/intent/tweet?text="+encodeURIComponent(t.slice
 get("shareWhatsApp").href="https://wa.me/?text="+encodeURIComponent(t);
 get("shareLinkedIn").href="https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(stable);
 get("shareTelegram").href="https://t.me/share/url?url="+encodeURIComponent(stable)+"&text="+encodeURIComponent(t);
-get("shareReddit").href="https://www.reddit.com/submit?url="+encodeURIComponent(stable)+"&title="+encodeURIComponent("B1/B2 AI Studio: 61 free software tools");
+get("shareReddit").href="https://www.reddit.com/submit?url="+encodeURIComponent(stable)+"&title="+encodeURIComponent("B1/B2 AI Studio: 67 free software tools");
 }
 get("language").addEventListener("change",()=>{get("message").value=messages[get("language").value];share();});
 get("message").addEventListener("input",share);

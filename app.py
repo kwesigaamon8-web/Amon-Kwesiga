@@ -5,6 +5,7 @@ configured role IDs are running. No wallet keys, account secrets, privileged
 GitHub scopes, external actions, or crypto transactions are required.
 """
 from datetime import datetime, timezone
+from pathlib import Path
 from html import escape
 import json
 import os
@@ -12,11 +13,12 @@ import threading
 import time
 import urllib.error
 import urllib.request
-from flask import Flask, Response, jsonify
+from flask import Flask, Response, jsonify, redirect, send_from_directory
 from virtual_bot_service import bot_routes
 
 app = Flask(__name__)
 app.register_blueprint(bot_routes)
+STUDIO_ROOT = Path(__file__).resolve().parent / "docs"
 GITHUB_REPO = "kwesigaamon8-web/Amon-Kwesiga"
 RUNS_API = f"https://api.github.com/repos/{GITHUB_REPO}/actions/runs?per_page=8"
 # GitHub's /actions/runs JSON can exceed 140 KB even for a short result list.
@@ -69,6 +71,28 @@ def fetch_run_status():
         return dict(_cache)
 
 
+@app.get("/studio")
+def studio_redirect():
+    return redirect("/studio/", code=308)
+
+
+@app.get("/studio/")
+def studio_home():
+    """Host the existing original browser software at one stable Render address."""
+    return send_from_directory(STUDIO_ROOT, "index.html")
+
+
+@app.get("/studio/<path:filename>")
+def studio_asset(filename):
+    """Send only files under docs; Werkzeug prevents directory traversal."""
+    return send_from_directory(STUDIO_ROOT, filename)
+
+
+@app.get("/software")
+def software_shortlink():
+    return redirect("/studio/software.html", code=302)
+
+
 @app.get("/health")
 def health():
     return jsonify({"status": "ok", "service": "public-status-dashboard",
@@ -108,6 +132,9 @@ def index():
         "<h1>Independent Agent Operations</h1>",
         "<p class='note'>Public read-only dashboard for actual GitHub Actions research workflows.</p>",
         "<p><a href='" + escape(RUNS_PAGE, quote=True) + "'>Open full workflow results and agent artifacts</a></p>",
+        "<p><strong>Free software now hosted here:</strong> <a href='/studio/'>Launch B1/B2 Studio</a> · "
+        "<a href='/studio/software.html'>Browse all 67 free tools and applications</a> · "
+        "<a href='/studio/payment.html'>Optional BTC support / agreed custom work</a></p>",
         "<h2>Recent workflow runs</h2>",
     ]
     if data["error"]:

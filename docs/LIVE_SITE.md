@@ -1,29 +1,23 @@
-# B1/B2 Digital Work Studio — live public service
+# B1/B2 Digital Work Studio — permanent public links
 
-**Open the latest working digital service site:** https://candle-timimus-y5ytx.ship.place/
+**Primary permanent Render website (production service):** https://amon-kwesiga.onrender.com/studio/
 
-**Browse all shared software:** [Original source catalogue](https://candle-timimus-y5ytx.ship.place/software.html).
+**Complete catalogue and free demos:** https://amon-kwesiga.onrender.com/studio/software.html
 
-**Use the owner-authorized free suite:** [55 original browser utilities](https://candle-timimus-y5ytx.ship.place/free-toolbox.html) · [6 practical mini apps](https://candle-timimus-y5ytx.ship.place/mini-apps.html) · [6 new free business and marketing applications](https://candle-timimus-y5ytx.ship.place/market-lab.html) · [Share the software worldwide](https://candle-timimus-y5ytx.ship.place/share-free-software.html) · [MIT source license](https://candle-timimus-y5ytx.ship.place/FREE_SOFTWARE_LICENSE.md).
+**Launch the free programs:** [55 browser utilities](https://amon-kwesiga.onrender.com/studio/free-toolbox.html) · [6 practical mini applications](https://amon-kwesiga.onrender.com/studio/mini-apps.html) · [6 new marketing and business applications](https://amon-kwesiga.onrender.com/studio/market-lab.html) · [Bitcoin merchant watch-only tool](https://amon-kwesiga.onrender.com/studio/bitcoin-merchant/index.html) · [Crypto ledger workbench](https://amon-kwesiga.onrender.com/studio/crypto-ledger/index.html).
 
-**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://candle-timimus-y5ytx.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
+**Direct B1 and B2 BTC-mainnet addresses and instructions:** https://amon-kwesiga.onrender.com/studio/payment.html
 
-          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://candle-timimus-y5ytx.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+**Want custom software?** [Request a quote](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml); agree deliverables, payment amount, network and recipient before paying. **Already released free software remains free to use.** Optional project support can use the public BTC-mainnet addresses only after independently verifying destination and asset. This site does not sign wallet transactions, collect payments, verify ownership of wallets or confirm any sale.
 
-          **Find real opt-in project collaborators:** [Join B1/B2](https://candle-timimus-y5ytx.ship.place/join.html) — invites only, not verified workers or mining income.
+**Human-initiated worldwide share kit:** https://amon-kwesiga.onrender.com/studio/share-free-software.html
 
-This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
+**Existing read-only operations dashboard:** https://amon-kwesiga.onrender.com/
 
-This free release adds 55 local browser utilities and 12 original mini-apps, with public tests and voluntary project support only. Nothing in the public toolbox requires wallet access, donations or private data uploads.
+**HTTP service health:** https://amon-kwesiga.onrender.com/health
 
-**New deployment confirmed:** 20 November 2026 09:14 UTC
+Render's free service can sleep when inactive, which may temporarily delay the first request. A GitHub Actions static-site backup has also previously been deployed at https://candle-timimus-y5ytx.ship.place/ (temporary and may expire; the Render URL above is preferred after the studio route is successfully deployed).
 
-**Temporary host expires:** 2026-11-27T09:13:56.834Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+The static website contains 55 original local browser utilities and 12 mini-applications, plus other documented existing interactive pages, source references and fixed-scope work examples. No 775-billion role namespace identity counts as a live worker; a website and an address do not imply buyers, sales or earned cryptocurrency. Never disclose private keys or post sensitive records in public issue requests. Email use and bulk unsolicited messages are not permitted.
 
-[Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
-
-[Ask about a non-sensitive task on the public Agent Board](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) (no GitHub account required; third-party availability is not guaranteed). Both inquiry routes are public discussions, not payment checkouts. Never post confidential records or credentials.
-
-[Browse original site source and tested browser tools](https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/docs)
-
-No real buyer, paid contract or incoming cryptocurrency is implied by website hosting. No wallet transaction or email is made by the deployment.
+[Original source and public tests](https://github.com/kwesigaamon8-web/Amon-Kwesiga/tree/main/docs) · [Public site CI](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/studio-site-ci.yml)
