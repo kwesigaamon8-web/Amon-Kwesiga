@@ -51,6 +51,16 @@ def current_owner_order():
         raise ValueError("Most recent owner instruction is missing or stale")
     if "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW" not in public.get("hard_constraints", []):
         raise ValueError("Email restriction missing from authenticated owner order")
+    strict = public.get("strict_worker_customer_execution")
+    if not strict or strict.get("owner_order_id") != ident:
+        raise ValueError("New strict customer conversion order is not enforced")
+    path = Path(strict.get("prompt_path", ""))
+    if not path.is_file():
+        raise ValueError("Strict buyer execution protocol file is missing")
+    prompt = path.read_text(encoding="utf-8")
+    for required in ("ONE LEAD, ONE OWNER, ONE PROPOSAL", "NO EMAIL", "TXID", "NOT_SENT"):
+        if required not in prompt.upper():
+            raise ValueError("Strict work protocol missing requirement: " + required)
     return ident
 
 
@@ -76,6 +86,12 @@ def issue_assessment(issue, worker):
         issues.append("not_open_issue")
     if not url.startswith("https://github.com/"):
         issues.append("not_original_github_link")
+    # The previous fleet counted our own coordination issue as a possible buyer.
+    # Suppress internal owner issues and third-party bounty mirrors before any lead tally.
+    if re.match(r"^https://github\.com/kwesigaamon8-web/Amon-Kwesiga/issues/", url, re.I):
+        issues.append("owner_repository_not_external_buyer")
+    if re.search(r"/(?:bounty-plaza|bounty-bot)/issues/", url, re.I):
+        issues.append("aggregated_repost_not_original_buyer")
     if not updated or updated < LIMIT:
         issues.append("stale_or_missing_date")
     if not REWARD.search(signal):
@@ -137,6 +153,9 @@ def child(shard, number, root):
         "owner_order_id": snapshot.get("owner_order_id", "self-test-only"),
         "original_issue_source_independently_refetched": False,
         "source_issue_seen": bool(issue),
+        "strict_owner_customer_prompt_source": "crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md",
+        "customer_contact_status": "NOT_SENT",
+        "external_paid_proposals_submitted": 0,
         "assessment": issue_assessment(issue, worker) if issue else None,
         "worker_status": "reviewed_snapshot_issue" if issue else "no_issue_for_slot",
         "verified_paid_work": 0,
@@ -320,6 +339,12 @@ def self_test():
     }
     check = issue_assessment(example, role("B1-S01", 1))
     assert check["possible_paid_lead_unverified"] and not check["payer_verified"]
+    assert "owner_repository_not_external_buyer" in issue_assessment(
+        {**example, "html_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/9"},
+        role("B1-S01", 1))["exclusion_reasons"]
+    assert "aggregated_repost_not_original_buyer" in issue_assessment(
+        {**example, "html_url": "https://github.com/alfrexo95/bounty-bot/issues/27"},
+        role("B2-S01", 1))["exclusion_reasons"]
     assert "scam_warning" in issue_assessment(
         {**example, "body": "Bounty, send a deposit first"},
         role("B2-S01", 1))["exclusion_reasons"]
