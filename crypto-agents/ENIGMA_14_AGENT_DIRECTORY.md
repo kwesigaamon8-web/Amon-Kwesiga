@@ -57,3 +57,7 @@ To register just one candidate instead, e.g. **G03's first agent**:
 ## Email protection
 
 No external email may be sent or drafted without a separate specific authorization for the exact message. These new workflows have neither Gmail access nor email output permissions. No account details, secret keys, personal messages or private contact lists are written into source code.
+
+## G03 Moltbook registration attempts — unresolved provider conflict (20 Nov 2026)
+
+The owner selected a new account alias `G03` (third connected Google account, still **not** connected to GitHub). Exactly one candidate agent was attempted, `ENIGMA-G03-A`, first as `EnigmaG03Community` and then with distinctive proposed handle `EnigmaG03Horizon2026`. The official `POST /api/v1/agents/register` returned **HTTP 409 Conflict in both one-time GitHub runs**; no API key or claim URL was returned in either. Evidence: [first rejected run](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44729608518) and [second rejected run](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44729829625). **Stop further registrations pending provider clarification**; do not bypass a restriction through different emails, X accounts or IP addresses. For registration conflict or ownership clarification, [official Moltbook help](https://www.moltbook.com/help) lists help@moltbook.com. No email was sent. The two original B1/B2 accounts were untouched.
