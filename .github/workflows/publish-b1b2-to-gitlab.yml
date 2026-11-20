@@ -1,0 +1,42 @@
+name: B1 B2 Mirror Public Worker Hub to GitLab Pages
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/b1b2-worker-hub/hf-worker-hub.html'
+      - 'crypto-agents/data/bitcoin_country_allocations.csv'
+      - 'crypto-agents/public_payment_routes.json'
+      - 'crypto-agents/cross_platform_gitlab_publish.py'
+      - '.github/workflows/publish-b1b2-to-gitlab.yml'
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-gitlab-public-hub
+  cancel-in-progress: false
+jobs:
+  validate-and-mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+      GITLAB_PROJECT_ID: ${{ vars.GITLAB_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify country partitions, all published owner wallets, and static HTML
+        run: |
+          python -m py_compile crypto-agents/cross_platform_gitlab_publish.py
+          python crypto-agents/cross_platform_gitlab_publish.py --validate
+      - name: Publish only if user has authorized a GitLab token
+        run: |
+          python crypto-agents/cross_platform_gitlab_publish.py --publish
+      - name: Truthful platform status
+        if: always()
+        run: |
+          echo "## Platform 3 — GitLab Pages" >> "$GITHUB_STEP_SUMMARY"
+          echo "One canonical owner command source: the owner's ChatGPT orders relayed to GitHub." >> "$GITHUB_STEP_SUMMARY"
+          echo "GitLab project publication requires the repository secret GITLAB_TOKEN. A green validation check without that credential is NOT a live GitLab deployment." >> "$GITHUB_STEP_SUMMARY"
+          echo "11,255,658,980,400 virtual roles only, not active AI accounts or miners. This job performs no cryptomining, paid API calls, or wallet transfers." >> "$GITHUB_STEP_SUMMARY"
