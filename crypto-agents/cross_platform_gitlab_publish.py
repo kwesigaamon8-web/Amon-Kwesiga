@@ -11,8 +11,8 @@ It never performs mining, any wallet transfer, or an external bug bounty submiss
 """
 from __future__ import annotations
 import argparse
+import base64
 import csv
-import hashlib
 import json
 import os
 import urllib.error
@@ -131,19 +131,36 @@ def publish(files):
     specified=os.environ.get("GITLAB_PROJECT_ID","").strip()
     if specified:
         project=request("GET",f"projects/{urllib.parse.quote(specified,safe='')}",token)
-        marker=request("GET",
-            f"projects/{project['id']}/repository/files/{urllib.parse.quote('.b1b2-managed-project.json',safe='')}/raw?ref={urllib.parse.quote(project['default_branch'] or 'main',safe='')}",token,optional=True)
-        # The raw GET is not JSON and could be unsupported by API wrapper. Avoid assuming
-        # that existing projects are ours: require one-time owner registration below.
         if project.get("path")!="b1b2-worker-hub":
-            raise RuntimeError("Refusing to overwrite arbitrary GitLab project: expected project slug b1b2-worker-hub")
+            raise RuntimeError("Refusing to overwrite unrelated GitLab project: expected slug b1b2-worker-hub")
     else:
-        project_name="b1b2-worker-hub"
-        project=request("POST","projects",token,{"name":"B1B2 Worker Hub",
-                 "path":project_name,"visibility":"public","initialize_with_readme":True,
+        user=request("GET","user",token)
+        username=user["username"]
+        canonical=urllib.parse.quote(username+"/b1b2-worker-hub",safe="")
+        project=request("GET",f"projects/{canonical}",token,optional=True)
+        if project is None:
+            project=request("POST","projects",token,{"name":"B1B2 Worker Hub",
+                 "path":"b1b2-worker-hub","visibility":"public","initialize_with_readme":True,
                  "description":"Static public mirror of B1/B2 virtual role lookup and owner receive-only wallet references"})
+    if project.get("visibility")!="public":
+        raise RuntimeError("Target project must be publicly visible: static public wallet dashboard")
     project_id=project["id"]
     branch=project.get("default_branch") or "main"
+    # A previous project may be edited ONLY when it has our exact managed marker.
+    marker_id=urllib.parse.quote(".b1b2-managed-project.json",safe="")
+    marker_doc=request("GET",f"projects/{project_id}/repository/files/{marker_id}?ref={urllib.parse.quote(branch,safe='')}",token,optional=True)
+    if marker_doc is not None:
+        try:
+            existing=json.loads(base64.b64decode(marker_doc["content"]).decode())
+        except (KeyError,ValueError,UnicodeDecodeError) as exc:
+            raise RuntimeError("Invalid GitLab project ownership marker") from exc
+        if existing.get("kind")!=MANAGED["kind"] or existing.get("managed_by")!=MANAGED["managed_by"]:
+            raise RuntimeError("GitLab project does not match B1/B2 owner-managed marker")
+    else:
+        # Only a new README-only project can be bootstrapped safely.
+        tree=request("GET",f"projects/{project_id}/repository/tree?ref={urllib.parse.quote(branch,safe='')}&per_page=20",token)
+        if any(obj.get("path")!="README.md" for obj in tree):
+            raise RuntimeError("Existing GitLab project lacks our marker; refusing to overwrite its source")
     existing_actions=[]
     for filename,value in files.items():
         encoded=urllib.parse.quote(filename,safe="")
@@ -151,11 +168,6 @@ def publish(files):
         old=request("GET",url,token,optional=True)
         existing_actions.append({"action":"update" if old is not None else "create",
                                 "file_path":filename,"content":value,"encoding":"text"})
-    # Do not overwrite existing managed project with a nonmatching marker.
-    if specified:
-        meta_file=next(a for a in existing_actions if a["file_path"]==".b1b2-managed-project.json")
-        if meta_file["action"]!="update":
-            raise RuntimeError("Refusing existing GitLab project missing B1B2 managed marker")
     result=request("POST",f"projects/{project_id}/repository/commits",token,{
         "branch":branch,"commit_message":"Sync original B1/B2 country-assigned worker lookup and public receiving routes",
         "actions":existing_actions})
