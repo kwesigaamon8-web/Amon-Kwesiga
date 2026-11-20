@@ -182,8 +182,10 @@ def execute(agent,fleet,cycle,out,model_factory=None):
             "perform one genuine source-qualified customer task or report failure. "
             "NO EMAILS or unsolicited mass marketing, no unsupported paid receipts. "
             "This COMPLETE latest canonical human owner instruction applies: "+live_owner_order["text"]+
-            " Research: "+json.dumps(research)[:2100]+
-            " Software QA: "+json.dumps(qa)[:900]+" Actions:")
+            " THE COMPLETE STANDING OWNER RESTRICTIONS AND REPORTING PROTOCOL ARE: "+
+            full_cascade_order["standard_prompt"]+
+            " Research (unverified source): "+json.dumps(research)[:850]+
+            " Software QA (not customer acceptance): "+json.dumps(qa)[:400]+" Actions:")
         try:
             raw=generator(prompt,max_new_tokens=150,do_sample=False,return_full_text=False)
             response=str(raw[0].get("generated_text") or "").strip()
@@ -221,6 +223,8 @@ def execute(agent,fleet,cycle,out,model_factory=None):
        "full_owner_instruction_sha256":full_cascade_order["owner_sha256"],
        "standing_prompt_sha256":full_cascade_order["standard_sha256"],
        "actual_process_received_full_owner_prompt":True,
+       "model_prompt_includes_full_standing_protocol":True,
+       "model_prompt_sha256":hashlib.sha256(prompt.encode("utf-8")).hexdigest() if generator is not None else None,
        "last_H_receipt_not_implied_unless_selected_is_H":True,
        "this_run_selected_role_parent_route":selected["reports_via"],
        "owner_instruction_in_prompt":True,
