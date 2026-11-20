@@ -140,6 +140,7 @@ function defaults(algorithm,domain){
  if(algorithm===10)Object.assign(raw,{a:100,b:115,c:2});
  if(algorithm===14)Object.assign(raw,{a:1500*f,b:12,c:24});
  if(algorithm===15)Object.assign(raw,{a:400*f,b:30,c:12});
+ if(algorithm===42)Object.assign(raw,{a:60,b:120,c:30});
  if(algorithm===43)Object.assign(raw,{a:8,b:2,c:0.75});
  if(algorithm===44)raw.series="4,5,4,3,5";
  if(algorithm===46)Object.assign(raw,{a:65,b:24,c:.15});

@@ -36,7 +36,7 @@ test("real verified arithmetic examples",()=>{
 });
 test("reject invalid values, rate bounds and unknown tools",()=>{
  for(const bad of ["SW-000","SW-501","SW-BAD","SW-0099"])assert.throws(()=>toolById(bad));
- for(const bad of [0,-1,500,NaN])assert.throws(()=>toolAt(bad));
+ for(const bad of [-1,500,NaN,1.5])assert.throws(()=>toolAt(bad));
  assert.throws(()=>calculate(13,{a:1,b:-101,c:3}));
  assert.throws(()=>calculate(15,{a:100,b:20,c:20}));
  assert.throws(()=>calculate(47,{a:0,b:100,c:3.125,d:2}));
