@@ -8,9 +8,10 @@ on:
     paths:
       - '.github/workflows/chief-d-world-task-factory.yml'
       - 'crypto-agents/world_work_factory.py'
+      - 'crypto-agents/world_work_payer_gate.py'
       - 'crypto-agents/commercial-work/invoice-payment-reconciliation/reconcile.py'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: chief-d-world-task-factory
   cancel-in-progress: false
@@ -29,6 +30,7 @@ jobs:
         run: |
           python -m py_compile crypto-agents/world_work_factory.py
           python crypto-agents/world_work_factory.py --self-test
+          python crypto-agents/world_work_payer_gate.py
           python crypto-agents/owner_first_oath.py
           python crypto-agents/test_btc_receiver_safety.py
       - name: Fetch public bounties and inspect original issue sources
@@ -60,6 +62,23 @@ jobs:
           path: crypto-agents/world-work-factory/
           retention-days: 30
           if-no-files-found: warn
+      - name: Persist public scouting evidence and tested demonstration only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- crypto-agents/world-work-factory/discovery.json crypto-agents/world-work-factory/REPORT.md crypto-agents/world-work-factory/deliverables/invoice-reconciliation-synthetic-example/
+          if git diff --cached --quiet; then
+            echo 'No source changes'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Publish tested worldwide task discovery and honest payment eligibility report'
+          git fetch --quiet origin main
+          if ! git rebase origin/main; then
+            git rebase --abort || true
+            echo 'SAFE_HOLD: owner changed main; evidence retained in run artifact'
+            exit 0
+          fi
+          git push origin HEAD:main || echo 'SAFE_HOLD: evidence archived in run artifact'
       - name: Explicit no-spam and no-money-claim boundary
         if: always()
         run: |
