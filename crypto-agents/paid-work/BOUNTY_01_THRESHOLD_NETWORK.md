@@ -16,6 +16,13 @@
 - In this program Immunefi bans live mainnet/public testnet contract testing, high-traffic scans, social engineering, and reporting generic scanner output without validated effect. Review published source and use **offline or entirely locally isolated tests** only, never attack hosted systems.
 - Program's scope controls; a repository existing on GitHub does NOT imply all commits or contracts are in scope. Verify selected deployed version before claiming eligibility.
 
+## First specific in-scope target: TokenholderGovernor (governance)
+- Immunefi Threshold smart-contract Scope currently names **TokenholderGovernor**, added 27 April 2023, at the displayed Ethereum mainnet address [0xd101f2b25bcbf992bdf55db67c104fe7646f5447](https://etherscan.io/address/0xd101f2b25bcbf992bdf55db67c104fe7646f5447) (asset inclusion evidence, NOT approval to run against it).
+- Source read (PUBLIC STATIC ONLY): `contracts/governance/BaseTokenholderGovernor.sol`, blob SHA `4da8e704c67a85c863a249366a9f127307ba0e2d`; it imports OpenZeppelin Governor, AccessControl, late-quorum and timelock modules. Basic preliminary review: visible `cancel()` is gated by `onlyRole(VETO_POWER)`; `_execute()` delegates to super; this is a **description, not a vulnerability finding**.
+- Review plan: model each governance state transition in isolated local tests (proposal creation, quorum, veto, cancellation, late quorum voting extension, timelock handoff and administrator grants). Check against known audits and deployed bytecode/source before alleging anything. Do **not** call any actual on-chain contract.
+- The bounty **explicitly excludes deprecated staking contracts**, so do not target old `TokenStaking.sol` deployments as bounty-eligible by mere inclusion in the source repository. Treat old source review as reference only.
+- **Result so far:** source inspected; no independently proven vulnerability, no PoC, no private report and no paid finding.
+
 ## Work already started: source reconnaissance
 Connected GitHub read of `threshold-network/solidity-contracts` on default branch `main`:
 - `README.adoc` SHA `cbc9fb9d461748007c0d002b0fdf91866e0fc990`: Hardhat, `yarn build`, `yarn test`.
