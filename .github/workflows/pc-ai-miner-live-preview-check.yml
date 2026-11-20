@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/pc-ai-miner-live-preview-check.yml'
+      - 'docs/TEMP_PREVIEW.md'
+      - 'docs/pc-ai-miner.html'
 permissions:
   contents: read
 jobs:
@@ -36,7 +38,6 @@ jobs:
           assert 'hardwareConsent' in raw and 'donationConsent' in raw
           assert 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' in raw
           assert 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' in raw
-          assert 'does not start miners' not in raw or 'not' in raw
           assert 'Crypto mining' not in raw
           print('PC_AI_MINER_LIVE_PUBLIC_HTTP_200_VERIFIED '+url)
           with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as f:
