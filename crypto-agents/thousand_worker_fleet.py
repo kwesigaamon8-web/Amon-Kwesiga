@@ -19,10 +19,12 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 SHARDS = [f"{company}-S{i:02d}" for company in ("B1", "B2") for i in range(1, 16)]
+# The 30 scheduled worker shards now screen explicit buyer/service demand,
+# not generic issue traffic. Matches remain unverified prospects until source/payer checks.
 KEYWORDS = [
-    "python", "typescript", "documentation", "testing", "data", "csv",
-    "api", "finance", "automation", "open source", "bug", "sdk",
-    "developer tools", "analytics", "blockchain",
+    "csv", "data cleaning", "invoice", "reconciliation", "python",
+    "automation", "testing", "bugfix", "api", "website",
+    "javascript", "documentation", "software", "data migration", "blockchain",
 ]
 SPECIALTIES = [
     "payer evidence", "payment terms", "Uganda eligibility", "original scope",
@@ -153,7 +155,9 @@ def fetch_snapshot(shard):
     company = shard[:2]
     num = int(shard[-2:])
     keyword = KEYWORDS[num-1]
-    query = f"{keyword} bounty is:issue is:open"
+    # GitHub's native OR search has been checked for customer-demand vocabulary.
+    # One original-source snapshot per shard; no unsolicited contact is sent.
+    query = f'{keyword} (paid OR bounty OR reward) is:issue is:open'
     if company == "B2" and num in (1, 2, 6, 10, 15):
         query += " usdc"
     url = "https://api.github.com/search/issues?" + urllib.parse.urlencode({
@@ -261,7 +265,24 @@ def audit(root):
             if data.get("emails_read_or_sent") or data.get("external_applications_or_posts") or data.get("wallet_transactions"):
                 errors.append(f"unauthorized_external_action:{wid}")
             records.append(data)
+    # Dedupe possible prospects across company/shard overlaps so a buyer does not
+    # become 30 invented clients or receive repeated solicitations.
+    prospect_urls = {}
+    for record in records:
+        assessment = record.get("assessment") or {}
+        url = assessment.get("source_url")
+        if assessment.get("possible_paid_lead_unverified") and url:
+            prospect_urls.setdefault(url, {
+                "source_url": url,
+                "title": assessment.get("title", ""),
+                "first_screening_worker": record["worker_id"],
+                "payer_verified": False,
+                "buyer_contact_authorized": False,
+                "payment_received_verified": False,
+            })
     report = {
+        "distinct_preliminary_prospect_urls": len(prospect_urls),
+        "preliminary_prospects_NOT_verified_customers": list(prospect_urls.values())[:20],
         "owner_order_id": owner_order_id,
         "expected_new_workers": 900,
         "independent_child_reports": len(records),
