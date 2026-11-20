@@ -129,16 +129,16 @@ jobs:
 
           No real buyer, paid contract or incoming cryptocurrency is implied by website hosting. No wallet transaction or email is made by the deployment.
           '''
-          Path('docs/LIVE_SITE.md').write_text(body,encoding='utf-8')
+          Path('docs/TEMP_PREVIEW.md').write_text(body,encoding='utf-8')
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
-              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Permanent link directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md\n- **All 32 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
+              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Temporary backup preview URL directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/TEMP_PREVIEW.md\n- **All 32 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
           print('PUBLIC_DEPLOYMENT_CONFIRMED',json.dumps({'url':url,'expiry':exp,'files':len(payload.get('files',[]))}))
           PY
           rm -f publish-private.json studio-preview.zip
       - name: Independently check all live site assets before publishing link
         run: |
           set -euo pipefail
-          url="$(grep -Eo 'https://[a-z0-9-]+\.ship\.place/' docs/LIVE_SITE.md | head -1)"
+          url="$(grep -Eo 'https://[a-z0-9-]+\.ship\.place/' docs/TEMP_PREVIEW.md | head -1)"
           [ -n "$url" ]
           scratch="$(mktemp -d)"
           trap 'rm -rf "$scratch"' EXIT
@@ -188,23 +188,23 @@ jobs:
           # Other revenue workers may push commits while this HTTPS check runs.
           # Rebase the ONE generated file onto the latest remote main, not the
           # entire stale checkout, and retry if a concurrent unrelated push wins.
-          cp docs/LIVE_SITE.md /tmp/verified-live-site.md
+          cp docs/TEMP_PREVIEW.md /tmp/verified-live-site.md
           for attempt in 1 2 3 4; do
             git fetch origin main
             git reset --hard origin/main
-            cp /tmp/verified-live-site.md docs/LIVE_SITE.md
-            git add docs/LIVE_SITE.md
+            cp /tmp/verified-live-site.md docs/TEMP_PREVIEW.md
+            git add docs/TEMP_PREVIEW.md
             if git diff --cached --quiet; then
-              echo "PUBLIC_LIVE_SITE_DIRECTORY_ALREADY_CURRENT"
+              echo "PUBLIC_BACKUP_PREVIEW_ALREADY_CURRENT"
               exit 0
             fi
-            git commit -m "Refresh verified public B1/B2 studio URL without Render"
+            git commit -m "Refresh temporary public B1/B2 studio backup URL"
             if git push origin HEAD:main; then
-              echo "PUBLIC_LIVE_SITE_DIRECTORY_UPDATED"
+              echo "PUBLIC_BACKUP_PREVIEW_UPDATED"
               exit 0
             fi
             echo "Concurrent push detected; retry verified-site-only commit"
             sleep "$((attempt * 2))"
           done
-          echo "PUBLIC_LIVE_SITE_DIRECTORY_UPDATE_FAILED_AFTER_RETRIES" >&2
+          echo "PUBLIC_BACKUP_PREVIEW_UPDATE_FAILED_AFTER_RETRIES" >&2
           exit 1
