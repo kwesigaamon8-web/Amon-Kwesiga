@@ -16,6 +16,7 @@ from b_certified_agent_service_router import OFFSETS,ROLES_PER_DIRECTOR
 from enigma_universal_owner_order import PER_ROOT, GRAND_TOTAL, recipient
 from directive_cascade import read_owner
 from hierarchy_command_core import ASSIGNED_CODES,task_context,sha
+from role_capability_audit import audit as independent_capability_audit, CATALOGUE
 
 OUT=Path("shared-role-command-evidence")
 
@@ -54,9 +55,20 @@ def main():
             assert r["other_virtual_roles_notified"] is False
             assert sha(json.dumps(r["task_result"],sort_keys=True,ensure_ascii=False))==r["task_evidence_sha256"]
             assert r["task_result"]["source_audit"]["records_examined"]>=1
+            assert r["real_capability_trial_pass"] is True
+            assert r["actual_tasks_this_role_can_perform"]==list(CATALOGUE[tier])
+            ok,why=independent_capability_audit(
+                r["real_capability_trial"],owner["owner_order_id"],r["supervisor"],tier)
+            assert ok,(r["role_id"],why)
+            assert r["real_capability_trial"]["bounded_test_executed"] is True
+            assert r["real_capability_trial"]["actually_completed_external_buyer_assignment"] is False
             results.append({"root":r["root_id"],"tier":tier,"role":r["role_id"],
                 "code":r["reused_role_program"],"pid":r["process_pid"],
-                "task_sha256":r["task_evidence_sha256"]})
+                "task_sha256":r["task_evidence_sha256"],
+                "available_local_tasks":r["actual_tasks_this_role_can_perform"],
+                "tested_capability":r["real_capability_trial"]["evidence"]["test"],
+                "capability_test_pass":True,
+                "external_buyer_task_not_verified":True})
     assert len(results)==210
     assert len({(x["root"],x["tier"]) for x in results})==210
     counts=Counter(x["tier"] for x in results)
@@ -95,6 +107,12 @@ def main():
         "root_divisions_sampled":30,
         "actual_python_role_processes_executed":len(results),
         "real_processes_by_tier":dict(counts),
+        "individual_capability_tests_checked":len(results),
+        "individual_capability_tests_passed":sum(x["capability_test_pass"] for x in results),
+        "individual_capability_tests_failed":sum(not x["capability_test_pass"] for x in results),
+        "local_capability_catalogue_by_tier":{t:list(v) for t,v in CATALOGUE.items()},
+        "all_tests_are_local_and_not_external_customer_actions":True,
+        "all_virtual_positions_received_or_executed":False,
         "unique_entrypoint_files":sorted(set(ASSIGNED_CODES.values())),
         "one_shared_role_execution_engine":"crypto-agents/hierarchy_command_core.py",
         "all_tested_processes_inherited_same_current_owner_command":True,
