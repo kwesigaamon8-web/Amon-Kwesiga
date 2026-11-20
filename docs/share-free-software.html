@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Share the B1/B2 AI Studio original free software collection responsibly with community-approved developer groups and friends. Six languages, voluntary sharing.">
+<meta property="og:type" content="website"><meta property="og:title" content="B1/B2 AI Studio — 61 free software tools"><meta property="og:description" content="55 browser utilities + 6 free mini-apps. Tested open source, no login, no payment required.">
+<title>Share Free Software — B1/B2 AI Studio</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.55;color:#183449;background:#f3f8fc}*{box-sizing:border-box}
+body{margin:0}header,footer{background:#0d263b;color:#fff;padding:22px}header a,footer a{color:#c7e8ff}header nav{display:flex;gap:15px;flex-wrap:wrap}main{max-width:900px;margin:auto;padding:26px 20px 45px}.panel{border:1px solid #c9dbe9;border-radius:12px;background:#fff;padding:22px;margin-bottom:20px}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.12}label{font-weight:700;display:block;margin:12px 0 6px}select,textarea{font:inherit;width:100%;padding:12px;border-radius:7px;border:1px solid #9dafbf}textarea{min-height:140px;resize:vertical}
+button,.linkbutton{font:inherit;display:inline-block;background:#0c628d;border:1px solid #0c628d;border-radius:8px;color:#fff;text-decoration:none;padding:10px 16px;cursor:pointer;margin:4px 7px 4px 0}.linkbutton{background:#fff;color:#0c628d}
+a{color:#0a638f}a:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid #e4ac47;outline-offset:2px}
+small,.muted{color:#516e80}.notice{padding:12px;background:#eaf2f9;border-left:3px solid #5383a0}.row{display:flex;flex-wrap:wrap;gap:5px}
+</style></head><body>
+<header><nav><strong>B1/B2 AI Studio</strong><a href="index.html">Home</a><a href="free-toolbox.html">55 utilities</a><a href="mini-apps.html">6 mini-apps</a><a href="payment.html">Optional project support</a></nav></header>
+<main><h1>Share useful free software worldwide</h1>
+<p>Help more people discover 61 original free software tools. Choose a language, inspect the announcement, and share it with people or communities who actually welcome it. You control every post: this site sends no messages or social posts automatically.</p>
+<section class="panel">
+<label for="language">Choose language</label>
+<select id="language"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="pt">Português</option><option value="ar">العربية</option></select>
+<label for="message">Editable announcement</label><textarea id="message" aria-label="Share message"></textarea>
+<p><button id="copy" type="button">Copy share text</button><button id="native" type="button">Device share</button></p>
+<p class="muted" id="status" role="status" aria-live="polite">No social message is sent without you pressing Share in the destination app.</p>
+<div class="row" id="destinations"><a class="linkbutton" id="shareX" target="_blank" rel="noopener noreferrer">Compose on X</a><a class="linkbutton" id="shareWhatsApp" target="_blank" rel="noopener noreferrer">Choose WhatsApp recipient</a><a class="linkbutton" id="shareLinkedIn" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a><a class="linkbutton" id="shareTelegram" target="_blank" rel="noopener noreferrer">Share on Telegram</a><a class="linkbutton" id="shareReddit" target="_blank" rel="noopener noreferrer">Submit on Reddit where allowed</a></div>
+</section>
+<section class="panel"><h2>Real links, free use, clear tasks</h2>
+<p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md">Permanent bookmark to the latest verified live website</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/36">Source, release notes and contributor tasks</a> · <a href="FREE_SOFTWARE_LICENSE.md">MIT license for new code</a>.</p>
+<p>Workers and volunteers can help with useful original tests, accessible documentation, translated tutorials, reproducible bug reports and legitimate, permissioned software introductions. All participation is voluntary, and free software access does not require a donation.</p>
+<div class="notice"><strong>Responsible marketing:</strong> Only share in communities that permit it; do not repeat identical posts, impersonate people, send spam or create artificial engagement. This website only opens share-composer pages on your initiative and does not publish on your behalf.</div>
+</section></main>
+<footer>B1/B2 AI Studio — Practical AI. Tested tools. Real deliverables. 775 billion role definitions are not 775 billion social accounts or publishers.</footer>
+<script>
+(function(){
+"use strict";
+const get=x=>document.getElementById(x);
+const stable="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md";
+const messages={
+en:"B1/B2 AI Studio shares 55 free browser utilities and 6 practical mini-apps for data, developers, education and work. Original code, public tests, no login or donation required. Try the live software: "+stable,
+fr:"B1/B2 AI Studio propose 55 outils gratuits pour navigateur et 6 mini-applications pratiques pour les données, le développement et le travail. Code original, tests publics et aucun paiement requis. Essayer : "+stable,
+es:"B1/B2 AI Studio comparte 55 herramientas gratuitas para el navegador y 6 miniaplicaciones para datos, desarrollo y productividad. Código original, pruebas públicas, sin registro ni donación obligatoria. Pruébalas: "+stable,
+sw:"B1/B2 AI Studio inatoa zana 55 za bure za kivinjari na programu ndogo 6 kwa data, uandishi wa programu na kazi. Msimbo asilia, majaribio ya wazi, bila kujisajili wala kulipa. Jaribu: "+stable,
+pt:"O B1/B2 AI Studio oferece 55 ferramentas gratuitas de navegador e 6 miniaplicativos para dados, programação e produtividade. Código original, testes públicos, sem cadastro ou doação obrigatória. Experimente: "+stable,
+ar:"يقدم B1/B2 AI Studio عدد 55 أداة مجانية للمتصفح و6 تطبيقات صغيرة للبيانات والبرمجة والإنتاجية. الشفرة الأصلية والاختبارات متاحة للجميع، ولا يلزم التسجيل أو التبرع. جرب الأدوات: "+stable
+};
+function share(){
+const t=get("message").value.trim();
+get("shareX").href="https://x.com/intent/tweet?text="+encodeURIComponent(t.slice(0,275));
+get("shareWhatsApp").href="https://wa.me/?text="+encodeURIComponent(t);
+get("shareLinkedIn").href="https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(stable);
+get("shareTelegram").href="https://t.me/share/url?url="+encodeURIComponent(stable)+"&text="+encodeURIComponent(t);
+get("shareReddit").href="https://www.reddit.com/submit?url="+encodeURIComponent(stable)+"&title="+encodeURIComponent("B1/B2 AI Studio: 61 free software tools");
+}
+get("language").addEventListener("change",()=>{get("message").value=messages[get("language").value];share();});
+get("message").addEventListener("input",share);
+get("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(get("message").value);get("status").textContent="Copied. Only share with interested people or permitted communities.";}catch{get("status").textContent="Clipboard unavailable; select and copy the text manually.";}});
+get("native").addEventListener("click",async()=>{try{if(!navigator.share)throw Error("Not supported");await navigator.share({title:"B1/B2 AI Studio",text:get("message").value,url:stable});get("status").textContent="Device share window closed; publication cannot be verified from this website.";}catch{get("status").textContent="No supported device sharing or user cancelled. You can copy the text instead."; }});
+get("message").value=messages.en;share();
+})();
+</script></body></html>
