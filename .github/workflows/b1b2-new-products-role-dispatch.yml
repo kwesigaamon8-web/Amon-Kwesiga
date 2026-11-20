@@ -1,0 +1,42 @@
+name: B1 B2 New Software and 775B Role-Dispatch Tests
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'crypto-agents/marketing/role_campaign_dispatch.py'
+      - 'crypto-agents/marketing/test_role_campaign_dispatch.py'
+      - 'docs/assets/market-lab.js'
+      - 'docs/tests/market-lab.test.js'
+      - '.github/workflows/b1b2-new-products-role-dispatch.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify exact global indexing and no fictitious workers
+        run: python crypto-agents/marketing/test_role_campaign_dispatch.py
+      - name: Verify all six new software products
+        run: node --test docs/tests/market-lab.test.js
+      - name: Produce bounded B1/B2 assignment evidence
+        run: |
+          python crypto-agents/marketing/role_campaign_dispatch.py --sample 20 > b1b2-virtual-role-assignment-samples.json
+          python - <<'PY'
+          import json
+          x=json.load(open("b1b2-virtual-role-assignment-samples.json"))
+          assert x["entries_generated"]==20
+          assert x["total_actually_deployed_by_this_script"]==0
+          assert x["actual_publications_made_by_this_script"]==0
+          print("VIRTUAL_ROLE_ASSIGNMENTS_READY",x["entries_generated"],"NO_ACTUAL_POSTS_CLAIMED")
+          PY
+      - name: Archive examples (not fabricated employee reports)
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-role-dispatch-examples
+          path: b1b2-virtual-role-assignment-samples.json
+          retention-days: 7
