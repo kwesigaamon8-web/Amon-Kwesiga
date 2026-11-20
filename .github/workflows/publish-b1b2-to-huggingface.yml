@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'docs/b1b2-worker-hub/hf-worker-hub.html'
+      - 'crypto-agents/data/bitcoin_country_allocations.csv'
+      - 'crypto-agents/public_payment_routes.json'
       - '.github/workflows/publish-b1b2-to-huggingface.yml'
 permissions:
   contents: read
@@ -31,7 +33,6 @@ jobs:
           print('HF_STATIC_WORKER_HUB_VALIDATION_PASS: no unverified model or earning claims')
           PY
   publish-static-hub:
-    if: github.event_name == 'workflow_dispatch'
     needs: validate-public-static-hub
     runs-on: ubuntu-latest
     timeout-minutes: 8
@@ -51,25 +52,76 @@ jobs:
           echo "Hugging Face write token secret is present; it will never be printed."
       - name: Install Hub publisher
         run: python -m pip install --quiet 'huggingface_hub>=0.27'
-      - name: Upload ONE new public page without changing existing index or Space settings
+      - name: Build public role lookup files from canonical country and wallet sources
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          csvfile=Path('crypto-agents/data/bitcoin_country_allocations.csv')
+          with csvfile.open(encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          country=[]
+          last=-1
+          for r in rows:
+              n=int(r['Virtual roles per B system'])
+              if n<=0:continue
+              low=int(r['Per-system role start'])
+              high=int(r['Per-system role end inclusive'])
+              assert low==last+1 and high-low+1==n,(r['ISO3'],low,high)
+              country.append({'iso3':r['ISO3'],'country':r['Country or economy'],
+                              'start':str(low),'end':str(high)})
+              last=high
+          assert last==375188632679 and len(country)>100,(last,len(country))
+          source=json.loads(Path('crypto-agents/public_payment_routes.json').read_text())
+          routes=source['self_custody_candidate_routes']
+          assert len(routes)==10
+          mapping={r['route_id']:r['receiving_address'] for r in routes}
+          assert mapping['BTC-01']=='bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z'
+          assert mapping['BTC-02']=='bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9'
+          dest=Path('docs/b1b2-worker-hub')
+          (dest/'country-allocations.json').write_text(json.dumps(
+              {'version':1,'country_allocations_not_actual_deployments':True,'countries':country},
+              separators=(',',':')),encoding='utf-8')
+          # Self-custody addresses only, not blocked exchange candidates or secrets.
+          (dest/'wallet-routes.json').write_text(json.dumps(
+              {'schema':'B1B2_PUBLISHED_SELF_CUSTODY_ROUTES','self_custody_candidate_routes':routes},
+              separators=(',',':')),encoding='utf-8')
+          html=(dest/'hf-worker-hub.html').read_text(encoding='utf8')
+          assert 'country-allocations.json' in html and 'wallet-routes.json' in html
+          assert 'BigInt' in html and 'not individually running' in html
+          print('HF_ROLE_COUNTRY_WALLET_PREVIEW_VALIDATED',
+                {'countries_or_economies':len(country),'self_custody_candidates':len(routes),
+                 'virtual_role_positions':11255658980400,'independent_AI_workers_started':0})
+          PY
+      - name: Publish real interactive country and BTC address hub to existing Space
         env:
           HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
         run: |
           python - <<'PY'
           import os
-          from huggingface_hub import HfApi
+          from huggingface_hub import HfApi, CommitOperationAdd
           api=HfApi(token=os.environ['HF_SPACE_TOKEN'])
-          done=api.upload_file(
-              path_or_fileobj='docs/b1b2-worker-hub/hf-worker-hub.html',
-              path_in_repo='worker-hub.html',
+          base='docs/b1b2-worker-hub/'
+          resources=[
+              ('worker-hub.html','hf-worker-hub.html'),
+              ('country-allocations.json','country-allocations.json'),
+              ('wallet-routes.json','wallet-routes.json'),
+          ]
+          operations=[CommitOperationAdd(path_in_repo=dest,path_or_fileobj=base+local)
+                      for dest,local in resources]
+          commit=api.create_commit(
               repo_id='Amonkkkk/b1b2-superworker-assembly',
               repo_type='space',
-              commit_message='Add public B1/B2 command hub page (existing chat ledger unchanged)',
+              operations=operations,
+              commit_message='Make 11.26T virtual roles individually selectable with country tasks and verified public BTC routes',
           )
-          print('HF_WORKER_HUB_UPLOAD_SUCCESS',done)
+          print('HF_INTERACTIVE_WORKER_HUB_PUBLISHED',
+                {'commit_url':commit.commit_url,'page_path':'worker-hub.html',
+                 'country_allocations':True,'public_owner_wallet_routes':True,
+                 'actual_AI_workers_started_by_this_site':0})
           PY
       - name: Verify public website URL
         run: |
-          echo "## Deployed separate read-only status page" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Deployed interactive on-demand virtual worker lookup with BTC wallets" >> "$GITHUB_STEP_SUMMARY"
           echo "https://amonkkkk-b1b2-superworker-assembly.hf.space/worker-hub.html" >> "$GITHUB_STEP_SUMMARY"
-          echo "Existing Space index.html retained; no model calls, payouts or agent deployments implied." >> "$GITHUB_STEP_SUMMARY"
+          echo "Country-assigned on-demand role lookup and self-custody wallet references uploaded; existing Space index.html retained; no agent execution, crypto mining or income is implied." >> "$GITHUB_STEP_SUMMARY"
