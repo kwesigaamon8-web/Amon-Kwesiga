@@ -9,6 +9,13 @@ on:
       - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
       - 'crypto-agents/directive_cascade.py'
       - 'crypto-agents/directive_understanding_gate.py'
+      - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/enigma_all_b_systems.py'
+      - 'crypto-agents/hierarchy_hop_proof.py'
+      - 'crypto-agents/company_hierarchy.json'
+      - 'crypto-agents/b_certified_agent_service_router.py'
+      - '.github/workflows/real-ai-workers.yml'
+      - '.github/workflows/enigma-all-b1b2-systems.yml'
       - '.github/workflows/comprehensive-hierarchy-forensic.yml'
 permissions:
   contents: read
