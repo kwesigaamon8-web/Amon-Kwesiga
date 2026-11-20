@@ -1,0 +1,35 @@
+name: B1 B2 Actual Parent-by-Parent Order Relay Proof
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/hierarchy_hop_proof.py'
+      - '.github/workflows/hierarchy-real-parent-hop-proof.yml'
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-full-root-hop-proof
+  cancel-in-progress: false
+jobs:
+  parent-by-parent-receipts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify that each actual child waits for its immediate parent receipt
+        run: |
+          python -m py_compile crypto-agents/hierarchy_hop_proof.py
+          python crypto-agents/hierarchy_hop_proof.py --pilot
+          cat hierarchy-hop-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve each actual subprocess receipt and chain ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: owner-to-chief-to-director-to-manager-to-H-hop-proof
+          path: hierarchy-hop-evidence/
+          retention-days: 21
+          if-no-files-found: warn
