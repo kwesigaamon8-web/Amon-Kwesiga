@@ -32,6 +32,7 @@ from b_worker_buyer_source import choose as choose_actual_issue_for_training
 from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
 from directive_cascade import prompt_for_worker as owner_prompt_for_worker, execution_receipt as owner_leaf_receipt
 from hierarchy_command_core import task_context as centralized_role_task, ASSIGNED_CODES as ONE_CODE_PER_TIER
+from role_capability_audit import run_trial as capability_test, audit as capability_check
 from b_certified_agent_service_router import role_index as original_role_index
 from directive_understanding_gate import challenge as owner_understanding_challenge, grade as grade_owner_understanding
 from b_universal_work_protocol import assign as universal_assign, compact_for_model as universal_prompt
@@ -74,6 +75,14 @@ if (CENTRAL_WORKER_ROLE["parent"]!=CASCADE_PACKET["immediate_parent"]
     or CENTRAL_WORKER_ROLE["owner_command"]["owner_order_id"]!=CASCADE_PACKET["owner_order_id"]
     or CENTRAL_WORKER_ROLE["owner_command"]["owner_sha256"]!=CASCADE_PACKET["owner_instruction_sha256"]):
     raise ValueError("Worker code disagrees with centralized current owner instruction")
+# Real model subprocess conducts the new owner's capability-to-action audit
+# before inference. A local capability test is not a model completion.
+REAL_WORKER_CAPABILITY=capability_test(CENTRAL_WORKER_ROLE["tier"],CENTRAL_WORKER_ROLE["role_id"],
+    CENTRAL_WORKER_ROLE["parent"],CASCADE_PACKET["owner_order_id"])
+TRIAL_PASS,TRIAL_ERRORS=capability_check(REAL_WORKER_CAPABILITY,
+    CASCADE_PACKET["owner_order_id"],CENTRAL_WORKER_ROLE["parent"],CENTRAL_WORKER_ROLE["tier"])
+if not TRIAL_PASS:
+    raise ValueError("Actual worker failed current-owner capability audit: "+str(TRIAL_ERRORS))
 CASCADE_OWNER_INFERENCE_TEXT=(
     "MANDATORY CURRENT HUMAN OWNER DIRECTIVE (UNABRIDGED): "+
     json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))["orders"][-1]["instruction"]+
@@ -206,6 +215,8 @@ OWNER_ACTIVATION_PROOF={
 }
 
 report={
+    "current_order_capability_audit":REAL_WORKER_CAPABILITY,
+    "current_order_capability_audit_pass":TRIAL_PASS,
     "central_role_shared_engine":"crypto-agents/hierarchy_command_core.py",
     "central_one_worker_program":ONE_CODE_PER_TIER[CENTRAL_WORKER_ROLE["tier"]],
     "central_role_order_verified":True,
