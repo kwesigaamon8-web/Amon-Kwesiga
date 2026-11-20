@@ -79,6 +79,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           WORKFORCE_ID: BountyScoutAI
         run: python crypto-agents/cross_fleet_idea_exchange.py feed --fleet BountyScoutAI
+      - name: Execute ONE shared director code and verify latest central owner command
+        env:
+          ROLE_ID: ${{ matrix.director }}
+          WORKFORCE_ID: BountyScoutAI
+        run: |
+          python crypto-agents/role_director.py --fleet "$WORKFORCE_ID" --role "$ROLE_ID" --out shared-director-evidence
       - name: Director activation mission and individual role queue
         env:
           ROLE_ID: ${{ matrix.director }}
@@ -115,6 +121,7 @@ jobs:
           path: |
             ai-process-reports/
             director-work-orders/
+            shared-director-evidence/
           if-no-files-found: warn
           retention-days: 7
 
