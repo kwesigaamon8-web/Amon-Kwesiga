@@ -16,8 +16,11 @@ WORKERS = 30
 REQUIRED_PROMPT = "crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md"
 
 
-def examine(root, expected_order, output, strict_prompt_required=False):
+def examine(root, expected_order, output, strict_prompt_required=False, source_root='.'):
     root, output = Path(root), Path(output)
+    source_root=Path(source_root)
+    if source_root != Path('.') and not (source_root/'crypto-agents/PUBLIC_AGENT_COMMAND.json').is_file():
+        raise ValueError('Source-run canonical owner registry not found')
     output.mkdir(parents=True, exist_ok=True)
     rows, failures, seen_ids, candidate_index = [], [], set(), defaultdict(set)
     for shard in SHARDS:
@@ -122,8 +125,8 @@ def examine(root, expected_order, output, strict_prompt_required=False):
             full_order_read = False
             source_diagnostic_done = False
             if "order_text_actually_read" in worker or "actual_distinct_ordered_task" in worker:
-                public_doc = json.loads(Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8"))
-                prompt_content = Path("crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md").read_text(encoding="utf-8")
+                public_doc = json.loads((source_root/"crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8"))
+                prompt_content = (source_root/"crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md").read_text(encoding="utf-8")
                 expected_owner_hash = hashlib.sha256(str(public_doc["owner_command"]).encode("utf-8")).hexdigest()
                 expected_prompt_hash = hashlib.sha256(prompt_content.encode("utf-8")).hexdigest()
                 if (worker.get("order_text_actually_read") is True
@@ -224,7 +227,9 @@ def examine(root, expected_order, output, strict_prompt_required=False):
     summary = {
         "audit_utc": datetime.now(timezone.utc).isoformat(),
         "scope": "900 individually named bounded Python subprocesses across 30 B1/B2 shards",
-        "target_order": expected_order, "expected_worker_records": len(SHARDS) * WORKERS,
+        "target_order": expected_order, "source_commit_checkout": str(source_root),
+        "source_owner_record_checked_against_original_worker_commit":True,
+        "expected_worker_records": len(SHARDS) * WORKERS,
         "worker_records_examined": len(rows), "workers_with_any_error": sum(bool(r["forensic_errors"]) for r in rows),
         "workers_with_process_evidence": sum(r["process_recorded"] for r in rows),
         "workers_with_matching_order": sum(r["order_in_record"] for r in rows),
@@ -350,6 +355,7 @@ if __name__ == "__main__":
     parser.add_argument("--order", default="")
     parser.add_argument("--out", default="forensic-audit-evidence")
     parser.add_argument("--strict-prompt", action="store_true")
+    parser.add_argument("--source-root", default=".")
     parser.add_argument("--self-test", action="store_true")
     a = parser.parse_args()
     if a.self_test:
@@ -357,4 +363,4 @@ if __name__ == "__main__":
     else:
         if not a.order:
             parser.error("--order required for evidence audit")
-        examine(a.root, a.order, a.out, a.strict_prompt)
+        examine(a.root, a.order, a.out, a.strict_prompt, a.source_root)
