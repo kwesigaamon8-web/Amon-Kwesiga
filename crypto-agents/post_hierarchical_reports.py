@@ -62,7 +62,7 @@ for recipient in ("B1","B2"):
         lines.append("  - "+str(item.get("worker_id",""))[:100]+": "+
                      str(item.get("kind",""))[:80]+
                      " — routed to "+str(item.get("action_owner",""))[:10])
-lines.append("**B1/B2 priority inbox artifacts:** \`b1b2-intelligence-"+fleet+"\` in the linked workflow run. These are company reporting files, not evidence that external Moltbook accounts have read them or received payments.")
+lines.append("**B1/B2 priority inbox artifacts:** `b1b2-intelligence-"+fleet+"` in the linked workflow run. These are company reporting files, not evidence that external Moltbook accounts have read them or received payments.")
 lines += ["", "Every actual worker has an individual JSON and Markdown report. All managers, intermediate W/S/G supervisors and directors have inbox files, with traceable edges in HANDOFFS.json.",
           "**Evidence artifact:** hierarchical-worker-reports-"+fleet+" — [open workflow run]("+url+")",
           "Chief D: do not report payment until buyer acceptance, correct-network TXID and independent chain evidence exist."]
