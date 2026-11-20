@@ -10,6 +10,7 @@ on:
       - 'crypto-agents/directive_cascade.py'
       - 'crypto-agents/directive_understanding_gate.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/strict_worker_accountability.py'
       - 'crypto-agents/enigma_all_b_systems.py'
       - 'crypto-agents/hierarchy_hop_proof.py'
       - 'crypto-agents/company_hierarchy.json'
