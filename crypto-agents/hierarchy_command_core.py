@@ -208,13 +208,23 @@ def execute(index, expected=None):
 
 def main_for_tiers(allowed):
     parser=argparse.ArgumentParser()
-    parser.add_argument("--role-index",required=True,type=int)
+    group=parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--role-index",type=int)
+    group.add_argument("--role")
+    parser.add_argument("--fleet",choices=("transferexperiment","BountyScoutAI"))
     parser.add_argument("--out",default="shared-role-command-evidence")
     args=parser.parse_args()
-    r=execute(args.role_index,expected=set(allowed))
+    if args.role is not None:
+        if not args.fleet:
+            parser.error("--fleet is required with --role")
+        from b_certified_agent_service_router import role_index
+        selected_index=role_index(args.fleet,args.role)
+    else:
+        selected_index=args.role_index
+    r=execute(selected_index,expected=set(allowed))
     target=Path(args.out)
     target.mkdir(parents=True,exist_ok=True)
-    outfile=target/("role-"+str(args.role_index)+"-"+r["role_tier"]+".json")
+    outfile=target/("role-"+str(selected_index)+"-"+r["role_tier"]+".json")
     outfile.write_text(json.dumps(r,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     print("CENTRAL_OWNER_COMMAND_ROLE_EXECUTION "+json.dumps({
         "order_id":r["owner_order_id"],"role":r["role_id"],
