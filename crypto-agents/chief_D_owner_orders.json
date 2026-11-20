@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-161731-ONE-ORDER-EACH-REAL-WORKER-CAPABILITY-AND-AUDIT",
+  "current_owner_order_id": "OWNER-20261120-BTC-RESEARCH-MINING-EARNING-TEST",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -1029,6 +1029,17 @@
       "virtual_11t_not_broadcast": true,
       "execution_code": "crypto-agents/hierarchy_command_core.py",
       "audit_code": "crypto-agents/role_capability_audit.py"
+    },
+    {
+      "id": "OWNER-20261120-BTC-RESEARCH-MINING-EARNING-TEST",
+      "as_of_utc": "2026-11-20T16:50:16.456Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT connected GitHub writing",
+      "instruction": "HUMAN OWNER TEST ORDER, 20 NOV 2026 — BITCOIN RESEARCH, LAWFUL EARNING, MINING FEASIBILITY, AND VERIFIED INBOUND RECEIPTS. This is one central bounded test from OWNER to sole Chief D to separate B1/transferexperiment and B2/BountyScoutAI, all configured Enigma root divisions and their actual D/A/M/W/S/G/H worker processes. Every genuinely invoked worker must load the exact current central command with matching public mirror, ID and SHA256 and state its one immediate parent; every direct supervisor audits real child receipts. Virtual role IDs do NOT imply active worker processes. BITCOIN RESEARCH: each actually invoked, authorized research worker selects one independent current primary/public network, miner, pool, price, electricity or paid-task source and records the UTC observation time, source URL, relevant measurements, confidence and reproducible calculation. Research genuine mining profitability: hashrate, device watts, electricity rate, pool fee, Bitcoin network difficulty/hashprice, payout mode and risk. Do not call calculated rewards received BTC. MINING: determine whether an actual, identified and expressly consenting ASIC/device owner is available with lawful hardware and power; assess prospective daily gross BTC, fee and electricity costs. If none, state NO_AUTHORIZED_MINER; do not use GitHub Actions, free CPU instances, third-party machines or fictitious workers as a mining host, do not start unauthorized mining, do not redirect anyone's pool payout without consent. EARNING OR ACQUIRING: find one distinct source-backed, currently eligible, actually funded Bitcoin-mainnet-paying software, research, documentation, QA, data or other lawful job (or voluntary consenting mining partner) per actually executing worker. Validate real payer identity/eligibility, permissioned platform channel, unique original URL, budget, objective acceptance criteria and payout terms. Produce one original verifiable useful scoped deliverable when permitted, record explicit customer acceptance only with authentic evidence, and request payment through the authorized route only from a consenting payer. No spending, speculative trading, purchasing BTC with owner's funds, transaction signing or unverified buyer claims. RECEIVING ONLY: B1 Bitcoin mainnet bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 Bitcoin mainnet bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Keep fleets separate and avoid all unverified other-chain and exchange deposit routes. Check inbound transactions on public blockchain sources read-only; count BTC only from independently confirmed correct-network TXID, actual amount, confirmations and source, otherwise state NONE or NOT_CHECKED. TEST AND REPORT: log per real worker order ID, exact order SHA256, company/root, tier, unique process or model identity, parent, task, source and timestamp, original output digest, practical safety/comprehension response if a real AI model was invoked, evidence-linked accepted task, genuine mining hashrate if any, publicly verifiable TXID and BTC received if any. Parent certifies PASS/FAIL/BLOCKED/NOT_INVOKED; Chief D reports separate numerical totals for order-loaded, actual processes, passing model explanations, genuine authorized miners, qualified buyers contacted, accepted paid deliverables and independently verified payments. Distinguish research evidence from mined BTC and paid BTC. CONSTRAINTS: do not access, search, monitor, read, draft or send any Gmail/email without the owner's separate specific permission; no spam, mass unsolicited social posts, fake accounts, private keys, wallet signing, withdrawals, transfers, upfront fees, unconsenting compute or invented receipts. Only current finite authorized code/tools are available; clearly report genuine blockers. The public output ledger is https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/37. Deliver one bounded documented test and its limitations, not a claim that all 11T virtual roles have executed.",
+      "status": "bitcoin_test_order_published_execution_receipts_pending",
+      "issue_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/37",
+      "actual_mining_not_assumed": true,
+      "real_payment_not_assumed": true
     }
   ],
   "strict_per_worker_reporting": {
