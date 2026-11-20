@@ -1,6 +1,7 @@
+import {EXTRA_METHODS, calculateExtra, defaultsExtra} from "./global-1000-expansion.mjs";
 /* B1/B2 original micro-app engine. One executable catalogue containing
- * 500 individually identified, user-operable, locally computed specializations:
- * 50 distinct algorithms x 10 problem domains. This is NOT 500 separate APIs
+ * 1,000 individually identified, user-operable specializations:
+ * 100 distinct algorithms x 10 problem domains; original first 500 IDs unchanged. This is NOT 500 separate APIs
  * or 500 deployed services, and no country-specific sales are claimed.
  * MIT terms for this original file; formulas are educational estimates.
  */
@@ -63,7 +64,7 @@ export const ALGORITHMS = [
  ["Solo mining expectation","a hashes/sec, b network difficulty","Expected years / block"],//48
  ["Net cash flow","a inflows, b operating outflows, c other expense, d reserve","Cash left"]//49
 ];
-export const TOTAL_TOOLS = DOMAINS.length * ALGORITHMS.length;
+export const TOTAL_TOOLS = DOMAINS.length * (ALGORITHMS.length + EXTRA_METHODS.length);
 const ZERO=(x)=>Math.abs(x)<1e-12;
 function div(a,b){if(!Number.isFinite(b)||ZERO(b))throw new Error("Denominator must be nonzero");return a/b;}
 function list(value){
@@ -76,7 +77,8 @@ function lr(series){const n=series.length;if(n<2)throw Error("At least two readi
 function finite(v){if(!Number.isFinite(v))throw Error("Result exceeds numeric range");return v}
 function numeric(raw, key, fallback){const v=(raw?.[key]??fallback);if(v===""||v===null||!Number.isFinite(Number(v)))throw Error("Enter a valid number for "+key);return Number(v)}
 export function calculate(algorithm,raw={}){
- if(!Number.isInteger(algorithm)||algorithm<0||algorithm>=ALGORITHMS.length)throw Error("Unknown program");
+ if(!Number.isInteger(algorithm)||algorithm<0||algorithm>=ALGORITHMS.length+EXTRA_METHODS.length)throw Error("Unknown program");
+ if(algorithm>=ALGORITHMS.length)return calculateExtra(algorithm-ALGORITHMS.length,raw);
  const a=numeric(raw,"a",100),b=numeric(raw,"b",12),c=numeric(raw,"c",3),d=numeric(raw,"d",0);
  const s=list(raw.series??"10,12,14,17,22"),n=s.length,sum=s.reduce((t,x)=>t+x,0);
  let value;
@@ -149,17 +151,19 @@ function defaults(algorithm,domain){
  return raw;
 }
 export function toolAt(index){
- if(!Number.isInteger(index)||index<0||index>=TOTAL_TOOLS)throw Error("Tool index outside 0–499");
- const domain=Math.floor(index/50),algorithm=index%50;
+ if(!Number.isInteger(index)||index<0||index>=TOTAL_TOOLS)throw Error("Tool index outside 0–999");
+ // Preserve old 500 links/meaning. New entries run the 50 genuinely new formulas.
+ const newBlock=index>=500,domain=Math.floor((index-(newBlock?500:0))/50);
+ const algorithm=(index%50)+(newBlock?50:0);
  const id="SW-"+String(index+1).padStart(3,"0");
- const [name,description,unit]=ALGORITHMS[algorithm];
+ const [name,description,unit]=newBlock?EXTRA_METHODS[algorithm-50]:ALGORITHMS[algorithm];
  return {id,index,domain,algorithm,name:DOMAINS[domain]+": "+name,description,unit,sector:DOMAINS[domain],
-         defaults:defaults(algorithm,domain),url:"?tool="+id,
+         defaults:newBlock?defaultsExtra(algorithm-50,domain):defaults(algorithm,domain),url:"?tool="+id,
          evidence_status:"LIVE_BROWSER_CALCULATOR_NOT_COUNTRY_MARKET_RESEARCH",
          offline:true,payment_required:false};
 }
 export function toolById(id){
- if(!/^SW-(?:[0-4]\d{2}|500)$/.test(id))throw Error("Invalid tool ID");
+ if(!/^SW-(?:00[1-9]|0[1-9]\d|[1-9]\d{2}|1000)$/.test(id))throw Error("Invalid tool ID");
  const index=Number(id.slice(3))-1;return toolAt(index);
 }
 export const CODES = ("AW AF AO AI AX AL AD AE AR AM AS AQ TF AG AU AT AZ BI BE BJ BQ BF BD BG BH BS BA BL BY BZ BM BO BR BB BN BT BV BW CF CA CC CH CL CN CI CM CD CG CK CO KM CV CR CU CW CX KY CY CZ DE DJ DM DK DO DZ EC EG ER EH ES EE ET FI FJ FK FR FO FM GA GB GE GG GH GI GN GP GM GW GQ GR GD GL GT GF GU GY HK HM HN HR HT HU ID IM IN IO IE IR IQ IS IL IT JM JE JO JP KZ KE KG KH KI KN KR KW LA LB LR LY LC LI LK LS LT LU LV MO MF MA MC MD MG MV MX MH MK ML MT MM ME MN MP MZ MR MS MQ MU MW MY YT NA NC NE NF NG NI NU NL NO NP NR NZ OM PK PA PN PE PH PW PG PL PR KP PT PY PS PF QA RE RO RU RW SA SD SN SG GS SH SJ SB SL SV SM SO PM RS SS ST SR SK SI SE SZ SX SC SY TC TD TG TH TJ TK TM TL TO TT TN TR TV TW TZ UG UA UM UY US UZ VA VC VE VG VI VN VU WF WS YE ZA ZM ZW").split(" ");
