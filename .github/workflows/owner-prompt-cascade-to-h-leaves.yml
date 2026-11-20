@@ -83,6 +83,37 @@ jobs:
           print("REAL_H_LEAF_FULL_PROMPT_RECEIPTS",len(rec),
                 "model_inferences",0,"external_customer_contact",0)
           PY
+      - name: Actually invoke one final H role under each of the 30 B1/B2 and Enigma root divisions
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,sys
+          from pathlib import Path
+          sys.path.insert(0,"crypto-agents")
+          from enigma_universal_owner_order import PER_ROOT, GRAND_TOTAL
+          root=Path("owner-cascade-evidence")
+          proven=[]
+          for i in range(30):
+              idx=(i+1)*PER_ROOT-1
+              assert 0<=idx<GRAND_TOTAL
+              out=root/("global-root-"+str(i+1).zfill(2))
+              run=subprocess.run([
+                  sys.executable,"crypto-agents/directive_cascade.py",
+                  "--global-index",str(idx),"--task",
+                  "Explain latest owner instruction and identify one legitimate public paid task or an evidenced blocker",
+                  "--out",str(out)],capture_output=True,text=True,timeout=40)
+              assert run.returncode==0,(i,run.stderr[-1000:])
+              data=json.loads((out/"one-leaf-delivery-receipt.json").read_text())
+              assert data["owner_to_leaf_path"][-1].endswith("-H666")
+              assert data["full_prompt_loaded_by_actual_python_process"]
+              assert data["model_response_present"] is False
+              assert data["immediate_parent"]==data["owner_to_leaf_path"][-2]
+              proven.append(data["exact_process_worker_id"])
+          assert len(set(proven))==30
+          print("ALL_30_ROOT_DIVISIONS_ACTUAL_H_SUBPROCESS_PROMPT_RECEIPTS_PASS",
+                json.dumps({"real_H_processes":30,"verified_unique_roots":30,
+                  "real_model_comprehensions":0,
+                  "virtual_trillions_independently_acknowledged":0}))
+          PY
       - name: Keep original full-text prompt and per-leaf receipts as audit artifacts
         if: always()
         uses: actions/upload-artifact@v4
