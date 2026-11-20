@@ -13,6 +13,7 @@ import os
 import re
 from datetime import datetime,timezone
 from pathlib import Path
+from role_capability_audit import run_trial as test_actual_capability, audit as verify_capability_trial
 
 BASE=Path("crypto-agents")
 LEDGER=BASE/"customer-acquisition"/"2026-11-20-public-customer-prospects.json"
@@ -178,6 +179,11 @@ def execute(index, expected=None):
     action=ROLE_ACTIONS[tier](ctx,_public_leads())
     # Compute a deterministic action digest distinct from the process receipt.
     action_hash=sha(json.dumps(action,sort_keys=True,ensure_ascii=False))
+    capability=test_actual_capability(tier,ctx["role_id"],ctx["parent"],order["owner_order_id"])
+    capability_pass,capability_errors=verify_capability_trial(
+        capability,order["owner_order_id"],ctx["parent"],tier)
+    if not capability_pass:
+        raise ValueError("Independent role capability test failed: "+",".join(capability_errors))
     receipt={
         "schema":"B1B2_SINGLE_COMMAND_SHARED_ROLE_RUNTIME_V1",
         "command_source":"crypto-agents/chief_D_owner_orders.json",
@@ -193,6 +199,12 @@ def execute(index, expected=None):
         "process_pid":os.getpid(),
         "utc":datetime.now(timezone.utc).isoformat(),
         "task_action":action["action"],
+        "actual_tasks_this_role_can_perform":capability["available_with_existing_local_code"],
+        "tasks_unavailable_without_real_permission":capability["cannot_prove_with_available_permissions"],
+        "real_capability_trial":capability,
+        "real_capability_trial_pass":capability_pass,
+        "real_capability_trial_failures":capability_errors,
+        "external_buyer_task_executed":False,
         "task_evidence_sha256":action_hash,
         "task_result":action,
         "real_python_task_executed":True,
