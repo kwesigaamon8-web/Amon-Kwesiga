@@ -40,6 +40,7 @@ from superworker_protocol import create as superworker_create
 from owner_work_contract import load_work_contract
 from director_grade_work import assign as assign_director_grade_work
 from marketing.role_campaign_dispatch import assignment as free_software_marketing_assignment
+from marketing.role_messages import worker_process_order as owner_worker_campaign_message, model_instruction as campaign_model_instruction
 
 ROOT=Path("crypto-agents")
 OUT=Path("ai-process-reports")
@@ -121,6 +122,10 @@ TASK=IDENTITY["task"]
 # receives its own deterministic assignment from the addressable role namespace.
 # This does not cause automatic posting or activate other defined role IDs.
 FREE_SOFTWARE_MARKETING_TASK=free_software_marketing_assignment(FLEET,WORKER)
+# This is a real process receiving its own ONE internally addressed message.
+# No Moltbook/social channel delivery, successful inference or revenue inferred.
+OWNER_CAMPAIGN_MESSAGE=owner_worker_campaign_message(FLEET,WORKER)
+OWNER_CAMPAIGN_MODEL_INSTRUCTION=campaign_model_instruction(OWNER_CAMPAIGN_MESSAGE)
 CAPABILITY_TASK=capability_dispatch(FLEET,WORKER,SPEC["role_name"],DIRECTOR,IDENTITY["level"])
 DIRECTOR_GRADE_WORK=assign_director_grade_work(FLEET,WORKER,PARENT,CAPABILITY_TASK["primary_lane"])
 if CAPABILITY_TASK["reports_to"]!=FLEET+"/"+PARENT:
@@ -173,6 +178,7 @@ report={
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
     "free_software_marketing_order":FREE_SOFTWARE_MARKETING_TASK,
+    "actual_worker_process_campaign_inbox":OWNER_CAMPAIGN_MESSAGE,
     "director_grade_work":DIRECTOR_GRADE_WORK,
     "owner_latest_work_instruction_proof":{
       "manifest_loaded_by_actual_worker_process":LATEST_WORK_CONTRACT["manifest"],
@@ -448,7 +454,7 @@ try:
         "\nLATEST OWNER WORK COMMAND "+LATEST_WORK_CONTRACT["model_prompt"]+
         "\nDIRECTOR-GRADE OWNER WORK "+DIRECTOR_GRADE_WORK["model_prompt"]+
         "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
-        "\nOWNER FREE SOFTWARE CAMPAIGN (permissioned and original code only): "+FREE_SOFTWARE_MARKETING_TASK["work_order"]+" REGION "+FREE_SOFTWARE_MARKETING_TASK["region_research_assignment"]+" PRODUCT "+FREE_SOFTWARE_MARKETING_TASK["software_focus"]+" SOURCE "+FREE_SOFTWARE_MARKETING_TASK["source_path"]+". Do not post to outside accounts without legitimate connected permission. Do not treat virtual roles as live workers; never claim shares/sales/payments without proof."+
+        "\n"+OWNER_CAMPAIGN_MODEL_INSTRUCTION+
         "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
         "\nYOU ARE ONE CAPABILITY-BASED SUPERWORKER, NOT BILLIONS OF LIVE MACHINES. Follow VERIFY SOURCE > PLAN > BUILD ORIGINAL > SELF-REVIEW > AUTHORIZED DELIVERY > PAID RECEIPT VERIFICATION BY LOCAL D10 > REPORT TO YOUR ORIGINAL PARENT "+SUPERWORKER["supervisor_chain"][0]+". Use only actually enabled tools, select one viable paid job, show tested original output and precise blocker. Never claim an unstated customer, mining device, host or payment."+
         "\nYOUR CAPABILITY-FIRST OWNER TASK: ROLE "+CAPABILITY_TASK["role_id"]+"; PRIMARY lane "+CAPABILITY_TASK["primary_lane"]+" because "+CAPABILITY_TASK["why_suitable"]+". ACTION: "+CAPABILITY_TASK["one_actual_primary_action"]+". If blocked: "+CAPABILITY_TASK["if_missing_prerequisite"]+". OPTIONAL SECONDARY only if tools/time/permission exist: "+CAPABILITY_TASK["optional_secondary_lane"]+"; "+CAPABILITY_TASK["second_action_only_if_capable_and_permitted"]+". EVIDENCE not claims. Keep only your original direct parent "+CAPABILITY_TASK["reports_to"]+"; never claim the 750,377,265,361 configured positions are online or earning. "+
