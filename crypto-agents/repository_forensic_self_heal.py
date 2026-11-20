@@ -191,12 +191,13 @@ def audit(root: Path, do_safe_repair: bool = False, cap: int = MAX_SAFE_CHANGES)
             row["safe_newline_candidate"] = True
         rows.append(row)
     changed = []
-    repair_status = ("DRY_RUN" if not do_safe_repair
-                     else "BLOCKED_TOO_MANY_CANDIDATES" if len(candidates) > cap
-                     else "NO_CHANGE_NEEDED")
-    if do_safe_repair and len(candidates) <= cap:
+    repair_status = "DRY_RUN" if not do_safe_repair else "NO_CHANGE_NEEDED"
+    # Fix at most 12 independently parsed files per run; defer the rest to
+    # later scheduled cycles instead of making unbounded wholesale edits.
+    # A single failed retest cannot write code. No semantic fixes are allowed.
+    if do_safe_repair:
         indexed = {r["path"]: r for r in rows}
-        for rel in candidates:
+        for rel in candidates[:cap]:
             p = root / rel
             initial = p.read_text(encoding="utf-8")
             if initial.endswith("\n"):
@@ -211,7 +212,9 @@ def audit(root: Path, do_safe_repair: bool = False, cap: int = MAX_SAFE_CHANGES)
             indexed[rel]["repair_retest"] = "PASS"
             indexed[rel]["sha256_after"] = sha256(p.read_bytes()).hexdigest()
         if changed:
-            repair_status = "SAFE_FINAL_NEWLINE_FIXED_AND_RETESTED"
+            repair_status = ("BOUNDED_PARTIAL_SAFE_FINAL_NEWLINE_FIX"
+                             if len(candidates) > cap
+                             else "SAFE_FINAL_NEWLINE_FIXED_AND_RETESTED")
     issues = invariant_issues(root)
     counts = dict(Counter(r["parse"] for r in rows))
     defects = [r for r in rows if r["parse"] in
@@ -227,6 +230,8 @@ def audit(root: Path, do_safe_repair: bool = False, cap: int = MAX_SAFE_CHANGES)
         "owner_command_checks": issues,
         "owner_command_guard_passed": all(x["status"] == "PASS" for x in issues),
         "safe_repair_candidates": candidates,
+        "safe_repair_candidate_count": len(candidates),
+        "safe_repair_deferred_count": max(0, len(candidates) - len(changed)),
         "safe_repair_count": len(changed),
         "safe_repair_paths": changed,
         "safe_repair_state": repair_status,
@@ -251,6 +256,9 @@ def self_test():
     assert is_safe_newline_target("crypto-agents/ordinary_source_test.py", "pass", "PARSED")
     assert not is_safe_newline_target(".github/workflows/deploy.yml", "x", "PARSED")
     assert not is_safe_newline_target("docs/example.html", "x\n", "PARSED")
+    # Capped recovery is incremental, never a full repository rewrite.
+    assert list(range(33))[:MAX_SAFE_CHANGES] == list(range(12))
+    assert MAX_SAFE_CHANGES == 12
     assert static_findings("some.py", "ghp_" + "a"*36)[0]["snippet_exposed"] is False
     assert len(static_findings("normal.py", "print('safe')")) == 0
     print("B1B2_FORENSIC_SELF_HEAL_REGRESSION_TESTS_PASS")
