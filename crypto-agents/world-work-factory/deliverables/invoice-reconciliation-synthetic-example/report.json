@@ -1,0 +1,45 @@
+{
+  "invoices": [
+    {
+      "invoice_id": "INV-001",
+      "customer": "Synthetic Customer A",
+      "invoiced": "100.00",
+      "paid": "100.00",
+      "outstanding": "0.00",
+      "overpayment": "0.00",
+      "status": "paid"
+    },
+    {
+      "invoice_id": "INV-002",
+      "customer": "Synthetic Customer B",
+      "invoiced": "75.00",
+      "paid": "80.00",
+      "outstanding": "0.00",
+      "overpayment": "5.00",
+      "status": "overpaid"
+    },
+    {
+      "invoice_id": "INV-003",
+      "customer": "Synthetic Customer C",
+      "invoiced": "50.00",
+      "paid": "0.00",
+      "outstanding": "50.00",
+      "overpayment": "0.00",
+      "status": "unpaid"
+    }
+  ],
+  "unmatched_payments": [
+    {
+      "payment_id": "PMT-004",
+      "invoice_id": "UNKNOWN",
+      "amount": "20.00"
+    }
+  ],
+  "totals": {
+    "invoiced": "225.00",
+    "allocated_paid": "180.00",
+    "unmatched_paid": "20.00",
+    "outstanding": "50.00"
+  },
+  "note": "Synthetic demonstration. This output does not establish actual receipt, bank credit, customer acceptance or crypto TXIDs."
+}

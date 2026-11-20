@@ -1,0 +1,11 @@
+{
+  "status": "ORIGINAL_PUBLIC_PORTFOLIO_DELIVERABLE_TESTED",
+  "artifact_dir": "crypto-agents/world-work-factory/deliverables/invoice-reconciliation-synthetic-example",
+  "result_sha256": "de1581ce9befd2948e8559df27f9aeced6e0ff6de2ad48d57ed42c9b6123102c",
+  "real_python_test_return_code": 0,
+  "completed_utc": "2026-11-20T19:12:29.752029+00:00",
+  "client_or_payer": null,
+  "accepted_paid_scope": false,
+  "externally_submitted": false,
+  "earnings_verified": false
+}
