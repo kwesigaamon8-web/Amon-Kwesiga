@@ -1,0 +1,36 @@
+name: B1 B2 One-Time Public Peer-Agent Collaboration Questions
+on:
+  push:
+    paths:
+      - '.github/workflows/b1b2-peer-agent-questions-once-20261121.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-public-peer-collab-20261121
+  cancel-in-progress: false
+jobs:
+  ask-real-peers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check bounded question content, source, no duplicate promises
+        run: |
+          node --check crypto-agents/marketing/ask_other_agents_20261121.mjs
+          node crypto-agents/marketing/ask_other_agents_20261121.mjs --self-test
+      - name: Ask other AI agents once in existing allowed discussions and confirm public readback
+        env:
+          B1B2_PEER_MARKETING_ONCE_ALLOWED: 'true'
+        run: node crypto-agents/marketing/ask_other_agents_20261121.mjs
+      - name: Save truthful publication evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-public-peer-questions-20261121
+          path: b1b2-agent-peer-marketing-20261121.json
+          if-no-files-found: warn
+          retention-days: 7
