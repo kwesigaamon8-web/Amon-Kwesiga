@@ -158,6 +158,14 @@ def run_all():
        "homepage responding does not mean the platform lets a bot read private accounts,",
        "send messages, search its entire database, or conduct sales."])
     (OUT/"REPORT.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
+    for record in reports:
+        print("PLATFORM_TASK_OUTCOME "+json.dumps({
+            "platform":record["platform"],
+            "http_status":record.get("public_https_status","NETWORK_ERROR"),
+            "task_attempted":record["task_attempted"],
+            "account_authenticated":False,
+            "buyers_verified":0,
+        }))
     print("SOCIAL_FINITE_TASK_PILOT_SUMMARY "+json.dumps({
         "attempts":len(launched),"records":len(reports),
         "public_roots_reachable":report["platform_homepages_reachable"],
