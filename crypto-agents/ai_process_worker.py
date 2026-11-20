@@ -71,10 +71,22 @@ CASCADE_PACKET=owner_prompt_for_worker(
 # Production process also uses the SAME centralized code/authority as all
 # director, manager, assistant, and first/last-tier worker entrypoints.
 CENTRAL_WORKER_ROLE=centralized_role_task(original_role_index(FLEET,WORKER),expected={"W","S","G","H"})
-if (CENTRAL_WORKER_ROLE["parent"]!=CASCADE_PACKET["immediate_parent"]
-    or CENTRAL_WORKER_ROLE["owner_command"]["owner_order_id"]!=CASCADE_PACKET["owner_order_id"]
-    or CENTRAL_WORKER_ROLE["owner_command"]["owner_sha256"]!=CASCADE_PACKET["owner_instruction_sha256"]):
-    raise ValueError("Worker code disagrees with centralized current owner instruction")
+# Canonical virtual hierarchy prefixes ORIGINAL/ to fleet-owned role IDs.
+# owner_first_oath deliberately omits this display-only namespace prefix.
+# Comparing these different representations verbatim stopped ALL real model
+# workers before model load. Check the exact leaf, parent and full order ID
+# instead of weakening the ownership/ancestry check.
+if (CENTRAL_WORKER_ROLE["role_id"] != "ORIGINAL/"+FLEET+"/"+WORKER
+    or CENTRAL_WORKER_ROLE["root_id"] != "ORIGINAL/"+FLEET
+    or CENTRAL_WORKER_ROLE["parent"] != "ORIGINAL/"+CASCADE_PACKET["immediate_parent"]
+    or CENTRAL_WORKER_ROLE["owner_command"]["owner_order_id"] != CASCADE_PACKET["owner_order_id"]
+    or CENTRAL_WORKER_ROLE["owner_command"]["owner_sha256"] != CASCADE_PACKET["owner_instruction_sha256"]):
+    raise ValueError(
+      "Worker owner/root/parent mismatch after canonical namespace conversion: "+
+      str({"central_parent":CENTRAL_WORKER_ROLE["parent"],
+           "cascade_parent":CASCADE_PACKET["immediate_parent"],
+           "central_role":CENTRAL_WORKER_ROLE["role_id"],
+           "order":CASCADE_PACKET["owner_order_id"]}))
 # Real model subprocess conducts the new owner's capability-to-action audit
 # before inference. A local capability test is not a model completion.
 REAL_WORKER_CAPABILITY=capability_test(CENTRAL_WORKER_ROLE["tier"],CENTRAL_WORKER_ROLE["role_id"],
