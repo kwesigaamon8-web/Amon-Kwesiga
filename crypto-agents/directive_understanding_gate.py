@@ -93,7 +93,7 @@ def grade(response,worker_id,parent_id,order_id,
         "note":"This evaluates response structure and elementary decision evidence. Even a passing answer is not proof of general understanding; actual separately accepted work remains essential."}
 
 def self_test():
-    oid="OWNER-20261120-151600", parent="transferexperiment/D01-M01",wid="transferexperiment/D01-M01-W01"
+    oid="OWNER-20261120-151600"; parent="transferexperiment/D01-M01"; wid="transferexperiment/D01-M01-W01"
     good=("\n".join([
         "ORDER: "+oid, "PARENT: "+parent,
         "GOAL: Find real customers needing useful services and secure accepted paid work.",
