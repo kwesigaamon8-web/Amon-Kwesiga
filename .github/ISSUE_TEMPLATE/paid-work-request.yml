@@ -1,12 +1,12 @@
 name: "Commission a small digital task"
-description: "Request a quote for original CSV/JSON conversion, spreadsheet reconciliation, public-source research, technical QA or documentation. Do not post private data."
+description: "Two-minute request for a small, original digital task. Only your desired result and public-data privacy confirmation are essential."
 title: "[Paid work request] "
 body:
   - type: markdown
     attributes:
       value: |
         **Before posting:** This is a public GitHub issue. Describe the work using fictional or anonymized examples only. **Never** share bank statements, account numbers, personal client data, credentials, wallet secrets, or confidential documents.
-        We agree on fees, acceptance criteria, scope and the permitted exact currency/network before any paid engagement. This form does not imply a contract.
+        **Quick request:** tell us what result you need and choose a service. The budget, deadline, tests and BTC/payment network can be agreed afterwards. No deposit or payment is requested to obtain a quote; this form is not a contract.
   - type: dropdown
     id: service
     attributes:
@@ -33,17 +33,17 @@ body:
     id: checks
     attributes:
       label: How should we test that the work is complete?
-      description: Outline one or two acceptance checks, preferably with artificial sample data.
+      description: Optional at enquiry stage. If unsure, we will propose tests for you to approve before work.
       placeholder: "Example: 100 rows processed; duplicate IDs flagged; totals match; no missing output keys."
     validations:
-      required: true
+      required: false
   - type: input
     id: budget
     attributes:
-      label: Proposed budget and currency
+      label: Approximate budget (optional — request a quote if unsure)
       placeholder: "e.g., USD 25, BTC equivalent, or request a quote"
     validations:
-      required: true
+      required: false
   - type: input
     id: deadline
     attributes:
@@ -54,14 +54,14 @@ body:
   - type: dropdown
     id: payment
     attributes:
-      label: Preferred settlement method (to be confirmed privately)
+      label: Preferred settlement method (optional — confirmed after scope agreement)
       options:
         - Agreed native BTC on Bitcoin mainnet
         - Another owner-confirmed crypto asset/network
         - Other agreed lawful payment method
         - Not decided
     validations:
-      required: true
+      required: false
   - type: checkboxes
     id: privacy
     attributes:
