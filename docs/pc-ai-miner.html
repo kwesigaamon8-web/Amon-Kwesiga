@@ -67,12 +67,25 @@ python pc_ai_miner.py demo --tries 10000 --bits 12</pre>
 <section class="panel"><h2>Contribute, test, or share — without spam</h2>
  <p>Anyone may test the software, report bugs, improve documentation or submit a proposal using an authorized GitHub account. Share this page only in communities that welcome such posts.</p>
  <div class="linkrow"><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32">Existing collaborator invitation</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new">Propose a bugfix or contribution</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga">Public repository</a></div>
- <p class="mini">Free demos do not require a donation. Private keys, seed phrases or login credentials are never requested. If you independently choose to support the project, verify the address directly before paying or mining.</p>
+ <p><strong>Share manually to interested communities:</strong> each link opens that platform's own compose page; PC AI Miner does not post anything automatically.</p>
+<div class="linkrow"><a id="shareX" href="https://x.com/" rel="noopener noreferrer">X</a> · <a id="shareBluesky" href="https://bsky.app/" rel="noopener noreferrer">Bluesky</a> · <a id="shareReddit" href="https://www.reddit.com/" rel="noopener noreferrer">Reddit</a> · <a id="shareLinkedin" href="https://www.linkedin.com/" rel="noopener noreferrer">LinkedIn</a> · <a id="shareTelegram" href="https://t.me/" rel="noopener noreferrer">Telegram</a> · <a id="shareWhatsapp" href="https://www.whatsapp.com/" rel="noopener noreferrer">WhatsApp</a></div>
+<p class="mini">Free demos do not require a donation. Private keys, seed phrases or login credentials are never requested. If you independently choose to support the project, verify the address directly before paying or mining.</p>
 </section>
 </main>
 <footer>PC AI Miner · Open-source research and voluntary miner education · No crypto or income guarantee · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga">GitHub source and reports</a></footer>
 <script>
 "use strict";
+const releaseUrl="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/pc-ai-miner.html";
+const shareText="PC AI Miner: free Bitcoin SHA256d learning demos, original testable Python code, and optional, fully consented mining collaboration. No hidden miner or guaranteed rewards.";
+const destinations={
+ shareX:"https://x.com/intent/post?text="+encodeURIComponent(shareText+" "+releaseUrl),
+ shareBluesky:"https://bsky.app/intent/compose?text="+encodeURIComponent(shareText+" "+releaseUrl),
+ shareReddit:"https://www.reddit.com/submit?url="+encodeURIComponent(releaseUrl)+"&title="+encodeURIComponent("PC AI Miner: free public Bitcoin learning source"),
+ shareLinkedin:"https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(releaseUrl),
+ shareTelegram:"https://t.me/share/url?url="+encodeURIComponent(releaseUrl)+"&text="+encodeURIComponent(shareText),
+ shareWhatsapp:"https://api.whatsapp.com/send?text="+encodeURIComponent(shareText+" "+releaseUrl)
+};
+for(const [id,link] of Object.entries(destinations)){document.getElementById(id).href=link;}
 const B1="bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z";
 const B2="bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9";
 const $=id=>document.getElementById(id);
