@@ -1,0 +1,62 @@
+name: PC AI Miner public software release QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pc-ai-miner-release-check.yml'
+      - 'crypto-agents/pc-ai-miner/**'
+      - 'docs/pc-ai-miner.html'
+permissions:
+  contents: read
+jobs:
+  pc-ai-miner-public-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original Bitcoin maths and consent tests
+        run: |
+          python -m py_compile crypto-agents/pc-ai-miner/pc_ai_miner.py
+          python crypto-agents/pc-ai-miner/pc_ai_miner.py self-test
+          python -m unittest discover -s crypto-agents/pc-ai-miner -p 'test_*.py' -v
+          python crypto-agents/pc-ai-miner/pc_ai_miner.py demo --tries 250 --bits 8
+      - name: Validate public HTML and inline JS without browser mining
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          import re
+          s=Path('docs/pc-ai-miner.html').read_text()
+          HTMLParser().feed(s)
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          assert len(scripts)==1
+          Path('/tmp/pc-ai-miner-browser.js').write_text(scripts[0])
+          assert 'Run 32 example hashes' in s
+          assert 'document.getElementById' in s
+          assert 'hardwareConsent' in s and 'donationConsent' in s
+          assert 'stratum+tls://' in s
+          assert 'No mining program started' in s
+          assert 'github.com/kwesigaamon8-web/Amon-Kwesiga' in s
+          assert 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' in s
+          assert 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' in s
+          assert '<iframe' not in s and 'serviceWorker' not in s
+          print('PC_AI_MINER_PUBLIC_HTML_BOUNDED_DEMO_AND_DONATION_DISCLOSURE_PASS')
+          PY
+          node --check /tmp/pc-ai-miner-browser.js
+      - name: Verify canonical receiving addresses have genuine Bitcoin checksums
+        run: |
+          python crypto-agents/test_btc_receiver_safety.py
+          python crypto-agents/owner_first_oath.py
+      - name: Say what this test actually verified
+        if: always()
+        run: |
+          echo 'PC AI Miner source published; 34 historic archives inventoried for review; demos are not full coin mining.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Browser WebCrypto demo only runs after an explicit click and is bounded to 32 hashes.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This workflow never launches cryptocurrency mining, background compute, social posts or wallet transfers.' >> "$GITHUB_STEP_SUMMARY"
