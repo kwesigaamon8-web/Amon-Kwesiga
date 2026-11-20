@@ -1,0 +1,43 @@
+name: B1 B2 Evidence-Only Public Pool Miner Address Check
+on:
+  push:
+    paths:
+      - '.github/workflows/b1b2-real-pool-address-check.yml'
+# One bounded QA audit of owner-shared pool addresses, NOT a miner.
+# NO cron: avoid spending GitHub-hosted compute on repeated observations.
+permissions:
+  contents: read
+jobs:
+  validate-and-query-public-miner-wallets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prove read-only parser, distinct routes and failure handling
+        run: |
+          python -m py_compile crypto-agents/read_only_public_pool_audit.py
+          python crypto-agents/read_only_public_pool_audit.py --self-test
+      - name: Perform ONLY bounded public API reads for B1 and B2 pool-address evidence
+        run: python crypto-agents/read_only_public_pool_audit.py
+      - name: Summarize actual worker rows without claiming BTC receipts
+        run: |
+          python - <<'PY'
+          import json,os
+          a=json.load(open('mining-evidence/public-pool-wallet-audit.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('## Authorized BTC miner evidence (read-only, no mining)\n\n')
+            for row in a['wallets']:
+              f.write('- '+row['company']+': '+row['status']+'; pool-reported worker rows: '+str(row.get('reported_worker_count'))+'; public hashrate H/s: '+str(row.get('reported_wallet_hashrate_hs'))+'\n')
+            f.write('\n- Independently verified ASIC owners: **0**\n')
+            f.write('- BTC paid out by this test: **0 generated**; actual past payouts are NOT established here.\n')
+            f.write('- Every Github worker here only validates code and reads at most two pool endpoints. No mining, email or wallet signing.\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-real-pool-wallet-audit
+          path: mining-evidence/public-pool-wallet-audit.json
+          if-no-files-found: error
+          retention-days: 7
