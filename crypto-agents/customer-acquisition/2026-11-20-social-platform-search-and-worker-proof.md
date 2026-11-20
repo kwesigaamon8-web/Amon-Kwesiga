@@ -44,3 +44,30 @@ Do not treat other freelancers advertising their CSV services as customer leads.
 
 ## Next evidence gate
 Run the bounded pilot and inspect its individual subprocess records. For a meaningful customer-acquisition proof, use an explicitly authorized signed-in, platform-compliant account to submit ONE relevant tailored proposal; record the exact submission proof and actual buyer response. No claimed conversion without proof.
+
+
+## Actual second pilot endpoint-probe results (20 Nov 2026, 15:07 UTC)
+Reference: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44760069145
+
+**Mathematical test:** 10,060 unique sampled addresses across the 11,255,658,980,400-role space, including all 30 system boundaries; **not** 10,060 running agents.
+
+**Real tasks:** 14 separate OS subprocesses, one HTTP HEAD availability probe per platform, 14 machine-readable records. The response is NOT proof of public-search results or a login.
+
+| Platform | HTTP HEAD response | Interpretation |
+|---|---:|---|
+| Reddit | 403 | Scripted HTTP HEAD request rejected; separate public web index search can still show posts |
+| LinkedIn | 200 | Public root reachable; no login or customer message |
+| Facebook | 200 | Public root reachable; private groups not searched |
+| Instagram | 200 | Public root reachable; no authenticated content search |
+| X | 200 | Public root reachable; no authenticated content search |
+| TikTok | 200 | Public root reachable; no authenticated content search |
+| YouTube | 200 | Public root reachable; no authenticated content search |
+| Threads | 200 | Public root reachable; no authenticated content search |
+| Bluesky | 405 | HEAD method not accepted; this does not prove GET or public APIs are unavailable |
+| Pinterest | 200 | Public root reachable; no authenticated content search |
+| Mastodon | 200 | Public root reachable; no authenticated content search |
+| Telegram | 200 | Public root reachable; no private channels searched |
+| Discord | 200 | Public root reachable; no server membership/access |
+| Snapchat | 200 | Public root reachable; no account/session |
+
+**Marketing conclusion:** Ability to check a homepage across 14 real OS tasks is not the ability to search every platform or submit customer proposals. **Authenticated social searches: 0. Genuine customer replies: 0. Payments: 0.**
