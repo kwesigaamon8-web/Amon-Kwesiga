@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-145500-STRICT-CUSTOMER-CONVERSION",
+  "current_owner_order_id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -987,6 +987,16 @@
       "authenticated_external_execution_not_implied": true,
       "full_prompt_path": "crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md",
       "individual_proposal_path": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md"
+    },
+    {
+      "id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
+      "as_of_utc": "2026-11-20T15:09:41Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub write",
+      "instruction": "OWNER STANDING DIRECTIVE, 20 NOV 2026: Whenever I issue an explicit order, faithfully improve its operational clarity into a clear actionable prompt, and carry the COMPLETE latest owner instruction and all existing hard restrictions through the actual assigned hierarchy: HUMAN OWNER -> single CHIEF D -> B1/transferexperiment or B2/BountyScoutAI -> its own D01-D10 -> immediate manager -> worker W -> S -> G -> FINAL H-LEVEL WORKER, for every leaf role that is actually invoked. Chief D must retain the exact canonical instruction, digest and order ID; every actual process must load and verify the complete prompt, its immediate parent, its full ancestry and its specific task. Each real model must receive the current prompt in its inference input, return distinct work evidence and a truthful acknowledgment; uninvoked virtual positions inherit order availability only and are NOT simultaneously working or receiving external messages. Parent-specific improvements may narrow tasks but never weaken or replace the owner's objective or safeguards. Evidence-gate each actual role: source + action + reproducible result + direct-parent reporting or precise failure. Chief D must report delivery vs execution vs accepted paid customers vs payments separately. Maintain earlier customer-first professional marketing mission, no Gmail/email access/read/search/draft/send without separate specific permission, no unsolicited mass communications, no invented clients/models/receipts, no wallet spending/signing/fees, no breaking platform rules, no pretending 11,255,658,980,400 virtual worker IDs are 11T live agents. Full mandatory prompt: crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md. Implement and test original B and all Enigma H-level recipient paths on real invoked examples.",
+      "status": "active_prompt_cascade_on_each_real_execution_not_mass_delivery",
+      "full_prompt_path": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
+      "external_agents_independently_acknowledged": false
     }
   ],
   "strict_per_worker_reporting": {
@@ -1071,7 +1081,7 @@
     "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
     "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
     "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise.",
-    "latest_instruction": "OWNER-20261120-145500-STRICT-CUSTOMER-CONVERSION",
+    "latest_instruction": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
     "owner_long_term_collected_target_ugx": 50000000000,
     "accepted_payment_classes": [
       "bank_transfer",
@@ -1358,7 +1368,7 @@
     "actual_trillions_broadcast_verified": 0
   },
   "strict_worker_customer_execution": {
-    "owner_order_id": "OWNER-20261120-145500-STRICT-CUSTOMER-CONVERSION",
+    "owner_order_id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
     "prompt_path": "crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md",
     "all_eight_introductions_path": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
     "all_8_direct_client_contact_verified": false,
@@ -1369,5 +1379,26 @@
     "no_mass_direct_messages": true,
     "root_cause_and_retest_mandatory_on_failure": true,
     "virtual_roles_not_concurrent_live_agents": true
+  },
+  "owner_prompt_cascade": {
+    "owner_order_id": "OWNER-20261120-150941-END-TO-END-PROMPT-CASCADE",
+    "standards_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
+    "all_real_invoked_workers_must_read_order_text": true,
+    "all_real_invoked_h_leaf_must_receive_full_prompt": true,
+    "stages": [
+      "HUMAN_OWNER",
+      "CHIEF_D",
+      "FLEET",
+      "DIRECTOR",
+      "MANAGER",
+      "W",
+      "S",
+      "G",
+      "H"
+    ],
+    "virtual_roles_count_not_active": 11255658980400,
+    "real_invocation_receipt_mandatory": true,
+    "authorized_external_delivery_not_implied": true,
+    "no_email": true
   }
 }
