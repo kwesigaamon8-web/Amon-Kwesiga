@@ -35,7 +35,7 @@ FEED_HOST="muhib-karim.github.io"
 GH_HOST="api.github.com"
 ALLOWED_REPO=re.compile(r"^https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)/issues/([1-9]\d*)$")
 MAX_FEED=80
-MAX_ORIGINAL_LOOKUPS=12
+MAX_ORIGINAL_LOOKUPS=40
 MAX_BODY=30000
 MAX_BYTES=2_400_000
 B1="bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z"
@@ -114,10 +114,11 @@ def seed_from_feed(data):
         })
     return out
 
-def qualify(row, issue, repo=None):
+def qualify(row, issue, repo=None, comments=None):
     """Inspect original source. Never promote a task to FUNDED_ELIGIBLE by inference."""
     result=dict(row)
-    if not isinstance(issue,dict) or issue.get("pull_request") or issue.get("state")!="open":
+    if (not isinstance(issue,dict) or issue.get("pull_request") or issue.get("state")!="open"
+            or (issue.get("html_url") and issue["html_url"]!=row["original_url"])):
         result.update(stage="REJECTED_SOURCE_NOT_OPEN",blockers=["ORIGINAL_ISSUE_NOT_OPEN"])
         return result
     body=str(issue.get("body") or "")[:MAX_BODY]
@@ -128,7 +129,7 @@ def qualify(row, issue, repo=None):
     result["original_comments_count"]=issue.get("comments") if type(issue.get("comments")) is int else None
     result["original_issuer"]=str((issue.get("user") or {}).get("login") or "")[:80]
     result["original_source_sha256"]=hashlib.sha256((title+"\n"+body).encode()).hexdigest()
-    eligibility=bounty_evaluate(issue,[],repo or {})
+    eligibility=bounty_evaluate(issue,comments or [],repo or {})
     reasons=list(eligibility.get("flags",[]))
     if any(w in body.lower() for w in STOP_WORDS):
         reasons.append("SPONSOR_FORBIDS_UNSOLICITED_EXTERNAL_PRS")
@@ -180,7 +181,26 @@ def discover(feed_fetch=fetch, issue_fetch=fetch):
         report["original_issue_checks_attempted"]+=1
         try:
             source=issue_fetch(row["original_api_url"])
-            out=qualify(row,source)
+            # Inspect latest issuer conversation, not just the bounty title.
+            # If older comments are missing, eligibility audit holds it.
+            comment_count=source.get("comments") if isinstance(source,dict) else 0
+            comments=[]
+            if type(comment_count) is int and comment_count>0:
+                page=(comment_count+99)//100
+                page=min(page,5000)
+                last=row["original_api_url"]+"/comments?per_page=100&page="+str(page)
+                response=issue_fetch(last)
+                if not isinstance(response,list):
+                    raise ValueError("MISSING_ORIGINAL_ISSUE_COMMENTS")
+                comments=response
+            # Fetch original repo metadata to reject archived repos.
+            parts=ALLOWED_REPO.fullmatch(row["original_url"])
+            repo_info=issue_fetch("https://api.github.com/repos/"+parts.group(1)+"/"+parts.group(2))
+            if not isinstance(repo_info,dict):
+                raise ValueError("MISSING_ORIGINAL_REPO_METADATA")
+            out=qualify(row,source,repo_info,comments)
+            out["comments_inspected_count"]=len(comments)
+            out["original_repository_archived"]=repo_info.get("archived") is True
             if out["original_issue_checked"]:
                 report["original_issue_checks_succeeded"]+=1
             rows.append(out)
@@ -271,7 +291,7 @@ def save(report,proof=None):
            "Owner order: "+report["owner"]["owner_order_id"],
            "Public index: "+report["index_url"],
            "Index: "+report["index_status"],
-           "Original issues inspected: "+str(report["original_issue_checks_succeeded"])+"/"+
+           "Original issues checked with repo and available last-page comments: "+str(report["original_issue_checks_succeeded"])+"/"+
            str(report["original_issue_checks_attempted"]),
            "Confirmed funded, Uganda-eligible, correct-network offers: 0",
            "Authenticated external submissions sent: 0",
