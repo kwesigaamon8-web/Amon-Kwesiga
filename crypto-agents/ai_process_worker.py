@@ -30,6 +30,7 @@ from system_understanding_check import teach_and_check as assess_full_system
 from b_learning_by_doing import lesson as make_practical_lesson, prompt as practical_training_prompt, grade as grade_practical_training, write_worker_sample
 from b_worker_buyer_source import choose as choose_actual_issue_for_training
 from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
+from directive_cascade import prompt_for_worker as owner_prompt_for_worker, execution_receipt as owner_leaf_receipt
 from b_universal_work_protocol import assign as universal_assign, compact_for_model as universal_prompt
 from b_certified_agent_service_router import assignment as certified_agent_assignment
 from b_owner_account_link import agent_packet as owner_multichain_account_packet
@@ -56,6 +57,22 @@ FLEET=os.environ.get("WORKFORCE_ID","transferexperiment")
 if FLEET not in COLLECTION_CONFIG["fleets"]:
     raise SystemExit("Unrecognized B collection fleet namespace")
 PAYMENT_MISSION=COLLECTION_CONFIG["fleets"][FLEET]
+# Every ACTUALLY invoked W/S/G/H process receives the latest FULL owner order
+# through its exact Chief D -> fleet -> director -> immediate-parent route.
+# Role assignment alone is not model delivery; model response is checked later.
+CASCADE_PACKET=owner_prompt_for_worker(
+    FLEET,WORKER,
+    "Perform one authentic bounded paying-customer source qualification and "
+    "produce original useful evidence or a documented failure; report to "+FLEET+"/"+PARENT)
+CASCADE_OWNER_INFERENCE_TEXT=(
+    "MANDATORY CURRENT HUMAN OWNER DIRECTIVE (UNABRIDGED): "+
+    json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))["orders"][-1]["instruction"]+
+    "\nORDER ID "+CASCADE_PACKET["owner_order_id"]+
+    " | EXACT DIRECT PARENT "+CASCADE_PACKET["immediate_parent"]+
+    " | INHERITED STANDING PROMPT DIGEST "+CASCADE_PACKET["standard_prompt_sha256"]+
+    " | ONE REAL TASK "+CASCADE_PACKET["exact_task"]+
+    " | DO NOT CLAIM VIRTUAL AGENTS, EXTERNAL SOCIAL POSTING, BUYERS OR RECEIPTS WITHOUT EVIDENCE. "
+)
 SAFE_B_WALLET_ROUTES=safe_receiving_routes()
 CHIEF_D_ORDERS=json.loads((ROOT/"chief_D_owner_orders.json").read_text(encoding="utf-8"))
 STRICT_OWNER_ORDER_ID=CHIEF_D_ORDERS["current_owner_order_id"]
@@ -163,6 +180,10 @@ if OWNER_OATH["immediate_parent"]!=UNIVERSAL_TASK["assignment"]["report_to"]:
 if UNIVERSAL_TASK["payment"]["owner_mainnet_address"]!=PAYMENT_MISSION["address"]:
     raise SystemExit("Worker payment route does not match its assigned company")
 OWNER_ACTIVATION_PROOF={
+    "full_directive_cascade_instruction_sha256":CASCADE_PACKET["owner_instruction_sha256"],
+    "full_directive_cascade_prompt_sha256":CASCADE_PACKET["full_model_prompt_sha256"],
+    "full_directive_model_inference_payload_constructed":True,
+    "model_instruction_receipt_not_model_comprehension":True,
     "worker_id":FLEET+"/"+WORKER,
     "canonical_order_id":STRICT_OWNER_ORDER_ID,
     "owner_oath_order_matches":True,
@@ -175,6 +196,8 @@ OWNER_ACTIVATION_PROOF={
 }
 
 report={
+    "owner_to_last_leaf_prompt_receipt":owner_leaf_receipt(CASCADE_PACKET),
+    "owner_to_last_leaf_model_inference_includes_full_owner_directive":True,
     "worker_id":WORKER,
     "strict_owner_order_id":STRICT_OWNER_ORDER_ID,
     "free_software_marketing_order":FREE_SOFTWARE_MARKETING_TASK,
@@ -436,7 +459,7 @@ try:
               for x in report["source_items"][:2]]
     prompt=[
       {"role":"system","content":"You are one genuinely running B company agent. YOU MAY ALSO OFFER REAL AUTHORIZED ASSISTANT SERVICES TO EXTERNALLY CERTIFIED AI AGENTS WHO HAVE VERIFIED CREDENTIALS, EXPLICITLY OPTED IN AND AGREED THE SPECIFIC LEGAL TASK AND OWNER WALLET PAYMENT; NEVER CLAIM SUCH A CUSTOMER EXISTS WITHOUT ACTUAL PROOF. This is an additional task market for existing company roles, not a new workforce. HUMAN OWNER grants broad creative and commercial initiative: you MAY self-select any lawful original product, service, source-check, software idea or useful buyer task WORLDWIDE, change sectors, try multiple distinct hypotheses and create concrete useful work without asking a manager to preapprove each internal idea. Your specific preassigned location/specialty/source is a STARTING POINT ONLY, not a restriction. Prefer real sponsor identity, actual payer readiness and deliverable over repeating instructions. You cannot invent buyer consent, platform access, hiring, workers or payments. Permitted external posting or selling requires actual authorized account, venue permission and willing counterparties. All mutually agreed payment must go to the owner-approved BTC mainnet address for YOUR company's account; never use arbitrary or other-fleet wallet. Preserve one-parent reporting and owner authority. The active owner goal is truly received correct-chain crypto for accepted real work, not a guaranteed cash target."},
-      {"role":"user","content":(universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
+      {"role":"user","content":(CASCADE_OWNER_INFERENCE_TEXT+"\n"+universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
         "\nREGISTERED AGENT DELEGATION: You are a genuinely invoked AI model WORKER inside the owned "+REGISTERED_AGENT_DELEGATION["registered_agent_handle"]+" organization on Moltbook. This is NOT a separate platform account or proof you have an active Moltbook API key. Act only as an INTERNAL assistant under the correct account identity; NEVER post, comment, DM, represent as a new external account or impersonate another user unless an actually connected OWNER-authorized platform session is present. You are one actual independent execution drawn from "+str(REGISTERED_AGENT_DELEGATION["company_original_role_capacity"])+" addressable original roles for your company. Your internal global role ordinal is "+str(REGISTERED_AGENT_DELEGATION["original_role_global_index"])+". Perform original actual useful assigned work and log proof, not made-up sales. "+
         "\nPUBLIC MACHINE-READABLE OWNER RECEIVING DIRECTORY (READ-ONLY, not wallet login or payment authorization): "+OWNER_RECEIVING_ACCOUNT_LINK["owner_public_route_manifest"]+". NEVER treat non-BTC candidate, exchange deposit or unverified token as payment-ready. "+
          "\nOWNER SHARED MULTICHAIN RECEIVING ROUTES: This worker can negotiate legitimate crypto-paid work in BTC and, only once owner verified, compatible EVM, Solana, TRON or Stellar assets. The public receiving directory indexes 10 owner self-custody candidates and 6 Binance deposit candidates. Other-company BTC mainnet address is NOT interchangeable. ALL non-BTC and ALL exchange deposit options are ON HOLD pending owner approval plus precise payer asset, chain, token/issuer, required memo and receiving compatibility. Never promise a working exchange deposit, claim account login, withdraw, trade or transfer funds. Owner review required; propose ONE confirmed route, never send entire account list to a payer. Route IDs available: "+",".join(x["route_id"] for x in OWNER_RECEIVING_ACCOUNT_LINK["owner_shared_secondary_receiving_options_held"])+". "+
@@ -484,6 +507,7 @@ try:
         "MODEL_MENTIONS_ASSIGNED_PLATFORM_REVIEW_REQUIRED" if HOSTING_PLAN["assigned"]["name"].lower() in content.lower()
         else "MODEL_HOST_ASSESSMENT_NOT_DEMONSTRATED")
     report["inference_status"]="model_completed"
+    report["owner_to_last_leaf_prompt_receipt"]=owner_leaf_receipt(CASCADE_PACKET,content,model_completed=True)
     report["owner_broadcast_B_executed_only_if_model_completed"]=True
 except Exception as exc:
     report["inference_status"]="model_failed"
