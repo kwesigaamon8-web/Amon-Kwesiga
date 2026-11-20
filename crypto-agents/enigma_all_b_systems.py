@@ -266,16 +266,25 @@ def summarize(root,out):
                       and isinstance(obj.get("os_pid"),int) and
                       isinstance(obj.get("original_task_proposals_untrusted"),str)
                       and obj["original_task_proposals_untrusted"].strip())
+            comprehension=(obj.get("owner_instruction_comprehension_grade") or {}) if valid else {}
+            candidate=bool(done and comprehension.get("textual_screen_pass") is True)
             rows.append({"division":agent+"/"+fleet,"parent":PARENTS[fleet],
                 "configured_virtual_roles":ROLES_PER_ACCOUNT,
                 "real_model_inference_evidenced":done,
-                "status":"MODEL_COMPLETED_NEEDS_REVIEW" if done else "NO_VERIFIED_MODEL_RESULT"})
+                "textual_comprehension_candidate":candidate,
+                "accepted_real_customer_task_evidenced":False,
+                "status":("MODEL_REPLY_COMPREHENSION_CANDIDATE_NEEDS_REAL_TASK" if candidate
+                   else "MODEL_REPLY_FAILED_COMPREHENSION_SCREEN" if done
+                   else "NO_VERIFIED_MODEL_RESULT")})
     report={"created_utc":utc(),"agents":len(AGENTS),"divisions":len(rows),
             "virtual_role_positions_total":ALL_ROLE_SLOTS,
             "virtual_positions_per_agent":PER_AGENT_ROLES,
             "actual_completed_inference_calls":sum(r["real_model_inference_evidenced"] for r in rows),
             "B1_results":sum(r["real_model_inference_evidenced"] for r in rows if r["parent"]==PARENTS["B1"]),
             "B2_results":sum(r["real_model_inference_evidenced"] for r in rows if r["parent"]==PARENTS["B2"]),
+            "textual_comprehension_candidates":sum(r["textual_comprehension_candidate"] for r in rows),
+            "independently_accepted_comprehension_and_task_proven":0,
+            "individual_child_receipts_unavailable_are_not_understood":True,
             "new_moltbook_accounts":0,"emails_sent":0,"social_posts_sent":0,
             "verified_crypto_receipts":0,"hierarchies":rows}
     (out/"summary.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf8")
