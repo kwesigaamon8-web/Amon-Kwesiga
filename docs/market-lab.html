@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Six original free browser applications for stock reorder, scoped quotes, UTM links, software release notes, customer feedback and permissioned campaign planning.">
+<title>Free Business & Marketing Lab | B1/B2 AI Studio</title>
+<style>:root{font:16px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:#f4f8fb;color:#142e43}*{box-sizing:border-box}body{margin:0}header,footer{background:#0c293f;color:#fff;padding:18px}header a,footer a{color:#c4e6ff}nav{display:flex;gap:15px;flex-wrap:wrap}.wrap{max-width:1100px;margin:auto;padding:25px 18px}h1{font-size:clamp(1.9rem,4vw,3rem);line-height:1.13}.muted{color:#536d81}.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px}@media(max-width:760px){.grid{grid-template-columns:1fr}}.panel{border:1px solid #d2e0e9;background:white;border-radius:12px;padding:23px}label{font-weight:700;display:block;margin:12px 0 7px}select,textarea{width:100%;font:inherit;color:inherit;padding:12px;border:1px solid #94b0c2;border-radius:7px}textarea{min-height:210px;resize:vertical}textarea[readonly]{background:#f5f8fa}button{border:1px solid #14668d;background:#14668d;color:white;padding:10px 17px;border-radius:7px;cursor:pointer;font:inherit;margin:5px 8px 5px 0}button.secondary{background:white;color:#14668d}a{color:#09618d}a:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid #eeb24b;outline-offset:2px}.note{background:#e8f3fa;border-left:3px solid #557c99;padding:12px}li{margin:10px 0}</style></head>
+<body><header><nav><strong>B1/B2 AI Studio</strong><a href="index.html">Home</a><a href="free-toolbox.html">55 utilities</a><a href="mini-apps.html">6 mini apps</a><a href="share-free-software.html">Share software</a><a href="payment.html">Optional support</a></nav></header>
+<main class="wrap"><h1>Six new free business & marketing tools</h1>
+<p>Build original tagged campaign links, plan inventory orders, calculate a service quote, prepare a marketing calendar, summarize sample feedback or draft product release notes. All input stays in your own browser — no account, payment or server upload required.</p>
+<div class="grid"><section class="panel"><h2>Try a new application</h2>
+<label for="app">Choose free tool</label><select id="app"></select><p class="muted" id="hint"></p>
+<label for="data">Sample input (JSON or simple CSV)</label><textarea id="data" spellcheck="false" placeholder="Use fictional or non-sensitive data"></textarea>
+<p><button type="button" id="run">Generate result</button><button type="button" class="secondary" id="example">Load example</button><button type="button" class="secondary" id="reset">Clear</button></p>
+<p role="status" aria-live="polite" class="muted" id="status">Ready.</p><label for="out">Result</label><textarea id="out" readonly></textarea>
+<p><button type="button" class="secondary" id="copy">Copy result</button><button type="button" class="secondary" id="save">Save JSON</button></p></section>
+<aside class="panel"><h2>Original source and tasks</h2><p>New programs for 20 November 2026, publicly testable and usable without a donation.</p><ul>
+<li><strong>Campaign Builder:</strong> attach UTM tags to your own HTTPS page</li>
+<li><strong>Stock Reorder:</strong> calculate suggested stock from input demand</li>
+<li><strong>Quote & Deposit:</strong> compute original service prices to exact cents</li>
+<li><strong>Publishing Planner:</strong> schedule drafts without fake post claims</li>
+<li><strong>Feedback Summary:</strong> summarize supplied sample reviews, not fake customer ratings</li>
+<li><strong>Release Notes:</strong> make an editable changelog with evidence reminders</li></ul>
+<div class="note"><strong>No automatic posting:</strong> this page drafts content; it never sends emails or social messages. No confidential records, wallet credentials or actual customer financial data are needed.</div>
+<p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/assets/market-lab.js">Read the source code</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/tests/market-lab.test.js">View the tests</a></p>
+<p><a href="FREE_SOFTWARE_LICENSE.md">Free software license</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/36">Contribute improvements</a></p>
+<p>All software is free. <a href="payment.html">Optional Bitcoin-mainnet project support</a> is separate and never required.</p></aside></div></main>
+<footer>Original free software by B1/B2 AI Studio. Draft estimates and plans are not customer orders, legally valid invoices, actual social posts or financial advice.</footer>
+<script src="assets/market-lab.js"></script><script>
+(()=>{"use strict";const api=window.B1B2MarketLab,el=id=>document.getElementById(id);
+for(const t of api.tools){let opt=document.createElement("option");opt.value=t.id;opt.textContent=t.category+" — "+t.name;el("app").appendChild(opt);}
+function load(){const t=api.tools.find(x=>x.id===el("app").value);el("data").value=t.sample;el("hint").textContent=t.name+" · "+t.type+" format · local-only processing";el("out").value="";el("status").textContent="Example loaded.";}
+el("app").addEventListener("change",load);el("example").addEventListener("click",load);
+el("reset").addEventListener("click",()=>{el("data").value="";el("out").value="";el("status").textContent="Cleared";});
+el("run").addEventListener("click",()=>{try{el("out").value=JSON.stringify(api.run(el("app").value,el("data").value),null,2);el("status").textContent="Calculated locally; review before use.";}catch(e){el("out").value="";el("status").textContent="Error: "+e.message;}});
+el("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(el("out").value);el("status").textContent="Copied";}catch{el("status").textContent="Copy manually from the result box.";}});
+el("save").addEventListener("click",()=>{const b=new Blob([el("out").value],{type:"application/json;charset=utf-8"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="b1b2-"+el("app").value+".json";a.click();setTimeout(()=>URL.revokeObjectURL(u),100);});
+load();})();
+</script></body></html>
