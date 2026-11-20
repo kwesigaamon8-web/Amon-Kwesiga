@@ -5,6 +5,8 @@ AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provi
 
 ## B1/B2 Digital Work Studio — working software and paid microservices
 
+**B1/B2 AI Studio — Practical AI. Tested tools. Real deliverables.** [Explore our worldwide AI-assisted software and service brand](./docs/brand-ai.html). B1/B2 worldwide content guidance: [marketing and permissioned-posting order](./crypto-agents/marketing/B1_B2_GLOBAL_BRAND_ORDER_2026-11-20.md).
+
 **[See the complete public software catalogue](./docs/software.html)** — ten source-backed software listings, four working browser demos and a clear explanation of what is / is not available for Bitcoin mining. Shared globally via the public web; no software earnings or mining revenue implied.
 
 
