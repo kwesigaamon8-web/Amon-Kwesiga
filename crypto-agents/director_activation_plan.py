@@ -30,7 +30,8 @@ assert len(roles)==len(set(roles))==50
 out={
  "director":DIRECTOR,
  "prepared_utc":datetime.now(timezone.utc).isoformat(),
- "owner_order":"ORD-038",
+ "owner_order":OWN["chief_D_current_owner_order_id"],
+ "historic_activation_plan_reference":"ORD-038",
  "director_D_reports_to_owner":True,
  "director_activation_target_per_batch":50,
  "selection_run_cycle":cycle,
