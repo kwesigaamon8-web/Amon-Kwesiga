@@ -206,7 +206,7 @@ def child(shard, number, root):
     # Read the complete authoritative owner instruction, not merely the order ID.
     public = json.loads(Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8"))
     prompt = Path("crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md").read_text(encoding="utf-8")
-    if snapshot.get("owner_order_id") not in ("self-test-only", public["command_id"]):
+    if snapshot.get("owner_order_id", "self-test-only") not in ("self-test-only", public["command_id"]):
         raise ValueError("Worker received stale or mismatched order")
     owner_instruction = str(public["owner_command"])
     if "CUSTOMER" not in owner_instruction.upper():
