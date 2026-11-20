@@ -55,13 +55,13 @@ python crypto-agents/role_worker.py --fleet transferexperiment --role D01-M01-W0
 python crypto-agents/role_worker.py --fleet transferexperiment --role D01-M01-W01-S001-G001-H001
 
 # Any Enigma role uses its globally indexed slot with the same role program:
-python crypto-agents/role_worker.py --role-index 750377265360
+python crypto-agents/role_worker.py --role-index 750433628628
 
 # An actual, permissioned scheduled B1 model-worker attempt uses this entrypoint:
 python crypto-agents/role_worker.py --actual-model --fleet transferexperiment --role D01-M01-W01
 ```
 
-The Enigma index example is the first Enigma D-role index, so for **actual worker** use the first Enigma H-role address instead (obtain the correct H index from `enigma_universal_owner_order.py`); a wrong-tier executable is intentionally rejected. The command rejects invalid role/program pairings.
+The Enigma example selects an H-level role under its first director; a wrong-tier executable is deliberately rejected. The command also rejects invalid or out-of-namespace role indexes.
 
 ## Audit evidence
 
