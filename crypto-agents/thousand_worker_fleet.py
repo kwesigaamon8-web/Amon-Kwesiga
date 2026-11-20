@@ -101,9 +101,9 @@ def issue_assessment(issue, worker):
         issues.append("owner_repository_not_external_buyer")
     if re.search(r"/(?:bounty-plaza|bounty-bot)/issues/", url, re.I):
         issues.append("aggregated_repost_not_original_buyer")
-    # Sponsor\'s own CONTRIBUTING.md states these advertised high-price bounties
+    # Sponsor's own CONTRIBUTING.md states these advertised high-price bounties
     # are symbolic academic research tasks and will not be merged for payment.
-    if re.match(r"^https://github\\.com/ClankerNation/OpenAgents/issues/", url, re.I):
+    if re.match(r"^https://github\.com/ClankerNation/OpenAgents/issues/", url, re.I):
         issues.append("symbolic_research_bounty_no_real_payment")
     if not updated or updated < LIMIT:
         issues.append("stale_or_missing_date")
