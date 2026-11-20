@@ -86,3 +86,22 @@ The Enigma example selects an H-level role under its first director; a wrong-tie
 5. Audit genuine model comprehension and accepted original deliverables per active worker, then scale capacity responsibly.
 
 **Final verdict:** **ONE CODE PER TIER and ONE AUTHORITATIVE OWNER COMMAND are implemented and tested for representative finite process invocations; universal independent delivery to all virtual role IDs is not achieved.**
+
+## 20 November 2026 — One self-correcting engine for all 11,255,658,980,400 logical roles
+
+**Live source:** [`self_correcting_role_runtime.py`](./self_correcting_role_runtime.py). All actual D/A/M/W/S/G/H invocations now pass through `hierarchy_command_core.execute()` and its shared `self_correcting_execution()` call. The `role_worker.py --actual-model` entrypoint also verifies the exact current owner command and direct parent with this common engine before attempting model work.
+
+**Specific per-process behavior:** validate owner ID/full text hash/standing protocol, global index, role chain and immediate supervisor; derive a bounded safe in-memory public-source view; remove unsafe/malformed/duplicate lead links and hold unsupported payment/acceptance assertions; run only the existing local deterministic tier-specific task; verify the resulting source row count/action shape/result hash; retry a pure local check **at most twice**. No file or wallet changes are made by this worker engine, and no external task submission occurs here. If no safe source remains, output an explicit `BLOCKED_NO_SAFE_PUBLIC_SOURCE` receipt; if the parent/order/result is untrusted, fail closed rather than rewriting authority.
+
+**One source for every role:** no code copies are installed per worker ID. `enigma_universal_owner_order.py` maps all 30 logical root divisions × 375,188,632,680 positions per division; the runtime only executes if a real local/scheduled process invokes the selected role. A created role address or lazy packet is not an independently running model.
+
+**Verified run:** [B1B2 Self-Correcting All Role Tiers, run 44792351552](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44792351552) **SUCCESS**. One test invoked the shared engine for **210 real local role actions** (30 roots × 7 tiers), with deliberate malformed/duplicate/unsupported buyer-claim tests, bounded retry proof, wrong-parent/order/index negatives, and zero emails/payments. A separate existing acceptance test launched **210 distinct bounded role subprocesses** and verified current owner command + individual source task + capability proof. The tests did **not** activate 11 trillion agents or complete separate LLM inferences. Future scheduled daily and source-change tests: [`b1b2-one-self-correction-all-role-tiers.yml`](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/b1b2-one-self-correction-all-role-tiers.yml).
+
+**How to run on one address (inside a checked-out repository):**
+
+```bash
+python crypto-agents/role_worker.py --role-index 11255658980399
+python crypto-agents/test_self_correcting_all_roles.py
+```
+
+The first command executes only the one selected H-tier role and creates its source-only forensic JSON receipt. The test command covers a bounded sample across all 30 divisions; neither command broadcasts to dormant roles. External buyers, authenticated account actions, mining, and on-chain payment confirmation require separate permission and direct evidence. No Gmail/email access, signing, spending or mass communications are authorized.
