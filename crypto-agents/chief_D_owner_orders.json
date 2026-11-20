@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-132728-GLOBAL-CRYPTO-RECEIPTS-ALL-ROLES",
+  "current_owner_order_id": "OWNER-20261120-133312-ONE-BY-ONE-AUTHORIZED-BOUNTY-11T",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -947,6 +947,16 @@
       "authenticated_external_execution_not_implied": true,
       "implementation": "crypto-agents/enigma_universal_owner_order.py",
       "total_configured_virtual_roles": 11255658980400
+    },
+    {
+      "id": "OWNER-20261120-133312-ONE-BY-ONE-AUTHORIZED-BOUNTY-11T",
+      "as_of_utc": "2026-11-20T13:33:12Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub write",
+      "instruction": "HUMAN OWNER DIRECTIVE 20 NOV 2026: Explore crypto-paying public security bounty PROGRAMS ONE BY ONE using existing country-assigned B1/B2/Enigma worker hierarchy (11,255,658,980,400 unique VIRTUAL positions across 30 systems). Authorized research and reproducible local-only testing, never unauthorised exploitation. FIRST PROGRAM: Threshold Network's public Immunefi bounty, https://immunefi.com/bug-bounty/thresholdnetwork/information/ ; official scope https://immunefi.com/bug-bounty/thresholdnetwork/scope/ ; official rules https://immunefi.com/rules/ ; open-source target https://github.com/threshold-network/solidity-contracts . Priority to earn real lawful coins, not increase role counts. All 30 systems' virtual role packets inherit this, and a separate task-specific role envelope is generated on demand with python crypto-agents/authorized_bounty_pipeline.py --index ROLE_INDEX . Eight lanes RULES/SCOPE/SOURCE/INVARIANT/LOCAL_TEST/KNOWN_ISSUES/INDEPENDENT_REVIEW/PAYMENT_QA; actual human/model agents must execute individually and provide evidence, O(1) packets are not executed agents. Program may pay up to 150k USD but NO bounty/earning claim without a confirmed valid finding, eligible precise deployed asset, approved Immunefi dashboard submission, sponsor acceptance, and real confirmed on-chain payout. Its DAO generally pays USDC on Ethereum but may instead pay Ethereum-network T; researcher's asset choice is not guaranteed. There is NO confirmed compatible Ethereum wallet for this reward in our routes; owner's BTC mainnet addresses B1 bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9 cannot be used for USDC/T Ethereum payouts. Other published EVM wallets remain HOLD pending owner independent verification of exact chain, token and ownership. No signing/transfers. Current program rules PROHIBIT mainnet or public testnet testing, live services scanning, exploitation, abuse, social engineering, publication of unpatched flaws, generic AI scanner spam, or outside-channel reporting. Only publicly available source reading and offline/private local tests; verify current rules and historic known issues. Existing initial review of README, SECURITY.md, TokenholderGovernor.sol, Checkpoints.sol and TokenStaking.sol is SOURCE INVENTORY, not finding. Detailed first program workbook: crypto-agents/paid-work/BOUNTY_01_THRESHOLD_NETWORK.md . Follow-up target OpenZeppelin then Immunefi itself only after explicit program closure and rules verification. All 11.26T slots can retrieve a role packet but are NOT claimed to be awake, locally resident in respective assigned countries, receiving messages, finding bugs or earning money. No Gmail access/read/draft/send; no fabricated role acknowledgments, earnings or received coins. Chief D gets only independently verified valid progress and actual receipts.",
+      "status": "first_authorized_bounty_pipeline_active_readonly_local_research_only",
+      "authenticated_external_execution_not_implied": true,
+      "implementation": "crypto-agents/authorized_bounty_pipeline.py"
     }
   ],
   "strict_per_worker_reporting": {
