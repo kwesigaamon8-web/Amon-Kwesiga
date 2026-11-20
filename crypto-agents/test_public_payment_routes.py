@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from btc_receiver_safety import require_approved_receiver
 
 HERE=Path(__file__).resolve().parent
 CAT=json.loads((HERE/"public_payment_routes.json").read_text(encoding="utf-8"))
@@ -56,6 +57,7 @@ def validate():
             assert r["receiving_address"]==CFG["fleets"][fleet]["address"]
             assert CFG["fleets"][fleet]["network"]=="Bitcoin mainnet"
             assert re.fullmatch(r"bc1q[ac-hj-np-z02-9]{38}",r["receiving_address"])
+            assert require_approved_receiver(fleet,r["receiving_address"])["checksum_scheme"]=="BECH32"
         else:
             assert r["company"] is None and r["chain"] is None and r["asset"] is None
             assert r["payment_status"]=="HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY"
