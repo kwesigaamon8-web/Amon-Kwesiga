@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-20T13:33:12Z",
-  "command_id": "OWNER-20261120-133312-ONE-BY-ONE-AUTHORIZED-BOUNTY-11T",
+  "issued_at_utc": "2026-11-20T14:07:06Z",
+  "command_id": "OWNER-20261120-140706-CHAT-ORIGIN-CROSSPLATFORM-GITLAB",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -26,7 +26,7 @@
     "exact_current_configured_role_namespace": "750377265360",
     "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "Get actual correctly routed BTC or other approved crypto receipts, not hypothetical earnings. ONE PROGRAM AT A TIME: first legally authorized Immunefi Threshold Network bug bounty, rules https://immunefi.com/rules/ and first source target TokenholderGovernor, https://immunefi.com/bug-bounty/thresholdnetwork/scope/ . Every 11,255,658,980,400 virtual role has O(1) targeted one-of-eight-lane country-scoped task packet via crypto-agents/authorized_bounty_pipeline.py --index N. Initial public source reconnaissance and plan at crypto-agents/paid-work/BOUNTY_01_THRESHOLD_NETWORK.md . No mainnet/public-testnet probes, third-party service scanning, unauthorised attacks, high-traffic tests, social engineering or embargoed disclosure. Only non-invasive public source inspections and locally isolated reproducible tests. Genuine reports through official Immunefi channel, authenticated authorized researchers; no spam. Threshold reward payout may be USDC or T on ETHEREUM at DAO choice, so user published BTC mainnet addresses must NOT receive this; existing EVM candidate wallets HOLD network/token confirmation. No email access, sending, spending, signing. Count actual valid independently reviewed reports, sponsor acceptance, and confirmed correct-chain txids, never pretend 11.26T online agents or bounty prizes.",
+  "owner_command": "OWNER ORDER (20 NOV 2026, chat): ALL DIRECTIVES TO Chief D, the two original B1/B2 registered parents, all fourteen Enigma organizations, their 28 B1/B2 divisions and all 11,255,658,980,400 CONFIGURED VIRTUAL WORKER ROLE IDS ORIGINATE IN THIS CHAT THROUGH THE HUMAN OWNER. GitHub, Hugging Face, GitLab and any future hosting provider are delivery and verified execution platforms only; users must not be asked to reissue identical operational commands at each website. Maintain ONE canonical authenticated owner-order source crypto-agents/chief_D_owner_orders.json, inherited on actual role-packet invocation, updated only in response to the owner's chat orders. Current primary objective remains lawful real BTC or other verified correct-chain cryptocurrency receipts earned via authentic accepted customer work, funded bounties, or consented hardware mining, never simulated funds or fake workers. Already-deployed public Hugging Face Space Amonkkkk/b1b2-superworker-assembly has mathematically addressable role IDs, 186 region allocations and public owner BTC receiving references; these slots are not actual running agents. THIRD PLATFORM priority: establish secure GitLab Pages public mirror using crypto-agents/cross_platform_gitlab_publish.py and .github/workflows/publish-b1b2-to-gitlab.yml; source validation is permitted without credentials; GitLab publishing requires an account-bound credential explicitly supplied through encrypted GitHub Actions secret GITLAB_TOKEN, not pasted into the chat. Do not pretend GitLab account or page exists before an authenticated GitLab API commit and GitLab Pages publishing are independently confirmed. Do not access, draft, monitor, search or send Gmail; do not transfer/sign wallets, spam, mine without device consent or on prohibited compute, invent AI inference/earnings, or treat the 11.26 trillion role namespace as physical workers. This platform expansion is subordinate to earning actual coins, independent evidence, and correct-network payout verification.",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -162,7 +162,7 @@
     "chain_token_memo_must_be_reverified_before_any_payment": true,
     "owner_wallet_signing_spending_allowed": false
   },
-  "latest_owner_priority": "OBTAIN_REAL_CRYPTO_WITH_ONE_BY_ONE_AUTHORIZED_IMMUNEFI_BOUNTIES_FIRST_THRESHOLD_NO_FAKED_11T_LIVE_AGENT_CLAIMS",
+  "latest_owner_priority": "CHAT_ONLY_ORDERS__REAL_ACCEPTED_WORK__VERIFIED_CRYPTO_RECEIPTS__NO_GMAIL_OR_FAKE_WORKERS",
   "continuous_failure_learning_rule": {
     "owner_instruction_received_utc": "2026-11-17T11:04:01Z",
     "exact_instruction": "always learn from failures",
@@ -418,5 +418,15 @@
     "previous_B1_B2_BTC_receive_only_addresses_retained": true,
     "Gmail_authorized": false,
     "do_not_progress_to_second_bounty_until_first_reviewed": true
-  }
+  },
+  "active_platform_links": {
+    "command_origin": "human owner instructions in ChatGPT, relayed into canonical GitHub owner order",
+    "source": "crypto-agents/chief_D_owner_orders.json",
+    "github_repository": "https://github.com/kwesigaamon8-web/Amon-Kwesiga",
+    "hugging_face_live_static_space": "https://huggingface.co/spaces/Amonkkkk/b1b2-superworker-assembly",
+    "hugging_face_lookup_page": "https://amonkkkk-b1b2-superworker-assembly.hf.space/worker-hub.html",
+    "gitlab": "publisher validated but not authorized; do not claim deployed"
+  },
+  "configured_global_virtual_role_namespace": "11255658980400",
+  "evidence_boundary": "Current push only aligns latest owner orders; it does not create individual active miners, model calls, crypto payments or external submissions."
 }
