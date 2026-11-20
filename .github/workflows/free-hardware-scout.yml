@@ -1,0 +1,74 @@
+name: B1 B2 Existing Directors - Free Hardware Search
+on:
+  push:
+    paths:
+      - '.github/workflows/free-hardware-scout.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: authorized-b1b2-free-hardware-scout
+  cancel-in-progress: false
+jobs:
+  directors:
+    name: ${{ matrix.fleet }} / ${{ matrix.director }} actual scout
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        fleet: [transferexperiment, BountyScoutAI]
+        director: [D01, D02, D03, D04, D05, D06, D07, D08, D09, D10]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Confirm the live owner order, run director and two assistant searches
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FLEET: ${{ matrix.fleet }}
+          DIRECTOR: ${{ matrix.director }}
+        run: |
+          python -m py_compile crypto-agents/free_hardware_worker.py
+          python crypto-agents/free_hardware_worker.py --fleet "$FLEET" --director "$DIRECTOR"
+      - name: Upload actual evidence, including failed or partial reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hardware-scout-${{ matrix.fleet }}-${{ matrix.director }}
+          path: hardware-reports/*.json
+          if-no-files-found: warn
+          retention-days: 7
+  chief-d:
+    name: Chief D audit and source-linked findings
+    needs: directors
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hardware-scout-*
+          path: combined-hardware
+          merge-multiple: true
+        continue-on-error: true
+      - name: Compute evidence-only cross-fleet status
+        run: |
+          python -m py_compile crypto-agents/free_hardware_summary.py
+          python crypto-agents/free_hardware_summary.py --input combined-hardware --output hardware-summary
+      - name: Upload Chief D report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chief-d-free-hardware-report
+          path: hardware-summary/
+          if-no-files-found: warn
+          retention-days: 7
