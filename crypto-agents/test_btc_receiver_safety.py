@@ -83,7 +83,7 @@ def main():
     source = Path("crypto-agents/vendor/bitcoin_bip352_bech32m.py").read_text()
     assert "Copyright (c) 2017, 2020 Pieter Wuille" in source
     assert "Permission is hereby granted" in source
-    assert "THIS SOFTWARE IS PROVIDED" in source
+    assert "THE SOFTWARE IS PROVIDED" in source
     assert "class Encoding(Enum):" in source
     report={
         "schema":"B1B2_BIP173_BIP350_RECEIVER_SAFETY_V1",
