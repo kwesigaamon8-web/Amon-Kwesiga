@@ -20,7 +20,9 @@
     "automated_purchases": false,
     "payment_checkout": false,
     "account_creation_for_client": false,
-    "accepts_email": false
+    "accepts_email": false,
+    "agent_buyer_marketplace": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html",
+    "agent_discovery_status": "static_catalog_and_public_quote_only_no_live_mcp_or_x402_checkout"
   },
   "payment": {
     "primary_asset": "BTC",
