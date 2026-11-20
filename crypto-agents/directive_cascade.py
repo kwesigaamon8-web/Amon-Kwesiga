@@ -60,7 +60,7 @@ def prompt_for_worker(fleet, role, exact_task):
     if env["order_id"] != authority["owner_order_id"]:
         raise ValueError("Stale role delegation")
     path = env["owner_to_worker_path"]
-    if path[:3] != ["HUMAN_OWNER","CHIEF_D",fleet] or path[-1] != fleet+"/"+role:
+    if path[:3] != ["OWNER","CHIEF_D",fleet] or path[-1] != fleet+"/"+role:
         raise ValueError("Incorrect owner-to-leaf path")
     if env["immediate_parent"] != path[-2]:
         raise ValueError("Incorrect immediate parent")
