@@ -1,6 +1,6 @@
 # Worldwide task-to-payment production board
 
-Owner order: OWNER-20261120-185403-WORLDWIDE-PUBLIC-OSINT
+Owner order: OWNER-20261120-190904-WORLDWIDE-TASK-TO-BTC-PIPELINE
 Public index: https://muhib-karim.github.io/bounty-radar/bounties.json
 Index: PUBLIC_FEED_READ_34_CANDIDATES
 Original issues checked with repo and available last-page comments: 34/34

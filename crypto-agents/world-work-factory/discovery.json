@@ -1,9 +1,9 @@
 {
   "schema": "B1B2_WORLD_TO_PAID_WORK_DISCOVERY_V1",
-  "at_utc": "2026-11-20T19:12:54.653644+00:00",
+  "at_utc": "2026-11-20T19:15:12.636543+00:00",
   "owner": {
-    "owner_order_id": "OWNER-20261120-185403-WORLDWIDE-PUBLIC-OSINT",
-    "owner_sha256": "5e141543e2df4c4f289ee1ebc3f8060a8859dd4ac3c4270802aa92c4ec73cda3"
+    "owner_order_id": "OWNER-20261120-190904-WORLDWIDE-TASK-TO-BTC-PIPELINE",
+    "owner_sha256": "c8d5c20324617bdb2ec6ba9a8857eaee0d2e28082508fb892838b608aa475c24"
   },
   "index_url": "https://muhib-karim.github.io/bounty-radar/bounties.json",
   "index_status": "PUBLIC_FEED_READ_34_CANDIDATES",
