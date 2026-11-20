@@ -1,0 +1,39 @@
+name: B1 B2 Social Platform Access and 11T Virtual Role Dispatch Test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/social_market_access_proof.py'
+      - '.github/workflows/b1b2-social-platform-task-proof.yml'
+permissions:
+  contents: read
+jobs:
+  finite-social-task-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify country allocation and sample boundary/random virtual addresses
+        run: |
+          python -m py_compile crypto-agents/social_market_access_proof.py
+          python crypto-agents/social_market_access_proof.py --self-test
+      - name: Execute 14 independent, bounded public social network access checks
+        run: python crypto-agents/social_market_access_proof.py --run
+      - name: Summarize actual executed evidence, not virtual worker claims
+        if: always()
+        run: |
+          if [ -f social-platform-task-evidence/REPORT.md ]; then
+            cat social-platform-task-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Preserve each real process's result and platform coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: social-platform-real-process-proof
+          path: social-platform-task-evidence/
+          retention-days: 14
+          if-no-files-found: warn
