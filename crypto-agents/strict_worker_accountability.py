@@ -139,6 +139,34 @@ for director in DIRECTORS:
                 ack.get("concrete_action_stated") and
                 ack.get("source_or_payment_evidence_discussed")):
             defects.append("CHIEF_D_COMMAND_ACK_MISSING_REQUIRED_EVIDENCE")
+        # The owner's current requirement is stronger than ID echoing:
+        # grade one DISTINCT actually inferred seven-field explanation, then
+        # leave commercially/operationally verified task acceptance to separate
+        # independent human/director evidence. Synthetic fixtures never count.
+        comprehension=data.get("latest_owner_comprehension_result") or {}
+        receipt=data.get("owner_to_last_leaf_prompt_receipt") or {}
+        if receipt.get("model_response_present") is not True:
+            defects.append("FULL_OWNER_PROMPT_MODEL_RECEIPT_NOT_PROVEN")
+        if receipt.get("owner_order_id")!=data.get("strict_owner_order_id"):
+            defects.append("FULL_OWNER_PROMPT_ORDER_ID_MISMATCH")
+        if receipt.get("model_comprehension_independently_verified") is True:
+            defects.append("SELF_REPORTED_INDEPENDENT_COMPREHENSION_NOT_ACCEPTED")
+        if comprehension.get("owner_order_id")!=data.get("strict_owner_order_id"):
+            defects.append("CURRENT_OWNER_COMPREHENSION_CHALLENGE_MISSING_OR_STALE")
+        if comprehension.get("direct_parent")!=FLEET+"/"+data.get("parent_id",""):
+            defects.append("COMPREHENSION_DIRECT_PARENT_MISMATCH")
+        if comprehension.get("status") not in (
+            "TEXTUAL_COMPREHENSION_CANDIDATE_NEEDS_TASK_REVIEW",
+            "UNDERSTANDING_SUPPORTED_BY_INDEPENDENT_ACCEPTED_TASK"):
+            defects.append("OWNER_COMMAND_COMPREHENSION_NOT_DEMONSTRATED")
+            counts["owner_comprehension_not_demonstrated"]+=1
+        else:
+            counts["owner_textual_comprehension_candidates_need_independent_task_review"]+=1
+        if comprehension.get("independently_accepted_task_verified") is True:
+            # The current production worker always passes accepted_task_proof=False.
+            # Any positive status needs independent reviewer/source verification,
+            # which this offline audit does not possess.
+            defects.append("CLAIMED_ACCEPTED_TASK_NEEDS_EXTERNAL_REVIEWER_PROOF")
         checkpoint=data.get("cognitive_checkpoint") or {}
         activate=data.get("activation_evidence") or {}
         next_action=str(checkpoint.get("next_action") or activate.get("next_step_checkpoint") or "")
@@ -168,6 +196,8 @@ for director in DIRECTORS:
             "parent":data.get("parent_id"),
             "grade":grade,"defects":defects,
             "latest_order_ack_status":ack.get("status","NO_MODEL_ACKNOWLEDGEMENT"),
+            "latest_owner_comprehension_status":comprehension.get("status","NO_INDEPENDENT_MODEL_COMPREHENSION"),
+            "current_full_owner_prompt_reached_model":receipt.get("model_response_present") is True,
             "ten_idea_menu_count":idea_menu.get("count",0),
             "funding_unique_task_id":first.get("task_id"),
             "second_distinct_software_task_id":second.get("task_id"),
@@ -201,7 +231,7 @@ for director in DIRECTORS:
 res={
  "as_of_utc":datetime.now(timezone.utc).isoformat(),
  "fleet":FLEET,
- "owner_order":"OWNER-20261114-071710",
+ "owner_order":__import__("json").loads(Path("crypto-agents/chief_D_owner_orders.json").read_text(encoding="utf-8"))["current_owner_order_id"],
  "strict":True,
  "counts":dict(counts),
  "actual_workers_checked":sum(1 for x in detail if x.get("id","").startswith(FLEET+"/D") and
