@@ -44,7 +44,9 @@ def test():
         contains(txt,r"(?m)^  schedule:\s*$",file+" lacks bounded schedule",errors)
         contains(txt,r"(?m)^  cancel-in-progress: false\s*$",file+" may cancel running AI work",errors)
         contains(txt,r"(?m)^\s*max-parallel:\s*3\s*$",file+" parallel capacity changed",errors)
-        contains(txt,r"(?m)^\s*REAL_AI_PROCESSES_PER_DIRECTOR:\s*'20'\s*$",file+" worker capacity changed",errors)
+        contains(txt,r"(?m)^\s*REAL_AI_PROCESSES_PER_DIRECTOR:\s*'3'\s*$",file+" worker capacity changed",errors)
+        contains(txt,r"(?m)^\s*MAX_BATCH_SECONDS:\s*'660'\s*$",file+" batch safety limit missing",errors)
+        contains(txt,r"(?m)^\s*REAL_AI_PER_WORKER_TIMEOUT_SECONDS:\s*'180'\s*$",file+" worker timeout safety changed",errors)
         contains(txt,r"(?m)^\s*WORKFORCE_ID:\s*"+re.escape(fleet)+r"\s*$",file+" fleet label missing",errors)
         contains(txt,r"(?m)^      - name: Grade each REAL worker independently",file+" lacks strict scoring",errors)
         contains(txt,r"(?m)^      - name: Cross-audit EVERY actual worker",file+" lacks reciprocal audit",errors)
@@ -52,7 +54,7 @@ def test():
         plans[fleet]={
             "workflow":file,
             "push_retrigger_disabled":not bool(re.search(r"(?m)^  push:",txt)),
-            "daily_attempt_ceiling":200,
+            "daily_attempt_ceiling":30,
             "verified_model_completions_by_this_check":"not_assessed",
         }
 

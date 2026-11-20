@@ -53,8 +53,16 @@ def current_owner_order():
     if "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW" not in public.get("hard_constraints", []):
         raise ValueError("Email restriction missing from authenticated owner order")
     strict = public.get("strict_worker_customer_execution")
-    if not strict or strict.get("owner_order_id") != ident:
-        raise ValueError("New strict customer conversion order is not enforced")
+    # The customer-conversion protocol is a standing signed owner instruction.
+    # It remains enforceable after a NEW owner order (e.g. BTC research).
+    # Do not require the protocol's originating order to be the latest order;
+    # authenticate its ID against the actual historical Chief D owner ledger.
+    historic_owner_ids = {x.get("id") for x in chief["orders"]}
+    if (not strict or strict.get("owner_order_id") not in historic_owner_ids
+            or not strict.get("no_email")
+            or not strict.get("duplicate_prevention")
+            or not strict.get("no_spend_or_sign")):
+        raise ValueError("Standing buyer protocol not authenticated to an owner order")
     path = Path(strict.get("prompt_path", ""))
     if not path.is_file():
         raise ValueError("Strict buyer execution protocol file is missing")
@@ -209,8 +217,9 @@ def child(shard, number, root):
     if snapshot.get("owner_order_id", "self-test-only") not in ("self-test-only", public["command_id"]):
         raise ValueError("Worker received stale or mismatched order")
     owner_instruction = str(public["owner_command"])
-    if "CUSTOMER" not in owner_instruction.upper():
-        raise ValueError("No customer-facing owner instruction")
+    if (not owner_instruction.strip()
+            or public.get("command_id") != current_owner_order()):
+        raise ValueError("Child received unauthenticated or blank current owner order")
     actual_task = execute_specific_ordered_task(issue, snapshot, worker)
     result = {
         "owner_instruction_sha256": hashlib.sha256(owner_instruction.encode("utf-8")).hexdigest(),
@@ -413,6 +422,9 @@ def audit(root):
     return 0 if report["pass"] else 1
 
 def self_test():
+    assert current_owner_order() == json.loads(
+        Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8")
+    )["command_id"]
     assert len(SHARDS) == 30 and len({role(s,i)["id"] for s in SHARDS for i in range(1,31)}) == 900
     assert all(role(s,i)["reports_to"] == s for s in SHARDS for i in range(1,31))
     example = {
