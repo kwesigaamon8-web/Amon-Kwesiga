@@ -58,7 +58,7 @@ def current_owner_order():
     if not path.is_file():
         raise ValueError("Strict buyer execution protocol file is missing")
     prompt = path.read_text(encoding="utf-8")
-    for required in ("ONE LEAD, ONE OWNER, ONE PROPOSAL", "NO EMAIL", "TXID", "NOT_SENT"):
+    for required in ("ONE LEAD, ONE OWNER, ONE PROPOSAL", "NO GMAIL", "TXID", "NOT_SENT"):
         if required not in prompt.upper():
             raise ValueError("Strict work protocol missing requirement: " + required)
     return ident
