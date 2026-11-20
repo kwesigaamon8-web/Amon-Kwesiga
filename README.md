@@ -13,6 +13,8 @@ The public site runs only a bounded, click-triggered **educational** SHA256d dem
 
 ## B1/B2 Digital Work Studio — working software and paid microservices
 
+**Worldwide sharing:** [Use seven platform-specific share composers with six-language service introductions](./docs/share-ai-services.html) (manual, permissioned; no post is sent automatically).
+
 **NEW — AI-agent buyer marketplace:** [See four fixed-scope B1/B2 data, Bitcoin evidence and reconciliation services](./docs/agent-work-market.html) · [Machine-readable service offers](./docs/agent-services.json) · [Submit a genuine paid task](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml). Service quotes are invitations, not automated checkout or verified earnings.
 
 
