@@ -92,6 +92,53 @@ def prompt_for_worker(fleet, role, exact_task):
         "configured_other_roles_received_this_prompt":False,
     }
 
+def prompt_for_global_leaf(global_index,exact_task):
+    """Full current order to one real invoked role of ANY original/Enigma division.
+
+    This is a per-invocation packet. Constructing it does not contact any
+    descendant, running model or social app; the caller must actually start a
+    subprocess and preserve that subprocess's signed-by-repo-version receipt.
+    """
+    from enigma_universal_owner_order import envelope as virtual_envelope
+    authority=read_owner()
+    env=virtual_envelope(global_index)
+    rec=env["recipient"]
+    if env["owner_order_id"]!=authority["owner_order_id"] or env["owner_order_sha256"]!=authority["owner_sha256"]:
+        raise ValueError("Global B1/B2/Enigma role got stale owner order")
+    if rec["owner_to_worker_path"][-1]!=rec["role"] or rec["immediate_parent"]!=rec["owner_to_worker_path"][-2]:
+        raise ValueError("Invalid Enigma command ancestry")
+    if not rec["role"].startswith(rec["root"]+"/"):
+        raise ValueError("Unrelated Enigma root")
+    model_prompt=(
+        "CURRENT HUMAN OWNER ORDER "+authority["owner_order_id"]+
+        " (sha256 "+authority["owner_sha256"]+"):\n"+
+        authority["full_owner_instruction"]+
+        "\n\nCOMPLETE STANDING ORDER PROMPT (sha256 "+authority["standard_sha256"]+"):\n"+
+        authority["standard_prompt"]+
+        "\nEXACT INDIVIDUAL ROLE "+rec["role"]+
+        "\nOWNER-TO-WORKER PATH "+" -> ".join(rec["owner_to_worker_path"])+
+        "\nIMMEDIATE PARENT "+rec["immediate_parent"]+
+        "\nSPECIFIC BOUNDED TASK "+str(exact_task)+
+        "\nReturn evidence or a source blocker to your parent. "
+        "You are not granted external social-media account access by this instruction.")
+    return {
+        "owner_order_id":authority["owner_order_id"],
+        "owner_instruction_sha256":authority["owner_sha256"],
+        "standard_prompt_sha256":authority["standard_sha256"],
+        "full_model_prompt_sha256":sha(model_prompt),
+        "model_prompt":model_prompt,"fleet":rec["root"],
+        "role":rec["role"][len(rec["root"])+1:],
+        "exact_task":str(exact_task),
+        "immediate_parent":rec["immediate_parent"],
+        "owner_to_worker_path":rec["owner_to_worker_path"],
+        "global_virtual_index":global_index,
+        "path_hops":[{"hop":i,"recipient":p,
+            "independent_parent_execution_verified":False}
+            for i,p in enumerate(rec["owner_to_worker_path"])],
+        "configured_other_roles_received_this_prompt":False,
+    }
+
+
 def execution_receipt(packet, result="", model_completed=False):
     if sha(packet["model_prompt"]) != packet["full_model_prompt_sha256"]:
         raise ValueError("Prompt integrity mismatch")
@@ -190,6 +237,7 @@ if __name__=="__main__":
     cli.add_argument("--out",default="owner-cascade-evidence")
     cli.add_argument("--fleet",choices=FLEETS)
     cli.add_argument("--role")
+    cli.add_argument("--global-index",type=int)
     cli.add_argument("--task")
     opt=cli.parse_args()
     out=Path(opt.out)
@@ -203,5 +251,9 @@ if __name__=="__main__":
         result=execution_receipt(prompt_for_worker(opt.fleet,opt.role,opt.task))
         (out/"one-leaf-delivery-receipt.json").write_text(json.dumps(result,indent=2)+"\n")
         print("OWNER_DIRECTIVE_ACTUAL_LEAF_RECEIPT "+json.dumps(result))
+    elif opt.global_index is not None and opt.task:
+        result=execution_receipt(prompt_for_global_leaf(opt.global_index,opt.task))
+        (out/"one-leaf-delivery-receipt.json").write_text(json.dumps(result,indent=2)+"\n")
+        print("OWNER_DIRECTIVE_GLOBAL_ROOT_LEAF_RECEIPT "+json.dumps(result))
     else:
         cli.error("Provide --self-test or --fleet --role --task")
