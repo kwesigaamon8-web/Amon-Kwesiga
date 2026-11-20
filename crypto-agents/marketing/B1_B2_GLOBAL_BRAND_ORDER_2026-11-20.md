@@ -47,3 +47,14 @@ Promote REAL functioning software and AI-assisted services worldwide; build qual
 - First, verify landing page, software demo, and quote form are genuinely accessible.
 - Then publish one current introduction to an owned project announcement thread. No third-party post without live authorized credentials and policy review.
 - Review inbound enquiries, actual agreements, work acceptance, and real receipts. Prioritize improving the offer and buyer conversion over multiplying role IDs or post counts.
+
+## OWNER-APPROVED NEW GLOBAL FREE-SOFTWARE LAUNCH (20 November 2026)
+The owner explicitly authorized original recreations of free online software functionality, **not copying proprietary third-party source**, and global distribution of functioning free code. Market the release:
+- 55 free original browser utilities: `docs/free-toolbox.html`;
+- six more original mini-apps: `docs/mini-apps.html`;
+- full existing code catalogue: `docs/software.html`;
+- free source and license scope: `docs/FREE_SOFTWARE_LICENSE.md`;
+- actual contributor work orders and B1/B2 native-BTC optional-support instructions: `crypto-agents/marketing/FREE_SOFTWARE_CONTRIBUTOR_TASKS_2026-11-20.md`;
+- verified owned-channel public release notice: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/36.
+
+B1's next marketing shifts should prefer new, **approved** relevant audiences and original educational demonstrations over posting on the owner's GitHub again; one unique meaningful post per permitted channel, subject to actual connected credentials and permissions. B2 must check each product's browser function and CI evidence, not invent features or sales. Each actual worker should report tested features, actionable defects, buyer requests, accepted improvements or genuinely permitted publication evidence through its normal reporting hierarchy. Chief D should report only verified URLs, independently tested source features, consented contributor participation, actual buyer acceptance and actual receipts; silent unexecuted role IDs remain inactive. Donations always voluntary and unrelated to free access; display native BTC-mainnet-only safety notices, not all unverified coin routes.
