@@ -10,6 +10,7 @@ on:
       - 'crypto-agents/test_btc_receiver_safety.py'
       - 'crypto-agents/bitcoin_mainnet_receipt_probe.py'
       - 'crypto-agents/btc_public_address_snapshot.py'
+      - 'crypto-agents/test_public_payment_routes.py'
 permissions:
   contents: read
 concurrency:
@@ -36,7 +37,9 @@ jobs:
           python crypto-agents/owner_first_oath.py
           python crypto-agents/directive_cascade.py --self-test --out comprehensive-source-evidence/cascade
       - name: Run MIT upstream Bitcoin checksum and no-wallet-secret regression tests
-        run: python crypto-agents/test_btc_receiver_safety.py
+        run: |
+          python crypto-agents/test_btc_receiver_safety.py
+          python crypto-agents/test_public_payment_routes.py
       - name: Retest genuine shared role hierarchy and independent capability proof
         run: |
           python crypto-agents/test_self_correcting_all_roles.py
