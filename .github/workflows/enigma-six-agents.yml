@@ -1,0 +1,65 @@
+name: Enigma Six Account-Alias AI Agents — Verified Research Runs
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Six bounded inference attempts daily. Does not process or access Gmail.
+    - cron: '37 5 * * *'
+  push:
+    paths:
+      - 'crypto-agents/enigma_six_agent_accounts.py'
+      - 'crypto-agents/test_enigma_six_agent_accounts.py'
+      - '.github/workflows/enigma-six-agents.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: enigma-six-research-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Verify no-email rules and six agent outputs
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify source syntax
+        run: python -m py_compile crypto-agents/enigma_six_agent_accounts.py crypto-agents/test_enigma_six_agent_accounts.py
+      - name: Four offline tests for actual model evidence and Gmail isolation
+        run: python crypto-agents/test_enigma_six_agent_accounts.py
+
+  actual-model-attempts:
+    if: github.event_name != 'push'
+    needs: validate
+    name: Six separate CPU model calls, evidence only
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    env:
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      ENIGMA_MODEL_ID: HuggingFaceTB/SmolLM2-135M-Instruct
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Attempt supported CPU inference dependencies
+        shell: bash
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu || echo 'TORCH_SETUP_UNAVAILABLE'
+          python -m pip install --quiet 'transformers>=4.44,<5' || echo 'TRANSFORMERS_SETUP_UNAVAILABLE'
+      - name: Six bounded independent role-specific model requests
+        run: python crypto-agents/enigma_six_agent_accounts.py --model --out enigma-agent-reports
+      - name: Preserve model evidence, including honest failed-attempt markers
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: enigma-six-real-model-call-evidence
+          path: enigma-agent-reports/*.json
+          if-no-files-found: warn
+          retention-days: 7
