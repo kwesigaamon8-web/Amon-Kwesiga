@@ -1,0 +1,61 @@
+name: B1B2 One-Time Real Buyer Path and Payment Page Verification
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/b1b2-one-time-live-buyer-path-check-20261120.yml']
+permissions:
+  contents: read
+jobs:
+  validate-real-buyer-reachability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check HTTPS buyer pages read-only from the hosting network
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,urllib.request,urllib.error,time,datetime,os
+          URLs={
+            "render_health": "https://amon-kwesiga.onrender.com/health",
+            "render_service": "https://amon-kwesiga.onrender.com/studio/software.html",
+            "render_payment": "https://amon-kwesiga.onrender.com/studio/payment.html",
+            "historical_ship_toolbox": "https://cookie-ticket-dm9i1.ship.place/free-toolbox.html",
+          }
+          out={"as_of_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"checks":{}}
+          for key,url in URLs.items():
+            row={"url":url,"http":None,"html_or_health_confirmed":False}
+            try:
+              req=urllib.request.Request(url,headers={"User-Agent":"B1B2-RealBuyer-Reachability-Once/1.0","Accept":"text/html,application/json"})
+              with urllib.request.urlopen(req,timeout=70) as resp:
+                body=resp.read(150000).decode("utf-8","replace")
+                row.update({"http":resp.status,"effective_url":resp.geturl(),
+                    "bytes_checked":len(body),
+                    "html_or_health_confirmed":resp.status==200 and (
+                        "<html" in body.lower() or ('"status"' in body and ('"ok"' in body or '"healthy"' in body))
+                    ),
+                    "service_key_present": key!="render_service" or "CSV" in body or "Software" in body,
+                    "payment_key_present": key!="render_payment" or "Bitcoin" in body or "BTC" in body})
+            except (urllib.error.URLError,TimeoutError,ValueError,OSError) as exc:
+              row["error_type"]=type(exc).__name__
+              row["error_excerpt"]=str(exc)[:150]
+            out["checks"][key]=row
+            print("BUYER_PATH_READ_ONLY_CHECK",key,json.dumps(row,sort_keys=True),flush=True)
+          out["render_service_and_payment_live"]=all(
+              out["checks"][k].get("html_or_health_confirmed") and out["checks"][k].get("service_key_present") and out["checks"][k].get("payment_key_present")
+              for k in ("render_service","render_payment"))
+          out["actual_customer_orders_found"]=None
+          out["new_btc_income_proven"]=False
+          with open("b1b2-buyer-path-public-health.json","w") as f:json.dump(out,f,indent=2)
+          print("REAL_BUYER_PATH_RESULT",json.dumps({
+              "render_service_payment_live":out["render_service_and_payment_live"],
+              "actual_customer_orders_found":"NOT_CHECKED","btc_income_proven":False}))
+          PY
+      - name: Upload HTTPS evidence even if hosting went down
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-time-live-buyer-path-health-20261120
+          path: b1b2-buyer-path-public-health.json
+          if-no-files-found: warn
+          retention-days: 7
