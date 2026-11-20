@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-192226-PC-AI-MINER-OPTIN-PUBLIC-RELEASE",
+  "current_owner_order_id": "OWNER-20261120-201836-BTC-SPREE-FREE-HARDWARE",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -1102,6 +1102,26 @@
       "moltbook_not_authorized_http401": true,
       "configured_role_ids_not_live": 11255658980400,
       "strict_no_email_no_spend": true
+    },
+    {
+      "id": "OWNER-20261120-201836-BTC-SPREE-FREE-HARDWARE",
+      "as_of_utc": "2026-11-20T20:18:36Z",
+      "origin": "Owner's direct PC AI Miner mining-spree instruction, clarified as focus on free hardware",
+      "relayed_by": "ChatGPT through existing Chief D owner order source",
+      "instruction": "PRIORITY ORDER BTC SPREE FOR BOTH EXISTING B1/B2 COMPANIES: All genuinely activated workers, from Chief D through each fleet's D/A/M/W/S/G/H roles, must prioritize finding and VERIFYING truly free, lawful, owner-authorized physical Bitcoin mining hardware, donated ASICs, surplus PCs, maker grants, willing volunteer miners, and any no-cost compute where mining is explicitly permitted. Produce independently sourced offer URLs, availability, eligibility for Uganda, real costs including shipping and electricity, contact route, consent evidence and distinct worker execution reports. Also benchmark legitimate PC AI Miner software on authorized machines, but do not run cryptocurrency mining on GitHub Actions, free cloud services prohibiting mining, or any device without explicit owner consent. Validate that reports represent actual processes, not 11,255,658,980,400 role definitions. Maintain one-parent order ID from Chief D to existing workers, record actual acknowledgement/run/log/artifact per activated worker, failures, pool accepted/rejected shares, verified BTC-mainnet wallet receipts, and an evidence-based Chief D report. No stealth installs, unauthorized device scans, credential access, spam, purchases, or sending/drafting/reading emails. Existing mining payout addresses remain B1 bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9; volunteers must deliberately opt into donating their own hashrate. Do not report coins without transaction proof.",
+      "status": "recorded_in_active_owner_instruction_channel",
+      "mission": "free_hardware_first_btc_mining_spree",
+      "authenticated_external_execution_not_implied": true,
+      "no_email": true,
+      "no_unauthorized_mining": true,
+      "expected_results": [
+        "worker search reports",
+        "direct offer URLs",
+        "source-verification status",
+        "equipment eligibility to Uganda",
+        "pool mining evidence if owner-authorized",
+        "independent BTC receipt verification"
+      ]
     }
   ],
   "strict_per_worker_reporting": {
@@ -1486,7 +1506,7 @@
     "virtual_roles_not_concurrent_live_agents": true
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-192226-PC-AI-MINER-OPTIN-PUBLIC-RELEASE",
+    "owner_order_id": "OWNER-20261120-201836-BTC-SPREE-FREE-HARDWARE",
     "standards_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "all_real_invoked_workers_must_read_order_text": true,
     "all_real_invoked_h_leaf_must_receive_full_prompt": true,
