@@ -8,6 +8,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from owner_order_distribution import summary
+from directive_cascade import read_owner, sha
 from command_chain_receipts import configured_assignment
 from hierarchical_idea_governance import assignment as governed_idea_assignment
 
@@ -18,6 +19,9 @@ config=json.loads(Path("crypto-agents/company_hierarchy.json").read_text(encodin
 company=next(c for c in config["companies"] if c["director_id"]==role)
 orders=summary()
 chief_D_latest=json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text(encoding="utf-8"))["orders"][-1]
+cascade_owner=read_owner()
+if cascade_owner["owner_order_id"] != chief_D_latest["id"]:
+    raise ValueError("Director received mismatched owner directive")
 collection=json.loads(Path("crypto-agents/b_collection_assignments.json").read_text(encoding="utf-8"))
 payment_director=collection["director_operations"]["payment_director_id"]
 director_function="payment_recovery" if role==payment_director else "independent_paid_work"
@@ -53,7 +57,16 @@ for manager in company["managers"]:
               "supervisor_if_stuck":idea_governance["manager_if_worker_stuck"],
               "state":"ASSIGNED_WAITING_FOR_REAL_MODEL_EXECUTION",
           },
-          "chief_D_universal_audit_and_open_research_order":chief_D_latest["instruction"][:1300],
+          "chief_D_universal_audit_and_open_research_order":chief_D_latest["instruction"],
+          "human_owner_directive_cascade":{
+              "full_owner_instruction_sha256":cascade_owner["owner_sha256"],
+              "full_standing_prompt_sha256":cascade_owner["standard_sha256"],
+              "canonical_owner_order_id":cascade_owner["owner_order_id"],
+              "standing_prompt_source":"crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
+              "immediate_parent":os.environ.get("WORKFORCE_ID","transferexperiment")+"/"+manager["id"],
+              "full_order_available_on_real_model_invocation":True,
+              "individual_model_delivery_not_proved_by_assignment":True,
+          },
           "authorized_work":assignment_text, "director_function":director_function, "payment_director_id":payment_director,
           "strict_chief_D_order_id":orders["chief_D_current_owner_order_id"],
           "required_actual_execution_evidence":["model_completed","unique_agent_id","original_source_or_failure","separate_model_output","realistic_next_action","payment_status_truth"],
@@ -69,6 +82,10 @@ for manager in company["managers"]:
 assert len(records)==750
 doc={
  "director_id":role,
+ "complete_latest_human_instruction":cascade_owner["full_owner_instruction"],
+ "current_owner_prompt_sha256":cascade_owner["standard_sha256"],
+ "exact_current_owner_instruction_sha256":cascade_owner["owner_sha256"],
+ "prompt_cascade_to_final_H_required_on_actual_invocation":True,
  "company_director_id":os.environ.get("WORKFORCE_ID","transferexperiment")+"/"+role,
  "chief_director_id":collection["hierarchy"]["chief_director"],
  "director_function":director_function,
