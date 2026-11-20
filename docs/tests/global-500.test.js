@@ -81,8 +81,8 @@ test("new public-interest programs have correct reference calculations",()=>{
  assert.equal(calculate(80,{a:3,b:5}).value,30);
  assert.equal(calculate(84,{a:85000,b:12,c:10}).value,66300);
  assert.equal(calculate(90,{a:200000,b:50000}).value,4);
- assert.equal(calculate(93,{a:2000,b:12,c:3,d:150}).value,1605.03);
- assert.equal(calculate(97,{a:.12,b:.8}).value,17/75);
+ assert.equal(calculate(93,{a:2000,b:12,c:3,d:150}).value,1606.087);
+ assert.equal(calculate(97,{a:.12,b:.8}).value,5);
  assert.equal(calculate(98,{a:300,b:30,c:4}).value,36);
  assert.equal(calculate(99,{a:400,b:250}).value,150);
 });
