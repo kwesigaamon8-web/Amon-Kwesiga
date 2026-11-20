@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'docs/b1b2-worker-hub/hf-worker-hub.html'
+      - 'docs/b1b2-worker-hub/payment-proof*'
       - 'crypto-agents/data/bitcoin_country_allocations.csv'
       - 'crypto-agents/public_payment_routes.json'
       - '.github/workflows/publish-b1b2-to-huggingface.yml'
@@ -32,6 +33,9 @@ jobs:
           assert 'Bearer ' not in s
           print('HF_STATIC_WORKER_HUB_VALIDATION_PASS: no unverified model or earning claims')
           PY
+      - name: Run original Bitcoin payment verifier unit tests
+        run: |
+          node --test docs/b1b2-worker-hub/payment-proof-core.test.cjs
   publish-static-hub:
     needs: validate-public-static-hub
     runs-on: ubuntu-latest
@@ -106,6 +110,8 @@ jobs:
               ('worker-hub.html','hf-worker-hub.html'),
               ('country-allocations.json','country-allocations.json'),
               ('wallet-routes.json','wallet-routes.json'),
+              ('payment-proof.html','payment-proof.html'),
+              ('payment-proof-core.js','payment-proof-core.js'),
           ]
           operations=[CommitOperationAdd(path_in_repo=dest,path_or_fileobj=base+local)
                       for dest,local in resources]
@@ -124,4 +130,5 @@ jobs:
         run: |
           echo "## Deployed interactive on-demand virtual worker lookup with BTC wallets" >> "$GITHUB_STEP_SUMMARY"
           echo "https://amonkkkk-b1b2-superworker-assembly.hf.space/worker-hub.html" >> "$GITHUB_STEP_SUMMARY"
-          echo "Country-assigned on-demand role lookup and self-custody wallet references uploaded; existing Space index.html retained; no agent execution, crypto mining or income is implied." >> "$GITHUB_STEP_SUMMARY"
+          echo "Verified original read-only BTC payment request and txid checker at https://amonkkkk-b1b2-superworker-assembly.hf.space/payment-proof.html ; 7 isolated unit tests; never private keys or invented coins." >> "$GITHUB_STEP_SUMMARY"
+          echo "Existing Space index.html retained; no miner work, LLM activity or crypto receipts are implied." >> "$GITHUB_STEP_SUMMARY"
