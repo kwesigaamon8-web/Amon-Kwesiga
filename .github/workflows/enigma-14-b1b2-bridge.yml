@@ -1,0 +1,48 @@
+name: Enigma 14 Workers Supporting Verified B1 and B2
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+  push:
+    paths:
+      - 'crypto-agents/enigma_b1b2_bridge.py'
+      - 'crypto-agents/test_enigma_b1b2_bridge.py'
+      - '.github/workflows/enigma-14-b1b2-bridge.yml'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: enigma-14-to-b1b2-handoff
+  cancel-in-progress: false
+jobs:
+  internal-evidence-handoff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify two original parent identities and every internal worker
+        run: |
+          python -m py_compile crypto-agents/enigma_b1b2_bridge.py crypto-agents/test_enigma_b1b2_bridge.py
+          python crypto-agents/test_enigma_b1b2_bridge.py
+      - name: Read only latest real model execution reports and route tasks to B1 B2
+        run: python crypto-agents/enigma_b1b2_bridge.py --fetch
+      - name: Save two task queues and individual real-execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enigma-fourteen-to-b1b2-internal-queues
+          path: |
+            enigma-bridge-output/bridge.json
+            enigma-bridge-output/bridge.md
+          if-no-files-found: warn
+          retention-days: 7
+      - name: State verified boundary
+        if: always()
+        run: |
+          echo 'B1 transferexperiment and B2 BountyScoutAI receive internal AI reports.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No additional Moltbook accounts, new verification, emails, posts or payments are created.' >> "$GITHUB_STEP_SUMMARY"
