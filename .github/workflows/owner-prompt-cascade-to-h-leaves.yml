@@ -29,6 +29,33 @@ jobs:
           python crypto-agents/directive_cascade.py --self-test --out owner-cascade-evidence
           python crypto-agents/owner_first_oath.py
           python crypto-agents/command_chain_receipts.py
+      - name: Verify full unabridged instruction in one real director dispatch and 750 assigned worker packets
+        env:
+          ROLE_ID: D01
+          WORKFORCE_ID: transferexperiment
+        run: |
+          python crypto-agents/director_work_orders.py
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          doc=json.loads(Path("director-work-orders/D01.json").read_text())
+          chief=json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text())
+          public=json.loads(Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text())
+          order=chief["orders"][-1]["instruction"]
+          digest=hashlib.sha256(order.encode()).hexdigest()
+          assert doc["complete_latest_human_instruction"]==order
+          assert doc["exact_current_owner_instruction_sha256"]==digest
+          assert doc["first_tier_work_order_count"]==750
+          assert len(doc["manager_assignments"])==15
+          assert len(doc["individual_first_tier_worker_assignments"])==750
+          assert public["owner_command"]==order
+          for worker in doc["individual_first_tier_worker_assignments"]:
+              assert worker["chief_D_universal_audit_and_open_research_order"]==order
+              assert worker["human_owner_directive_cascade"]["full_owner_instruction_sha256"]==digest
+              assert worker["command_chain_assignment"]["current_organization_route"][-1]=="transferexperiment/"+worker["agent_id"]
+          print("DIRECTOR_TO_MANAGERS_TO_750_W_ROLE_PACKETS_PASS",
+                "directors",1,"managers",15,"role_packets",750,"actual_ai_inferences",0)
+          PY
       - name: Run six real isolated final-level H worker processes
         run: |
           python - <<'PY'
