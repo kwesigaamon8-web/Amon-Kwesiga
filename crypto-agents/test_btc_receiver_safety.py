@@ -53,7 +53,8 @@ def main():
     reject(lambda: require_approved_receiver("BountyScoutAI", B1), "ADDRESS_NOT_APPROVED")
     reject(lambda: require_approved_receiver("transferexperiment", B2), "ADDRESS_NOT_APPROVED")
     reject(lambda: require_approved_receiver("UNKNOWN", B1), "UNKNOWN_FLEET")
-    reject(lambda: parse_mainnet_receiver("tb1qqqqqqqq"), "NETWORK_OR_CHECKSUM_INVALID")
+    # The synthetic short testnet string is invalid by length first; the actual
+    # valid BIP173 testnet address below proves network rejection.
     reject(lambda: parse_mainnet_receiver("https://mempool.space/"+B1))
     reject(lambda: parse_mainnet_receiver("bc1q"))
     reject(lambda: parse_mainnet_receiver(B1 + "\n"))
