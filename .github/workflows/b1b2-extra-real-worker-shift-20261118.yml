@@ -27,8 +27,9 @@ jobs:
     env:
       WORKFORCE_ID: ${{ matrix.fleet }}
       ROLE_ID: ${{ matrix.director }}
-      REAL_AI_PROCESSES_PER_DIRECTOR: '4'
+      REAL_AI_PROCESSES_PER_DIRECTOR: '2'
       MAX_BATCH_SECONDS: '500'
+          REAL_AI_PER_WORKER_TIMEOUT_SECONDS: '180'
       HF_HUB_DISABLE_TELEMETRY: '1'
       OMP_NUM_THREADS: '2'
       GH_TOKEN: ${{ github.token }}
