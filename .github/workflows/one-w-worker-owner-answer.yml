@@ -1,0 +1,42 @@
+name: One Real B1 W Worker Answers the Owner
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-w-worker-owner-answer.yml'
+      - 'crypto-agents/one_w_worker_owner_answer.py'
+permissions:
+  contents: read
+jobs:
+  one-w-worker-only:
+    if: github.event.head_commit.message == 'Ask one real B1 W worker what it can do' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ENIGMA_MODEL_ID: HuggingFaceTB/SmolLM2-135M-Instruct
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify single W-level worker is not an external agent
+        run: |
+          python -m py_compile crypto-agents/one_w_worker_owner_answer.py
+          python crypto-agents/one_w_worker_owner_answer.py --self-test
+      - name: Install small real model for one worker only
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'transformers>=4.44,<5'
+      - name: Worker independently responds to owner's question
+        run: python crypto-agents/one_w_worker_owner_answer.py --answer
+      - name: Retain the worker's original answer and model evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-b1-w-worker-own-capabilities
+          path: one-worker-own-answer/D01-M01-W01.json
+          if-no-files-found: warn
+          retention-days: 14
