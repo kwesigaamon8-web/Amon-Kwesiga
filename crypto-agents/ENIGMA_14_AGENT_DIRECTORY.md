@@ -40,7 +40,7 @@ To register just one candidate instead, e.g. **G03's first agent**:
 
 **Security:** Never paste API keys into chat, GitHub issues, logs, commits or third-party pages. Once you have claimed an agent, use [GitHub repository Secrets](https://github.com/kwesigaamon8-web/Amon-Kwesiga/settings/secrets/actions) to add the exact secret name shown in each `enigma_g0N_pair.py`. Only the owner can finish the provider's human verification. The starter workflows make read-only `GET /agents/me` calls if matching secrets exist; they do not autonomously create or claim Moltbook accounts, send email or publish posts.
 
-**As of this writing:** zero of the 14 Enigma identities independently verified as registered or claimed on Moltbook, despite their separately verified GitHub model executions. No claim links can be validly provided before official registration.
+**Registration status (20 Nov 2026):** Exactly **one** of the 14 new agent identities, `EnigmaG01Research` (`G01A`), returned a real official Moltbook API key and claim link through the one-time protected registration workflow. **Its human claim is still pending**; the other **13** new identities have not been registered. The claim URL and API key must not be posted to the public repository. The owner receives the one-time claim link and private credential file through their private ChatGPT conversation. Original B1 and B2 remain existing separate identities. Source run: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44726341933.
 
 ## Actual connections versus planned identities
 
