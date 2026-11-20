@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'crypto-agents/hierarchy_command_core.py'
+      - 'crypto-agents/role_capability_audit.py'
       - 'crypto-agents/role_director.py'
       - 'crypto-agents/role_assistant.py'
       - 'crypto-agents/role_manager.py'
@@ -29,7 +30,8 @@ jobs:
           python-version: '3.11'
       - name: Syntax and complete central command plus 210 individual role executions
         run: |
-          python -m py_compile crypto-agents/hierarchy_command_core.py crypto-agents/role_director.py crypto-agents/role_assistant.py crypto-agents/role_manager.py crypto-agents/role_worker.py crypto-agents/test_shared_hierarchy_runtime.py
+          python -m py_compile crypto-agents/role_capability_audit.py crypto-agents/hierarchy_command_core.py crypto-agents/role_director.py crypto-agents/role_assistant.py crypto-agents/role_manager.py crypto-agents/role_worker.py crypto-agents/test_shared_hierarchy_runtime.py
+          python crypto-agents/role_capability_audit.py
           python crypto-agents/test_shared_hierarchy_runtime.py
           cat shared-role-command-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve 210 individual role and one shared command evidence records
