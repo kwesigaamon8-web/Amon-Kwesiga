@@ -43,16 +43,29 @@ jobs:
           headers={"Accept":"application/vnd.github+json","Authorization":"Bearer "+os.environ["GH_TOKEN"],"User-Agent":"B1B2-Forensic-Audit"}
           with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=20) as resp:
               data=json.load(resp)
-          for run in data.get("workflow_runs",[]):
-              if run.get("conclusion")=="success" and run.get("status")=="completed":
-                  chosen=run
-                  break
+          if os.environ.get("GITHUB_EVENT_NAME")=="workflow_run":
+              event=json.loads(open(os.environ["GITHUB_EVENT_PATH"]).read())
+              chosen=event["workflow_run"]
+              if chosen.get("conclusion")!="success":
+                  raise SystemExit("Triggered 900-worker run was not successful")
           else:
-              raise SystemExit("No completed successful 900-worker run to audit")
+              for run in data.get("workflow_runs",[]):
+                  if run.get("conclusion")=="success" and run.get("status")=="completed":
+                      chosen=run
+                      break
+              else:
+                  raise SystemExit("No completed successful 900-worker run to audit")
           with open(os.environ["GITHUB_OUTPUT"],"a") as out:
               out.write(f"run_id={chosen['id']}\n")
+              out.write(f"head_sha={chosen['head_sha']}\n")
           print("FORENSIC_SOURCE_RUN",chosen["id"],chosen["html_url"],chosen["head_sha"])
           PY
+      - name: Checkout the exact successful worker run's owner text and standing prompt
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.source.outputs.head_sha }}
+          path: audited-source
+          persist-credentials: false
       - uses: actions/download-artifact@v4
         with:
           run-id: ${{ steps.source.outputs.run_id }}
@@ -72,11 +85,14 @@ jobs:
           order=json.loads(path.read_text())["owner_order_id"]
           with open(os.environ["GITHUB_ENV"],"a") as f:
               f.write("AUDITED_OWNER_ORDER="+order+"\n")
+          historical=json.loads(Path("audited-source/crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text())
+          if historical["command_id"]!=order:
+              raise SystemExit("Source-run worker order and original source commit disagree")
           print("SOURCE_RUN_OWNER_ORDER",order)
           PY
       - name: Produce 900 per-worker evidence rows, source and buyer status
         run: |
-          python crypto-agents/forensic_worker_audit.py --root thousand-fleet-evidence --order "$AUDITED_OWNER_ORDER" --out forensic-audit-evidence
+          python crypto-agents/forensic_worker_audit.py --root thousand-fleet-evidence --order "$AUDITED_OWNER_ORDER" --source-root audited-source --out forensic-audit-evidence
           cat forensic-audit-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
       - name: Preserve all 900 forensic worker rows and report for owner
         if: always()
