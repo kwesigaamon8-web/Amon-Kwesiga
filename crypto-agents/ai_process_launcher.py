@@ -1,4 +1,4 @@
-"""Launch genuine independent W/S/G/H OS/model subprocesses from one director.
+"""Launch W/S/G/H model subprocesses through ONE shared worker entrypoint from every director.
 
 Each Python child has its own PID, individual Transformers model invocation, and
 separate JSON/Markdown reports. Never spawn billions of configured roles.
@@ -55,7 +55,8 @@ for slot in range(max_workers):
     try:
         # This is a separate child operating-system process.
         result=subprocess.run(
-            [sys.executable,"crypto-agents/ai_process_worker.py",wid],
+            [sys.executable,"crypto-agents/role_worker.py","--actual-model",
+             "--fleet",os.environ.get("WORKFORCE_ID","transferexperiment"),"--role",wid],
             capture_output=True,text=True,timeout=80,check=False,
             env={**os.environ,"OMP_NUM_THREADS":"2","HF_HUB_DISABLE_TELEMETRY":"1",
                  "SEVEN_BILLION_TARGET_INDEX":str(selection["target_index"]) if selection else ""}
