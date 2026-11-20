@@ -6,6 +6,8 @@ on:
       - 'crypto-agents/marketing/role_campaign_dispatch.py'
       - 'crypto-agents/ai_process_worker.py'
       - 'crypto-agents/marketing/test_role_campaign_dispatch.py'
+      - 'crypto-agents/marketing/role_messages.py'
+      - 'crypto-agents/marketing/test_role_messages.py'
       - 'docs/assets/market-lab.js'
       - 'docs/tests/market-lab.test.js'
       - '.github/workflows/b1b2-new-products-role-dispatch.yml'
@@ -21,9 +23,11 @@ jobs:
         with:
           python-version: '3.11'
       - name: Verify edited AI worker and role-dispatch Python compile
-        run: python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/marketing/role_campaign_dispatch.py
+        run: python -m py_compile crypto-agents/ai_process_worker.py crypto-agents/marketing/role_campaign_dispatch.py crypto-agents/marketing/role_messages.py
       - name: Verify exact global indexing and no fictitious workers
         run: python crypto-agents/marketing/test_role_campaign_dispatch.py
+      - name: Verify 750B-addressable owner messages and fail-closed delivery markers
+        run: python crypto-agents/marketing/test_role_messages.py
       - name: Verify all six new software products
         run: node --test docs/tests/market-lab.test.js
       - name: Produce bounded B1/B2 assignment evidence
@@ -37,9 +41,23 @@ jobs:
           assert x["actual_publications_made_by_this_script"]==0
           print("VIRTUAL_ROLE_ASSIGNMENTS_READY",x["entries_generated"],"NO_ACTUAL_POSTS_CLAIMED")
           PY
+      - name: Produce bounded owner campaign message samples
+        run: |
+          python crypto-agents/marketing/role_messages.py --sample 12 > b1b2-virtual-message-samples.json
+          python - <<'PY'
+          import json
+          p=json.load(open('b1b2-virtual-message-samples.json'))
+          assert p['message_space_available']==750377265360
+          assert p['message_templates_materialized_in_this_call']==12
+          assert p['actual_messages_transmitted_to_live_accounts']==0
+          assert p['actual_social_media_posts_sent']==0
+          print('VIRTUAL_ADDRESSABLE_MESSAGES_TESTED',12,'NO_UNVERIFIED_DELIVERIES')
+          PY
       - name: Archive examples (not fabricated employee reports)
         uses: actions/upload-artifact@v4
         with:
           name: b1b2-role-dispatch-examples
-          path: b1b2-virtual-role-assignment-samples.json
+          path: |
+            b1b2-virtual-role-assignment-samples.json
+            b1b2-virtual-message-samples.json
           retention-days: 7
