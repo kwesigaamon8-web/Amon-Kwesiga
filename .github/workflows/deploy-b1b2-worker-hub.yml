@@ -1,12 +1,10 @@
 name: B1 B2 Portable Worker Hub - Public Website
+# GitHub Pages site does not exist (configure-pages returned HTTP 404).
+# Default Actions GITHUB_TOKEN cannot enable it. Prevent repeated automatic failures.
+# Buyer-facing public site currently publishes through Hugging Face instead.
+# Manual invocation remains available if Pages is later enabled with the appropriate credential.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/b1b2-worker-hub/**'
-      - 'crypto-agents/cross_platform_worker_hub.html'
-      - '.github/workflows/deploy-b1b2-worker-hub.yml'
 permissions:
   contents: read
   pages: write
