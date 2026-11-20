@@ -58,3 +58,9 @@ The owner explicitly authorized original recreations of free online software fun
 - verified owned-channel public release notice: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/36.
 
 B1's next marketing shifts should prefer new, **approved** relevant audiences and original educational demonstrations over posting on the owner's GitHub again; one unique meaningful post per permitted channel, subject to actual connected credentials and permissions. B2 must check each product's browser function and CI evidence, not invent features or sales. Each actual worker should report tested features, actionable defects, buyer requests, accepted improvements or genuinely permitted publication evidence through its normal reporting hierarchy. Chief D should report only verified URLs, independently tested source features, consented contributor participation, actual buyer acceptance and actual receipts; silent unexecuted role IDs remain inactive. Donations always voluntary and unrelated to free access; display native BTC-mainnet-only safety notices, not all unverified coin routes.
+
+## 20 NOV 2026 — OWNER GLOBAL ROLE DISPATCH AND OPT-IN SHARING TOOL
+- Primary regional task packet: [B1/B2 worldwide role campaign](./B1B2_WORLDWIDE_ROLE_CAMPAIGN_20261120.md); coordinate ten directors per B1/B2 company and their genuinely active subworkers, no fake worker-count claims.
+- User-initiated six-language share centre: [share-free-software.html](../../docs/share-free-software.html); it opens share composer windows, does not publish automatically or bypass third-party account rules.
+- Published owned-channel release: [GitHub issue #36](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/36).
+- Confirm genuine connected social publishing credentials before any automated external post. Do not use Metricool without a connected social account.
