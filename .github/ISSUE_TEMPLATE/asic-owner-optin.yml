@@ -1,0 +1,75 @@
+name: "Owner-approved Bitcoin ASIC mining collaboration (opt in)"
+description: "Public, non-binding interest only. A real ASIC owner can request individual, voluntary cooperation; no private equipment access or promised reward."
+title: "[Opt-in collaborator] ASIC owner: "
+labels:
+  - "help wanted"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This form is public.** It does not authorize anyone to control your equipment or divert mining payouts. There is no hiring, donation or revenue-sharing agreement merely because you submit this form. Do not post names, address/location beyond a broad region, IPs, screenshots of private dashboards, power bills, credentials, seed phrases, contacts or identifiers. Never mine on unowned or unpermitted infrastructure.
+        Official Public Pool [SOLO vs PPLNS](https://web.public-pool.io/) and [B1/B2 mining collaboration rules](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/BITCOIN_MINING_COLLABORATION_REALITY.md).
+  - type: dropdown
+    id: interest
+    attributes:
+      label: What are you offering voluntarily?
+      options:
+        - Technical discussion only; no hardware contribution
+        - Owner-operated ASIC testing of connection compatibility only
+        - Discuss a separately signed pool revenue-sharing contract
+        - Independent buyer referral for a legitimate paid ASIC integration task
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Broad device model or public software name (no serials)
+      placeholder: "Example: Bitaxe Ultra, Antminer S21, or I do not own a rig"
+    validations:
+      required: true
+  - type: dropdown
+    id: hashrate
+    attributes:
+      label: Approximate individually controlled SHA-256 capacity
+      options:
+        - No mining hardware available
+        - Below 1 TH/s
+        - 1 to 49 TH/s
+        - 50 to 199 TH/s
+        - 200 to 499 TH/s
+        - 500 TH/s or more
+        - Decline to state publicly
+    validations:
+      required: true
+  - type: dropdown
+    id: pool
+    attributes:
+      label: Mining pool area of interest
+      options:
+        - Understand SOLO (no payout unless block found)
+        - Understand PPLNS (no guaranteed block or daily payout)
+        - Discuss FPPS/PPS+ with a separately verified reputable pool
+        - Software testing only, no mining
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: One non-sensitive question or public proposal
+      description: "Do not send miner usernames, wallet recovery data, power invoices, emails or contact details."
+      placeholder: "I have an independently operated SHA-256 rig and want to understand which pool policy supports a separately agreed payout split."
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Owner authorization and financial protection
+      options:
+        - label: "I am the equipment owner or have explicit authorization to represent the owner; no hardware will be connected or redirected by this public form."
+          required: true
+        - label: "I understand any mining earnings initially belong to the authorized operator, and any B1/B2 payout or split must be separately and explicitly approved."
+          required: true
+        - label: "I understand roles listed in software are not physical miners; PPLNS is not FPPS and neither guarantees profitable returns."
+          required: true
+        - label: "I will not disclose passwords, seed phrases, wallet keys, equipment IPs or private account details."
+          required: true
