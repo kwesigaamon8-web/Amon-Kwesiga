@@ -205,5 +205,49 @@ def self_test():
     fail(lambda: inspect_tx("not-a-txid","B2",1200,source,txgood))
     print("B1B2_TWO_EXPLORER_PAYER_PAYMENT_PROOF_TESTS_PASS")
 
-if __name__=="__main__":
+def cli_main():
+    import argparse
+    from pathlib import Path
+    p=argparse.ArgumentParser(description="Only read verified issuer evidence and create an unsent B1/B2 BTC request or verify payer-linked TXID")
+    group=p.add_mutually_exclusive_group()
+    group.add_argument("--prepare-request",metavar="TASK_JSON")
+    group.add_argument("--verify-transaction",metavar="TASK_JSON")
+    p.add_argument("--fleet",choices=("B1","B2"))
+    p.add_argument("--txid")
+    p.add_argument("--sponsor-payment-comment")
+    a=p.parse_args()
     self_test()
+    task_path=a.prepare_request or a.verify_transaction
+    if task_path is None:
+        return
+    if not a.fleet:
+        p.error("--fleet B1/B2 required")
+    # Path allowlist makes user-file input explicit and avoids accidentally
+    # reading private content elsewhere on the runner.
+    root=(HERE/"world-work-factory"/"accepted-jobs").resolve()
+    path=Path(task_path).resolve()
+    if root not in path.parents or path.suffix.lower()!=".json":
+        raise ValueError("ACCEPTED_TASK_EVIDENCE_OUTSIDE_PUBLIC_ALLOWLIST")
+    if not path.is_file():raise ValueError("ACCEPTED_TASK_EVIDENCE_NOT_FOUND")
+    terms=json.loads(path.read_text(encoding="utf-8"))
+    if a.prepare_request:
+        report=make_request(terms,a.fleet)
+        label="B1B2_ACCEPTED_SPONSOR_PAYMENT_REQUEST_READY_NOT_SENT"
+    else:
+        if not a.txid or not a.sponsor_payment_comment:
+            p.error("Transaction verification requires --txid and --sponsor-payment-comment")
+        report=verify_earned_job(terms,a.fleet,a.txid,a.sponsor_payment_comment)
+        label="B1B2_SPONSOR_LINKED_TWO_EXPLORER_BTC_PAYMENT_VERIFIED"
+    out=HERE/"world-work-factory"/"payment-evidence"
+    out.mkdir(parents=True,exist_ok=True)
+    suffix="request" if a.prepare_request else "verified-receipt"
+    dest=out/(path.stem+"-"+a.fleet+"-"+suffix+".json")
+    dest.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+    print(label+" "+json.dumps({"evidence_file":str(dest),"source_task":str(path),
+          "network":"bitcoin-mainnet",
+          "payment_verified":bool(report.get("earned_payment_supported_by_sponsor_and_two_explorers")),
+          "message_sent":False}))
+
+
+if __name__=="__main__":
+    cli_main()
