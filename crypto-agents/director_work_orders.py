@@ -9,6 +9,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from owner_order_distribution import summary
 from directive_cascade import read_owner, sha
+from hierarchy_command_core import task_context as centralized_role_task, ASSIGNED_CODES as ONE_CODE_PER_TIER
+from b_certified_agent_service_router import role_index as original_role_index
 from command_chain_receipts import configured_assignment
 from hierarchical_idea_governance import assignment as governed_idea_assignment
 
@@ -20,6 +22,11 @@ company=next(c for c in config["companies"] if c["director_id"]==role)
 orders=summary()
 chief_D_latest=json.loads(Path("crypto-agents/chief_D_owner_orders.json").read_text(encoding="utf-8"))["orders"][-1]
 cascade_owner=read_owner()
+fleet=os.environ.get("WORKFORCE_ID","transferexperiment")
+director_shared_context=centralized_role_task(original_role_index(fleet,role),expected={"D"})
+if (director_shared_context["owner_command"]["owner_sha256"] != cascade_owner["owner_sha256"]
+    or director_shared_context["parent"] != "CHIEF_D"):
+    raise ValueError("Director command disagrees with the central role runtime")
 if cascade_owner["owner_order_id"] != chief_D_latest["id"]:
     raise ValueError("Director received mismatched owner directive")
 collection=json.loads(Path("crypto-agents/b_collection_assignments.json").read_text(encoding="utf-8"))
@@ -40,6 +47,9 @@ for manager in company["managers"]:
         idea_governance=governed_idea_assignment(os.environ.get("WORKFORCE_ID","transferexperiment"),wid)
         records.append({
           "agent_id":wid,"parent_id":manager["id"],
+          "shared_role_program":ONE_CODE_PER_TIER["W"],
+          "shared_role_engine":"crypto-agents/hierarchy_command_core.py",
+          "single_authoritative_owner_command_source":"crypto-agents/chief_D_owner_orders.json",
           "director_id":role,"specialty":worker["role_name"],
           "manager_domain":manager["domain"],
           "search_query":worker["query"],
@@ -82,6 +92,12 @@ for manager in company["managers"]:
 assert len(records)==750
 doc={
  "director_id":role,
+ "one_shared_director_code":ONE_CODE_PER_TIER["D"],
+ "one_shared_manager_code":ONE_CODE_PER_TIER["M"],
+ "one_shared_worker_code_W_S_G_H":ONE_CODE_PER_TIER["W"],
+ "single_authoritative_owner_command_source":"crypto-agents/chief_D_owner_orders.json",
+ "central_role_engine":"crypto-agents/hierarchy_command_core.py",
+ "director_central_role_path":director_shared_context["path"],
  "complete_latest_human_instruction":cascade_owner["full_owner_instruction"],
  "current_owner_prompt_sha256":cascade_owner["standard_sha256"],
  "exact_current_owner_instruction_sha256":cascade_owner["owner_sha256"],
@@ -91,6 +107,9 @@ doc={
  "director_function":director_function,
  "payment_director_id":payment_director,
  "manager_assignments":[{"id":m["id"],"focus":m["domain"],"workers_assigned":50,
+    "one_shared_manager_code":ONE_CODE_PER_TIER["M"],
+    "single_owner_command_id":cascade_owner["owner_order_id"],
+    "worker_code":ONE_CODE_PER_TIER["W"],
     "command_chain_assignment":configured_assignment(m["id"]),
     "idea_first_directive":"Manage your own 50 W workers. Each must generate ten distinct independently model-produced ideas, verify one original potential paying source, and know correct company BTC network. If unable or repetitive, issue one narrower task and verify a new actual response; escalate to your local company director.",
     "ten_ideas_required_per_actual_worker":True,
