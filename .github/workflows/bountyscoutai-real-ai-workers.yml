@@ -107,8 +107,9 @@ jobs:
           ROLE_ID: ${{ matrix.director }}
           WORKFORCE_ID: BountyScoutAI
           GH_TOKEN: ${{ github.token }}
-          REAL_AI_PROCESSES_PER_DIRECTOR: '20'
+          REAL_AI_PROCESSES_PER_DIRECTOR: '3'
           MAX_BATCH_SECONDS: '660'
+          REAL_AI_PER_WORKER_TIMEOUT_SECONDS: '180'
           HF_HUB_DISABLE_TELEMETRY: '1'
           OMP_NUM_THREADS: '2'
           CRITIC_EVERY_N: '5'
