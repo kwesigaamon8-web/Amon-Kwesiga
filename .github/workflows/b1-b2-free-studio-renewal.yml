@@ -5,6 +5,8 @@ on:
       - '.github/workflows/b1-b2-free-studio-renewal.yml'
       - 'docs/index.html'
       - 'docs/brand-ai.html'
+      - 'docs/agent-work-market.html'
+      - 'docs/share-ai-services.html'
       - 'docs/share-free-software.html'
       - 'docs/pc-ai-miner.html'
       - 'docs/free-toolbox.html'
@@ -56,6 +58,8 @@ jobs:
           test -s docs/market-lab.html
           test -s docs/assets/market-lab.js
           test -s docs/brand-ai.html
+          test -s docs/agent-work-market.html
+          test -s docs/share-ai-services.html
           test -s docs/share-free-software.html
           test -s docs/pc-ai-miner.html
           grep -q 'Run 32 example hashes' docs/pc-ai-miner.html
@@ -78,6 +82,7 @@ jobs:
           grep -q 'href="join.html"' docs/index.html
           grep -q 'href="payment.html"' docs/index.html
           grep -q 'href="ai.html"' docs/index.html
+          grep -q 'href="share-ai-services.html"' docs/index.html
           grep -q 'paid-work-request.yml' docs/ai.html
           grep -q 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' docs/payment.html
           grep -q 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' docs/payment.html
@@ -90,7 +95,7 @@ jobs:
           set -euo pipefail
           umask 077
           cd docs
-          zip -q ../studio-preview.zip index.html software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
+          zip -q ../studio-preview.zip index.html software.html join.html payment.html ai.html brand-ai.html agent-work-market.html share-ai-services.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
           cd ..
           curl -fSs --retry 2 --retry-delay 5 --max-time 50 \
             -X POST 'https://ship.page/deploy' \
@@ -104,7 +109,7 @@ jobs:
           url=payload.get('url','')
           parsed=urllib.parse.urlsplit(url)
           assert parsed.scheme=='https' and (parsed.hostname or '').endswith('.ship.place'), 'invalid live page URL'
-          assert {'index.html','software.html','join.html','payment.html','ai.html','brand-ai.html','free-toolbox.html','mini-apps.html','market-lab.html','share-free-software.html','pc-ai-miner.html','free-software-manifest.json','FREE_SOFTWARE_LICENSE.md','assets/free-toolbox.js','assets/free-toolbox-extensions.js','assets/free-mini-apps.js','assets/market-lab.js','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
+          assert {'index.html','software.html','join.html','payment.html','ai.html','brand-ai.html','agent-work-market.html','share-ai-services.html','free-toolbox.html','mini-apps.html','market-lab.html','share-free-software.html','pc-ai-miner.html','free-software-manifest.json','FREE_SOFTWARE_LICENSE.md','assets/free-toolbox.js','assets/free-toolbox-extensions.js','assets/free-mini-apps.js','assets/market-lab.js','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
           exp=payload.get('expires_at')
           assert exp and 'T' in exp, 'anonymous expiry not provided'
           now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
@@ -116,7 +121,7 @@ jobs:
 
           **Use the owner-authorized free suite:** [55 original browser utilities]({url}free-toolbox.html) · [6 practical mini apps]({url}mini-apps.html) · [6 new free business and marketing applications]({url}market-lab.html) · [Share the software worldwide]({url}share-free-software.html) · [MIT source license]({url}FREE_SOFTWARE_LICENSE.md).
 
-          **Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request]({url}ai.html) — scoped, human-reviewed offers, not actual booked sales.\n\n          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page]({url}payment.html). Public address display is not proof of an invoice or verified wallet control.\n\n          **Find real opt-in project collaborators:** [Join B1/B2]({url}join.html) — invites only, not verified workers or mining income.\n\nThis public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
+          **Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request]({url}ai.html) — scoped, human-reviewed offers, not actual booked sales.\n\n          **Browse our new buyer marketplace:** [AI-agent and human buyer offers]({url}agent-work-market.html) · [Seven-platform, six-language voluntary sharing centre]({url}share-ai-services.html). Sharing links only open social composers; they do not publish without user interaction.\n\n          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page]({url}payment.html). Public address display is not proof of an invoice or verified wallet control.\n\n          **Find real opt-in project collaborators:** [Join B1/B2]({url}join.html) — invites only, not verified workers or mining income.\n\nThis public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
           This free release adds 55 local browser utilities and 12 original mini-apps, with public tests and voluntary project support only. Nothing in the public toolbox requires wallet access, donations or private data uploads.
 
@@ -157,7 +162,7 @@ jobs:
           grep -q 'function' "$scratch/reconcile.js"
           grep -q 'function' "$scratch/reconcile-ui.js"
           [ -s "$scratch/styles.css" ]
-          for asset in software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
+          for asset in software.html join.html payment.html ai.html brand-ai.html agent-work-market.html share-ai-services.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
             mkdir -p "$scratch/$(dirname "$asset")"
             curl -fSsL --max-time 25 "${url}${asset}" -o "$scratch/$asset"
             test -s "$scratch/$asset"
@@ -178,6 +183,8 @@ jobs:
           grep -q 'Bitcoin mining' "$scratch/software.html"
           grep -q 'Bitcoin mainnet' "$scratch/payment.html"
           grep -q 'Hire our AI-assisted' "$scratch/ai.html"
+          grep -q 'Small data and Bitcoin software jobs' "$scratch/agent-work-market.html"
+          grep -q 'Share B1/B2' "$scratch/share-ai-services.html"
           grep -q 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' "$scratch/payment.html"
           grep -q 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' "$scratch/payment.html"
           grep -q 'collaborator-join.yml' "$scratch/join.html"
