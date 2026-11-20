@@ -1,0 +1,36 @@
+name: PC AI Miner — One Authenticated Opt-in Social Publication
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pc-ai-miner-moltbook-single-share.yml'
+permissions:
+  contents: read
+concurrency:
+  group: pc-ai-miner-one-safe-bounty-scout-public-share
+  cancel-in-progress: false
+jobs:
+  one-genuine-share:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check duplicate controls and truthful source page
+        run: |
+          python -m py_compile crypto-agents/one_time_moltbook_pc_ai_miner.py
+          python crypto-agents/one_time_moltbook_pc_ai_miner.py --help
+          python -m py_compile crypto-agents/pc-ai-miner/pc_ai_miner.py
+      - name: Attempt precisely one authorized account post if credentials permit
+        env:
+          MOLTBOOK_BOUNTYSCOUTAI_API_KEY: \${{ secrets.MOLTBOOK_BOUNTYSCOUTAI_API_KEY }}
+          PC_AI_MINER_SINGLE_POST_ALLOWED: 'true'
+        run: python crypto-agents/one_time_moltbook_pc_ai_miner.py
+      - name: Limit claims to actual platform receipt
+        if: always()
+        run: |
+          echo 'A public post ID is required before claiming a social publication; no automatic recurring reposts.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No Gmail access, DMs, mining on CI, wallet signing or speculative BTC revenue.' >> "$GITHUB_STEP_SUMMARY"
