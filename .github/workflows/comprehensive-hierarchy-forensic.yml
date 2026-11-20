@@ -1,0 +1,41 @@
+name: Full Repository Hierarchy and Owner Order Forensic Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/comprehensive_hierarchy_forensic.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - 'crypto-agents/directive_cascade.py'
+      - 'crypto-agents/directive_understanding_gate.py'
+      - '.github/workflows/comprehensive-hierarchy-forensic.yml'
+permissions:
+  contents: read
+concurrency:
+  group: comprehensive-hierarchy-readonly-forensics
+  cancel-in-progress: false
+jobs:
+  repository-wide-forensics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install YAML parser for all workflows
+        run: python -m pip install --quiet 'PyYAML>=6,<7'
+      - name: Audit all tracked code, JSON, workflow YAML, hierarchy arithmetic and exact owner command relay
+        run: |
+          python -m py_compile crypto-agents/comprehensive_hierarchy_forensic.py
+          python crypto-agents/comprehensive_hierarchy_forensic.py --run
+          cat hierarchy-forensic-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain every forensic inventory, findings, individual route and implementation roadmap
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-comprehensive-hierarchy-forensic
+          path: hierarchy-forensic-evidence/
+          if-no-files-found: warn
+          retention-days: 30
