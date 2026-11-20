@@ -25,7 +25,7 @@ cascade_owner=read_owner()
 fleet=os.environ.get("WORKFORCE_ID","transferexperiment")
 director_shared_context=centralized_role_task(original_role_index(fleet,role),expected={"D"})
 if (director_shared_context["owner_command"]["owner_sha256"] != cascade_owner["owner_sha256"]
-    or director_shared_context["parent"] != "CHIEF_D"):
+    or director_shared_context["parent"] != fleet):
     raise ValueError("Director command disagrees with the central role runtime")
 if cascade_owner["owner_order_id"] != chief_D_latest["id"]:
     raise ValueError("Director received mismatched owner directive")
