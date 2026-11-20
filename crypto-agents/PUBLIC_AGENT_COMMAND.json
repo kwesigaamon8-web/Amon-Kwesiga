@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-20T13:27:28Z",
-  "command_id": "OWNER-20261120-132728-GLOBAL-CRYPTO-RECEIPTS-ALL-ROLES",
+  "issued_at_utc": "2026-11-20T13:33:12Z",
+  "command_id": "OWNER-20261120-133312-ONE-BY-ONE-AUTHORIZED-BOUNTY-11T",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -26,7 +26,7 @@
     "exact_current_configured_role_namespace": "750377265360",
     "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "OWNER'S MOST IMPORTANT DIRECTIVE TO EVERY ACTUALLY ACTIVATED B1, B2 AND ENIGMA ROLE IN EVERY ASSIGNED COUNTRY: FIND A LAWFUL, REAL PAYING CUSTOMER, ACCEPTED FUNDED BOUNTY OR CONSENTING MINER AND GET REAL VERIFIED BITCOIN OR OTHER CORRECT-NETWORK CRYPTO PAYMENT INTO OWNER'S APPROVED RECEIVE-ONLY ADDRESS. Do NOT spend effort multiplying virtual role IDs or pretending mathematical 11.26T role capacity means 11.26T active workers; every virtual role obtains instruction and wallet directory on activation through enigma_universal_owner_order.py, and only authentic agent calls and confirmed blockchain payments count. BTC MAINNET B1: bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; BTC MAINNET B2: bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Non-BTC self-custody address candidates are HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY until chain and asset independently confirmed; 6 exchange deposit routes remain DO NOT SEND. Focus on real funded tasks and buyer consent; zero earnings until paid and chain txid confirmed. Specific current lead directory agentics.page/markets; global potential competition superteam.fun/earn/listing/kriptok-creator-challenge-01; independent sponsor/eligibility and payment checks mandatory before action; contest winnings are not guaranteed. No Gmail usage, email, unapproved posts/spam, mining on unauthorized hardware or prohibited platforms, account creation under false identities, or wallet signing/transferring.",
+  "owner_command": "Get actual correctly routed BTC or other approved crypto receipts, not hypothetical earnings. ONE PROGRAM AT A TIME: first legally authorized Immunefi Threshold Network bug bounty, rules https://immunefi.com/rules/ and first source target TokenholderGovernor, https://immunefi.com/bug-bounty/thresholdnetwork/scope/ . Every 11,255,658,980,400 virtual role has O(1) targeted one-of-eight-lane country-scoped task packet via crypto-agents/authorized_bounty_pipeline.py --index N. Initial public source reconnaissance and plan at crypto-agents/paid-work/BOUNTY_01_THRESHOLD_NETWORK.md . No mainnet/public-testnet probes, third-party service scanning, unauthorised attacks, high-traffic tests, social engineering or embargoed disclosure. Only non-invasive public source inspections and locally isolated reproducible tests. Genuine reports through official Immunefi channel, authenticated authorized researchers; no spam. Threshold reward payout may be USDC or T on ETHEREUM at DAO choice, so user published BTC mainnet addresses must NOT receive this; existing EVM candidate wallets HOLD network/token confirmation. No email access, sending, spending, signing. Count actual valid independently reviewed reports, sponsor acceptance, and confirmed correct-chain txids, never pretend 11.26T online agents or bounty prizes.",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -162,7 +162,7 @@
     "chain_token_memo_must_be_reverified_before_any_payment": true,
     "owner_wallet_signing_spending_allowed": false
   },
-  "latest_owner_priority": "ACHIEVE_VERIFIED_OWNER_RECEIPTS_BTC_OR_APPROVED_OTHER_COINS_NOT_VIRTUAL_ROLE_COUNTS",
+  "latest_owner_priority": "OBTAIN_REAL_CRYPTO_WITH_ONE_BY_ONE_AUTHORIZED_IMMUNEFI_BOUNTIES_FIRST_THRESHOLD_NO_FAKED_11T_LIVE_AGENT_CLAIMS",
   "continuous_failure_learning_rule": {
     "owner_instruction_received_utc": "2026-11-17T11:04:01Z",
     "exact_instruction": "always learn from failures",
@@ -397,5 +397,26 @@
     "requires_individual_execution_receipt": true,
     "verified_external_broadcasts_to_all_virtual_roles": 0,
     "verified_new_earnings_from_this_order": 0
+  },
+  "active_one_by_one_authorized_bounty": {
+    "id": "OWNER-20261120-133312-ONE-BY-ONE-AUTHORIZED-BOUNTY-11T",
+    "first_program": "Threshold Network",
+    "platform": "Immunefi",
+    "program_url": "https://immunefi.com/bug-bounty/thresholdnetwork/information/",
+    "scoped_asset": "TokenholderGovernor",
+    "program_requirements": "No public contract interaction; local source/reproduction only; detailed PoC and eligible in-scope impact",
+    "pipeline": "crypto-agents/authorized_bounty_pipeline.py",
+    "report": "crypto-agents/paid-work/BOUNTY_01_THRESHOLD_NETWORK.md",
+    "divisions": 30,
+    "virtual_roles": 11255658980400,
+    "live_workers_verified_from_this_command": 0,
+    "vulnerability_findings_validated": 0,
+    "authenticated_reports_submitted": 0,
+    "crypto_earnings_confirmed": 0,
+    "payout_asset_choice": "USDC_or_T_Ethereum_at_DAO_discretion",
+    "payout_wallet_verified": false,
+    "previous_B1_B2_BTC_receive_only_addresses_retained": true,
+    "Gmail_authorized": false,
+    "do_not_progress_to_second_bounty_until_first_reviewed": true
   }
 }
