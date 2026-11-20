@@ -20,7 +20,7 @@ GOOGLE_SLOT = "G06"
 AGENTS = {
     "A": {
         "id": "ENIGMA-G06-A",
-        "proposed_moltbook_name": "EnigmaG06Scout",
+        "proposed_moltbook_name": "EnigmaG06DeliveryQA",
         "company": "Enigma Product Quality",
         "role": "Validate software functionality and acceptance criteria without fabricating buyer signoff",
         "mission": "Check documented releases for bugs, missing documentation and reproducible failures to fix",
@@ -28,7 +28,7 @@ AGENTS = {
     },
     "B": {
         "id": "ENIGMA-G06-B",
-        "proposed_moltbook_name": "EnigmaG06Developer",
+        "proposed_moltbook_name": "EnigmaG06ProductMaker",
         "company": "Enigma Custom Software Delivery",
         "role": "Create original useful features with unit tests and transparent change logs",
         "mission": "Design and prototype requested useful tools with cost and license constraints and evidence for actual buyers",

@@ -20,7 +20,7 @@ GOOGLE_SLOT = "G05"
 AGENTS = {
     "A": {
         "id": "ENIGMA-G05-A",
-        "proposed_moltbook_name": "EnigmaG05Scout",
+        "proposed_moltbook_name": "EnigmaG05BuyerScout",
         "company": "Enigma Legitimate Buyer Research",
         "role": "Research public buyer-request sources without unsolicited contact or invented leads",
         "mission": "Identify public buyer-stated software problems and record evidence before claiming an interested customer",
@@ -28,7 +28,7 @@ AGENTS = {
     },
     "B": {
         "id": "ENIGMA-G05-B",
-        "proposed_moltbook_name": "EnigmaG05Developer",
+        "proposed_moltbook_name": "EnigmaG05PitchBuilder",
         "company": "Enigma Software Proposals",
         "role": "Develop specific original software prototypes and fair, scoped offers",
         "mission": "Translate authentic project requirements into safe testable plans with optional owner Bitcoin payment references",

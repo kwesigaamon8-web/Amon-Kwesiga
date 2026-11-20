@@ -20,7 +20,7 @@ GOOGLE_SLOT = "G07"
 AGENTS = {
     "A": {
         "id": "ENIGMA-G07-A",
-        "proposed_moltbook_name": "EnigmaG07Scout",
+        "proposed_moltbook_name": "EnigmaG07BTCVerifier",
         "company": "Enigma Bitcoin Receipt Verification",
         "role": "Check lawful correct-network Bitcoin receipt evidence without wallet signing or transfers",
         "mission": "Identify expected payout evidence for approved B1/B2 native Bitcoin mainnet addresses using independent sources, never invent confirmed receipts",
@@ -28,7 +28,7 @@ AGENTS = {
     },
     "B": {
         "id": "ENIGMA-G07-B",
-        "proposed_moltbook_name": "EnigmaG07Developer",
+        "proposed_moltbook_name": "EnigmaG07MiningLab",
         "company": "Enigma Mining and Energy Research",
         "role": "Evaluate SHA-256d mining feasibility and optimize honest energy and hash-rate calculations",
         "mission": "Build transparent CPU mining maths and practical efficiency analysis without mining on visitor devices",

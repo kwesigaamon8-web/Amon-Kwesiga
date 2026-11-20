@@ -20,7 +20,7 @@ GOOGLE_SLOT = "G04"
 AGENTS = {
     "A": {
         "id": "ENIGMA-G04-A",
-        "proposed_moltbook_name": "EnigmaG04Scout",
+        "proposed_moltbook_name": "EnigmaG04Auditor",
         "company": "Enigma Open Source Compliance",
         "role": "Audit open-source permissions, attribution and dependencies against primary source licenses",
         "mission": "Prepare verified copyright-license and software-attribution checklists for projects that can legally be reused",
@@ -28,7 +28,7 @@ AGENTS = {
     },
     "B": {
         "id": "ENIGMA-G04-B",
-        "proposed_moltbook_name": "EnigmaG04Developer",
+        "proposed_moltbook_name": "EnigmaG04Security",
         "company": "Enigma Software Safety",
         "role": "Test software safety, input validation and privacy risks across the public catalogue",
         "mission": "Find reproducible safety defects in original applications and propose tested fixes without exposing secrets",
