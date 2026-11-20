@@ -1,0 +1,45 @@
+name: PC AI Miner — Verify Live Hosted Public Demo
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pc-ai-miner-live-preview-check.yml'
+permissions:
+  contents: read
+jobs:
+  check-published-pc-ai-miner-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test latest advertised public preview for genuine PC AI Miner distribution
+        run: |
+          python - <<'PY'
+          import re,urllib.request,urllib.error
+          from pathlib import Path
+          s=Path('docs/TEMP_PREVIEW.md').read_text()
+          m=re.search(r'\*\*Open the latest working digital service site:\*\* (https://[a-z0-9-]+\.ship\.place/)',s)
+          if not m:raise SystemExit('NO_PUBLISHED_LIVE_PREVIEW')
+          url=m.group(1)+'pc-ai-miner.html'
+          req=urllib.request.Request(url,headers={'User-Agent':'PC-AI-Miner-Real-Public-Delivery-Probe/1.0'})
+          try:
+              with urllib.request.urlopen(req,timeout=20) as r:
+                  raw=r.read(800000).decode('utf-8','replace')
+                  code=r.status
+          except urllib.error.URLError as e:
+              print('PC_AI_MINER_LIVE_NOT_REACHABLE '+type(e).__name__)
+              raise
+          assert code==200
+          assert '<title>PC AI Miner' in raw
+          assert 'Run 32 example hashes' in raw
+          assert 'hardwareConsent' in raw and 'donationConsent' in raw
+          assert 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' in raw
+          assert 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' in raw
+          assert 'does not start miners' not in raw or 'not' in raw
+          assert 'Crypto mining' not in raw
+          print('PC_AI_MINER_LIVE_PUBLIC_HTTP_200_VERIFIED '+url)
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('**PC AI Miner public HTML was actually accessible with HTTP 200:** '+url+'\n')
+              f.write('The site is an educational opt-in demo, not a browser miner or proof of BTC income.\n')
+          PY
