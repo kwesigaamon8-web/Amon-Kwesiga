@@ -8,6 +8,7 @@ import datetime as dt
 import json
 import urllib.error
 import urllib.request
+from btc_receiver_safety import require_all_owner_receivers, require_approved_receiver
 from pathlib import Path
 
 ACCOUNTS={
@@ -23,6 +24,7 @@ OUT=Path("bitcoin-receipt-probe")
 OUT.mkdir(exist_ok=True)
 
 def check(address,source):
+    require_all_owner_receivers()
     url=SOURCES[source].format(address=address)
     try:
         req=urllib.request.Request(url,headers={
@@ -83,6 +85,7 @@ def parse_address_summary(payload):
 
 def check_balance(address,source):
     """Public address balance stats, separate from newest-page transaction samples."""
+    require_all_owner_receivers()
     url=SOURCES[source].format(address=address).removesuffix("/txs")
     try:
         req=urllib.request.Request(url,headers={
@@ -127,6 +130,7 @@ def evaluate_balances(entries):
 
 
 def self_test():
+    require_all_owner_receivers()
     valid={"chain_stats":{"funded_txo_sum":42_000,"spent_txo_sum":2_000,"tx_count":3},
            "mempool_stats":{"funded_txo_sum":1_000,"spent_txo_sum":0,"tx_count":1}}
     parsed=parse_address_summary(valid)
@@ -157,6 +161,8 @@ def self_test():
 
 
 def run():
+    require_all_owner_receivers()
+    assert ACCOUNTS == {"transferexperiment": require_approved_receiver("transferexperiment", ACCOUNTS["transferexperiment"])["address"], "BountyScoutAI": require_approved_receiver("BountyScoutAI", ACCOUNTS["BountyScoutAI"])["address"]}
     outcome={"as_of_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
              "since_utc":CUTOFF.isoformat(),
              "receipts_are_not_automatically_income":True,"accounts":{}}
