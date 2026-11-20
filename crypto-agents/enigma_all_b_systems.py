@@ -149,6 +149,7 @@ def software_qa(agent,path="docs/global-1000-manifest.json"):
 def execute(agent,fleet,cycle,out,model_factory=None):
     from enigma_universal_owner_order import order as canonical_owner_order
     from directive_cascade import read_owner
+    from hierarchy_command_core import task_context as centralized_role_task, ASSIGNED_CODES as ONE_CODE_PER_TIER
     from directive_understanding_gate import challenge as understanding_challenge, grade as understanding_grade
     live_owner_order=canonical_owner_order()
     full_cascade_order=read_owner()
@@ -156,6 +157,14 @@ def execute(agent,fleet,cycle,out,model_factory=None):
         raise ValueError("Enigma actual model cannot run with stale owner cascade")
     div=hierarchy(agent,fleet)
     selected=rotate(agent,fleet,cycle)
+    # The actual Enigma W-model uses the SAME central worker code/command
+    # contract as every other B1/B2 original and Enigma root division.
+    selected_original_role=selected["internal_worker_id"].split("/",2)[2]
+    shared_index=TOTAL_ROLES+index_of(agent,fleet,selected_original_role)
+    shared=centralized_role_task(shared_index,expected={"W"})
+    if (shared["parent"]!=div["division"]+"/"+selected["reports_via"][1]
+        or shared["owner_command"]["owner_order_id"]!=live_owner_order["id"]):
+        raise ValueError("Enigma child role has stale command or incorrect supervisor")
     research=source_search(agent,fleet)
     qa=software_qa(agent) if fleet=="B2" else None
     generator=None
@@ -215,6 +224,10 @@ def execute(agent,fleet,cycle,out,model_factory=None):
         live_owner_order["id"],model_invocation_completed=comprehension_called,
         accepted_task_proof=False)
     state={
+       "central_hierarchy_role_engine":"crypto-agents/hierarchy_command_core.py",
+       "one_shared_worker_program":ONE_CODE_PER_TIER[shared["tier"]],
+       "centralized_owner_command_sha256":shared["owner_command"]["owner_sha256"],
+       "centralized_immediate_parent":shared["parent"],
        "owner_instruction_comprehension_grade":comprehension_grade,
        "owner_directive_ack_not_assumed_for_virtual_roles":True,
        "run_utc":utc(),"agent_id":agent,"division_id":div["division"],
