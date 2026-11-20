@@ -1,0 +1,61 @@
+name: B1B2 One Self-Correcting Engine Across All 11T Role IDs
+on:
+  workflow_dispatch:
+  schedule:
+    # A small daily proof, not eleven trillion running processes.
+    - cron: '33 3 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/self_correcting_role_runtime.py'
+      - 'crypto-agents/hierarchy_command_core.py'
+      - 'crypto-agents/role_worker.py'
+      - 'crypto-agents/test_self_correcting_all_roles.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - '.github/workflows/b1b2-one-self-correction-all-role-tiers.yml'
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-shared-role-runtime-self-correction
+  cancel-in-progress: false
+jobs:
+  demonstrate-shared-worker-self-correction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile current shared code without executing untrusted snippets
+        run: |
+          python -m py_compile crypto-agents/self_correcting_role_runtime.py
+          python -m py_compile crypto-agents/test_self_correcting_all_roles.py
+          python -m py_compile crypto-agents/hierarchy_command_core.py crypto-agents/role_worker.py
+      - name: Validate the original human owner authority before any worker
+        run: |
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/enigma_universal_owner_order.py --self-test
+      - name: Test 210 actual local role invocations across all 30 roots
+        run: python crypto-agents/test_self_correcting_all_roles.py
+      - name: Retest original shared role subprocess integration
+        run: python crypto-agents/test_shared_hierarchy_runtime.py
+      - name: Upload per-role proof and unchanged payment guard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-self-correcting-code-all-11t-role-addresses
+          path: |
+            self-correction-evidence/role-hierarchy/
+            shared-role-command-evidence/REPORT.md
+            shared-role-command-evidence/SHARED_ROLE_AUDIT.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Report factual execution limits
+        if: always()
+        run: |
+          echo '## B1/B2 per-role self-correction' >> "$GITHUB_STEP_SUMMARY"
+          echo '11,255,658,980,400 virtual role IDs use ONE shared self-correction code on actual invocation.' >> "$GITHUB_STEP_SUMMARY"
+          echo '210 in-process samples (30 roots x 7 tiers), plus 210 separate bounded subprocess receipts, are proven only if tests passed.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No 11T independent workers were activated. No customer applications, wallet operations, emails, mining or paid receipts are created.' >> "$GITHUB_STEP_SUMMARY"
