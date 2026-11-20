@@ -2031,5 +2031,10 @@
   "external_identity_claims": "These are software research roles, not recruited humans or independent authenticated social accounts",
   "identity_registry_file": "crypto-agents/agent_registry.csv",
   "reporting_policy": "Each worker independently researches with a unique agent identity and reports to exactly one manager. Each manager independently reviews 50 worker roles and reports to exactly one director. Each of the 2 independent assistants reports only to its director. Each director reports only to the owner. Shared findings are copied as source-linked handoffs, never dual reporting lines.",
-  "implementation_truth": "These are distinct configured autonomous inference roles, not 7680 separate authenticated social accounts, distinct processes or simultaneous cloud instances. Only activated rotational worker slots actually run."
+  "implementation_truth": "These are distinct configured autonomous inference roles, not 7680 separate authenticated social accounts, distinct processes or simultaneous cloud instances. Only activated rotational worker slots actually run.",
+  "managers_per_director": 15,
+  "managers_per_company_total": 150,
+  "first_tier_workers_per_director": 750,
+  "first_tier_workers_per_company_total": 7500,
+  "managers_per_company_description": "Legacy field managers_per_company=15 means 15 per director; use managers_per_director=15, 150 managers across 10 directors in one company."
 }
