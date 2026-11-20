@@ -6,6 +6,7 @@ on:
       - 'docs/index.html'
       - 'docs/brand-ai.html'
       - 'docs/share-free-software.html'
+      - 'docs/pc-ai-miner.html'
       - 'docs/free-toolbox.html'
       - 'docs/mini-apps.html'
       - 'docs/market-lab.html'
@@ -56,6 +57,8 @@ jobs:
           test -s docs/assets/market-lab.js
           test -s docs/brand-ai.html
           test -s docs/share-free-software.html
+          test -s docs/pc-ai-miner.html
+          grep -q 'Run 32 example hashes' docs/pc-ai-miner.html
           test -s docs/free-software-manifest.json
           test -s docs/FREE_SOFTWARE_LICENSE.md
           test -s docs/assets/free-toolbox.js
@@ -87,7 +90,7 @@ jobs:
           set -euo pipefail
           umask 077
           cd docs
-          zip -q ../studio-preview.zip index.html software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
+          zip -q ../studio-preview.zip index.html software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
           cd ..
           curl -fSs --retry 2 --retry-delay 5 --max-time 50 \
             -X POST 'https://ship.page/deploy' \
@@ -101,7 +104,7 @@ jobs:
           url=payload.get('url','')
           parsed=urllib.parse.urlsplit(url)
           assert parsed.scheme=='https' and (parsed.hostname or '').endswith('.ship.place'), 'invalid live page URL'
-          assert {'index.html','software.html','join.html','payment.html','ai.html','brand-ai.html','free-toolbox.html','mini-apps.html','market-lab.html','share-free-software.html','free-software-manifest.json','FREE_SOFTWARE_LICENSE.md','assets/free-toolbox.js','assets/free-toolbox-extensions.js','assets/free-mini-apps.js','assets/market-lab.js','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
+          assert {'index.html','software.html','join.html','payment.html','ai.html','brand-ai.html','free-toolbox.html','mini-apps.html','market-lab.html','share-free-software.html','pc-ai-miner.html','free-software-manifest.json','FREE_SOFTWARE_LICENSE.md','assets/free-toolbox.js','assets/free-toolbox-extensions.js','assets/free-mini-apps.js','assets/market-lab.js','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
           exp=payload.get('expires_at')
           assert exp and 'T' in exp, 'anonymous expiry not provided'
           now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
@@ -109,7 +112,7 @@ jobs:
 
           **Open the latest working digital service site:** {url}
 
-          **Browse all shared software:** [Original source catalogue]({url}software.html).
+          **Browse all shared software:** [Original source catalogue]({url}software.html) · **[PC AI Miner — educational SHA256d demos and consented mining]({url}pc-ai-miner.html)**.
 
           **Use the owner-authorized free suite:** [55 original browser utilities]({url}free-toolbox.html) · [6 practical mini apps]({url}mini-apps.html) · [6 new free business and marketing applications]({url}market-lab.html) · [Share the software worldwide]({url}share-free-software.html) · [MIT source license]({url}FREE_SOFTWARE_LICENSE.md).
 
@@ -131,7 +134,7 @@ jobs:
           '''
           Path('docs/TEMP_PREVIEW.md').write_text(body,encoding='utf-8')
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
-              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Temporary backup preview URL directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/TEMP_PREVIEW.md\n- **All 32 public assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
+              f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Temporary backup preview URL directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/TEMP_PREVIEW.md\n- **PC AI Miner and the public studio assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
           print('PUBLIC_DEPLOYMENT_CONFIRMED',json.dumps({'url':url,'expiry':exp,'files':len(payload.get('files',[]))}))
           PY
           rm -f publish-private.json studio-preview.zip
@@ -154,7 +157,7 @@ jobs:
           grep -q 'function' "$scratch/reconcile.js"
           grep -q 'function' "$scratch/reconcile-ui.js"
           [ -s "$scratch/styles.css" ]
-          for asset in software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
+          for asset in software.html join.html payment.html ai.html brand-ai.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
             mkdir -p "$scratch/$(dirname "$asset")"
             curl -fSsL --max-time 25 "${url}${asset}" -o "$scratch/$asset"
             test -s "$scratch/$asset"
@@ -170,6 +173,7 @@ jobs:
           grep -q 'Six new free business' "$scratch/market-lab.html"
           grep -q '67' "$scratch/free-software-manifest.json"
           grep -q 'Share useful free software worldwide' "$scratch/share-free-software.html"
+          grep -q 'Run 32 example hashes' "$scratch/pc-ai-miner.html"
           grep -q 'assets/free-mini-apps.js' "$scratch/mini-apps.html"
           grep -q 'Bitcoin mining' "$scratch/software.html"
           grep -q 'Bitcoin mainnet' "$scratch/payment.html"
