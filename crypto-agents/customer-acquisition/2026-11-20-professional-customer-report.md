@@ -47,3 +47,12 @@ Hello, I have practical experience in credit control, travel industry accounting
 
 ## Instructions to actually executing worker batches
 One director owns each source; no repeated unsolicited contact. Country-division workers that run must find a fresh original buyer or sponsor request, record its public URL, eligibility, price, authentic permitted proposal route, owner-reviewed tailored draft and evidence of outcome. Never label a scraped search hit as an engaged buyer. Do not market the 11 trillion virtual namespace as actual execution capacity. Only publish offers where the platform or client has opted into a professional service response. **No Gmail/email access, no cold bulk messages, no wallet signing or spending.**
+
+
+## Actual on-demand worker evidence, checked after publication
+- [Owner customer-search run #44755302502](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44755302502) **completed SUCCESS**, with an independent audit **PASS**: 900 distinct Python subprocess reports (B1 450, B2 450). This is **zero LLM inferences**, not an autonomous 900-person sales force.
+- **660 snapshot source records assessed**, **240 worker source snapshots unavailable**, **83 distinct preliminary URLs** flagged by coarse text filters. Some are false positives—including our own public GitHub coordination issue #9—therefore **NOT 83 qualified or contacted buyers**. These hits require actual buyer, funding and permission checks before proposals.
+- **Actual customer proposals sent to Freelancer/Upwork: 0.** No authenticated platform bidding account/control was available in this chat. The user's open browser had only ChatGPT and MetaMask tabs; GitHub owner-repository posting does not equal outreach to those external buyers.
+- **Owner intake actual outside-party comments:** issue #18 had only owner comments, issue #9 had owner and GitHub-Actions bot comments, and issues #20/#32 had no comments at inspection. **No verified external buyer replies.**
+- **Metricool:** connected account query returned "no social network connected"; no social campaign posted.
+- **Country assignment coverage audit:** [186-row evidence tracker](country-market-coverage-186.json), with confirmed public buyer location links only for UK, Rwanda, United States and Nigeria; other assigned countries cannot be treated as individually searched. The INR project is market-relevant, but actual client location is not independently established.
