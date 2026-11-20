@@ -56,7 +56,8 @@ for fleet, (research, model) in pair.items():
     max_parallel = int(re.search(r"max-parallel:\s*(\d+)", ai).group(1))
     model_attempts = int(re.search(r"REAL_AI_PROCESSES_PER_DIRECTOR: '(\d+)'", ai).group(1))
     budget = int(re.search(r"MAX_BATCH_SECONDS: '(\d+)'", ai).group(1))
-    assert model_attempts > 0 and max_parallel > 0
+    assert model_attempts == 3 and max_parallel == 3, "Bounded configured capacity is 3 per director with 3 parallel jobs"
+    assert budget >= model_attempts * 180, "660-second director batch must allow 3 x 180s timeouts"
     assert "director: [D01, D02, D03, D04, D05, D06, D07, D08, D09, D10]" in ai
     by_fleet[fleet] = {
         "research_cron_utc": rs[0],
@@ -75,7 +76,7 @@ assert by_fleet["transferexperiment"]["research_cron_utc"] == "31 * * * *"
 assert by_fleet["BountyScoutAI"]["research_cron_utc"] == "46 * * * *"
 assert by_fleet["transferexperiment"]["actual_model_cron_utc"] == "7 4 * * *"
 assert by_fleet["BountyScoutAI"]["actual_model_cron_utc"] == "21 4 * * *"
-assert by_fleet["transferexperiment"]["configured_daily_model_attempt_cap"] == 200
+assert by_fleet["transferexperiment"]["configured_daily_model_attempt_cap"] == 30
 print("B_FLEET_PARITY", json.dumps({
     "integrity": "PASS",
     "chief_director": "D",
