@@ -4,6 +4,7 @@ Inputs are original GitHub Actions artifacts, not self-reported organization cou
 """
 import argparse
 import csv
+import hashlib
 import json
 import re
 from collections import Counter, defaultdict
@@ -114,6 +115,44 @@ def examine(root, expected_order, output, strict_prompt_required=False):
                         errors.append("lead_without_source")
             elif assessment is not None:
                 errors.append("fabricated_assessment_without_source")
+            # A modern worker must prove it actually read the full order text and
+            # computed a unique task, rather than merely reproducing an owner ID.
+            task_proof = worker.get("actual_distinct_ordered_task")
+            actual_task_verified = False
+            full_order_read = False
+            source_diagnostic_done = False
+            if "order_text_actually_read" in worker or "actual_distinct_ordered_task" in worker:
+                public_doc = json.loads(Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8"))
+                prompt_content = Path("crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md").read_text(encoding="utf-8")
+                expected_owner_hash = hashlib.sha256(str(public_doc["owner_command"]).encode("utf-8")).hexdigest()
+                expected_prompt_hash = hashlib.sha256(prompt_content.encode("utf-8")).hexdigest()
+                if (worker.get("order_text_actually_read") is True
+                    and worker.get("owner_instruction_sha256") == expected_owner_hash
+                    and worker.get("strict_prompt_sha256") == expected_prompt_hash):
+                    full_order_read = True
+                else:
+                    errors.append("full_canonical_order_not_cryptographically_matched")
+                if isinstance(task_proof, dict) and task_proof.get("evidence_sha256"):
+                    digest = task_proof["evidence_sha256"]
+                    payload = {k: v for k,v in task_proof.items() if k != "evidence_sha256"}
+                    actual_hash = hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+                    required_action = ("SPECIFIC_PUBLIC_BUYER_SOURCE_ASSESSMENT" if seen else "SOURCE_FAILURE_DIAGNOSIS")
+                    if (digest == actual_hash and task_proof.get("action") == required_action
+                        and task_proof.get("worker_specialty") == task.get("specialty")
+                        and task_proof.get("verified_external_customer") is False
+                        and task_proof.get("contact_authorized") is False):
+                        if seen and (task_proof.get("source_url_reviewed") != expected_issue.get("html_url")
+                                     or task_proof.get("source_issue_id_reviewed") != expected_issue.get("id")):
+                            errors.append("specific_task_review_did_not_match_source")
+                        elif not seen and task_proof.get("source_query_examined") != snapshot.get("source_query"):
+                            errors.append("source_failure_diagnosis_missing_query")
+                        else:
+                            actual_task_verified = True
+                            source_diagnostic_done = not seen
+                    else:
+                        errors.append("individual_task_action_or_hash_failed")
+                else:
+                    errors.append("individual_task_execution_proof_missing")
             if worker.get("verified_paid_work") or worker.get("new_wallet_receipts_verified"):
                 errors.append("unsupported_income")
             if (worker.get("emails_read_or_sent") or worker.get("wallet_transactions")
@@ -136,6 +175,9 @@ def examine(root, expected_order, output, strict_prompt_required=False):
                 "expected_order_id": expected_order,
                 "process_recorded": process_recorded, "order_in_record": order_recorded,
                 "task_assigned": task.get("id") == worker_id,
+                "full_owner_order_text_digest_verified": full_order_read,
+                "actual_individual_task_evidence_verified": actual_task_verified,
+                "source_failure_diagnostic_executed": source_diagnostic_done,
                 "source_fetch_status": snapshot.get("fetch_status", "not_recorded"),
                 "source_url": url, "source_issue_present": seen,
                 "source_triage_completed": task_assessed,
@@ -163,6 +205,9 @@ def examine(root, expected_order, output, strict_prompt_required=False):
         "workers_with_matching_order": sum(r["order_in_record"] for r in rows),
         "workers_with_specific_assigned_task": sum(r["task_assigned"] for r in rows),
         "workers_with_source_triage": sum(r["source_triage_completed"] for r in rows),
+        "workers_with_full_owner_instruction_digest": sum(r["full_owner_order_text_digest_verified"] for r in rows),
+        "workers_with_actual_individual_task_receipts": sum(r["actual_individual_task_evidence_verified"] for r in rows),
+        "workers_with_source_failure_diagnostic": sum(r["source_failure_diagnostic_executed"] for r in rows),
         "workers_blocked_without_source": sum(r["worker_result"] == "BLOCKED_NO_SOURCE" for r in rows),
         "unverified_lead_flags_not_customers": sum(r["unverified_lead_flag"] for r in rows),
         "distinct_unverified_lead_urls": len(candidate_index),
@@ -192,7 +237,9 @@ def examine(root, expected_order, output, strict_prompt_required=False):
           "| Test | Actual evidence |", "|---|---:|"]
     for field in ("worker_records_examined", "workers_with_any_error", "workers_with_process_evidence",
                   "workers_with_matching_order", "workers_with_specific_assigned_task",
-                  "workers_with_source_triage", "workers_blocked_without_source",
+                  "workers_with_source_triage", "workers_with_full_owner_instruction_digest",
+                  "workers_with_actual_individual_task_receipts",
+                  "workers_with_source_failure_diagnostic", "workers_blocked_without_source",
                   "distinct_unverified_lead_urls", "actual_independently_verified_buyers",
                   "actual_external_proposals_sent", "actual_model_inference_records",
                   "actual_accepted_paid_jobs", "actually_verified_crypto_receipts"):
