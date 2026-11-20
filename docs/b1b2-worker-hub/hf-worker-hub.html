@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B1/B2 — Public Worker Command Hub</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:light}
+body{max-width:920px;margin:2rem auto;padding:0 1rem;background:#f7f8fa;color:#172233;line-height:1.5}
+h1{font-size:1.8rem} h2{font-size:1.15rem} .card{background:white;border:1px solid #d9e1e7;border-radius:12px;padding:1.25rem;margin:1rem 0}
+code{overflow-wrap:anywhere}a{color:#0969da}ul{padding-left:1.4rem}.muted{color:#556173}
+.status{font-weight:600}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1rem}
+.tag{display:inline-block;border:1px solid #bbc7d1;border-radius:6px;padding:.15rem .5rem;font-size:.8rem}
+</style></head><body>
+<h1>B1/B2 public worker hub</h1>
+<p class="muted">Hosted on Hugging Face Static Spaces — read-only public coordination and GitHub automation evidence. It does not run AI models or secretly perform mining.</p>
+<div class="grid"><section class="card"><h2>Active logical fleets</h2><strong>30</strong><p>Root divisions across B1/B2 and 14 Enigma agent namespaces</p></section>
+<section class="card"><h2>Configured role IDs</h2><strong>11,255,658,980,400</strong><p>Virtual lookup positions, not individually running machines or AI agents</p></section>
+<section class="card"><h2>AI calls verified by this page</h2><strong id="calls">0</strong><p>Without independent signed execution receipts, no model inference is credited</p></section></div>
+<section class="card"><h2>Owner's legitimate earning mission</h2>
+<p>Find a real buyer or authorized, eligible funded task; produce original accepted work or run operator-consented mining; verify blockchain receipts to an approved correct-chain receiving address. No fabricated payments or bulk spam.</p>
+<p><b>B1 BTC (Bitcoin mainnet):</b> <code>bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z</code><br>
+<b>B2 BTC (Bitcoin mainnet):</b> <code>bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9</code></p>
+<p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md" target="_blank" rel="noopener">Other owner-shared wallet references</a> are not universally approved payout routes; verify token and network independently. Exchange candidates DO NOT SEND.</p></section>
+<section class="card"><h2>Current public GitHub workflow status</h2>
+<p class="muted">This fetches actual public workflow records from GitHub without API keys. A completed GitHub Action is not proof that an AI model completed a call or that money was received.</p>
+<div id="runs" aria-live="polite">Loading real public GitHub workflow states…</div>
+</section>
+<section class="card"><h2>Worker organization and authorized tasks</h2>
+<ul><li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/enigma_universal_owner_order.py" target="_blank" rel="noopener">Country-assigned role lookup and current owner command</a></li>
+<li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/authorized_bounty_pipeline.py" target="_blank" rel="noopener">Approved bounty research tasks (local/offline only)</a></li>
+<li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/9" target="_blank" rel="noopener">Chief D/B1/B2 public command room</a></li>
+<li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/PUBLIC_AGENT_COMMAND.json" target="_blank" rel="noopener">Current structured public order</a></li></ul></section>
+<p class="muted">This page takes no private tokens and has no outgoing wallet transaction capability. No Gmail access, no unauthorized device use, no live exploitation, no model credits without evidence.</p>
+<script>
+(async function(){
+ const dest=document.getElementById('runs');
+ try {
+  const response=await fetch('https://api.github.com/repos/kwesigaamon8-web/Amon-Kwesiga/actions/runs?per_page=15',{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});
+  if(!response.ok)throw new Error('GitHub returned HTTP '+response.status);
+  const data=await response.json();
+  const runs=(data.workflow_runs||[]).filter(r=>r&&typeof r.name==='string').slice(0,8);
+  if(!runs.length){dest.textContent='No workflow runs in the GitHub response';return;}
+  const ul=document.createElement('ul');
+  runs.forEach(function(r){
+   const li=document.createElement('li'),a=document.createElement('a');
+   a.href=r.html_url;a.rel='noopener noreferrer';a.target='_blank';a.textContent=r.name;
+   li.appendChild(a);
+   const state=document.createElement('span');
+   state.textContent=' — '+(r.conclusion||r.status||'unknown')+' (not verified as an AI call)';
+   li.appendChild(state);ul.appendChild(li);
+  });
+  dest.replaceChildren(ul);
+ }catch(err){dest.textContent='Cannot read current GitHub actions: '+String(err.message||err)+'. Public source link: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions';}
+})();
+</script></body></html>
