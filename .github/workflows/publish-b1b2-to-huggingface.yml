@@ -1,0 +1,75 @@
+name: B1 B2 Publish Public Hub to Existing Hugging Face Space
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/b1b2-worker-hub/hf-worker-hub.html'
+      - '.github/workflows/publish-b1b2-to-huggingface.yml'
+permissions:
+  contents: read
+jobs:
+  validate-public-static-hub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify no-secret static worker hub content
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('docs/b1b2-worker-hub/hf-worker-hub.html')
+          s=p.read_text(encoding='utf8')
+          for required in (
+              '<!doctype html>', '11,255,658,980,400',
+              'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z',
+              'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9',
+              'api.github.com/repos/kwesigaamon8-web/Amon-Kwesiga/actions/runs',
+              'No Gmail access', 'not individually running',
+              ):
+              assert required.lower() in s.lower(), f'Missing: {required}'
+          assert 'Bearer ' not in s
+          print('HF_STATIC_WORKER_HUB_VALIDATION_PASS: no unverified model or earning claims')
+          PY
+  publish-static-hub:
+    if: github.event_name == 'workflow_dispatch'
+    needs: validate-public-static-hub
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Require user-created fine-grained Hugging Face write credential
+        env:
+          HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+        run: |
+          if [ -z "$HF_SPACE_TOKEN" ]; then
+            echo "::error::Hugging Face write access missing. Create a fine-grained write token restricted to Space Amonkkkk/b1b2-superworker-assembly and add GitHub Actions repository secret HF_SPACE_TOKEN first."
+            exit 1
+          fi
+          echo "Hugging Face write token secret is present; it will never be printed."
+      - name: Install Hub publisher
+        run: python -m pip install --quiet 'huggingface_hub>=0.27'
+      - name: Upload ONE new public page without changing existing index or Space settings
+        env:
+          HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi
+          api=HfApi(token=os.environ['HF_SPACE_TOKEN'])
+          done=api.upload_file(
+              path_or_fileobj='docs/b1b2-worker-hub/hf-worker-hub.html',
+              path_in_repo='worker-hub.html',
+              repo_id='Amonkkkk/b1b2-superworker-assembly',
+              repo_type='space',
+              commit_message='Add public B1/B2 command hub page (existing chat ledger unchanged)',
+          )
+          print('HF_WORKER_HUB_UPLOAD_SUCCESS',done)
+          PY
+      - name: Verify public website URL
+        run: |
+          echo "## Deployed separate read-only status page" >> "$GITHUB_STEP_SUMMARY"
+          echo "https://amonkkkk-b1b2-superworker-assembly.hf.space/worker-hub.html" >> "$GITHUB_STEP_SUMMARY"
+          echo "Existing Space index.html retained; no model calls, payouts or agent deployments implied." >> "$GITHUB_STEP_SUMMARY"
