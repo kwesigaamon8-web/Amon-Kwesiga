@@ -27,7 +27,7 @@ offset=(cycle*max_workers)%750
 activation_file=Path("director-work-orders")/(role+"-activation-plan.json")
 activation_plan=json.loads(activation_file.read_text(encoding="utf-8")) if activation_file.exists() else None
 planned_roles=(activation_plan or {}).get("examples_eligible_for_process_launch",[])
-if activation_plan and activation_plan.get("owner_order")!="ORD-038":
+if activation_plan and activation_plan.get("owner_order")!=summary()["chief_D_current_owner_order_id"]:
     raise ValueError("Unexpected activation directive in director plan")
 selected=[]
 events=[]
@@ -57,7 +57,7 @@ for slot in range(max_workers):
         result=subprocess.run(
             [sys.executable,"crypto-agents/role_worker.py","--actual-model",
              "--fleet",os.environ.get("WORKFORCE_ID","transferexperiment"),"--role",wid],
-            capture_output=True,text=True,timeout=80,check=False,
+            capture_output=True,text=True,timeout=min(300,max(90,int(os.environ.get("REAL_AI_PER_WORKER_TIMEOUT_SECONDS","180")))),check=False,
             env={**os.environ,"OMP_NUM_THREADS":"2","HF_HUB_DISABLE_TELEMETRY":"1",
                  "SEVEN_BILLION_TARGET_INDEX":str(selection["target_index"]) if selection else ""}
         )
