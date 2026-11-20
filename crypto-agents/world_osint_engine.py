@@ -133,7 +133,12 @@ def gather(fetch=get_json):
     return snapshot
 
 def shard(i,snapshot):
+    from enigma_universal_owner_order import divisions, PER_ROOT, recipient
     owner=canonical()
+    division=divisions()[i]
+    first_role=recipient(i*PER_ROOT)
+    if first_role["root"]!=division["id"]:
+        raise ValueError("OSINT_DIVISION_ANCESTRY_MISMATCH")
     if (snapshot.get("schema")!="B1B2_WORLD_OSINT_V1" or
         snapshot.get("owner",{}).get("owner_sha256")!=owner["owner_sha256"] or
         snapshot["owner"]["order_id"]!=owner["order_id"]):
@@ -155,6 +160,8 @@ def shard(i,snapshot):
     checksum=hashlib.sha256(json.dumps(subjects,sort_keys=True).encode()).hexdigest()
     return {"schema":"B1B2_REAL_OSINT_SHARD_V1",
             "shard":i,"pid":os.getpid(),"owner":owner,
+            "chief_d_division_id":division["id"],"first_addressed_role_id":first_role["role"],
+            "real_parent_hierarchy_root_verified":True,
             "country_count":len(subjects),"observed_metadata":sum("official_country_metadata" in x["official_observations"] for x in subjects),
             "observed_indicators":sum(sum(k in x["official_observations"] for k in INDICATORS) for x in subjects),
             "country_codes":list(for_shard(i)),"report_sha256":checksum,"findings":subjects,
