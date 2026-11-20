@@ -7,6 +7,8 @@ on:
     paths:
       - 'crypto-agents/enigma_all_b_systems.py'
       - 'crypto-agents/test_enigma_all_b_systems.py'
+      - 'crypto-agents/enigma_universal_owner_order.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
       - '.github/workflows/enigma-all-b1b2-systems.yml'
 permissions:
   contents: read
@@ -27,6 +29,7 @@ jobs:
         run: |
           python -m py_compile crypto-agents/enigma_all_b_systems.py crypto-agents/test_enigma_all_b_systems.py
           python crypto-agents/test_enigma_all_b_systems.py
+          python crypto-agents/enigma_universal_owner_order.py --self-test
   execute:
     needs: validate
     if: github.event_name != 'push' || github.event.head_commit.message == 'Activate B1 and B2 systems for each of 14 Enigma agents'
@@ -55,7 +58,7 @@ jobs:
       - name: Real B1 research worker OS/model process and source check
         run: python crypto-agents/enigma_all_b_systems.py --agent ${{ matrix.agent }} --fleet B1 --cycle ${{ github.run_number }}
       - name: Real B2 software quality worker OS/model process and test
-        run: python crypto-agents/enigma_all_b_systems.py --agent ${{ matrix.agent }} --fleet B2 --cycle REPLACE_RUN
+        run: python crypto-agents/enigma_all_b_systems.py --agent ${{ matrix.agent }} --fleet B2 --cycle ${{ github.run_number }}
       - name: Preserve both worker execution JSON records
         if: always()
         uses: actions/upload-artifact@v4

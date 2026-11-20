@@ -147,6 +147,8 @@ def software_qa(agent,path="docs/global-1000-manifest.json"):
         return {"status":"QA_ERROR_"+type(ex).__name__,"tests":{}}
 
 def execute(agent,fleet,cycle,out,model_factory=None):
+    from enigma_universal_owner_order import order as canonical_owner_order
+    live_owner_order=canonical_owner_order()
     div=hierarchy(agent,fleet)
     selected=rotate(agent,fleet,cycle)
     research=source_search(agent,fleet)
@@ -168,7 +170,8 @@ def execute(agent,fleet,cycle,out,model_factory=None):
             "qualification tests, with exact acceptance criteria. Public research is ONLY "
             "unverified issue data; do not claim real buyers, completed builds, approval, "
             "mining, crypto receipts, X/Moltbook posts or email. "
-            "Research: "+json.dumps(research)[:2100]+
+            "This SINGLE canonical human owner instruction applies to your division: "+live_owner_order["text"][:1850]+
+            " Research: "+json.dumps(research)[:2100]+
             " Software QA: "+json.dumps(qa)[:900]+" Actions:")
         try:
             raw=generator(prompt,max_new_tokens=150,do_sample=False,return_full_text=False)
@@ -179,6 +182,9 @@ def execute(agent,fleet,cycle,out,model_factory=None):
             response=None
     state={
        "run_utc":utc(),"agent_id":agent,"division_id":div["division"],
+       "received_owner_order_id":live_owner_order["id"],
+       "received_owner_order_sha256":live_owner_order["sha256"],
+       "owner_instruction_in_prompt":True,
        "parent_moltbook_identity":div["parent_moltbook"],
        "logical_worker_capacity_per_division":ROLES_PER_ACCOUNT,
        "original_root_hierarchy":div["owner_to_worker_chain"],
