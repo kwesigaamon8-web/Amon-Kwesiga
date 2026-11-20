@@ -9,11 +9,11 @@ permissions:
   contents: read
 jobs:
   one-w-worker-only:
-    if: github.event.head_commit.message == 'Ask one real B1 W worker what it can do' && github.run_attempt == 1
+    if: github.event.head_commit.message == 'Improve one W worker direct capability answer' && github.run_attempt == 1
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      ENIGMA_MODEL_ID: HuggingFaceTB/SmolLM2-135M-Instruct
+      ENIGMA_MODEL_ID: Qwen/Qwen2.5-0.5B-Instruct
       HF_HUB_DISABLE_TELEMETRY: '1'
       TOKENIZERS_PARALLELISM: 'false'
       OMP_NUM_THREADS: '2'

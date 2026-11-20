@@ -28,41 +28,43 @@ def packet():
 def say(model=None):
     env=packet()
     parent=env["recipient"]["immediate_parent"]
-    prompt=(
-      "You are not an AI account, an agent, a director or a supervisor. "
-      "You are just ONE genuine W-level worker, id "+WORKER_ID+". "
-      "The human owner directly orders this worker: SAY WHAT YOU CAN DO. "
-      "Answer in your own words, first person, as a specific worker. "
-      "Explain five PRACTICAL actions you can do in this bounded GitHub worker shift. "
-      "You can evaluate openly available software problems, identify source-backed "
-      "potential paid jobs without assuming they pay, draft small original code and "
-      "test suggestions, log your evidence, and report through your manager. "
-      "Say what you CANNOT do: no personal login, no Gmail/email, no paid buyer "
-      "guarantee, no automatic independent web posting or wallet transfer, no "
-      "claims of millions of actual workers, real accepted jobs, or BTC earnings. "
-      "Your immediate supervisor is "+parent+". "
-      "No fake achievements. Avoid claiming you already completed work. "
-      "Do not speak for Chief D or any other agents. "
-      "Reply clearly, using numbered sentences, beginning 'I am worker D01-M01-W01'. "
-      "Your answer:"
+    question=(
+      "I am the owner. Tell me what you, one W-level worker, can actually do "
+      "within a GitHub Actions computer process right now. "
+      "You are worker D01-M01-W01, not a director and not a Moltbook agent. "
+      "Respond in the FIRST PERSON with 3 brief numbered sentences and one limitation. "
+      "Your abilities: inspect publicly available software issues, evaluate whether "
+      "paid opportunities are genuine (not guarantee payment), create and test small "
+      "original scripts and proposals, save results and evidence, report to D01-M01. "
+      "Limitations: you cannot independently use email, post on Moltbook, sign wallets, "
+      "guarantee paying customers or claims of received Bitcoin. "
+      "Only claim things your single currently running process can perform. "
+      "Do not ask me a question. Do not mention billions of active agents."
     )
     error=None
-    if model is None:
-        try:
-            from transformers import pipeline
-            model=pipeline("text-generation",
-              model=os.getenv("ENIGMA_MODEL_ID","HuggingFaceTB/SmolLM2-135M-Instruct"),
-              device=-1)
-        except Exception as ex:
-            error="MODEL_LOAD_"+type(ex).__name__
     answer=None
-    if model is not None:
-        try:
-            result=model(prompt,max_new_tokens=235,do_sample=False,return_full_text=False)
-            answer=str(result[0].get("generated_text") or "").strip()
-            if not answer:raise ValueError("Empty real inference")
-        except Exception as ex:
-            error="MODEL_EXECUTION_"+type(ex).__name__
+    try:
+        import torch
+        from transformers import AutoTokenizer, AutoModelForCausalLM
+        torch.set_num_threads(2)
+        model_id=os.getenv("ENIGMA_MODEL_ID","Qwen/Qwen2.5-0.5B-Instruct")
+        tok=AutoTokenizer.from_pretrained(model_id,trust_remote_code=False)
+        model=AutoModelForCausalLM.from_pretrained(model_id,trust_remote_code=False)
+        msgs=[
+            {"role":"system","content":"You are a bounded software research W-worker answering a direct question from your human owner. Be concise, accurate and never claim unperformed work."},
+            {"role":"user","content":question}
+        ]
+        prompt_ids=tok.apply_chat_template(msgs,tokenize=True,add_generation_prompt=True,return_tensors="pt")
+        with torch.no_grad():
+            output=model.generate(prompt_ids,max_new_tokens=190,do_sample=False,
+                                  pad_token_id=tok.eos_token_id)
+        answer=tok.decode(output[0][prompt_ids.shape[-1]:],skip_special_tokens=True).strip()
+        if not answer or len(answer)<55:
+            raise ValueError("Too little substantive worker response")
+    except Exception as ex:
+        error="MODEL_EXECUTION_"+type(ex).__name__
+        answer=None
+
     report={
         "worker_id":WORKER_ID,
         "worker_kind":"INDIVIDUAL_W_LEVEL_NOT_AGENT",
@@ -72,7 +74,7 @@ def say(model=None):
         "owner_order_sha256":env["owner_order_sha256"],
         "asked_by_owner":"Tell me, one W worker, what you can do",
         "os_process_pid":os.getpid(),
-        "model_id":os.getenv("ENIGMA_MODEL_ID","HuggingFaceTB/SmolLM2-135M-Instruct"),
+        "model_id":os.getenv("ENIGMA_MODEL_ID","Qwen/Qwen2.5-0.5B-Instruct"),
         "independent_model_call_completed":bool(answer),
         "raw_worker_answer":answer,
         "model_status":"MODEL_ANSWER_NEEDS_HUMAN_REVIEW" if answer else (error or "NO_RESPONSE"),
