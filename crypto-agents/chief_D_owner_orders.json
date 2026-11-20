@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-132249-PAYMENT-DIRECTIVE-ALL-WORKERS",
+  "current_owner_order_id": "OWNER-20261120-132728-GLOBAL-CRYPTO-RECEIPTS-ALL-ROLES",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -936,6 +936,17 @@
       "status": "active_payment_directive_available_to_all_role_packets_not_proof_of_individual_delivery_or_payment",
       "authenticated_external_execution_not_implied": true,
       "implementation": "crypto-agents/OWNER_MINING_ALL_SOFTWARE_WORKER_ORDER_2026-11-20.md"
+    },
+    {
+      "id": "OWNER-20261120-132728-GLOBAL-CRYPTO-RECEIPTS-ALL-ROLES",
+      "as_of_utc": "2026-11-20T13:27:28Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub write",
+      "instruction": "OWNER'S PRIMARY GLOBAL ORDER (20 NOV 2026 13:27:28 UTC). TO CHIEF D; BOTH B1/B2 ROOTS; ALL 14 ENIGMA AGENTS AND THEIR 28 B1/B2 DIVISIONS; AND EVERY ONE OF THE 11,255,658,980,400 LOGICALLY CONFIGURED ROLE POSITIONS WHEN QUERIED/ACTIVATED: FIND ETHICAL, LEGAL, VERIFIED WAYS TO EARN REAL BTC OR ANY OTHER OWNER-APPROVED COIN INTO OWNER'S CORRECT-NETWORK RECEIVING ADDRESSES. THIS FINANCIAL OUTCOME OVERRIDES ROLE COUNTS, AGENT MULTIPLICATION, UNFUNDED POSTS, MINING SIMULATIONS AND STATUS UPDATES. For each assigned country/economy research a legitimate actual paying buyer/funded bounty or a real authorised miner; verify jurisdictional eligibility and payment mechanism before effort. Prioritize (A) contracted useful services and QA/software deliverables with genuine buyer acceptance; (B) disclosed competitive bounties, with no guarantee of payment and original compliant submissions; (C) Bitcoin mining using ONLY consenting owners' actually existing ASIC/hardware and economically credible pools—no imaginary 11T hashpower, prohibited cloud/GitHub mining or hijacking devices; (D) permissioned outreach to opt-in parties only; no unsolicited bulk posts or invented evidence. Specific researched global, potentially live but UNAPPLIED lead examples to vet at time of work: https://superteam.fun/earn/listing/kriptok-creator-challenge-01 (GLOBAL competitive $200 USDC total, needs X and Telegram participation and original content; no purchase/deposit/trade required; application/region/closure must be rechecked); https://superteam.fun/earn/listing/raptorx-research-challenge-ask-better-questions-find-better-alpha/ (GLOBAL competitive $125 USDC total; requires real RaptorX interactions and screenshots; winner-date and current availability inconsistent, verify before work); and https://agentics.page/markets (directory pointing to paid tasks, bounties and escrow sites; directory is discovery only, verify exact funded task with primary sponsor before claiming). Do not send emails, access Gmail, promise payment, spend wallet funds, sign transactions, post unwanted mass solicitations, register false identities, enter fraudulent or pay-to-apply tasks, or present race/contest prizes as contracted revenue. BOTH BTC MAINNET RECEIVERS MUST APPEAR IN EACH ROLE'S PAYMENT PACKET: B1 bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z and B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. For other coins consult read-only crypto-agents/public_payment_routes.json and crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md; 8 non-BTC addresses remain HOLD_UNVERIFIED_NETWORK_TOKEN_OWNER_COMPATIBILITY, so no non-BTC transfers until the owner independently confirms correct chain, asset and wallet support; 6 exchange identifiers remain DO NOT SEND. No secret keys. Each real worker receives a country-specific packet via crypto-agents/enigma_universal_owner_order.py at activation, not 11.26T separate executions. For every lead log sponsor URL, funded amount, eligibility country, deadline, exact deliverable, application/acceptance evidence, and actual confirmed txid/asset/network/amount if paid; report ONLY verified real receipts and blockers. Directors should stop low-value multiplying role IDs. Owner expects action to obtain cash, not more role claims.",
+      "status": "active_global_earn_verified_owner_crypto_receipts_priority",
+      "authenticated_external_execution_not_implied": true,
+      "implementation": "crypto-agents/enigma_universal_owner_order.py",
+      "total_configured_virtual_roles": 11255658980400
     }
   ],
   "strict_per_worker_reporting": {
