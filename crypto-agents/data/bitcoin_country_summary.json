@@ -1,0 +1,38 @@
+{
+  "generated_utc": "2026-11-20T13:07:22.800852+00:00",
+  "purpose": "BTC mining country planning ONLY, not real miner deployment",
+  "country_and_economy_rows": 217,
+  "economies_with_matching_internet_data": 186,
+  "missing_data_rows": 31,
+  "reference_years": [
+    "2024",
+    "2023",
+    "2022",
+    "2021"
+  ],
+  "weight": "Population in year * internet-use percentage in same year; estimated number of internet users",
+  "role_systems": 30,
+  "virtual_roles_per_system": 375188632680,
+  "virtual_role_slots_assigned": 11255658980400,
+  "original_two_b_systems_plus_28_enigma": true,
+  "actual_mining_workers_deployed": 0,
+  "confirmed_live_country_mining_hashrate": 0,
+  "bitcoin_receipts_verified": 0,
+  "bitcoin_payment_routes": {
+    "B1": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+    "B2": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+  },
+  "data_sources": {
+    "population": "https://data.worldbank.org/indicator/SP.POP.TOTL",
+    "internet_percentage": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "metadata": "https://api.worldbank.org/v2/country?format=json&per_page=500"
+  },
+  "limits": [
+    "No GH Actions mining: GitHub Terms prohibit cryptomining",
+    "No mining on third-party devices or networks without owner/operator consent",
+    "Internet users are a proxy for distribution, NOT available mining hardware or electricity",
+    "No data yields zero unallocated roles, not a claim of zero internet users",
+    "Assigned B worker roles are virtual addresses, not activated processes",
+    "Profitability depends on ASIC hashrate, power cost, BTC difficulty and payout fees"
+  ]
+}
