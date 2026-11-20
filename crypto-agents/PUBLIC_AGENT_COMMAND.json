@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-19T07:28:51Z",
-  "command_id": "OWNER-20261119-072851-WORK-1000-EXECUTE",
+  "issued_at_utc": "2026-11-20T13:22:49Z",
+  "command_id": "OWNER-20261120-132249-PAYMENT-DIRECTIVE-ALL-WORKERS",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -26,7 +26,7 @@
     "exact_current_configured_role_namespace": "750377265360",
     "not_proven_extra_positions": "24622734640"
   },
-  "owner_command": "WORK NOW: The owner instructs global Chief D, B1/B2 D01–D10, and ONLY actually executed/authorized worker processes to pursue legitimate payer-verified BTC or USDC work: identify current funded opportunity and original source, confirm payer, Uganda eligibility, exact deliverable, acceptance and payout chain, produce and test original buyer-specific deliverables, use only existing authorized non-email channels for submission, obtain genuine payer acceptance, and read-only verify actual confirmed incoming receipts to correctly matched approved addresses; report source, independent evidence, acceptance/payment TXID or blocker, and reassign failures. Of 1000 configured scout slots, do not call the +900 deployed until process execution audit passes. No reading/searching/drafting/sending emails, no unauthorized outreach, no spending, wallet signing, transfer, advance fees, spam or invented earnings.",
+  "owner_command": "EVERY ACTUALLY ACTIVATED B1/B2/ENIGMA WORKER: PRIORITIZE REAL LAWFUL PAYMENTS IN OWNER'S APPROVED CRYPTO WALLETS. Work on legitimate permissioned Bitcoin SHA-256d mining from audited historical software where executable source is verified and the hardware operator has consented; equally pursue accepted buyer-paid software and services where earning is credible. BTC MAINNET wallet B1 transferexperiment: bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z. BTC MAINNET wallet B2 BountyScoutAI: bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. All workers learn both receiving addresses but only use the correct fleet route for each real authorized payout. Full owner wallet directory crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md; other chains need exact verified asset/network and exchange candidate routes remain DO NOT SEND. Detailed 7-family archive inventory crypto-agents/OWNER_MINING_ALL_SOFTWARE_WORKER_ORDER_2026-11-20.md and docs/mining-software.html. Report actual consented hardware, hashrate, submitted shares, genuine pool/accepted work receipts, independently confirmed txid and credited amount; no verified new income until on-chain evidence. Do not use GitHub/cloud/unauthorized computers to mine; no consent-free crypto use, spam, invented payouts, email access, signing, spending or transfers. Virtual role ID is not an active miner; delivery only on actual activation/query.",
   "hard_constraints": [
     "NO_EMAILS_OF_ANY_KIND_FOR_THIS_CRYPTO_WORKFLOW",
     "CRYPTO_PAYOUTS_ONLY_BTC_MAINNET_OR_VERIFIED_OTHER_COIN_NETWORK",
@@ -346,5 +346,24 @@
   "owner_shorthand_definition": {
     "kill": "lawful nonviolent earning and inbound cryptocurrency deposit only",
     "775B": "conceptual hierarchy, NOT 775B actual concurrent worker processes"
+  },
+  "latest_owner_mining_payment_directive": {
+    "id": "OWNER-20261120-132249-PAYMENT-DIRECTIVE-ALL-WORKERS",
+    "priority": "legitimate BTC mining with operator consent; obtain real crypto payments from independently accepted buyer-paid services as feasible",
+    "inheritance": "all 30 root systems' addressable virtual role packets; delivery only when a real worker is queried/activated",
+    "btc_mainnet_routes": {
+      "B1": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+      "B2": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9"
+    },
+    "all_owner_routes_readonly": "crypto-agents/PUBLIC_RECEIVING_ADDRESSES.md",
+    "mining_software_catalogue": "docs/mining-software.html",
+    "full_software_order": "crypto-agents/OWNER_MINING_ALL_SOFTWARE_WORKER_ORDER_2026-11-20.md",
+    "strict_no_email": true,
+    "no_unconsented_mining": true,
+    "no_cryptomining_on_github_actions": true,
+    "no_unverified_exchange_deposits": true,
+    "actual_external_communications_confirmed": false,
+    "all_workers_live_confirmed": false,
+    "new_mining_income_confirmed": false
   }
 }
