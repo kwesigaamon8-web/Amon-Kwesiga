@@ -67,7 +67,7 @@ def main():
     clean, corrections = safe_view(sample)
     assert sample == clone, "Original source data was modified"
     assert len(clean) == 2
-    assert len(corrections) == 7, corrections
+    assert len(corrections) == 8, corrections
     assert clean[0]["payment_verified"] is False
     assert clean[0]["scope_commitment_accepted"] is False
     assert clean[0]["platform_submission_status"] == "HOLD_INDEPENDENT_SUBMISSION_EVIDENCE"
@@ -78,7 +78,7 @@ def main():
     assert report["schema"] == SCHEMA
     assert report["status"] == "VERIFIED_LOCAL_TASK_AFTER_REPAIR"
     assert report["attempts"] == 1
-    assert report["correction_count"] == 7
+    assert report["correction_count"] == 8
     assert not report["model_inference_completed"] and not report["wallet_or_email_accessed"]
     assert not report["other_virtual_workers_notified"]
     assert report["task_output_sha256"] == digest(action)
