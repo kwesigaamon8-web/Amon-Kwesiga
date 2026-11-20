@@ -8,6 +8,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import urllib.request
+from btc_receiver_safety import require_all_owner_receivers, require_approved_receiver
 
 ADDRESSES = {
     "B1": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
@@ -52,6 +53,9 @@ def query_source(base, address):
 
 
 def inspect(address):
+    require_all_owner_receivers()
+    if address not in ADDRESSES.values():
+        raise ValueError("Unapproved receiving address")
     reports, failures = [], []
     for base in SERVERS:
         try:
@@ -84,6 +88,7 @@ def inspect(address):
 
 
 def selftest():
+    require_all_owner_receivers()
     addr = ADDRESSES["B1"]
     sample = {"address": addr, "chain_stats": {k: 0 for k in FIELDS},
               "mempool_stats": {k: 0 for k in FIELDS}}
@@ -111,6 +116,9 @@ if __name__ == "__main__":
     if "--self-test" in sys.argv:
         selftest()
     else:
+        require_all_owner_receivers()
+        if ADDRESSES != {"B1": require_approved_receiver("transferexperiment", ADDRESSES["B1"])["address"], "B2": require_approved_receiver("BountyScoutAI", ADDRESSES["B2"])["address"]}:
+            raise ValueError("Receiver registry differs from approved owner addresses")
         result = {"observed_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
                   "networks": "bitcoin mainnet ONLY",
                   "accounts": {n: {"address": a, **inspect(a)} for n, a in ADDRESSES.items()}}
