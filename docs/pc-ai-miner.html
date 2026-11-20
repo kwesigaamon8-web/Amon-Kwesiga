@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PC AI Miner | Free Bitcoin SHA-256 Demos and Opt-in Mining Collaboration</title>
+<meta name="description" content="PC AI Miner: original safe Bitcoin SHA-256 educational tools, documented Windows CPU research archives and voluntary mining collaboration. Never mines in your browser.">
+<meta property="og:title" content="PC AI Miner — open Bitcoin learning tools and voluntary miner community">
+<meta property="og:description" content="Free SHA-256 demos, testable Python source, historical Bitcoin miner inventory and opt-in mining instructions. No hidden CPU mining.">
+<style>
+:root{color-scheme:light;font-family:system-ui,Segoe UI,Arial,sans-serif;background:#f5f8fb;color:#152c3d}
+*{box-sizing:border-box}body{margin:0;line-height:1.6}header,footer{background:#102c40;color:#fff;padding:20px}header a,footer a{color:#c8eeff}
+main{max-width:1020px;margin:auto;padding:28px 18px 55px}a{color:#075f90}h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.15}h2{margin:8px 0 12px}
+.lead{font-size:1.14rem;color:#385267}.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.panel{background:#fff;border:1px solid #ccdbe6;border-radius:13px;padding:22px;margin:18px 0}
+.info{padding:15px 17px;border-left:4px solid #cb9b36;background:#fff7e5;border-radius:5px}
+.good{padding:11px 15px;border-left:4px solid #389173;background:#eaf8f1}
+button,select,input{font:inherit}button{background:#0b6088;color:white;border:0;border-radius:8px;padding:11px 14px;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}select{max-width:100%;padding:8px;border:1px solid #96b0bf;border-radius:6px}
+input[type=checkbox]{width:18px;height:18px;vertical-align:middle;margin-right:8px}
+label{display:block;margin:12px 0}code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+pre{padding:15px;background:#eef4f8;border:1px solid #d6e3e9;border-radius:8px;white-space:pre-wrap}
+.tag{font-size:.85rem;font-weight:650;color:#486579}.mini{color:#455e70;font-size:.92rem}
+nav{display:flex;gap:16px;flex-wrap:wrap}.linkrow{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #e7ad3a;outline-offset:3px}
+footer{margin-top:35px}table{border-collapse:collapse;width:100%}th,td{padding:10px;border-bottom:1px solid #d2e0e9;text-align:left}th{background:#eaf2f7}
+</style></head>
+<body><header><nav aria-label="Site navigation"><strong>PC AI Miner</strong><a href="index.html">Studio home</a><a href="mining-software.html">Miner archive history</a><a href="software.html">Free tools</a><a href="payment.html">BTC support</a></nav></header>
+<main>
+<p class="tag">PC AI Miner · B1/B2 open learning project · Free to inspect · No login or payment required</p>
+<h1>Bitcoin miner software, test demos and voluntary mining collaboration</h1>
+<p class="lead">One public home for our original Bitcoin learning projects, source-checking utilities and historical Windows CPU miner research. Volunteers can choose to review code, test examples or donate their <em>own</em> hardware's work by explicit agreement.</p>
+<div class="info"><strong>Not a hidden miner.</strong> This page never starts live mining, connects to a pool, downloads executables or uses your CPU in the background. Practice hashes only run when you click their button. The 11.25 trillion role IDs in the organization's model are virtual addresses, <strong>not</strong> operating computers or Bitcoin miners.</div>
+<section class="cols" aria-label="Tools">
+ <div class="panel"><h2>Try offline proof-of-work</h2><p>A bounded SHA-256 demonstration using your browser's own cryptographic hash interface. No mining rewards are possible.</p>
+ <button id="demo" type="button">Run 32 example hashes</button><p id="demoStatus" role="status" aria-live="polite">Idle. No CPU activity from this demo.</p><pre id="demoProof">No hashes run.</pre></div>
+ <div class="panel"><h2>Original Python source and tests</h2>
+ <p>Real Bitcoin genesis-block SHA256d self-test, educational bounded nonce search and voluntary pool-configuration <em>generator</em>.</p>
+ <p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/pc-ai-miner/pc_ai_miner.py">View PC AI Miner Python source</a></p>
+ <p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/pc-ai-miner/test_pc_ai_miner.py">View independent tests</a></p>
+ <pre>python pc_ai_miner.py self-test
+python pc_ai_miner.py demo --tries 10000 --bits 12</pre>
+ <p class="mini">No mining pool connection or Bitcoin payment occurs in these commands.</p>
+ </div>
+</section>
+<section class="panel"><h2>Choose a voluntary mining setup</h2>
+ <p>Use only a computer/ASIC you own or have permission to operate. <strong>By selecting a B1/B2 address below, you are agreeing that rewards, if any, go to that project rather than your personal wallet.</strong> Nothing starts automatically.</p>
+ <label>Project to support
+ <select id="fleet"><option value="B1">B1 / transferexperiment</option><option value="B2">B2 / BountyScoutAI</option></select></label>
+ <label>Mining pool mode
+ <select id="poolMode"><option value="solo">Solo — payment only if your own miner finds a block</option><option value="pplns">PPLNS — potential shared reward if pool finds blocks</option></select></label>
+ <label><input type="checkbox" id="hardwareConsent">I own or am explicitly authorized to use the mining hardware and electricity.</label>
+ <label><input type="checkbox" id="donationConsent">I understand and voluntarily choose to direct possible mining rewards to the selected B1/B2 project wallet.</label>
+ <button id="showConfig" type="button">Generate voluntary settings</button>
+ <p id="consentStatus" role="status" aria-live="polite">No settings generated.</p><pre id="configPreview">Mining will not start from this page.</pre>
+ <p><a href="https://web.public-pool.io/" rel="noopener noreferrer">Verify current official Public Pool settings</a> before any local setup. Pool shares are not equal to payment, and CPU mining is generally economically negligible against modern ASICs.</p>
+</section>
+<section class="panel"><h2>34 recovered mining archive packages — current status</h2>
+ <p>The owner supplied 34 historic ZIP packages, including Advanced Math V5/V6, Block Hunter V8, Adaptive V7, V9, V10, V11 and V12, plus demo packages. We have audited ZIP structure, Python parseability and risk markers. <strong>The original archive executables and persistent/auto-start scripts are not publicly released here until deeper review.</strong></p>
+ <table><thead><tr><th>Software category</th><th>Status</th></tr></thead><tbody>
+ <tr><td>PC AI Miner Python demo and tests</td><td>Public source; offline only</td></tr>
+ <tr><td>RecordLow v1.4 SHA256d source and mock-pool tests</td><td>Curated source available for owner inspection; full Windows build remains under review</td></tr>
+ <tr><td>Advanced Math V5/V6, Block Hunter V8, Adaptive V7</td><td>Archived, not released as verified installers</td></tr>
+ <tr><td>V9/V10/V11/V12 CPU research and review series</td><td>Archived, staged for safety/license review</td></tr>
+ <tr><td>cpuminer-opt 26.1</td><td>External GPL project; use upstream official release, not a rebranded copy</td></tr>
+ <tr><td>Monero/XMR starter</td><td>Separate coin and network; explicitly not Bitcoin SHA256d</td></tr>
+ </tbody></table>
+ <p><a href="mining-software.html">Full documented miner families</a> · <a href="https://github.com/JayDDee/cpuminer-opt/releases" rel="noopener noreferrer">cpuminer-opt official upstream</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/pc-ai-miner/README.md">Audit details, safety and contributor tasks</a>.</p>
+</section>
+<section class="panel"><h2>Contribute, test, or share — without spam</h2>
+ <p>Anyone may test the software, report bugs, improve documentation or submit a proposal using an authorized GitHub account. Share this page only in communities that welcome such posts.</p>
+ <div class="linkrow"><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32">Existing collaborator invitation</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new">Propose a bugfix or contribution</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga">Public repository</a></div>
+ <p class="mini">Free demos do not require a donation. Private keys, seed phrases or login credentials are never requested. If you independently choose to support the project, verify the address directly before paying or mining.</p>
+</section>
+</main>
+<footer>PC AI Miner · Open-source research and voluntary miner education · No crypto or income guarantee · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga">GitHub source and reports</a></footer>
+<script>
+"use strict";
+const B1="bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z";
+const B2="bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9";
+const $=id=>document.getElementById(id);
+function bytesHex(bytes){return [...new Uint8Array(bytes)].map(b=>b.toString(16).padStart(2,"0")).join("");}
+$("demo").addEventListener("click",async()=>{
+  const btn=$("demo");btn.disabled=true;$("demoStatus").textContent="Running exactly 32 local practice hashes, no network connection.";
+  try{
+    if(!crypto||!crypto.subtle)throw Error("Browser secure crypto unavailable: open this page over HTTPS.");
+    let last="";
+    for(let n=0;n<32;n++){
+      const data=new TextEncoder().encode("PC AI Miner public demonstration | nonce="+n);
+      const first=await crypto.subtle.digest("SHA-256",data);
+      const second=await crypto.subtle.digest("SHA-256",first);
+      last=bytesHex(second);
+    }
+    $("demoProof").textContent="32 local SHA256d examples completed.\nLast illustrative hash: "+last+
+      "\nNo live Bitcoin work, pool share, block or reward was generated.";
+    $("demoStatus").textContent="Demo complete: 32 hashes, no mining or web requests.";
+  }catch(e){$("demoStatus").textContent="Demo unavailable: "+e.message;}
+  finally{btn.disabled=false;}
+});
+$("showConfig").addEventListener("click",()=>{
+  if(!$("hardwareConsent").checked||!$("donationConsent").checked){
+    $("consentStatus").textContent="Both independent ownership and donation-consent boxes are required.";
+    $("configPreview").textContent="Nothing configured or started.";return;
+  }
+  const fleet=$("fleet").value==="B2"?"B2":"B1";
+  const addr=fleet==="B1"?B1:B2;
+  const solo=$("poolMode").value!=="pplns";
+  const host="public-pool.io";const port=solo?4333:14333;
+  $("consentStatus").textContent="Manual settings generated. No mining program started.";
+  $("configPreview").textContent=[
+    "MODE: "+(solo?"SOLO — entire block reward only if your device finds it":"PPLNS — pool must find blocks; no daily reward guarantee"),
+    "POOL: stratum+tls://"+host+":"+port,
+    "USERNAME: "+addr+".VolunteerPC",
+    "PAYOUT ADDRESS: "+addr,
+    "NETWORK: Bitcoin mainnet only",
+    "DONATION DISCLOSURE: Any earned reward is voluntarily directed to "+fleet+", NOT your personal wallet.",
+    "ACTION: enter settings manually into an independently obtained and trusted miner running on your own authorized hardware.",
+    "STATUS: not connected, not mining, no shares or BTC received."
+  ].join("\n");
+});
+</script></body></html>
