@@ -172,7 +172,7 @@ export function countryAssignment(code){
  // Editorial suggestion only. NOT an audited claim about local market conditions.
  const hash=code.charCodeAt(0)*67+code.charCodeAt(1)*43;
  const tool=toolAt(hash%TOTAL_TOOLS);
- return {code,tool,region:"TO_RESEARCH",problem_hypothesis:tool.sector+" may benefit from "+ALGORITHMS[tool.algorithm][0].toLowerCase(),
+ return {code,tool,region:"TO_RESEARCH",problem_hypothesis:tool.sector+" may benefit from "+tool.name.slice(tool.sector.length+2).toLowerCase(),
   verified_local_market_problem:false,verified_local_demand:false,verified_buyer:false,
   required_sources:["https://data.worldbank.org/country/"+code.toLowerCase(),
   "https://api.worldbank.org/v2/country/"+code+"/indicator/IT.NET.USER.ZS?format=json"],

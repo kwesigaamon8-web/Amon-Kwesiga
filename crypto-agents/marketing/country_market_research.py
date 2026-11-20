@@ -37,17 +37,17 @@ def research_assignment(code):
     if code not in COUNTRY_CODES:
         raise ValueError("Unsupported ISO country or territory code")
     data = code.encode("ascii")
-    h = int.from_bytes(hashlib.sha256(data).digest()[:8], "big")
+    h = ord(code[0]) * 67 + ord(code[1]) * 43
     sector_idx = h % 10
-    app_number = (h % 500) + 1
+    app_number = (h % 1000) + 1
     return {
         "country_or_territory_code": code,
         "jurisdiction_type": "UNVERIFIED_CHECK_LOCAL_CLASSIFICATION",
         "candidate_issue_to_investigate": "Do local users in " + SECTORS[sector_idx] +
                  " need a lighter no-sign-up browser calculator, planner or original custom software?",
         "candidate_software": "SW-%03d" % app_number,
-        "candidate_software_url": OWNER_BASE + "global-500.html?tool=SW-%03d" % app_number,
-        "free_software_page": OWNER_BASE + "global-500.html",
+        "candidate_software_url": OWNER_BASE + "global-1000.html?tool=SW-%03d" % app_number,
+        "free_software_page": OWNER_BASE + "global-1000.html",
         "reference_data": [
             "https://api.worldbank.org/v2/country/" + code +
                 "/indicator/" + indicator + "?format=json&per_page=3"
