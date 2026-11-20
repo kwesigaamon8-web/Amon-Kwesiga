@@ -1,0 +1,49 @@
+name: B1B2 One-Time Backup Sales and BTC Payment Routes HTTP Check
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/b1b2-one-time-fallback-sales-links-check-20261120.yml']
+permissions:
+  contents: read
+jobs:
+  verify-fallback-public-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: One-time public fallback readiness check (no login or payment)
+        run: |
+          python - <<'PY'
+          import json,urllib.request,urllib.error,datetime
+          pages={
+            'ship_toolbox':'https://cookie-ticket-dm9i1.ship.place/free-toolbox.html',
+            'ship_payment':'https://cookie-ticket-dm9i1.ship.place/payment.html',
+            'ship_software':'https://cookie-ticket-dm9i1.ship.place/software.html',
+            'ship_ai':'https://cookie-ticket-dm9i1.ship.place/ai.html',
+            'previous_payment':'https://erratic-guppy-x8bkj.ship.place/payment.html',
+            'render_root':'https://amon-kwesiga.onrender.com/'
+          }
+          out={'checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'checks':{}}
+          for name,url in pages.items():
+            state={'url':url,'ok':False}
+            try:
+              req=urllib.request.Request(url,headers={'User-Agent':'B1B2-Fallback-Buyer-ReadOnly-Once/1.0'})
+              with urllib.request.urlopen(req,timeout=40) as resp:
+                body=resp.read(160000).decode('utf-8','replace')
+                state.update({'status':resp.status,'final_url':resp.geturl(),'bytes_seen':len(body),
+                  'ok':resp.status==200 and '<html' in body.lower(),
+                  'mentions_btc':('Bitcoin' in body or 'BTC' in body),
+                  'mentions_buyer':any(x in body.lower() for x in ('hire','services','quote','request')),
+                  'mainnet_b1':('bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' in body),
+                  'mainnet_b2':('bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' in body)})
+            except Exception as e:
+              state.update({'error':type(e).__name__,'message':str(e)[:110]})
+            out['checks'][name]=state
+            print('BACKUP_BUYER_PAGE_EVIDENCE',name,json.dumps(state,sort_keys=True),flush=True)
+          with open('b1b2-backup-buyer-url-check-20261120.json','w') as f:json.dump(out,f,indent=2)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backup-buyer-page-network-check-20261120
+          path: b1b2-backup-buyer-url-check-20261120.json
+          retention-days: 7
