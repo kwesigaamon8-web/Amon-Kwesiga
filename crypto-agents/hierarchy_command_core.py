@@ -14,6 +14,7 @@ import re
 from datetime import datetime,timezone
 from pathlib import Path
 from role_capability_audit import run_trial as test_actual_capability, audit as verify_capability_trial
+from self_correcting_role_runtime import execute as self_correcting_execution
 
 BASE=Path("crypto-agents")
 LEDGER=BASE/"customer-acquisition"/"2026-11-20-public-customer-prospects.json"
@@ -176,7 +177,10 @@ def execute(index, expected=None):
     order=ctx["owner_command"]
     tier=ctx["tier"]
     code=ASSIGNED_CODES[tier]
-    action=ROLE_ACTIONS[tier](ctx,_public_leads())
+    # ONE shared audit/repair cycle for every genuinely invoked tier and role.
+    # It edits no source/authority and cannot contact buyers or spend coins.
+    action,self_correction=self_correcting_execution(
+        ctx,_public_leads(),ROLE_ACTIONS[tier])
     # Compute a deterministic action digest distinct from the process receipt.
     action_hash=sha(json.dumps(action,sort_keys=True,ensure_ascii=False))
     capability=test_actual_capability(tier,ctx["role_id"],ctx["parent"],order["owner_order_id"])
@@ -195,6 +199,8 @@ def execute(index, expected=None):
         "role_index":str(index),"root_id":ctx["root_id"],"role_id":ctx["role_id"],
         "role_tier":tier,"reused_role_program":code,
         "shared_engine":"crypto-agents/hierarchy_command_core.py",
+        "shared_self_correcting_engine":"crypto-agents/self_correcting_role_runtime.py",
+        "self_correction":self_correction,
         "supervisor":ctx["parent"],"full_owner_to_role_path":ctx["path"],
         "process_pid":os.getpid(),
         "utc":datetime.now(timezone.utc).isoformat(),
