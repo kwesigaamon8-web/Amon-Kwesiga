@@ -9,6 +9,8 @@ on:
       - '.github/workflows/chief-d-world-task-factory.yml'
       - 'crypto-agents/world_work_factory.py'
       - 'crypto-agents/world_work_payer_gate.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
       - 'crypto-agents/commercial-work/invoice-payment-reconciliation/reconcile.py'
 permissions:
   contents: write
