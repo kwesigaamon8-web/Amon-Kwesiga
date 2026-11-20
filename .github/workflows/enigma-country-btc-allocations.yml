@@ -1,0 +1,33 @@
+name: Enigma BTC Mining Country Allocation (NO mining on GitHub)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/country_bitcoin_worker_allocation.py'
+      - 'crypto-agents/test_country_bitcoin_worker_allocation.py'
+      - '.github/workflows/enigma-country-btc-allocations.yml'
+permissions:
+  contents: read
+jobs:
+  country-virtual-role-plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test exact role allocations; no mining executable
+        run: |
+          python -m py_compile crypto-agents/country_bitcoin_worker_allocation.py
+          python crypto-agents/test_country_bitcoin_worker_allocation.py
+      - name: Download licensed public country internet usage and calculate logical country assignments
+        run: python crypto-agents/country_bitcoin_worker_allocation.py
+      - name: Store country report for owner
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enigma-btc-country-allocations-virtual-roster
+          path: btc-country-mining-plan/
+          if-no-files-found: error
+          retention-days: 14
