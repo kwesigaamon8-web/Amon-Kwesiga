@@ -28,7 +28,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Freelancer-managed; direct BTC/USDC not established"
+      "payment_rail": "Freelancer-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "UK-FL-39906363",
@@ -47,7 +54,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Freelancer-managed; direct BTC/USDC not established"
+      "payment_rail": "Freelancer-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "UKUGID-UP-2117510693358731618",
@@ -66,7 +80,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Upwork-managed; direct BTC/USDC not established"
+      "payment_rail": "Upwork-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "US-UP-2123262031737125986",
@@ -85,7 +106,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Upwork-managed; direct BTC/USDC not established"
+      "payment_rail": "Upwork-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "IN-FL-40174534",
@@ -104,7 +132,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Freelancer-managed; direct BTC/USDC not established"
+      "payment_rail": "Freelancer-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "NG-UP-2118419910667116276",
@@ -123,7 +158,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Upwork-managed; direct BTC/USDC not established"
+      "payment_rail": "Upwork-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "US-UP-2117812486078360537",
@@ -142,7 +184,14 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Upwork-managed; direct BTC/USDC not established"
+      "payment_rail": "Upwork-managed; direct BTC/USDC not established",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     },
     {
       "id": "UNK-FL-39705970",
@@ -161,7 +210,18 @@
       "contacted": false,
       "accepted": false,
       "paid": false,
-      "payment_rail": "Freelancer-managed"
+      "payment_rail": "Freelancer-managed",
+      "professional_introduction_prepared": true,
+      "professional_introduction_source": "crypto-agents/customer-acquisition/2026-11-20-eight-buyer-introductions.md",
+      "platform_submission_status": "NOT_SENT_NO_AUTHENTICATED_BIDDING_ACCESS",
+      "buyer_reply_verified": false,
+      "payment_verified": false,
+      "scope_commitment_accepted": false,
+      "legal_contact_channel": "Original Upwork/Freelancer job application only, if eligible and authenticated"
     }
-  ]
+  ],
+  "last_action": "2026-11-20: Eight personalized introductions prepared, no external proposals were sent. New strict worker order is source of truth.",
+  "authoritative_owner_order": "OWNER-20261120-145500-STRICT-CUSTOMER-CONVERSION",
+  "introductions_prepared": 8,
+  "external_proposals_sent": 0
 }
