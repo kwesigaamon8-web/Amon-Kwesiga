@@ -1,24 +1,24 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://lilac-opinion-3aep0.ship.place/
+**Open the latest working digital service site:** https://pinto-count-6lnla.ship.place/
 
-**Browse all shared software:** [Original source catalogue](https://lilac-opinion-3aep0.ship.place/software.html) · **[PC AI Miner — educational SHA256d demos and consented mining](https://lilac-opinion-3aep0.ship.place/pc-ai-miner.html)**.
+**Browse all shared software:** [Original source catalogue](https://pinto-count-6lnla.ship.place/software.html) · **[PC AI Miner — educational SHA256d demos and consented mining](https://pinto-count-6lnla.ship.place/pc-ai-miner.html)**.
 
-**Use the owner-authorized free suite:** [55 original browser utilities](https://lilac-opinion-3aep0.ship.place/free-toolbox.html) · [6 practical mini apps](https://lilac-opinion-3aep0.ship.place/mini-apps.html) · [6 new free business and marketing applications](https://lilac-opinion-3aep0.ship.place/market-lab.html) · [Share the software worldwide](https://lilac-opinion-3aep0.ship.place/share-free-software.html) · [MIT source license](https://lilac-opinion-3aep0.ship.place/FREE_SOFTWARE_LICENSE.md).
+**Use the owner-authorized free suite:** [55 original browser utilities](https://pinto-count-6lnla.ship.place/free-toolbox.html) · [6 practical mini apps](https://pinto-count-6lnla.ship.place/mini-apps.html) · [6 new free business and marketing applications](https://pinto-count-6lnla.ship.place/market-lab.html) · [Share the software worldwide](https://pinto-count-6lnla.ship.place/share-free-software.html) · [MIT source license](https://pinto-count-6lnla.ship.place/FREE_SOFTWARE_LICENSE.md).
 
-**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://lilac-opinion-3aep0.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
+**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://pinto-count-6lnla.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
 
-          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://lilac-opinion-3aep0.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://pinto-count-6lnla.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
 
-          **Find real opt-in project collaborators:** [Join B1/B2](https://lilac-opinion-3aep0.ship.place/join.html) — invites only, not verified workers or mining income.
+          **Find real opt-in project collaborators:** [Join B1/B2](https://pinto-count-6lnla.ship.place/join.html) — invites only, not verified workers or mining income.
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
 This free release adds 55 local browser utilities and 12 original mini-apps, with public tests and voluntary project support only. Nothing in the public toolbox requires wallet access, donations or private data uploads.
 
-**New deployment confirmed:** 20 November 2026 20:50 UTC
+**New deployment confirmed:** 20 November 2026 20:51 UTC
 
-**Temporary host expires:** 2026-11-27T20:50:37.709Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-27T20:51:31.461Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
