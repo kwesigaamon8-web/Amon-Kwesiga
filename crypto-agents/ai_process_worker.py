@@ -31,6 +31,7 @@ from b_learning_by_doing import lesson as make_practical_lesson, prompt as pract
 from b_worker_buyer_source import choose as choose_actual_issue_for_training
 from owner_first_oath import command_envelope as owner_oath_envelope, short_oath as owner_first_oath_text
 from directive_cascade import prompt_for_worker as owner_prompt_for_worker, execution_receipt as owner_leaf_receipt
+from directive_understanding_gate import challenge as owner_understanding_challenge, grade as grade_owner_understanding
 from b_universal_work_protocol import assign as universal_assign, compact_for_model as universal_prompt
 from b_certified_agent_service_router import assignment as certified_agent_assignment
 from b_owner_account_link import agent_packet as owner_multichain_account_packet
@@ -649,6 +650,31 @@ if model is not None and report["inference_status"]=="model_completed":
         report["latest_order_ack_inference_status"]="model_ack_failed:"+type(exc).__name__
 report["latest_command_model_acknowledgement"]=evaluate_owner_command_ack(
     ack_reply,WORKER,PARENT,STRICT_OWNER_ORDER_ID)
+# Real comprehension test is DISTINCT from a delivered prompt and from simply
+# repeating the ID. An actual model must describe objective, step, evidence,
+# safety scenario and direct parent. Its answer is NOT verified competence
+# until a separately accepted real task is evidenced.
+understanding_reply=""
+understanding_model_completed=False
+if model is not None and report["inference_status"]=="model_completed":
+    try:
+        challenge_output=model(
+            owner_understanding_challenge(
+                STRICT_OWNER_ORDER_ID,FLEET+"/"+WORKER,
+                CASCADE_PACKET["immediate_parent"],LATEST_CHIEF_D_INSTRUCTION),
+            max_new_tokens=255,do_sample=False,return_full_text=False)
+        understanding_reply=challenge_output[0].get("generated_text","")
+        if isinstance(understanding_reply,list):
+            understanding_reply=understanding_reply[-1].get("content","")
+        understanding_reply=str(understanding_reply or "").strip()
+        understanding_model_completed=bool(understanding_reply)
+    except Exception as exc:
+        report["latest_owner_comprehension_model_error"]=type(exc).__name__+": "+str(exc)[:160]
+report["latest_owner_comprehension_result"]=grade_owner_understanding(
+    understanding_reply,FLEET+"/"+WORKER,CASCADE_PACKET["immediate_parent"],
+    STRICT_OWNER_ORDER_ID,model_invocation_completed=understanding_model_completed,
+    accepted_task_proof=False)
+report["latest_owner_comprehension_not_assumed_from_order_receipt"]=True
 # Owner's separate 10-ideas-per-executed-worker brainstorming exercise.
 # Every eligible role has 10 non-confidential, evidence-gated assigned
 # hypotheses, but only a REAL additional model inference counts as the
