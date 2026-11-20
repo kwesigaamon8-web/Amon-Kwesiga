@@ -1,0 +1,68 @@
+name: B1B2 One-Time Forensic BTC and Miner Public Evidence
+on:
+  push:
+    paths:
+      - '.github/workflows/b1b2-forensic-live-wallet-miner-20261120.yml'
+permissions:
+  contents: read
+jobs:
+  read-only-evidence:
+    name: Inspect two BTC wallets and mining pool (no mining)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently self-test Bitcoin address and pool validators
+        run: |
+          python crypto-agents/bitcoin_mainnet_receipt_probe.py --self-test
+          python crypto-agents/btc_public_address_snapshot.py --self-test
+          python crypto-agents/read_only_public_pool_audit.py --self-test
+      - name: Read live BTC mainnet evidence from two independent explorers
+        run: |
+          python crypto-agents/bitcoin_mainnet_receipt_probe.py
+          python crypto-agents/btc_public_address_snapshot.py > btc-mainnet-independent-addresses.log
+      - name: Read live public mining pool report for two receiving addresses
+        run: python crypto-agents/read_only_public_pool_audit.py
+      - name: Archive independent forensic evidence without unsupported zero claims
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forensic-btc-and-public-miner-20261120
+          path: |
+            bitcoin-receipt-probe/
+            mining-evidence/public-pool-wallet-audit.json
+            btc-mainnet-independent-addresses.log
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Summarize source outcome and limitations
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, pathlib, os
+          summary=["## Independent forensic BTC and miner checks", ""]
+          pool=pathlib.Path("mining-evidence/public-pool-wallet-audit.json")
+          if pool.exists():
+              d=json.loads(pool.read_text())
+              for w in d["wallets"]:
+                  summary.append(f"- {w['company']} pool source: {w['status']}; reported worker rows: {w.get('reported_worker_count')}; live authorization and real ASIC count: **NOT PROVEN**")
+          else:
+              summary.append("- Pool source: NOT CHECKED (artifact missing)")
+          snapshot=pathlib.Path("btc-mainnet-independent-addresses.log")
+          if snapshot.exists():
+              for line in snapshot.read_text().splitlines():
+                  if line.startswith("B1B2_ONCHAIN_READONLY_ADDRESS_CHECK "):
+                      try:
+                          d=json.loads(line.split(" ",1)[1])
+                          for company,data in d.get("accounts",{}).items():
+                              summary.append(f"- {company} BTC explorers: {data.get('status')}; confirmed unspent sats observed: {data.get('observed_confirmed_unspent_sats', 'UNKNOWN')}; earnings provenance: **NOT PROVEN**")
+                      except (ValueError,KeyError):
+                          summary.append("- Address snapshot parser unavailable")
+          summary.append("- Read-only checks only; no wallet signing, mining, external outreach, email or income claim")
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("\n".join(summary)+"\n")
+          print("\n".join(summary))
+          PY
