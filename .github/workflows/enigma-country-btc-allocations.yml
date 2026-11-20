@@ -5,9 +5,10 @@ on:
     paths:
       - 'crypto-agents/country_bitcoin_worker_allocation.py'
       - 'crypto-agents/test_country_bitcoin_worker_allocation.py'
+      - 'crypto-agents/bitcoin_country_role_route.py'
       - '.github/workflows/enigma-country-btc-allocations.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   country-virtual-role-plan:
     runs-on: ubuntu-latest
@@ -21,6 +22,7 @@ jobs:
         run: |
           python -m py_compile crypto-agents/country_bitcoin_worker_allocation.py
           python crypto-agents/test_country_bitcoin_worker_allocation.py
+          python crypto-agents/bitcoin_country_role_route.py --self-test
       - name: Download licensed public country internet usage and calculate logical country assignments
         run: python crypto-agents/country_bitcoin_worker_allocation.py
       - name: Store country report for owner
@@ -31,3 +33,20 @@ jobs:
           path: btc-country-mining-plan/
           if-no-files-found: error
           retention-days: 14
+      - name: Commit verified country allocation dataset for every logical worker's read-only routing
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p crypto-agents/data
+          cp btc-country-mining-plan/country_allocations.csv crypto-agents/data/bitcoin_country_allocations.csv
+          cp btc-country-mining-plan/country_summary.json crypto-agents/data/bitcoin_country_summary.json
+          python crypto-agents/bitcoin_country_role_route.py --index 0 | grep -q 'COUNTRY_ASSIGNED_NOT_DEPLOYED_NOT_MINING'
+          python crypto-agents/bitcoin_country_role_route.py --index 11255658980399 | grep -q 'COUNTRY_ASSIGNED_NOT_DEPLOYED_NOT_MINING'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crypto-agents/data/bitcoin_country_allocations.csv crypto-agents/data/bitcoin_country_summary.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish sourced Bitcoin country virtual-role assignment (no mining)'
+            git push
+          fi

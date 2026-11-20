@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261119-072851-WORK-1000-EXECUTE",
+  "current_owner_order_id": "OWNER-20261120-125633-BTC-COUNTRY-ASSIGN",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -906,6 +906,15 @@
       "relayed_by": "ChatGPT through authenticated GitHub write",
       "instruction": "OWNER ORDER: WORK NOW. Chief D directs both B1 transferexperiment and B2 BountyScoutAI, their D01–D10 directors, actually running agents, and the 1000 configured scout-worker slots (including the newer 900, only if successfully launched): execute the legitimate earning mission, not merely count workers. Search active original-source paid opportunities; verify named payer, real available funds, Uganda eligibility, deliverables, submission channel, compensation asset and exact payout chain; prioritize buyer-specific original work, test it, submit only through already authorized authenticated channels, obtain acceptance, then read-only verify incoming owner-address crypto receipts. Escalate missing authentication or rate limits, reassign failed jobs, and produce per-run evidence with actual process, source URL, deliverable link, acceptance status, settled TXID or explicit unverified status. Do not claim mere GitHub searches, conceptual roles, process launches or proposals are money. DO NOT read/search/draft/send email or Gmail; no spending, gas fees, wallet signing, private keys, contracts, spam, impersonation or unauthorized posting. 900 new workers must pass GitHub self-test/process evidence before being called active. Keep B1/B2 accounts and payment verification separate. Report confirmed incoming cryptocurrency only with evidence.",
       "status": "active_owner_execution_order_no_receipts_claimed",
+      "authenticated_external_execution_not_implied": true
+    },
+    {
+      "id": "OWNER-20261120-125633-BTC-COUNTRY-ASSIGN",
+      "as_of_utc": "2026-11-20T12:56:33Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub write",
+      "instruction": "OWNER CURRENT DIRECTIVE — BITCOIN SHA-256 MINING COUNTRY MISSION. Across original B1/B2 and every Enigma internal B1/B2 division, assign every LOGICAL virtual role position to a World Bank economy using population multiplied by same-year internet-use percentage as the allocation weight (latest matched 2024-2021), as recorded in crypto-agents/data/bitcoin_country_allocations.csv. Bitcoin mining is the requested goal, paying BTC mainnet only to the user's existing approved B1 bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z or B2 bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9 addresses, preserving each company's own correct route. Investigate lawful owner-controlled / explicitly operator-authorized miners and ASIC/CPU hardware, electrical profitability, valid Stratum pool configuration, accepted share and hashrate telemetry, and independently confirmed Bitcoin payouts. Launch SHA-256 miners ONLY on user-owned or expressly permitted machines where hosting terms allow it. NEVER perform cryptomining on GitHub Actions (prohibited), misuse public/cloud computers, download executable miners without permission, deploy to third-party hosts, conceal CPU use, mine on visitors' browsers, spend funds or sign any wallet. The 11,255,658,980,400 roles are addressable VIRTUAL positions, not deployed miners or live AIs. Every country report must separately record configured role positions, physical authorized miner count, verified hashes per second, source pool stats, and confirmed on-chain BTC receipts; if no mining equipment proof exists, report 0 actual miner deployments and 0 verified hashrate, NOT simulated revenue. Retain owner instruction not to access Gmail, draft or send emails, post externally without authorization, impersonate, evade rate limits, or disclose secrets. Escalate need for real authorized hardware to owner; keep running useful source research and legitimate hardware setup work rather than claiming income.",
+      "status": "active_owner_mining_mission_no_runtime_or_deposit_proof",
       "authenticated_external_execution_not_implied": true
     }
   ],
