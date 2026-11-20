@@ -4,12 +4,13 @@
   "brand": "B1/B2 AI Studio",
   "tagline": "Practical AI. Tested tools. Real deliverables.",
   "approval": "Owner-authorized free software marketing and original reimplementations, 2026-11-20",
-  "license": "MIT only for specified 55-tool Free Toolbox code",
+  "license": "MIT only for the files explicitly named in docs/FREE_SOFTWARE_LICENSE.md",
   "license_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/FREE_SOFTWARE_LICENSE.md",
   "source_code": [
     "docs/assets/free-toolbox.js",
     "docs/assets/free-toolbox-extensions.js",
-    "docs/assets/free-mini-apps.js"
+    "docs/assets/free-mini-apps.js",
+    "docs/assets/market-lab.js"
   ],
   "free_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/free-toolbox.html",
   "current_https_url_directory": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md",
@@ -42,8 +43,13 @@
   "support_network": "Bitcoin mainnet native BTC only; never send other coins and independently check receiver",
   "do_not_bulk_post": true,
   "do_not_copy_proprietary_code": true,
-  "note": "55 original browser utilities and six original mini-app features. Other existing software may have separate rights. No customer, live worker or payment implied.",
+  "note": "55 individual browser utilities plus 12 mini-app programs; no verified 775-billion worker execution, customer purchase or external social post.",
   "additional_mini_apps": 6,
-  "total_original_utility_and_mini_app_features": 61,
-  "mini_app_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/mini-apps.html"
+  "total_original_utility_and_mini_app_features": 67,
+  "mini_app_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/mini-apps.html",
+  "marketing_and_business_apps": 6,
+  "market_lab_source": "docs/assets/market-lab.js",
+  "market_lab_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/market-lab.html",
+  "role_campaign": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/marketing/role_campaign_dispatch.py",
+  "virtual_workers_have_assignments_but_are_not_running_agents": 750377265360
 }
