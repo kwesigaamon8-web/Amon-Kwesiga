@@ -134,7 +134,14 @@ def qualify(row, issue, repo=None):
         reasons.append("SPONSOR_FORBIDS_UNSOLICITED_EXTERNAL_PRS")
     # A real open issue can still be unfunded/unavailable; default to HOLD.
     result["blockers"]=sorted(set(reasons))
-    result["stage"]="REJECTED_EXTERNAL_SUBMISSION" if reasons else "ORIGINAL_SOURCE_CHECKED"
+    if eligibility.get("critical_blocker"):
+        result["stage"]="REJECTED_EXTERNAL_SUBMISSION"
+    elif "NO_EXPLICIT_REWARD_IN_SOURCE" in reasons:
+        result["stage"]="HOLD_ISSUER_REWARD_UNCONFIRMED"
+    elif "SOME_COMMENTS_UNREAD" in reasons:
+        result["stage"]="HOLD_RECENT_SPONSOR_COMMENTS_UNREAD"
+    else:
+        result["stage"]="ORIGINAL_SOURCE_CHECKED"
     result["funding_verified"]=False
     result["eligible_from_uganda_verified"]=False
     result["compatible_b1_b2_payment_verified"]=False
@@ -314,7 +321,7 @@ def self_test():
                           "user":{"login":"IES-BoilerRoom"}})
     assert blocked["stage"]=="REJECTED_EXTERNAL_SUBMISSION"
     assert not blocked["funding_verified"]
-    original=qualify(seed,{"state":"open","title":"Fix bug","body":"$350 bounty, all contributors welcome",
+    original=qualify(seed,{"state":"open","title":"Fix bug","body":"Maintainer bounty pays $350, all contributors welcome",
                            "user":{"login":"Example"}})
     assert original["stage"]=="ORIGINAL_SOURCE_CHECKED"
     assert not original["eligible_from_uganda_verified"]
