@@ -18,7 +18,10 @@ from virtual_bot_service import bot_routes
 app = Flask(__name__)
 app.register_blueprint(bot_routes)
 GITHUB_REPO = "kwesigaamon8-web/Amon-Kwesiga"
-RUNS_API = f"https://api.github.com/repos/{GITHUB_REPO}/actions/runs?per_page=12"
+RUNS_API = f"https://api.github.com/repos/{GITHUB_REPO}/actions/runs?per_page=8"
+# GitHub's /actions/runs JSON can exceed 140 KB even for a short result list.
+# Read a COMPLETE bounded body instead of truncating the JSON mid-document.
+MAX_GITHUB_RESPONSE_BYTES = 512 * 1024
 RUNS_PAGE = f"https://github.com/{GITHUB_REPO}/actions"
 CACHE_TTL = 150
 _cache = {"at": 0.0, "runs": [], "error": None}
@@ -40,9 +43,14 @@ def fetch_run_status():
         )
         try:
             with urllib.request.urlopen(request, timeout=7) as response:
-                payload = json.loads(response.read(140000))
+                raw = response.read(MAX_GITHUB_RESPONSE_BYTES + 1)
+            if len(raw) > MAX_GITHUB_RESPONSE_BYTES:
+                raise ValueError("GitHub workflow response exceeded safety limit")
+            payload = json.loads(raw)
+            if not isinstance(payload, dict) or not isinstance(payload.get("workflow_runs"), list):
+                raise ValueError("Unexpected GitHub workflow API response")
             rows = []
-            for run in payload.get("workflow_runs", [])[:12]:
+            for run in payload["workflow_runs"][:8]:
                 if not isinstance(run, dict):
                     continue
                 rows.append({
@@ -54,8 +62,10 @@ def fetch_run_status():
                     "url": str(run.get("html_url") or RUNS_PAGE),
                 })
             _cache.update(at=now, runs=rows, error=None)
+        except json.JSONDecodeError:
+            _cache.update(at=now, error="GitHub returned incomplete or invalid JSON; open the GitHub Actions link for live results.")
         except (ValueError, urllib.error.URLError, TimeoutError, OSError) as exc:
-            _cache.update(at=now, error=f"GitHub status temporarily unavailable: {type(exc).__name__}")
+            _cache.update(at=now, error=f"GitHub status temporarily unavailable: {type(exc).__name__}. Open GitHub Actions for live results.")
         return dict(_cache)
 
 
