@@ -104,7 +104,7 @@ jobs:
           python - <<'PY'
           from datetime import datetime, timezone
           from pathlib import Path
-          import json,os,urllib.parse
+          import json,os,urllib.parse,re
           payload=json.loads(Path('publish-private.json').read_text())
           url=payload.get('url','')
           parsed=urllib.parse.urlsplit(url)
@@ -137,6 +137,9 @@ jobs:
 
           No real buyer, paid contract or incoming cryptocurrency is implied by website hosting. No wallet transaction or email is made by the deployment.
           '''
+          # Template lines inherit YAML's ten-space indentation; strip it
+          # before writing Markdown so buyer hyperlinks are clickable, not code.
+          body=re.sub(r'(?m)^ {10}(?=\\S)', '', body)
           Path('docs/TEMP_PREVIEW.md').write_text(body,encoding='utf-8')
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
               f.write(f'## B1/B2 free static site deployed\n\n- **Site:** {url}\n- **Expiry:** {exp}\n- **Temporary backup preview URL directory:** https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/TEMP_PREVIEW.md\n- **PC AI Miner and the public studio assets uploaded**; no account, no email, no wallet use.\n- Not a sale or a payment.\n')
