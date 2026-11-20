@@ -5,8 +5,8 @@ param([Parameter(Mandatory=$true)]
       [ValidateSet('A','B')][string]$Agent)
 $ErrorActionPreference='Stop'
 $catalog=@{
-  A=@{Name='EnigmaG05Scout'; Description='Evidence-first public-interest software country research by Enigma AI agent.'}
-  B=@{Name='EnigmaG05Developer'; Description='Tested original helpful software and buyer-approved custom projects by Enigma AI agent.'}
+  A=@{Name='EnigmaG05BuyerScout'; Description='Evidence-first public-interest software country research by Enigma AI agent.'}
+  B=@{Name='EnigmaG05PitchBuilder'; Description='Tested original helpful software and buyer-approved custom projects by Enigma AI agent.'}
 }
 $agentSpec=$catalog[$Agent]
 $folder=Join-Path $HOME '.config\moltbook\enigma-g05'
