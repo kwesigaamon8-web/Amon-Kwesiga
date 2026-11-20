@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Share B1/B2 AI Studio's source-backed digital services with relevant buyers and opt-in developer communities. Six languages, manual sharing, no unsolicited posts.">
+<title>Share B1/B2 AI Services Worldwide | Manual Social Sharing</title>
+<style>
+:root{font:16px/1.55 system-ui,Arial,sans-serif;color:#173447;background:#f4f8fb}*{box-sizing:border-box}body{margin:0}
+main{max-width:920px;margin:auto;padding:28px 18px 48px}
+header,footer{background:#102e43;color:white;padding:18px}
+header a,footer a{color:#c3e7ff}h1{font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.15}
+h2{font-size:1.35rem}.card{border:1px solid #c7dbe7;border-radius:10px;padding:20px;margin:17px 0;background:#fff}
+label{display:block;font-weight:700;margin:11px 0 6px}
+textarea,select{width:100%;padding:12px;border:1px solid #95adbd;border-radius:7px;font:inherit}textarea{min-height:165px}
+button,.share{display:inline-block;font:inherit;font-weight:650;background:#105c86;color:white;padding:9px 13px;border-radius:7px;border:0;text-decoration:none;margin:5px 6px 4px 0;cursor:pointer}
+.share{background:#fff;color:#105c86;border:1px solid #9fbfd0}.muted{color:#526c7f}.links{display:flex;flex-wrap:wrap;gap:4px}
+.note{padding:12px 17px;border-left:4px solid #6b91a9;background:#e8f2f8}a{color:#0b648f}
+a:focus-visible,button:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #d9a03d;outline-offset:2px}
+</style></head><body>
+<header><strong>B1/B2 AI Studio</strong> · <a href="agent-work-market.html">AI work market</a> · <a href="software.html">Tested tools</a></header>
+<main>
+<h1>Share B1/B2's tested AI-assisted services worldwide</h1>
+<p>Introduce practical, bounded software services to interested people and relevant communities. Choose a message and a destination, review it there, and decide whether to publish. This page does not use your accounts or send anything automatically.</p>
+<div class="card">
+<h2>Choose campaign and language</h2>
+<label for="audience">Target audience</label>
+<select id="audience"><option value="business">Small businesses and finance/data teams</option><option value="developer">Developers and open-source users</option><option value="agents">AI agent operators and technical buyers</option></select>
+<label for="language">Language</label>
+<select id="language"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="pt">Português</option><option value="ar">العربية</option></select>
+<label for="message">Editable introduction</label><textarea id="message" aria-label="Marketing text"></textarea>
+<div><button id="copy" type="button">Copy message</button><button id="native" type="button">Device share</button></div>
+<p class="muted" id="status" role="status" aria-live="polite">Not posted: opening a composer does not publish.</p>
+<div class="links">
+<a class="share" id="x" target="_blank" rel="noopener noreferrer">Compose X</a>
+<a class="share" id="linkedin" target="_blank" rel="noopener noreferrer">Share LinkedIn</a>
+<a class="share" id="facebook" target="_blank" rel="noopener noreferrer">Share Facebook</a>
+<a class="share" id="bluesky" target="_blank" rel="noopener noreferrer">Compose Bluesky</a>
+<a class="share" id="telegram" target="_blank" rel="noopener noreferrer">Share Telegram</a>
+<a class="share" id="whatsapp" target="_blank" rel="noopener noreferrer">Choose WhatsApp recipient</a>
+<a class="share" id="reddit" target="_blank" rel="noopener noreferrer">Submit Reddit (where permitted)</a>
+</div>
+</div>
+<div class="card"><h2>Campaign links</h2>
+<p><a href="agent-work-market.html">Four real service offers: $5 CSV cleanup, $15 BTC transaction evidence, $30 merchant checkout, $50 BTC/Base-USDC ledger reconciliation</a>.</p>
+<p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml">Public buyer inquiry form</a> · <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md">Latest tested live-site directory</a> · <a href="agent-services.json">Machine-readable JSON service catalogue</a>.</p>
+<p class="note"><strong>Publication rules:</strong> Share only in groups where relevant, permitted and welcomed. Never copy the same post repeatedly, auto-message strangers, use fake accounts or ask people to manufacture reviews or votes. No payment or customer is verified just because a link was shared.</p>
+</div>
+</main><footer><strong>B1/B2 AI Studio</strong> — Practical AI. Tested tools. Real deliverables. No unauthorized email, account access or automatic publication.</footer>
+<script>
+(()=>{"use strict";
+const $=id=>document.getElementById(id);
+const site="https://github.com/kwesigaamon8-web/Amon-Kwesiga";
+const buyer="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml";
+const phrases={
+en:{business:"Need CSV cleanup, accurate matching of payment exports, or a small data script? B1/B2 offers original human-reviewed digital services with public examples and introductory quotes from $5. Ask for a scoped quote: ",developer:"We've published source-backed CSV tools, Bitcoin evidence utilities and testable microservice examples. Explore the open code; request a small custom script or QA task if useful: ",agents:"B1/B2 offers bounded, human-supervised data and Bitcoin software tasks for AI-agent operators. Source, tests and a machine-readable catalog are public. Request scope and acceptance tests before any paid work: "},
+fr:{business:"Besoin de nettoyer un fichier CSV ou de rapprocher des transactions ? B1/B2 propose de petits services numériques vérifiables avec des devis indicatifs dès 5 $. Demandez un devis : ",developer:"Découvrez nos outils CSV et Bitcoin avec code source et tests publics. Proposez un petit projet logiciel : ",agents:"Opérateurs d'agents IA : B1/B2 propose des tâches précises, vérifiables et supervisées par une personne. Demandez un devis : "},
+es:{business:"¿Necesitas limpiar un CSV o conciliar registros? B1/B2 ofrece pequeños servicios digitales comprobables desde presupuestos indicativos de 5 USD. Solicita una propuesta: ",developer:"Publicamos herramientas CSV y Bitcoin con código y pruebas visibles. Solicita una mejora o prueba de software: ",agents:"Para operadores de agentes de IA: B1/B2 ofrece tareas delimitadas, verificables y supervisadas. Pide un presupuesto: "},
+sw:{business:"Unahitaji kusafisha CSV au kulinganisha miamala? B1/B2 hutoa kazi ndogo za kidijitali zenye ushahidi, kwa bei ya makadirio kuanzia dola 5. Omba bei: ",developer:"Tazama zana zetu za CSV na Bitcoin zenye msimbo na majaribio ya wazi. Omba kazi maalum: ",agents:"Kwa waendeshaji wa AI: B1/B2 hutoa kazi zinazopimika na kukaguliwa na binadamu. Omba bei: "},
+pt:{business:"Precisa limpar CSV ou conciliar transações? B1/B2 oferece serviços digitais verificáveis com preços indicativos a partir de US$ 5. Solicite orçamento: ",developer:"Explore ferramentas CSV e Bitcoin com código e testes públicos. Solicite um projeto específico: ",agents:"Para operadores de agentes de IA: B1/B2 oferece tarefas claras e verificáveis, com supervisão humana. Solicite orçamento: "},
+ar:{business:"هل تحتاج إلى تنظيف ملفات CSV أو مطابقة سجلات المعاملات؟ تقدم B1/B2 خدمات رقمية قابلة للتحقق بأسعار تقديرية تبدأ من 5 دولارات. اطلب عرض سعر: ",developer:"اكتشف أدوات CSV وBitcoin مفتوحة المصدر مع اختبارات واضحة. اطلب مهمة تقنية محددة: ",agents:"لمشغلي وكلاء الذكاء الاصطناعي: تقدم B1/B2 مهام تقنية محددة وخاضعة للمراجعة البشرية. اطلب عرض سعر: "}
+};
+function prepare(){let a=$("audience").value,l=$("language").value;$("message").value=phrases[l][a]+buyer;refresh();}
+function refresh(){let text=$("message").value;
+$("x").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(text.slice(0,270));
+$("linkedin").href="https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent(site);
+$("facebook").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(site);
+$("bluesky").href="https://bsky.app/intent/compose?text="+encodeURIComponent(text.slice(0,290));
+$("telegram").href="https://t.me/share/url?url="+encodeURIComponent(site)+"&text="+encodeURIComponent(text);
+$("whatsapp").href="https://wa.me/?text="+encodeURIComponent(text);
+$("reddit").href="https://www.reddit.com/submit?url="+encodeURIComponent(site)+"&title="+encodeURIComponent("B1/B2 tested CSV and Bitcoin tools");
+}
+$("audience").addEventListener("change",prepare);$("language").addEventListener("change",prepare);$("message").addEventListener("input",refresh);
+$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText($("message").value);$("status").textContent="Copied; no content was published.";}catch{$("status").textContent="Copy manually from the text box.";}});
+$("native").addEventListener("click",async()=>{try{if(!navigator.share)throw Error("unsupported");await navigator.share({title:"B1/B2 AI Studio",text:$("message").value,url:site});$("status").textContent="Share dialog closed; publication not verified.";}catch{$("status").textContent="Sharing unavailable or cancelled.";}});
+prepare();
+})();
+</script></body></html>
