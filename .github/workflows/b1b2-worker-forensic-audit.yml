@@ -1,6 +1,10 @@
 name: B1 B2 Independent Forensic Worker-by-Worker Audit
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "B1 B2 1000 Worker Fleet - 900 Additional Executing Roles"
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -15,6 +19,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   forensic-audit-900:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
