@@ -1,0 +1,45 @@
+{
+  "schema": "b1b2-free-software-manifest-v1",
+  "updated_utc": "2026-11-20",
+  "brand": "B1/B2 AI Studio",
+  "tagline": "Practical AI. Tested tools. Real deliverables.",
+  "approval": "Owner-authorized free software marketing and original reimplementations, 2026-11-20",
+  "license": "MIT only for specified 55-tool Free Toolbox code",
+  "license_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/FREE_SOFTWARE_LICENSE.md",
+  "source_code": [
+    "docs/assets/free-toolbox.js",
+    "docs/assets/free-toolbox-extensions.js"
+  ],
+  "free_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/free-toolbox.html",
+  "current_https_url_directory": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md",
+  "all_existing_software": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/software.html",
+  "test_workflow": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/studio-site-ci.yml",
+  "toolbox_count": 55,
+  "base_utilities": 29,
+  "addon_utilities": 26,
+  "categories": [
+    "Data",
+    "Developer",
+    "Writing",
+    "Analysis",
+    "Design"
+  ],
+  "free_to_use": true,
+  "no_registration": true,
+  "donation_required": false,
+  "process_user_data_server_side": false,
+  "browser_network_required_for_calculations": false,
+  "real_production_clients_claimed": false,
+  "helpers": [
+    "B1 transferexperiment",
+    "B2 BountyScoutAI",
+    "Chief D"
+  ],
+  "worker_roles_defined_not_online_agents": 750377265360,
+  "contributor_tasks": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/marketing/FREE_SOFTWARE_CONTRIBUTOR_TASKS_2026-11-20.md",
+  "optional_support": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/payment.html",
+  "support_network": "Bitcoin mainnet native BTC only; never send other coins and independently check receiver",
+  "do_not_bulk_post": true,
+  "do_not_copy_proprietary_code": true,
+  "note": "Free toolbox source is original. Other existing software may have separate rights and must be individually audited. No external post or verified payment implied by catalogue."
+}
