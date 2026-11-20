@@ -39,6 +39,11 @@ jobs:
           python crypto-agents/self_correcting_buyer_route.py --self-test
       - name: Audit every tracked source and fix ONLY validated missing final newlines
         run: python crypto-agents/repository_forensic_self_heal.py --repair-safe
+      - name: Investigate recent real failed jobs and their actual steps without changing authority
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python crypto-agents/failure_learning_loop.py
       - name: Correct outdated buyer-host links after real HTTPS checks only
         run: python crypto-agents/self_correcting_buyer_route.py
       - name: Validate canonical owner order and mirrored hash after corrections
@@ -56,6 +61,7 @@ jobs:
           name: b1b2-complete-forensic-and-correction-evidence
           path: |
             self-correction-evidence/
+            failure-learning-reports/
           retention-days: 14
           if-no-files-found: warn
       - name: Commit ONLY reviewed safe source-newline repairs and tested buyer-link directory
@@ -91,8 +97,41 @@ jobs:
           else
             git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
               commit -m 'Autocorrect approved buyer link and syntax-preserving end-of-file hygiene'
-            # Never force push or override concurrent owner instructions.
-            git push origin HEAD:main
+            # Concurrent owner updates are normal. Never force push; rebase
+            # approved mechanical changes onto latest main, then VERIFY the
+            # current canonical authority again before a bounded push retry.
+            pushed=false
+            for attempt in 1 2; do
+              git fetch --quiet origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo 'RECOVERY_HOLD: rebase conflict requires review'
+                exit 1
+              fi
+              python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('crypto-agents/chief_D_owner_orders.json').read_text())
+          p=json.loads(Path('crypto-agents/PUBLIC_AGENT_COMMAND.json').read_text())
+          ident=c['current_owner_order_id']
+          assert c['orders'][-1]['id']==p['command_id']==ident
+          assert c['orders'][-1]['instruction']==p['owner_command']
+          assert c['owner_prompt_cascade']['owner_order_id']==ident
+          assert p['owner_prompt_cascade']['owner_order_id']==ident
+          assert p['strict_worker_customer_execution']['no_email']
+          assert p['strict_worker_customer_execution']['no_spend_or_sign']
+          print('POST_REBASE_OWNER_ORDER_GUARD_PASS')
+          PY
+              if git push origin HEAD:main; then
+                pushed=true
+                break
+              fi
+              echo 'GIT_PUSH_RACE: retrying one safe rebase (no force)'
+            done
+            if [ "$pushed" != true ]; then
+              echo 'RECOVERY_HOLD: safe push still blocked'
+              exit 1
+            fi
           fi
       - name: State truthful repair boundaries
         if: always()
