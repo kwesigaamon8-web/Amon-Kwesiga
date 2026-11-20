@@ -20,6 +20,12 @@ ACTIVE_PROGRAM = {
     "resources": "https://immunefi.com/bug-bounty/thresholdnetwork/resources/",
     "rules": "https://immunefi.com/rules/",
     "source_repo": "https://github.com/threshold-network/solidity-contracts",
+    "first_in_scope_asset_name": "TokenholderGovernor",
+    "first_in_scope_asset_address_ethereum": "0xd101f2b25bcbf992bdf55db67c104fe7646f5447",
+    "first_local_source_path": "contracts/governance/BaseTokenholderGovernor.sol",
+    "first_local_source_blob_sha": "4da8e704c67a85c863a249366a9f127307ba0e2d",
+    "first_asset_onchain_testing_permitted": False,
+    "deprecated_staking_contracts_excluded": True,
     "status": "PUBLICLY_LISTED_RULES_REVIEWED_NO_VULNERABILITY_CLAIM",
     "payout_usd_max_advertised": 150000,
     "payout_asset": "USDC_Ethereum_OR_T_Ethereum_AT_DAO_DISCRETION",
@@ -128,6 +134,8 @@ def self_test():
         assert packet["division_index"] == idx // PER_ROOT
         assert packet["configured_global_role_count"] == GRAND_TOTAL
         assert packet["active_target"]["id"] == ACTIVE_PROGRAM["id"]
+        assert packet["active_target"]["first_in_scope_asset_name"] == "TokenholderGovernor"
+        assert packet["active_target"]["deprecated_staking_contracts_excluded"]
         assert packet["role_country_assignment"]["root_system_index"] == idx // PER_ROOT
         assert len(packet["btc_mainnet_reference_only"]) == 2
         assert packet["individual_worker_actual_execution_evidenced"] is False
