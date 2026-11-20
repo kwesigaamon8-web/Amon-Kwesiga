@@ -175,6 +175,36 @@ def main_self_test():
             assert not payload["model_inference_completed"]
             records.append(payload)
         assert queue.empty("owner-role-work")
+        # Demonstrate that a task prohibited by the owner's instructions is
+        # never ACKed as successful and is moved to a real dead-letter queue.
+        bad=json.dumps(invalid,sort_keys=True).encode()
+        queue.put(bad,qname="rejected-owner-task")
+        rejected_attempts=0
+        for _ in range(2):
+            try:
+                with queue.consume(qname="rejected-owner-task",wait_seconds=0) as msg:
+                    assert msg is not None
+                    check_envelope(json.loads(msg.data.decode()))
+            except ValueError as exc:
+                assert "TASK_SCHEMA_INVALID" in str(exc)
+                rejected_attempts+=1
+        assert rejected_attempts==2
+        assert queue.empty("rejected-owner-task")
+        # Retry utility is tested independently with a deterministic transient
+        # OperationalError; do not claim a network failure was tested.
+        transient_calls=[0]
+        @retry(retry=retry_if_exception_type(sqlite3.OperationalError),
+               stop=stop_after_attempt(3),wait=wait_none(),reraise=True)
+        def transient_test():
+            transient_calls[0]+=1
+            if transient_calls[0]==1:
+                raise sqlite3.OperationalError("synthetic temporary lock")
+            return "recovered"
+        assert transient_test()=="recovered" and transient_calls[0]==2
+        with sqlite3.connect(db) as con:
+            dead_letter_count=con.execute(
+                "SELECT COUNT(*) FROM liteq_dlq WHERE queue_name='rejected-owner-task'").fetchone()[0]
+        assert dead_letter_count==1
         with sqlite3.connect(db) as con:
             rr=con.execute("""SELECT command_id,role_id,parent_id,action_sha256,result_json
                      FROM owner_job_receipts ORDER BY role_id""").fetchall()
@@ -193,6 +223,9 @@ def main_self_test():
             "stale_owner_order_refused":True,
             "unsafe_Gmail_type_refused":True,
             "unacknowledged_manager_refused":True,
+            "disallowed_task_rejected_twice_and_moved_to_dead_letter":dead_letter_count==1,
+            "forbidden_task_retry_attempts":rejected_attempts,
+            "transient_sqlite_error_retry_test_passed":True,
             "sqlite_backed_queue_source":"Apache-2.0 unkloud/liteq vendored",
             "schema_validation_source":"MIT python-jsonschema",
             "bounded_sqlite_retry_source":"Apache-2.0 tenacity",
@@ -217,6 +250,8 @@ def main_self_test():
             "- **2 company roots × 6 tiers**: D→M→W→S→G→H",
             "- All 12 queue messages were acknowledged after completed work",
             "- Wrong parent, stale command, unsafe Gmail task, and child-before-parent rejected",
+            "- An unsafe task failed twice and was moved into the dead-letter queue, never counted as work",
+            "- A synthetic temporary SQLite error was successfully retried once",
             "- **0 independently proven AI-model comprehension or buyer payments**",
             "",
             "**Important limitation:** This is a **local SQLite queue on one ephemeral GitHub Actions runner**. Queue artifacts are evidence, not a 24/7 globally deployed messaging service. Running the code once does not notify trillions of virtual roles."]
