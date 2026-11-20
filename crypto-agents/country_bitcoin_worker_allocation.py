@@ -60,7 +60,6 @@ def allocate_exact(amount, weights):
     if total<=0:raise ValueError("No usable internet counts")
     floors={k:amount*v//total for k,v in weights.items()}
     leftover=amount-sum(floors.values())
-    ranked=sorted(weights,key=lambda k:(-(amount*weights[k])%total,k)) # overwritten for clear tie ordering below
     ranked=sorted(weights,key=lambda k:(-((amount*weights[k])%total),k))
     for k in ranked[:leftover]:floors[k]+=1
     assert sum(floors.values())==amount
@@ -79,7 +78,7 @@ def build():
         if not isinstance(id3,str) or len(id3)!=3 or not isinstance(name,str):continue
         estimate=0;year="";pct=None;pop=None
         for y in YEARS:
-            a=pops.get((id3,y));b=internet.get((id3,y))
+            a=pops.get((iso2,y));b=internet.get((iso2,y))
             if a is None or b is None or a<0 or not (Decimal(0)<=b<=Decimal(100)):
                 continue
             pop=int(a)
