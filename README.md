@@ -3,6 +3,14 @@ AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provi
 
 ---
 
+## PC AI Miner — public Bitcoin demos, tests, and voluntary mining collaboration
+
+**[PC AI Miner public software hub](./docs/pc-ai-miner.html)** · **[Open Python source](./crypto-agents/pc-ai-miner/pc_ai_miner.py)** · **[Reproducible tests](./crypto-agents/pc-ai-miner/test_pc_ai_miner.py)** · **[Release status and 34 historic archives](./crypto-agents/pc-ai-miner/README.md)** · **[Volunteer opt-in](./crypto-agents/MINING_AGENT_OPT_IN.md)**.
+
+The public site runs only a bounded, click-triggered **educational** SHA256d demo and can generate *manual* pool settings after separate hardware-ownership and donation consent. It never mines in the background or guarantees BTC. Thirty-four older owner ZIP packages have been recovered and statically audited, but their original binaries/autostart launchers remain **unreleased pending deeper review**. The 11.25 trillion virtual role IDs are not mining devices or public social media accounts.
+
+---
+
 ## B1/B2 Digital Work Studio — working software and paid microservices
 
 **NEW — 55 original free utilities and 12 mini apps:** [Help share worldwide](./docs/share-free-software.html) ·  [Try the B1/B2 Free Toolbox](./docs/free-toolbox.html) · [Open 6 free mini apps](./docs/mini-apps.html) · [Try 6 new business/marketing apps](./docs/market-lab.html) · [MIT source license and owner approval](./docs/FREE_SOFTWARE_LICENSE.md) · [Volunteer tasks and optional B1/B2 BTC support](./crypto-agents/marketing/FREE_SOFTWARE_CONTRIBUTOR_TASKS_2026-11-20.md). Anyone may use the MIT-licensed new toolbox without payment, login or donation; supporting the project is voluntary.
