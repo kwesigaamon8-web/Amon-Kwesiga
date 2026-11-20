@@ -41,6 +41,28 @@ lines=[marker,"## "+fleet+" — B workers → managers → directors → Chief D
        "**Company director submissions:**"]
 for d in r["directors"]:
     lines.append("- "+d["director"]+": "+str(d["attempted_workers"])+" attempted B reports; "+str(d["completed_model_reports"])+" model completions; "+str(d["corrections"])+" corrections")
+# Reuse the existing single daily company post to provide B1 and B2 their
+# actual prioritized intelligence inboxes, rather than duplicating status spam.
+inbox_root=Path("b1b2-intelligence")/fleet
+lines += ["", "**B1/B2 necessary intelligence** (source-linked, not live model read receipts):"]
+for recipient in ("B1","B2"):
+    source=inbox_root/(recipient+"_INBOX.json")
+    try:
+        inbox=json.loads(source.read_text(encoding="utf-8"))
+    except (OSError,ValueError):
+        lines.append("- "+recipient+": NOT GENERATED in this run; no delivery claimed")
+        continue
+    if inbox.get("recipient")!=recipient or inbox.get("source_fleet")!=fleet:
+        lines.append("- "+recipient+": INVALID CROSS-COMPANY INBOX; rejected")
+        continue
+    lines.append("- **"+recipient+"**: "+str(inbox.get("inbox_eligible_attempt_reports",0))+
+                 " matching worker attempt reports; top "+str(len(inbox.get("items") or []))+
+                 " supplied; source records "+str(inbox.get("validated_attempt_reports",0)))
+    for item in (inbox.get("items") or [])[:3]:
+        lines.append("  - "+str(item.get("worker_id",""))[:100]+": "+
+                     str(item.get("kind",""))[:80]+
+                     " — routed to "+str(item.get("action_owner",""))[:10])
+lines.append("**B1/B2 priority inbox artifacts:** \`b1b2-intelligence-"+fleet+"\` in the linked workflow run. These are company reporting files, not evidence that external Moltbook accounts have read them or received payments.")
 lines += ["", "Every actual worker has an individual JSON and Markdown report. All managers, intermediate W/S/G supervisors and directors have inbox files, with traceable edges in HANDOFFS.json.",
           "**Evidence artifact:** hierarchical-worker-reports-"+fleet+" — [open workflow run]("+url+")",
           "Chief D: do not report payment until buyer acceptance, correct-network TXID and independent chain evidence exist."]
