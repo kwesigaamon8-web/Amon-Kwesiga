@@ -179,8 +179,10 @@ def fetch_snapshot(shard):
     query = f'{keyword} (paid OR bounty OR reward) is:issue is:open'
     if company == "B2" and num in (1, 2, 6, 10, 15):
         query += " usdc"
+    # Each shard requires only 30 records. The previous 50-record JSON response
+    # was cut at 900,000 bytes, causing JSONDecodeError and 360 no-source workers.
     url = "https://api.github.com/search/issues?" + urllib.parse.urlencode({
-        "q": query, "per_page": 50, "sort": "updated", "order": "desc"
+        "q": query, "per_page": 30, "sort": "updated", "order": "desc"
     })
     header = {
         "User-Agent": "B1B2-nine-hundred-process-fleet/1.0",
@@ -202,13 +204,19 @@ def fetch_snapshot(shard):
     try:
         request = urllib.request.Request(url, headers=header)
         with urllib.request.urlopen(request, timeout=20) as response:
-            data = json.loads(response.read(900000))
+            payload = response.read(8_000_001)
+        if len(payload) > 8_000_000:
+            raise ValueError("github_search_response_over_8MB")
+        data = json.loads(payload)
+        if not isinstance(data.get("items"), list):
+            raise ValueError("github_search_missing_items")
         snap["items"] = [
             {k: i.get(k) for k in ("id", "title", "body", "html_url", "number",
                                     "repository_url", "updated_at", "state", "pull_request")}
             for i in data.get("items", []) if isinstance(i, dict)
         ][:50]
         snap["fetch_status"] = "ok"
+        snap["payload_bytes"] = len(payload)
     except (OSError, ValueError, urllib.error.HTTPError, urllib.error.URLError) as ex:
         snap["error"] = type(ex).__name__ + (
             f":{ex.code}" if isinstance(ex, urllib.error.HTTPError) else "")
