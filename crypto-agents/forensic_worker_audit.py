@@ -192,6 +192,31 @@ def examine(root, expected_order, output, strict_prompt_required=False):
                                   else "BLOCKED_NO_SOURCE" if no_source else "EVIDENCE_INVALID"),
                 "forensic_errors": ";".join(errors),
             }
+            # PROVE OR LEAVE: neither an exit code nor an order ID constitutes a
+            # proven, task-capable worker. Do not delete mathematical role IDs.
+            # A verified bounded source task qualifies; a source-failure diagnosis
+            # is meaningful diagnostics but not customer-source execution.
+            proof_conditions = (
+                process_recorded and order_recorded
+                and task.get("id") == worker_id
+                and full_order_read and actual_task_verified
+                and task_assessed and seen and not errors
+            )
+            if proof_conditions:
+                roster_status = "PROVEN_FINITE_TASK_EXECUTED"
+                reason = "REPLAYABLE_SOURCE_ASSESSMENT_WITH_ORDER_AND_TASK_PROOF"
+            elif source_diagnostic_done and full_order_read and not errors:
+                roster_status = "INACTIVE_REASSIGN_SOURCE_UNAVAILABLE"
+                reason = "SOURCE_FAILURE_DIAGNOSIS_ONLY_NOT_CUSTOMER_WORK"
+            elif errors:
+                roster_status = "REMOVED_FROM_ACTIVE_NO_VALID_PROOF"
+                reason = ";".join(errors)[:300]
+            else:
+                roster_status = "REMOVED_FROM_ACTIVE_NO_VALID_PROOF"
+                reason = "NO_VERIFIED_COMPLETE_TASK_OUTPUT"
+            row["active_roster_status"] = roster_status
+            row["active_roster_evidence_reason"] = reason
+            row["reassignment_required"] = roster_status != "PROVEN_FINITE_TASK_EXECUTED"
             if errors:
                 failures.extend(f"{worker_id}:{err}" for err in errors)
             rows.append(row)
@@ -208,6 +233,9 @@ def examine(root, expected_order, output, strict_prompt_required=False):
         "workers_with_full_owner_instruction_digest": sum(r["full_owner_order_text_digest_verified"] for r in rows),
         "workers_with_actual_individual_task_receipts": sum(r["actual_individual_task_evidence_verified"] for r in rows),
         "workers_with_source_failure_diagnostic": sum(r["source_failure_diagnostic_executed"] for r in rows),
+        "workers_allowed_in_proven_finite_task_roster": sum(r["active_roster_status"] == "PROVEN_FINITE_TASK_EXECUTED" for r in rows),
+        "workers_removed_from_active_roster_no_valid_proof": sum(r["active_roster_status"] == "REMOVED_FROM_ACTIVE_NO_VALID_PROOF" for r in rows),
+        "workers_inactive_reassign_source_unavailable": sum(r["active_roster_status"] == "INACTIVE_REASSIGN_SOURCE_UNAVAILABLE" for r in rows),
         "workers_blocked_without_source": sum(r["worker_result"] == "BLOCKED_NO_SOURCE" for r in rows),
         "unverified_lead_flags_not_customers": sum(r["unverified_lead_flag"] for r in rows),
         "distinct_unverified_lead_urls": len(candidate_index),
@@ -229,6 +257,16 @@ def examine(root, expected_order, output, strict_prompt_required=False):
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
+    (output / "worker-activity-roster.json").write_text(
+        json.dumps({
+            "owner_order_id": expected_order,
+            "proof_gate": "Individual specific source task + owner instruction digest + verified record hashes",
+            "not_proof_of_trillions_of_live_workers": True,
+            "proven_finite_task_workers": [r["worker_id"] for r in rows if r["active_roster_status"] == "PROVEN_FINITE_TASK_EXECUTED"],
+            "inactive_or_removed": [{"worker_id": r["worker_id"], "status": r["active_roster_status"], "reason": r["active_roster_evidence_reason"]}
+                                     for r in rows if r["active_roster_status"] != "PROVEN_FINITE_TASK_EXECUTED"],
+        }, indent=2) + "\n", encoding="utf-8"
+    )
     (output / "worker-forensic-audit.json").write_text(
         json.dumps({"summary": summary, "workers": rows}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
@@ -239,7 +277,11 @@ def examine(root, expected_order, output, strict_prompt_required=False):
                   "workers_with_matching_order", "workers_with_specific_assigned_task",
                   "workers_with_source_triage", "workers_with_full_owner_instruction_digest",
                   "workers_with_actual_individual_task_receipts",
-                  "workers_with_source_failure_diagnostic", "workers_blocked_without_source",
+                  "workers_with_source_failure_diagnostic",
+                  "workers_allowed_in_proven_finite_task_roster",
+                  "workers_removed_from_active_roster_no_valid_proof",
+                  "workers_inactive_reassign_source_unavailable",
+                  "workers_blocked_without_source",
                   "distinct_unverified_lead_urls", "actual_independently_verified_buyers",
                   "actual_external_proposals_sent", "actual_model_inference_records",
                   "actual_accepted_paid_jobs", "actually_verified_crypto_receipts"):
@@ -296,6 +338,8 @@ def self_test():
         assert out["worker_records_examined"] == 900
         assert out["workers_with_source_triage"] == 900
         assert out["workers_with_any_error"] == 0
+        assert out["workers_allowed_in_proven_finite_task_roster"] == 0
+        assert out["workers_removed_from_active_roster_no_valid_proof"] == 900
         assert out["actually_verified_crypto_receipts"] == 0
     print("FORENSIC_AUDIT_SELF_TEST_PASS")
 
