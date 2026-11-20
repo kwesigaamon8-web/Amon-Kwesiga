@@ -1424,7 +1424,7 @@
     "virtual_roles_not_concurrent_live_agents": true
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-161731-ONE-ORDER-EACH-REAL-WORKER-CAPABILITY-AND-AUDIT",
+    "owner_order_id": "OWNER-20261120-BTC-RESEARCH-MINING-EARNING-TEST",
     "standards_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "all_real_invoked_workers_must_read_order_text": true,
     "all_real_invoked_h_leaf_must_receive_full_prompt": true,

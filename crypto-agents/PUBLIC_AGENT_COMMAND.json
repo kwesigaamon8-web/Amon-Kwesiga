@@ -162,7 +162,7 @@
     "chain_token_memo_must_be_reverified_before_any_payment": true,
     "owner_wallet_signing_spending_allowed": false
   },
-  "latest_owner_priority": "ONE_REAL_TASK_EACH_INVOKED_WORKER__INDEPENDENT_CAPABILITY_AUDIT__PROVEN_EXECUTION__NO_EMAIL",
+  "latest_owner_priority": "BTC_MAINNET_TEST_RESEARCH_AUTHORIZED_MINING_FEASIBILITY_VERIFIED_PAID_WORK_RECEIPT_PROOF_NO_EMAIL",
   "continuous_failure_learning_rule": {
     "owner_instruction_received_utc": "2026-11-17T11:04:01Z",
     "exact_instruction": "always learn from failures",
@@ -482,7 +482,7 @@
     ]
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-161731-ONE-ORDER-EACH-REAL-WORKER-CAPABILITY-AND-AUDIT",
+    "owner_order_id": "OWNER-20261120-BTC-RESEARCH-MINING-EARNING-TEST",
     "standard_prompt_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "requires_full_original_order_sha": true,
     "requires_leaf_actual_execution_receipt": true,
