@@ -1,14 +1,14 @@
 {
   "schema": "B1B2_WORLD_TO_PAID_WORK_DISCOVERY_V1",
-  "at_utc": "2026-11-20T19:12:25.256134+00:00",
+  "at_utc": "2026-11-20T19:12:54.653644+00:00",
   "owner": {
     "owner_order_id": "OWNER-20261120-185403-WORLDWIDE-PUBLIC-OSINT",
     "owner_sha256": "5e141543e2df4c4f289ee1ebc3f8060a8859dd4ac3c4270802aa92c4ec73cda3"
   },
   "index_url": "https://muhib-karim.github.io/bounty-radar/bounties.json",
   "index_status": "PUBLIC_FEED_READ_34_CANDIDATES",
-  "original_issue_checks_attempted": 12,
-  "original_issue_checks_succeeded": 12,
+  "original_issue_checks_attempted": 34,
+  "original_issue_checks_succeeded": 34,
   "leads": [
     {
       "id": "ies-boilerroom_grpc-http2-hpack-framing_2",
@@ -45,7 +45,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 0,
+      "original_repository_archived": false
     },
     {
       "id": "ies-boilerroom_grpc-http2-hpack-framing_1",
@@ -83,7 +85,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 0,
+      "original_repository_archived": false
     },
     {
       "id": "ies-boilerroom_json-schema-dynamicref-engine_1",
@@ -120,7 +124,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 0,
+      "original_repository_archived": false
     },
     {
       "id": "microg_gmscore_2843",
@@ -156,7 +162,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 0,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4597",
@@ -184,8 +192,7 @@
       "original_issuer": "yct8964-web",
       "original_source_sha256": "9d1d3089c1e4ce96844720ad479dd4efd102e0e303209164deed6f2f7941e8cc",
       "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
-        "SOME_COMMENTS_UNREAD"
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
       ],
       "claimed_bounty_is_earned": false,
       "requires_sponsor_confirmation": [
@@ -193,7 +200,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4596",
@@ -221,8 +230,7 @@
       "original_issuer": "Xex33d",
       "original_source_sha256": "c38682892a466a97a10f9d60af823e5aa21ff1cb81ee0889dd96205547bb68eb",
       "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
-        "SOME_COMMENTS_UNREAD"
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
       ],
       "claimed_bounty_is_earned": false,
       "requires_sponsor_confirmation": [
@@ -230,7 +238,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4593",
@@ -258,8 +268,7 @@
       "original_issuer": "MarkDonish",
       "original_source_sha256": "114ae43da856cf8c2b86db591b726b483db6d334130e5428a7128c01ec1240f8",
       "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
-        "SOME_COMMENTS_UNREAD"
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
       ],
       "claimed_bounty_is_earned": false,
       "requires_sponsor_confirmation": [
@@ -267,7 +276,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4574",
@@ -295,8 +306,7 @@
       "original_issuer": "oppo2357",
       "original_source_sha256": "fbd39b564b10d6e5006eb3b8e48d04565fda0f38da63b08f96a47e18288e4e3e",
       "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
-        "SOME_COMMENTS_UNREAD"
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
       ],
       "claimed_bounty_is_earned": false,
       "requires_sponsor_confirmation": [
@@ -304,7 +314,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4569",
@@ -332,8 +344,7 @@
       "original_issuer": "nmorestd",
       "original_source_sha256": "791a93bd8b2b0d5e05708cb48c788ae17473ec1333892aa7f0415ea03f396a83",
       "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
-        "SOME_COMMENTS_UNREAD"
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
       ],
       "claimed_bounty_is_earned": false,
       "requires_sponsor_confirmation": [
@@ -341,7 +352,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4564",
@@ -369,8 +382,7 @@
       "original_issuer": "zh8fb52j99-art",
       "original_source_sha256": "d4fbdd66d0905543e7187664b28ba1927c081ee3653028bf6697e6782520690d",
       "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
-        "SOME_COMMENTS_UNREAD"
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
       ],
       "claimed_bounty_is_earned": false,
       "requires_sponsor_confirmation": [
@@ -378,7 +390,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "ies-boilerroom_json-schema-dynamicref-engine_2",
@@ -408,7 +422,6 @@
       "blockers": [
         "NO_EXPLICIT_REWARD_IN_SOURCE",
         "NO_EXTERNAL_SUBMISSION_ROUTE",
-        "SOME_COMMENTS_UNREAD",
         "SPONSOR_FORBIDS_UNSOLICITED_EXTERNAL_PRS"
       ],
       "claimed_bounty_is_earned": false,
@@ -417,7 +430,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4488",
@@ -454,7 +469,9 @@
         "Uganda eligibility, available assignment slot and original contribution route",
         "Explicit correct B1/B2 compatible payout network and amount",
         "Sponsor approval or permitted claim process before contribution"
-      ]
+      ],
+      "comments_inspected_count": 2,
+      "original_repository_archived": false
     },
     {
       "id": "alfrexo95_bounty-bot_96",
@@ -470,12 +487,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "🪙 [Web3] [Wave 3: 2 × $20 USDC | 3-Year Protocol Trajectory",
+      "original_updated_at": "2026-11-20T11:28:42Z",
+      "original_comments_count": 2,
+      "original_issuer": "alfrexo95",
+      "original_source_sha256": "6133f2037044ccbfb4c544e239a922d009040a714e6b745bc0e42896357a47e1",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 2,
+      "original_repository_archived": false
     },
     {
       "id": "fractal-neurons_pacta_118",
@@ -491,12 +525,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[Wave 3: 2 × $20 USDC | 3-Year Protocol Trajectory & Integrity Dossiers] Human-Researcher Control-Plane Due-Diligence Pool",
+      "original_updated_at": "2026-11-20T18:16:36Z",
+      "original_comments_count": 7,
+      "original_issuer": "pacta-fractal-neurons",
+      "original_source_sha256": "2e8dce1a56f8a80973c3548dccb06c546aba454be2da4700c71eb3339bc29865",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 7,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4565",
@@ -512,12 +563,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Dual-Polarity Foreign Escape Freeze (O5.3 / HYB-E3014): Flip GUARANTEES.md Row 9 from Read-Only Escape Exemption to Full Tier-0 Guarantee",
+      "original_updated_at": "2026-11-18T11:39:14Z",
+      "original_comments_count": 1,
+      "original_issuer": "kestreldevstudio",
+      "original_source_sha256": "0453ede2f85c3ad252d6df53857b7dccfb50efbef01a4e529cca8b1a1509947f",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_634",
@@ -533,12 +601,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Delete sendability analysis: task regions as serializable transactions",
+      "original_updated_at": "2026-10-31T19:30:03Z",
+      "original_comments_count": 4,
+      "original_issuer": "livastic-vm6-primary-20260911",
+      "original_source_sha256": "60fce0de3defc09bb59e853e93af437b1697bdd56c22b5f4eda20ad317153391",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE",
+        "SOME_COMMENTS_UNREAD"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 3,
+      "original_repository_archived": false
     },
     {
       "id": "tscircuit_schematic-trace-solver_34",
@@ -554,12 +640,31 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "REJECTED_EXTERNAL_SUBMISSION",
+      "original_title": "Merge same-net trace lines that are close together (make at the same Y or same X)",
+      "original_updated_at": "2026-11-14T02:10:35Z",
+      "original_comments_count": 170,
+      "original_issuer": "seveibar",
+      "original_source_sha256": "319e06b97f8ddd3195b50ad4df34cca14e393fff2f77e2408587b7c3da239604",
+      "blockers": [
+        "ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS",
+        "MULTIPLE_EXISTING_PR_SOLUTIONS_NO_SPONSOR_REOPENING",
+        "SOME_COMMENTS_UNREAD"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 69,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4492",
@@ -575,12 +680,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Checked allocation: a heap budget for the checked subset",
+      "original_updated_at": "2026-11-15T14:18:13Z",
+      "original_comments_count": 2,
+      "original_issuer": "dankezo",
+      "original_source_sha256": "7a49790062fa4e7d272032e766022d135dd4d51fa0f628e8b605926aa1de9b25",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE",
+        "SOME_COMMENTS_UNREAD"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 1,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_4176",
@@ -596,12 +719,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Replace the static sendability proof with exhaustive schedule enumeration + a replayable certificate (bounded subset)",
+      "original_updated_at": "2026-11-10T22:23:15Z",
+      "original_comments_count": 7,
+      "original_issuer": "kyleslight",
+      "original_source_sha256": "d2e1599408ce0c3e283f8df386c3b9dde5023920fb3c0dd56bc6bb6ff64b5e55",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE",
+        "SOME_COMMENTS_UNREAD"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 6,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_3900",
@@ -617,12 +758,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Synthesize progress strategies for bounded, data-dependent task regions",
+      "original_updated_at": "2026-11-08T16:20:45Z",
+      "original_comments_count": 6,
+      "original_issuer": "CarsonCCHsieh",
+      "original_source_sha256": "da459e4b0da2e7e6b2d7079adfccd3f77d49b136370f644d3fd8597ea0683a8d",
+      "blockers": [
+        "ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS",
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 6,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_3429",
@@ -638,12 +797,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Zero-copy loan slices across the assembly trampoline via static GC-pin certificates",
+      "original_updated_at": "2026-11-03T21:09:29Z",
+      "original_comments_count": 2,
+      "original_issuer": "AhmedB03",
+      "original_source_sha256": "7ae3eed26778a7ed2c66346ba26b2ebdbe3a57c20c010fe4631e8991ad823702",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 2,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_2965",
@@ -659,12 +835,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Certified Task-Region Memory Budgets: compile-time static max-RSS certificates",
+      "original_updated_at": "2026-11-01T16:19:31Z",
+      "original_comments_count": 3,
+      "original_issuer": "zmxnpquryet-gif",
+      "original_source_sha256": "eb2ea06cb3344010c0c715a0c09f3bad367f964eb92e67fb61da02d1c919f18c",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 3,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_2176",
@@ -680,12 +873,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Make hy-check an untrusted proof producer: permission certificates for actual Go",
+      "original_updated_at": "2026-11-02T06:04:43Z",
+      "original_comments_count": 4,
+      "original_issuer": "2011722761",
+      "original_source_sha256": "d5c16c2089cd40e48e602d5a759323be9ec6f60ce03f126d44d694726c26f4ec",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 4,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_1962",
@@ -701,12 +911,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "Serial by default: safe execution first",
+      "original_updated_at": "2026-10-31T19:25:48Z",
+      "original_comments_count": 2,
+      "original_issuer": "radov23-source",
+      "original_source_sha256": "a8b29175b8a988440f005c5de769f6228e18ec4f855f4f6c19cc293fab804770",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 2,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_1669",
@@ -722,12 +949,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Structured Task Scopes & Affine Cancellation Tokens: eliminating goroutine leaks from GUARANTEES.md Row 12",
+      "original_updated_at": "2026-11-07T06:51:36Z",
+      "original_comments_count": 7,
+      "original_issuer": "moonstory85",
+      "original_source_sha256": "3f2c301e359ef42cb9b16ab3a224ad731550f6d43397d5f6d6c1da84dd3ddbbb",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 7,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_695",
@@ -743,12 +987,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Eliminate the Checker/Emitter Semantic Split: Emit-Driven Verification via Explicit Desugared MIR (`hy-mir`)",
+      "original_updated_at": "2026-10-31T22:22:30Z",
+      "original_comments_count": 5,
+      "original_issuer": "huynhnhatquandongnai-source",
+      "original_source_sha256": "cb262f8f9654ca2554698bfd6478e06d279a328e44d723842e5cd16e9caeb5ac",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 5,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_610",
@@ -764,12 +1025,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Make FFI claims proof-carrying: verify boundary contracts against the linked Rust artifact",
+      "original_updated_at": "2026-11-03T04:33:52Z",
+      "original_comments_count": 5,
+      "original_issuer": "JorgeMrr06",
+      "original_source_sha256": "f74eab93b48923088d5e941a8a2fda53132960d34c1f2c7a4f3f5dd929e39717",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 5,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_462",
@@ -785,12 +1063,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
+      "original_updated_at": "2026-10-31T19:30:53Z",
+      "original_comments_count": 5,
+      "original_issuer": "Rangercook",
+      "original_source_sha256": "4210ee7d7259545335c748c76bd14efa3177cd92d4a16d4664d1c45989250c8a",
+      "blockers": [
+        "ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS",
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 5,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_417",
@@ -806,12 +1102,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Serializable shared-state regions instead of exclusive ownership",
+      "original_updated_at": "2026-10-31T22:22:31Z",
+      "original_comments_count": 8,
+      "original_issuer": "matheuswallace",
+      "original_source_sha256": "2857b6ecba472230c5c265554ca80ca2f41fb2a472617b1fba7b1ddb5d840954",
+      "blockers": [
+        "ALREADY_SUBMITTED_FIX_OR_PRS_IN_COMMENTS",
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 8,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_378",
@@ -827,12 +1141,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Compile fixed-rate task networks away: certified periodic Go kernels with explicit buffer budgets",
+      "original_updated_at": "2026-10-28T12:49:57Z",
+      "original_comments_count": 6,
+      "original_issuer": "0xSixtos",
+      "original_source_sha256": "428e63c43d6e7f8aa758cd6ae94939da1197f5e46c3cc0f0e1f168405b9ce730",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 6,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_375",
@@ -848,12 +1179,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Kill libhyrt.a and the runtime stack-guard branch for SMALL/DEFAULT leaves: compile Rust leaves to Go-ABI0 assembly via LLVM + DWARF/stack-size certificates",
+      "original_updated_at": "2026-10-17T20:25:21Z",
+      "original_comments_count": 4,
+      "original_issuer": "alejandrobrcca-sys",
+      "original_source_sha256": "374f3f4dbe122c77cf8b60a86383f80a2adf9e96e07f28f3e205a5e20137bd81",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 4,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_352",
@@ -869,12 +1217,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] GUARANTEES.md row 12 is wrong: cancellation-safety is a one-pass corollary of Tier-0",
+      "original_updated_at": "2026-10-18T18:33:05Z",
+      "original_comments_count": 4,
+      "original_issuer": "raju12345-raju",
+      "original_source_sha256": "3c20cf0df685fd66af49abc0dcfb58a8b9127fb665c3af9eb5cd4f0742d339ba",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 4,
+      "original_repository_archived": false
     },
     {
       "id": "limitlessprojects_go-hybrid_348",
@@ -890,12 +1255,29 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "[wildcard] Certify cancellation-safe structured task regions through blocking-effect admission",
+      "original_updated_at": "2026-11-01T19:21:54Z",
+      "original_comments_count": 6,
+      "original_issuer": "yupengtang",
+      "original_source_sha256": "34bfafef92cc47335e1c154707fd32d045c2e50c087bf14dc9ea51f62a4fbcb5",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 6,
+      "original_repository_archived": false
     },
     {
       "id": "phpoffice_phpword_2672",
@@ -911,12 +1293,30 @@
       "funding_verified": false,
       "eligible_from_uganda_verified": false,
       "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": false,
+      "original_issue_checked": true,
       "platform_submission_authorized": false,
       "external_submission_sent": false,
       "buyer_accepted": false,
       "btc_deposit_verified": false,
-      "stage": "QUEUED_ORIGINAL_VERIFICATION"
+      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
+      "original_title": "addNumberingStyle DO NOT add Numbering Styles",
+      "original_updated_at": "2025-01-20T10:25:03Z",
+      "original_comments_count": 1,
+      "original_issuer": "mcinon",
+      "original_source_sha256": "ddc89ac53a3d84435dd9e8ccc6c0aa9b52f7b8b405b035f8e0ef1557f183fab5",
+      "blockers": [
+        "NO_EXPLICIT_REWARD_IN_SOURCE",
+        "SOME_COMMENTS_UNREAD"
+      ],
+      "claimed_bounty_is_earned": false,
+      "requires_sponsor_confirmation": [
+        "Verified available budget/escrow under sponsor control",
+        "Uganda eligibility, available assignment slot and original contribution route",
+        "Explicit correct B1/B2 compatible payout network and amount",
+        "Sponsor approval or permitted claim process before contribution"
+      ],
+      "comments_inspected_count": 0,
+      "original_repository_archived": false
     }
   ],
   "error_types": [],
@@ -925,9 +1325,8 @@
   "received_funds_verified": 0,
   "feed_generated_at": "2026-11-20T14:28:27.675Z",
   "stage_counts": {
-    "HOLD_ISSUER_REWARD_UNCONFIRMED": 7,
+    "HOLD_ISSUER_REWARD_UNCONFIRMED": 28,
     "HOLD_RECENT_SPONSOR_COMMENTS_UNREAD": 1,
-    "QUEUED_ORIGINAL_VERIFICATION": 22,
-    "REJECTED_EXTERNAL_SUBMISSION": 4
+    "REJECTED_EXTERNAL_SUBMISSION": 5
   }
 }
