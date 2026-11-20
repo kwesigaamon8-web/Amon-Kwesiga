@@ -11,6 +11,7 @@ import os
 import runpy
 import sys
 from hierarchy_command_core import main_for_tiers, task_context
+from self_correcting_role_runtime import verify_authority as verify_self_correcting_role_authority
 from b_certified_agent_service_router import role_index
 
 def real_ai_mode():
@@ -24,6 +25,9 @@ def real_ai_mode():
         raise ValueError("Reject stale AI worker command at the shared entrypoint")
     if role["parent"]!=role["packet"]["immediate_parent"]:
         raise ValueError("Worker's manager does not match centralized code")
+    # Actual-model mode shares the same fail-closed per-role self-correction
+    # authority gate. It does not pretend an AI model already completed.
+    verify_self_correcting_role_authority(role)
     os.environ["WORKFORCE_ID"]=args.fleet
     # The model adapter does the actual CPU model attempt and independent
     # comprehension check. It runs IN THIS actual worker process, not a
