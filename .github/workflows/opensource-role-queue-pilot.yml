@@ -1,0 +1,39 @@
+name: Licensed Open Source B1 B2 Queue — 12 Real Parent Gated Worker Tasks
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/vendor/liteq.py'
+      - 'crypto-agents/opensource_queue_worker.py'
+      - 'crypto-agents/vendor/OPEN_SOURCE_NOTICES.md'
+      - '.github/workflows/opensource-role-queue-pilot.yml'
+permissions:
+  contents: read
+concurrency:
+  group: opensource-b1b2-queue-local-test
+  cancel-in-progress: false
+jobs:
+  licensed-source-and-parent-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free MIT and Apache-licensed schema and retry dependencies
+        run: python -m pip install --quiet 'jsonschema>=4.20,<5' 'tenacity>=8.2,<10'
+      - name: Run 12 real Python tasks under two actual B organizational roots
+        run: |
+          python -m py_compile crypto-agents/vendor/liteq.py crypto-agents/opensource_queue_worker.py
+          python crypto-agents/opensource_queue_worker.py --self-test
+          cat opensource-worker-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve actual B1 B2 per-task receipts and code checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-permissive-oss-queue-evidence
+          path: opensource-worker-evidence/
+          if-no-files-found: warn
+          retention-days: 21
