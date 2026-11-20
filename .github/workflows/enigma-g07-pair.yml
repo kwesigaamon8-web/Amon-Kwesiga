@@ -1,0 +1,65 @@
+name: Enigma G07 — Seventh Google Account Two Real AI Agents
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 8 * * *'
+  push:
+    paths:
+      - 'crypto-agents/enigma_g07_pair.py'
+      - 'crypto-agents/test_enigma_g07_pair.py'
+      - '.github/workflows/enigma-g07-pair.yml'
+permissions:
+  contents: read
+concurrency:
+  group: enigma-g07-two-real-agents
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate independent agents and no-email policy
+        run: |
+          python -m py_compile crypto-agents/enigma_g07_pair.py crypto-agents/test_enigma_g07_pair.py
+          python crypto-agents/test_enigma_g07_pair.py
+  agent:
+    needs: validate
+    # For this account rollout execute on initial creation, then scheduled/manual.
+    if: github.event_name != 'push' || github.event.head_commit.message == 'Create Enigma agents for G07 account'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        agent: [A,B]
+    env:
+      ENIGMA_MODEL_ID: HuggingFaceTB/SmolLM2-135M-Instruct
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      MOLTBOOK_ENIGMA_G07_A_API_KEY: ${{ secrets.MOLTBOOK_ENIGMA_G07_A_API_KEY }}
+      MOLTBOOK_ENIGMA_G07_B_API_KEY: ${{ secrets.MOLTBOOK_ENIGMA_G07_B_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU inference model libraries
+        shell: bash
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu || echo 'CPU_TORCH_UNAVAILABLE'
+          python -m pip install --quiet 'transformers>=4.44,<5' || echo 'TRANSFORMERS_UNAVAILABLE'
+      - name: Execute one separate real model research task per AI identity
+        run: python crypto-agents/enigma_g07_pair.py --agent ${{ matrix.agent }}
+      - name: Keep separate truthful source/model/Moltbook evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enigma-g07-agent-${{ matrix.agent }}-evidence
+          path: enigma-g07-artifacts/*.json
+          if-no-files-found: warn
+          retention-days: 7
