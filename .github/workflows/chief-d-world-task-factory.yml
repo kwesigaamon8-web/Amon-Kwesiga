@@ -1,0 +1,68 @@
+name: Chief D Worldwide Task Factory — Discover Build Test Report and Payout Gate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 */4 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/chief-d-world-task-factory.yml'
+      - 'crypto-agents/world_work_factory.py'
+      - 'crypto-agents/commercial-work/invoice-payment-reconciliation/reconcile.py'
+permissions:
+  contents: read
+concurrency:
+  group: chief-d-world-task-factory
+  cancel-in-progress: false
+jobs:
+  actual-work-factory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate pipeline and hard safety gates
+        run: |
+          python -m py_compile crypto-agents/world_work_factory.py
+          python crypto-agents/world_work_factory.py --self-test
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/test_btc_receiver_safety.py
+      - name: Fetch public bounties and inspect original issue sources
+        run: python crypto-agents/world_work_factory.py --discover --build-portfolio
+      - name: Verify report, independent deliverable proof, and zero fake income
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('crypto-agents/world-work-factory')
+          d=json.loads((p/'discovery.json').read_text())
+          a=json.loads((p/'deliverables/invoice-reconciliation-synthetic-example/evidence.json').read_text())
+          assert d['confirmed_funded_eligible_jobs']==0
+          assert d['external_submissions_sent']==0
+          assert d['received_funds_verified']==0
+          assert a['real_python_test_return_code']==0
+          assert a['status']=='ORIGINAL_PUBLIC_PORTFOLIO_DELIVERABLE_TESTED'
+          assert a['externally_submitted'] is False
+          assert a['earnings_verified'] is False
+          assert all(r['funding_verified'] is False for r in d['leads'])
+          print('WORLD_WORK_EVIDENCE_GATES_PASS')
+          PY
+          cat crypto-agents/world-work-factory/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive evidence and original testable deliverables even if source feed fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chief-d-world-task-factory-original-source-evidence
+          path: crypto-agents/world-work-factory/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Explicit no-spam and no-money-claim boundary
+        if: always()
+        run: |
+          echo 'No external job submissions or payment demands without source-authorized accepted job and verified payout terms.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No Gmail/email access or messages, no wallet signing or unauthorized payment requests.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'A portfolio sample is an original tested deliverable, not a paid client order.' >> "$GITHUB_STEP_SUMMARY"
