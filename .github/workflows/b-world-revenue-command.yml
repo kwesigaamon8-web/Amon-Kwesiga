@@ -22,6 +22,7 @@ on:
       - 'crypto-agents/owner_order_distribution.py'
       - 'crypto-agents/b_live_peer_teaching.py'
       - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/owner_first_oath.py'
       - 'crypto-agents/CHIEF_D_OPERATION_COLLECT.json'
       - 'crypto-agents/commercial-work/five-dollar-csv-pilot/**'
       - 'crypto-agents/director_review.py'
