@@ -23,6 +23,13 @@ code{overflow-wrap:anywhere}a{color:#0969da}ul{padding-left:1.4rem}.muted{color:
 <p class="muted">This fetches actual public workflow records from GitHub without API keys. A completed GitHub Action is not proof that an AI model completed a call or that money was received.</p>
 <div id="runs" aria-live="polite">Loading real public GitHub workflow states…</div>
 </section>
+<section class="card" id="role-lookup"><h2>Use a country-assigned B1/B2 worker role</h2>
+<p>The <strong>11,255,658,980,400</strong> virtual role IDs can be looked up individually without making 11.26 trillion independent accounts, processes or miners. Each receives a country allocation, one research task and your matching BTC receiving address.</p>
+<label for="role-index">Global role index (0 to 11255658980399)</label>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="role-index" value="0" inputmode="numeric" style="flex:1;min-width:220px;padding:9px" /><button id="role-lookup-btn">Get worker instructions</button><button id="role-random-btn">Example worker</button></div>
+<p class="muted" id="allocation-status">Loading source-verified country allocations and public wallet references...</p><div id="role-result" aria-live="polite"></div>
+<p><button id="role-copy-btn" disabled>Copy this worker's complete assignment</button><button id="role-wallet-btn" disabled>Copy matching BTC mainnet address</button></p></section>
+<section class="card"><h2>All recorded self-custody receiving references</h2><p>BTC mainnet wallets listed above may receive only compatible BTC. Eight other public candidate identifiers (EVM, Solana, TRON and Stellar) require independent exact-network and token verification and remain <strong>HOLD — not approved for general payouts</strong>. Six exchange reference identifiers remain <strong>DO NOT SEND</strong>.</p><div id="other-wallets">Loading public address directory...</div></section>
 <section class="card"><h2>Worker organization and authorized tasks</h2>
 <ul><li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/enigma_universal_owner_order.py" target="_blank" rel="noopener">Country-assigned role lookup and current owner command</a></li>
 <li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/authorized_bounty_pipeline.py" target="_blank" rel="noopener">Approved bounty research tasks (local/offline only)</a></li>
@@ -49,5 +56,53 @@ code{overflow-wrap:anywhere}a{color:#0969da}ul{padding-left:1.4rem}.muted{color:
   });
   dest.replaceChildren(ul);
  }catch(err){dest.textContent='Cannot read current GitHub actions: '+String(err.message||err)+'. Public source link: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions';}
+})();
+</script><script>
+(()=>{
+'use strict';
+const TOTAL=11255658980400n, EACH=375188632680n;
+const BTC={B1:'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z',B2:'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9'};
+const LANE=['RULES','SCOPE','SOURCE','INVARIANT','LOCAL_TEST','KNOWN_ISSUES','INDEPENDENT_REVIEW','PAYMENT_QA'];
+const TASK=[
+'Check genuine sponsor and authorized program rules, deadline and funded award.',
+'Identify exactly eligible buyer scope or public security contract; never attack live systems.',
+'Read public code and source details for one original useful deliverable.',
+'Propose a testable improvement or lawful offline security invariant.',
+'Run only isolated local or explicitly device-owner-authorized tests.',
+'Check public previous work, known duplicates and terms before claims.',
+'Review the final actual deliverable and acceptance proof independently.',
+'Verify correct-chain payout rules and only report confirmed wallet credits with transaction ID.'];
+const $=id=>document.getElementById(id);
+let country=[],wallets=[],last=null;
+const t=(name,value)=>{const x=document.createElement(name);x.textContent=value;return x};
+function rootName(root){const f=root%2?'B2':'B1';if(root<2)return ['ORIGINAL/'+(f==='B1'?'transferexperiment':'BountyScoutAI'),f];const n=Math.floor((root-2)/2);return ['ENIGMA-G'+String(Math.floor(n/2)+1).padStart(2,'0')+'-'+(n%2?'B':'A')+'/'+f,f]}
+function countryFor(local){let low=0,high=country.length-1;while(low<=high){const mid=(low+high)>>1,r=country[mid];if(local<BigInt(r.start))high=mid-1;else if(local>BigInt(r.end))low=mid+1;else return r}throw Error('No valid country allocation')}
+function show(){
+const raw=$('role-index').value.trim(),out=$('role-result');
+if(!/^[0-9]{1,14}$/.test(raw)){out.textContent='Enter a whole number from 0 to 11255658980399, without commas.';return}
+const index=BigInt(raw);if(index>=TOTAL){out.textContent='Role index exceeds 11,255,658,980,399.';return}
+if(!country.length){out.textContent='Country allocation has not loaded; check the publisher status.';return}
+const root=Number(index/EACH),local=index%EACH,[division,fleet]=rootName(root),region=countryFor(local),lane=Number(local%8n);
+last={schema:'B1B2_HF_STATIC_ROLE_ASSIGNMENT_V1',index:index.toString(),total_virtual_roles:TOTAL.toString(),division_index:root,division,verified_parent:fleet,role_index_within_division:local.toString(),country_or_economy:region.country,iso3:region.iso3,country_allocation_not_real_residency:true,assigned_lawful_work_lane:LANE[lane],work_order:TASK[lane],goal:'Get genuine accepted buyer work, authorized bounty awards or consented mining payouts verified on correct blockchain',btc_mainnet_receiver:BTC[fleet],both_btc_receivers:BTC,other_non_btc_wallets_reference_only:true,real_independent_agent_executed:false,external_post_verified:false,payment_receipt_verified:false,no_gmail:true,no_wallet_signing_or_spending:true};
+const box=document.createElement('div');box.className='card';box.append(t('h3','Role #'+index.toLocaleString('en-US')),t('p','Division: '+division+' | Parent: '+fleet),t('p','Country allocation: '+region.country+' ('+region.iso3+') — a mathematical allocation, not local deployment'),t('p','Worker lane: '+LANE[lane]+' — '+TASK[lane]),t('p','BTC payment route (Bitcoin mainnet only): '+BTC[fleet]),t('p','Execution status: CONFIGURED ROLE ONLY; no evidence this AI worker has run, posted or earned.'));
+out.replaceChildren(box);$('role-copy-btn').disabled=false;$('role-wallet-btn').disabled=false;
+}
+async function copy(value,button){try{await navigator.clipboard.writeText(value);button.textContent='Copied';setTimeout(()=>button.textContent=button.id==='role-copy-btn'?'Copy this worker\'s complete assignment':'Copy matching BTC mainnet address',1200)}catch(e){window.prompt('Copy:',value)}}
+$('role-lookup-btn').addEventListener('click',show);
+$('role-index').addEventListener('keydown',e=>{if(e.key==='Enter')show()});
+$('role-random-btn').addEventListener('click',()=>{const a=new Uint32Array(2);crypto.getRandomValues(a);$('role-index').value=(((BigInt(a[0])<<32n)|BigInt(a[1]))%TOTAL).toString();show()});
+$('role-copy-btn').addEventListener('click',()=>{if(last)copy(JSON.stringify(last,null,2),$('role-copy-btn'))});
+$('role-wallet-btn').addEventListener('click',()=>{if(last)copy(last.btc_mainnet_receiver,$('role-wallet-btn'))});
+(async()=>{
+try{const replies=await Promise.all(['country-allocations.json','wallet-routes.json'].map(file=>fetch('./'+file,{cache:'no-store'})));if(replies.some(r=>!r.ok))throw Error('Missing Space data file(s)');const data=await Promise.all(replies.map(r=>r.json()));country=data[0].countries;wallets=data[1].self_custody_candidate_routes;
+if(!Array.isArray(country)||!country.length||!Array.isArray(wallets)||wallets.length!==10)throw Error('Missing/invalid canonical records');
+let next=0n;for(const r of country){const start=BigInt(r.start),end=BigInt(r.end);if(start!==next||end<start)throw Error('Country lookup gap');next=end+1n}if(next!==EACH)throw Error('Country range mismatch');
+if(!wallets.some(x=>x.route_id==='BTC-01'&&x.receiving_address===BTC.B1)||!wallets.some(x=>x.route_id==='BTC-02'&&x.receiving_address===BTC.B2))throw Error('BTC route mismatch');
+$('allocation-status').textContent=country.length+' allocated countries/economies loaded; 10 previously published self-custody identifiers validated. Every role is virtual until actually invoked.';
+const table=t('table',''),head=document.createElement('tr');for(const c of ['Route','Network','Public identifier','Status'])head.append(t('th',c));table.appendChild(head);
+wallets.filter(x=>!/^BTC-0[12]$/.test(x.route_id)).forEach(x=>{const row=document.createElement('tr');for(const c of [x.route_id,x.network_description,x.receiving_address,'HOLD — verify chain and asset'])row.append(t('td',c));table.appendChild(row)});
+$('other-wallets').replaceChildren(table);show()
+}catch(e){$('allocation-status').textContent='Assignment not available: '+String(e.message||e);$('other-wallets').textContent='For now use the full owner-receiving-address directory linked above.'}
+})();
 })();
 </script></body></html>
