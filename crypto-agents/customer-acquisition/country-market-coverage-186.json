@@ -20,7 +20,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CHN"
     },
     {
       "country": "India",
@@ -33,7 +34,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "IND"
     },
     {
       "country": "United States",
@@ -55,7 +57,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "USA"
     },
     {
       "country": "Indonesia",
@@ -68,7 +71,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "IDN"
     },
     {
       "country": "Brazil",
@@ -81,7 +85,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BRA"
     },
     {
       "country": "Pakistan",
@@ -94,7 +99,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PAK"
     },
     {
       "country": "Russian Federation",
@@ -107,7 +113,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "RUS"
     },
     {
       "country": "Mexico",
@@ -120,7 +127,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MEX"
     },
     {
       "country": "Japan",
@@ -133,7 +141,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "JPN"
     },
     {
       "country": "Nigeria",
@@ -151,7 +160,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NGA"
     },
     {
       "country": "Bangladesh",
@@ -164,7 +174,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BGD"
     },
     {
       "country": "Egypt, Arab Rep.",
@@ -177,7 +188,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "EGY"
     },
     {
       "country": "Viet Nam",
@@ -190,7 +202,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "VNM"
     },
     {
       "country": "Iran, Islamic Rep.",
@@ -203,7 +216,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "IRN"
     },
     {
       "country": "Germany",
@@ -216,7 +230,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "DEU"
     },
     {
       "country": "Philippines",
@@ -229,7 +244,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PHL"
     },
     {
       "country": "Turkiye",
@@ -242,7 +258,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TUR"
     },
     {
       "country": "United Kingdom",
@@ -260,7 +277,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GBR"
     },
     {
       "country": "Thailand",
@@ -273,7 +291,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "THA"
     },
     {
       "country": "France",
@@ -286,7 +305,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "FRA"
     },
     {
       "country": "Italy",
@@ -299,7 +319,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ITA"
     },
     {
       "country": "Korea, Rep.",
@@ -312,7 +333,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KOR"
     },
     {
       "country": "South Africa",
@@ -325,7 +347,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ZAF"
     },
     {
       "country": "Spain",
@@ -338,7 +361,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ESP"
     },
     {
       "country": "Colombia",
@@ -351,7 +375,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "COL"
     },
     {
       "country": "Argentina",
@@ -364,7 +389,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ARG"
     },
     {
       "country": "Canada",
@@ -377,7 +403,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CAN"
     },
     {
       "country": "Iraq",
@@ -390,7 +417,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "IRQ"
     },
     {
       "country": "Algeria",
@@ -403,7 +431,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "DZA"
     },
     {
       "country": "Saudi Arabia",
@@ -416,7 +445,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SAU"
     },
     {
       "country": "Malaysia",
@@ -429,7 +459,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MYS"
     },
     {
       "country": "Morocco",
@@ -442,7 +473,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MAR"
     },
     {
       "country": "Uzbekistan",
@@ -455,7 +487,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "UZB"
     },
     {
       "country": "Poland",
@@ -468,7 +501,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "POL"
     },
     {
       "country": "Ukraine",
@@ -481,7 +515,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "UKR"
     },
     {
       "country": "Ethiopia",
@@ -494,7 +529,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ETH"
     },
     {
       "country": "Peru",
@@ -507,7 +543,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PER"
     },
     {
       "country": "Australia",
@@ -520,7 +557,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "AUS"
     },
     {
       "country": "Ghana",
@@ -533,7 +571,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GHA"
     },
     {
       "country": "Venezuela, RB",
@@ -546,7 +585,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "VEN"
     },
     {
       "country": "Congo, Dem. Rep.",
@@ -559,7 +599,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "COD"
     },
     {
       "country": "Tanzania",
@@ -572,7 +613,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TZA"
     },
     {
       "country": "Kenya",
@@ -585,7 +627,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KEN"
     },
     {
       "country": "Kazakhstan",
@@ -598,7 +641,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KAZ"
     },
     {
       "country": "Chile",
@@ -611,7 +655,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CHL"
     },
     {
       "country": "Netherlands",
@@ -624,7 +669,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NLD"
     },
     {
       "country": "Romania",
@@ -637,7 +683,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ROU"
     },
     {
       "country": "Angola",
@@ -650,7 +697,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "AGO"
     },
     {
       "country": "Ecuador",
@@ -663,7 +711,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ECU"
     },
     {
       "country": "Nepal",
@@ -676,7 +725,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NPL"
     },
     {
       "country": "Cameroon",
@@ -689,7 +739,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CMR"
     },
     {
       "country": "Cote d'Ivoire",
@@ -702,7 +753,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CIV"
     },
     {
       "country": "Cambodia",
@@ -715,7 +767,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KHM"
     },
     {
       "country": "Sri Lanka",
@@ -728,7 +781,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LKA"
     },
     {
       "country": "Belgium",
@@ -741,7 +795,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BEL"
     },
     {
       "country": "Senegal",
@@ -754,7 +809,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SEN"
     },
     {
       "country": "Guatemala",
@@ -767,7 +823,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GTM"
     },
     {
       "country": "Jordan",
@@ -780,7 +837,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "JOR"
     },
     {
       "country": "United Arab Emirates",
@@ -793,7 +851,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ARE"
     },
     {
       "country": "Dominican Republic",
@@ -806,7 +865,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "DOM"
     },
     {
       "country": "Sweden",
@@ -819,7 +879,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SWE"
     },
     {
       "country": "Bolivia",
@@ -832,7 +893,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BOL"
     },
     {
       "country": "Czechia",
@@ -845,7 +907,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CZE"
     },
     {
       "country": "Portugal",
@@ -858,7 +921,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PRT"
     },
     {
       "country": "Tunisia",
@@ -871,7 +935,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TUN"
     },
     {
       "country": "Azerbaijan",
@@ -884,7 +949,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "AZE"
     },
     {
       "country": "Mali",
@@ -897,7 +963,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MLI"
     },
     {
       "country": "Greece",
@@ -910,7 +977,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GRC"
     },
     {
       "country": "Hungary",
@@ -923,7 +991,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "HUN"
     },
     {
       "country": "Israel",
@@ -936,7 +1005,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ISR"
     },
     {
       "country": "Switzerland",
@@ -949,7 +1019,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CHE"
     },
     {
       "country": "Austria",
@@ -962,7 +1033,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "AUT"
     },
     {
       "country": "Belarus",
@@ -975,7 +1047,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BLR"
     },
     {
       "country": "Cuba",
@@ -988,7 +1061,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CUB"
     },
     {
       "country": "Hong Kong SAR, China",
@@ -1001,7 +1075,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "HKG"
     },
     {
       "country": "Mozambique",
@@ -1014,7 +1089,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MOZ"
     },
     {
       "country": "Zimbabwe",
@@ -1027,7 +1103,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ZWE"
     },
     {
       "country": "Afghanistan",
@@ -1040,7 +1117,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "AFG"
     },
     {
       "country": "Burkina Faso",
@@ -1053,7 +1131,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BFA"
     },
     {
       "country": "Kyrgyz Republic",
@@ -1066,7 +1145,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KGZ"
     },
     {
       "country": "Honduras",
@@ -1079,7 +1159,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "HND"
     },
     {
       "country": "Libya",
@@ -1092,7 +1173,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LBY"
     },
     {
       "country": "Madagascar",
@@ -1105,7 +1187,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MDG"
     },
     {
       "country": "Denmark",
@@ -1118,7 +1201,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "DNK"
     },
     {
       "country": "Tajikistan",
@@ -1131,7 +1215,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TJK"
     },
     {
       "country": "Serbia",
@@ -1144,7 +1229,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SRB"
     },
     {
       "country": "Singapore",
@@ -1157,7 +1243,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SGP"
     },
     {
       "country": "Paraguay",
@@ -1170,7 +1257,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PRY"
     },
     {
       "country": "Haiti",
@@ -1183,7 +1271,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "HTI"
     },
     {
       "country": "Norway",
@@ -1196,7 +1285,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NOR"
     },
     {
       "country": "Somalia, Fed. Rep.",
@@ -1209,7 +1299,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SOM"
     },
     {
       "country": "Bulgaria",
@@ -1222,7 +1313,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BGR"
     },
     {
       "country": "Finland",
@@ -1235,7 +1327,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "FIN"
     },
     {
       "country": "Ireland",
@@ -1248,7 +1341,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "IRL"
     },
     {
       "country": "Lao PDR",
@@ -1261,7 +1355,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LAO"
     },
     {
       "country": "Oman",
@@ -1274,7 +1369,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "OMN"
     },
     {
       "country": "New Zealand",
@@ -1287,7 +1383,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NZL"
     },
     {
       "country": "Benin",
@@ -1300,7 +1397,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BEN"
     },
     {
       "country": "Guinea",
@@ -1313,7 +1411,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GIN"
     },
     {
       "country": "Kuwait",
@@ -1326,7 +1425,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KWT"
     },
     {
       "country": "Slovak Republic",
@@ -1339,7 +1439,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SVK"
     },
     {
       "country": "Lebanon",
@@ -1352,7 +1453,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LBN"
     },
     {
       "country": "Rwanda",
@@ -1370,7 +1472,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "RWA"
     },
     {
       "country": "Uganda",
@@ -1383,7 +1486,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "UGA"
     },
     {
       "country": "West Bank and Gaza",
@@ -1396,7 +1500,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PSE"
     },
     {
       "country": "Costa Rica",
@@ -1409,7 +1514,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CRI"
     },
     {
       "country": "Nicaragua",
@@ -1422,7 +1528,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NIC"
     },
     {
       "country": "El Salvador",
@@ -1435,7 +1542,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SLV"
     },
     {
       "country": "Niger",
@@ -1448,7 +1556,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NER"
     },
     {
       "country": "Malawi",
@@ -1461,7 +1570,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MWI"
     },
     {
       "country": "Zambia",
@@ -1474,7 +1584,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ZMB"
     },
     {
       "country": "Togo",
@@ -1487,7 +1598,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TGO"
     },
     {
       "country": "Panama",
@@ -1500,7 +1612,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PAN"
     },
     {
       "country": "Croatia",
@@ -1513,7 +1626,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "HRV"
     },
     {
       "country": "Georgia",
@@ -1526,7 +1640,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GEO"
     },
     {
       "country": "Uruguay",
@@ -1539,7 +1654,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "URY"
     },
     {
       "country": "Mongolia",
@@ -1552,7 +1668,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MNG"
     },
     {
       "country": "Congo, Rep.",
@@ -1565,7 +1682,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "COG"
     },
     {
       "country": "Puerto Rico (US)",
@@ -1578,7 +1696,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PRI"
     },
     {
       "country": "Qatar",
@@ -1591,7 +1710,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "QAT"
     },
     {
       "country": "Bosnia and Herzegovina",
@@ -1604,7 +1724,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BIH"
     },
     {
       "country": "Lithuania",
@@ -1617,7 +1738,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LTU"
     },
     {
       "country": "Chad",
@@ -1630,7 +1752,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TCD"
     },
     {
       "country": "Jamaica",
@@ -1643,7 +1766,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "JAM"
     },
     {
       "country": "Armenia",
@@ -1656,7 +1780,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ARM"
     },
     {
       "country": "Mauritania",
@@ -1669,7 +1794,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MRT"
     },
     {
       "country": "Sierra Leone",
@@ -1682,7 +1808,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SLE"
     },
     {
       "country": "Albania",
@@ -1695,7 +1822,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ALB"
     },
     {
       "country": "Papua New Guinea",
@@ -1708,7 +1836,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PNG"
     },
     {
       "country": "Namibia",
@@ -1721,7 +1850,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NAM"
     },
     {
       "country": "Slovenia",
@@ -1734,7 +1864,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SVN"
     },
     {
       "country": "Moldova",
@@ -1747,7 +1878,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MDA"
     },
     {
       "country": "Liberia",
@@ -1760,7 +1892,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LBR"
     },
     {
       "country": "Gabon",
@@ -1773,7 +1906,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GAB"
     },
     {
       "country": "Latvia",
@@ -1786,7 +1920,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LVA"
     },
     {
       "country": "North Macedonia",
@@ -1799,7 +1934,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MKD"
     },
     {
       "country": "Bahrain",
@@ -1812,7 +1948,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BHR"
     },
     {
       "country": "Botswana",
@@ -1825,7 +1962,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BWA"
     },
     {
       "country": "Gambia, The",
@@ -1838,7 +1976,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GMB"
     },
     {
       "country": "Estonia",
@@ -1851,7 +1990,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "EST"
     },
     {
       "country": "Cyprus",
@@ -1864,7 +2004,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CYP"
     },
     {
       "country": "Lesotho",
@@ -1877,7 +2018,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LSO"
     },
     {
       "country": "Burundi",
@@ -1890,7 +2032,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BDI"
     },
     {
       "country": "Equatorial Guinea",
@@ -1903,7 +2046,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GNQ"
     },
     {
       "country": "Trinidad and Tobago",
@@ -1916,7 +2060,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TTO"
     },
     {
       "country": "Mauritius",
@@ -1929,7 +2074,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MUS"
     },
     {
       "country": "Eswatini",
@@ -1942,7 +2088,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SWZ"
     },
     {
       "country": "Djibouti",
@@ -1955,7 +2102,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "DJI"
     },
     {
       "country": "Central African Republic",
@@ -1968,7 +2116,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CAF"
     },
     {
       "country": "Bhutan",
@@ -1981,7 +2130,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BTN"
     },
     {
       "country": "Fiji",
@@ -1994,7 +2144,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "FJI"
     },
     {
       "country": "Guyana",
@@ -2007,7 +2158,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GUY"
     },
     {
       "country": "Luxembourg",
@@ -2020,7 +2172,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LUX"
     },
     {
       "country": "Guinea-Bissau",
@@ -2033,7 +2186,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GNB"
     },
     {
       "country": "Macao SAR, China",
@@ -2046,7 +2200,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MAC"
     },
     {
       "country": "Montenegro",
@@ -2059,7 +2214,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MNE"
     },
     {
       "country": "Suriname",
@@ -2072,7 +2228,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SUR"
     },
     {
       "country": "Malta",
@@ -2085,7 +2242,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MLT"
     },
     {
       "country": "Timor-Leste",
@@ -2098,7 +2256,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TLS"
     },
     {
       "country": "Maldives",
@@ -2111,7 +2270,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MDV"
     },
     {
       "country": "Brunei Darussalam",
@@ -2124,7 +2284,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BRN"
     },
     {
       "country": "Cabo Verde",
@@ -2137,7 +2298,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "CPV"
     },
     {
       "country": "Iceland",
@@ -2150,7 +2312,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ISL"
     },
     {
       "country": "Bahamas, The",
@@ -2163,7 +2326,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BHS"
     },
     {
       "country": "Belize",
@@ -2176,7 +2340,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BLZ"
     },
     {
       "country": "Comoros",
@@ -2189,7 +2354,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "COM"
     },
     {
       "country": "Solomon Islands",
@@ -2202,7 +2368,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SLB"
     },
     {
       "country": "Barbados",
@@ -2215,7 +2382,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "BRB"
     },
     {
       "country": "Sao Tome and Principe",
@@ -2228,7 +2396,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "STP"
     },
     {
       "country": "St. Lucia",
@@ -2241,7 +2410,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LCA"
     },
     {
       "country": "Kiribati",
@@ -2254,7 +2424,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KIR"
     },
     {
       "country": "Seychelles",
@@ -2267,7 +2438,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SYC"
     },
     {
       "country": "Grenada",
@@ -2280,7 +2452,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "GRD"
     },
     {
       "country": "Andorra",
@@ -2293,7 +2466,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "AND"
     },
     {
       "country": "St. Vincent and the Grenadines",
@@ -2306,7 +2480,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "VCT"
     },
     {
       "country": "Tonga",
@@ -2319,7 +2494,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "TON"
     },
     {
       "country": "Antigua and Barbuda",
@@ -2332,7 +2508,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "ATG"
     },
     {
       "country": "Dominica",
@@ -2345,7 +2522,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "DMA"
     },
     {
       "country": "Micronesia, Fed. Sts.",
@@ -2358,7 +2536,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "FSM"
     },
     {
       "country": "Liechtenstein",
@@ -2371,7 +2550,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "LIE"
     },
     {
       "country": "Monaco",
@@ -2384,7 +2564,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MCO"
     },
     {
       "country": "St. Kitts and Nevis",
@@ -2397,7 +2578,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "KNA"
     },
     {
       "country": "San Marino",
@@ -2410,7 +2592,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "SMR"
     },
     {
       "country": "Marshall Islands",
@@ -2423,7 +2606,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "MHL"
     },
     {
       "country": "Palau",
@@ -2436,7 +2620,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "PLW"
     },
     {
       "country": "Naoero",
@@ -2449,7 +2634,8 @@
       "qualified_customers_verified": 0,
       "authenticated_proposals_sent": 0,
       "invoice_accepted": 0,
-      "crypto_payment_confirmed": 0
+      "crypto_payment_confirmed": 0,
+      "iso3": "NRU"
     }
   ]
 }
