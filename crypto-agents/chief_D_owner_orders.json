@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-173320-REAL-WORK-BTC-CONVERSION",
+  "current_owner_order_id": "OWNER-20261120-185403-WORLDWIDE-PUBLIC-OSINT",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -1052,6 +1052,21 @@
       "real_payment_not_assumed": true,
       "virtual_11t_not_broadcast": true,
       "worker_receipts_and_payment_proof_required": true
+    },
+    {
+      "id": "OWNER-20261120-185403-WORLDWIDE-PUBLIC-OSINT",
+      "as_of_utc": "2026-11-20T18:54:03Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT connected GitHub",
+      "instruction": "HUMAN OWNER WORLDWIDE OSINT WORK ORDER — 20 NOVEMBER 2026, 18:54:03 UTC: Execute lawful OPEN SOURCE INTELLIGENCE across THE WHOLE WORLD to find actual useful income opportunities, legitimate willing buyers and paid original software/research/documentation tasks, public facts that help solve real problems, and verified compatible Bitcoin mainnet payment routes. Chief D commands B1 transferexperiment, B2 BountyScoutAI and the existing D/A/M/W/S/G/H virtual role hierarchy using ONE authoritative owner order and shared code; this order supersedes the previous current order while preserving all standing earning, consent, safety and no-email restrictions. Operate with public, ethically collected information ONLY: official World Bank country statistics and clearly attributed sources, original public funding/bounty announcements, public business offerings and open-source project needs, verification of public source legitimacy and dates. Prohibit private individual profiling, personal data harvesting, targeted surveillance, location tracking, doxxing, scraping private/credential-protected sources, violating sites' terms, mass messaging, unauthorized Tor/onion access, malware, account creation without approval, unauthorised mining on free cloud or third-party devices, and any platform or email message not specifically authorized. WORLD TASK ALLOCATION: cover 249 ISO 3166-1 country/territory codes as a search catalogue, clearly distinguishing sovereign countries and territories; supplement 186 nonzero World Bank weighted virtual allocations, without asserting actual local miners or deployed agents. All 30 existing hierarchy root divisions have one disjoint research shard across 249 codes: D validates latest owner order, team scope and source proof; A checks source/record completeness; M assigns sector/country scopes only to invoked processes; W inspects official public source date and original buyer request; S deduplicates data and checks source authenticity; G validates task/bounty eligibility and legal submission route; H independently gates client acceptance, asset/network and receipt TXID. Each ACTUALLY INVOKED role loads the same owner instruction and prompt hash, executes a finite bounded source task, records actual process PID, country codes, source URLs, time of observation, missing sources and errors and reports to the verified direct parent; no fabricated results or automatic notification of 11,255,658,980,400 dormant role IDs. Prioritize a single authentic funded customer to a buyer-approved original deliverable and confirmed Bitcoin payout, rather than building more fake roles. World Bank datasets are market context, NOT evidence of client need or signed job. GitHub original-source issues are only UNVERIFIED prospects until sponsor funding, actual eligibility in Uganda, permitted platform submission, exact payout asset and native Bitcoin-mainnet rail, acceptance and payer ownership are independently checked. No Gmail/email reading, searching, monitoring, drafting or sending without user-specific permission; never send any email without approval of that exact email. No spending, signing, transfers, credential or private-key use; no statements that open-source research magically mined or sent Bitcoin. Approved B1 BTC mainnet receive-only: bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z; B2 BTC mainnet receive-only: bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Other assets/networks stay held pending verified exact-rail permission. Use two independent read-only Bitcoin explorers, distinguish current balance from earned receipts and never declare payment without confirmed TXID and payer/work evidence. Run bounded 30 real processes to research 249 ISO countries/territories, test and archive country-by-country findings, while labeling missing official evidence as unknown. Code path crypto-agents/world_osint_engine.py, test path crypto-agents/test_world_osint_engine.py, workflow .github/workflows/chief-d-worldwide-public-osint.yml. This is task authorization for PUBLIC RESEARCH AND TESTED ORIGINAL WORK ONLY, not authority for new financial commitments, bulk outreach, external submissions without permitted authenticated accounts, cryptomining or wallet transactions. Record completed and blocked work separately; continue allowed paid-work conversion.",
+      "status": "active_worldwide_public_osint_order_lazily_addressable",
+      "mission": "Worldwide legal public-source OSINT across 249 ISO country/territory codes with 30 actual bounded research shards",
+      "country_catalogue_count": 249,
+      "physical_agents_in_each_country_not_proven": true,
+      "virtual_11t_not_live": true,
+      "authorized_source_code": "crypto-agents/world_osint_engine.py",
+      "evidence_requirement": "Per-process source/country receipt and actual client acceptance plus independent BTC payout TXID for income",
+      "strict_no_email_no_spend": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -1436,7 +1451,7 @@
     "virtual_roles_not_concurrent_live_agents": true
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-173320-REAL-WORK-BTC-CONVERSION",
+    "owner_order_id": "OWNER-20261120-185403-WORLDWIDE-PUBLIC-OSINT",
     "standards_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "all_real_invoked_workers_must_read_order_text": true,
     "all_real_invoked_h_leaf_must_receive_full_prompt": true,
