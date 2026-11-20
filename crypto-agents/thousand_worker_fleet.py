@@ -6,6 +6,7 @@ No email, external posting, paid commitment, wallet signing or financial transfe
 """
 import argparse
 import concurrent.futures
+import hashlib
 import json
 import os
 import re
@@ -132,6 +133,69 @@ def role(shard, number):
         "reports_to": shard,
     }
 
+def execute_specific_ordered_task(issue, snapshot, worker):
+    """Actually compute a per-role result from source evidence, not just echo a role ID.
+    A missing source triggers real diagnostic work, never a fake customer review.
+    """
+    if issue is None:
+        err = snapshot.get("error") or (
+            "NO_MATCHING_ISSUE_IN_WORKER_SLOT" if snapshot.get("fetch_status") == "ok"
+            else "NO_SOURCE_ERROR_CAPTURED")
+        data = {
+            "action": "SOURCE_FAILURE_DIAGNOSIS", "worker_specialty": worker["specialty"],
+            "source_query_examined": snapshot.get("source_query", ""),
+            "observed_fetch_status": snapshot.get("fetch_status", "absent"),
+            "observed_error": err, "work_result": "BLOCKED_NO_ORIGINAL_CUSTOMER_SOURCE",
+            "corrective_action": ("Retry an authorized public source with bounded response size, "
+                                  "check original issue URL, do not claim contacted customers"),
+            "verified_external_customer": False, "contact_authorized": False,
+        }
+    else:
+        title = str(issue.get("title") or "")
+        body = str(issue.get("body") or "")[:4000]
+        signal = title + "\n" + body
+        checks = {
+            "open_issue": issue.get("state") == "open" and not issue.get("pull_request"),
+            "original_url_is_github": str(issue.get("html_url") or "").startswith("https://github.com/"),
+            "payment_phrase_present": bool(REWARD.search(signal)),
+            "scam_phrase_detected": bool(SCAM.search(signal)),
+            "scope_or_deliverable_mentioned": bool(re.search(r"\b(scope|deliverable|requirements?|implement|fix|csv|code|test)\b", signal, re.I)),
+            "acceptance_criteria_mentioned": bool(re.search(r"\b(acceptance|accept|verify|verification|tests?|reproduce|expected)\b", signal, re.I)),
+            "public_deadline_mentioned": bool(re.search(r"\b(deadline|closing|due date|expires?)\b", signal, re.I)),
+        }
+        speciality = worker["specialty"]
+        review = worker["review_type"]
+        special_check = {
+            "payer evidence": checks["payment_phrase_present"],
+            "payment terms": bool(re.search(r"\b(escrow|reward|payment|paid|bounty)\b", signal, re.I)),
+            "Uganda eligibility": bool(re.search(r"\b(global|worldwide|Uganda|remote|anywhere)\b", signal, re.I)),
+            "original scope": checks["scope_or_deliverable_mentioned"],
+            "acceptance criteria": checks["acceptance_criteria_mentioned"],
+            "reproducible testing": bool(re.search(r"\b(test|reproducible|fixture|pytest|unittest)\b", signal, re.I)),
+            "copyright and licensing": bool(re.search(r"\b(licen[cs]e|MIT|Apache|GPL|copyright)\b", signal, re.I)),
+            "source freshness": bool(parse_date(issue.get("updated_at")) and parse_date(issue.get("updated_at")) >= LIMIT),
+            "scam warnings": checks["scam_phrase_detected"],
+            "next lawful action": bool(issue.get("number") and issue.get("repository_url")),
+        }.get(speciality, False)
+        data = {
+            "action": "SPECIFIC_PUBLIC_BUYER_SOURCE_ASSESSMENT",
+            "source_url_reviewed": issue.get("html_url", ""),
+            "source_issue_id_reviewed": issue.get("id"),
+            "assigned_review_type": review, "worker_specialty": speciality,
+            "actual_rule_checks_executed": checks,
+            "individual_specialty_rule_result": special_check,
+            "work_result": ("UNVERIFIED_CANDIDATE_NEEDS_ORIGINAL_PAYER_CHECK"
+                            if checks["payment_phrase_present"] and not checks["scam_phrase_detected"]
+                            else "NOT_A_QUALIFIED_BUYER_REQUEST"),
+            "verified_external_customer": False, "contact_authorized": False,
+            "next_evidence_gate": ("Inspect original request and payer evidence and current platform terms; "
+                                   "no direct messages, no self-assigned paid work"),
+        }
+    data["evidence_sha256"] = hashlib.sha256(
+        json.dumps(data, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+    return data
+
+
 def child(shard, number, root):
     worker = role(shard, number)
     snapshot_file = root / shard / "snapshot.json"
@@ -139,7 +203,20 @@ def child(shard, number, root):
     items = snapshot.get("items") or []
     # Unique issue slot in each shard, never pretend an absent issue exists.
     issue = items[number-1] if len(items) >= number else None
+    # Read the complete authoritative owner instruction, not merely the order ID.
+    public = json.loads(Path("crypto-agents/PUBLIC_AGENT_COMMAND.json").read_text(encoding="utf-8"))
+    prompt = Path("crypto-agents/customer-acquisition/OWNER_STRICT_CUSTOMER_WORKER_PROMPT.md").read_text(encoding="utf-8")
+    if snapshot.get("owner_order_id") not in ("self-test-only", public["command_id"]):
+        raise ValueError("Worker received stale or mismatched order")
+    owner_instruction = str(public["owner_command"])
+    if "CUSTOMER" not in owner_instruction.upper():
+        raise ValueError("No customer-facing owner instruction")
+    actual_task = execute_specific_ordered_task(issue, snapshot, worker)
     result = {
+        "owner_instruction_sha256": hashlib.sha256(owner_instruction.encode("utf-8")).hexdigest(),
+        "strict_prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+        "order_text_actually_read": True,
+        "actual_distinct_ordered_task": actual_task,
         "worker_id": worker["id"],
         "shard": shard,
         "company": shard[:2],
@@ -366,6 +443,9 @@ def self_test():
         assert child("B1-S01", 1, folder) == 0
         saved = json.loads((d / "B1-S01-W01.json").read_text())
         assert saved["source_issue_seen"] and saved["pid"] > 0
+        assert saved["order_text_actually_read"]
+        assert saved["actual_distinct_ordered_task"]["action"] == "SPECIFIC_PUBLIC_BUYER_SOURCE_ASSESSMENT"
+        assert saved["actual_distinct_ordered_task"]["evidence_sha256"]
     print("PASS: 900 unique role allocations, independent child execution, and truthful screening")
 
 if __name__ == "__main__":
