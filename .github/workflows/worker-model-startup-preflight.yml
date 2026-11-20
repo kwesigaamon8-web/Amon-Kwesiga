@@ -1,0 +1,36 @@
+name: B1 B2 Real Worker Startup Forensic and Model Path Check
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/worker_command_preflight.py'
+      - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/role_worker.py'
+      - 'crypto-agents/ai_process_launcher.py'
+      - '.github/workflows/worker-model-startup-preflight.yml'
+permissions:
+  contents: read
+jobs:
+  original-worker-startup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and check real model entrypoint and parent normalization
+        run: |
+          python -m py_compile crypto-agents/worker_command_preflight.py crypto-agents/ai_process_worker.py crypto-agents/role_worker.py crypto-agents/ai_process_launcher.py
+          python crypto-agents/worker_command_preflight.py --self-test
+          python crypto-agents/worker_command_preflight.py --fleet transferexperiment --role D01-M14-W04
+          python crypto-agents/worker_command_preflight.py --fleet BountyScoutAI --role D01-M01-W01
+      - name: Verify current canonical owner order matches public mirror
+        run: |
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/directive_cascade.py --self-test --out worker-startup-order-proof
+      - name: Publish executable worker startup diagnosis
+        run: |
+          echo '## Real-model worker startup preflight' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Both B1 and B2 inherited the exact current owner instruction and their canonical ORIGINAL/ parent name. 12 role samples and wrong-parent negative tests must pass. This is a startup readiness test, not AI inference or paid work.' >> "$GITHUB_STEP_SUMMARY"
