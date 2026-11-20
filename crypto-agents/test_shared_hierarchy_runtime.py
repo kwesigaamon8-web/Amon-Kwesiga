@@ -70,6 +70,24 @@ def main():
     invalid=subprocess.run([sys.executable,"crypto-agents/role_worker.py",
         "--role-index",str(GRAND_TOTAL),"--out",str(OUT)],capture_output=True,text=True,timeout=15)
     assert invalid.returncode!=0
+    # Production path proof: every real scheduled original B1/B2 model worker is
+    # launched through the SAME worker entrypoint, which calls the shared core.
+    launcher=Path("crypto-agents/ai_process_launcher.py").read_text(encoding="utf-8")
+    worker_entry=Path("crypto-agents/role_worker.py").read_text(encoding="utf-8")
+    actual_model_adapter=Path("crypto-agents/ai_process_worker.py").read_text(encoding="utf-8")
+    assert '"crypto-agents/role_worker.py","--actual-model"' in launcher
+    assert 'runpy.run_path("crypto-agents/ai_process_worker.py"' in worker_entry
+    assert 'from hierarchy_command_core import task_context as centralized_role_task' in actual_model_adapter
+    # Both original B organizational handles can directly invoke their role
+    # code using named fleet/role without knowing the numerical virtual index.
+    named=[("crypto-agents/role_director.py","D02","transferexperiment"),
+           ("crypto-agents/role_assistant.py","D04-B","BountyScoutAI"),
+           ("crypto-agents/role_manager.py","D10-M15","BountyScoutAI"),
+           ("crypto-agents/role_worker.py","D06-M11-W25-S070-G107-H099","transferexperiment")]
+    for code,role,fleet in named:
+        check=subprocess.run([sys.executable,code,"--fleet",fleet,"--role",role,
+            "--out",str(OUT)],capture_output=True,text=True,timeout=30)
+        assert check.returncode==0,(code,role,check.stderr[-700:])
     report={
         "schema":"ONE_OWNER_COMMAND_SINGLE_CODE_PER_ROLE_PROOF_V1",
         "current_owner_order_id":owner["owner_order_id"],
@@ -81,6 +99,9 @@ def main():
         "one_shared_role_execution_engine":"crypto-agents/hierarchy_command_core.py",
         "all_tested_processes_inherited_same_current_owner_command":True,
         "wrong_tier_code_rejected":True,"out_of_namespace_role_rejected":True,
+        "named_director_assistant_manager_worker_invocations_passed":4,
+        "production_model_launcher_uses_shared_worker_entrypoint":True,
+        "actual_B1_B2_model_adapter_uses_same_shared_command_core":True,
         "all_virtual_11T_positions_live_or_notified":False,
         "individual_AI_model_comprehensions_proven_by_this_test":0,
         "authenticated_customer_proposals_sent_by_this_test":0,
