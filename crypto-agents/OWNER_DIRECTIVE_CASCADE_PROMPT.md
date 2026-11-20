@@ -24,6 +24,16 @@ An actual worker startup emits a **leaf delivery receipt** containing the real e
 
 Record each parent hop as **CONFIGURED_NOT_INDEPENDENTLY_ACKNOWLEDGED** unless that parent really ran and left independent evidence. H-level sample tests prove addressing and on-demand leaf delivery only for those actual samples; they do not mean trillions of H workers are alive.
 
+## 3A. The owner's mandatory **"UNDERSTAND IT"** gate
+
+**Never equate RECEIVED with UNDERSTOOD.** The exact order and digest are transmitted through the configured hierarchy when an actual worker process is invoked. The worker must then demonstrate comprehension using its **own model-generated response** to an independent challenge, not copy an instruction or repeat a role ID.
+
+Every genuinely running B1/B2 or Enigma AI model receives the complete latest owner instruction and answers seven prompts: exact ORDER ID, exact PARENT, real GOAL explained in its own words, one lawful ACTION on an original source, EVIDENCE necessary to show actual work, a SAFETY decision refusing an upfront-fee or unauthorized Gmail/wallet request, and REPORTING of results/blockers to the direct parent.
+
+The test is implemented in `crypto-agents/directive_understanding_gate.py`. Its grades distinguish `NO_COMPLETED_MODEL_RESPONSE`, `REINSTRUCT_AND_RETEST`, `TEXTUAL_COMPREHENSION_CANDIDATE_NEEDS_TASK_REVIEW`, and `UNDERSTANDING_SUPPORTED_BY_INDEPENDENT_ACCEPTED_TASK`. Passing the textual challenge ALONE is not proven understanding; the supervising director must review original independently accepted task work before crediting true demonstrated comprehension.
+
+**Every manager and director** is accountable for collecting a genuine subordinate model response and independently checking task evidence. A manager role in a JSON assignment is **CONFIGURED_NOT_ACKNOWLEDGED** until independently invoked; it must never be credited as having understood or forwarded an order merely because its child loaded a prompt. Uninvoked H-level virtual positions remain `CONFIGURED_NOT_ACTIVE`; never claim all 11.25T workers understand.
+
 ## 4. Prove-or-leave
 Only a process with matching owner instruction, valid ancestry, an actual completed task and independently auditable evidence counts as **PROVEN_FINITE_TASK_EXECUTED**. A leaf with source failure but real diagnostic evidence is **INACTIVE_REASSIGN**. Uninvoked virtual positions stay **CONFIGURED_NOT_ACTIVE**. Do not erase the identity namespace merely because a position has no execution proof.
 
