@@ -9,6 +9,7 @@ on:
       - 'crypto-agents/test_enigma_all_b_systems.py'
       - 'crypto-agents/enigma_universal_owner_order.py'
       - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
       - '.github/workflows/enigma-all-b1b2-systems.yml'
 permissions:
   contents: read
@@ -32,7 +33,14 @@ jobs:
           python crypto-agents/enigma_universal_owner_order.py --self-test
   execute:
     needs: validate
-    if: github.event_name != 'push' || github.event.head_commit.message == 'Activate B1 and B2 systems for each of 14 Enigma agents'
+    # A genuine new human owner command MUST update BOTH canonical registries
+    # in ONE commit; unrelated source edits only run cheap validation.
+    if: >-
+      github.event_name != 'push' ||
+      (
+        contains(toJSON(github.event.head_commit.modified), 'crypto-agents/chief_D_owner_orders.json') &&
+        contains(toJSON(github.event.head_commit.modified), 'crypto-agents/PUBLIC_AGENT_COMMAND.json')
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 24
     strategy:
