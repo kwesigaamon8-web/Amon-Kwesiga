@@ -1,0 +1,42 @@
+name: One Owner Command — Single Shared Code for Each Hierarchy Role
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/hierarchy_command_core.py'
+      - 'crypto-agents/role_director.py'
+      - 'crypto-agents/role_assistant.py'
+      - 'crypto-agents/role_manager.py'
+      - 'crypto-agents/role_worker.py'
+      - 'crypto-agents/test_shared_hierarchy_runtime.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - '.github/workflows/one-owner-command-shared-hierarchy.yml'
+permissions:
+  contents: read
+concurrency:
+  group: centralized-one-owner-command-all-roles
+  cancel-in-progress: false
+jobs:
+  audit-shared-role-programs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax and complete central command plus 210 individual role executions
+        run: |
+          python -m py_compile crypto-agents/hierarchy_command_core.py crypto-agents/role_director.py crypto-agents/role_assistant.py crypto-agents/role_manager.py crypto-agents/role_worker.py crypto-agents/test_shared_hierarchy_runtime.py
+          python crypto-agents/test_shared_hierarchy_runtime.py
+          cat shared-role-command-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve 210 individual role and one shared command evidence records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: central-one-command-shared-role-code-210-proof
+          path: shared-role-command-evidence/
+          retention-days: 21
+          if-no-files-found: warn
