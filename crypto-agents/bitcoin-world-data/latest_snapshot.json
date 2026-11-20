@@ -1,0 +1,4425 @@
+{
+  "schema": "B1B2_BITCOIN_WORLD_DATA_SOURCE_VERIFIED_V1",
+  "collected_utc": "2026-11-20T19:02:47.577337+00:00",
+  "scope": "global BTC protocol and public network; country-level data separately sourced",
+  "api_fetches": {
+    "mempool_tip": {
+      "url": "https://mempool.space/api/blocks/tip/height",
+      "category": "consensus",
+      "checked_at_utc": "2026-11-20T19:02:47.577339+00:00",
+      "status": "OK"
+    },
+    "blockstream_tip": {
+      "url": "https://blockstream.info/api/blocks/tip/height",
+      "category": "consensus",
+      "checked_at_utc": "2026-11-20T19:02:47.962049+00:00",
+      "status": "OK"
+    },
+    "fees": {
+      "url": "https://mempool.space/api/v1/fees/recommended",
+      "category": "transaction_fees",
+      "checked_at_utc": "2026-11-20T19:02:48.193494+00:00",
+      "status": "OK"
+    },
+    "mempool": {
+      "url": "https://mempool.space/api/mempool",
+      "category": "unconfirmed_transactions",
+      "checked_at_utc": "2026-11-20T19:02:48.415524+00:00",
+      "status": "OK"
+    },
+    "bitcoin_prices": {
+      "url": "https://mempool.space/api/v1/prices",
+      "category": "market_reference_quotes",
+      "checked_at_utc": "2026-11-20T19:02:48.647583+00:00",
+      "status": "OK"
+    },
+    "difficulty": {
+      "url": "https://mempool.space/api/v1/difficulty-adjustment",
+      "category": "mining_difficulty",
+      "checked_at_utc": "2026-11-20T19:02:48.868433+00:00",
+      "status": "OK"
+    },
+    "hashrate_1m": {
+      "url": "https://mempool.space/api/v1/mining/hashrate/1m",
+      "category": "global_network_hashrate_estimate",
+      "checked_at_utc": "2026-11-20T19:02:49.120931+00:00",
+      "status": "OK"
+    },
+    "pools_1w": {
+      "url": "https://mempool.space/api/v1/mining/pools/1w",
+      "category": "mining_pool_block_share_not_country_share",
+      "checked_at_utc": "2026-11-20T19:02:49.344300+00:00",
+      "status": "OK"
+    },
+    "reward_stats_144": {
+      "url": "https://mempool.space/api/v1/mining/reward-stats/144",
+      "category": "recent_mining_reward_stats",
+      "checked_at_utc": "2026-11-20T19:02:49.566928+00:00",
+      "status": "OK"
+    },
+    "worldbank_countries": {
+      "url": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+      "category": "country_context_not_bitcoin_adoption",
+      "checked_at_utc": "2026-11-20T19:02:49.787935+00:00",
+      "status": "OK"
+    }
+  },
+  "global": {
+    "chain_tip": {
+      "height": 976772,
+      "status": "TWO_EXPLORERS_WITHIN_THREE_BLOCKS",
+      "sampled_tips": {
+        "mempool_space": 976772,
+        "blockstream_info": 976772
+      }
+    },
+    "issuance_schedule": {
+      "current_height": 976772,
+      "halving_epoch": 4,
+      "block_subsidy_satoshis": 312500000,
+      "block_subsidy_btc": 3.125,
+      "next_halving_height": 1050000,
+      "blocks_until_next_halving": 73228,
+      "consensus_subsidy_excludes_transaction_fees": true
+    },
+    "fees": {
+      "sat_per_vbyte": {
+        "fastestFee": 2,
+        "halfHourFee": 1,
+        "hourFee": 1,
+        "economyFee": 1,
+        "minimumFee": 1
+      },
+      "not_a_guaranteed_confirmation_time": true
+    },
+    "mempool": {
+      "count": 65025,
+      "vsize": 31095462,
+      "total_fee": 6170430
+    },
+    "bitcoin_prices": {
+      "USD": 58500,
+      "EUR": 53401,
+      "GBP": 44823,
+      "CAD": 83664,
+      "AUD": 88428,
+      "CHF": 49135,
+      "JPY": 9306355,
+      "provider_time_unix": 1795200910,
+      "price_not_executable_trade_quote": true
+    },
+    "difficulty": {
+      "progressPercent": 50.99206349206349,
+      "difficultyChange": 8.544494628155096,
+      "remainingBlocks": 988,
+      "remainingTime": 546666328,
+      "previousRetarget": -9.126656385443539,
+      "nextRetargetHeight": 977760,
+      "timeAvg": 553306
+    },
+    "hashrate_1m": {
+      "last_12_observations": [
+        {
+          "timestamp": 1794182400,
+          "avg_hashrate_hash_per_s": 826267196366358300000
+        },
+        {
+          "timestamp": 1794268800,
+          "avg_hashrate_hash_per_s": 824956594219126200000
+        },
+        {
+          "timestamp": 1794355200,
+          "avg_hashrate_hash_per_s": 984472256655275700000
+        },
+        {
+          "timestamp": 1794441600,
+          "avg_hashrate_hash_per_s": 982418957655495700000
+        },
+        {
+          "timestamp": 1794528000,
+          "avg_hashrate_hash_per_s": 900941552978139700000
+        },
+        {
+          "timestamp": 1794614400,
+          "avg_hashrate_hash_per_s": 810872104980435000000
+        },
+        {
+          "timestamp": 1794700800,
+          "avg_hashrate_hash_per_s": 925773422368779800000
+        },
+        {
+          "timestamp": 1794787200,
+          "avg_hashrate_hash_per_s": 1.147471462806631e+21
+        },
+        {
+          "timestamp": 1794873600,
+          "avg_hashrate_hash_per_s": 1.10230448392204e+21
+        },
+        {
+          "timestamp": 1794960000,
+          "avg_hashrate_hash_per_s": 1.009829456101236e+21
+        },
+        {
+          "timestamp": 1795046400,
+          "avg_hashrate_hash_per_s": 1.051070335988507e+21
+        },
+        {
+          "timestamp": 1795132800,
+          "avg_hashrate_hash_per_s": 1.016313430532484e+21
+        }
+      ],
+      "latest_rate_exahash_per_s": 1016.31,
+      "estimate_not_measured_individual_machines": true
+    },
+    "pools_1w": {
+      "trailing_window": "1w",
+      "pools": [
+        {
+          "name": "Foundry USA",
+          "slug": "foundryusa",
+          "blocks_found_in_provider_window": 275
+        },
+        {
+          "name": "AntPool",
+          "slug": "antpool",
+          "blocks_found_in_provider_window": 206
+        },
+        {
+          "name": "F2Pool",
+          "slug": "f2pool",
+          "blocks_found_in_provider_window": 204
+        },
+        {
+          "name": "ViaBTC",
+          "slug": "viabtc",
+          "blocks_found_in_provider_window": 93
+        },
+        {
+          "name": "SpiderPool",
+          "slug": "spiderpool",
+          "blocks_found_in_provider_window": 73
+        },
+        {
+          "name": "MARA Pool",
+          "slug": "marapool",
+          "blocks_found_in_provider_window": 57
+        },
+        {
+          "name": "Luxor",
+          "slug": "luxor",
+          "blocks_found_in_provider_window": 47
+        },
+        {
+          "name": "SECPOOL",
+          "slug": "secpool",
+          "blocks_found_in_provider_window": 40
+        },
+        {
+          "name": "OCEAN",
+          "slug": "ocean",
+          "blocks_found_in_provider_window": 31
+        },
+        {
+          "name": "Braiins Pool",
+          "slug": "braiinspool",
+          "blocks_found_in_provider_window": 20
+        },
+        {
+          "name": "CloverPool",
+          "slug": "cloverpool",
+          "blocks_found_in_provider_window": 8
+        },
+        {
+          "name": "TrustPool",
+          "slug": "trustpool",
+          "blocks_found_in_provider_window": 6
+        },
+        {
+          "name": "Unknown",
+          "slug": "unknown",
+          "blocks_found_in_provider_window": 3
+        },
+        {
+          "name": "Poolin",
+          "slug": "poolin",
+          "blocks_found_in_provider_window": 3
+        },
+        {
+          "name": "WhitePool",
+          "slug": "whitepool",
+          "blocks_found_in_provider_window": 2
+        },
+        {
+          "name": "Solo CK",
+          "slug": "solock",
+          "blocks_found_in_provider_window": 1
+        }
+      ],
+      "is_pool_not_country_distribution": true,
+      "real_mining_facility_locations_unobserved": true
+    },
+    "reward_stats_144": {
+      "startBlock": 976629,
+      "endBlock": 976772,
+      "window": "144 blocks"
+    }
+  },
+  "countries": [
+    {
+      "iso3166_alpha2": "AW",
+      "worldbank_public_country_context": {
+        "display_name": "Aruba",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AF",
+      "worldbank_public_country_context": {
+        "display_name": "Afghanistan",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AO",
+      "worldbank_public_country_context": {
+        "display_name": "Angola",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AI",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AX",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AL",
+      "worldbank_public_country_context": {
+        "display_name": "Albania",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AD",
+      "worldbank_public_country_context": {
+        "display_name": "Andorra",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AE",
+      "worldbank_public_country_context": {
+        "display_name": "United Arab Emirates",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AR",
+      "worldbank_public_country_context": {
+        "display_name": "Argentina",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AM",
+      "worldbank_public_country_context": {
+        "display_name": "Armenia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AS",
+      "worldbank_public_country_context": {
+        "display_name": "American Samoa",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AQ",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TF",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AG",
+      "worldbank_public_country_context": {
+        "display_name": "Antigua and Barbuda",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AU",
+      "worldbank_public_country_context": {
+        "display_name": "Australia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AT",
+      "worldbank_public_country_context": {
+        "display_name": "Austria",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "AZ",
+      "worldbank_public_country_context": {
+        "display_name": "Azerbaijan",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BI",
+      "worldbank_public_country_context": {
+        "display_name": "Burundi",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BE",
+      "worldbank_public_country_context": {
+        "display_name": "Belgium",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BJ",
+      "worldbank_public_country_context": {
+        "display_name": "Benin",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BQ",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BF",
+      "worldbank_public_country_context": {
+        "display_name": "Burkina Faso",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BD",
+      "worldbank_public_country_context": {
+        "display_name": "Bangladesh",
+        "worldbank_region": "South Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BG",
+      "worldbank_public_country_context": {
+        "display_name": "Bulgaria",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BH",
+      "worldbank_public_country_context": {
+        "display_name": "Bahrain",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BS",
+      "worldbank_public_country_context": {
+        "display_name": "Bahamas, The",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BA",
+      "worldbank_public_country_context": {
+        "display_name": "Bosnia and Herzegovina",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BL",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BY",
+      "worldbank_public_country_context": {
+        "display_name": "Belarus",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BZ",
+      "worldbank_public_country_context": {
+        "display_name": "Belize",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BM",
+      "worldbank_public_country_context": {
+        "display_name": "Bermuda",
+        "worldbank_region": "North America",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BO",
+      "worldbank_public_country_context": {
+        "display_name": "Bolivia",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BR",
+      "worldbank_public_country_context": {
+        "display_name": "Brazil",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BB",
+      "worldbank_public_country_context": {
+        "display_name": "Barbados",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BN",
+      "worldbank_public_country_context": {
+        "display_name": "Brunei Darussalam",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BT",
+      "worldbank_public_country_context": {
+        "display_name": "Bhutan",
+        "worldbank_region": "South Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BV",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "BW",
+      "worldbank_public_country_context": {
+        "display_name": "Botswana",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CF",
+      "worldbank_public_country_context": {
+        "display_name": "Central African Republic",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CA",
+      "worldbank_public_country_context": {
+        "display_name": "Canada",
+        "worldbank_region": "North America",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CC",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CH",
+      "worldbank_public_country_context": {
+        "display_name": "Switzerland",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CL",
+      "worldbank_public_country_context": {
+        "display_name": "Chile",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CN",
+      "worldbank_public_country_context": {
+        "display_name": "China",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CI",
+      "worldbank_public_country_context": {
+        "display_name": "Cote d'Ivoire",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CM",
+      "worldbank_public_country_context": {
+        "display_name": "Cameroon",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CD",
+      "worldbank_public_country_context": {
+        "display_name": "Congo, Dem. Rep.",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CG",
+      "worldbank_public_country_context": {
+        "display_name": "Congo, Rep.",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CK",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CO",
+      "worldbank_public_country_context": {
+        "display_name": "Colombia",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KM",
+      "worldbank_public_country_context": {
+        "display_name": "Comoros",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CV",
+      "worldbank_public_country_context": {
+        "display_name": "Cabo Verde",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CR",
+      "worldbank_public_country_context": {
+        "display_name": "Costa Rica",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CU",
+      "worldbank_public_country_context": {
+        "display_name": "Cuba",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CW",
+      "worldbank_public_country_context": {
+        "display_name": "Curacao",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CX",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KY",
+      "worldbank_public_country_context": {
+        "display_name": "Cayman Islands",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CY",
+      "worldbank_public_country_context": {
+        "display_name": "Cyprus",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "CZ",
+      "worldbank_public_country_context": {
+        "display_name": "Czechia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "DE",
+      "worldbank_public_country_context": {
+        "display_name": "Germany",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "DJ",
+      "worldbank_public_country_context": {
+        "display_name": "Djibouti",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "DM",
+      "worldbank_public_country_context": {
+        "display_name": "Dominica",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "DK",
+      "worldbank_public_country_context": {
+        "display_name": "Denmark",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "DO",
+      "worldbank_public_country_context": {
+        "display_name": "Dominican Republic",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "DZ",
+      "worldbank_public_country_context": {
+        "display_name": "Algeria",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "EC",
+      "worldbank_public_country_context": {
+        "display_name": "Ecuador",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "EG",
+      "worldbank_public_country_context": {
+        "display_name": "Egypt, Arab Rep.",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ER",
+      "worldbank_public_country_context": {
+        "display_name": "Eritrea",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "EH",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ES",
+      "worldbank_public_country_context": {
+        "display_name": "Spain",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "EE",
+      "worldbank_public_country_context": {
+        "display_name": "Estonia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ET",
+      "worldbank_public_country_context": {
+        "display_name": "Ethiopia",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "FI",
+      "worldbank_public_country_context": {
+        "display_name": "Finland",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "FJ",
+      "worldbank_public_country_context": {
+        "display_name": "Fiji",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "FK",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "FR",
+      "worldbank_public_country_context": {
+        "display_name": "France",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "FO",
+      "worldbank_public_country_context": {
+        "display_name": "Faroe Islands",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "FM",
+      "worldbank_public_country_context": {
+        "display_name": "Micronesia, Fed. Sts.",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GA",
+      "worldbank_public_country_context": {
+        "display_name": "Gabon",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GB",
+      "worldbank_public_country_context": {
+        "display_name": "United Kingdom",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GE",
+      "worldbank_public_country_context": {
+        "display_name": "Georgia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GG",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GH",
+      "worldbank_public_country_context": {
+        "display_name": "Ghana",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GI",
+      "worldbank_public_country_context": {
+        "display_name": "Gibraltar",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GN",
+      "worldbank_public_country_context": {
+        "display_name": "Guinea",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GP",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GM",
+      "worldbank_public_country_context": {
+        "display_name": "Gambia, The",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GW",
+      "worldbank_public_country_context": {
+        "display_name": "Guinea-Bissau",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GQ",
+      "worldbank_public_country_context": {
+        "display_name": "Equatorial Guinea",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GR",
+      "worldbank_public_country_context": {
+        "display_name": "Greece",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GD",
+      "worldbank_public_country_context": {
+        "display_name": "Grenada",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GL",
+      "worldbank_public_country_context": {
+        "display_name": "Greenland",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GT",
+      "worldbank_public_country_context": {
+        "display_name": "Guatemala",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GF",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GU",
+      "worldbank_public_country_context": {
+        "display_name": "Guam",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GY",
+      "worldbank_public_country_context": {
+        "display_name": "Guyana",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "HK",
+      "worldbank_public_country_context": {
+        "display_name": "Hong Kong SAR, China",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "HM",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "HN",
+      "worldbank_public_country_context": {
+        "display_name": "Honduras",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "HR",
+      "worldbank_public_country_context": {
+        "display_name": "Croatia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "HT",
+      "worldbank_public_country_context": {
+        "display_name": "Haiti",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "HU",
+      "worldbank_public_country_context": {
+        "display_name": "Hungary",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ID",
+      "worldbank_public_country_context": {
+        "display_name": "Indonesia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IM",
+      "worldbank_public_country_context": {
+        "display_name": "Isle of Man",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IN",
+      "worldbank_public_country_context": {
+        "display_name": "India",
+        "worldbank_region": "South Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IO",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IE",
+      "worldbank_public_country_context": {
+        "display_name": "Ireland",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IR",
+      "worldbank_public_country_context": {
+        "display_name": "Iran, Islamic Rep.",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IQ",
+      "worldbank_public_country_context": {
+        "display_name": "Iraq",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IS",
+      "worldbank_public_country_context": {
+        "display_name": "Iceland",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IL",
+      "worldbank_public_country_context": {
+        "display_name": "Israel",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "IT",
+      "worldbank_public_country_context": {
+        "display_name": "Italy",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "JM",
+      "worldbank_public_country_context": {
+        "display_name": "Jamaica",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "JE",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "JO",
+      "worldbank_public_country_context": {
+        "display_name": "Jordan",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "JP",
+      "worldbank_public_country_context": {
+        "display_name": "Japan",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KZ",
+      "worldbank_public_country_context": {
+        "display_name": "Kazakhstan",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KE",
+      "worldbank_public_country_context": {
+        "display_name": "Kenya",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KG",
+      "worldbank_public_country_context": {
+        "display_name": "Kyrgyz Republic",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KH",
+      "worldbank_public_country_context": {
+        "display_name": "Cambodia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KI",
+      "worldbank_public_country_context": {
+        "display_name": "Kiribati",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KN",
+      "worldbank_public_country_context": {
+        "display_name": "St. Kitts and Nevis",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KR",
+      "worldbank_public_country_context": {
+        "display_name": "Korea, Rep.",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KW",
+      "worldbank_public_country_context": {
+        "display_name": "Kuwait",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LA",
+      "worldbank_public_country_context": {
+        "display_name": "Lao PDR",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LB",
+      "worldbank_public_country_context": {
+        "display_name": "Lebanon",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LR",
+      "worldbank_public_country_context": {
+        "display_name": "Liberia",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LY",
+      "worldbank_public_country_context": {
+        "display_name": "Libya",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LC",
+      "worldbank_public_country_context": {
+        "display_name": "St. Lucia",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LI",
+      "worldbank_public_country_context": {
+        "display_name": "Liechtenstein",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LK",
+      "worldbank_public_country_context": {
+        "display_name": "Sri Lanka",
+        "worldbank_region": "South Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LS",
+      "worldbank_public_country_context": {
+        "display_name": "Lesotho",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LT",
+      "worldbank_public_country_context": {
+        "display_name": "Lithuania",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LU",
+      "worldbank_public_country_context": {
+        "display_name": "Luxembourg",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "LV",
+      "worldbank_public_country_context": {
+        "display_name": "Latvia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MO",
+      "worldbank_public_country_context": {
+        "display_name": "Macao SAR, China",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MF",
+      "worldbank_public_country_context": {
+        "display_name": "St. Martin (French part)",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MA",
+      "worldbank_public_country_context": {
+        "display_name": "Morocco",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MC",
+      "worldbank_public_country_context": {
+        "display_name": "Monaco",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MD",
+      "worldbank_public_country_context": {
+        "display_name": "Moldova",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MG",
+      "worldbank_public_country_context": {
+        "display_name": "Madagascar",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MV",
+      "worldbank_public_country_context": {
+        "display_name": "Maldives",
+        "worldbank_region": "South Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MX",
+      "worldbank_public_country_context": {
+        "display_name": "Mexico",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MH",
+      "worldbank_public_country_context": {
+        "display_name": "Marshall Islands",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MK",
+      "worldbank_public_country_context": {
+        "display_name": "North Macedonia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ML",
+      "worldbank_public_country_context": {
+        "display_name": "Mali",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MT",
+      "worldbank_public_country_context": {
+        "display_name": "Malta",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MM",
+      "worldbank_public_country_context": {
+        "display_name": "Myanmar",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ME",
+      "worldbank_public_country_context": {
+        "display_name": "Montenegro",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MN",
+      "worldbank_public_country_context": {
+        "display_name": "Mongolia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MP",
+      "worldbank_public_country_context": {
+        "display_name": "Northern Mariana Islands",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MZ",
+      "worldbank_public_country_context": {
+        "display_name": "Mozambique",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MR",
+      "worldbank_public_country_context": {
+        "display_name": "Mauritania",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MS",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MQ",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MU",
+      "worldbank_public_country_context": {
+        "display_name": "Mauritius",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MW",
+      "worldbank_public_country_context": {
+        "display_name": "Malawi",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "MY",
+      "worldbank_public_country_context": {
+        "display_name": "Malaysia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "YT",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NA",
+      "worldbank_public_country_context": {
+        "display_name": "Namibia",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NC",
+      "worldbank_public_country_context": {
+        "display_name": "New Caledonia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NE",
+      "worldbank_public_country_context": {
+        "display_name": "Niger",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NF",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NG",
+      "worldbank_public_country_context": {
+        "display_name": "Nigeria",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NI",
+      "worldbank_public_country_context": {
+        "display_name": "Nicaragua",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NU",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NL",
+      "worldbank_public_country_context": {
+        "display_name": "Netherlands",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NO",
+      "worldbank_public_country_context": {
+        "display_name": "Norway",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NP",
+      "worldbank_public_country_context": {
+        "display_name": "Nepal",
+        "worldbank_region": "South Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NR",
+      "worldbank_public_country_context": {
+        "display_name": "Naoero",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "NZ",
+      "worldbank_public_country_context": {
+        "display_name": "New Zealand",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "OM",
+      "worldbank_public_country_context": {
+        "display_name": "Oman",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PK",
+      "worldbank_public_country_context": {
+        "display_name": "Pakistan",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PA",
+      "worldbank_public_country_context": {
+        "display_name": "Panama",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PN",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PE",
+      "worldbank_public_country_context": {
+        "display_name": "Peru",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PH",
+      "worldbank_public_country_context": {
+        "display_name": "Philippines",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PW",
+      "worldbank_public_country_context": {
+        "display_name": "Palau",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PG",
+      "worldbank_public_country_context": {
+        "display_name": "Papua New Guinea",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PL",
+      "worldbank_public_country_context": {
+        "display_name": "Poland",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PR",
+      "worldbank_public_country_context": {
+        "display_name": "Puerto Rico (US)",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "KP",
+      "worldbank_public_country_context": {
+        "display_name": "Korea, Dem. People's Rep.",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PT",
+      "worldbank_public_country_context": {
+        "display_name": "Portugal",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PY",
+      "worldbank_public_country_context": {
+        "display_name": "Paraguay",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PS",
+      "worldbank_public_country_context": {
+        "display_name": "West Bank and Gaza",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PF",
+      "worldbank_public_country_context": {
+        "display_name": "French Polynesia",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "QA",
+      "worldbank_public_country_context": {
+        "display_name": "Qatar",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "RE",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "RO",
+      "worldbank_public_country_context": {
+        "display_name": "Romania",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "RU",
+      "worldbank_public_country_context": {
+        "display_name": "Russian Federation",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "RW",
+      "worldbank_public_country_context": {
+        "display_name": "Rwanda",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SA",
+      "worldbank_public_country_context": {
+        "display_name": "Saudi Arabia",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SD",
+      "worldbank_public_country_context": {
+        "display_name": "Sudan",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SN",
+      "worldbank_public_country_context": {
+        "display_name": "Senegal",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SG",
+      "worldbank_public_country_context": {
+        "display_name": "Singapore",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "GS",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SH",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SJ",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SB",
+      "worldbank_public_country_context": {
+        "display_name": "Solomon Islands",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SL",
+      "worldbank_public_country_context": {
+        "display_name": "Sierra Leone",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SV",
+      "worldbank_public_country_context": {
+        "display_name": "El Salvador",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SM",
+      "worldbank_public_country_context": {
+        "display_name": "San Marino",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SO",
+      "worldbank_public_country_context": {
+        "display_name": "Somalia, Fed. Rep.",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "PM",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "RS",
+      "worldbank_public_country_context": {
+        "display_name": "Serbia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SS",
+      "worldbank_public_country_context": {
+        "display_name": "South Sudan",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ST",
+      "worldbank_public_country_context": {
+        "display_name": "Sao Tome and Principe",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SR",
+      "worldbank_public_country_context": {
+        "display_name": "Suriname",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SK",
+      "worldbank_public_country_context": {
+        "display_name": "Slovak Republic",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SI",
+      "worldbank_public_country_context": {
+        "display_name": "Slovenia",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SE",
+      "worldbank_public_country_context": {
+        "display_name": "Sweden",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SZ",
+      "worldbank_public_country_context": {
+        "display_name": "Eswatini",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SX",
+      "worldbank_public_country_context": {
+        "display_name": "Sint Maarten (Dutch part)",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SC",
+      "worldbank_public_country_context": {
+        "display_name": "Seychelles",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "SY",
+      "worldbank_public_country_context": {
+        "display_name": "Syrian Arab Republic",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TC",
+      "worldbank_public_country_context": {
+        "display_name": "Turks and Caicos Islands",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TD",
+      "worldbank_public_country_context": {
+        "display_name": "Chad",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TG",
+      "worldbank_public_country_context": {
+        "display_name": "Togo",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TH",
+      "worldbank_public_country_context": {
+        "display_name": "Thailand",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TJ",
+      "worldbank_public_country_context": {
+        "display_name": "Tajikistan",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TK",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TM",
+      "worldbank_public_country_context": {
+        "display_name": "Turkmenistan",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TL",
+      "worldbank_public_country_context": {
+        "display_name": "Timor-Leste",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TO",
+      "worldbank_public_country_context": {
+        "display_name": "Tonga",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TT",
+      "worldbank_public_country_context": {
+        "display_name": "Trinidad and Tobago",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TN",
+      "worldbank_public_country_context": {
+        "display_name": "Tunisia",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TR",
+      "worldbank_public_country_context": {
+        "display_name": "Turkiye",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TV",
+      "worldbank_public_country_context": {
+        "display_name": "Tuvalu",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TW",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "TZ",
+      "worldbank_public_country_context": {
+        "display_name": "Tanzania",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "UG",
+      "worldbank_public_country_context": {
+        "display_name": "Uganda",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "UA",
+      "worldbank_public_country_context": {
+        "display_name": "Ukraine",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "UM",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "UY",
+      "worldbank_public_country_context": {
+        "display_name": "Uruguay",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "US",
+      "worldbank_public_country_context": {
+        "display_name": "United States",
+        "worldbank_region": "North America",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "UZ",
+      "worldbank_public_country_context": {
+        "display_name": "Uzbekistan",
+        "worldbank_region": "Europe & Central Asia",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VA",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VC",
+      "worldbank_public_country_context": {
+        "display_name": "St. Vincent and the Grenadines",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VE",
+      "worldbank_public_country_context": {
+        "display_name": "Venezuela, RB",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VG",
+      "worldbank_public_country_context": {
+        "display_name": "British Virgin Islands",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VI",
+      "worldbank_public_country_context": {
+        "display_name": "Virgin Islands (U.S.)",
+        "worldbank_region": "Latin America & Caribbean",
+        "income_group": "High income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VN",
+      "worldbank_public_country_context": {
+        "display_name": "Viet Nam",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "VU",
+      "worldbank_public_country_context": {
+        "display_name": "Vanuatu",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "WF",
+      "worldbank_public_country_context": null,
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "WS",
+      "worldbank_public_country_context": {
+        "display_name": "Samoa",
+        "worldbank_region": "East Asia & Pacific",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "YE",
+      "worldbank_public_country_context": {
+        "display_name": "Yemen, Rep.",
+        "worldbank_region": "Middle East, North Africa, Afghanistan & Pakistan",
+        "income_group": "Low income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ZA",
+      "worldbank_public_country_context": {
+        "display_name": "South Africa",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Upper middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ZM",
+      "worldbank_public_country_context": {
+        "display_name": "Zambia",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    },
+    {
+      "iso3166_alpha2": "ZW",
+      "worldbank_public_country_context": {
+        "display_name": "Zimbabwe",
+        "worldbank_region": "Sub-Saharan Africa",
+        "income_group": "Lower middle income"
+      },
+      "bitcoin_mining_share_pct": null,
+      "bitcoin_mining_equipment_count": null,
+      "bitcoin_nodes_in_country": null,
+      "bitcoin_holders_count": null,
+      "bitcoin_ownership_rate_pct": null,
+      "bitcoin_regulation_current": null,
+      "bitcoin_legal_tender_status": null,
+      "bitcoin_country_specific_status": "UNVERIFIED_NOT_ZERO",
+      "country_mining_share_cannot_be_inferred_from_pool_blocks": true
+    }
+  ],
+  "source_catalogue": {
+    "bitcoin_protocol": "https://bitcoin.org/en/halving",
+    "public_explorer_api": "https://mempool.space/docs/api/rest",
+    "independent_explorer": "https://blockstream.info/",
+    "mining_geography_methodology": "https://ccaf.io/cbnsi/cbeci/mining_map/methodology",
+    "country_adoption_crypto_not_btc_only": "https://www.chainalysis.com/reports/the-2026-geography-of-cryptocurrency-report/",
+    "worldbank_api": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392"
+  },
+  "btc_specific_adoption_rankings_verified": 0,
+  "worldwide_all_mining_locations_verified": false,
+  "private_individual_information_collected": false,
+  "btc_receipts_newly_earned_verified": false,
+  "country_rows_with_official_context": 215,
+  "owner_receiving_observation": {
+    "B1": {
+      "address": "bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z",
+      "read_only": true,
+      "chain_result": {
+        "status": "TWO_EXPLORERS_AGREE",
+        "sources": [
+          "mempool.space",
+          "blockstream.info"
+        ],
+        "source_failures": [],
+        "confirmed_historical_outputs_received_sats": 0,
+        "confirmed_historical_outputs_received_count": 0,
+        "historical_confirmed_spent_sats": 0,
+        "observed_confirmed_unspent_sats": 0,
+        "observed_mempool_output_sats": 0,
+        "observed_mempool_output_count": 0,
+        "earnings_verified": false,
+        "new_since_last_run_verified": false,
+        "no_client_purpose_or_ownership_inferred": true
+      },
+      "is_new_earned_payment_verified": false
+    },
+    "B2": {
+      "address": "bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9",
+      "read_only": true,
+      "chain_result": {
+        "status": "TWO_EXPLORERS_AGREE",
+        "sources": [
+          "mempool.space",
+          "blockstream.info"
+        ],
+        "source_failures": [],
+        "confirmed_historical_outputs_received_sats": 0,
+        "confirmed_historical_outputs_received_count": 0,
+        "historical_confirmed_spent_sats": 0,
+        "observed_confirmed_unspent_sats": 0,
+        "observed_mempool_output_sats": 0,
+        "observed_mempool_output_count": 0,
+        "earnings_verified": false,
+        "new_since_last_run_verified": false,
+        "no_client_purpose_or_ownership_inferred": true
+      },
+      "is_new_earned_payment_verified": false
+    }
+  }
+}
