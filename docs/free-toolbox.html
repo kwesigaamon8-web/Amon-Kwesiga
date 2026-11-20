@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="B1/B2 AI Studio: 29 free, privacy-first browser software tools for data, coding, writing, analysis and design."><title>B1/B2 Free Toolbox — 29 Tools</title>
+<style>
+:root{font:16px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#142b3c;background:#f5f9fc}*{box-sizing:border-box}body{margin:0}header,footer{background:#0b2439;color:white;padding:18px}nav{display:flex;gap:16px;flex-wrap:wrap}header a,footer a{color:#c4e5ff}.wrap{max-width:1100px;margin:auto;padding:20px}main{padding-top:12px;padding-bottom:40px}h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.12}.lead{font-size:1.1rem;max-width:780px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:20px}@media(max-width:800px){.layout{grid-template-columns:1fr}}.panel{background:white;border:1px solid #d2dfe8;border-radius:12px;padding:23px}label{font-weight:700;display:block;margin:14px 0 7px}select,textarea{font:inherit;width:100%;padding:11px;border:1px solid #9cafbe;border-radius:7px}textarea{min-height:145px;resize:vertical}textarea[readonly]{background:#f6f9fb}button{font:inherit;cursor:pointer;background:#0e608b;color:white;padding:10px 15px;border:1px solid #0e608b;border-radius:7px;margin:6px 8px 6px 0}button.secondary{background:white;color:#0e608b}a{color:#0d658d}.note{font-size:.9rem;color:#526b7c}.links{margin-top:18px}li{margin-bottom:12px}button:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #e8a741;outline-offset:2px}
+</style></head><body>
+<header><nav><strong>B1/B2 AI Studio — Free Toolbox</strong><a href="index.html">Home</a><a href="software.html">Catalogue</a><a href="brand-ai.html">Brand</a><a href="payment.html">Optional support</a></nav></header>
+<main class="wrap">
+<h1>29 free software tools in your browser</h1>
+<p class="lead">Original data, developer, text, number and color utilities. Use them for free: no login, wallet connection or donation needed. All inputs and transformations stay on your device in this browser tab.</p>
+<div class="layout"><section class="panel"><h2>Try a tool</h2>
+<label for="tool">Software</label><select id="tool"></select><p id="description" class="note">Choose a tool.</p>
+<label for="first" id="firstLabel">First input</label><textarea id="first" spellcheck="false" placeholder="Use synthetic or non-sensitive sample data"></textarea>
+<div id="secondBlock" hidden><label for="second" id="secondLabel">Second input</label><textarea id="second" spellcheck="false"></textarea></div>
+<p><button id="run" type="button">Run tool</button><button class="secondary" id="example" type="button">Load sample</button><button class="secondary" id="clear" type="button">Clear</button></p>
+<p id="status" role="status" aria-live="polite" class="note">Ready.</p><label for="result">Result</label><textarea id="result" readonly></textarea>
+<p><button type="button" id="copy" class="secondary">Copy</button><button type="button" id="save" class="secondary">Save .txt</button></p>
+</section><aside class="panel"><h2>Free and public</h2><p>29 functions in six categories: Data, Developer, Writing, Analysis and Design.</p>
+<ul><li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/assets/free-toolbox.js">Read and download the source</a></li>
+<li><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32">Volunteer on improvements</a></li>
+<li><a href="software.html">See our existing software collection</a></li>
+<li><a href="payment.html">Optional BTC support — owner-published Bitcoin-mainnet routes</a></li></ul>
+<p class="note">Your contribution is voluntary. No transfer is required to download or use tools. Verify exact network and address yourself before any optional support.</p>
+<p class="note">Approximate limit: 1MB per input. JSON to CSV supports flat records. CSV exports use spreadsheet-formula safeguards. This is not a professional audit or a payment gateway.</p>
+</aside></div></main>
+<footer><p>B1/B2 AI Studio — Practical AI. Tested tools. Real deliverables. <a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga">Original open project</a>.</p></footer>
+<script src="assets/free-toolbox.js"></script><script>
+(function(){"use strict";const api=window.B1B2FreeToolbox;const el=x=>document.getElementById(x);
+const samples={"csv-to-json":["name,age\nAda,25\nKai,30",""],"json-to-csv":['[{"name":"Ada","age":25},{"name":"Kai","age":30}]',""],"csv-profile":["name,amount\nAda,20\nJo,\nKai,11",""],"json-format":['{"a":[1,2],"b":true}',""],"json-minify":['{\n  "status": "ok"\n}',""],"json-keys":['{"user":{"name":"Ava"},"status":"ok"}',""],"base64-encode":["Hello, 世界",""],"base64-decode":["SGVsbG8=",""],"url-encode":["hello world? free=yes",""],"url-decode":["hello%20world",""],"html-escape":["<b>Hello</b>",""],"decimal-to-hex":["1024",""],"text-stats":["Two words. Three more words.",""],"word-frequency":["Text text is useful.",""],"slug":["Free Software For Everyone",""],"title-case":["hello free world",""],"unique-lines":["Ada\nBob\nAda",""],"sort-lines":["10\n2\n1",""],"reverse-lines":["First\nSecond",""],"number-lines":["One\nTwo",""],"trim-lines":["  One  \n Two  ",""],"remove-blanks":["One\n\nTwo",""],"checklist":["Build tests\nReview code",""],"compare-lines":["Apple\nOrange","Orange\nPear"],"percentage":["100","125"],"vat":["1000","18"],"timestamp":["2026-11-20T09:00:00+03:00",""],"contrast":["#000000","#ffffff"],"hex-rgb":["#0088ff",""]};
+for(const t of api.catalog){const o=document.createElement("option");o.value=t.id;o.textContent=t.category+" · "+t.name;el("tool").appendChild(o);}
+function update(){const t=api.catalog.find(x=>x.id===el("tool").value);el("firstLabel").textContent=t.first||"Input";el("secondLabel").textContent=t.second||"Second input";el("secondBlock").hidden=!t.second;el("description").textContent=t.name+" — runs locally, no upload.";el("result").value="";}
+el("tool").addEventListener("change",update);
+el("run").addEventListener("click",()=>{try{el("result").value=api.run(el("tool").value,el("first").value,el("second").value);el("status").textContent="Completed locally — check the result.";}catch(e){el("result").value="";el("status").textContent="Error: "+e.message;}});
+el("example").addEventListener("click",()=>{const a=samples[el("tool").value]||["",""];el("first").value=a[0];el("second").value=a[1];el("status").textContent="Sample loaded.";});
+el("clear").addEventListener("click",()=>{el("first").value="";el("second").value="";el("result").value="";el("status").textContent="Cleared.";});
+el("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(el("result").value);el("status").textContent="Copied result.";}catch{el("status").textContent="Select result and copy manually."; }});
+el("save").addEventListener("click",()=>{const b=new Blob([el("result").value],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(b);const a=document.createElement("a");a.href=url;a.download="b1b2-"+el("tool").value+".txt";a.click();URL.revokeObjectURL(url);el("status").textContent="Downloaded.";});
+update();})();
+</script></body></html>
