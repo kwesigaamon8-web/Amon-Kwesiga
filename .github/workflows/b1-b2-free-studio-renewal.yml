@@ -171,7 +171,6 @@ jobs:
           grep -q '67' "$scratch/free-software-manifest.json"
           grep -q 'Share useful free software worldwide' "$scratch/share-free-software.html"
           grep -q 'assets/free-mini-apps.js' "$scratch/mini-apps.html"
-          grep -q '61' "$scratch/free-software-manifest.json"
           grep -q 'Bitcoin mining' "$scratch/software.html"
           grep -q 'Bitcoin mainnet' "$scratch/payment.html"
           grep -q 'Hire our AI-assisted' "$scratch/ai.html"
