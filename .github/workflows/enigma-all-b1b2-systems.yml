@@ -21,8 +21,38 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 4
+    outputs:
+      new_canonical_owner_order: ${{ steps.diff.outputs.new_canonical_owner_order }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Verify both canonical files changed in SAME commit using Git, not missing push metadata
+        id: diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" != "push" ]; then
+            echo "new_canonical_owner_order=true" >> "$GITHUB_OUTPUT"
+            echo "OWNER_DIFF_GATE manual/scheduled"
+            exit 0
+          fi
+          changed="$(git diff --name-only HEAD^ HEAD)"
+          echo "$changed" | grep -Fxq 'crypto-agents/chief_D_owner_orders.json' || { echo "new_canonical_owner_order=false" >> "$GITHUB_OUTPUT"; exit 0; }
+          echo "$changed" | grep -Fxq 'crypto-agents/PUBLIC_AGENT_COMMAND.json' || { echo "new_canonical_owner_order=false" >> "$GITHUB_OUTPUT"; exit 0; }
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('crypto-agents/chief_D_owner_orders.json').read_text())
+          p=json.loads(Path('crypto-agents/PUBLIC_AGENT_COMMAND.json').read_text())
+          i=c['current_owner_order_id']
+          assert c['orders'][-1]['id']==p['command_id']==i
+          assert c['orders'][-1]['instruction']==p['owner_command']
+          assert c['owner_prompt_cascade']['owner_order_id']==i
+          assert p['owner_prompt_cascade']['owner_order_id']==i
+          print('CANONICAL_NEW_ORDER_BOTH_COMMITTED_AND_MATCH')
+          PY
+          echo "new_canonical_owner_order=true" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -33,14 +63,10 @@ jobs:
           python crypto-agents/enigma_universal_owner_order.py --self-test
   execute:
     needs: validate
-    # A genuine new human owner command MUST update BOTH canonical registries
-    # in ONE commit; unrelated source edits only run cheap validation.
-    if: >-
-      github.event_name != 'push' ||
-      (
-        contains(toJSON(github.event.head_commit.modified), 'crypto-agents/chief_D_owner_orders.json') &&
-        contains(toJSON(github.event.head_commit.modified), 'crypto-agents/PUBLIC_AGENT_COMMAND.json')
-      )
+    # A real new owner command must change BOTH synchronized canonical sources
+    # in the same commit. The push webhook's head_commit.modified can be absent
+    # on Git Data API pushes, so trust the checked-out Git commit tree instead.
+    if: needs.validate.outputs.new_canonical_owner_order == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 24
     strategy:
