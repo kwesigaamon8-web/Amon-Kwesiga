@@ -1,0 +1,73 @@
+name: B1B2 Comprehensive Source Forensic + Official Bitcoin MIT Code Verification
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-comprehensive-open-source-btc-audit.yml'
+      - 'crypto-agents/vendor/bitcoin_bip352_bech32m.py'
+      - 'crypto-agents/btc_receiver_safety.py'
+      - 'crypto-agents/test_btc_receiver_safety.py'
+      - 'crypto-agents/bitcoin_mainnet_receipt_probe.py'
+      - 'crypto-agents/btc_public_address_snapshot.py'
+permissions:
+  contents: read
+concurrency:
+  group: b1b2-independent-receiver-and-source-audit
+  cancel-in-progress: false
+jobs:
+  source-and-crypto-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install auditable parser only
+        run: python -m pip install --disable-pip-version-check --quiet PyYAML==6.0.2
+      - name: Whole-repository syntax and owner-order safety without changing files
+        run: |
+          python -m compileall -q crypto-agents
+          python crypto-agents/repository_forensic_self_heal.py
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/directive_cascade.py --self-test --out comprehensive-source-evidence/cascade
+      - name: Run MIT upstream Bitcoin checksum and no-wallet-secret regression tests
+        run: python crypto-agents/test_btc_receiver_safety.py
+      - name: Retest genuine shared role hierarchy and independent capability proof
+        run: |
+          python crypto-agents/test_self_correcting_all_roles.py
+          python crypto-agents/test_shared_hierarchy_runtime.py
+      - name: Run browser-tool and payment reference tests
+        run: |
+          node --test docs/tests/*.test.js
+          node --test docs/b1b2-worker-hub/*.test.cjs
+      - name: Independently read the current B1/B2 address balances without keys
+        continue-on-error: true
+        run: |
+          python crypto-agents/bitcoin_mainnet_receipt_probe.py
+          python crypto-agents/btc_public_address_snapshot.py > comprehensive-source-evidence/current-address-observations.log
+      - name: Archive full forensic source and wallet evidence even on a failed test
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-bip173-bip350-full-repo-and-btc-evidence
+          path: |
+            self-correction-evidence/
+            comprehensive-source-evidence/
+            self-correction-evidence/role-hierarchy/
+            btc-safety-evidence/
+            bitcoin-receipt-probe/
+            shared-role-command-evidence/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Keep income and capability claims strictly evidence-based
+        if: always()
+        run: |
+          echo '## B1/B2 comprehensive audit' >> "$GITHUB_STEP_SUMMARY"
+          echo 'All tracked source types scanned, real Python+Node regression tests run, official BIP-0352 MIT-licensed code copy verified and BTC SegWit mainnet checks enforced.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No private keys, emails, wallet signing, transaction broadcasts, solo miner fabrication or money printing. A blockchain snapshot is not an earned payout.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'All 11.25 trillion role IDs remain lazily addressable; successful tests are finite executions, not permanently live miners.' >> "$GITHUB_STEP_SUMMARY"
