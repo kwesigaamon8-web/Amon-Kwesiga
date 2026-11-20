@@ -5,6 +5,7 @@ on:
     paths:
       - 'docs/b1b2-worker-hub/hf-worker-hub.html'
       - 'docs/b1b2-worker-hub/payment-proof*'
+      - 'docs/b1b2-worker-hub/paid-services.html'
       - 'crypto-agents/data/bitcoin_country_allocations.csv'
       - 'crypto-agents/public_payment_routes.json'
       - '.github/workflows/publish-b1b2-to-huggingface.yml'
@@ -111,6 +112,7 @@ jobs:
               ('country-allocations.json','country-allocations.json'),
               ('wallet-routes.json','wallet-routes.json'),
               ('payment-proof.html','payment-proof.html'),
+              ('paid-services.html','paid-services.html'),
               ('payment-proof-core.js','payment-proof-core.js'),
           ]
           operations=[CommitOperationAdd(path_in_repo=dest,path_or_fileobj=base+local)
@@ -119,7 +121,7 @@ jobs:
               repo_id='Amonkkkk/b1b2-superworker-assembly',
               repo_type='space',
               operations=operations,
-              commit_message='Make 11.26T virtual roles individually selectable with country tasks and verified public BTC routes',
+              commit_message='Publish honest B1/B2 paid service intake alongside country worker lookup',
           )
           print('HF_INTERACTIVE_WORKER_HUB_PUBLISHED',
                 {'commit_url':commit.commit_url,'page_path':'worker-hub.html',
@@ -131,4 +133,5 @@ jobs:
           echo "## Deployed interactive on-demand virtual worker lookup with BTC wallets" >> "$GITHUB_STEP_SUMMARY"
           echo "https://amonkkkk-b1b2-superworker-assembly.hf.space/worker-hub.html" >> "$GITHUB_STEP_SUMMARY"
           echo "Verified original read-only BTC payment request and txid checker at https://amonkkkk-b1b2-superworker-assembly.hf.space/payment-proof.html ; 7 isolated unit tests; never private keys or invented coins." >> "$GITHUB_STEP_SUMMARY"
+          echo "Buyer-facing live page: https://amonkkkk-b1b2-superworker-assembly.hf.space/paid-services.html" >> "$GITHUB_STEP_SUMMARY"
           echo "Existing Space index.html retained; no miner work, LLM activity or crypto receipts are implied." >> "$GITHUB_STEP_SUMMARY"
