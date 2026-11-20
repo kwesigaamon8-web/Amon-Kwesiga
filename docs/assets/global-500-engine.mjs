@@ -83,7 +83,7 @@ export function calculate(algorithm,raw={}){
  switch(algorithm){
  case 0:value=sum;break;
  case 1:value=sum/n;break;
- case 2:value=(quantile(s,.5)+quantile(s,.5+1/n))/2;break;
+ case 2:{const sorted=[...s].sort((x,y)=>x-y),mid=Math.floor(n/2);value=n%2?sorted[mid]:(sorted[mid-1]+sorted[mid])/2;break}
  case 3:value=Math.max(...s)-Math.min(...s);break;
  case 4:value=Math.sqrt(s.reduce((x,y)=>x+(y-sum/n)**2,0)/n);break;
  case 5:value=quantile(s,.9);break;
