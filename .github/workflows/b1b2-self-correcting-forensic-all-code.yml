@@ -1,0 +1,101 @@
+name: B1B2 Repository-Wide Self-Correcting Forensic Audit
+on:
+  workflow_dispatch:
+  schedule:
+    # Regular bounded audits; no continuous mining or live trillions.
+    - cron: '11 */6 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/b1b2-self-correcting-forensic-all-code.yml'
+      - 'crypto-agents/repository_forensic_self_heal.py'
+      - 'crypto-agents/self_correcting_buyer_route.py'
+permissions:
+  contents: write
+concurrency:
+  group: b1b2-source-wide-forensic-repair
+  cancel-in-progress: false
+jobs:
+  scan-repair-verify:
+    name: Inspect source, safely repair, validate, and publish proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install standalone YAML parser for actual syntax validation
+        run: python -m pip install --disable-pip-version-check --quiet PyYAML==6.0.2
+      - name: Test the self-correction engine before allowing any edits
+        run: |
+          python -m py_compile crypto-agents/repository_forensic_self_heal.py crypto-agents/self_correcting_buyer_route.py
+          python crypto-agents/repository_forensic_self_heal.py --self-test
+          python crypto-agents/self_correcting_buyer_route.py --self-test
+      - name: Audit every tracked source and fix ONLY validated missing final newlines
+        run: python crypto-agents/repository_forensic_self_heal.py --repair-safe
+      - name: Correct outdated buyer-host links after real HTTPS checks only
+        run: python crypto-agents/self_correcting_buyer_route.py
+      - name: Validate canonical owner order and mirrored hash after corrections
+        run: |
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/directive_cascade.py --self-test --out self-correction-evidence/cascade
+      - name: Independently retest the repaired source tree with unit checks
+        run: |
+          python -m compileall -q crypto-agents
+          node --test docs/tests/*.test.js
+      - name: Save full forensic report even when a test fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-complete-forensic-and-correction-evidence
+          path: |
+            self-correction-evidence/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Commit ONLY reviewed safe source-newline repairs and tested buyer-link directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          report=json.loads(Path('self-correction-evidence/repository-audit.json').read_text())
+          if not report['owner_command_guard_passed']:
+              raise SystemExit('OWNER ORDER SAFETY GATE BLOCKED: NO COMMITS')
+          if report['safe_repair_state']=='BLOCKED_TOO_MANY_CANDIDATES':
+              raise SystemExit('TOO MANY REPAIRS: NOT SAFE TO AUTO-COMMIT')
+          allowed=set(report['safe_repair_paths'])|{'docs/BUYER_ENTRYPOINT.md'}
+          changed=subprocess.check_output(['git','ls-files','-m'],text=True).splitlines()
+          unsafe=sorted(set(changed)-allowed)
+          if unsafe:raise SystemExit('FORBIDDEN CHANGED TRACKED PATHS '+repr(unsafe))
+          # Add only generated public link directory plus explicit fix manifest;
+          # no canonical owner orders, workflows, wallet data, or arbitrary code.
+          safe=[p for p in sorted(allowed) if Path(p).exists()]
+          if safe:
+              subprocess.run(['git','add','--',*safe],check=True)
+          diff=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
+          if set(diff)-allowed:raise SystemExit('STAGED UNAPPROVED PATHS')
+          print('B1B2_AUTOMATED_CORRECTION_ALLOWLIST',json.dumps(diff))
+          PY
+          if git diff --cached --quiet; then
+            echo 'NO_MEANINGFUL_APPROVED_CHANGE: record artifact, no churn'
+          else
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'Autocorrect approved buyer link and syntax-preserving end-of-file hygiene'
+            # Never force push or override concurrent owner instructions.
+            git push origin HEAD:main
+          fi
+      - name: State truthful repair boundaries
+        if: always()
+        run: |
+          echo '## B1/B2 self-correcting forensic run' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Scans tracked Python, JS, JSON, YAML, TOML, shell and HTML code, plus static security markers.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Only exact final newlines in permitted parseable files and generated buyer links can be auto-committed.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Other defects are triaged, not rewritten without acceptance tests and review; no emails, wallet signing or mining.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'A green workflow is NOT evidence of paid clients, AI workers running continuously or coins.' >> "$GITHUB_STEP_SUMMARY"
