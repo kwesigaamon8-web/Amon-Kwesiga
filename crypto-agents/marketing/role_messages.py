@@ -9,6 +9,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+try:
+    from .country_market_research import worker_country
+except ImportError:
+    from country_market_research import worker_country
 from datetime import datetime, timezone
 
 try:
@@ -44,6 +48,7 @@ PAYMENT_SAFETY = (
 def build_message(fleet: str, role: str) -> dict:
     """Address one message in O(1) space; virtual assignment, not a send."""
     assigned = assignment(fleet, role)
+    jurisdiction_task = worker_country(assigned["global_index_zero_based"])
     digest = hashlib.sha256(
         (VERSION + "|" + fleet + "/" + role).encode("utf-8")
     ).hexdigest()[:20]
@@ -58,6 +63,9 @@ def build_message(fleet: str, role: str) -> dict:
         "Confirm the product functions by testing original source. "
         "Never copy non-permissively licensed code.",
         assigned["work_order"],
+        "COUNTRY RESEARCH "+jurisdiction_task["country_or_territory_code"]+
+        ": "+jurisdiction_task["candidate_issue_to_investigate"]+
+        " Cross-check World Bank and current local primary sources; never treat a hypothesis as a verified problem.",
         "Research real interested audiences and their actual posting rules; "
         "only post using a connected, legitimately authorized account "
         "when the community permits that original, useful content.",
@@ -79,6 +87,7 @@ def build_message(fleet: str, role: str) -> dict:
             "final_reporting": "Chief D",
         },
         "region_assignment": assigned["region_research_assignment"],
+        "country_market_research": jurisdiction_task,
         "languages_for_editorial_research": assigned["suggested_languages"],
         "product": {
             "name": assigned["software_focus"],
@@ -141,6 +150,8 @@ def model_instruction(msg: dict) -> str:
         "DIRECTOR " + msg["routing"]["director"] + "; "
         "TASK " + msg["required_actions"][1] + "; "
         "REGION " + msg["region_assignment"] + "; "
+        "COUNTRY_RESEARCH " + msg["country_market_research"]["country_or_territory_code"] +
+        " (unverified local problem; research first); "
         "PRODUCT " + msg["product"]["name"] + "; "
         "SOURCE " + msg["product"]["path"] + "; "
         "PUBLIC SOFTWARE " + msg["product"]["stable_live_site"] + ". "
