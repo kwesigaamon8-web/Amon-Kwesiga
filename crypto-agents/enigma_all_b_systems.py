@@ -149,6 +149,7 @@ def software_qa(agent,path="docs/global-1000-manifest.json"):
 def execute(agent,fleet,cycle,out,model_factory=None):
     from enigma_universal_owner_order import order as canonical_owner_order
     from directive_cascade import read_owner
+    from directive_understanding_gate import challenge as understanding_challenge, grade as understanding_grade
     live_owner_order=canonical_owner_order()
     full_cascade_order=read_owner()
     if full_cascade_order["owner_order_id"]!=live_owner_order["id"]:
@@ -190,7 +191,30 @@ def execute(agent,fleet,cycle,out,model_factory=None):
         except Exception as ex:
             error="INFERENCE_ERROR_"+type(ex).__name__
             response=None
+    # Separate model-produced answer, not proof from configured virtual roles.
+    comprehension_reply=""
+    comprehension_called=False
+    comprehension_parent=div["division"]+"/"+selected["reports_via"][1]
+    if generator is not None and response:
+        try:
+            raw_ack=generator(understanding_challenge(
+                live_owner_order["id"],selected["internal_worker_id"],
+                comprehension_parent,live_owner_order["text"]),
+                max_new_tokens=245,do_sample=False,return_full_text=False)
+            comprehension_reply=raw_ack[0].get("generated_text") or ""
+            if isinstance(comprehension_reply,list):
+                comprehension_reply=comprehension_reply[-1].get("content","")
+            comprehension_reply=str(comprehension_reply).strip()
+            comprehension_called=bool(comprehension_reply)
+        except Exception as e:
+            error=(error or "")+" COMPREHENSION_INFERENCE_ERROR_"+type(e).__name__
+    comprehension_grade=understanding_grade(
+        comprehension_reply,selected["internal_worker_id"],comprehension_parent,
+        live_owner_order["id"],model_invocation_completed=comprehension_called,
+        accepted_task_proof=False)
     state={
+       "owner_instruction_comprehension_grade":comprehension_grade,
+       "owner_directive_ack_not_assumed_for_virtual_roles":True,
        "run_utc":utc(),"agent_id":agent,"division_id":div["division"],
        "received_owner_order_id":live_owner_order["id"],
        "received_owner_order_sha256":live_owner_order["sha256"],
@@ -211,6 +235,8 @@ def execute(agent,fleet,cycle,out,model_factory=None):
        "moltbook_accounts_created":0,"external_posts_sent":0,"emails_sent":0,
        "verified_earning":False,"confirmed_new_payments":0,
        "real_workers_completed_in_this_division":1 if response else 0,
+       "individual_worker_textual_comprehension_candidate":comprehension_grade["textual_screen_pass"],
+       "individual_worker_understanding_accepted_as_verified":False,
        "owner_receiving_wallets_unchanged":True,"safety":RESTRICTIONS,
     }
     target=Path(out)/agent
