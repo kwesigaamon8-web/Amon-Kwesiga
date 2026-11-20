@@ -103,7 +103,10 @@ def source_search(agent,fleet,reader=None):
             if os.getenv("GITHUB_TOKEN"):headers["Authorization"]="Bearer "+os.environ["GITHUB_TOKEN"]
             req=urllib.request.Request(url,headers=headers)
             with urllib.request.urlopen(req,timeout=12) as resp:
-                doc=json.loads(resp.read(45000))
+                payload=resp.read(2_000_001)
+            if len(payload)>2_000_000:
+                raise ValueError("Original GitHub issue search result exceeds 2MB bound")
+            doc=json.loads(payload)
         else:doc=reader(url)
         records=doc.get("items") if isinstance(doc,dict) else None
         if not isinstance(records,list):raise ValueError("No issue listing")
