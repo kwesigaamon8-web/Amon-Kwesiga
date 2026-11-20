@@ -40,7 +40,7 @@ def load_command():
     return obj
 
 def tier_for_role(role):
-    last=str(role).rsplit("-",1)[-1]
+    last=str(role).rsplit("/",1)[-1].rsplit("-",1)[-1]
     if re.fullmatch(r"D(?:0[1-9]|10)",last):return "D"
     if last in ("A","B"):return "A"
     for tier,width in (("M",2),("W",2),("S",3),("G",3),("H",3)):
