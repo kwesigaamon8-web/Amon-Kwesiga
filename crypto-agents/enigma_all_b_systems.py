@@ -150,6 +150,7 @@ def execute(agent,fleet,cycle,out,model_factory=None):
     from enigma_universal_owner_order import order as canonical_owner_order
     from directive_cascade import read_owner
     from hierarchy_command_core import task_context as centralized_role_task, ASSIGNED_CODES as ONE_CODE_PER_TIER
+    from role_capability_audit import run_trial as test_actual_capability, audit as verify_capability
     from directive_understanding_gate import challenge as understanding_challenge, grade as understanding_grade
     live_owner_order=canonical_owner_order()
     full_cascade_order=read_owner()
@@ -165,6 +166,12 @@ def execute(agent,fleet,cycle,out,model_factory=None):
     if (shared["parent"]!=div["division"]+"/"+selected["reports_via"][1]
         or shared["owner_command"]["owner_order_id"]!=live_owner_order["id"]):
         raise ValueError("Enigma child role has stale command or incorrect supervisor")
+    individual_capability=test_actual_capability(shared["tier"],shared["role_id"],
+        shared["parent"],live_owner_order["id"])
+    checked,failures=verify_capability(individual_capability,
+        live_owner_order["id"],shared["parent"],shared["tier"])
+    if not checked:
+        raise ValueError("Enigma worker local task/capability proof failed: "+str(failures))
     research=source_search(agent,fleet)
     qa=software_qa(agent) if fleet=="B2" else None
     generator=None
@@ -224,6 +231,8 @@ def execute(agent,fleet,cycle,out,model_factory=None):
         live_owner_order["id"],model_invocation_completed=comprehension_called,
         accepted_task_proof=False)
     state={
+       "owner_order_capability_audit":individual_capability,
+       "owner_order_capability_test_pass":checked,
        "central_hierarchy_role_engine":"crypto-agents/hierarchy_command_core.py",
        "one_shared_worker_program":ONE_CODE_PER_TIER[shared["tier"]],
        "centralized_owner_command_sha256":shared["owner_command"]["owner_sha256"],
