@@ -1,0 +1,75 @@
+name: Chief D Worldwide Public OSINT — 249 Jurisdictions / 30 Actual Shards
+on:
+  workflow_dispatch:
+  schedule:
+    # One bounded daily OSINT cycle; not a persistent crawler or miner.
+    - cron: '43 4 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/chief-d-worldwide-public-osint.yml'
+      - 'crypto-agents/world_osint_engine.py'
+      - 'crypto-agents/test_world_osint_engine.py'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+permissions:
+  contents: read
+concurrency:
+  group: chief-d-world-osint-source-research
+  cancel-in-progress: false
+jobs:
+  worldwide-legal-public-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: \${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate current human order and world OSINT engine
+        run: |
+          python -m py_compile crypto-agents/world_osint_engine.py crypto-agents/test_world_osint_engine.py
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/test_world_osint_engine.py
+          python crypto-agents/enigma_universal_owner_order.py --self-test
+      - name: Fetch bounded, original public global World Bank and GitHub sources
+        run: python crypto-agents/world_osint_engine.py --collect
+      - name: Invoke 30 real Python processes covering all 249 jurisdictions
+        run: |
+          python - <<'PY'
+          import concurrent.futures, subprocess, sys
+          def one(i):
+              r=subprocess.run(
+                  [sys.executable,"crypto-agents/world_osint_engine.py","--shard",str(i)],
+                  capture_output=True,text=True,timeout=65)
+              if r.returncode:
+                  raise RuntimeError(f"OSINT shard {i} failed: {r.stderr[-600:]}")
+              lines=[x for x in r.stdout.splitlines() if x.startswith("B1B2_WORLD_OSINT_REAL_PROCESS")]
+              if len(lines)!=1:raise ValueError("Missing actual worker OSINT proof "+str(i))
+              return i,lines[0]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as exe:
+              rows=sorted(exe.map(one,range(30)))
+          assert len(rows)==30
+          for i,line in rows: print(line)
+          PY
+      - name: Verify 30 real process IDs and disjoint 249 public country/territory evidence records
+        run: |
+          python crypto-agents/world_osint_engine.py --summarize
+          cat world-osint-evidence/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive source URLs, dated facts, missing-source flags, and actual worker receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chief-d-worldwide-public-osint-249-countries-30-process-proof
+          path: world-osint-evidence/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Declare privacy, payment and operational boundaries
+        if: always()
+        run: |
+          echo 'Only official public statistics and public GitHub issue metadata were fetched.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No private individuals profiled, social/email outreach, wallet signing, BTC mining, dark web accounts, or unauthorized logins.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Search candidates do not establish qualified paying customers or Bitcoin receipts.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'The 11.25 trillion role positions are mathematical namespace entries, not 11.25 trillion running workers.' >> "$GITHUB_STEP_SUMMARY"
