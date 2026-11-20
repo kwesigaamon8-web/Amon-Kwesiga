@@ -8,7 +8,8 @@
   "license_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/FREE_SOFTWARE_LICENSE.md",
   "source_code": [
     "docs/assets/free-toolbox.js",
-    "docs/assets/free-toolbox-extensions.js"
+    "docs/assets/free-toolbox-extensions.js",
+    "docs/assets/free-mini-apps.js"
   ],
   "free_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/free-toolbox.html",
   "current_https_url_directory": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md",
@@ -41,5 +42,8 @@
   "support_network": "Bitcoin mainnet native BTC only; never send other coins and independently check receiver",
   "do_not_bulk_post": true,
   "do_not_copy_proprietary_code": true,
-  "note": "Free toolbox source is original. Other existing software may have separate rights and must be individually audited. No external post or verified payment implied by catalogue."
+  "note": "55 original browser utilities and six original mini-app features. Other existing software may have separate rights. No customer, live worker or payment implied.",
+  "additional_mini_apps": 6,
+  "total_original_utility_and_mini_app_features": 61,
+  "mini_app_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/mini-apps.html"
 }
