@@ -152,6 +152,7 @@ Report `actual_live / actual_proven / actual_failed / actual_paid` alongside `co
 - Modified `ai_process_worker.py` to send the precise full hashed current owner+standing prompt to actual model inference, replacing digest-only prompt inheritance, while retaining bounded current director and work-contract instructions.
 - Modified `enigma_all_b_systems.py` to pass the complete standing owner prompt to actual Enigma model inference rather than digest only.
 - Clarified director, manager and first-tier worker counts in `company_hierarchy.json`.
+- Hardened `strict_worker_accountability.py`: a separately inferred, CURRENT owner-order comprehension grade and the actual full owner-prompt model receipt must now exist before a source-backed worker can qualify; a mere older keyword acknowledgment fails. Its report no longer labels the current owner order with a fixed November 14 ID.
 - Recorded a permanent forensic risk register and action plan here.
 
 **No Gmail was accessed. No email was sent or drafted. No paid customer or cryptocurrency was fabricated. No claim that the 11.25 trillion mathematical positions were brought online.**
