@@ -1,0 +1,45 @@
+name: B1B2 Free HTTP Server and SQLite Evidence Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'crypto-agents/free_server/**'
+      - '.github/workflows/b1b2-free-server-sqlite-smoke.yml'
+      - 'crypto-agents/chief_D_owner_orders.json'
+      - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - 'crypto-agents/public_payment_routes.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-real-local-server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test live localhost read-only service + SQLite with offline validations
+        run: python -m unittest discover -s crypto-agents/free_server -p test_server.py -v
+      - name: Execute two actual local worker validation tasks against SQLite
+        run: |
+          python crypto-agents/free_server/app.py --db /tmp/b1b2-ci-evidence.sqlite3 init
+          python crypto-agents/free_server/app.py --db /tmp/b1b2-ci-evidence.sqlite3 run-once
+          python crypto-agents/free_server/app.py --db /tmp/b1b2-ci-evidence.sqlite3 run-once
+          python crypto-agents/free_server/app.py --db /tmp/b1b2-ci-evidence.sqlite3 status > b1b2-sqlite-real-receipts.json
+          python - <<'PY'
+          import json
+          d=json.load(open('b1b2-sqlite-real-receipts.json'))
+          assert len(d['receipts'])==2
+          assert all(row['status']=='PASS' for row in d['receipts'])
+          assert d['command']['mirror_and_cascade_match']
+          assert len([x for x in d['tasks'] if x['status']=='QUEUED'])==2
+          print('REAL_SQLITE_LOCAL_VALIDATION_RECEIPTS_PASS',len(d['receipts']))
+          PY
+      - name: Archive real test evidence (no claimed external deployment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-local-http-sqlite-real-receipts
+          path: b1b2-sqlite-real-receipts.json
+          retention-days: 14
