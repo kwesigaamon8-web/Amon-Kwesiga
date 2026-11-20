@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-140706-CHAT-ORIGIN-CROSSPLATFORM-GITLAB",
+  "current_owner_order_id": "OWNER-20261120-143650-11T-PROFESSIONAL-CUSTOMER-ACQUISITION",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -967,6 +967,15 @@
       "status": "active_chat_only_owner_order_source_gitlab_publisher_prepared_not_connected",
       "authenticated_external_execution_not_implied": true,
       "implementation": "crypto-agents/cross_platform_gitlab_publish.py"
+    },
+    {
+      "id": "OWNER-20261120-143650-11T-PROFESSIONAL-CUSTOMER-ACQUISITION",
+      "as_of_utc": "2026-11-20T14:36:50Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT through authenticated GitHub write",
+      "instruction": "OWNER DIRECTIVE 20 NOV 2026: Tell all 11,255,658,980,400 virtual B1/B2 and Enigma worker ROLE POSITIONS to LOOK FOR REAL CUSTOMERS and MARKET OUR SERVICES PROFESSIONALLY, with Chief D over B1 and B2. The directive is stored once and inherited by EACH ROLE ON ITS NEXT REAL INVOCATION; no claim that trillions of independently operating agents received a message. Prioritize buyers of low-cost CSV cleanup, invoice/payment reconciliation, software QA, small software improvements and authorized crypto-paid deliverables. Actually running workers must find public original customer requests, check budget/eligibility/funding and relevance, avoid repeats by deduplicating original source+buyer, draft tailored offers with a clear fixed scope/deliverable/price/acceptance test, and advertise only in our own public pages or genuinely opt-in channels allowing professional service promotion. Offer existing US$5 CSV cleanup pilot and reconciliation from US$15; confirm buyer acceptance before paid work and correct-network BTC/USDC settlement. Primary route B1 BTC mainnet bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z, B2 BTC mainnet bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9. Native Base USDC B1 address 0x734989a439F146885C12907cd9Dd191b03d5B07e is owner-visible and must have asset/network confirmed with payer before transfer. Professional marketing means no unsolicited mass DMs, bot brigading, fake testimonials, false claims or buyer impersonation; NEVER use Gmail/email or send mail without specific approval; no upfront fees, wallet signatures, private keys, spending, forced recruitment or false payouts. Every real execution reports role/run ID, unique buyer/source URL, verified payer status, authorized contact/submission link, scope, actual customer reply, acceptance and confirmed transaction ID or blocker. STOP reporting role count as sales, and prioritize first paying customer over expanding roles.",
+      "status": "active_professional_customer_acquisition_order_available_to_all_virtual_roles_on_actual_invocation",
+      "authenticated_external_execution_not_implied": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -1051,7 +1060,7 @@
     "outside_agents": "Invite independent agents to offer actual payable services or voluntarily contribute; no unauthorized control or fake social authentication.",
     "independence": "One Chief D; two separate fleet director boards; separate receiving BTC account for each.",
     "mandatory_payments_proof": "Verify on-chain TXID, correct receiving output, and payer transaction context; no 'received' claim otherwise.",
-    "latest_instruction": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
+    "latest_instruction": "OWNER-20261120-143650-11T-PROFESSIONAL-CUSTOMER-ACQUISITION",
     "owner_long_term_collected_target_ugx": 50000000000,
     "accepted_payment_classes": [
       "bank_transfer",
@@ -1291,5 +1300,50 @@
     "inbound_deposit_order_id": "OWNER-20261118-134456-INBOUND-DEPOSITS-PERMITTED",
     "latest_775b_cash_first_order": "OWNER-20261118-144743-775B-CASH-FIRST-ACTUAL-WORK",
     "no_email_action_without_specific_permission": true
+  },
+  "professional_customer_acquisition_2026_11_20": {
+    "order_id": "OWNER-20261120-143650-11T-PROFESSIONAL-CUSTOMER-ACQUISITION",
+    "virtual_role_positions": 11255658980400,
+    "verified_simultaneously_running_trillions": false,
+    "coordinator": "CHIEF_D",
+    "fleets": [
+      "transferexperiment",
+      "BountyScoutAI"
+    ],
+    "priority": "ACTUAL_CUSTOMER_CONVERSION",
+    "advertised_services": [
+      "US$5 CSV cleaning pilot",
+      "Reconciliation from US$15",
+      "Small tested software quality and automation scoped quote"
+    ],
+    "target_buyer_channels": [
+      "public original funded buyer requests",
+      "owner-operated Hugging Face paid-services page",
+      "permissioned opt-in professional buyer communities"
+    ],
+    "lead_dedup": "One real buyer-source URL per owning director; no duplicate external contact",
+    "workflow": [
+      "FIND",
+      "SOURCE_VERIFY",
+      "PRICE_AND_SCOPE",
+      "PERMISSIONED_CONTACT",
+      "BUYER_REPLY",
+      "ACCEPTANCE",
+      "DELIVER",
+      "VERIFY_CHAIN_PAYMENT"
+    ],
+    "required_receipts": [
+      "actual_process_or_model_run_id",
+      "source_url",
+      "buyer_request",
+      "contact_or_submission_receipt",
+      "buyer_response",
+      "signed_or_accepted_scope",
+      "correct_chain_txid_if_any"
+    ],
+    "no_spam": true,
+    "no_email": true,
+    "no_wallet_signing": true,
+    "actual_trillions_broadcast_verified": 0
   }
 }
