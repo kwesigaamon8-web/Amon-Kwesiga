@@ -56,3 +56,21 @@ Both pass the official Bitcoin Bech32 checksum code in this repo. Payer must use
 Each shift report must say: **source checked → real deliverable completed → authenticated submission → sponsor accepted → payment requested → on-chain amount verified**, with numbers and URLs. Missing evidence = **NOT VERIFIED**, never an invented zero-fee contract or fake payment.
 
 No unauthorized account creation, unsolicited mass outreach, email read/search/draft/send, private keys, outgoing wallet transfers, paid cloud services, hidden-network exploitation or use of strangers' compute. Public research and original test work only. A genuine customer can decline work or payment; no algorithm can force a buyer to pay.
+
+## Operational commands after a real sponsor accepts work
+
+A task can move to payment only when its evidence is placed as a JSON file under `crypto-agents/world-work-factory/accepted-jobs/` with the original GitHub issue URL, an authentic issuer acceptance comment URL, the exact accepted deliverable URL, `agreed_sats` (positive integer), and `payer_identity` matching the issuer's GitHub identity. **Do not create a fake acceptance file.**
+
+```bash
+python crypto-agents/world_work_payer_gate.py --prepare-request crypto-agents/world-work-factory/accepted-jobs/real-job.json --fleet B1
+```
+
+The program independently re-fetches the original issuer's public acceptance, rejects explicit pending/rejected/unpaid wording, verifies the owner-approved Bitcoin-mainnet destination and generates a **not-yet-sent** payment request. Post it only once through an actually authorized authenticated account on that original work thread; no automatic email, spam or checkout.
+
+After the payer posts the real TXID back in that original task thread:
+
+```bash
+python crypto-agents/world_work_payer_gate.py --verify-transaction crypto-agents/world-work-factory/accepted-jobs/real-job.json --fleet B1 --txid REAL_64_HEX_TXID --sponsor-payment-comment 'https://github.com/ORIGINAL/ISSUE/issues/NUMBER#issuecomment-COMMENTID'
+```
+
+This independently fetches the same issuer's comment and the matching transaction from **both mempool.space and Blockstream**, checks the agreed satoshis actually appear on the correct native BTC-mainnet address and records an auditable result. Unconfirmed deposits, third-party TXIDs, negative issuer statements and unsupported currencies cannot be counted as earned. BTC payment is never fabricated or sent by this application.
