@@ -1,20 +1,24 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://watery-general-c3eu3.ship.place/
+**Open the latest working digital service site:** https://cookie-ticket-dm9i1.ship.place/
 
-**Browse all shared software:** [10-tool catalogue](https://watery-general-c3eu3.ship.place/software.html).
+**Browse all shared software:** [Original source catalogue](https://cookie-ticket-dm9i1.ship.place/software.html).
 
-**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://watery-general-c3eu3.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
+**Use the owner-authorized free suite:** [55 original browser utilities](https://cookie-ticket-dm9i1.ship.place/free-toolbox.html) · [6 practical mini apps](https://cookie-ticket-dm9i1.ship.place/mini-apps.html) · [MIT source license](https://cookie-ticket-dm9i1.ship.place/FREE_SOFTWARE_LICENSE.md).
 
-          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://watery-general-c3eu3.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://cookie-ticket-dm9i1.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
 
-          **Find real opt-in project collaborators:** [Join B1/B2](https://watery-general-c3eu3.ship.place/join.html) — invites only, not verified workers or mining income.
+          **Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://cookie-ticket-dm9i1.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+
+          **Find real opt-in project collaborators:** [Join B1/B2](https://cookie-ticket-dm9i1.ship.place/join.html) — invites only, not verified workers or mining income.
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
-**New deployment confirmed:** 20 November 2026 06:58 UTC
+This free release adds 55 local browser utilities and six more original mini-apps, with public tests and voluntary project support only. Nothing in the public toolbox requires wallet access, donations or private data uploads.
 
-**Temporary host expires:** 2026-11-27T06:58:35.907Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**New deployment confirmed:** 20 November 2026 07:00 UTC
+
+**Temporary host expires:** 2026-11-27T07:00:10.763Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
