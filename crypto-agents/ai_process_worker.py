@@ -33,6 +33,7 @@ from owner_first_oath import command_envelope as owner_oath_envelope, short_oath
 from directive_cascade import prompt_for_worker as owner_prompt_for_worker, execution_receipt as owner_leaf_receipt
 from hierarchy_command_core import task_context as centralized_role_task, ASSIGNED_CODES as ONE_CODE_PER_TIER
 from role_capability_audit import run_trial as capability_test, audit as capability_check
+from worker_command_preflight import verify as verify_owner_role_preflight
 from b_certified_agent_service_router import role_index as original_role_index
 from directive_understanding_gate import challenge as owner_understanding_challenge, grade as grade_owner_understanding
 from b_universal_work_protocol import assign as universal_assign, compact_for_model as universal_prompt
@@ -71,6 +72,7 @@ CASCADE_PACKET=owner_prompt_for_worker(
 # Production process also uses the SAME centralized code/authority as all
 # director, manager, assistant, and first/last-tier worker entrypoints.
 CENTRAL_WORKER_ROLE=centralized_role_task(original_role_index(FLEET,WORKER),expected={"W","S","G","H"})
+STARTUP_PARENT_PROOF=verify_owner_role_preflight(FLEET,WORKER,actual_parent=FLEET+"/"+PARENT)
 # Canonical virtual hierarchy prefixes ORIGINAL/ to fleet-owned role IDs.
 # owner_first_oath deliberately omits this display-only namespace prefix.
 # Comparing these different representations verbatim stopped ALL real model
@@ -227,6 +229,7 @@ OWNER_ACTIVATION_PROOF={
 }
 
 report={
+    "startup_parent_and_order_preflight":STARTUP_PARENT_PROOF,
     "current_order_capability_audit":REAL_WORKER_CAPABILITY,
     "current_order_capability_audit_pass":TRIAL_PASS,
     "central_role_shared_engine":"crypto-agents/hierarchy_command_core.py",
