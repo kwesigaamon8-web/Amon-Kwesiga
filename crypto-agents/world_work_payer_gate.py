@@ -55,6 +55,8 @@ def verify_issuer_agreement(terms,request=check_http_json):
     deliverable=str(terms.get("accepted_deliverable_url") or "")
     if not deliverable.startswith("https://github.com/") or deliverable not in body:
         raise ValueError("SPONSOR_DID_NOT_REFERENCE_DELIVERABLE")
+    if re.search(r"(?i)\b(?:not accepted|not approved|rejected|declined|pending approval|not payable|unpaid|cannot pay|do not pay|not yet merged|no payment)\b",body):
+        raise ValueError("SPONSOR_EXPLICITLY_REFUSED_OR_PENDING")
     if not re.search(r"(?i)\b(accepted|approved|merged|completed and approved)\b",body):
         raise ValueError("SPONSOR_HAS_NOT_APPROVED_RESULT")
     sats=terms.get("agreed_sats")
@@ -139,6 +141,8 @@ def verify_earned_job(terms, fleet, txid, issuer_payment_comment_url, request=ch
     content=str(note.get("body") or "")
     if txid not in content or terms["accepted_deliverable_url"] not in content:
         raise ValueError("SPONSOR_PAYMENT_PROOF_MISSING_TXID_AND_ACCEPTED_WORK")
+    if __import__("re").search(r"(?i)\b(?:not paid|unpaid|not settled|payment not sent|payment failed|reversed|cancelled|canceled)\b",content):
+        raise ValueError("ISSUER_DENIED_RECEIPT")
     if not __import__("re").search(r"(?i)\b(paid|settled|payment\s+(?:sent|made))\b",content):
         raise ValueError("SPONSOR_DID_NOT_CONFIRM_PAYMENT")
     support={"payer_authenticated_in_original_task":True,
@@ -174,6 +178,12 @@ def self_test():
         raise AssertionError("Unsafe action falsely accepted")
     fail(lambda: make_request(terms|{"agreed_sats":0},"B1",fake))
     fail(lambda: make_request(terms|{"payer_identity":"wrong"},"B1",fake))
+    def declined(url):
+        if url.endswith("/issues/comments/88"):
+            return {"user":{"login":"original-issuer"},"author_association":"OWNER",
+                    "body":"Not accepted: https://github.com/real/owner/pull/8; we mentioned 1200 sats Bitcoin mainnet but do not pay."}
+        return fake(url)
+    fail(lambda: make_request(terms,"B1",declined))
     fail(lambda: make_request(terms|{"sponsor_acceptance_comment_url":
         "https://github.com/other/org/issues/7#issuecomment-88"},"B1",fake))
     txid="a"*64
@@ -197,6 +207,13 @@ def self_test():
     assert independent["earned_payment_supported_by_sponsor_and_two_explorers"]
     fail(lambda: verify_earned_job(terms,"B2",txid,
         "https://github.com/another/repo/issues/7#issuecomment-99",proof_api))
+    def unpaid(url):
+        if url.endswith("/issues/comments/99"):
+            return {"user":{"login":"original-issuer"},
+                "body":"Not paid yet txid "+txid+" for https://github.com/real/owner/pull/8"}
+        return proof_api(url)
+    fail(lambda: verify_earned_job(terms,"B2",txid,
+        "https://github.com/real/owner/issues/7#issuecomment-99",unpaid))
     assert verified["confirmed_sats"]==1300
     fail(lambda: inspect_tx(txid,"B2",1200,{},txgood))
     fail(lambda: inspect_tx(txid,"B1",1200,source,txgood))
