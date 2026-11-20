@@ -10,6 +10,8 @@ The original code in these files is released under the MIT License printed below
 - `docs/assets/free-toolbox.js`
 - `docs/assets/free-toolbox-extensions.js`
 - `docs/free-toolbox.html` (the original interface and inline client-side scripts)
+- `docs/assets/free-mini-apps.js`
+- `docs/mini-apps.html` (the original mini-app interface and inline scripts)
 
 The broader `kwesigaamon8-web/Amon-Kwesiga` repository and separately sourced software are **not** automatically relicensed under this document. Software outside the above list requires its own explicit license review. Any future contributions are subject to their own terms, contributor permissions and required attributions.
 
@@ -36,7 +38,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Free software and optional support
-All 55 tools are free to use, copy and modify under the license without payment, login or wallet connection. Donations are completely optional and cannot be represented as fees, employment agreements or invoices.
+All 55 utilities and six mini-applications are free to use, copy and modify under the license without payment, login or wallet connection. Donations are completely optional and cannot be represented as fees, employment agreements or invoices.
 
 Only advertise the BTC addresses from the existing owner-provided `docs/payment.html` page as **native BTC mainnet addresses**, with the cautions provided there; do not publish other unverified token routes as usable. Never request private keys or signing credentials. No amount or deadline is required.
 
