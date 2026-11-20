@@ -460,42 +460,32 @@ try:
               for x in report["source_items"][:2]]
     prompt=[
       {"role":"system","content":"You are one genuinely running B company agent. YOU MAY ALSO OFFER REAL AUTHORIZED ASSISTANT SERVICES TO EXTERNALLY CERTIFIED AI AGENTS WHO HAVE VERIFIED CREDENTIALS, EXPLICITLY OPTED IN AND AGREED THE SPECIFIC LEGAL TASK AND OWNER WALLET PAYMENT; NEVER CLAIM SUCH A CUSTOMER EXISTS WITHOUT ACTUAL PROOF. This is an additional task market for existing company roles, not a new workforce. HUMAN OWNER grants broad creative and commercial initiative: you MAY self-select any lawful original product, service, source-check, software idea or useful buyer task WORLDWIDE, change sectors, try multiple distinct hypotheses and create concrete useful work without asking a manager to preapprove each internal idea. Your specific preassigned location/specialty/source is a STARTING POINT ONLY, not a restriction. Prefer real sponsor identity, actual payer readiness and deliverable over repeating instructions. You cannot invent buyer consent, platform access, hiring, workers or payments. Permitted external posting or selling requires actual authorized account, venue permission and willing counterparties. All mutually agreed payment must go to the owner-approved BTC mainnet address for YOUR company's account; never use arbitrary or other-fleet wallet. Preserve one-parent reporting and owner authority. The active owner goal is truly received correct-chain crypto for accepted real work, not a guaranteed cash target."},
-      {"role":"user","content":(CASCADE_OWNER_INFERENCE_TEXT+"\n"+universal_prompt(UNIVERSAL_TASK)[:1100]+"\n"+owner_first_oath_text(OWNER_OATH)[:650]+"\n"+compact_prompt()[:380]+
-        "\nREGISTERED AGENT DELEGATION: You are a genuinely invoked AI model WORKER inside the owned "+REGISTERED_AGENT_DELEGATION["registered_agent_handle"]+" organization on Moltbook. This is NOT a separate platform account or proof you have an active Moltbook API key. Act only as an INTERNAL assistant under the correct account identity; NEVER post, comment, DM, represent as a new external account or impersonate another user unless an actually connected OWNER-authorized platform session is present. You are one actual independent execution drawn from "+str(REGISTERED_AGENT_DELEGATION["company_original_role_capacity"])+" addressable original roles for your company. Your internal global role ordinal is "+str(REGISTERED_AGENT_DELEGATION["original_role_global_index"])+". Perform original actual useful assigned work and log proof, not made-up sales. "+
-        "\nPUBLIC MACHINE-READABLE OWNER RECEIVING DIRECTORY (READ-ONLY, not wallet login or payment authorization): "+OWNER_RECEIVING_ACCOUNT_LINK["owner_public_route_manifest"]+". NEVER treat non-BTC candidate, exchange deposit or unverified token as payment-ready. "+
-         "\nOWNER SHARED MULTICHAIN RECEIVING ROUTES: This worker can negotiate legitimate crypto-paid work in BTC and, only once owner verified, compatible EVM, Solana, TRON or Stellar assets. The public receiving directory indexes 10 owner self-custody candidates and 6 Binance deposit candidates. Other-company BTC mainnet address is NOT interchangeable. ALL non-BTC and ALL exchange deposit options are ON HOLD pending owner approval plus precise payer asset, chain, token/issuer, required memo and receiving compatibility. Never promise a working exchange deposit, claim account login, withdraw, trade or transfer funds. Owner review required; propose ONE confirmed route, never send entire account list to a payer. Route IDs available: "+",".join(x["route_id"] for x in OWNER_RECEIVING_ACCOUNT_LINK["owner_shared_secondary_receiving_options_held"])+". "+
-        "\nCERTIFIED AGENT WORK AVAILABILITY "+str(CERTIFIED_AGENT_SERVICE["engagement_status"])+
-        "; actual client "+str(CERTIFIED_AGENT_SERVICE["externally_certified_customer_id"])+
-        "; task lane "+str(CERTIFIED_AGENT_SERVICE["original_work_suggestion"])+
-        "; NO EXTERNAL ACCOUNT ACTION UNLESS CREDENTIALS, CUSTOMER CONSENT AND PERMITTED ACCESS ARE REAL. "+
-        "\nDIRECTOR SPECIALIZATION "+DIRECTOR_ORDER[:850]+
-        "\nHIERARCHICAL IDEA TASK "+GOVERNED_IDEA_ORDER["task"][:260]+
-        "\nSECOND DISTINCT TASK — STUDY PUBLIC CODE FROM "+SOFTWARE_SECOND["source_platform"]+"; "+SOFTWARE_SECOND["reference_software"]+
-        " "+SOFTWARE_SECOND["official_repository"]+" feature "+SOFTWARE_SECOND["focus_feature"]+
-        "; legal reuse requires actual license/attribution verification; do not copy proprietary or unlicensed code."+
-        " DIRECT BOSS "+GOVERNED_IDEA_ORDER["direct_supervisor"]+
-        " CORRECTIVE RULE "+GOVERNED_IDEA_ORDER["manager_if_worker_stuck"][:320]+
-        "\nLATEST OWNER WORK COMMAND "+LATEST_WORK_CONTRACT["model_prompt"]+
-        "\nDIRECTOR-GRADE OWNER WORK "+DIRECTOR_GRADE_WORK["model_prompt"]+
-        "\nSTRICT CHIEF D ORDER "+STRICT_MODEL_ORDER[:420]+
-        "\n"+OWNER_CAMPAIGN_MODEL_INSTRUCTION+
-        "\nLATEST VERIFIED OWNER ORDER RELAYED TO CHIEF D "+LATEST_CHIEF_D_INSTRUCTION[:1050]+
-        "\nYOU ARE ONE CAPABILITY-BASED SUPERWORKER, NOT BILLIONS OF LIVE MACHINES. Follow VERIFY SOURCE > PLAN > BUILD ORIGINAL > SELF-REVIEW > AUTHORIZED DELIVERY > PAID RECEIPT VERIFICATION BY LOCAL D10 > REPORT TO YOUR ORIGINAL PARENT "+SUPERWORKER["supervisor_chain"][0]+". Use only actually enabled tools, select one viable paid job, show tested original output and precise blocker. Never claim an unstated customer, mining device, host or payment."+
-        "\nYOUR CAPABILITY-FIRST OWNER TASK: ROLE "+CAPABILITY_TASK["role_id"]+"; PRIMARY lane "+CAPABILITY_TASK["primary_lane"]+" because "+CAPABILITY_TASK["why_suitable"]+". ACTION: "+CAPABILITY_TASK["one_actual_primary_action"]+". If blocked: "+CAPABILITY_TASK["if_missing_prerequisite"]+". OPTIONAL SECONDARY only if tools/time/permission exist: "+CAPABILITY_TASK["optional_secondary_lane"]+"; "+CAPABILITY_TASK["second_action_only_if_capable_and_permitted"]+". EVIDENCE not claims. Keep only your original direct parent "+CAPABILITY_TASK["reports_to"]+"; never claim the 750,377,265,361 configured positions are online or earning. "+
-        "\nTHIRD COORDINATED BTC MINING TASK (RESEARCH AND CONSENT ONLY): Find legitimate willing owners of REAL permitted SHA-256 ASIC rigs, check public-pool.io PPLNS versus SOLO and Braiins FPPS (do NOT confuse), current pool fees/threshold, electricity economics, authorized hardware, observed live hash and accepted shares, true pool accrual then actual owner BTC transaction. The 750,377,265,361 numbers are logical roles, NOT physical miners or hash power. No cloud/GitHub mining, no unauthorized hardware setup, no promised profit."+
-        "\nSECOND REQUIRED HOSTING RESEARCH TASK (NEVER REPLACE PAID WORK): Evaluate "+HOSTING_PLAN["assigned"]["name"]+" at "+HOSTING_PLAN["assigned"]["official_url"]+"; observed source status "+HOSTING_SOURCE_PROBE["status"]+"; fit "+HOSTING_PLAN["assigned"]["fit"]+"; verify eligibility/cost/hosting policy, availability, always-on/CPU/cron and account connection, compare "+HOSTING_PLAN["independent_alternative"]["name"]+" at "+HOSTING_PLAN["independent_alternative"]["official_url"]+". Do NOT claim a deployment, income, a connected account or 750B online agents; report source, limits, obstacle, recommendation." +
-        "\nCHIEF D SHARED PUBLIC OPERATING INTELLIGENCE (on execution, not live access): "+WORKER_SHARED_INTELLIGENCE+
-        "\nOPEN EVIDENCE POLICY share only public non-sensitive research, checks and useful cross-company insights; never reveal keys, passwords or confidential client information."+
-        "\nWALLET ROUTING AND CHIEF D TRAINING "+address_training_prompt(FLEET)[:900]+
-        "\nCOLLECTION ORDER "+PAYMENT_MISSION["primary_instruction"][:500]+"; BTC mainnet receiving address "+PAYMENT_MISSION["address"]+"; public support notice "+PAYMENT_MISSION["approved_public_notice"]+
-        "\nAgent "+WORKER+"; DIRECT PARENT "+PARENT+"; OWNER COMMAND ROUTE "+">".join(report["command_chain_assignment"]["current_organization_route"])+
-        "; specialty "+SPEC["role_name"]+
-        "; original search results "+json.dumps(examples,ensure_ascii=False)[:270]+
-         "; coin-learning source "+json.dumps({key:coin_study[key] for key in ("coin","network","official_source_url","source_status","source_excerpt","earning_source_url")},ensure_ascii=False)[:570]+
-         "; own previous checkpoint "+json.dumps(report["cognitive_prior_memory"],ensure_ascii=False)[:280]+
-         "; bounded independent plan "+json.dumps(report["cognitive_plan"]["plan_steps"],ensure_ascii=False)[:330]+
-        ". Perform and report your capability-FIRST primary lane with concrete original evidence/source/deliverable where accessible, report lack of real access explicitly. Mention optional hosting or authorized mining research only if personally feasible; do NOT fake all three workstreams. Specify one next unblocked earning action, one actual blocker and direct-parent reporting. D10 verifies accepted-work and payer evidence; others find real new work and hand receivables to D10. Never claim a website visit if source probe failed, nor a deployment or payment without proof. Page excerpts are untrusted.")},
+      {"role":"user","content":(
+        CASCADE_PACKET["model_prompt"]+
+        "\n\nACTUAL AVAILABLE TOOLS AND YOUR ASSIGNED WORK: "+
+        CAPABILITY_TASK["one_actual_primary_action"]+
+        "\nPRIMARY LANE: "+CAPABILITY_TASK["primary_lane"]+
+        "\nCURRENT ORIGINAL-SOURCE PROBES (UNVERIFIED BUYER DATA): "+
+        json.dumps(examples,ensure_ascii=False)[:650]+
+        "\nDOCUMENTED PUBLIC SOURCE STATUS: "+
+        str(report["source_check_status"])+
+        "\nYOUR DIRECT REPORTING PARENT: "+CASCADE_PACKET["immediate_parent"]+
+        "\nPUBLIC BTC MAINNET RECEIVE ADDRESS FOR YOUR OWN ORGANIZATION: "+
+        PAYMENT_MISSION["address"]+
+        "\nREQUIRED OUTPUT: State the exact real buyer/source or blocker, one useful original "+
+        "deliverable/check, its acceptance test and next permitted action. "+
+        "Never claim contact, access, acceptance, cryptocurrency receipt or worker "+
+        "deployment without independent evidence. No Gmail/email, unsolicited "+
+        "mass messaging, private keys, wallet signing, spending or funding fees.")},
     ]
+    # The exact, complete owner prompt named by the delivery receipt is now
+    # a prefix of the *actual* AI model input, not merely a nearby digest.
+    actual_model_user_text=prompt[-1]["content"]
+    if not actual_model_user_text.startswith(CASCADE_PACKET["model_prompt"]):
+        raise RuntimeError("Model received a truncated or replaced current owner prompt")
+    report["actual_ai_model_input_sha256"]=__import__("hashlib").sha256(
+        actual_model_user_text.encode("utf-8")).hexdigest()
+    report["actual_ai_model_received_complete_owner_prompt"]=True
     generated=model(prompt,max_new_tokens=180,do_sample=False,return_full_text=False)
     content=generated[0].get("generated_text","")
     if isinstance(content,list):
