@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261120-190904-WORLDWIDE-TASK-TO-BTC-PIPELINE",
+  "current_owner_order_id": "OWNER-20261120-192226-PC-AI-MINER-OPTIN-PUBLIC-RELEASE",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -1083,6 +1083,25 @@
       "no_email": true,
       "no_spend": true,
       "claim_of_payment_without_txid": false
+    },
+    {
+      "id": "OWNER-20261120-192226-PC-AI-MINER-OPTIN-PUBLIC-RELEASE",
+      "as_of_utc": "2026-11-20T19:22:26Z",
+      "origin": "explicit_human_owner_conversation",
+      "relayed_by": "ChatGPT connected GitHub",
+      "instruction": "HUMAN OWNER PUBLIC SOFTWARE ORDER — 20 NOVEMBER 2026 19:22:26 UTC; UPDATED PUBLIC BRAND NAME 'PC AI Miner' AT 19:24:43 UTC. Chief D issues one shared command to B1 transferexperiment, B2 BountyScoutAI, their 30 existing D/A/M/W/S/G/H root divisions and every actually invoked descendant: inventory, audit, test, document and publish safe original Bitcoin SHA256d research, demos, proofs and voluntary independent hardware mining collaboration under the transparent brand PC AI Miner. Preserve existing global lawful OSINT and real paid-task-to-accepted-BTC priority, the original canonical/direct supervisor checks and self-correcting logic. PC AI Miner PUBLIC ASSETS now include docs/pc-ai-miner.html, crypto-agents/pc-ai-miner/pc_ai_miner.py, its unit tests, readme, social share kit, docs/mining-software.html and the GitHub original collaborator announcement. Exactly 34 owner-related historic mining ZIPs were recovered from private Library. Do not claim that they are all publicly safe executables: raw bundled third-party cpuminer-opt Windows binaries, scheduled autostart scripts, any private config/logs and independently unaudited packages are held back, while a separate owner-downloadable RecordLow source-only review kit completed 15 locally tested offline/mock pool cases. Publish original code, source audit, honest test results and clear opt-in instructions where permitted. No browser mining without consent. A visitor must deliberately click to run the maximum 32 educational SHA256d hashes; no background compute, stealth program, forced installation, automatic pool login, wallet signing or private-key collection. When an independent REAL miner owns or has explicit device/electricity permission and also separately agrees to donate any future pool/block rewards to this project, disclose B1 / transferexperiment Bitcoin-mainnet receive-only bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z or B2 / BountyScoutAI native Bitcoin-mainnet receive-only bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9, pool modes as independently verified from https://web.public-pool.io/ (solo TLS 4333, PPLNS TLS 14333), and make settings only for the consenting hardware owner to apply manually. Do not redirect nonconsenting miners' rewards, represent accepted shares as money, mine on GitHub Actions/free third-party servers or promise BTC. Own machine mining economics and hardware/thermal safety must be checked; network BTC block probability for a CPU is tiny. Share across social-media platforms ONLY when the real connected platform account and community authorization exists; no mass spam, automatic follows/replies, fake profiles, unsolicited DMs or violations of rate limits. A single public Github volunteer announcement exists; BountyScoutAI Moltbook attempt HTTP401 NOT published; Metricool has no connected social network, so no unsupported claim of multi-platform post. Public self-serve share-composer links are not direct social posts. Do not read, search, draft or send emails (Gmail restricted) absent distinct owner authorization; never send an email without approval of the exact email. Preserve upstream license notices and link third-party code to official sources rather than relabeling ownership. Every genuinely invoked worker can read this same order and assist with truthful source audit, public QA, contributing/test support, voluntary collaborator review and client work using the shared hierarchy and output audit evidence. The configured 11,255,658,980,400 role slots are a mathematical namespace, NOT 11.25 trillion live employees, miners or independent social accounts, and the order is NOT delivered to dormant roles until they actually execute. Verify release tests and actual external post URLs before claiming publicity; verified new BTC payout still requires native blockchain TXID at approved B1/B2 plus payer/miner provenance. No unverified coins or hardware may be reported as active.",
+      "status": "active_pc_ai_miner_optin_public_release_command",
+      "mission": "PC AI Miner public source and voluntary authorized real miner collaboration, no blanket automatic mining",
+      "public_brand": "PC AI Miner",
+      "release_site": "docs/pc-ai-miner.html",
+      "source_path": "crypto-agents/pc-ai-miner/pc_ai_miner.py",
+      "tested_original_demo": true,
+      "source_archives_recovered": 34,
+      "all_archives_not_publicly_approved": true,
+      "github_announcement_posted": true,
+      "moltbook_not_authorized_http401": true,
+      "configured_role_ids_not_live": 11255658980400,
+      "strict_no_email_no_spend": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -1467,7 +1486,7 @@
     "virtual_roles_not_concurrent_live_agents": true
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261120-190904-WORLDWIDE-TASK-TO-BTC-PIPELINE",
+    "owner_order_id": "OWNER-20261120-192226-PC-AI-MINER-OPTIN-PUBLIC-RELEASE",
     "standards_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "all_real_invoked_workers_must_read_order_text": true,
     "all_real_invoked_h_leaf_must_receive_full_prompt": true,
