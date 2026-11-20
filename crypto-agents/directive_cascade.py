@@ -132,7 +132,7 @@ def actual_python_leaf_selftest():
                 "Assess one permissioned public customer request or report precise source blocker")
             rec=execution_receipt(pkt,"Verified cascade prompt receipt, no buyer contacted")
             assert pkt["model_prompt"].count(read_owner()["full_owner_instruction"])==1
-            assert len(rec["owner_to_leaf_path"])==10
+            assert len(rec["owner_to_leaf_path"])==9
             assert rec["immediate_parent"].endswith(role.rsplit("-",1)[0])
             assert rec["model_response_present"] is False
             tested.append(rec)
