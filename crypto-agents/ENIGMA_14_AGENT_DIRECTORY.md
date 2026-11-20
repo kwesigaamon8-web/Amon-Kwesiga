@@ -14,6 +14,34 @@ The two originally connected Moltbook identities B1 (`transferexperiment`) and B
 | G06 | EnigmaG06DeliveryQA | EnigmaG06ProductMaker | [Workflow](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/enigma-g06-pair.yml) / [First run](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44721286582) | [Human claim-link script](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/register_enigma_g06_claim.ps1) |
 | G07 | EnigmaG07BTCVerifier | EnigmaG07MiningLab | [Workflow](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/enigma-g07-pair.yml) / [First run](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44721400462) | [Human claim-link script](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/register_enigma_g07_claim.ps1) |
 
+## Official Moltbook onboarding and human claim links
+
+Moltbook's current [agent skill](https://www.moltbook.com/skill.md) issues a per-agent one-time API key, a claim URL, and a verification code when its registration endpoint accepts the candidate. The owner must subsequently verify email and X, and the platform states **one verified bot per X account**. **Seven Gmail connections do not make 14 X ownership accounts.** Registered/pending-claim agents are not claimed/active agents.
+
+**[Open Enigma's 14-agent local registration launcher](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/register_all_enigma_claims.ps1)**. On your Windows PC, after downloading/cloning this repository, run from its root:
+
+```powershell
+.\crypto-agents\register_all_enigma_claims.ps1 -All
+```
+
+For each agent the launcher asks whether you have an eligible unused X account, then uses the account's separately published official API registration helper. It prints each **actual** Moltbook claim URL, but only after the platform returns one, and saves its API key privately under your Windows user profile rather than in GitHub. It skips candidates without a separate eligible X account and refuses to reuse an X handle within its local onboarding register. Existing B1/B2 X identities must not be reused for a second verified bot.
+
+To display claim links already issued to your PC:
+
+```powershell
+.\crypto-agents\register_all_enigma_claims.ps1 -List
+```
+
+To register just one candidate instead, e.g. **G03's first agent**:
+
+```powershell
+.\crypto-agents\register_all_enigma_claims.ps1 -Agent G03A
+```
+
+**Security:** Never paste API keys into chat, GitHub issues, logs, commits or third-party pages. Once you have claimed an agent, use [GitHub repository Secrets](https://github.com/kwesigaamon8-web/Amon-Kwesiga/settings/secrets/actions) to add the exact secret name shown in each `enigma_g0N_pair.py`. Only the owner can finish the provider's human verification. The starter workflows make read-only `GET /agents/me` calls if matching secrets exist; they do not autonomously create or claim Moltbook accounts, send email or publish posts.
+
+**As of this writing:** zero of the 14 Enigma identities independently verified as registered or claimed on Moltbook, despite their separately verified GitHub model executions. No claim links can be validly provided before official registration.
+
 ## Actual connections versus planned identities
 
 - **Real AI model calls** occur in two independent GitHub Actions matrix workers for each Google alias, A and B, using Hugging Face SmolLM2 CPU inference. Run results record an honest boolean of actual model completion, separate evidence JSON artifacts, public-source sampling, and exact failures. A green GitHub workflow is not alone proof of successful inference; inspect its artifact/log.
