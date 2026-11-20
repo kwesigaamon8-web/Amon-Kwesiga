@@ -178,18 +178,21 @@ def main_self_test():
         # Demonstrate that a task prohibited by the owner's instructions is
         # never ACKed as successful and is moved to a real dead-letter queue.
         bad=json.dumps(invalid,sort_keys=True).encode()
-        queue.put(bad,qname="rejected-owner-task")
+        # Set one-attempt policy for a forbidden (non-transient) instruction:
+        # never retry unauthorized email access just to reach a retry count.
+        unsafe_queue=LiteQueue(db,max_retries=1)
+        unsafe_queue.put(bad,qname="rejected-owner-task")
         rejected_attempts=0
-        for _ in range(2):
-            try:
-                with queue.consume(qname="rejected-owner-task",wait_seconds=0) as msg:
-                    assert msg is not None
-                    check_envelope(json.loads(msg.data.decode()))
-            except ValueError as exc:
-                assert "TASK_SCHEMA_INVALID" in str(exc)
-                rejected_attempts+=1
-        assert rejected_attempts==2
-        assert queue.empty("rejected-owner-task")
+        try:
+            with unsafe_queue.consume(qname="rejected-owner-task",wait_seconds=2) as msg:
+                if msg is None:
+                    raise AssertionError("Forbidden owner task never became visible")
+                check_envelope(json.loads(msg.data.decode()))
+        except ValueError as exc:
+            assert "TASK_SCHEMA_INVALID" in str(exc)
+            rejected_attempts+=1
+        assert rejected_attempts==1
+        assert unsafe_queue.empty("rejected-owner-task")
         # Retry utility is tested independently with a deterministic transient
         # OperationalError; do not claim a network failure was tested.
         transient_calls=[0]
@@ -223,7 +226,7 @@ def main_self_test():
             "stale_owner_order_refused":True,
             "unsafe_Gmail_type_refused":True,
             "unacknowledged_manager_refused":True,
-            "disallowed_task_rejected_twice_and_moved_to_dead_letter":dead_letter_count==1,
+            "disallowed_task_rejected_and_moved_to_dead_letter":dead_letter_count==1,
             "forbidden_task_retry_attempts":rejected_attempts,
             "transient_sqlite_error_retry_test_passed":True,
             "sqlite_backed_queue_source":"Apache-2.0 unkloud/liteq vendored",
@@ -250,7 +253,7 @@ def main_self_test():
             "- **2 company roots × 6 tiers**: D→M→W→S→G→H",
             "- All 12 queue messages were acknowledged after completed work",
             "- Wrong parent, stale command, unsafe Gmail task, and child-before-parent rejected",
-            "- An unsafe task failed twice and was moved into the dead-letter queue, never counted as work",
+            "- An unsafe task was rejected without retry and placed in the dead-letter queue, never counted as work",
             "- A synthetic temporary SQLite error was successfully retried once",
             "- **0 independently proven AI-model comprehension or buyer payments**",
             "",
