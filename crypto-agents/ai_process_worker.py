@@ -465,6 +465,8 @@ try:
         "\n\nACTUAL AVAILABLE TOOLS AND YOUR ASSIGNED WORK: "+
         CAPABILITY_TASK["one_actual_primary_action"]+
         "\nPRIMARY LANE: "+CAPABILITY_TASK["primary_lane"]+
+        "\nPRIOR WORK CONTRACT (SUBORDINATE TO LATEST OWNER ORDER): "+LATEST_WORK_CONTRACT["model_prompt"][:450]+
+        "\nDIRECTOR-SCOPED WORK (MUST NOT OVERRIDE CURRENT OWNER ORDER): "+DIRECTOR_GRADE_WORK["model_prompt"][:450]+
         "\nCURRENT ORIGINAL-SOURCE PROBES (UNVERIFIED BUYER DATA): "+
         json.dumps(examples,ensure_ascii=False)[:650]+
         "\nDOCUMENTED PUBLIC SOURCE STATUS: "+
