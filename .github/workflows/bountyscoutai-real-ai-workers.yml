@@ -39,6 +39,8 @@ jobs:
           retention-days: 2
       - name: Regression-test every B to manager to director to Chief D report
         run: python crypto-agents/test_hierarchical_reporting.py
+      - name: Validate B1/B2 intelligence inbox routing with offline tests
+        run: python crypto-agents/test_b_worker_intelligence_router.py
       - name: Check that D training assessment fails closed without a live model
         run: python crypto-agents/director_D_training.py
       - name: Run 15 regression checks for real reports and honest earnings
@@ -149,6 +151,21 @@ jobs:
         env:
           WORKFORCE_ID: BountyScoutAI
         run: python crypto-agents/hierarchical_reporting.py
+      - name: Route real worker exceptions and buyer intelligence to B1 and B2
+        env:
+          WORKFORCE_ID: BountyScoutAI
+        run: |
+          python crypto-agents/b_worker_intelligence_router.py --fleet "$WORKFORCE_ID"
+          cat "b1b2-intelligence/$WORKFORCE_ID/B1_INBOX.md" >> "$GITHUB_STEP_SUMMARY"
+          cat "b1b2-intelligence/$WORKFORCE_ID/B2_INBOX.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Archive B1 and B2 worker intelligence inboxes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-intelligence-BountyScoutAI
+          path: b1b2-intelligence/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Show Chief D's auditable company report and all correction counts
         run: cat hierarchical-reports/BountyScoutAI/CHIEF_D_COMPANY_REPORT.md >> "$GITHUB_STEP_SUMMARY"
       - name: Publish concise evidence summary to Chief D's shared mission room
