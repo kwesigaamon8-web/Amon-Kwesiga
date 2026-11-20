@@ -125,6 +125,33 @@ def inspect_tx(txid,fleet,agreed_sats,issuer_txid_confirmation,request=check_htt
             "txid":txid,"fleet":fleet,"confirmed_sats":checked[0]["output_sats"],
             "outputs":checked,"has_private_key_or_wallet_signing":False}
 
+def verify_earned_job(terms, fleet, txid, issuer_payment_comment_url, request=check_http_json):
+    """Only full chain: independent original sponsor approval, payer TXID statement, dual blockchain outputs."""
+    accepted=verify_issuer_agreement(terms,request)
+    original=GITHUB_ISSUE.fullmatch(terms["original_issue_url"])
+    payment=GITHUB_COMMENT.fullmatch(str(issuer_payment_comment_url or ""))
+    if not original or not payment or payment.groups()[:3]!=original.groups():
+        raise ValueError("PAYMENT_CONFIRMATION_NOT_IN_ORIGINAL_TASK")
+    org,repo,issue=original.groups()
+    note=request(f"https://api.github.com/repos/{org}/{repo}/issues/comments/{payment.group(4)}")
+    if not isinstance(note,dict) or str((note.get("user") or {}).get("login") or "")!=accepted["sponsor"]:
+        raise ValueError("PAYMENT_CONFIRMATION_NOT_BY_SPONSOR")
+    content=str(note.get("body") or "")
+    if txid not in content or terms["accepted_deliverable_url"] not in content:
+        raise ValueError("SPONSOR_PAYMENT_PROOF_MISSING_TXID_AND_ACCEPTED_WORK")
+    if not __import__("re").search(r"(?i)\b(paid|settled|payment\s+(?:sent|made))\b",content):
+        raise ValueError("SPONSOR_DID_NOT_CONFIRM_PAYMENT")
+    support={"payer_authenticated_in_original_task":True,
+             "txid":txid,"accepted_work_sha256":__import__("hashlib").sha256(
+                 terms["accepted_deliverable_url"].encode()).hexdigest(),
+             "confirmed_payment_purpose":True}
+    output=inspect_tx(txid,fleet,accepted["agreed_sats"],support,request)
+    output["sponsor_acceptance_evidence"]=terms["sponsor_acceptance_comment_url"]
+    output["sponsor_payment_evidence"]=issuer_payment_comment_url
+    output["earned_payment_supported_by_sponsor_and_two_explorers"]=True
+    return output
+
+
 def self_test():
     assert len(TXID.pattern)>0
     terms={"original_issue_url":"https://github.com/real/owner/issues/7",
@@ -156,6 +183,20 @@ def self_test():
     source={"payer_authenticated_in_original_task":True,"txid":txid,
             "accepted_work_sha256":"hash-placeholder","confirmed_payment_purpose":True}
     verified=inspect_tx(txid,"B2",1200,source,txgood)
+    def proof_api(url):
+        if url.endswith("/issues/7") or url.endswith("/issues/comments/88"):
+            return fake(url)
+        if url.endswith("/issues/comments/99"):
+            return {"user":{"login":"original-issuer"},
+                    "body":"Paid Bitcoin mainnet txid "+txid+" for https://github.com/real/owner/pull/8"}
+        if url.startswith("https://mempool.space/api/tx/") or url.startswith("https://blockstream.info/api/tx/"):
+            return txgood(url)
+        raise ValueError("Unexpected test source")
+    independent=verify_earned_job(terms,"B2",txid,
+        "https://github.com/real/owner/issues/7#issuecomment-99",proof_api)
+    assert independent["earned_payment_supported_by_sponsor_and_two_explorers"]
+    fail(lambda: verify_earned_job(terms,"B2",txid,
+        "https://github.com/another/repo/issues/7#issuecomment-99",proof_api))
     assert verified["confirmed_sats"]==1300
     fail(lambda: inspect_tx(txid,"B2",1200,{},txgood))
     fail(lambda: inspect_tx(txid,"B1",1200,source,txgood))
