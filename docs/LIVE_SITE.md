@@ -1,19 +1,34 @@
-# Enigma / B1 B2 — stable software links
+# B1/B2 Digital Work Studio — verified buyer access
 
-**Permanent Render studio:** https://amon-kwesiga.onrender.com/studio/
+**Primary, automatically renewed directory (recommended):** [Open the latest current free studio, paid services and native BTC payment pages](./TEMP_PREVIEW.md).
 
-**1,000 software tools:** https://amon-kwesiga.onrender.com/studio/global-1000.html — 100 original calculation methods applied to ten sectors, with SW-001 through SW-1000 deep links. Free browser software; not 1,000 different server processes.
+The primary directory is maintained by the no-fee, twice-weekly [free hosting renewal workflow](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/b1-b2-free-studio-renewal.yml), which tests the original browser tools and published assets before updating its public link. Each anonymous preview expires after seven days. **Always use the stable directory above**, not an old expiring preview address.
 
-**Original free software:** https://amon-kwesiga.onrender.com/studio/software.html · [55 browser utilities](https://amon-kwesiga.onrender.com/studio/free-toolbox.html) · [six mini-apps](https://amon-kwesiga.onrender.com/studio/mini-apps.html) · [six marketing and business apps](https://amon-kwesiga.onrender.com/studio/market-lab.html).
+## Currently verified backup pages
 
-**Previous Bitcoin mining work and safe mathematical tools:** https://amon-kwesiga.onrender.com/studio/mining-software.html . Earlier mining ZIPs remain private until their source code, permissions, safety, wallet configuration and licenses have been independently checked. No silent mining or guaranteed BTC rewards.
+Independent HTTPS smoke checks from GitHub Actions on **20 November 2026 at 17:30 UTC** observed HTTP 200 for these public backup URLs:
 
-**Direct owner BTC-mainnet addresses, payment instructions, voluntary donations and agreed custom jobs:** https://amon-kwesiga.onrender.com/studio/payment.html . No user must pay to use the free tools; a public BTC address is not proof of any deposit.
+- [Try 55 free browser utilities](https://cookie-ticket-dm9i1.ship.place/free-toolbox.html)
+- [Browse original B1/B2 software and tested tools](https://cookie-ticket-dm9i1.ship.place/software.html)
+- [Request AI-assisted CSV, QA and small data services](https://cookie-ticket-dm9i1.ship.place/ai.html)
+- [View native BTC-mainnet payment instructions](https://cookie-ticket-dm9i1.ship.place/payment.html) — both B1 and B2 addresses were found in the published page, **not** a payment receipt
 
-**Country research:** [249 ISO country/territory evidence-first assignments](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/marketing/country_market_research.py) distributed through internal B1/B2 virtual-role messages. These are not 775 billion live researcher accounts or verified global posts.
+These are temporary backup URLs and can expire. Source: [public fallback service verification workflow](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44783978492). **A public payment page does not mean a payer agreed to pay or coins arrived.**
 
-**Open-source attribution:** [Licensing policy](https://amon-kwesiga.onrender.com/studio/OPEN_SOURCE_REUSE_POLICY.md). The extra 50 algorithms were newly written, not copied from unlicensed third-party repositories.
+## Request a genuine paid task
 
-**Read-only agent and CI dashboard:** https://amon-kwesiga.onrender.com/ · [service health](https://amon-kwesiga.onrender.com/health).
+- [Request a small fixed-scope quote (GitHub sign-in required)](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) — simplified so a buyer can request a quote without first knowing test cases, a final budget or payment rail. Never include private records.
+- [Ask about work on the existing public Agent Board](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) — no GitHub login advertised; third-party availability and reply submission are not guaranteed.
+- Original public source: [B1/B2 software](./software.html), [payment instructions](./payment.html), [free toolbox](./free-toolbox.html), [mini apps](./mini-apps.html), [business and marketing apps](./market-lab.html).
 
-**Temporary static backup:** [TEMP_PREVIEW.md](TEMP_PREVIEW.md), if currently available. Render free instances can sleep when idle. Website availability is not evidence of paid customers, AI inference, crypto receipts, or messages sent to every country.
+## Render is not presently the primary buyer endpoint
+
+At **17:30 UTC, 20 November 2026**, an independent external GitHub runner received **HTTP 503** for `https://amon-kwesiga.onrender.com/health`, `/studio/software.html`, and `/studio/payment.html`. A separate later request to the Render **root** URL got HTTP 200, so availability is intermittent or route-dependent; a successful root response does not certify the checkout and payment pages. [See original Render endpoint observations](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/runs/44783865345).
+
+Render dashboard (fallback **only if reverified**): https://amon-kwesiga.onrender.com/ . Do not send customers to failed subpaths before they are verified healthy again. Existing Render account/service settings and current deployment logs are not accessible through the connected GitHub API; do not invent a recovery.
+
+## Evidence rules
+
+- Free websites and public repo/role IDs are **not** independently running AI processes or mining ASICs.
+- Buyer replies, signed acceptance, invoice details, compatible BTC network, on-chain TXID and confirmations must each be verified separately before counting earnings.
+- Never access Gmail, send an email, sign wallets, share private keys, use unauthorized Wi-Fi/servers or mine on GitHub/free cloud infrastructure.
