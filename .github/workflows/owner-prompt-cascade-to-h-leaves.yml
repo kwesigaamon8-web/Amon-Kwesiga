@@ -8,6 +8,9 @@ on:
       - 'crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md'
       - 'crypto-agents/chief_D_owner_orders.json'
       - 'crypto-agents/PUBLIC_AGENT_COMMAND.json'
+      - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/director_work_orders.py'
+      - 'crypto-agents/enigma_all_b_systems.py'
       - '.github/workflows/owner-prompt-cascade-to-h-leaves.yml'
 permissions:
   contents: read
@@ -22,8 +25,10 @@ jobs:
           python-version: '3.11'
       - name: Syntax, current owner signature and full path to H
         run: |
-          python -m py_compile crypto-agents/directive_cascade.py
+          python -m py_compile crypto-agents/directive_cascade.py crypto-agents/ai_process_worker.py crypto-agents/director_work_orders.py crypto-agents/enigma_all_b_systems.py
           python crypto-agents/directive_cascade.py --self-test --out owner-cascade-evidence
+          python crypto-agents/owner_first_oath.py
+          python crypto-agents/command_chain_receipts.py
       - name: Run six real isolated final-level H worker processes
         run: |
           python - <<'PY'
