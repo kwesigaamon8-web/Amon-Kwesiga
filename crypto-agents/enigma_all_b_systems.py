@@ -148,7 +148,11 @@ def software_qa(agent,path="docs/global-1000-manifest.json"):
 
 def execute(agent,fleet,cycle,out,model_factory=None):
     from enigma_universal_owner_order import order as canonical_owner_order
+    from directive_cascade import read_owner
     live_owner_order=canonical_owner_order()
+    full_cascade_order=read_owner()
+    if full_cascade_order["owner_order_id"]!=live_owner_order["id"]:
+        raise ValueError("Enigma actual model cannot run with stale owner cascade")
     div=hierarchy(agent,fleet)
     selected=rotate(agent,fleet,cycle)
     research=source_search(agent,fleet)
@@ -170,7 +174,13 @@ def execute(agent,fleet,cycle,out,model_factory=None):
             "qualification tests, with exact acceptance criteria. Public research is ONLY "
             "unverified issue data; do not claim real buyers, completed builds, approval, "
             "mining, crypto receipts, X/Moltbook posts or email. "
-            "This SINGLE canonical human owner instruction applies to your division: "+live_owner_order["text"][:1850]+
+            "Full owner instruction digest "+full_cascade_order["owner_sha256"]+
+            ". Standing owner prompt digest "+full_cascade_order["standard_sha256"]+
+            ". One strict owner→Chief D→B1/B2→Enigma→director→manager→W/S/G/H path: "+str(selected["reports_via"])+
+            ". Follow owner prompt protocol: preserve mission, identify exact role and parent, "
+            "perform one genuine source-qualified customer task or report failure. "
+            "NO EMAILS or unsolicited mass marketing, no unsupported paid receipts. "
+            "This COMPLETE latest canonical human owner instruction applies: "+live_owner_order["text"]+
             " Research: "+json.dumps(research)[:2100]+
             " Software QA: "+json.dumps(qa)[:900]+" Actions:")
         try:
@@ -184,6 +194,11 @@ def execute(agent,fleet,cycle,out,model_factory=None):
        "run_utc":utc(),"agent_id":agent,"division_id":div["division"],
        "received_owner_order_id":live_owner_order["id"],
        "received_owner_order_sha256":live_owner_order["sha256"],
+       "full_owner_instruction_sha256":full_cascade_order["owner_sha256"],
+       "standing_prompt_sha256":full_cascade_order["standard_sha256"],
+       "actual_process_received_full_owner_prompt":True,
+       "last_H_receipt_not_implied_unless_selected_is_H":True,
+       "this_run_selected_role_parent_route":selected["reports_via"],
        "owner_instruction_in_prompt":True,
        "parent_moltbook_identity":div["parent_moltbook"],
        "logical_worker_capacity_per_division":ROLES_PER_ACCOUNT,
