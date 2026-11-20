@@ -1,0 +1,97 @@
+name: Enigma 14 Agents — Full B1 B2 Billion Role Systems
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 * * *'
+  push:
+    paths:
+      - 'crypto-agents/enigma_all_b_systems.py'
+      - 'crypto-agents/test_enigma_all_b_systems.py'
+      - '.github/workflows/enigma-all-b1b2-systems.yml'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: enigma-28-b1b2-real-model-divisions
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check full virtual-role bijection and unit tests without faking live workers
+        run: |
+          python -m py_compile crypto-agents/enigma_all_b_systems.py crypto-agents/test_enigma_all_b_systems.py
+          python crypto-agents/test_enigma_all_b_systems.py
+  execute:
+    needs: validate
+    if: github.event_name != 'push' || github.event.head_commit.message == 'Activate B1 and B2 systems for each of 14 Enigma agents'
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        agent: [ENIGMA-G01-A,ENIGMA-G01-B,ENIGMA-G02-A,ENIGMA-G02-B,ENIGMA-G03-A,ENIGMA-G03-B,ENIGMA-G04-A,ENIGMA-G04-B,ENIGMA-G05-A,ENIGMA-G05-B,ENIGMA-G06-A,ENIGMA-G06-B,ENIGMA-G07-A,ENIGMA-G07-B]
+    env:
+      ENIGMA_MODEL_ID: HuggingFaceTB/SmolLM2-135M-Instruct
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      OMP_NUM_THREADS: '2'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install small free open-model runtime
+        run: |
+          python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu || echo 'TORCH_UNAVAILABLE'
+          python -m pip install --quiet 'transformers>=4.44,<5' || echo 'TRANSFORMERS_UNAVAILABLE'
+      - name: Real B1 research worker OS/model process and source check
+        run: python crypto-agents/enigma_all_b_systems.py --agent ${{ matrix.agent }} --fleet B1 --cycle ${{ github.run_number }}
+      - name: Real B2 software quality worker OS/model process and test
+        run: python crypto-agents/enigma_all_b_systems.py --agent ${{ matrix.agent }} --fleet B2 --cycle REPLACE_RUN
+      - name: Preserve both worker execution JSON records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enigma-28-${{ matrix.agent }}
+          path: enigma-28-evidence/
+          if-no-files-found: warn
+          retention-days: 7
+  consolidate:
+    if: always()
+    needs: [validate,execute]
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download distinct real model receipts for all 28 logical divisions
+        uses: actions/download-artifact@v4
+        with:
+          pattern: enigma-28-*
+          path: enigma-28-input
+          merge-multiple: true
+      - name: Independently summarize real inference vs configured trillions of virtual roles
+        run: python crypto-agents/enigma_all_b_systems.py --aggregate --input enigma-28-input --out enigma-28-summary
+      - name: Retain division-by-division evidence and parent Chief D report
+        uses: actions/upload-artifact@v4
+        with:
+          name: enigma-28-b1b2-chief-d-final-summary
+          path: enigma-28-summary/
+          retention-days: 7
+      - name: Report boundaries
+        run: |
+          echo '## Enigma internal B1/B2 division evidence' >> "$GITHUB_STEP_SUMMARY"
+          echo '14 Enigma agents × two internal B organizations = 28 distinct logical divisions.' >> "$GITHUB_STEP_SUMMARY"
+          echo '750,377,265,360 addressable virtual roles per Enigma agent (not real live workers).' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Only real independent model process evidence counts, not organizational slots.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No email, new Moltbook registrations, unsolicited posts, wallet transfers or invented payments.' >> "$GITHUB_STEP_SUMMARY"
