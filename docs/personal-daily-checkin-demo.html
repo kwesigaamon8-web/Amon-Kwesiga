@@ -39,7 +39,7 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
 <div class="field"><label for="routine-name">What would you like to remember?</label><input id="routine-name" maxlength="90" placeholder="Example: review tomorrow's plan" required autocomplete="off"></div>
 <div class="field"><label for="routine-time">Preferred time (optional)</label><input id="routine-time" type="time"><div class="hint">The time is a label, not a background alarm.</div></div>
 <div class="actions"><button type="submit">Add to today's planner</button><button class="secondary" type="button" id="clear-completed">Clear today's ticks</button></div></form><p id="routine-feedback" class="small" role="status" aria-live="polite"></p></section>
-<section class="panel"><h2>Today's progress</h2><p class="small" id="today-label"></p><div class="completion" aria-live="polite" id="completion-count">0 of 0</div><p class="small" id="completion-description">Your completed routines for today.</p><div class="actions"><button class="secondary" type="button" id="download-backup">Export my private backup</button><button class="danger" type="button" id="erase-data">Erase my browser data</button></div><p class="small" role="status" aria-live="polite" id="backup-feedback"></p></section>
+<section class="panel"><h2>Today's progress</h2><p class="small" id="today-label"></p><div class="completion" aria-live="polite" id="completion-count">0 of 0</div><p class="small" id="completion-description">Your completed routines for today.</p><div class="actions"><button class="secondary" type="button" id="download-backup">Export my private backup</button><button class="secondary" type="button" id="import-backup">Restore my backup</button><input id="backup-file" type="file" accept=".json,application/json" hidden aria-label="Choose a daily check-in backup file"><button class="danger" type="button" id="erase-data">Erase my browser data</button></div><p class="small" role="status" aria-live="polite" id="backup-feedback"></p></section>
 <section class="panel wide"><h2>Your daily routines</h2><div id="routine-list"><p class="small">Add your first routine above.</p></div></section>
 <section class="panel wide"><h2>Private daily reflection</h2><label for="reflection">How did today go?</label><textarea id="reflection" maxlength="2500" placeholder="Write something useful for yourself. This stays in your own browser."></textarea><p class="small">Saved automatically in your browser for today only; other days are stored separately.</p><p class="success small" id="reflection-status" role="status" aria-live="polite"></p></section>
 <section class="panel wide"><h2>Would you like a version made for you?</h2><p>ENIGMA can scope a customized personal planner, check-in app or private AI assistant. A <strong>$25 starter quote</strong> covers one small offline browser-based routine/check-in page with up to five agreed fields, original source and basic usage instructions; more complex personal AI or cloud features are quoted separately. No payment is requested before a specific scope and terms are agreed.</p>
@@ -111,6 +111,28 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
     const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),type:'ENIGMA private daily check-in',data:state},null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='my-daily-checkin-'+today+'.json';document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);
     $('backup-feedback').textContent='Backup exported. Keep it private.';
+  });
+  $('import-backup').addEventListener('click',()=> $('backup-file').click());
+  $('backup-file').addEventListener('change',async e=>{
+    const file=e.target.files?.[0]; e.target.value='';
+    if(!file)return;
+    if(file.size>1024*1024){$('backup-feedback').textContent='Backup is too large (maximum 1 MB).';return;}
+    try{
+      const parsed=JSON.parse(await file.text()), data=parsed?.data;
+      if(parsed?.type!=='ENIGMA private daily check-in'||!data||!Array.isArray(data.routines)||
+        !data.completed||typeof data.completed!=='object'||Array.isArray(data.completed)||
+        !data.reflections||typeof data.reflections!=='object'||Array.isArray(data.reflections)||
+        data.routines.length>100||!data.routines.every(r=>r&&typeof r.id==='string'&&r.id.length<=100&&
+        typeof r.name==='string'&&r.name.length<=90&&typeof r.time==='string'&&r.time.length<=10)||
+        Object.values(data.reflections).some(v=>typeof v!=='string'||v.length>2500)||
+        Object.values(data.completed).some(v=>!v||typeof v!=='object'||Array.isArray(v)||
+          Object.values(v).some(x=>typeof x!=='boolean')))throw Error('invalid backup');
+      if(!window.confirm('Replace all current planner data with this backup? Export your current data first if needed.'))return;
+      state={routines:data.routines,completed:data.completed,reflections:data.reflections};
+      today=dateKey();$('reflection').value=typeof state.reflections[today]==='string'?state.reflections[today]:'';
+      const stored=save();render();
+      $('backup-feedback').textContent=stored?'Backup restored on this device.':'Backup loaded for this session only; browser storage failed. Export a backup.';
+    }catch(err){$('backup-feedback').textContent='Invalid backup. No planner data was changed.';}
   });
   $('erase-data').addEventListener('click',()=>{
     if(!window.confirm('Erase all ENIGMA daily check-in information stored in this browser? This cannot be undone.'))return;
