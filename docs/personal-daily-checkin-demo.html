@@ -65,7 +65,15 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
       };
     }
   } catch (err) { $('routine-feedback').textContent = 'Saved browser data was unreadable. Starting with an empty planner.'; }
-  const today = dateKey();
+  let today = dateKey();
+  const syncDay = () => {
+    const current = dateKey();
+    if (current === today) return;
+    today = current;
+    $('reflection').value = typeof state.reflections[today] === 'string' ? state.reflections[today] : '';
+    $('reflection-status').textContent = '';
+    render();
+  };
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); return true; } catch(e) { $('backup-feedback').textContent='Browser storage is unavailable; export is recommended.'; return false; } };
   const finishedToday = () => state.completed[today] && typeof state.completed[today] === 'object' ? state.completed[today] : {};
   const makeEl = (tag, text, className='') => { const el=document.createElement(tag); if (text!==undefined) el.textContent=text; if(className) el.className=className; return el; };
@@ -90,15 +98,16 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
     $('completion-description').textContent=state.routines.length?'Completed today: '+Math.round(done/state.routines.length*100)+'%':'Add a routine to begin.';
   };
   $('routine-form').addEventListener('submit',e=>{
-    e.preventDefault(); const name=$('routine-name').value.trim().replace(/\s+/g,' ');
+    e.preventDefault(); syncDay(); const name=$('routine-name').value.trim().replace(/\s+/g,' ');
     if(!name)return; if(state.routines.length>=100){$('routine-feedback').textContent='Limit of 100 routines reached.';return;}
     const id=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,11);
     state.routines.push({id,name,time:$('routine-time').value});save();$('routine-form').reset();$('routine-feedback').textContent='Routine added.';render();
   });
-  $('clear-completed').addEventListener('click',()=>{delete state.completed[today];save();render();$('routine-feedback').textContent="Today's ticks cleared.";});
+  $('clear-completed').addEventListener('click',()=>{syncDay();delete state.completed[today];save();render();$('routine-feedback').textContent="Today's ticks cleared.";});
   const ref=$('reflection');ref.value=typeof state.reflections[today]==='string'?state.reflections[today]:'';
-  ref.addEventListener('input',()=>{state.reflections[today]=ref.value;save();$('reflection-status').textContent='Reflection saved on this device.';});
+  ref.addEventListener('input',()=>{syncDay();state.reflections[today]=ref.value;save();$('reflection-status').textContent='Reflection saved on this device.';});
   $('download-backup').addEventListener('click',()=>{
+    syncDay();
     const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),type:'ENIGMA private daily check-in',data:state},null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='my-daily-checkin-'+today+'.json';document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);
     $('backup-feedback').textContent='Backup exported. Keep it private.';
@@ -106,8 +115,10 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
   $('erase-data').addEventListener('click',()=>{
     if(!window.confirm('Erase all ENIGMA daily check-in information stored in this browser? This cannot be undone.'))return;
     try{localStorage.removeItem(KEY);}catch(e){}
-    state={routines:[],completed:{},reflections:{}};ref.value='';render();$('backup-feedback').textContent='Stored check-in data erased from this browser.';
+    state={routines:[],completed:{},reflections:{}};ref.value='';$('reflection-status').textContent='';render();$('backup-feedback').textContent='Stored check-in data erased from this browser.';
   });
+  window.addEventListener('focus',syncDay);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncDay();});
   render();
 })();
 </script>
