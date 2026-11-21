@@ -62,6 +62,7 @@ body:
       label: Preferred settlement method (optional — confirmed after scope agreement)
       options:
         - Agreed native BTC on Bitcoin mainnet
+        - Native USDC on Base (subject to exact token/network and owner-route verification)
         - Another owner-confirmed crypto asset/network
         - Other agreed lawful payment method
         - Not decided
