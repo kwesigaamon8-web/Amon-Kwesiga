@@ -595,5 +595,16 @@
     "email_authorization_required": true,
     "no_imaginary_workers": true,
     "receipt_first_reporting": true
+  },
+  "enigma_v3_1_trillion_agent_focus": {
+    "command_id": "OWNER-20261121-ENIGMA-V3.1-TRILLION-AGENT-FOCUS",
+    "source": "crypto-agents/ENIGMA_V3_1_TRILLION_AGENT_EXECUTION_COMMAND_2026-11-21.md",
+    "supersession": "agent-focus extension of ENIGMA v3.0; money-first restrictions remain",
+    "virtual_role_namespace_design_target": "11255658980400",
+    "verified_live_workers_from_this_command": 0,
+    "command_dissemination": "Only connected authenticated workers acknowledged by direct execution evidence; do not claim all virtual roles received orders",
+    "next_acceptance_gate": "Verify a command through B1 and B2 to two unique expressly authorized running worker processes; log ACK, execution, result test and independent QA",
+    "commercial_priority": "collect agreed receivables, convert verified buyers, complete accepted work, confirm actual payments",
+    "prohibited": "No email access, drafting or sending without specific owner approval; no fake staff, fabricated payouts, unauthorized compute, keys or spending"
   }
 }
