@@ -101,11 +101,11 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
     e.preventDefault(); syncDay(); const name=$('routine-name').value.trim().replace(/\s+/g,' ');
     if(!name)return; if(state.routines.length>=100){$('routine-feedback').textContent='Limit of 100 routines reached.';return;}
     const id=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,11);
-    state.routines.push({id,name,time:$('routine-time').value});save();$('routine-form').reset();$('routine-feedback').textContent='Routine added.';render();
+    state.routines.push({id,name,time:$('routine-time').value});const stored=save();$('routine-form').reset();$('routine-feedback').textContent=stored?'Routine added.':'Routine added for this session only; browser storage failed. Export a backup.';render();
   });
-  $('clear-completed').addEventListener('click',()=>{syncDay();delete state.completed[today];save();render();$('routine-feedback').textContent="Today's ticks cleared.";});
+  $('clear-completed').addEventListener('click',()=>{syncDay();delete state.completed[today];const stored=save();render();$('routine-feedback').textContent=stored?"Today's ticks cleared.":"Today's ticks cleared in this session only; browser storage failed. Export a backup.";});
   const ref=$('reflection');ref.value=typeof state.reflections[today]==='string'?state.reflections[today]:'';
-  ref.addEventListener('input',()=>{syncDay();state.reflections[today]=ref.value;save();$('reflection-status').textContent='Reflection saved on this device.';});
+  ref.addEventListener('input',()=>{syncDay();state.reflections[today]=ref.value;const stored=save();$('reflection-status').textContent=stored?'Reflection saved on this device.':'Reflection available in this session only; saving failed. Export a backup.';});
   $('download-backup').addEventListener('click',()=>{
     syncDay();
     const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),type:'ENIGMA private daily check-in',data:state},null,2)],{type:'application/json'});
