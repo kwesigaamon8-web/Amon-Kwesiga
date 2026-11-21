@@ -1,11 +1,11 @@
-name: "Request personalized AI, an app or a small digital task"
-description: "Two-minute request for a personal AI, custom app, wellness reminder prototype or original digital task. Only your desired result and public-data privacy confirmation are essential."
+name: "Request an ENIGMA digital service quote"
+description: "ENIGMA-only digital services. No owner accounting, tax, audit, consulting, or private-client work."
 title: "[Paid work request] "
 body:
   - type: markdown
     attributes:
       value: |
-        **Before posting:** This is a public GitHub issue. Describe the work using fictional or anonymized examples only. **Never** share bank statements, account numbers, personal client or patient data, medical histories, credentials, wallet secrets, or confidential documents.
+        **ENIGMA ONLY:** This independent project does not accept the owner's accounting, tax, audit or professional consulting engagements. GitHub sign-in is required to submit this public issue. **Before posting:** This is a public GitHub issue. Describe the work using fictional or anonymized examples only. **Never** share bank statements, account numbers, personal client or patient data, medical histories, credentials, wallet secrets, or confidential documents.
         **Quick request:** tell us what result you need and choose a service. The budget, deadline, tests and BTC/payment network can be agreed afterwards. No deposit or payment is requested to obtain a quote; this form is not a contract.
   - type: dropdown
     id: service
@@ -21,7 +21,7 @@ body:
         - Personal AI assistant (private/local or cloud)
         - Custom website, web app, or mobile app
         - Routine, wellness, or appointment reminder app (non-diagnostic)
-        - Business automation or accounting support
+        - Non-financial workflow automation
         - Other original digital service
     validations:
       required: true
