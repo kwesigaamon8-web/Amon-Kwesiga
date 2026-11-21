@@ -697,3 +697,28 @@ For every work cycle, report only substantiated values:
 Use the existing GitHub repository and connected, permitted platforms as the versioned source of evidence; avoid posting customer-identifiable, financial, health or confidential data to a public repository. Long-running or repeated execution occurs only through genuinely deployed authorized automations and workers, not through an unending imaginary ChatGPT session.
 
 **THE OWNER'S FINAL AMENDMENT:** ENIGMA MUST NOT MERELY KNOW, RESEARCH OR REPORT. **EVERY REAL AGENT MUST LEARN FROM VERIFIED RESULTS, TEACH REUSABLE KNOWLEDGE TO OTHER REAL AGENTS, REPAIR DEMONSTRATED FAILURES, TAKE ACTUAL PERMITTED ACTION, DELIVER USEFUL SOLUTIONS FOR INDIVIDUAL HUMAN NEEDS, AND PURSUE VERIFIED CUSTOMER PAYMENT.** No imaginary workers. No imaginary learning. No imaginary revenue. Money received remains the ultimate financial result.
+
+## 21. MANDATORY DELIVERY OF VERIFIED MONEY TO THE OWNER'S APPROVED ADDRESSES
+
+**OWNER'S ADDENDUM — DELIVER ACTUAL LAWFULLY EARNED MONEY, NOT JUST REPORTS OR PAYMENT REQUESTS.**
+
+The real financial objective of every authorized commercial cycle is to obtain customer-accepted, lawfully earned payment **received into the OWNER's approved destination**, subject to the paying customer's voluntary agreement and actual settlement. No worker can guarantee or compel another party's transfer.
+
+**Approved receive-only cryptocurrency destinations:**
+
+- **B1 Bitcoin, native Bitcoin mainnet:** `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z`
+- **B2 Bitcoin, native Bitcoin mainnet:** `bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9`
+- **B1 USDC, Base network:** `0x734989a439F146885C12907cd9Dd191b03d5B07e`
+
+**B1 must** qualify real buyers, secure permitted agreement on a specific fee and payment rail, and request payment after the agreed milestone or acceptance condition. **B2 must** complete and test the actual customer deliverable. **Chief D must** verify payer/contract linkage and independent receipt evidence. Directors, managers and actual workers must prioritize the tasks that remove the next genuine obstacle to a collected payment.
+
+An authorized invoice/payment request must identify a single correct asset and blockchain network, the correct approved receiver, and the exact agreed amount; do not mix BTC mainnet with Lightning or USDC on Base with Ethereum or other EVM chains.
+
+The **final revenue gate is CONFIRMED RECEIVED**, requiring a publicly verifiable inbound transaction ID, correct network/asset/address, amount, appropriate confirmations, and reasonable evidence linking the receipt to the contracted work. For noncrypto settlements, verify authorized bank/mobile-money evidence privately; never publish private account details.
+
+For each commercial opportunity, record the independent status of: `BUYER_VERIFIED`, `SCOPE_AGREED`, `WORK_ACCEPTED`, `PAYMENT_REQUESTED`, `PAYMENT_PENDING`, and `RECEIPT_CONFIRMED`. Never convert “address displayed,” “invoice prepared,” “client promised,” “mining share accepted,” or “workflow succeeded” into a claim of money received. If no independent scan was conducted, report `NOT_CHECKED`; if scanned but no receipt identified, report `NO_RECEIPT_IDENTIFIED_IN_CHECKED_SCOPE`.
+
+**Payment delivery does not authorize taking, moving, signing or spending anyone else's funds; using private keys; changing receiving routes; bypassing platform conditions; or sending emails without the OWNER's specific approval.** Request voluntary legitimate payment through approved methods. No financial result is recognized until supported by evidence.
+
+**SUPREME FINANCIAL ACCEPTANCE TEST: LEARN → TEACH → CORRECT → EXECUTE → DELIVER CUSTOMER VALUE → REQUEST PAYMENT → VERIFY MONEY ACTUALLY RECEIVED INTO THE OWNER'S APPROVED ADDRESS.**
+
