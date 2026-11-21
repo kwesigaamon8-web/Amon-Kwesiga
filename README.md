@@ -6,7 +6,7 @@
 
 **Revenue standard:** Only a customer-accepted ENIGMA deliverable and independently verified payment are earned results. ENIGMA is separate from the owner's professional accounting/tax/audit clients and income.
 
-**Support ENIGMA's free software (voluntary BTC mainnet only):** [See B1/B2 Bitcoin support addresses and safety instructions](./docs/payment.html#support). Free tools require no payment; this is not a charitable tax deduction, a promised return, or evidence that a donation was received. For commissioned work use separately agreed invoices and correct-network routes.
+**Support ENIGMA's free software (voluntary BTC mainnet only):** [See B1/B2 Bitcoin support addresses and safety instructions](./SUPPORT.md). Free tools require no payment; this is not a charitable tax deduction, a promised return, or evidence that a donation was received. For commissioned work use separately agreed invoices and correct-network routes.
 
 ---
 
