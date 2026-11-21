@@ -1,5 +1,7 @@
 # Amon-Kwesiga
 
+**NEW — ENIGMA v5 personalized AI and apps:** [Request a scoped personal assistant, custom web/mobile app, wellness reminder prototype or business workflow](./docs/personal-ai-custom-apps.html). All client work requires a specific buyer, agreed scope, actual available developers, review and compatible payment; no claim of trillions of live workers.
+
 **NEW — Uganda business services:** [Bookkeeping, VAT/PAYE/WHT, EFRIS and bank reconciliations — request a scoped quote](./docs/uganda-accounting.html). Source-backed local professional service; no client engagement or payment is presumed.
 AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provides outsourced bookkeeping, financial reporting, payroll management, and tax compliance services to businesses across multiple sectors. Experienced in URA compliance, EFRIS, financial analysis, and modern accounting systems to support informed business decisions.
 
