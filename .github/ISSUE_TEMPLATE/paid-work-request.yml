@@ -12,6 +12,7 @@ body:
     attributes:
       label: Requested service
       options:
+        - Daily check-in demo customization (proposed USD 25 starter, up to five fields)
         - CSV / Excel / JSON conversion
         - Payment or invoice reconciliation
         - Workbook cleanup
