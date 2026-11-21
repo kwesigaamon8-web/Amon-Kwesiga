@@ -3,7 +3,7 @@
   "artifact_dir": "crypto-agents/world-work-factory/deliverables/invoice-reconciliation-synthetic-example",
   "result_sha256": "de1581ce9befd2948e8559df27f9aeced6e0ff6de2ad48d57ed42c9b6123102c",
   "real_python_test_return_code": 0,
-  "completed_utc": "2026-11-21T00:35:03.650826+00:00",
+  "completed_utc": "2026-11-21T00:38:39.149067+00:00",
   "client_or_payer": null,
   "accepted_paid_scope": false,
   "externally_submitted": false,
