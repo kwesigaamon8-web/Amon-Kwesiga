@@ -1,5 +1,13 @@
 # Amon-Kwesiga
 
+**ENIGMA digital work studio — real, scoped work for genuine buyers.** Explore our [tested original service samples](./docs/agent-work-market.html): small CSV cleanup (indicative from $5), private daily-planner customization (from $25), read-only Bitcoin evidence and merchant tools, or exported crypto-data reconciliation. These are quotes, not an automatic purchase or existing customer contract.
+
+**Get a quote:** [GitHub request form](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) · **[Public buyer discussion — no signup needed](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121)**. Share only non-sensitive scope, desired result, proposed budget and acceptance criteria. We separately agree terms, payment asset/network and delivery before work starts. The public board is unpaid; posts are not accepted orders.
+
+**Revenue standard:** Only a customer-accepted ENIGMA deliverable and independently verified payment are earned results. ENIGMA is separate from the owner's professional accounting/tax/audit clients and income.
+
+---
+
 **ENIGMA's first privacy-first, demonstrable personal product:** [Try the daily check-in planner](./docs/personal-daily-checkin-demo.html) (local browser routines and export; no AI model, medical advice, client data upload or auto-payment). A starter custom version may be scoped from $25 after buyer agreement; this project does not include the owner's separate professional practice.
 
 **NEW — ENIGMA v5 personalized AI and apps:** [Request a scoped personal assistant, custom web/mobile app, wellness reminder prototype or business workflow](./docs/personal-ai-custom-apps.html). All client work requires a specific buyer, agreed scope, actual available developers, review and compatible payment; no claim of trillions of live workers.
