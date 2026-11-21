@@ -54,6 +54,11 @@ jobs:
           test -s docs/software.html
           test -s docs/join.html
           test -s docs/payment.html
+          test -s SUPPORT.md
+          test -s .github/FUNDING.yml
+          grep -q 'id="support"' docs/payment.html
+          grep -q 'SUPPORT.md' .github/FUNDING.yml
+          grep -q 'SUPPORT.md' docs/index.html
           test -s docs/ai.html
           test -s docs/personal-ai-custom-apps.html
           test -s docs/personal-daily-checkin-demo.html
@@ -121,7 +126,9 @@ jobs:
           now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
           body=f'''# B1/B2 Digital Work Studio — live public service
 
-          **Open the latest working digital service site:** {url}
+          **Latest static preview verified by this deployment's test run:** {url}. This temporary copy may lag any later repository changes; use the permanent GitHub links below for accurate buyer/payment terms.
+
+          **Permanent buyer and support routes:** [ENIGMA-only scoped customer enquiry](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/35) · [Optional BTC-mainnet support with B1/B2 receiving addresses](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/SUPPORT.md) · [Current AI service catalogue source](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html). Support is voluntary, no payment is required for free tools, and an advertised offer or wallet address is not proof of a paid job or receipt.
 
           **Browse all shared software:** [Original source catalogue]({url}software.html) · **[PC AI Miner — educational SHA256d demos and consented mining]({url}pc-ai-miner.html)**.
 
