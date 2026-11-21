@@ -2,7 +2,7 @@
 **Owner order ID:** OWNER-20261121-ENIGMA-STRAIGHT-EARN-TO-20261122
 **Issued:** 21 November 2026, approximately 04:15 EAT (Africa/Kampala)
 **Timebox end:** 2026-11-22T04:15:00+03:00 (Africa/Kampala).
-**Master plan:** crypto-agents/ENIGMA_V6_CANONICAL_OWNER_MASTER_COMMAND_2026-11-21.md (remains the canonical standing order).
+**Master plan:** crypto-agents/ENIGMA_V7_CANONICAL_OWNER_MASTER_COMMAND_2026-11-21.md (latest owner-approved permanent master; the temporary shift objectives, expiry and restrictions are unchanged).
 
 ## OWNER'S SINGLE COMMAND
 **CHIEF D, B1 transferexperiment, B2 BountyScoutAI, and every genuinely CONNECTED director, manager and worker: CONTINUE ACTUAL AUTHORIZED ENIGMA COMMERCIAL WORK THROUGH TOMORROW MORNING UNDER ONE UNCHANGING ORDER; FIND A REAL BUYER, FULFILL ONE ACCEPTED ENIGMA REQUIREMENT, AND PURSUE A VOLUNTARY LAWFUL PAYMENT TO THE OWNER'S APPROVED ENIGMA RECEIVING ROUTE. DO NOT PAUSE SIMPLY TO PRODUCE STATUS OR NEW ROLE IDS.**
