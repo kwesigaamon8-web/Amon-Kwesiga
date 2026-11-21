@@ -1743,5 +1743,17 @@
     "actual_workers_not_proven_by_role_namespace": true,
     "no_claimed_payment_from_commit": true,
     "report_not_checked_instead_of_invented_zero": true
+  },
+  "active_owner_earn_shift": {
+    "id": "OWNER-20261121-ENIGMA-STRAIGHT-EARN-TO-20261122",
+    "source_file": "crypto-agents/paid-work/OWNER_STRAIGHT_ENIGMA_EARN_SHIFT_2026-11-21_TO_22.md",
+    "issued_at": "2026-11-21T04:15:00+03:00",
+    "end_at": "2026-11-22T04:15:00+03:00",
+    "scope": "ENIGMA_ONLY_NO_OWNER_PROFESSIONAL_CAREER",
+    "one_instruction": "B1 find verified paying customers; B2 deliver testable ENIGMA work; Chief D check acceptance, self-learn/teach/correct and independently verify actual deposits; prioritize real buyer-to-paid conversion; report proof and blockers.",
+    "virtual_roles_not_live": true,
+    "no_email": true,
+    "notify_only_real_client_agreement_requiring_approval_or_confirmed_new_payment": true,
+    "continuous_execution_only_when_existing_actual_schedulers_run": true
   }
 }
