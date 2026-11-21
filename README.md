@@ -5,6 +5,8 @@
 **NEW — ENIGMA v5 personalized AI and apps:** [Request a scoped personal assistant, custom web/mobile app, wellness reminder prototype or business workflow](./docs/personal-ai-custom-apps.html). All client work requires a specific buyer, agreed scope, actual available developers, review and compatible payment; no claim of trillions of live workers.
 
 
+## Separate professional practice — not ENIGMA revenue
+
 AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provides outsourced bookkeeping, financial reporting, payroll management, and tax compliance services to businesses across multiple sectors. Experienced in URA compliance, EFRIS, financial analysis, and modern accounting systems to support informed business decisions.
 
 ---
@@ -21,7 +23,7 @@ The public site runs only a bounded, click-triggered **educational** SHA256d dem
 
 **Worldwide sharing:** [Use seven platform-specific share composers with six-language service introductions](./docs/share-ai-services.html) (manual, permissioned; no post is sent automatically).
 
-**NEW — AI-agent buyer marketplace:** [See four fixed-scope B1/B2 data, Bitcoin evidence and reconciliation services](./docs/agent-work-market.html) · [Machine-readable service offers](./docs/agent-services.json) · [Submit a genuine paid task](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml). Service quotes are invitations, not automated checkout or verified earnings.
+**ENIGMA buyer catalogue:** [See five fixed-scope ENIGMA data, private check-in, Bitcoin evidence and reconciliation services](./docs/agent-work-market.html) · [Machine-readable service offers](./docs/agent-services.json) · [Submit a genuine paid task](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml). Service quotes are invitations, not automated checkout or verified earnings.
 
 
 
@@ -32,7 +34,7 @@ The public site runs only a bounded, click-triggered **educational** SHA256d dem
 **[See the complete public software catalogue](./docs/software.html)** — ten source-backed software listings, four working browser demos and a clear explanation of what is / is not available for Bitcoin mining. Shared globally via the public web; no software earnings or mining revenue implied.
 
 
-**[Hire our AI-assisted digital services: $5–$50 introductory scopes](./docs/ai.html)** · **[Pay a scoped digital service in native BTC mainnet](./docs/payment.html)** · **[Join our worldwide, opt-in collaborators](./docs/join.html)** · **[Read the open invitation](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32)**
+**[Hire our AI-assisted digital services: $5–$50 introductory scopes](./docs/ai.html)** · **[Owner-approved conditional BTC mainnet or B1 native Base-USDC receiving routes for individually agreed work](./docs/payment.html)** · **[Join our worldwide, opt-in collaborators](./docs/join.html)** · **[Read the open invitation](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/32)**
 
 **[Try the live, free browser tools](./docs/LIVE_SITE.md)** · **[Request an original paid task](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** · **[Discuss a task publicly without a GitHub login](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121)**
 
