@@ -6,6 +6,8 @@
 
 **Revenue standard:** Only a customer-accepted ENIGMA deliverable and independently verified payment are earned results. ENIGMA is separate from the owner's professional accounting/tax/audit clients and income.
 
+**Support ENIGMA's free software (voluntary BTC mainnet only):** [See B1/B2 Bitcoin support addresses and safety instructions](./docs/payment.html#support). Free tools require no payment; this is not a charitable tax deduction, a promised return, or evidence that a donation was received. For commissioned work use separately agreed invoices and correct-network routes.
+
 ---
 
 **ENIGMA's first privacy-first, demonstrable personal product:** [Try the daily check-in planner](./docs/personal-daily-checkin-demo.html) (local browser routines and export; no AI model, medical advice, client data upload or auto-payment). A starter custom version may be scoped from $25 after buyer agreement; this project does not include the owner's separate professional practice.
