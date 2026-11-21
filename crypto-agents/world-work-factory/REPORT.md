@@ -1,6 +1,6 @@
 # Worldwide task-to-payment production board
 
-Owner order: OWNER-20261121-ENIGMA-V3-REVENUE-FIRST
+Owner order: OWNER-20261121-ENIGMA-V3.1-TRILLION-AGENT-FOCUS
 Public index: https://muhib-karim.github.io/bounty-radar/bounties.json
 Index: PUBLIC_FEED_READ_31_CANDIDATES
 Original issues checked with repo and available last-page comments: 31/31
