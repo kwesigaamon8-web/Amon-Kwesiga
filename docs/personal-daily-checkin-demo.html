@@ -87,11 +87,11 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
       const checkbox=document.createElement('input'); checkbox.type='checkbox'; checkbox.checked=Boolean(completed[r.id]);
       checkbox.setAttribute('aria-label','Completed '+r.name);
       if (checkbox.checked) done++;
-      checkbox.addEventListener('change',()=>{ if (!state.completed[today] || typeof state.completed[today]!=='object') state.completed[today]={}; state.completed[today][r.id]=checkbox.checked; save(); render(); });
+      checkbox.addEventListener('change',()=>{ syncDay(); if (!state.completed[today] || typeof state.completed[today]!=='object') state.completed[today]={}; state.completed[today][r.id]=checkbox.checked; save(); render(); });
       const details=makeEl('div'); details.append(makeEl('strong',r.name)); if(r.time) details.append(makeEl('span','Preferred time: '+r.time+' (no alarm)','hint'));
       left.append(checkbox,details);
       const del=makeEl('button','Remove','danger');del.type='button';del.setAttribute('aria-label','Remove '+r.name);
-      del.addEventListener('click',()=>{ state.routines=state.routines.filter(x=>x.id!==r.id); Object.values(state.completed).forEach(day=>{if(day && typeof day==='object')delete day[r.id];});save();render();});
+      del.addEventListener('click',()=>{ syncDay(); state.routines=state.routines.filter(x=>x.id!==r.id); Object.values(state.completed).forEach(day=>{if(day && typeof day==='object')delete day[r.id];});save();render();});
       row.append(left,del);list.append(row);
     });
     $('completion-count').textContent=done+' of '+state.routines.length;
