@@ -1,14 +1,14 @@
 {
   "schema": "B1B2_WORLD_TO_PAID_WORK_DISCOVERY_V1",
-  "at_utc": "2026-11-20T19:15:12.636543+00:00",
+  "at_utc": "2026-11-21T00:08:29.559900+00:00",
   "owner": {
-    "owner_order_id": "OWNER-20261120-190904-WORLDWIDE-TASK-TO-BTC-PIPELINE",
-    "owner_sha256": "c8d5c20324617bdb2ec6ba9a8857eaee0d2e28082508fb892838b608aa475c24"
+    "owner_order_id": "OWNER-20261121-ENIGMA-V3-REVENUE-FIRST",
+    "owner_sha256": "709c4398ece204294b4cafe244c156330e46c382ccca0b42e96387027354ac74"
   },
   "index_url": "https://muhib-karim.github.io/bounty-radar/bounties.json",
-  "index_status": "PUBLIC_FEED_READ_34_CANDIDATES",
-  "original_issue_checks_attempted": 34,
-  "original_issue_checks_succeeded": 34,
+  "index_status": "PUBLIC_FEED_READ_31_CANDIDATES",
+  "original_issue_checks_attempted": 31,
+  "original_issue_checks_succeeded": 31,
   "leads": [
     {
       "id": "ies-boilerroom_grpc-http2-hpack-framing_2",
@@ -36,46 +36,6 @@
       "original_issuer": "IES-BoilerRoom",
       "original_source_sha256": "f661253d1589d50e386ed0c72bfa770c32fbc1867b04f9485a300f830fe5f2da",
       "blockers": [
-        "NO_EXTERNAL_SUBMISSION_ROUTE",
-        "SPONSOR_FORBIDS_UNSOLICITED_EXTERNAL_PRS"
-      ],
-      "claimed_bounty_is_earned": false,
-      "requires_sponsor_confirmation": [
-        "Verified available budget/escrow under sponsor control",
-        "Uganda eligibility, available assignment slot and original contribution route",
-        "Explicit correct B1/B2 compatible payout network and amount",
-        "Sponsor approval or permitted claim process before contribution"
-      ],
-      "comments_inspected_count": 0,
-      "original_repository_archived": false
-    },
-    {
-      "id": "ies-boilerroom_grpc-http2-hpack-framing_1",
-      "original_url": "https://github.com/IES-BoilerRoom/grpc-http2-hpack-framing/issues/1",
-      "original_api_url": "https://api.github.com/repos/IES-BoilerRoom/grpc-http2-hpack-framing/issues/1",
-      "source_feed": "https://muhib-karim.github.io/bounty-radar/bounties.json",
-      "feed_title": "fix(http2_hpack): Fix HTTP/2 frame payload ceiling and HPACK dynamic table shard eviction witness ($250 bounty) [unpack_hpack_header_frames]",
-      "advertised_usd_or_unknown": 250,
-      "feed_escrow_claim": "unknown — verify escrow before investing time",
-      "feed_open_pr_count": 0,
-      "fee_or_escrow_independently_verified": false,
-      "priority_score_from_untrusted_feed": 9,
-      "funding_verified": false,
-      "eligible_from_uganda_verified": false,
-      "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": true,
-      "platform_submission_authorized": false,
-      "external_submission_sent": false,
-      "buyer_accepted": false,
-      "btc_deposit_verified": false,
-      "stage": "REJECTED_EXTERNAL_SUBMISSION",
-      "original_title": "fix(http2_hpack): Fix HTTP/2 frame payload ceiling and HPACK dynamic table shard eviction witness ($250 bounty) [unpack_hpack_header_frames]",
-      "original_updated_at": "2026-11-20T11:08:33Z",
-      "original_comments_count": 0,
-      "original_issuer": "IES-BoilerRoom",
-      "original_source_sha256": "18d93a040aac5200574f20b271f26f0de70fce3ce3b5bb41a8d513df81213c34",
-      "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE",
         "NO_EXTERNAL_SUBMISSION_ROUTE",
         "SPONSOR_FORBIDS_UNSOLICITED_EXTERNAL_PRS"
       ],
@@ -471,82 +431,6 @@
         "Sponsor approval or permitted claim process before contribution"
       ],
       "comments_inspected_count": 2,
-      "original_repository_archived": false
-    },
-    {
-      "id": "alfrexo95_bounty-bot_96",
-      "original_url": "https://github.com/alfrexo95/bounty-bot/issues/96",
-      "original_api_url": "https://api.github.com/repos/alfrexo95/bounty-bot/issues/96",
-      "source_feed": "https://muhib-karim.github.io/bounty-radar/bounties.json",
-      "feed_title": "🪙 [Web3] [Wave 3: 2 × $20 USDC | 3-Year Protocol Trajectory",
-      "advertised_usd_or_unknown": 20,
-      "feed_escrow_claim": "unknown — verify escrow before investing time",
-      "feed_open_pr_count": 2,
-      "fee_or_escrow_independently_verified": false,
-      "priority_score_from_untrusted_feed": 4,
-      "funding_verified": false,
-      "eligible_from_uganda_verified": false,
-      "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": true,
-      "platform_submission_authorized": false,
-      "external_submission_sent": false,
-      "buyer_accepted": false,
-      "btc_deposit_verified": false,
-      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
-      "original_title": "🪙 [Web3] [Wave 3: 2 × $20 USDC | 3-Year Protocol Trajectory",
-      "original_updated_at": "2026-11-20T11:28:42Z",
-      "original_comments_count": 2,
-      "original_issuer": "alfrexo95",
-      "original_source_sha256": "6133f2037044ccbfb4c544e239a922d009040a714e6b745bc0e42896357a47e1",
-      "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE"
-      ],
-      "claimed_bounty_is_earned": false,
-      "requires_sponsor_confirmation": [
-        "Verified available budget/escrow under sponsor control",
-        "Uganda eligibility, available assignment slot and original contribution route",
-        "Explicit correct B1/B2 compatible payout network and amount",
-        "Sponsor approval or permitted claim process before contribution"
-      ],
-      "comments_inspected_count": 2,
-      "original_repository_archived": false
-    },
-    {
-      "id": "fractal-neurons_pacta_118",
-      "original_url": "https://github.com/Fractal-Neurons/pacta/issues/118",
-      "original_api_url": "https://api.github.com/repos/Fractal-Neurons/pacta/issues/118",
-      "source_feed": "https://muhib-karim.github.io/bounty-radar/bounties.json",
-      "feed_title": "[Wave 3: 2 × $20 USDC | 3-Year Protocol Trajectory & Integrity Dossiers] Human-Researcher Control-Plane Due-Diligence Pool",
-      "advertised_usd_or_unknown": 20,
-      "feed_escrow_claim": "unknown — verify escrow before investing time",
-      "feed_open_pr_count": 13,
-      "fee_or_escrow_independently_verified": false,
-      "priority_score_from_untrusted_feed": 4,
-      "funding_verified": false,
-      "eligible_from_uganda_verified": false,
-      "compatible_b1_b2_payment_verified": false,
-      "original_issue_checked": true,
-      "platform_submission_authorized": false,
-      "external_submission_sent": false,
-      "buyer_accepted": false,
-      "btc_deposit_verified": false,
-      "stage": "HOLD_ISSUER_REWARD_UNCONFIRMED",
-      "original_title": "[Wave 3: 2 × $20 USDC | 3-Year Protocol Trajectory & Integrity Dossiers] Human-Researcher Control-Plane Due-Diligence Pool",
-      "original_updated_at": "2026-11-20T18:16:36Z",
-      "original_comments_count": 7,
-      "original_issuer": "pacta-fractal-neurons",
-      "original_source_sha256": "2e8dce1a56f8a80973c3548dccb06c546aba454be2da4700c71eb3339bc29865",
-      "blockers": [
-        "NO_EXPLICIT_REWARD_IN_SOURCE"
-      ],
-      "claimed_bounty_is_earned": false,
-      "requires_sponsor_confirmation": [
-        "Verified available budget/escrow under sponsor control",
-        "Uganda eligibility, available assignment slot and original contribution route",
-        "Explicit correct B1/B2 compatible payout network and amount",
-        "Sponsor approval or permitted claim process before contribution"
-      ],
-      "comments_inspected_count": 7,
       "original_repository_archived": false
     },
     {
@@ -1057,7 +941,7 @@
       "feed_title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
       "advertised_usd_or_unknown": null,
       "feed_escrow_claim": "unknown — verify escrow before investing time",
-      "feed_open_pr_count": 2,
+      "feed_open_pr_count": 1,
       "fee_or_escrow_independently_verified": false,
       "priority_score_from_untrusted_feed": 2,
       "funding_verified": false,
@@ -1323,10 +1207,10 @@
   "confirmed_funded_eligible_jobs": 0,
   "external_submissions_sent": 0,
   "received_funds_verified": 0,
-  "feed_generated_at": "2026-11-20T14:28:27.675Z",
+  "feed_generated_at": "2026-11-20T23:26:57.457Z",
   "stage_counts": {
-    "HOLD_ISSUER_REWARD_UNCONFIRMED": 28,
+    "HOLD_ISSUER_REWARD_UNCONFIRMED": 26,
     "HOLD_RECENT_SPONSOR_COMMENTS_UNREAD": 1,
-    "REJECTED_EXTERNAL_SUBMISSION": 5
+    "REJECTED_EXTERNAL_SUBMISSION": 4
   }
 }
