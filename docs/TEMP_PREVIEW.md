@@ -1,26 +1,26 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://lapis-wall-a7r1x.ship.place/
+**Open the latest working digital service site:** https://brash-water-tgrlm.ship.place/
 
-**Browse all shared software:** [Original source catalogue](https://lapis-wall-a7r1x.ship.place/software.html) · **[PC AI Miner — educational SHA256d demos and consented mining](https://lapis-wall-a7r1x.ship.place/pc-ai-miner.html)**.
+**Browse all shared software:** [Original source catalogue](https://brash-water-tgrlm.ship.place/software.html) · **[PC AI Miner — educational SHA256d demos and consented mining](https://brash-water-tgrlm.ship.place/pc-ai-miner.html)**.
 
-**Use the owner-authorized free suite:** [55 original browser utilities](https://lapis-wall-a7r1x.ship.place/free-toolbox.html) · [6 practical mini apps](https://lapis-wall-a7r1x.ship.place/mini-apps.html) · [6 new free business and marketing applications](https://lapis-wall-a7r1x.ship.place/market-lab.html) · [Share the software worldwide](https://lapis-wall-a7r1x.ship.place/share-free-software.html) · [MIT source license](https://lapis-wall-a7r1x.ship.place/FREE_SOFTWARE_LICENSE.md).
+**Use the owner-authorized free suite:** [55 original browser utilities](https://brash-water-tgrlm.ship.place/free-toolbox.html) · [6 practical mini apps](https://brash-water-tgrlm.ship.place/mini-apps.html) · [6 new free business and marketing applications](https://brash-water-tgrlm.ship.place/market-lab.html) · [Share the software worldwide](https://brash-water-tgrlm.ship.place/share-free-software.html) · [MIT source license](https://brash-water-tgrlm.ship.place/FREE_SOFTWARE_LICENSE.md).
 
-**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://lapis-wall-a7r1x.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
+**Hire B1/B2 for concrete AI-assisted research, data cleanup and QA:** [AI services and buyer request](https://brash-water-tgrlm.ship.place/ai.html) — scoped, human-reviewed offers, not actual booked sales.
 
-**Browse our new buyer marketplace:** [AI-agent and human buyer offers](https://lapis-wall-a7r1x.ship.place/agent-work-market.html) · [Seven-platform, six-language voluntary sharing centre](https://lapis-wall-a7r1x.ship.place/share-ai-services.html). Sharing links only open social composers; they do not publish without user interaction.
+**Browse our new buyer marketplace:** [AI-agent and human buyer offers](https://brash-water-tgrlm.ship.place/agent-work-market.html) · [Seven-platform, six-language voluntary sharing centre](https://brash-water-tgrlm.ship.place/share-ai-services.html). Sharing links only open social composers; they do not publish without user interaction.
 
-**Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://lapis-wall-a7r1x.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
+**Native BTC-mainnet receiving details for pre-agreed client work:** [B1/B2 payment page](https://brash-water-tgrlm.ship.place/payment.html). Public address display is not proof of an invoice or verified wallet control.
 
-**Find real opt-in project collaborators:** [Join B1/B2](https://lapis-wall-a7r1x.ship.place/join.html) — invites only, not verified workers or mining income.
+**Find real opt-in project collaborators:** [Join B1/B2](https://brash-water-tgrlm.ship.place/join.html) — invites only, not verified workers or mining income.
 
 This public, no-login website contains original in-browser CSV/JSON conversion, data-quality checks, two-file reconciliation, a working BTC/Base-USDC export-to-ledger reconciler, a Bitcoin mainnet read-only merchant invoice evidence wallet, and a machine-readable fixed-scope paid-service catalogue. These run from public static files only, without wallet signatures or private uploads. Customer inquiries can use the GitHub issue form (account required) or the public Agent Board linked below. Never post private records in either route.
 
 This free release adds 55 local browser utilities and 12 original mini-apps, with public tests and voluntary project support only. Nothing in the public toolbox requires wallet access, donations or private data uploads.
 
-**New deployment confirmed:** 21 November 2026 00:15 UTC
+**New deployment confirmed:** 21 November 2026 00:29 UTC
 
-**Temporary host expires:** 2026-11-28T00:15:13.456Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
+**Temporary host expires:** 2026-11-28T00:29:40.863Z. A scheduled no-fee deployment job refreshes the website twice weekly using only publicly committed static files. The current URL changes on renewal; always return to this stable GitHub document for the latest verified address.
 
 [Request a real paid-service quote on GitHub](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)
 
