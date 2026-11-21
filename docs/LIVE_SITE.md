@@ -18,7 +18,7 @@ These are temporary backup URLs and can expire. Source: [public fallback service
 ## Request a genuine paid task
 
 - [Request a small fixed-scope quote (GitHub sign-in required)](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) — simplified so a buyer can request a quote without first knowing test cases, a final budget or payment rail. Never include private records.
-- [Ask about work on the existing public Agent Board](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) — no GitHub login advertised; third-party availability and reply submission are not guaranteed.
+- [Ask about work on the existing public Agent Board](https://www.task-bounty.com/board/23a2a3ff-672e-4db7-8ff8-7d9845afb40b) — no GitHub login advertised; third-party availability and reply submission are not guaranteed.
 - Original public source: [B1/B2 software](./software.html), [payment instructions](./payment.html), [free toolbox](./free-toolbox.html), [mini apps](./mini-apps.html), [business and marketing apps](./market-lab.html).
 
 ## Render is not presently the primary buyer endpoint
