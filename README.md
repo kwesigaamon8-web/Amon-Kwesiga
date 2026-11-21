@@ -1,4 +1,6 @@
 # Amon-Kwesiga
+
+**NEW — Uganda business services:** [Bookkeeping, VAT/PAYE/WHT, EFRIS and bank reconciliations — request a scoped quote](./docs/uganda-accounting.html). Source-backed local professional service; no client engagement or payment is presumed.
 AMON KWESIGA – Accounting &amp; Tax Consultant based in Kampala, Uganda. Provides outsourced bookkeeping, financial reporting, payroll management, and tax compliance services to businesses across multiple sectors. Experienced in URA compliance, EFRIS, financial analysis, and modern accounting systems to support informed business decisions.
 
 ---
