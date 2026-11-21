@@ -21,10 +21,18 @@
 - Request a specific paid job: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml
 - No GitHub account? Public opt-in inquiry: https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121
 
+## ENIGMA personalized AI & applications
+
+- Private Daily Check-in Planner: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/personal-daily-checkin-demo.html
+- Custom personal AI / apps enquiry: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/personal-ai-custom-apps.html
+- This is an ENIGMA-only project and does not use the owner's separate tax, audit or accounting career or clients.
+- Browser-local prototype, not an LLM or diagnostic medical tool. The demo can be tried without signup on the current verified HTTPS preview listed at docs/TEMP_PREVIEW.md.
+
 ## Available starting quotes (USD equivalent, not an automatic payment request)
 
 - $5: up to 100 rows / 20 columns, clean CSV plus concise data-quality report.
 - $15: one BTC mainnet public TXID output/amount evidence report.
+- $25: one customized private browser daily check-in page, up to five agreed non-sensitive fields, source and notes; refer to working demo and tests.
 - $30: customized read-only Bitcoin payment-request wallet for a merchant, with local invoice evidence report.
 - $50: up to 500 BTC/Base-native-USDC CSV transaction-export rows reconciled to an approved general-ledger CSV with exception schedule.
 
