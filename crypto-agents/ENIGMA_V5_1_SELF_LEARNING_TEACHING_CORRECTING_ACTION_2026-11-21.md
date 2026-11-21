@@ -252,7 +252,7 @@ Develop and provide:
 - Business intelligence.
 - Business-plan and startup support.
 
-Preserve the OWNER's practical Uganda accounting, URA, EFRIS and financial-reporting experience as an immediate commercial advantage.
+Accounting and business software may be ENIGMA service categories, but the OWNER's separate professional accounting/tax/audit career, private clients, records, agreements and receivables are not ENIGMA assets or revenue.
 
 Regulated or reserved professional work must be handled by appropriately authorized professionals.
 
@@ -359,7 +359,7 @@ Therefore, every execution cycle must prioritize the strongest credible route to
 
 The priority order is:
 
-1. Verified outstanding client receivables.
+1. Verified outstanding receivables from ENIGMA's own accepted customer engagements only; never the OWNER's separate professional clients.
 2. Previously agreed paid assignments nearing completion.
 3. Qualified customers requesting immediately deliverable services.
 4. Funded contracts and available paid tasks.
@@ -673,7 +673,7 @@ For each customer use case, generate a bounded work order:
 
 Train applicable workers on verified patterns from earlier engagements **without leaking one customer's records, private data, proprietary code or medical information to another**. Never list a proposed product as available or sell a personalized service as completed before a tested version actually exists.
 
-Each cycle should select the **highest-probability legitimate revenue action** before starting broad speculative work. For emergency cash needs, first check verified collectible receivables and accepted unfinished engagements; then confirmed funded buyers; only afterward consider speculative products and mining.
+Each cycle should select the **highest-probability legitimate revenue action** before starting broad speculative work. For urgent ENIGMA revenue, check only ENIGMA's own independently documented receivables and accepted unfinished ENIGMA engagements; then confirmed funded buyers; only afterward consider speculative products and mining.
 
 ## 20. MANDATORY ACTION AND PROOF GATES
 
@@ -722,3 +722,25 @@ For each commercial opportunity, record the independent status of: `BUYER_VERIFI
 
 **SUPREME FINANCIAL ACCEPTANCE TEST: LEARN → TEACH → CORRECT → EXECUTE → DELIVER CUSTOMER VALUE → REQUEST PAYMENT → VERIFY MONEY ACTUALLY RECEIVED INTO THE OWNER'S APPROVED ADDRESS.**
 
+
+## 22. OWNER'S CAREER AND ENIGMA PROJECT ARE STRICTLY SEPARATE
+
+**OWNER'S EXPLICIT CORRECTION — THE OWNER'S PROFESSIONAL CAREER IS NOT ENIGMA.**
+
+The OWNER's independent accounting, tax, audit and consulting career is a separate professional activity. The OWNER's existing clients, fees, invoices, private correspondence, working papers, bank accounts, professional engagements and outstanding receivables are **not ENIGMA's business, funds, leads, assets or payment obligations**.
+
+ENIGMA is a distinct global AI and software-services project. Its mission is to develop and sell personalized AI assistants, custom applications, wellness reminder/check-in tools, enterprise solutions and other useful, lawful products. ENIGMA must independently acquire its own consenting customers, agree its own scopes, complete its own deliverables, and earn payments into the OWNER's explicitly approved **ENIGMA project** receiving routes.
+
+**Binding operating rules, overriding contrary historical ENIGMA instructions:**
+
+1. **NEVER** include the OWNER's separate career client receivables, professional fees or engagement balances in ENIGMA commercial ledgers, revenue forecasts, payment targets or project reports. No past client names or amounts belong in the public project repository.
+2. **NEVER** contact, solicit, pursue or collect from the OWNER's professional clients as part of ENIGMA unless the OWNER explicitly approves that specific overlap and its scope.
+3. **NEVER** import or use the OWNER's accounting practice files, client contact lists, private work or regulated engagement records as ENIGMA training, marketing, technical testing or customer data without explicit and appropriate authorization.
+4. ENIGMA may offer generic accounting software or business automation solutions as an independent project, but those offerings must not imply that the OWNER's existing accounting clients have commissioned ENIGMA.
+5. **Only** payments owed for real ENIGMA-specific customer work, or otherwise independently verified and authorized ENIGMA revenue, may be booked as ENIGMA cash and measured against ENIGMA's crypto receiving-address objectives.
+6. When historical orders mention "collect outstanding client balances" or "use the owner's accounting practice for immediate collections," interpret that language as **superseded for ENIGMA** by this section. The separate professional career must not be absorbed into the project.
+7. Maintain separate client lists, access permissions, agreements, deliverables, ledgers and evidence for the professional career and ENIGMA.
+
+The precedence rule is unambiguous: **NO CROSSOVER WITHOUT THE OWNER'S EXPLICIT CASE-SPECIFIC AUTHORIZATION.** Revenue for ENIGMA must be earned by ENIGMA.
+
+This section supplements the same complete command and preserves the learning, teaching, self-correction, actual execution and independently verified payment requirements.
