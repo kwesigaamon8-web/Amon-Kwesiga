@@ -1,6 +1,8 @@
 # B1/B2 Digital Work Studio — live public service
 
-**Open the latest working digital service site:** https://jungle-son-8fe3c.ship.place/
+**Open the last independently verified static preview (21 November 2026 at 01:06 UTC):** https://jungle-son-8fe3c.ship.place/ — it is temporary, may be unavailable or behind the current repository, and is **not verified as up to date**.
+
+**Permanent, no-expiry GitHub purchase or support routes (source-backed):** [Request one genuine ENIGMA-only digital service from the five-offer catalogue](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/35) · [Voluntarily support original free tools with BTC mainnet (B1/B2 addresses and safeguards)](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/SUPPORT.md) · [Read the current source for the buyer marketplace](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html). No donation is required, no contracted fee is owed without agreed terms, and none of these links proves a transaction.
 
 **Browse all shared software:** [Original source catalogue](https://jungle-son-8fe3c.ship.place/software.html) · **[PC AI Miner — educational SHA256d demos and consented mining](https://jungle-son-8fe3c.ship.place/pc-ai-miner.html)**.
 
