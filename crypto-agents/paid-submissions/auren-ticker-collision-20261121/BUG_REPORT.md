@@ -61,6 +61,10 @@ for raw_ticker, value in weights.items():
 
 Alternatively aggregate aliases only if documented and deliberately supported by the sponsor. In either policy, input order must not change exposure. Regression tests should cover mixed case, whitespace, reversing key order, and ordinary unique portfolios.
 
+## New 21 November upstream overlap found — do not misstate novelty
+
+A separately authored AUREN report, [issue #170](https://github.com/Ayush441-python/AUREN/issues/170), was published on 21 November 2026 at 15:40 UTC. It documents duplicate ticker **rows in the browser UI**, causing the request to silently retain only the last value before it reaches the API. ENIGMA's separate reproduced candidate concerns duplicate **canonicalized keys inside the API** (distinct raw names such as `NVDA` and ` nvda `), which also silently overwrite and change exposures with ordering. The mechanisms are different, but the financial symptom and normalization code overlap. **Sponsor may treat the new report as duplicate or already covered; no novelty, payout entitlement or current bounty funding is established.** Before asking the owner to invest submission time, cross-reference #170, seek sponsor clarification on scope/available funds, and avoid implying accepted revenue. No third-party issue was submitted or changed by ENIGMA.
+
 ## Duplication and authorization checks
 GitHub issue searches for the AUREN repository found **no matching existing issue** for `mixed-case ticker`, `canonical ticker collision`, `whitespace collision`, or `normalized weights overwrite`; this is not an exhaustive guarantee of novelty.
 
