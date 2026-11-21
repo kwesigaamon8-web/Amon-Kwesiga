@@ -19,6 +19,17 @@ OUT = Path('paid-opportunity-reports/taskmarket-base-usdc.json')
 HEX_TX = re.compile(r'^0x[0-9a-fA-F]{64}$')
 UNSAFE = re.compile(r'(?i)\b(seed phrase|private key|transfer (?:usdc|eth|coins)|deposit first|payment upfront|stake funds|register and pay|fake review|spam|guaranteed profit)\b')
 SKILLS = re.compile(r'(?i)\b(python|typescript|javascript|data|csv|json|excel|reconcil|audit|qa|test|documentation|research|code|api|report|bookkeep|spreadsheet|invoice|scrap|financial|bug)\b')
+# Real marketplace tasks may display a Base-USDC escrow/listing amount, while
+# the actual worker payout is a different token or network. A listing deposit
+# must NEVER be marketed as USDC earned by our approved Base receiving route.
+ALT_PAYOUT = re.compile(
+    r'(?i)(?:\bno\s+(?:per-worker\s+)?USDC\s+(?:release|payout)\b'
+    r'|\b(?:USDC\s+)?(?:reward|deposit)\s+on\s+this\s+task\s+is\s+(?:a\s+)?listing\s+deposit\b'
+    r'|\bpayout\s*:\s*[-–—]?\s*(?:FLAPJAX|USDT|BNB|SOL|OUSD)\s+only\b'
+    r'|\bpays?\s+(?:workers?|agents?)\s+(?:only\s+)?in\s+(?:FLAPJAX|USDT|BNB|SOL|OUSD)\b'
+    r'|\bno\s+(?:direct\s+)?USDC\s+(?:payment|settlement)\s+to\s+(?:workers?|submitters?)\b)'
+)
+
 NUMBER_WORDS = dict(zip(
     ('one two three four five six seven eight nine ten eleven twelve '
      'thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty').split(),
@@ -84,6 +95,8 @@ def classify(row, now):
         blockers.append('funding_transaction_missing_or_invalid')
     if UNSAFE.search(description):
         blockers.append('unsafe_or_pay_first_language')
+    if ALT_PAYOUT.search(description):
+        blockers.append('worker_payout_not_approved_base_usdc')
     submissions = row.get('submissionCount')
     competition = submissions if type(submissions) == int and submissions >= 0 else None
     pool_slots = shared_pool_slots(description)
@@ -140,18 +153,23 @@ def self_test():
         dict(base, id='TSK-STAKE', stakeRequired=True),
         dict(base, id='TSK-CHEAP', reward='100000'),
         dict(base, id='TSK-PHISH', description='Share private key for reward'),
+        dict(base, id='TSK-MISLEAD', description=('Payout: - FLAPJAX only on BSC. '
+             'The USDC reward on this task is a listing deposit, not a per-worker payout.')),
+        dict(base, id='TSK-NOUSDC', description='No per-worker USDC release; paid only in another token.'),
         dict(base, id='TSK-SPLIT', reward='5000000',
              description='5 USDC total reward pool. The first 50 qualifying agents share the full pool equally.',
              submissionCount=52)
     ]
     found = screen({'tasks': rows}, now)
-    assert len(found) == 6 and found[0]['id'] == 'TSK-VALID1'
+    assert len(found) == 8 and found[0]['id'] == 'TSK-VALID1'
     pool = next(x for x in found if x['id'] == 'TSK-SPLIT')
     assert pool['status'] == 'HOLD' and pool['usdc_per_winner_if_all_slots_filled'] == '0.1'
     assert shared_pool_slots('9 USDC, split equally among accepted passes, up to nine.') == 9
     assert found[0]['advertised_usdc_base'] == '9'
     assert found[0]['status'].startswith('SOURCE_OPEN')
     assert all(x['status'] == 'HOLD' for x in found[1:])
+    assert all('worker_payout_not_approved_base_usdc' in next(x for x in found if x['id']==name)['blockers']
+               for name in ('TSK-MISLEAD','TSK-NOUSDC'))
     assert all(not x['owner_deposit_verified'] for x in found)
     # Real 19 Nov 2026 listing: 5 USDC pool, first 50 qualify,
     # already 53 entries. An open UI status does not restore paid slots.
@@ -168,7 +186,7 @@ def self_test():
     assert 'shared_pool_more_submissions_than_max_paid_slots' in saturated['blockers']
     assert screen({'not_tasks': rows}, now) == []
     assert classify(dict(base, reward='NAN'), now) is None
-    print('TASKMARKET_READ_ONLY_SCOUT_TEST_PASS: unit conversion, deadline, stake, tx, unsafe words')
+    print('TASKMARKET_READ_ONLY_SCOUT_TEST_PASS: unit conversion, deadline, stake, funding, true worker payout rail, unsafe words')
 
 def main():
     p = argparse.ArgumentParser()
