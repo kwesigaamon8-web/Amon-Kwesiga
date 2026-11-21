@@ -114,7 +114,13 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
   });
   $('erase-data').addEventListener('click',()=>{
     if(!window.confirm('Erase all ENIGMA daily check-in information stored in this browser? This cannot be undone.'))return;
-    try{localStorage.removeItem(KEY);}catch(e){}
+    try {
+      localStorage.removeItem(KEY);
+      if (localStorage.getItem(KEY) !== null) throw new Error('Storage entry remains');
+    } catch (e) {
+      $('backup-feedback').textContent='Could not verify deletion from browser storage. Clear this site\'s data in browser settings; do not assume your saved entries were erased.';
+      return;
+    }
     state={routines:[],completed:{},reflections:{}};ref.value='';$('reflection-status').textContent='';render();$('backup-feedback').textContent='Stored check-in data erased from this browser.';
   });
   window.addEventListener('focus',syncDay);
