@@ -12,7 +12,11 @@ body:
     attributes:
       label: Requested service
       options:
-        - Daily check-in demo customization (proposed USD 25 starter, up to five fields)
+        - Tiny CSV cleanup pilot (up to 100 rows and 20 columns; proposed USD 5 starter)
+        - Public Bitcoin-mainnet transaction evidence check (one TXID; proposed USD 15 starter)
+        - Private daily check-in planner customization (up to five fields; proposed USD 25 starter)
+        - Receive-only BTC merchant checkout adaptation (proposed USD 30 starter)
+        - BTC / Base-native-USDC exported-ledger reconciliation (up to 500 rows; proposed USD 50 starter)
         - CSV / Excel / JSON conversion
         - Payment or invoice reconciliation
         - Workbook cleanup
