@@ -1,9 +1,9 @@
 {
   "schema": "B1B2_WORLD_TO_PAID_WORK_DISCOVERY_V1",
-  "at_utc": "2026-11-21T00:32:35.364873+00:00",
+  "at_utc": "2026-11-21T00:34:27.913679+00:00",
   "owner": {
     "owner_order_id": "OWNER-20261121-ENIGMA-V5.1-LEARN-TEACH-CORRECT-ACT",
-    "owner_sha256": "ceb74bd44002787c9c22906e496155a16801747f463c65d1f1065d3091b86fd5"
+    "owner_sha256": "90a65920b7de8c9b0736120d6a15b42e302277dd82aa719c11f73a0b5cd045de"
   },
   "index_url": "https://muhib-karim.github.io/bounty-radar/bounties.json",
   "index_status": "PUBLIC_FEED_READ_31_CANDIDATES",
