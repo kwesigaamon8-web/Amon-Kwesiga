@@ -1,10 +1,10 @@
 {
   "schema": "b1b2-digital-services/v1",
-  "updated_utc": "2026-11-18T23:48:00Z",
+  "updated_utc": "2026-11-21T06:28:49.708Z",
   "provider": {
     "name": "B1/B2 Digital Work Studio",
     "type": "Human-supervised independent developer services",
-    "organization_claim": "Independent service providers B1 transferexperiment and B2 BountyScoutAI; conceptual director roles are not a representation of active model processes",
+    "organization_claim": "ENIGMA independent project: B1 transferexperiment handles qualified buyers; B2 BountyScoutAI handles tested deliverables; conceptual hierarchy roles are not active worker counts; owner's separate accounting/audit/tax career and clients are excluded",
     "repository": "https://github.com/kwesigaamon8-web/Amon-Kwesiga",
     "readme": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/LIVE_SITE.md"
   },
@@ -98,9 +98,31 @@
         "Not an onchain verification",
         "No financial statement audit, valuation or tax opinion"
       ]
+    },
+    {
+      "id": "private-daily-checkin-starter",
+      "name": "Private Daily Check-in Planner — five-field starter customization",
+      "estimated_usd_price": 25,
+      "estimated_time_after_acceptance": "One mutually agreed short turn, subject to agreed requirements",
+      "included": [
+        "One browser-only static HTML routine/check-in page with up to five buyer-agreed non-sensitive fields",
+        "Editable routines, progress status, optional note and privacy-first browser-local storage",
+        "JSON backup/export, source code and basic setup notes",
+        "Buyer-agreed usability and error-handling acceptance tests before final delivery"
+      ],
+      "demo": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/personal-daily-checkin-demo.html",
+      "preview_directory": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/TEMP_PREVIEW.md",
+      "tests_source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/tests/personal-daily-checkin.test.js",
+      "test_status": "Automation test source added; execution result requires a successful CI run. Inline JS and test JS syntactically parsed by V8.",
+      "exclusions": [
+        "Not a medical diagnostic, emergency monitoring or actual AI-model product",
+        "No cloud synchronization, notification push services or third-party data hosting",
+        "No private medical or personal records in public GitHub enquiries",
+        "Client-specific development and fee require individual written scope and acceptance"
+      ]
     }
   ],
   "verified_paid_clients": 0,
-  "incoming_payment_claim": "No verified customer payment or sale asserted by this catalogue",
+  "incoming_payment_claim": "No newly verified ENIGMA buyer acceptance, signed contract, or transaction claimed by this catalogue",
   "source_licensing": "Read individual repository files for licenses; a quote buys only mutually agreed custom work, not transfer of unrelated intellectual property"
 }
