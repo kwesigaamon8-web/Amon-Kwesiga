@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Try an ENIGMA private, browser-based daily check-in and reminder planner. Custom versions available by quote. No account, no cloud upload.">
+<title>My Daily Check-in — ENIGMA functional demo</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#132f42;background:#f5f8fb;line-height:1.55}
+*{box-sizing:border-box}body{margin:0}.wrap{max-width:1040px;margin:auto;padding:0 20px}
+header{background:#11334b;color:#fff;padding:17px 0}header .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}header a{color:#d6f0ff}
+.hero{background:linear-gradient(122deg,#133d57,#0e5262);color:white;padding:44px 0}
+h1{font-size:clamp(2rem,4.2vw,3rem);line-height:1.15;margin:0 0 12px}h2{font-size:1.45rem;margin:0 0 15px}
+.hero p{max-width:720px;font-size:1.07rem}.hero .muted{color:#d4eaf2}
+main{padding:30px 0 55px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+section.panel{background:#fff;border:1px solid #d7e3ec;border-radius:13px;padding:22px;box-shadow:0 3px 15px #1a385210}
+.wide{grid-column:1/-1}label{font-weight:650;display:block;margin-bottom:6px}.small{color:#536779;font-size:.9rem}
+input,select,textarea{width:100%;border:1px solid #9aafbc;border-radius:7px;font:inherit;padding:10px;background:#fff;color:#142f3f}
+textarea{min-height:100px;resize:vertical}.field{margin-bottom:15px}
+button,.btn{display:inline-block;border:0;cursor:pointer;border-radius:8px;padding:11px 16px;background:#0d5e83;color:white;font:inherit;font-weight:700;text-decoration:none}
+button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #f7ac33;outline-offset:2px}
+button.secondary,.btn.secondary{background:#e5f0f5;color:#17415a}
+button.danger{background:#fff0ed;color:#9e2b22;border:1px solid #edc3bb;padding:6px 10px}
+.actions{display:flex;gap:9px;flex-wrap:wrap}.routine{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #e5ecf0}
+.routine:last-child{border-bottom:0}.routine .main{display:flex;gap:10px;align-items:start;min-width:0}.routine input{width:20px;height:20px;margin-top:3px;flex:none;accent-color:#137e72}
+.routine strong{display:block;overflow-wrap:anywhere}.hint{color:#5a6d79;font-size:.83rem}.completion{font-weight:800;font-size:2rem;color:#146b67}
+.note{border-left:4px solid #82a8b7;background:#ecf5f7;padding:15px 19px;border-radius:4px;margin:18px 0}.success{color:#086c54}.warn{color:#a43a24}
+footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.hero{padding:32px 0}.routine{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><strong>ENIGMA · B1/B2 Digital Work Studio</strong><nav><a href="personal-ai-custom-apps.html">Custom AI & apps</a> · <a href="index.html">Studio home</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>My Daily Check-in</h1><p>Try a working, privacy-first routine planner. Add a reminder, check off today's routines and keep a short reflection—all in your own browser.</p><p class="muted">This is a functional rules-based demo, <strong>not an AI model</strong> or a medical monitoring service. Nothing is sent to ENIGMA.</p></div></div>
+<main class="wrap">
+<div class="note" role="note"><strong>Privacy:</strong> Your entries stay on this browser through local storage. They will disappear if you clear browser data or switch devices. Export a backup before clearing data. Do not use this prototype for emergencies, medical decisions, or critical medication alerts; it sends no background notifications.</div>
+<div class="grid">
+<section class="panel"><h2>Add a daily routine</h2><form id="routine-form">
+<div class="field"><label for="routine-name">What would you like to remember?</label><input id="routine-name" maxlength="90" placeholder="Example: review tomorrow's plan" required autocomplete="off"></div>
+<div class="field"><label for="routine-time">Preferred time (optional)</label><input id="routine-time" type="time"><div class="hint">The time is a label, not a background alarm.</div></div>
+<div class="actions"><button type="submit">Add to today's planner</button><button class="secondary" type="button" id="clear-completed">Clear today's ticks</button></div></form><p id="routine-feedback" class="small" role="status" aria-live="polite"></p></section>
+<section class="panel"><h2>Today's progress</h2><p class="small" id="today-label"></p><div class="completion" aria-live="polite" id="completion-count">0 of 0</div><p class="small" id="completion-description">Your completed routines for today.</p><div class="actions"><button class="secondary" type="button" id="download-backup">Export my private backup</button><button class="danger" type="button" id="erase-data">Erase my browser data</button></div><p class="small" role="status" aria-live="polite" id="backup-feedback"></p></section>
+<section class="panel wide"><h2>Your daily routines</h2><div id="routine-list"><p class="small">Add your first routine above.</p></div></section>
+<section class="panel wide"><h2>Private daily reflection</h2><label for="reflection">How did today go?</label><textarea id="reflection" maxlength="2500" placeholder="Write something useful for yourself. This stays in your own browser."></textarea><p class="small">Saved automatically in your browser for today only; other days are stored separately.</p><p class="success small" id="reflection-status" role="status" aria-live="polite"></p></section>
+<section class="panel wide"><h2>Would you like a version made for you?</h2><p>ENIGMA can scope a customized personal planner, check-in app or private AI assistant. A <strong>$25 starter quote</strong> covers one small offline browser-based routine/check-in page with up to five agreed fields, original source and basic usage instructions; more complex personal AI or cloud features are quoted separately. No payment is requested before a specific scope and terms are agreed.</p>
+<div class="actions"><a class="btn" href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml" rel="noopener noreferrer" target="_blank">Request a $25 starter quote</a><a class="btn secondary" href="personal-ai-custom-apps.html">Explore custom AI and apps</a></div><p class="small">GitHub questions are public; never post health records, names, bank information or passwords. We do not automatically accept projects or payments.</p></section>
+</div></main>
+<footer><div class="wrap">ENIGMA demo · User-controlled browser storage · No account, analytics, email, back-end AI, emergency alert or automatic checkout.</div></footer>
+<script>
+(() => {
+  'use strict';
+  const KEY = 'enigma_checkin_demo_v1';
+  const dateKey = () => {
+    const d = new Date();
+    return [d.getFullYear(), String(d.getMonth() + 1).padStart(2,'0'), String(d.getDate()).padStart(2,'0')].join('-');
+  };
+  const $ = (id) => document.getElementById(id);
+  let state = { routines: [], completed: {}, reflections: {} };
+  try {
+    const loaded = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (loaded && Array.isArray(loaded.routines) && typeof loaded.completed === 'object' && loaded.completed && typeof loaded.reflections === 'object' && loaded.reflections) {
+      state = {
+        routines: loaded.routines.filter(r => typeof r?.id === 'string' && typeof r?.name === 'string').slice(0, 100),
+        completed: loaded.completed, reflections: loaded.reflections
+      };
+    }
+  } catch (err) { $('routine-feedback').textContent = 'Saved browser data was unreadable. Starting with an empty planner.'; }
+  const today = dateKey();
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); return true; } catch(e) { $('backup-feedback').textContent='Browser storage is unavailable; export is recommended.'; return false; } };
+  const finishedToday = () => state.completed[today] && typeof state.completed[today] === 'object' ? state.completed[today] : {};
+  const makeEl = (tag, text, className='') => { const el=document.createElement(tag); if (text!==undefined) el.textContent=text; if(className) el.className=className; return el; };
+  const render = () => {
+    $('today-label').textContent = new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    const list = $('routine-list'); list.replaceChildren();
+    const completed = finishedToday(); let done=0;
+    if (!state.routines.length) list.append(makeEl('p','No routines yet. Add a daily goal above.','small'));
+    state.routines.forEach(r => {
+      const row=makeEl('div',undefined,'routine'); const left=makeEl('div',undefined,'main');
+      const checkbox=document.createElement('input'); checkbox.type='checkbox'; checkbox.checked=Boolean(completed[r.id]);
+      checkbox.setAttribute('aria-label','Completed '+r.name);
+      if (checkbox.checked) done++;
+      checkbox.addEventListener('change',()=>{ if (!state.completed[today] || typeof state.completed[today]!=='object') state.completed[today]={}; state.completed[today][r.id]=checkbox.checked; save(); render(); });
+      const details=makeEl('div'); details.append(makeEl('strong',r.name)); if(r.time) details.append(makeEl('span','Preferred time: '+r.time+' (no alarm)','hint'));
+      left.append(checkbox,details);
+      const del=makeEl('button','Remove','danger');del.type='button';del.setAttribute('aria-label','Remove '+r.name);
+      del.addEventListener('click',()=>{ state.routines=state.routines.filter(x=>x.id!==r.id); Object.values(state.completed).forEach(day=>{if(day && typeof day==='object')delete day[r.id];});save();render();});
+      row.append(left,del);list.append(row);
+    });
+    $('completion-count').textContent=done+' of '+state.routines.length;
+    $('completion-description').textContent=state.routines.length?'Completed today: '+Math.round(done/state.routines.length*100)+'%':'Add a routine to begin.';
+  };
+  $('routine-form').addEventListener('submit',e=>{
+    e.preventDefault(); const name=$('routine-name').value.trim().replace(/\s+/g,' ');
+    if(!name)return; if(state.routines.length>=100){$('routine-feedback').textContent='Limit of 100 routines reached.';return;}
+    const id=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,11);
+    state.routines.push({id,name,time:$('routine-time').value});save();$('routine-form').reset();$('routine-feedback').textContent='Routine added.';render();
+  });
+  $('clear-completed').addEventListener('click',()=>{delete state.completed[today];save();render();$('routine-feedback').textContent="Today's ticks cleared.";});
+  const ref=$('reflection');ref.value=typeof state.reflections[today]==='string'?state.reflections[today]:'';
+  ref.addEventListener('input',()=>{state.reflections[today]=ref.value;save();$('reflection-status').textContent='Reflection saved on this device.';});
+  $('download-backup').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),type:'ENIGMA private daily check-in',data:state},null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='my-daily-checkin-'+today+'.json';document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);
+    $('backup-feedback').textContent='Backup exported. Keep it private.';
+  });
+  $('erase-data').addEventListener('click',()=>{
+    if(!window.confirm('Erase all ENIGMA daily check-in information stored in this browser? This cannot be undone.'))return;
+    try{localStorage.removeItem(KEY);}catch(e){}
+    state={routines:[],completed:{},reflections:{}};ref.value='';render();$('backup-feedback').textContent='Stored check-in data erased from this browser.';
+  });
+  render();
+})();
+</script>
+</body>
+</html>
