@@ -6,6 +6,22 @@
 
 **Request one deliverable:** [Public GitHub quote request](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) (GitHub login required), or [existing TaskBounty discussion](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) if its external public reply facility is available. Provide only a brief non-sensitive example, an expected result, deadline and optional budget; never publish confidential records, wallet seeds, financial credentials or personal data.
 
+## How to order and pay for an ENIGMA service
+
+**BUYER PATH:** [See service and starting price](#ready-to-demonstrate-small-services) → [request the exact job and quote](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) → agree final scope, acceptance criteria, exact coin/network, delivery and price → [follow the payment instructions](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/payment.html) → delivery, buyer acceptance, agreed settlement and verified receipt.
+
+**Payment destinations shown with every sales offer (use only after a buyer confirms the job and the amount):**
+
+| Payment option | Owner-approved receiving address | Terms |
+| --- | --- | --- |
+| **BTC (Bitcoin mainnet) — B1** | `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z` | For individually agreed B1 work; confirm exact BTC amount and network |
+| **BTC (Bitcoin mainnet) — B2** | `bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9` | For individually agreed B2 work; confirm exact BTC amount and network |
+| **Circle native USDC (Base mainnet) — B1 only** | `0x734989a439F146885C12907cd9Dd191b03d5B07e` | Conditional; verify exact native USDC contract, wallet ownership/route and network with the owner before any agreement |
+
+**Example offer:** *“Need a messy CSV cleaned? The 100-row starter is quoted from US$5 equivalent. Show us a synthetic sample and your required output. We will confirm a fixed price and whether you prefer BTC mainnet or verified native Base USDC; only then use the specified receiving address under the agreed terms.”*
+
+Prices are USD **equivalents**, not on-chain fixed amounts. No payment is owed merely for reading this offer or requesting a quotation. There is no card checkout, x402 endpoint or automatic sale confirmation. Never deposit to another chain, send keys or treat an unverified transaction as payment.
+
 ## Ready-to-demonstrate small services
 
 | Starter deliverable | Indicative initial quote, USD equivalent | Original source / demonstration |
