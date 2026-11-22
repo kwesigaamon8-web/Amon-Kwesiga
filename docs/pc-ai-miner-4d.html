@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PC AI Miner — 4D Free Hosting and BTC Mining Feasibility</title>
+<meta name="description" content="Four-dimensional Bitcoin mining: lawful hardware, hosting policies, expected economics and independently verified BTC payouts. No browser mining.">
+<style>
+:root{font-family:system-ui,Arial,sans-serif;color:#162d3c;background:#f3f7f9}*{box-sizing:border-box}body{margin:0;line-height:1.55}
+header,footer{background:#133449;color:#fff;padding:18px max(20px,calc((100vw - 1030px)/2))}header a,footer a{color:#c6efff}
+main{max-width:1030px;margin:auto;padding:26px 18px 48px}h1{line-height:1.15}h2{margin-bottom:5px}
+section{background:#fff;border:1px solid #dae3e9;border-radius:12px;padding:20px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:13px}
+label{display:block;font-weight:600;margin:6px 0}input,select{font:inherit;padding:10px;border:1px solid #91a5b1;border-radius:7px;width:100%}
+input[type=checkbox]{width:18px;height:18px;margin-right:7px;vertical-align:middle}
+.checkbox{font-weight:400}.metric{background:#f1f6f8;border-radius:7px;padding:13px}.metric b{font-size:1.14rem;display:block}
+small,.muted{color:#486271}a{color:#075e83}button{background:#11607e;color:#fff;border:0;border-radius:8px;padding:11px 18px;cursor:pointer;font:inherit;font-weight:600}
+.notice{border-left:4px solid #b68b24;padding:12px;background:#fff8e9}.bad{font-weight:700;color:#9e2832}.ok{font-weight:700;color:#196348}
+code{overflow-wrap:anywhere}
+</style></head>
+<body><header><strong>PC AI Miner · Four Dimensions</strong> · <a href="pc-ai-miner.html">Existing PC AI Miner</a> · <a href="mining-software.html">Software research</a></header>
+<main><h1>4D Bitcoin mining: free coordination, real hardware</h1>
+<p>Compare actual equipment, permission to use it, daily economics and BTC payout evidence before starting any miner. <strong>This page never hashes in the background, connects to a pool, accesses wallets or creates earnings.</strong></p>
+<div class="grid">
+<section><h2>1. Compute</h2><p>Real consenting ASICs or owned computers; a virtual agent or free static website has zero SHA-256 network hash power.</p></section>
+<section><h2>2. Permission</h2><p>Use free websites for information and monitoring. Never mine on services that forbid cryptomining, or on unapproved devices.</p></section>
+<section><h2>3. Economics</h2><p>Calculate expected BTC reward, pool fee, electricity costs, and how long even a theoretical payout threshold takes.</p></section>
+<section><h2>4. Receipts</h2><p>Only a real network-confirmed BTC deposit to the correct agreed owner address is a collected payment.</p></section>
+</div>
+<section><h2>Real mining viability calculator</h2>
+<p class="muted">Reference difficulty <strong>134.82 trillion</strong> observed 21 November 2026; editable, not live. Reward 3.125 BTC excludes transaction fees and is also editable. All estimates are uncertain.</p>
+<div class="grid">
+<div><label for="hashrate">Hash rate</label><input id="hashrate" type="number" min="0.000001" step="any" value="10"></div>
+<div><label for="unit">Unit</label><select id="unit"><option value="MH">MH/s (CPU)</option><option value="GH">GH/s</option><option value="TH">TH/s (ASIC)</option><option value="PH">PH/s</option></select></div>
+<div><label for="difficulty">Network difficulty</label><input id="difficulty" type="number" min="1" step="any" value="134820000000000"></div>
+<div><label for="reward">BTC block subsidy</label><input id="reward" type="number" min="0.00001" step="any" value="3.125"></div>
+<div><label for="btcprice">BTC price (USD)</label><input id="btcprice" type="number" min="1" step="any" value="60000"></div>
+<div><label for="watts">Equipment watts</label><input id="watts" type="number" min="0" step="any" value="25"></div>
+<div><label for="power">Electricity USD / kWh</label><input id="power" type="number" min="0" step="any" value="0.12"></div>
+<div><label for="fee">Pool fee (%)</label><input id="fee" type="number" min="0" max="100" step="any" value="0"></div>
+<div><label for="threshold">Payout threshold (BTC, optional)</label><input id="threshold" type="number" min="0" step="any" value="0"></div>
+<div><label for="host">Where would it mine?</label><select id="host"><option value="owner-hardware">Personally owned device</option><option value="partner-hardware">Explicitly consenting partner rig</option><option value="github-actions">GitHub Actions — blocked</option><option value="render">Render — blocked</option><option value="google-free-trial">Google Cloud free trial — blocked</option><option value="hf-static">Hugging Face static — coordination only</option><option value="other-cloud">Unverified cloud — hold</option></select></div>
+</div>
+<p><label class="checkbox"><input type="checkbox" id="consent">The operator explicitly agrees to use this physical device and its power.</label></p>
+<p><label class="checkbox"><input type="checkbox" id="payout">The equipment owner has explicitly agreed the exact BTC reward-sharing/payout route.</label></p>
+<button type="button" id="calculate">Check all four dimensions</button>
+<div id="decision" role="status" aria-live="polite" style="margin-top:16px"></div>
+<div id="metrics" class="grid" style="margin-top:14px"></div>
+<p class="notice"><strong>Not a wallet check:</strong> these numbers are mathematical expected values. Pool luck, thresholds, equipment costs and fees can mean no real payout for a long time. BTC receipts remain <strong>NOT CHECKED</strong> on this page.</p>
+</section>
+<section><h2>Allowed free-host role</h2>
+<p>GitHub Pages or a static Hugging Face Space can publish this educational calculator and a consenting operator's manual, subject to their rules; they do not contribute mining hash power. Existing GitHub, Render and Google Cloud free-trial services should not be used as covert mining compute.</p>
+<p><strong>Official terms:</strong> <a href="https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features">GitHub Actions</a> · <a href="https://render.com/acceptable-use">Render</a> · <a href="https://cloud.google.com/terms/trial">Google Cloud Free Trial</a> · <a href="https://huggingface.co/docs/hub/spaces-overview">Hugging Face Spaces</a>.</p>
+<p><strong>Public pool reference:</strong> <a href="https://web.public-pool.io/">Public Pool</a> (solo versus PPLNS are materially different). Neither payout route is set by this tool. No transaction signing, auto-start, visitor mining or private-key access.</p>
+<p><a href="https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/assets/mining-4d-core.mjs">View auditable calculation source</a>.</p>
+</section></main>
+<footer>ENIGMA PC AI Miner — consent first, hardware economics second, verified coins last. No earnings promised.</footer>
+<script type="module">
+import {estimate4D,HOST_POLICY} from "./assets/mining-4d-core.mjs";
+const get=(id)=>document.getElementById(id);
+const val=(id)=>Number(get(id).value);
+const money=(n)=>"$"+n.toLocaleString("en-US",{maximumFractionDigits:6});
+const dec=(n)=>Number(n).toExponential(5);
+get("calculate").addEventListener("click",()=>{
+  const decision=get("decision"),metrics=get("metrics");metrics.replaceChildren();
+  try{
+    const x=estimate4D({hashrate:val("hashrate"),unit:get("unit").value,difficulty:val("difficulty"),
+      blockRewardBtc:val("reward"),btcUsd:val("btcprice"),watts:val("watts"),usdPerKwh:val("power"),
+      poolFeePct:val("fee"),payoutThresholdBtc:val("threshold"),host:get("host").value,
+      hardwareOwnerConsent:get("consent").checked,payoutPermission:get("payout").checked});
+    decision.className=x.decision==="ECONOMICS_POSITIVE_NOT_A_PAYOUT"?"ok":"bad";
+    decision.textContent=x.decision.replaceAll("_"," ")+" · "+HOST_POLICY[get("host").value].purpose;
+    const rows=[["Expected BTC / day",dec(x.expectedBtcPerDay)],
+      ["Expected sats / day",x.expectedSatsPerDay.toFixed(7)],
+      ["Expected gross USD / day",money(x.expectedUsdPerDay)],
+      ["Power USD / day",money(x.powerCostUsdPerDay)],
+      ["Net USD / day before equipment",money(x.netBeforeEquipmentUsdPerDay)],
+      ["Break-even USD / kWh",x.breakEvenElectricityUsdPerKwh===null?"N/A":money(x.breakEvenElectricityUsdPerKwh)],
+      ["Threshold days (theoretical)",x.theoreticalThresholdDays===null?"Not specified":x.theoreticalThresholdDays.toFixed(1)],
+      ["Verified BTC paid","NOT CHECKED"]];
+    for(const [name,value] of rows){const box=document.createElement("div");box.className="metric";const s=document.createElement("small");s.textContent=name;const b=document.createElement("b");b.textContent=value;box.append(s,b);metrics.append(box);}
+  }catch(err){decision.className="bad";decision.textContent="Invalid inputs: "+err.message;}
+});
+get("calculate").click();
+</script></body></html>
