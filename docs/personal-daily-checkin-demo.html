@@ -122,7 +122,7 @@ footer{border-top:1px solid #d9e4e9;padding:25px 0 35px;color:#536b75}
       if(parsed?.type!=='ENIGMA private daily check-in'||!data||!Array.isArray(data.routines)||
         !data.completed||typeof data.completed!=='object'||Array.isArray(data.completed)||
         !data.reflections||typeof data.reflections!=='object'||Array.isArray(data.reflections)||
-        data.routines.length>100||!data.routines.every(r=>r&&typeof r.id==='string'&&r.id.length<=100&&
+        data.routines.length>100||new Set(data.routines.map(r=>r?.id)).size!==data.routines.length||!data.routines.every(r=>r&&typeof r.id==='string'&&r.id.length>0&&r.id.length<=100&&
         typeof r.name==='string'&&r.name.length<=90&&typeof r.time==='string'&&r.time.length<=10)||
         Object.values(data.reflections).some(v=>typeof v!=='string'||v.length>2500)||
         Object.values(data.completed).some(v=>!v||typeof v!=='object'||Array.isArray(v)||
