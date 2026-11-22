@@ -831,5 +831,26 @@
     "no_virtual_workers_claimed_active": true,
     "current_confirmed_broadcast_to_all_real_runtimes": false,
     "current_sync_gates": "PUBLIC_COMMAND_AND_CHIEF_LATEST_INSTRUCTION_TEXT_IDENTICAL"
+  },
+  "world_open_data_report_sales_order": {
+    "id": "OWNER-20261122-WORLD-OPEN-DATA-REPORTS-SELL-ALL",
+    "issued_at_uganda": "2026-11-22",
+    "source_path": "crypto-agents/ENIGMA_WORLD_OPEN_DATA_WORKER_REPORT_SALES_ORDER_2026-11-22.md",
+    "applies_to": "EACH_ACTUALLY_RUNNING_ENIGMA_WORKER_AND_ITS_TRUE_PARENT_WITH_RUNTIME_EVIDENCE",
+    "objective": "One legal public-data question per active worker -> original cited and licensed research report -> genuine buyer-specific paid scope -> accepted delivery -> verified owner-address correct-network receipt",
+    "must_read_each_real_run": true,
+    "requires_distinct_sector_country_and_report": true,
+    "collection_scope": "ONLY_PUBLIC_LEGAL_COMMERCIALLY_REUSABLE_SOURCE_DATA_AND_METADATA_NECESSARY_FOR_ONE_REPORT",
+    "source_register_required": true,
+    "no_mass_scraping_private_person_profiles": true,
+    "report_quality_gate": "Independent source links, dates, license, crosschecks, original analysis, uncertainty, retests",
+    "genuine_buyer_prioritized_over_uncommissioned_report_count": true,
+    "marketing_scope": "ALL_ACTUALLY_CONNECTED_PERMISSIONED_CHANNELS_ONLY_NO_SPAM",
+    "offer": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html",
+    "sample": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md",
+    "requires_actual_runtime_acknowledgments": true,
+    "broadcast_technically_verified_in_current_session": false,
+    "report_published_does_not_mean_paid": true,
+    "preserve_all_prior_no_email_and_safe_payment_rules": true
   }
 }
