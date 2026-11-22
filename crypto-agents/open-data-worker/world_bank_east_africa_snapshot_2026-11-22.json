@@ -1,0 +1,100 @@
+{
+  "schema": "ENIGMA_OPEN_DATA_SNAPSHOT_V1",
+  "collected_at_utc": "2026-11-22T06:55:00Z",
+  "data_source_publisher": "World Bank",
+  "data_source_name": "World Development Indicators — Kenya, Uganda, Tanzania country comparison",
+  "data_source_url": "https://data.worldbank.org/?locations=KE-UG-TZ",
+  "dataset_metadata_url": "https://datacatalog.worldbank.org/infrastructure-data/search/dataset/0037712/world-development-indicators",
+  "license_url": "https://data.worldbank.org/summary-terms-of-use",
+  "license_status": "CHECK_INDICATOR_TERMS_BEFORE_REDISTRIBUTING_RAW_DATA",
+  "source_independent_numeric_crosscheck": "NOT_PERFORMED",
+  "entry_origin": "Public comparative source inspected by owner-authorized ChatGPT session, not an independent agent crawl",
+  "countries": [
+    "Kenya",
+    "Uganda",
+    "Tanzania"
+  ],
+  "topics": {
+    "digital": {
+      "question": "How do reported population internet use and electricity access differ between Kenya, Uganda and Tanzania?",
+      "buyer_use": "Preliminary digital market entry and offline-first product planning, subject to commissioned local research",
+      "indicators": [
+        {
+          "code": "IT.NET.USER.ZS",
+          "label": "Individuals using the Internet",
+          "unit": "percentage of population",
+          "year": 2024,
+          "values": {
+            "Kenya": 35,
+            "Uganda": 9,
+            "Tanzania": 31
+          }
+        },
+        {
+          "code": "EG.ELC.ACCS.ZS",
+          "label": "Access to electricity",
+          "unit": "percentage of population",
+          "year": 2024,
+          "values": {
+            "Kenya": 77,
+            "Uganda": 55.3,
+            "Tanzania": 52.4
+          }
+        }
+      ],
+      "next_decisions": [
+        "Validate device and income profiles before using national internet-use percentages for targeting",
+        "Test offline or low-bandwidth user flows where availability may constrain reach",
+        "Confirm electricity reliability separately; national access is not uptime"
+      ]
+    },
+    "macro": {
+      "question": "How did the published 2025 macroeconomic indicator ratios compare across the three countries?",
+      "buyer_use": "Preliminary export market pricing and market-diligence brief, not investment advice",
+      "indicators": [
+        {
+          "code": "FP.CPI.TOTL.ZG",
+          "label": "Consumer price inflation",
+          "unit": "annual percentage",
+          "year": 2025,
+          "values": {
+            "Kenya": 4.1,
+            "Uganda": 3.6,
+            "Tanzania": 3.3
+          }
+        },
+        {
+          "code": "BX.TRF.PWKR.DT.GD.ZS",
+          "label": "Personal remittances received",
+          "unit": "percentage of GDP",
+          "year": 2025,
+          "values": {
+            "Kenya": 3.8,
+            "Uganda": 4.5,
+            "Tanzania": 1.4
+          }
+        },
+        {
+          "code": "BX.KLT.DINV.WD.GD.ZS",
+          "label": "Foreign direct investment, net inflows",
+          "unit": "percentage of GDP",
+          "year": 2025,
+          "values": {
+            "Kenya": 0.8,
+            "Uganda": 5.4,
+            "Tanzania": 1.9
+          }
+        }
+      ],
+      "next_decisions": [
+        "Check local customer prices and foreign-exchange costs before pricing a new service",
+        "Do not infer absolute remittance receipts from a GDP ratio",
+        "Investigate sector, buyer funding and regulation rather than inferring demand from FDI/GDP"
+      ]
+    }
+  },
+  "workforce_claims": {
+    "virtual_positions": "11255658980400",
+    "running_agents_verified_by_this_snapshot": 0
+  }
+}
