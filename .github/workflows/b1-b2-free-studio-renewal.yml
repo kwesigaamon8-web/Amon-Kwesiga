@@ -6,6 +6,10 @@ on:
       - 'docs/index.html'
       - 'docs/brand-ai.html'
       - 'docs/agent-work-market.html'
+      - 'docs/intelligence.html'
+      - 'docs/world-open-data-reports.html'
+      - 'docs/INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md'
+      - 'docs/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md'
       - 'docs/share-ai-services.html'
       - 'docs/share-free-software.html'
       - 'docs/pc-ai-miner.html'
@@ -106,7 +110,7 @@ jobs:
           set -euo pipefail
           umask 077
           cd docs
-          zip -q ../studio-preview.zip index.html software.html join.html payment.html ai.html personal-ai-custom-apps.html personal-daily-checkin-demo.html brand-ai.html agent-work-market.html share-ai-services.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
+          zip -q ../studio-preview.zip index.html software.html join.html payment.html ai.html personal-ai-custom-apps.html personal-daily-checkin-demo.html brand-ai.html agent-work-market.html intelligence.html world-open-data-reports.html INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md share-ai-services.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js assets/styles.css assets/engine.js assets/app.js assets/reconcile.js assets/reconcile-ui.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json
           cd ..
           curl -fSs --retry 2 --retry-delay 5 --max-time 50 \
             -X POST 'https://ship.page/deploy' \
@@ -120,7 +124,7 @@ jobs:
           url=payload.get('url','')
           parsed=urllib.parse.urlsplit(url)
           assert parsed.scheme=='https' and (parsed.hostname or '').endswith('.ship.place'), 'invalid live page URL'
-          assert {'index.html','software.html','join.html','payment.html','ai.html','personal-ai-custom-apps.html','personal-daily-checkin-demo.html','brand-ai.html','agent-work-market.html','share-ai-services.html','free-toolbox.html','mini-apps.html','market-lab.html','share-free-software.html','pc-ai-miner.html','free-software-manifest.json','FREE_SOFTWARE_LICENSE.md','assets/free-toolbox.js','assets/free-toolbox-extensions.js','assets/free-mini-apps.js','assets/market-lab.js','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
+          assert {'index.html','software.html','join.html','payment.html','ai.html','personal-ai-custom-apps.html','personal-daily-checkin-demo.html','brand-ai.html','agent-work-market.html','intelligence.html','world-open-data-reports.html','INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md','WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md','share-ai-services.html','free-toolbox.html','mini-apps.html','market-lab.html','share-free-software.html','pc-ai-miner.html','free-software-manifest.json','FREE_SOFTWARE_LICENSE.md','assets/free-toolbox.js','assets/free-toolbox-extensions.js','assets/free-mini-apps.js','assets/market-lab.js','assets/styles.css','assets/engine.js','assets/app.js','assets/reconcile.js','assets/reconcile-ui.js','crypto-ledger/index.html','crypto-ledger/styles.css','crypto-ledger/core.mjs','crypto-ledger/app.js','bitcoin-merchant/index.html','bitcoin-merchant/wallet_core.mjs','bitcoin-merchant/invoice_ledger.mjs','bitcoin-merchant/fictional_demo.mjs','agent-services.json','llms.txt','.well-known/agent.json'}<=set(payload.get('files') or []), 'missing published asset'
           exp=payload.get('expires_at')
           assert exp and 'T' in exp, 'anonymous expiry not provided'
           now=datetime.now(timezone.utc).strftime('%d %B %Y %H:%M UTC')
@@ -178,7 +182,7 @@ jobs:
           grep -q 'function' "$scratch/reconcile.js"
           grep -q 'function' "$scratch/reconcile-ui.js"
           [ -s "$scratch/styles.css" ]
-          for asset in software.html join.html payment.html ai.html personal-ai-custom-apps.html personal-daily-checkin-demo.html brand-ai.html agent-work-market.html share-ai-services.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
+          for asset in software.html join.html payment.html ai.html personal-ai-custom-apps.html personal-daily-checkin-demo.html brand-ai.html agent-work-market.html intelligence.html world-open-data-reports.html INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md share-ai-services.html free-toolbox.html mini-apps.html market-lab.html share-free-software.html pc-ai-miner.html free-software-manifest.json FREE_SOFTWARE_LICENSE.md assets/free-toolbox.js assets/free-toolbox-extensions.js assets/free-mini-apps.js assets/market-lab.js crypto-ledger/index.html crypto-ledger/styles.css crypto-ledger/core.mjs crypto-ledger/app.js bitcoin-merchant/index.html bitcoin-merchant/wallet_core.mjs bitcoin-merchant/invoice_ledger.mjs bitcoin-merchant/fictional_demo.mjs agent-services.json llms.txt .well-known/agent.json; do
             mkdir -p "$scratch/$(dirname "$asset")"
             curl -fSsL --max-time 25 "${url}${asset}" -o "$scratch/$asset"
             test -s "$scratch/$asset"
@@ -200,6 +204,10 @@ jobs:
           grep -q 'Bitcoin mainnet' "$scratch/payment.html"
           grep -q 'Hire our AI-assisted' "$scratch/ai.html"
           grep -q 'Small data and Bitcoin software jobs' "$scratch/agent-work-market.html"
+          grep -q 'source-cited business and market intelligence' "$scratch/intelligence.html" || grep -q 'ENIGMA Intelligence Studio' "$scratch/intelligence.html"
+          grep -q 'Turn public data into decisions' "$scratch/world-open-data-reports.html"
+          grep -q 'World Bank' "$scratch/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md"
+          grep -q 'TaskBounty' "$scratch/INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md"
           grep -q 'Share B1/B2' "$scratch/share-ai-services.html"
           grep -q 'bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z' "$scratch/payment.html"
           grep -q 'bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9' "$scratch/payment.html"
