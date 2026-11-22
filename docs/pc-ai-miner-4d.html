@@ -25,7 +25,7 @@ code{overflow-wrap:anywhere}
 <section><h2>4. Receipts</h2><p>Only a real network-confirmed BTC deposit to the correct agreed owner address is a collected payment.</p></section>
 </div>
 <section><h2>Real mining viability calculator</h2>
-<p class="muted">Reference difficulty <strong>134.82 trillion</strong> observed 21 November 2026; editable, not live. Reward 3.125 BTC excludes transaction fees and is also editable. All estimates are uncertain.</p>
+<p class="muted">Reference difficulty <strong>134.82 trillion</strong> observed 21 November 2026; editable, not live. Reward 3.125 BTC excludes transaction fees and is also editable. All estimates are uncertain. Enter the actual hardware purchase cost to evaluate simple payback; a positive operating margin is not quick cash or guaranteed profit.</p>
 <div class="grid">
 <div><label for="hashrate">Hash rate</label><input id="hashrate" type="number" min="0.000001" step="any" value="10"></div>
 <div><label for="unit">Unit</label><select id="unit"><option value="MH">MH/s (CPU)</option><option value="GH">GH/s</option><option value="TH">TH/s (ASIC)</option><option value="PH">PH/s</option></select></div>
@@ -35,6 +35,8 @@ code{overflow-wrap:anywhere}
 <div><label for="watts">Equipment watts</label><input id="watts" type="number" min="0" step="any" value="25"></div>
 <div><label for="power">Electricity USD / kWh</label><input id="power" type="number" min="0" step="any" value="0.12"></div>
 <div><label for="fee">Pool fee (%)</label><input id="fee" type="number" min="0" max="100" step="any" value="0"></div>
+<div><label for="hardware">ASIC/hardware purchase cost (USD)</label><input id="hardware" type="number" min="0" step="any" value="0"></div>
+<div><label for="maintenance">Maintenance (USD/day)</label><input id="maintenance" type="number" min="0" step="any" value="0"></div>
 <div><label for="threshold">Payout threshold (BTC, optional)</label><input id="threshold" type="number" min="0" step="any" value="0"></div>
 <div><label for="host">Where would it mine?</label><select id="host"><option value="owner-hardware">Personally owned device</option><option value="partner-hardware">Explicitly consenting partner rig</option><option value="github-actions">GitHub Actions — blocked</option><option value="render">Render — blocked</option><option value="google-free-trial">Google Cloud free trial — blocked</option><option value="hf-static">Hugging Face static — coordination only</option><option value="other-cloud">Unverified cloud — hold</option></select></div>
 </div>
@@ -43,7 +45,7 @@ code{overflow-wrap:anywhere}
 <button type="button" id="calculate">Check all four dimensions</button>
 <div id="decision" role="status" aria-live="polite" style="margin-top:16px"></div>
 <div id="metrics" class="grid" style="margin-top:14px"></div>
-<p class="notice"><strong>Not a wallet check:</strong> these numbers are mathematical expected values. Pool luck, thresholds, equipment costs and fees can mean no real payout for a long time. BTC receipts remain <strong>NOT CHECKED</strong> on this page.</p>
+<p class="notice"><strong>Not a wallet check:</strong> these numbers are mathematical expected values. Solo pool luck, payout thresholds, hardware costs, halvings, difficulty shifts, maintenance and fees can mean no real payout for a long time. BTC receipts remain <strong>NOT CHECKED</strong> on this page.</p>
 </section>
 <section><h2>Allowed free-host role</h2>
 <p>GitHub Pages or a static Hugging Face Space can publish this educational calculator and a consenting operator's manual, subject to their rules; they do not contribute mining hash power. Existing GitHub, Render and Google Cloud free-trial services should not be used as covert mining compute.</p>
@@ -63,7 +65,7 @@ get("calculate").addEventListener("click",()=>{
   try{
     const x=estimate4D({hashrate:val("hashrate"),unit:get("unit").value,difficulty:val("difficulty"),
       blockRewardBtc:val("reward"),btcUsd:val("btcprice"),watts:val("watts"),usdPerKwh:val("power"),
-      poolFeePct:val("fee"),payoutThresholdBtc:val("threshold"),host:get("host").value,
+      poolFeePct:val("fee"),payoutThresholdBtc:val("threshold"),hardwareCostUsd:val("hardware"),maintenanceUsdPerDay:val("maintenance"),host:get("host").value,
       hardwareOwnerConsent:get("consent").checked,payoutPermission:get("payout").checked});
     decision.className=x.decision==="ECONOMICS_POSITIVE_NOT_A_PAYOUT"?"ok":"bad";
     decision.textContent=x.decision.replaceAll("_"," ")+" · "+HOST_POLICY[get("host").value].purpose;
@@ -71,7 +73,9 @@ get("calculate").addEventListener("click",()=>{
       ["Expected sats / day",x.expectedSatsPerDay.toFixed(7)],
       ["Expected gross USD / day",money(x.expectedUsdPerDay)],
       ["Power USD / day",money(x.powerCostUsdPerDay)],
-      ["Net USD / day before equipment",money(x.netBeforeEquipmentUsdPerDay)],
+      ["Net USD / day before purchase cost",money(x.netAfterOperatingCostsUsdPerDay)],
+      ["Solo chance of finding a block within 365 days", (x.annualSoloBlockProbability*100).toFixed(7)+"%"],
+      ["Simple equipment payback (ignores halving/difficulty changes)",x.simpleEquipmentPaybackDays===null?"Not achievable at these inputs / no equipment cost":x.simpleEquipmentPaybackDays.toFixed(0)+" days"],
       ["Break-even USD / kWh",x.breakEvenElectricityUsdPerKwh===null?"N/A":money(x.breakEvenElectricityUsdPerKwh)],
       ["Threshold days (theoretical)",x.theoreticalThresholdDays===null?"Not specified":x.theoreticalThresholdDays.toFixed(1)],
       ["Verified BTC paid","NOT CHECKED"]];
