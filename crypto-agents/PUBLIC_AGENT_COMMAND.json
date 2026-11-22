@@ -868,5 +868,26 @@
       "Social publishing network not connected in Metricool at time of check",
       "New pages originally omitted from automated temporary-hosting deploy ZIP; fixed source workflow but successful live deployment still requires run evidence"
     ]
+  },
+  "virtual_role_dispatch_2026_11_22": {
+    "order_id": "OWNER-20261122-VIGOROUS-11T-EXECUTE-ONLY-REAL",
+    "runner": "crypto-agents/open-data-worker/virtual_role_dispatch.py",
+    "workflow": ".github/workflows/enigma-world-data-pilot.yml",
+    "namespace_positions": "11255658980400",
+    "geography": "249 ISO alpha-2 country-and-territory codes; assignments only, no claim of gathered data",
+    "lanes": 12,
+    "sample_assignment_batch": 24,
+    "max_per_actual_invocation": 32,
+    "batch_pairing": "B1 qualifying buyer + B2 producing checked original report on same geography/lane",
+    "finite_runner_self_test": "PASSED_LOCALLY_2026-11-22; remote GitHub Actions logs not confirmed",
+    "source_evidence": "docs/reports/2026-11-22_EAST_AFRICA_DIGITAL_READINESS.md;docs/reports/2026-11-22_EAST_AFRICA_MACRO_SIGNALS.md",
+    "virtual_assignments_are_not_active_agents": true,
+    "no_claim_of_worker_execution_by_merely_adding_manifest": true,
+    "no_claim_of_earnings_without_accepted_buyer_and_correct_network_txid": true,
+    "no_spending_signing_email_spam_or_unlicensed_data": true,
+    "buyers_first": "Actual approved paid tasks take precedence over generating speculative reports",
+    "current_verified_outside_workers": 0,
+    "current_verified_buyer_acceptances": 0,
+    "current_verified_new_income_txids": 0
   }
 }
