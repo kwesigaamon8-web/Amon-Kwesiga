@@ -21,11 +21,13 @@ export function estimate4D({hashrate=10,unit="MH",difficulty=DIFFICULTY_REFERENC
   sane(poolFeePct,"pool fee");sane(payoutThresholdBtc,"payout threshold");
   if(poolFeePct>100)throw new RangeError("pool fee exceeds 100%");
   const hashesPerSecond=hashrate*MULTIPLIERS[unit];
+  if(!Number.isFinite(hashesPerSecond))throw new RangeError("hashrate overflows calculation");
   const expectedBlocksPerDay=hashesPerSecond*86400/(difficulty*4294967296);
   const expectedBtcPerDay=expectedBlocksPerDay*blockRewardBtc*(1-poolFeePct/100);
   const expectedUsdPerDay=expectedBtcPerDay*btcUsd;
   const powerCostUsdPerDay=watts/1000*24*usdPerKwh;
   const netBeforeEquipmentUsdPerDay=expectedUsdPerDay-powerCostUsdPerDay;
+  if(![expectedBlocksPerDay,expectedBtcPerDay,expectedUsdPerDay,powerCostUsdPerDay,netBeforeEquipmentUsdPerDay].every(Number.isFinite))throw new RangeError("inputs overflow safe calculation");
   const breakEvenElectricityUsdPerKwh=watts===0?null:expectedUsdPerDay/(watts/1000*24);
   const theoreticalThresholdDays=payoutThresholdBtc===0?null:expectedBtcPerDay>0?payoutThresholdBtc/expectedBtcPerDay:null;
   const p=HOST_POLICY[host];
