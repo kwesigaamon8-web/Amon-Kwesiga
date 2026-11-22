@@ -15,9 +15,11 @@ import urllib.error
 import urllib.request
 from flask import Flask, Response, jsonify, redirect, send_from_directory
 from virtual_bot_service import bot_routes
+from a2a_bridge import bridge as a2a_bridge
 
 app = Flask(__name__)
 app.register_blueprint(bot_routes)
+app.register_blueprint(a2a_bridge)
 STUDIO_ROOT = Path(__file__).resolve().parent / "docs"
 GITHUB_REPO = "kwesigaamon8-web/Amon-Kwesiga"
 RUNS_API = f"https://api.github.com/repos/{GITHUB_REPO}/actions/runs?per_page=8"
