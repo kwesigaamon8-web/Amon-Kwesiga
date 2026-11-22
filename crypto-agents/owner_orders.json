@@ -1,6 +1,6 @@
 {
   "schema": "owner-orders-audit-v5",
-  "updated_utc": "2026-11-18T07:44:07Z",
+  "updated_utc": "2026-11-22T03:10:26Z",
   "mission": "Legitimate cryptocurrency actually received in owner-approved addresses; no claims of money without independent payment evidence.",
   "owner_order_source": "Current user-authorized conversation context; future ChatGPT messages are not automatically visible to GitHub. Additional instructions can be synced into this file through an authorized session.",
   "order_intake_issue": 8,
@@ -871,9 +871,28 @@
       "reported_status": "ongoing_no_verified_payment",
       "last_verified_payment_receipt": null,
       "external_action": "Work through authorized connected GitHub account; only real authenticated external opportunities and user-authorized social/application accounts; do not claim any unavailable third-party access."
+    },
+    {
+      "id": "OWNER-20261122-SELL-ALL-SERVICES-HUMAN-CENTRED-PAYMENT-V1",
+      "title": "Sell every lawful original ENIGMA service with visible payment terms",
+      "accountable_director": "CHIEF_D",
+      "standing_requirement": "Every actually running permitted B1/B2 worker should identify real buyer needs worldwide, naturally and transparently present every genuinely deliverable original service including lawful source-cited organization/market OSINT, use specific verified demos, agree fixed scope, disclose starting quote and buyer-specific correct-network BTC/Base-USDC receiving details on the offer, obtain accepted delivery and independently verify incoming coins. No unsolicited email, spam, dark/illegal markets, stolen data, private-person surveillance, impersonation, private accounting/audit clients or spending.",
+      "evidence_files": [
+        "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md",
+        "docs/ENIGMA_GLOBAL_PAID_SERVICES_2026-11-22.md",
+        "docs/agent-work-market.html",
+        "docs/payment.html",
+        "crypto-agents/PUBLIC_AGENT_COMMAND.json"
+      ],
+      "verification_condition": "Verified live worker reads canonical order; authentic opt-in buyer source, permitted personalized reply, accepted scope, buyer-approved network and address, delivery, TXID and payment linkage.",
+      "reported_status": "published_new_owner_directive_no_verified_bulk_worker_execution",
+      "last_verified_payment_receipt": null,
+      "external_action": "Use only platform-authenticated authorized posts and public buyer-intake; no email, no unauthorized accounts or forced mass outreach."
     }
   ],
   "broadcast_aliases": {
     "B": "billions_of_workers"
-  }
+  },
+  "latest_owner_sales_order_id": "OWNER-20261122-SELL-ALL-SERVICES-HUMAN-CENTRED-PAYMENT-V1",
+  "latest_owner_sales_directive_path": "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md"
 }
