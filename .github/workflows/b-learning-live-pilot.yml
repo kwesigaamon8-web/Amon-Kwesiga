@@ -9,6 +9,7 @@ on:
       - 'crypto-agents/b_learning_by_doing.py'
       - 'crypto-agents/new_earning_lanes.py'
       - 'crypto-agents/ai_process_worker.py'
+      - 'crypto-agents/worker_iteration_learning.py'
       - 'crypto-agents/superworker_protocol.py'
       - 'crypto-agents/test_superworker_protocol.py'
       - 'crypto-agents/ability_based_dispatch.py'
@@ -147,6 +148,17 @@ jobs:
         with:
           name: shared-original-issue-feed
           path: paid-opportunity-reports
+      - name: Restore this actual worker's bounded previous learning (optional)
+        uses: actions/cache/restore@v4
+        with:
+          path: agent-state/learning/${{ matrix.fleet }}/${{ steps.role.outputs.worker }}.json
+          key: enigma-actual-worker-lesson-v1-${{ matrix.fleet }}-${{ steps.role.outputs.worker }}-${{ github.run_id }}
+          restore-keys: |
+            enigma-actual-worker-lesson-v1-${{ matrix.fleet }}-${{ steps.role.outputs.worker }}-
+      - name: Validate worker learning code before model run
+        run: |
+          python -m py_compile crypto-agents/worker_iteration_learning.py
+          python crypto-agents/worker_iteration_learning.py --self-test
       - name: Actually run one B worker and teach while it performs source research
         env:
           WORKFORCE_ID: ${{ matrix.fleet }}
@@ -221,6 +233,18 @@ jobs:
              out.write("- Actual issue/source: "+(status["source"] or "No original source confirmed")+"\n")
              out.write("- Verified crypto receipt: NOT ESTABLISHED by this worker run\n")
           PY
+      - name: Self-create an evidence-based next correction from THIS worker's actual model output
+        env:
+          B_FLEET: ${{ matrix.fleet }}
+          B_WORKER: ${{ steps.role.outputs.worker }}
+        run: |
+          python crypto-agents/worker_iteration_learning.py --fleet "$B_FLEET" --worker "$B_WORKER" --report "ai-process-reports/$B_WORKER.json"
+          cp "agent-state/learning/$B_FLEET/$B_WORKER.json" "ai-process-reports/$B_WORKER-LEARNING-RECEIPT.json"
+      - name: Preserve each successful real worker's learned repair for future runs
+        uses: actions/cache/save@v4
+        with:
+          path: agent-state/learning/${{ matrix.fleet }}/${{ steps.role.outputs.worker }}.json
+          key: enigma-actual-worker-lesson-v1-${{ matrix.fleet }}-${{ steps.role.outputs.worker }}-${{ github.run_id }}
       - name: Archive executed worker model response and practical work product
         if: always()
         uses: actions/upload-artifact@v4
