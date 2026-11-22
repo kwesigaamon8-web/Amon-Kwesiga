@@ -12,13 +12,14 @@ export const HOST_POLICY = Object.freeze({
  "other-cloud":{status:"NOT_VERIFIED",purpose:"Requires the provider's explicit applicable permission"}
 });
 const sane=(x,label,allowZero=true)=>{if(typeof x!=="number"||!Number.isFinite(x)||x<0||(!allowZero&&x===0))throw new RangeError(label+" must be a finite positive number");return x;};
-export function estimate4D({hashrate=10,unit="MH",difficulty=DIFFICULTY_REFERENCE.difficulty,blockRewardBtc=3.125,btcUsd=60000,watts=25,usdPerKwh=0.12,poolFeePct=0,payoutThresholdBtc=0,host="owner-hardware",hardwareOwnerConsent=false,payoutPermission=false}={}){
+export function estimate4D({hashrate=10,unit="MH",difficulty=DIFFICULTY_REFERENCE.difficulty,blockRewardBtc=3.125,btcUsd=60000,watts=25,usdPerKwh=0.12,poolFeePct=0,payoutThresholdBtc=0,hardwareCostUsd=0,maintenanceUsdPerDay=0,host="owner-hardware",hardwareOwnerConsent=false,payoutPermission=false}={}){
   if(!(unit in MULTIPLIERS))throw new RangeError("invalid hash-rate unit");
   if(!(host in HOST_POLICY))throw new RangeError("unknown host policy");
   sane(hashrate,"hashrate",false);sane(difficulty,"difficulty",false);
   sane(blockRewardBtc,"block reward",false);sane(btcUsd,"BTC price",false);
   sane(watts,"power");sane(usdPerKwh,"electricity");
   sane(poolFeePct,"pool fee");sane(payoutThresholdBtc,"payout threshold");
+  sane(hardwareCostUsd,"hardware cost");sane(maintenanceUsdPerDay,"maintenance");
   if(poolFeePct>100)throw new RangeError("pool fee exceeds 100%");
   const hashesPerSecond=hashrate*MULTIPLIERS[unit];
   if(!Number.isFinite(hashesPerSecond))throw new RangeError("hashrate overflows calculation");
@@ -27,11 +28,14 @@ export function estimate4D({hashrate=10,unit="MH",difficulty=DIFFICULTY_REFERENC
   const expectedUsdPerDay=expectedBtcPerDay*btcUsd;
   const powerCostUsdPerDay=watts/1000*24*usdPerKwh;
   const netBeforeEquipmentUsdPerDay=expectedUsdPerDay-powerCostUsdPerDay;
-  if(![expectedBlocksPerDay,expectedBtcPerDay,expectedUsdPerDay,powerCostUsdPerDay,netBeforeEquipmentUsdPerDay].every(Number.isFinite))throw new RangeError("inputs overflow safe calculation");
+  const netAfterOperatingCostsUsdPerDay=netBeforeEquipmentUsdPerDay-maintenanceUsdPerDay;
+  const annualSoloBlockProbability=-Math.expm1(-expectedBlocksPerDay*365);
+  const simpleEquipmentPaybackDays=hardwareCostUsd>0&&netAfterOperatingCostsUsdPerDay>0?hardwareCostUsd/netAfterOperatingCostsUsdPerDay:null;
+  if(![expectedBlocksPerDay,expectedBtcPerDay,expectedUsdPerDay,powerCostUsdPerDay,netBeforeEquipmentUsdPerDay,netAfterOperatingCostsUsdPerDay,annualSoloBlockProbability].every(Number.isFinite))throw new RangeError("inputs overflow safe calculation");
   const breakEvenElectricityUsdPerKwh=watts===0?null:expectedUsdPerDay/(watts/1000*24);
   const theoreticalThresholdDays=payoutThresholdBtc===0?null:expectedBtcPerDay>0?payoutThresholdBtc/expectedBtcPerDay:null;
   const p=HOST_POLICY[host];
   const permissionGate=(p.status==="POSSIBLE_WITH_CONSENT" && hardwareOwnerConsent===true && payoutPermission===true);
-  const approval="BLOCKED"===p.status?"BLOCKED_PROVIDER_TERMS":p.status!=="POSSIBLE_WITH_CONSENT"?"NO_MINING_COMPUTE_APPROVAL":!permissionGate?"BLOCKED_MISSING_CONSENT":netBeforeEquipmentUsdPerDay<=0?"UNECONOMIC_AT_INPUTS":"ECONOMICS_POSITIVE_NOT_A_PAYOUT";
-  return {hashesPerSecond,expectedBlocksPerDay,expectedBtcPerDay,expectedSatsPerDay:expectedBtcPerDay*1e8,expectedUsdPerDay,powerCostUsdPerDay,netBeforeEquipmentUsdPerDay,breakEvenElectricityUsdPerKwh,theoreticalThresholdDays,hostPolicy:p.status,decision:approval,estimatedNotReceived:true,liveMinerConnected:false,receivedBtcVerified:false,assumptions:"Expected BTC excludes fee variance, block luck, pool thresholds, hardware depreciation, downtime and taxes. No mining starts."};
+  const approval="BLOCKED"===p.status?"BLOCKED_PROVIDER_TERMS":p.status!=="POSSIBLE_WITH_CONSENT"?"NO_MINING_COMPUTE_APPROVAL":!permissionGate?"BLOCKED_MISSING_CONSENT":netAfterOperatingCostsUsdPerDay<=0?"UNECONOMIC_AT_INPUTS":"ECONOMICS_POSITIVE_NOT_A_PAYOUT";
+  return {hashesPerSecond,expectedBlocksPerDay,expectedBtcPerDay,expectedSatsPerDay:expectedBtcPerDay*1e8,expectedUsdPerDay,powerCostUsdPerDay,netBeforeEquipmentUsdPerDay,netAfterOperatingCostsUsdPerDay,annualSoloBlockProbability,simpleEquipmentPaybackDays,hardwareCostUsd,maintenanceUsdPerDay,breakEvenElectricityUsdPerKwh,theoreticalThresholdDays,hostPolicy:p.status,decision:approval,estimatedNotReceived:true,liveMinerConnected:false,receivedBtcVerified:false,assumptions:"Expected BTC is statistical, not regular earnings; solo miners may go years without a block. This excludes transaction fees, equipment depreciation, downtime and taxes. Simple payback is not a discounted cashflow valuation. No mining starts."};
 }
