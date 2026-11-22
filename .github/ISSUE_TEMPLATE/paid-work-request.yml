@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         **ENIGMA ONLY:** This independent project does not accept the owner's accounting, tax, audit or professional consulting engagements. GitHub sign-in is required to submit this public issue. **Before posting:** This is a public GitHub issue. Describe the work using fictional or anonymized examples only. **Never** share bank statements, account numbers, personal client or patient data, medical histories, credentials, wallet secrets, or confidential documents.
-        **Quick request:** tell us what result you need and choose a service. The budget, deadline, tests and BTC/payment network can be agreed afterwards. No deposit or payment is requested to obtain a quote; this form is not a contract.
+        **Quick request:** tell us what result you need and choose a service. For OSINT we use only lawfully accessible public information with dated citations, never personal surveillance or private data harvesting. Full scoped portfolio: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_GLOBAL_PAID_SERVICES_2026-11-22.md. The budget, deadline, tests and BTC/payment network can be agreed afterwards. No deposit or payment is requested to obtain a quote; this form is not a contract.
   - type: dropdown
     id: service
     attributes:
@@ -21,6 +21,13 @@ body:
         - Payment or invoice reconciliation
         - Workbook cleanup
         - Public-data research and analysis
+        - OSINT: public company / organization research and source-cited report
+        - OSINT: public competitor, pricing or market research
+        - OSINT: public tenders, grants, funded bounties and supplier landscape
+        - OSINT: public website / software / product due diligence
+        - Website, landing page or digital storefront customization
+        - Original software prototype, automation or data quality app
+        - Technical documentation, original tutorials and reproducible research
         - Technical testing / software documentation
         - Product catalog / marketing copy review
         - Personal AI assistant (private/local or cloud)
