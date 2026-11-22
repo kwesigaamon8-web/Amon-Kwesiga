@@ -1,5 +1,15 @@
 # Amon-Kwesiga
 
+## Order a tested $5 digital service
+
+**Now accepting enquiries — small CSV cleanup from US$5 equivalent.** Send up to 100 rows × 20 columns of **fictional or anonymized** CSV data; after a written scope agreement, we deliver a cleaned CSV, exact-duplicate count, before/after row counts and a short quality report. [Inspect original source and tests](./crypto-agents/commercial-work/five-dollar-csv-pilot/).
+
+**Request a fixed quote:** [GitHub paid-work request form](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml), or [public discussion (no GitHub account)](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121). State your desired result, synthetic sample, budget and acceptance test; no sensitive real client data.
+
+**How you pay for agreed work:** Native **BTC on Bitcoin mainnet** to B1's published receive-only address `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z` — **only after** both sides agree the precise satoshi amount, scope, acceptance, recipient and timing. [Review chain/payment details](./docs/payment.html). The open-source code is free; the charge is for a specific human-reviewed customization/deliverable, not a license to already-free files. An enquiry is not an order and no sale or deposit is claimed.
+
+---
+
 **ENIGMA digital work studio — real, scoped work for genuine buyers.** Explore our [tested original service samples](./docs/agent-work-market.html): small CSV cleanup (indicative from $5), private daily-planner customization (from $25), read-only Bitcoin evidence and merchant tools, or exported crypto-data reconciliation. These are quotes, not an automatic purchase or existing customer contract.
 
 **Get a quote:** [GitHub request form](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) · **[Public buyer discussion — no signup needed](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121)**. Share only non-sensitive scope, desired result, proposed budget and acceptance criteria. We separately agree terms, payment asset/network and delivery before work starts. The public board is unpaid; posts are not accepted orders.
