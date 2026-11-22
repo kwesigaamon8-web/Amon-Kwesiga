@@ -1,5 +1,8 @@
 # Amon-Kwesiga
 
+[**Order ENIGMA digital services — no subscription**](docs/buy.html): choose among 18 small-scope or custom data, Python, public research and read-only Bitcoin software services; examples, price guidance and buyer copy-to-GitHub enquiry. Free source remains free. This GitHub source link is permanent; the [latest hosted preview](docs/TEMP_PREVIEW.md) is temporary and only valid after a successful deployment.
+
+
 ## WORLDWIDE INTELLIGENCE REPORTS — FOR SALE
 
 **Worldwide source-cited reports for sale:** [ENIGMA World Open-Data Reports](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html). Commission a public dataset suitability screen (from USD 35 equivalent), fact-check (from USD 15), supplier/public organization research (from USD 35), public tender and bounty intelligence (from USD 60) or country/sector report (from USD 75), with agreed scope, licensing checks and original analysis. [Read a source-checked report example](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md) · [Request an individually scoped quote](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml). Source files are not our exclusive property; buyers pay for our tailored evidence and work. No paid engagement, payment or global runtime is claimed by publication alone.
