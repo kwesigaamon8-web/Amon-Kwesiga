@@ -186,5 +186,19 @@
     "hosted_browser_confirmed": false,
     "buyer_acceptance": "NONE_VERIFIED",
     "payment": "NOT_VERIFIED"
+  },
+  "peer_code_collaboration": {
+    "status": "SOURCE_PUBLISHED_A2A_1_0_ENDPOINT_NOT_LIVE_VERIFIED",
+    "a2a_card_source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/.well-known/agent-card.json",
+    "flask_json_rpc_source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/a2a_bridge.py",
+    "proposed_host": "https://amon-kwesiga.onrender.com/a2a",
+    "protocol_version": "1.0",
+    "schema_method": "SendMessage",
+    "currently_verified_external_agent_sessions": 0,
+    "live_endpoint_not_independently_verified": true,
+    "no_illicit_darknet_markets": true,
+    "no_required_subscription_or_wallet_spend": true,
+    "human_review_for_real_buyer_work": true,
+    "public_opt_in_project": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43"
   }
 }
