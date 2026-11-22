@@ -171,5 +171,20 @@
     ],
     "finite_execution_pilot": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/enigma-world-data-pilot.yml",
     "verified_live_worker_count": "NOT_YET_ESTABLISHED"
+  },
+  "new_original_product_2026_11_22": {
+    "name": "ENIGMA Product Brief Builder",
+    "actual_new_product_count": 1,
+    "free_source": "docs/product-brief-builder.html",
+    "core_source": "docs/assets/product-brief-core.mjs",
+    "tests": "docs/tests/product-brief-builder.test.js",
+    "public_sale_offer": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/42",
+    "buyer_customization_quote_usd_starting_at": 25,
+    "existing_free_source_remains_free": true,
+    "implementation": "Local rules-based product scope and QA builder (not an AI model)",
+    "source_published": true,
+    "hosted_browser_confirmed": false,
+    "buyer_acceptance": "NONE_VERIFIED",
+    "payment": "NOT_VERIFIED"
   }
 }
