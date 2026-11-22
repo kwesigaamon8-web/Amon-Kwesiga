@@ -5,6 +5,10 @@
 
 **[REQUEST ONE CUSTOM QUOTE ON GITHUB](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** — GitHub sign-in needed to submit. If unable to sign in, the existing [public Agent Board discussion](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) is an alternative *only if its public reply feature actually works*. No private records, wallet seeds, financial credentials or confidential client data on either public channel.
 
+## Newly published original product
+
+**ENIGMA Product Brief Builder:** a **free** static browser utility that converts a product idea into a copyable brief and JSON with QA/release gates. [View source](product-brief-builder.html) and [original JavaScript engine](assets/product-brief-core.mjs). A buyer may commission a specific tailored version with agreed tests **from an indicative US$25 equivalent**. [See its public product offer](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/42). This is one real newly published code product, not 11.25 trillion real workers or proof of a paid sale. The free hosted deployment is not yet verified, so browse the GitHub source until then.
+
 ## Pick an actual service and see proof
 
 | One independently quotable deliverable | Introductory USD-equivalent price | Original buyer-specific scope | Public evidence / demo |
