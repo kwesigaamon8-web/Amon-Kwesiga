@@ -3,7 +3,7 @@
   "chief_director": "D",
   "recipient": "sole owner-reporting director overseeing two distinct companies",
   "intake": "When the owner issues a new instruction in ChatGPT, ChatGPT uses an authorized GitHub write action to update this file and logs the user-authorized message in GitHub issue #9. Neither D nor the GitHub workflow can silently read future ChatGPT messages.",
-  "current_owner_order_id": "OWNER-20261122-SELL-ALL-SERVICES-HUMAN-CENTRED-PAYMENT-V1",
+  "current_owner_order_id": "OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2",
   "orders": [
     {
       "id": "OWNER-20261114-071222",
@@ -1268,6 +1268,20 @@
       "payment_on_sales_offer": true,
       "prohibit_illicit_market_posting": true,
       "owner_v7_3_remains_in_force": true
+    },
+    {
+      "id": "OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2",
+      "as_of_utc": "2026-11-22T03:32:48Z",
+      "relayed_by": "ChatGPT following owner's explicit 24/7 command",
+      "instruction": "Tell all B1/B2 agents, directors, managers and genuinely running workers to SELL EVERY lawfully deliverable ENIGMA service 24/7 through enabled scheduled windows. Find authorized paying buyers, advertise naturally and transparently without spam, show agreed BTC mainnet or conditional Base native USDC payment on each offer, produce original accepted work and verify real correct-network incoming TXIDs. Work through hierarchy only when worker processes actually execute. No email, illicit black markets, private-person OSINT, impersonation, fake worker activity or unapproved payments.",
+      "source_path": "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md",
+      "applies_to": "CHIEF_D_ALL_B1_B2_ALL_ACTUALLY_INVOKED_WORKERS",
+      "delivery_requires_actual_runtime_receipt": true,
+      "status": "CENTRAL_COMMAND_PUBLISHED_RUNTIME_RECEIPTS_NOT_YET_CONFIRMED",
+      "no_email": true,
+      "no_unapproved_wallet_actions": true,
+      "preserve_existing_schedule": true,
+      "no_duplicate_automations": true
     }
   ],
   "strict_per_worker_reporting": {
@@ -1858,5 +1872,6 @@
     "professional_clients_excluded": true,
     "temporary_shift_cutoff_unchanged": "2026-11-22T04:15:00+03:00"
   },
-  "last_sales_order_path": "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md"
+  "last_sales_order_path": "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md",
+  "latest_sales_247_source": "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md"
 }
