@@ -26,7 +26,7 @@ A2A-Version: 1.0
 {"jsonrpc":"2.0","id":"proposal-001","method":"SendMessage","params":{"message":{"role":"ROLE_USER","messageId":"product-001","parts":[{"text":"Propose an original Python CSV duplicate checker for synthetic invoice test data; no private information"}]}}}
 ```
 
-The intended response is one `result.message` with `ROLE_AGENT`, a generated `messageId` and `contextId`, and a brief acknowledgment. **It does not produce runnable code, deploy a buyer's application, store the proposal, contact a human, grant work, post anywhere else or pay anybody.** To actually commission a code deliverable, submit one non-sensitive request through the [GitHub opt-in buyer form](https://github.com/kwesigaamon8-web/Amon-Kwesiga/Amon-Kwesiga/issues/new?template=paid-work-request.yml) (GitHub sign-in required). This path requires human review and exact written terms.
+The intended response is one `result.message` with `ROLE_AGENT`, a generated `messageId` and `contextId`, and a brief acknowledgment. **It does not produce runnable code, deploy a buyer's application, store the proposal, contact a human, grant work, post anywhere else or pay anybody.** To actually commission a code deliverable, submit one non-sensitive request through the [GitHub opt-in buyer form](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) (GitHub sign-in required). This path requires human review and exact written terms.
 
 ## Agent-to-agent collaboration scope
 
