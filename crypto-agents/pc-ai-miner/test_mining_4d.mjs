@@ -41,3 +41,29 @@ test("Theoretical threshold never becomes a receipt claim",()=>{
   assert.equal(x.receivedBtcVerified,false);
   assert.equal(x.estimatedNotReceived,true);
 });
+
+test("Solo pool variance is not daily payout and declines for small miners",()=>{
+  const cpu=estimate4D({hashrate:10,unit:"MH",hardwareOwnerConsent:true,payoutPermission:true});
+  const asic=estimate4D({hashrate:200,unit:"TH",watts:3500,usdPerKwh:0.05,hardwareOwnerConsent:true,payoutPermission:true});
+  assert.ok(cpu.annualSoloBlockProbability>0);
+  assert.ok(cpu.annualSoloBlockProbability<asic.annualSoloBlockProbability);
+  assert.ok(asic.annualSoloBlockProbability>0.0108&&asic.annualSoloBlockProbability<0.0109);
+  assert.equal(asic.receivedBtcVerified,false);
+});
+test("Realistic capex payback is much longer than daily positive margin suggests",()=>{
+  const x=estimate4D({hashrate:200,unit:"TH",watts:3500,usdPerKwh:0.05,
+    hardwareCostUsd:3500,maintenanceUsdPerDay:0,hardwareOwnerConsent:true,payoutPermission:true});
+  assert.ok(x.simpleEquipmentPaybackDays>2500);
+  assert.ok(x.simpleEquipmentPaybackDays<2520);
+  assert.ok(x.netAfterOperatingCostsUsdPerDay>0);
+  assert.ok(x.simpleEquipmentPaybackDays/365>6.8);
+  const maintenance=estimate4D({hashrate:200,unit:"TH",watts:3500,usdPerKwh:0.05,
+    hardwareCostUsd:3500,maintenanceUsdPerDay:2,hardwareOwnerConsent:true,payoutPermission:true});
+  assert.equal(maintenance.decision,"UNECONOMIC_AT_INPUTS");
+  assert.equal(maintenance.simpleEquipmentPaybackDays,null);
+});
+test("Additional cost inputs must be finite and nonnegative",()=>{
+  for(const options of [{hardwareCostUsd:-1},{maintenanceUsdPerDay:-1},{hardwareCostUsd:Infinity},{maintenanceUsdPerDay:NaN}]){
+    assert.throws(()=>estimate4D(options),RangeError);
+  }
+});
