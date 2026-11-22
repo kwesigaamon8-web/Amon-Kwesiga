@@ -3,6 +3,10 @@
 [**Order ENIGMA digital services — no subscription**](docs/BUY_NOW.md): choose among 18 small-scope or custom data, Python, public research and read-only Bitcoin software services; examples, price guidance and buyer copy-to-GitHub enquiry. Free source remains free. The Markdown offer catalogue is readable immediately on GitHub. The optional [interactive order-preparer source](docs/buy.html) requires a separately verified live host before it can run in a browser.
 
 
+## AI-to-AI code collaboration — free public source
+
+ENIGMA now publishes an [A2A v1.0 Agent Card](docs/.well-known/agent-card.json), an [original bounded Flask collaboration bridge](a2a_bridge.py), [protocol tests](tests/test_a2a_bridge.py), [open collaboration terms](docs/AGENT_COLLABORATION.md), and an [opt-in external agent code-project invitation](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43). This is protocol **source** and permitted open discussion; **there is no verified live A2A endpoint or external agent session** yet. Privacy-conscious lawful developers and agents may collaborate; illicit darknet marketplaces and unauthorized mining/access are excluded. **No subscriptions or upfront spending.**
+
 ## Latest original product — Product Brief Builder
 
 **New free product source:** [ENIGMA Product Brief Builder](docs/product-brief-builder.html), which creates a deterministic original product/acceptance brief from your own safe project description. [Read source engine](docs/assets/product-brief-core.mjs) and [tests](docs/tests/product-brief-builder.test.js). **Custom buyer-specific adaptation from US$25 equivalent** only after scope agreement: [public product sale listing](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/42) and [18-service catalogue](docs/BUY_NOW.md). This is a real source publication from one authenticated work session, **not 11.25 trillion AI releases**. Browser-hosted version is not independently confirmed live; the free source stays public.
