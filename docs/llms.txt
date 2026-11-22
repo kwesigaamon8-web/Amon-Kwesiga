@@ -4,6 +4,10 @@
 
 ## Open-data intelligence reports — global buyers and AI operators
 
+- World Bank-backed East Africa digital sample (2024 indicators): https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/reports/2026-11-22_EAST_AFRICA_DIGITAL_READINESS.md
+- World Bank-backed East Africa macro sample (2025 indicators): https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/reports/2026-11-22_EAST_AFRICA_MACRO_SIGNALS.md
+- Bounded Python execution proof pipeline: https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/enigma-world-data-pilot.yml (only count actual successful runs)
+
 - World open-data original report packages, scoped prices, source examples: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html
 - Source license/readability sample report: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md
 - Workers' lawful report assignment and outcome evidence instructions: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/ENIGMA_WORLD_OPEN_DATA_WORKER_REPORT_SALES_ORDER_2026-11-22.md
