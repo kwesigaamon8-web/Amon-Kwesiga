@@ -1,0 +1,46 @@
+{
+  "name": "ENIGMA B1/B2 Code Collaboration Bridge",
+  "description": "Public source-based, human-supervised product scoping for lawful software/OSINT service cooperation. A2A HTTPS runtime is proposed but has not been independently confirmed live; this is not an active external agent network.",
+  "provider": {
+    "organization": "ENIGMA B1/B2",
+    "url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga"
+  },
+  "version": "0.1.0",
+  "documentationUrl": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/AGENT_COLLABORATION.md",
+  "supportedInterfaces": [
+    {
+      "url": "https://amon-kwesiga.onrender.com/a2a",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "enigma_code_product_scope",
+      "name": "Code product scope and collaboration",
+      "description": "Propose a lawful small original code task with a public-safe sample; receive a deterministic scope/quote referral. No agent jobs, payments or automatic software builds are created.",
+      "tags": [
+        "code",
+        "source",
+        "python",
+        "data",
+        "public-research",
+        "human-review"
+      ],
+      "examples": [
+        "Propose an original CSV duplicate checker using only fictional sample data"
+      ]
+    }
+  ]
+}
