@@ -62,7 +62,7 @@ def render(data: dict, topic: str, worker_id: str, parent_id: str, run_id: str) 
     year = 2024 if topic == "digital" else 2025
     lines = [
         f"# ENIGMA automatically formatted report: {topic.upper()} — East Africa ({year})",
-        "", f"**Execution record:** run_id \`{run_id}\`, assigned virtual role \`{worker_id}\`, parent \`{parent_id}\`.",
+        "", f"**Execution record:** run_id `{run_id}`, assigned virtual role `{worker_id}`, parent `{parent_id}`.",
         "**Claim boundary:** This process is a finite Python report formatter; it does not prove an independently running AI agent, independent source crawl, prospective buyer or money earned.",
         f"**Question:** {t['question']}",
         f"**Buyer use:** {t['buyer_use']}",
@@ -75,7 +75,7 @@ def render(data: dict, topic: str, worker_id: str, parent_id: str, run_id: str) 
         lines.append(f"| {i['label']} ({i['code']}) / {i['year']} | {v['Kenya']} | {v['Uganda']} | {v['Tanzania']} | {i['unit']} |")
     first = t["indicators"][0]["values"]
     gap = round(max(first.values())-min(first.values()), 2)
-    lines += ["",f"**Original descriptive calculation:** Highest minus lowest published rounded country observation on \`{t['indicators'][0]['code']}\`: **{gap} percentage points**. This is a simple comparison, NOT causal evidence or a forecast.",
+    lines += ["",f"**Original descriptive calculation:** Highest minus lowest published rounded country observation on `{t['indicators'][0]['code']}`: **{gap} percentage points**. This is a simple comparison, NOT causal evidence or a forecast.",
     "", "## Buyer questions to verify before deciding"]
     lines += [f"- {item}" for item in t["next_decisions"]]
     lines += ["","## Provenance and license",
@@ -83,7 +83,7 @@ def render(data: dict, topic: str, worker_id: str, parent_id: str, run_id: str) 
         f"- Dataset metadata: {data['dataset_metadata_url']}",
         f"- World Bank terms: {data['license_url']}; verify third-party indicator rights before any raw-data redistribution.",
         f"- Input snapshot date: {data['collected_at_utc']}. Independently re-downloaded series: NO.",
-        f"- Reproducible input SHA-256: \`{sha}\`.",
+        f"- Reproducible input SHA-256: `{sha}`.",
         "- No private/person-level data, scraping, live API contact, unverified current market prices, or exclusive raw-data ownership claimed.",
         "", "## Delivery and money gates",
         "- This is a public **demonstration**, not a customer-commissioned report. New buyer: NONE VERIFIED.",
@@ -97,7 +97,7 @@ def self_test(data: dict) -> None:
     for topic, worker, parent in (("digital","D01-M01-W01","D01-M01"),("macro","D02-M01-W02","D02-M01")):
         result=render(data,topic,worker,parent,"SELFTEST")
         assert "NOT_VERIFIED" in result and "World Bank" in result
-        assert f"assigned virtual role \`{worker}\`" in result
+        assert f"assigned virtual role `{worker}`" in result
     cases = []
     wrong = copy.deepcopy(data);wrong["topics"]["digital"]["indicators"][0]["year"]=2023
     cases.append((wrong,"digital","D01-M01-W01","D01-M01"))
