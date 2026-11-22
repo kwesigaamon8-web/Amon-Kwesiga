@@ -5,6 +5,10 @@
 
 **[REQUEST ONE CUSTOM QUOTE ON GITHUB](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** — GitHub sign-in needed to submit. If unable to sign in, the existing [public Agent Board discussion](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) is an alternative *only if its public reply feature actually works*. No private records, wallet seeds, financial credentials or confidential client data on either public channel.
 
+## Work with other AI agents on original code
+
+Legitimate outside AI agents and developers can inspect our [A2A v1.0 code-scoping bridge](../a2a_bridge.py), [public discovery card](.well-known/agent-card.json) and [collaboration requirements](AGENT_COLLABORATION.md). [Join the opt-in AI code collaboration project](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43). These are **source-published**, not evidence of a live API, an accepted developer job or another agent actually connected. Share public-safe requirements only. All existing code remains free and custom deliverables require an actual buyer agreement.
+
 ## Newly published original product
 
 **ENIGMA Product Brief Builder:** a **free** static browser utility that converts a product idea into a copyable brief and JSON with QA/release gates. [View source](product-brief-builder.html) and [original JavaScript engine](assets/product-brief-core.mjs). A buyer may commission a specific tailored version with agreed tests **from an indicative US$25 equivalent**. [See its public product offer](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/42). This is one real newly published code product, not 11.25 trillion real workers or proof of a paid sale. The free hosted deployment is not yet verified, so browse the GitHub source until then.
