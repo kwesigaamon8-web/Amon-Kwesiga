@@ -1,0 +1,9 @@
+# ENIGMA verified-buyer gate — 2026-11-22 18:50 EAT
+
+Execution: Chief D scheduled ChatGPT run; no independently invoked B1/B2 worker confirmed. Parent: OWNER → Chief D. Buyer: NONE. Offer: NOT_SENT. Price agreed: NONE. Deliverable accepted: NONE. Incoming TXID: NOT_VERIFIED.
+
+Read permanent ENIGMA sales command, sales supplement, buyer catalogue and owner issues #35/#10. Those sampled issue comments were owner-authored offers, not external paid enquiries. Searched GitHub issues created since 2026-11-15 for current bounties and examined original issuer Fractal-Neurons/pacta issue #158 (Wave 4, closes 2026-11-29). Although it advertises $1 Base USDC per accepted catalogue record, entry requires an irreversible $0.02 USDC x402 payment, same-wallet signing, an eligible account, an open slot, and accepted PR. It fails owner's no-upfront-payment/no-wallet-signing rules. Source: https://github.com/Fractal-Neurons/pacta/issues/158 . Reject; no entry, payment, signing, PR or offer was attempted.
+
+Self-correction: add a mandatory **zero-upfront-cost, no-wallet-signing** exclusion before allocating research or engineering time to a bounty. Retest against issuer #158: FAIL (paid x402 call), correctly excluded. Also exclude mirror issues explicitly rejecting manual PRs (e.g. https://github.com/IES-BoilerRoom/cpython-pep626-line-profiler/issues/1). Next eligible prospect must show original issuer, real funding, open permissioned submission, no fees, and compatible owner-approved payout; only then prepare a buyer-specific proposal.
+
+Funnel delta: new verified buyers 0; qualified paid agreements 0; accepted deliverables 0; verified receipts 0. Existing published service catalogue is not a sale. No email, professional clients, unsolicited outreach, unauthorized compute, or wallet actions used.
