@@ -889,5 +889,29 @@
     "current_verified_outside_workers": 0,
     "current_verified_buyer_acceptances": 0,
     "current_verified_new_income_txids": 0
+  },
+  "no_subscription_sell_existing_owner_order_2026_11_22": {
+    "priority": "VERIFIED_BUYER_PAYMENTS_BEFORE_VIRTUAL_WORK_COUNTS",
+    "zero_budget": true,
+    "no_subscriptions": true,
+    "no_listing_fees_or_upfront_costs": true,
+    "no_paid_ads_or_hardware_or_cloud": true,
+    "existing_product_order_page": "docs/buy.html",
+    "number_of_individually_grouped_offer_types": 18,
+    "free_original_python_script_variants": 1000,
+    "real_browser_utilities_and_mini_apps": 67,
+    "sell_as": "Separately agreed setup, customization, original buyer-specific research or delivery, not previously published free code",
+    "workforce_namespace_positions": "11255658980400",
+    "proof_of_actual_active_workers": "INDIVIDUAL_SUCCESSFUL_PROCESS_OR_MODEL_RUN_LOG_REQUIRED",
+    "if_no_buyer": "Fix a real offer conversion blocker, do not create thousands of unrequested products",
+    "b1": "Find one permitted real funded customer per executing job, match an existing ENIGMA offer, get acceptance and network agreement",
+    "b2": "Produce tested customized original output on buyer acceptance or repair one measured conversion error",
+    "d10": "Independently verify BTC mainnet or conditional native Circle Base USDC incoming TXID linked to buyer acceptance; otherwise NOT_VERIFIED",
+    "social_publish_blocker": "Metricool brand lacks connected social network; no external social posts claimed",
+    "current_platform_blocker": "Last GitHub Actions run found 2026-11-21, so 2026-11-22 auto deployment has not been verified",
+    "current_independently_verified_accepted_buyers": 0,
+    "current_independently_verified_new_deposits": "NOT_VERIFIED",
+    "strict_no_email": true,
+    "exclude_owners_accounting_tax_audit_clients": true
   }
 }
