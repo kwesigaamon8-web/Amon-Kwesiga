@@ -124,5 +124,33 @@
   ],
   "verified_paid_clients": 0,
   "incoming_payment_claim": "No newly verified ENIGMA buyer acceptance, signed contract, or transaction claimed by this catalogue",
-  "source_licensing": "Read individual repository files for licenses; a quote buys only mutually agreed custom work, not transfer of unrelated intellectual property"
+  "source_licensing": "Read individual repository files for licenses; a quote buys only mutually agreed custom work, not transfer of unrelated intellectual property",
+  "global_open_data_reports": {
+    "listing_status": "CUSTOM_QUOTE_ONLY_NOT_AUTO_SALE",
+    "service_page": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html",
+    "sample_report": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md",
+    "quote_request": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml",
+    "source_law": "Dataset-specific commercial rights, attribution, metadata and privacy conditions required",
+    "rates_usd_equivalent_from": {
+      "fact_check": 15,
+      "dataset_fitness_screen": 35,
+      "company_supplier_public_profile": 35,
+      "sector_report": 75,
+      "tender_and_bounty_research": 60,
+      "custom_international_report": 150
+    },
+    "included": [
+      "Original source and license register",
+      "Dated citations",
+      "Original value-added analysis",
+      "Quality and uncertainty disclosures",
+      "Buyer-agreed acceptance criteria"
+    ],
+    "not_claimed": [
+      "all-world data collected",
+      "external workers actually running",
+      "buyer already won",
+      "funds earned or received"
+    ]
+  }
 }
