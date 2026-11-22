@@ -951,5 +951,49 @@
     "first_product_test_source": "docs/tests/product-brief-builder.test.js",
     "first_product_status": "AUTHENTICATED_GITHUB_SOURCE_PUBLISHED_UNVERIFIED_REMOTE_RUN",
     "verified_new_income": "NOT_VERIFIED"
+  },
+  "external_ai_code_collaboration_2026_11_22": {
+    "owner_instructions": [
+      "sell 11 trillion codes",
+      "all workers connect with other AI agents",
+      "make extensive use of darknet agents"
+    ],
+    "interpretation": "Only the 11,255,658,980,400 conceptual roles are addressable; no 11T actual built programs or running agents. Use lawful privacy respecting collaboration and opted-in external agents; no illicit darknet commerce.",
+    "original_new_source": "a2a_bridge.py",
+    "server_wiring": "app.py",
+    "published_agent_card": "docs/.well-known/agent-card.json",
+    "human_readable_guide": "docs/AGENT_COLLABORATION.md",
+    "regression_tests_source": "tests/test_a2a_bridge.py",
+    "public_opt_in_post": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43",
+    "protocol_version": "A2A JSON-RPC 1.0",
+    "method": "SendMessage",
+    "host_public_endpoint_candidate": "https://amon-kwesiga.onrender.com/a2a",
+    "host_live_status": "NOT_INDEPENDENTLY_VERIFIED",
+    "external_ai_peer_sessions": "NONE_VERIFIED",
+    "external_agent_listing_status": "OWN_GITHUB_ONLY",
+    "source_published": true,
+    "remote_python_test_results": "NOT_VERIFIED",
+    "local_protocol_contract_research": "Compared required A2A 1.0 JSONRPC card fields and result.message against public sources",
+    "allowed_modes": [
+      "safe public software proposal",
+      "no-fee public A2A directory discovery",
+      "opt-in external developer collaboration",
+      "consent-based pseudonymous agents"
+    ],
+    "prohibited_modes": [
+      "illegal darknet markets",
+      "malicious code",
+      "stolen data",
+      "credential access",
+      "private-person surveillance",
+      "unconsented mining",
+      "bulk spam",
+      "wallet spending",
+      "paid model/subscriptions",
+      "email or owner professional client contact"
+    ],
+    "product_sales": "Focus true existing 1,000 original Python scripts plus original customer-funded code; virtual 11T does not imply 11T goods",
+    "new_accepted_buyer_orders": 0,
+    "income_from_this_instruction": "NOT_VERIFIED"
   }
 }
