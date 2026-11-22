@@ -5,6 +5,10 @@ Each SKU below is **one separately quoted support/setup/test-example/minor-custo
 
 **Get the free source:** [Full 1,000-code ZIP](ENIGMA_1000_Original_Codes.zip) · [Generator](../crypto-agents/codepack-1000/generate.py) · [Machine-readable full SKU and address list (CSV)](ENIGMA_1000_INDIVIDUAL_SKUS.csv) · [Interactive individual-offer browser](enigma-1000-individual-offers.html) · [Free PC AI Miner educational bonus](miner-bonus.html)
 
+## Exceptional custom code — built upon request
+
+Need something truly specialized beyond EN-0001–EN-1000? **ENIGMA offers exceptional, original, tailor-made code on request**, subject to the agreed scope, feasibility, required licenses, quality assurance, privacy/security review and price. Examples include entirely new utilities, custom Python algorithms, tailored website or business apps, authorized automations, data pipelines, and permissioned mining-feasibility analytics; these are not claimed to be prebuilt. **[Request a tailored code quotation](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** with non-sensitive requirements, sample inputs/outputs, desired platform, acceptance test and delivery date. Price and payment stage are determined individually; all three owner-approved BTC/Base-USDC receiving methods are below. No payment is due for merely requesting a quote.
+
 ## How an individual sale works
 
 Choose the exact SKU and click its **Request SKU service** link. Provide a fictional or anonymized input example and the desired custom output. The buyer and ENIGMA must agree the individually scoped deliverable, acceptance test, final amount in BTC or native Base USDC, timing, authorized payout address and source license before paying. No payment is due just because a code is downloadable. This is an inquiry funnel, **not an automated checkout or an already earned receivable**.
