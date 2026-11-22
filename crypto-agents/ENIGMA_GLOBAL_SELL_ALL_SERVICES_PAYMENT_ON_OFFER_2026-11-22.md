@@ -3,6 +3,27 @@
 **Order ID:** OWNER-20261122-SELL-ALL-SERVICES-HUMAN-CENTRED-PAYMENT-V1  
 **Status:** Owner's newest additive sales execution order, subordinate to the safety and wallet-network constraints of ENIGMA V7.0–V7.3; do not modify or expire existing permanent owner commands.
 
+## Latest owner reinforcement — 24/7 sales cascade (22 Nov 2026, 06:32 EAT)
+
+**Owner instruction:** “TELL AL WORKERS AND AGENTS 24/7,” following “SELL EVERY SERVICE,” “EVERYWHERE,” “IN HUMANLY WAY OF AI,” and “PAYMENT IS TOBE PUT ON SELL.”
+
+**Order ID:** `OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2`. This is an immediate supplement to the owner-approved SELL all services order and V7.0–V7.3. It does not change the owner's approved wallet routes, no-email instruction, permitted-platform requirement, professional-client separation, or existing platform resource limits.
+
+**Chief D: issue one clear, persistent sales command to every worker actually running through the B1/B2 chain.** Each genuine worker, director, assistant, manager and agent must read this owner instruction at the start of its *next actual execution*, inherit the same commercial objective, choose a distinct realistic assigned sales activity, then report a reproducible execution receipt to its parent. Managers/directors must deduplicate leads and verify original external proposals, accepted deliverables, payable amounts, and real payment receipts. *Uninvoked virtual roles do not receive messages or work 24/7.* Do not claim guaranteed uninterrupted computing or 11,255,658,980,400 running models.
+
+**B1 — real buyers around the clock:** during each enabled scheduled window, find and qualify genuinely payable buyer demand worldwide; use the lawful public OSINT/software/website/data/automation/creative-services catalogue. Respond only through a genuinely authenticated, permitted opt-in channel. Offer the exact relevant outcome, evidence, a clear scope and initial quote, then show the approved BTC mainnet or conditional native Base USDC payment methods on the offer. Natural conversational buyer-centric language; truthful AI-assisted origin; no synthetic humans or fake reviews. Do not endlessly repost to the same forum or spam.
+
+**B2 — fulfill paid work around the clock:** select one authorized, scoped paid need per run, produce high-quality original work, test, independently review, publish/deliver through agreed route, seek acceptance and correct failures. Where no buyer is yet qualified, work only on verifiable purchase/friction blockers such as quote accessibility, live price information or tested customer demo; no mass speculative code.
+
+**All actually invoked directors/managers/assistants/workers:** specialize across the full catalogue and avoid duplicate outreach. For every run, report (1) actual run ID, parent role and authentic executor; (2) buyer's independently verifiable link and need; (3) permissioned offer or `NOT_SENT`; (4) item, quote and correct-network payment instructions shown; (5) buyer agreement and work acceptance or `NONE`; (6) original delivered work and tests; (7) confirmed incoming transaction hash / amount / chain / payer agreement or `NOT_CHECKED`; (8) one failure, concrete repair and retest. The executor must explicitly report `NOT_RUN` if not activated.
+
+**24/7 implementation means recurring authorized schedules throughout all hours of every day, subject to real available compute, task run quotas and external account permissions.** It is not continuous ChatGPT execution. Keep the existing owner-approved automations; do not create wasteful duplicate schedules. Check the schedule status in each shift, and request owner action only where a material blocker requires it. Existing automations may cease at their preconfigured end date; report that clearly rather than pretending indefinite execution.
+
+**Payment is the lifeblood:** each sale must be real, lawful, fulfilled and paid to the correct approved owner address. Native Bitcoin B1 `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z` or B2 `bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9`; native Base USDC B1 `0x734989a439F146885C12907cd9Dd191b03d5B07e` only after owner/network/token validation. Never demand transfer before mutually agreed terms or claim income without independently confirmed on-chain transaction evidence.
+
+**Commercial success test:** independent payer → permissioned engagement → priced accepted original deliverable → agreed correct-chain crypto transferred → independently verifiable receipt. Each worker's mandate persists across its *actual future* invocations until superseded by another authenticated owner order.
+
+
 ## Owner's exact commercial objective
 
 SELL EVERY LAWFUL SERVICE OR ORIGINAL DIGITAL PRODUCT THAT ENIGMA CAN REALLY CREATE OR DELIVER, WORLDWIDE. Promote on every *actually available, permitted, authenticated* platform and in legitimate public communities, including lawful public-source intelligence/OSINT communities and privacy-oriented services where reachable. Use natural, empathetic, context-specific language: listen to the buyer, identify a real problem, explain a useful result with a working example, agree the deliverable and a fair price, then collect a correct-network crypto payment. Disclose that work is AI-assisted and human-supervised; never impersonate a real person or fake social proof.
