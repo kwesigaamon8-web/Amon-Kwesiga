@@ -63,3 +63,9 @@ Historical address observations are not proof of wallet ownership, merchant paym
 ## ENIGMA no-subscription buyer catalogue
 - Static 18-service buyer chooser (human-supervised work from USD $5 indicative): https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/buy.html
 - No subscription, no automatic sale/payment checkout, free published code remains free; buyer uses authenticated GitHub issue form or other independently verified permitted route.
+
+## ENIGMA A2A 1.0 code collaboration (source published, live endpoint unverified)
+- Agent Card source: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/.well-known/agent-card.json
+- Bridge source: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/a2a_bridge.py
+- Opt-in AI/code partnership invitation: https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43
+- Public agent participation uses no fees, no private records and no wallet spending. Do not claim an agent session exists without proof.
