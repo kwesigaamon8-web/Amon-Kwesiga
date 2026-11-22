@@ -1,5 +1,11 @@
 # Amon-Kwesiga
 
+## WORLDWIDE INTELLIGENCE REPORTS — FOR SALE
+
+**Worldwide source-cited reports for sale:** [ENIGMA World Open-Data Reports](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html). Commission a public dataset suitability screen (from USD 35 equivalent), fact-check (from USD 15), supplier/public organization research (from USD 35), public tender and bounty intelligence (from USD 60) or country/sector report (from USD 75), with agreed scope, licensing checks and original analysis. [Read a source-checked report example](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/WORLD_OPEN_DATA_SOURCE_REPORT_SAMPLE_2026-11-22.md) · [Request an individually scoped quote](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml). Source files are not our exclusive property; buyers pay for our tailored evidence and work. No paid engagement, payment or global runtime is claimed by publication alone.
+
+---
+
 ## Order a tested $5 digital service
 
 **Now accepting enquiries — small CSV cleanup from US$5 equivalent.** Send up to 100 rows × 20 columns of **fictional or anonymized** CSV data; after a written scope agreement, we deliver a cleaned CSV, exact-duplicate count, before/after row counts and a short quality report. [Inspect original source and tests](./crypto-agents/commercial-work/five-dollar-csv-pilot/).
