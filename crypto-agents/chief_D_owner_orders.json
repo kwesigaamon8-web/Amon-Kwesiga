@@ -1281,7 +1281,9 @@
       "no_email": true,
       "no_unapproved_wallet_actions": true,
       "preserve_existing_schedule": true,
-      "no_duplicate_automations": true
+      "no_duplicate_automations": true,
+      "origin": "explicit_human_owner_conversation",
+      "relay_audit": "Human owner's actual chat message 2026-11-22T03:32:48Z, relayed via authenticated GitHub action; origin does not establish cryptographic signature or execution"
     }
   ],
   "strict_per_worker_reporting": {
