@@ -851,6 +851,22 @@
     "requires_actual_runtime_acknowledgments": true,
     "broadcast_technically_verified_in_current_session": false,
     "report_published_does_not_mean_paid": true,
-    "preserve_all_prior_no_email_and_safe_payment_rules": true
+    "preserve_all_prior_no_email_and_safe_payment_rules": true,
+    "prototype_runner": "crypto-agents/open-data-worker/open_data_report_pilot.py",
+    "source_snapshot": "crypto-agents/open-data-worker/world_bank_east_africa_snapshot_2026-11-22.json",
+    "example_reports": [
+      "docs/reports/2026-11-22_EAST_AFRICA_DIGITAL_READINESS.md",
+      "docs/reports/2026-11-22_EAST_AFRICA_MACRO_SIGNALS.md"
+    ],
+    "github_actions_matrix_pilot": ".github/workflows/enigma-world-data-pilot.yml",
+    "matrix_process_slots": 2,
+    "verified_matrix_run_status": "NOT_VERIFIED_FROM_RUN_LOGS_YET",
+    "verified_external_agent_workers": 0,
+    "caution": "An actually invoked Python job is a finite computation, not an autonomous LLM worker. Audit logs are required before claiming actual runtime. No customer acceptance or cryptocurrency income is evidenced by this manifest.",
+    "known_conversion_blockers": [
+      "No independently verified inbound paying customer requests on public GitHub sales issues #35/#40",
+      "Social publishing network not connected in Metricool at time of check",
+      "New pages originally omitted from automated temporary-hosting deploy ZIP; fixed source workflow but successful live deployment still requires run evidence"
+    ]
   }
 }
