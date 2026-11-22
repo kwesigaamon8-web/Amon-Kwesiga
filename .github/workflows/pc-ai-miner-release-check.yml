@@ -7,6 +7,8 @@ on:
       - '.github/workflows/pc-ai-miner-release-check.yml'
       - 'crypto-agents/pc-ai-miner/**'
       - 'docs/pc-ai-miner.html'
+      - 'docs/pc-ai-miner-4d.html'
+      - 'docs/assets/mining-4d-core.mjs'
 permissions:
   contents: read
 jobs:
@@ -27,6 +29,20 @@ jobs:
           python crypto-agents/pc-ai-miner/pc_ai_miner.py self-test
           python -m unittest discover -s crypto-agents/pc-ai-miner -p 'test_*.py' -v
           python crypto-agents/pc-ai-miner/pc_ai_miner.py demo --tries 250 --bits 8
+      - name: Test 4D mining maths, hardware consent and prohibited-host gates
+        run: |
+          node --check docs/assets/mining-4d-core.mjs
+          node --test crypto-agents/pc-ai-miner/test_mining_4d.mjs
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          s=Path('docs/pc-ai-miner-4d.html').read_text()
+          HTMLParser().feed(s)
+          assert 'assets/mining-4d-core.mjs' in s
+          assert 'No mining starts' not in s or 'never hashes in the background' in s
+          assert 'HOST' not in s or 'host' in s
+          print('FOUR_DIMENSION_MINING_PUBLIC_SAFE_MODEL_PASS')
+          PY
       - name: Validate public HTML and inline JS without browser mining
         run: |
           python - <<'PY'
