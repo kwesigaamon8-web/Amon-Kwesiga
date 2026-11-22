@@ -53,7 +53,7 @@ def packet(seed: str, k: int) -> dict:
     work_number = k // 2
     company = "B1" if k % 2 == 0 else "B2"
     lane_id, focus, sale = LANES[work_number % len(LANES)]
-    country = COUNTRIES[(work_number // len(LANES)) % len(COUNTRIES)]
+    country = COUNTRIES[(23 * work_number + (int.from_bytes(hashlib.sha256(seed.encode("utf-8")).digest()[:2], "big") % len(COUNTRIES))) % len(COUNTRIES)]
     return {
         "schema": "ENIGMA_VIRTUAL_ROLE_ASSIGNMENT_V1",
         "order_id": ORDER_ID,
