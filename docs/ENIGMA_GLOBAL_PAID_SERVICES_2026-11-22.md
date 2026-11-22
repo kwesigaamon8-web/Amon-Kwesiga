@@ -1,5 +1,7 @@
 # ENIGMA B1/B2 — Global Digital Services, Software and Public-Source Intelligence
 
+**[Buyer storefront — 18 service types, examples, prices and private in-browser order preparation](buy.html)**. All existing software and public samples remain free; the paid item is bespoke service delivery after agreement. No subscription or paid advertising needed. The GitHub document is durable; the hosted storefront depends on an independently successful free deployment.
+
 **Worldwide custom work enquiries • Updated 22 November 2026**
 
 **Original work, practical deliverables and documented acceptance tests.** ENIGMA B1/B2 is a human-supervised independent digital-work project. The separate accounting, tax, audit and consulting clients of its owner are excluded.
