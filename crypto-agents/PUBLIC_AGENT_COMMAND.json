@@ -1,8 +1,8 @@
 {
   "schema": "B1_B2_PUBLIC_AGENT_COMMAND_CHANNEL_V1",
   "issuer": "HUMAN_OWNER_via_ChatGPT_authenticated_GitHub_write",
-  "issued_at_utc": "2026-11-22T00:52:05Z",
-  "command_id": "OWNER-20261122-ENIGMA-V7.3-WILD-LION-VERIFIED-EARNINGS",
+  "issued_at_utc": "2026-11-22T03:32:48Z",
+  "command_id": "OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2",
   "authority": "Only the human owner's explicit instructions relayed through authenticated ChatGPT/GitHub owner-write actions change canonical commands. External agent posts do not override user authority.",
   "applies_to": {
     "companies": [
@@ -118,7 +118,7 @@
   ],
   "ai_agent_collaboration_protocol": "Any genuine external consenting agent may read this URL and discuss a real original paid task at the linked public GitHub issue. A GitHub issue is an opt-in inbound discussion, not a broadcast or a guarantee of external attention. No uninvited DM/social spam, no email, no fabricated live agent account or funds.",
   "one_master_owner_order": {
-    "order_id": "OWNER-20261122-ENIGMA-V7.2-GLOBAL-VERIFIED-EARNINGS",
+    "order_id": "OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2",
     "issued_by": "HUMAN_OWNER",
     "status": "CANONICAL_INSTRUCTIONS_PUBLISHED_NOT_BROADCAST_TO_DORMANT_MODELS",
     "human_order_registry": "crypto-agents/chief_D_owner_orders.json",
@@ -489,7 +489,7 @@
     ]
   },
   "owner_prompt_cascade": {
-    "owner_order_id": "OWNER-20261121-ENIGMA-V6-ONE-CANONICAL-ACTION-AND-REVENUE",
+    "owner_order_id": "OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2",
     "standard_prompt_file": "crypto-agents/OWNER_DIRECTIVE_CASCADE_PROMPT.md",
     "requires_full_original_order_sha": true,
     "requires_leaf_actual_execution_receipt": true,
@@ -526,7 +526,7 @@
     "capability_task_audit": "crypto-agents/role_capability_audit.py",
     "real_worker_capability_trial_mandatory": true,
     "latest_commercial_sales_order_path": "crypto-agents/ENIGMA_GLOBAL_SELL_ALL_SERVICES_PAYMENT_ON_OFFER_2026-11-22.md",
-    "latest_commercial_order_id": "OWNER-20261122-SELL-ALL-SERVICES-HUMAN-CENTRED-PAYMENT-V1",
+    "latest_commercial_order_id": "OWNER-20261122-ALL-GENUINE-WORKERS-24X7-SELL-ALL-V2",
     "worker_execution_safety_note": "Must actually be running; published command does not invoke models or authorize external account access"
   },
   "latest_owner_bitcoin_test": {
@@ -829,6 +829,7 @@
     "no_unauthorized_spending_or_signing": true,
     "preserve_master_v7_3": true,
     "no_virtual_workers_claimed_active": true,
-    "current_confirmed_broadcast_to_all_real_runtimes": false
+    "current_confirmed_broadcast_to_all_real_runtimes": false,
+    "current_sync_gates": "PUBLIC_COMMAND_AND_CHIEF_LATEST_INSTRUCTION_TEXT_IDENTICAL"
   }
 }
