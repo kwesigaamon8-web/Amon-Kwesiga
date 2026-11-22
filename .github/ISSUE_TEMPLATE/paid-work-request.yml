@@ -34,6 +34,7 @@ body:
         - Custom website, web app, or mobile app
         - Routine, wellness, or appointment reminder app (non-diagnostic)
         - Non-financial workflow automation
+        - Exceptional tailor-made original code (new algorithm, bespoke tool or integration; quote after scope review)
         - Other original digital service
     validations:
       required: true
