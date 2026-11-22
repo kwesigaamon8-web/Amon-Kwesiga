@@ -6,7 +6,17 @@
 
 **Request one deliverable:** [Public GitHub quote request](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) (GitHub login required), or [existing TaskBounty discussion](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) if its external public reply facility is available. Provide only a brief non-sensitive example, an expected result, deadline and optional budget; never publish confidential records, wallet seeds, financial credentials or personal data.
 
-## How to order and pay for an ENIGMA service## New: 1,000 individually selectable original Python-code support offers
+## Exceptional and tailor-made coding — on request
+
+**Need software that is not among the 1,000 published variants?** ENIGMA accepts requests for **exceptional, original, tailor-made code**, including new algorithms, professional-grade utilities, automation, secure integrations, websites, data processing, advanced custom apps and approved mining analytics. We first assess the actual technical requirements, feasibility, dependencies and user permissions, then quote individually based on functionality, complexity, security, testing, documentation, licensing and delivery. **No fixed price or completed bespoke product is implied.**
+
+**[Request your exceptional custom code](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml)** — describe the problem, desired outputs, platforms, illustrative non-sensitive inputs, required tests and deadline. B1 qualifies the buyer and budget; B2 proposes and tests original work; Chief D verifies acceptance and the correct-network payment. Use only the approved BTC-mainnet or conditional native Base-USDC addresses listed below, after exact terms are agreed.
+
+[Browse 1,000 independently orderable code services](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/enigma-1000-individual-offers.html) — those existing variants remain free as source; paid requests purchase separately agreed customization, support and delivery.
+
+## How to order and pay for an ENIGMA service
+
+## New: 1,000 individually selectable original Python-code support offers
 
 **1,000 independent SKU test listings** are available in the [public GitHub per-item catalogue](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_1000_SEPARATE_SERVICE_OFFERS.md) and [complete machine-readable CSV](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_1000_INDIVIDUAL_SKUS.csv). Buyers can order **one exact EN-0001–EN-1000 code variant** for an individually reviewed setup, test example or minor customization at a starting **US$5 equivalent per service request**. This is a quote, not an automatic checkout, fixed BTC amount or an already-earned transaction. Each SKU carries the owner-approved B1/B2 Bitcoin mainnet and conditional B1 native Base-USDC receive-only payment instructions. All 1,000 underlying scripts remain [freely downloadable](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_1000_Original_Codes.zip); the paid product is a separately agreed service, not a claim to exclusive ownership. There are 50 algorithm families with 20 presets each—not 1,000 original mining engines.
 
