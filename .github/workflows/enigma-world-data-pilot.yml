@@ -1,0 +1,42 @@
+name: ENIGMA World Open-Data Report Pilot
+on:
+  push:
+    paths:
+      - ".github/workflows/enigma-world-data-pilot.yml"
+      - "crypto-agents/open-data-worker/**"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source_checked_report:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - topic: digital
+            role: D01-M01-W01
+            parent: D01-M01
+          - topic: macro
+            role: D02-M01-W02
+            parent: D02-M01
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate public snapshot and strict worker gates
+        run: python3 crypto-agents/open-data-worker/open_data_report_pilot.py --self-test
+      - name: Produce evidence-gated report for ONE invoked Python runner
+        run: |
+          python3 crypto-agents/open-data-worker/open_data_report_pilot.py \
+            --topic "${{ matrix.topic }}" \
+            --worker-id "${{ matrix.role }}" \
+            --parent-id "${{ matrix.parent }}" \
+            --output "out/${{ matrix.topic }}-source-backed-report.md"
+          grep -q 'NOT_VERIFIED' "out/${{ matrix.topic }}-source-backed-report.md"
+          grep -q 'independently running AI agent' "out/${{ matrix.topic }}-source-backed-report.md"
+      - name: Upload run-specific public demonstration report
+        uses: actions/upload-artifact@v4
+        with:
+          name: "enigma-source-report-${{ matrix.topic }}-${{ github.run_id }}"
+          path: "out/${{ matrix.topic }}-source-backed-report.md"
+          retention-days: 7
