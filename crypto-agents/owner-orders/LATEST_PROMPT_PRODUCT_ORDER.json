@@ -26,7 +26,12 @@
     "live_hosted_website": "NOT_VERIFIED",
     "status": "ONE_REAL_PRODUCT_SOURCE_PUBLISHED_NOT_AUTOMATIC_CROSS_PLATFORM_POSTS",
     "first_buyer_acceptance": "NONE",
-    "correct_chain_cryptocurrency_income": "NOT_VERIFIED"
+    "correct_chain_cryptocurrency_income": "NOT_VERIFIED",
+    "public_product_post_url": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/42",
+    "product_public_listing_status": "PUBLISHED_ON_OWN_AUTHENTICATED_GITHUB_ISSUE",
+    "sales_catalogue": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/BUY_NOW.md",
+    "customization_indicative_usd_price_from": 25,
+    "independent_buyer_confirmation": "NONE_VERIFIED"
   },
   "worker_requirements": [
     "real run ID",
