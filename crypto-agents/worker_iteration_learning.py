@@ -108,6 +108,15 @@ def create_receipt(report,prior=None):
         cause="UNVERIFIED_PAYER_AND_RECEIPT"
         correction="Independently verify original buyer, funding, scope, authorized submission and native BTC-mainnet settlement before proposing work."
     output_hash=hashlib.sha256(txt.encode("utf-8")).hexdigest() if txt else None
+    # A poor NEW model attempt must not destroy a previous genuinely graded
+    # lesson. This is retained historical context, NOT a new successful run.
+    retain_earlier=bool(old and old.get("practical_lesson_reusable") is True
+                       and old.get("lesson") and not successful)
+    reusable_lesson=(learned if successful and not repeated else
+                     str(old.get("lesson") or "")[:MAX_TEXT] if retain_earlier else "")
+    lesson_origin=("current_graded_training" if successful and not repeated
+                   else "retained_previous_graded_training" if retain_earlier
+                   else "none")
     return {
        "schema":VERSION,"worker":full,"immediate_parent":fleet+"/"+parent,
        "owner_order_id":order,
@@ -116,9 +125,12 @@ def create_receipt(report,prior=None):
        "real_model_response_proven":True,
        "training_inference_proven":practical.get("independent_model_call_status")=="MODEL_COMPLETED",
        "training_grade":grade,"source_url":source,
-       "lesson":learned if successful else "",
+       "lesson":reusable_lesson,
+       "lesson_origin":lesson_origin,
+       "last_training_attempt_failed":not successful,
+       "prior_good_lesson_preserved":retain_earlier,
        "original_training_draft_sha256":output_hash,
-       "practical_lesson_reusable":successful and not repeated,
+       "practical_lesson_reusable":bool(reusable_lesson),
        "previous_source_repeated":repeated,
        "failure_or_blocker":cause,"next_correction":correction,
        "prior_real_learner_receipt_read":old is not None,
@@ -157,6 +169,18 @@ def self_test():
     assert first["real_model_response_proven"] and first["lesson"] and not first["actual_bitcoin_payment_verified"]
     assert create_receipt(good,first)["previous_source_repeated"]
     assert create_receipt(good,first)["failure_or_blocker"]=="SAME_UNVERIFIED_SOURCE_AS_PRIOR_RUN"
+    weak=dict(good)
+    weak_practical=dict(good["practical_training_while_working"])
+    weak_result=dict(weak_practical["result"],status="MODEL_RESPONSE_INCOMPLETE_OR_SOURCE_NOT_VERIFIED",
+                     actual_training_model_response="Weak attempted revision")
+    weak_practical["result"]=weak_result
+    weak["practical_training_while_working"]=weak_practical
+    preserved=create_receipt(weak,first)
+    assert preserved["last_training_attempt_failed"]
+    assert preserved["prior_good_lesson_preserved"]
+    assert preserved["lesson"]==first["lesson"]
+    assert preserved["lesson_origin"]=="retained_previous_graded_training"
+    assert preserved["actual_bitcoin_payment_verified"] is False
     bad=dict(good,inference_status="model_failed")
     try:create_receipt(bad)
     except ValueError:pass
