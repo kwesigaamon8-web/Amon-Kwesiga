@@ -85,7 +85,7 @@ def _public_safe_text(params: dict) -> str:
     msg = params.get("message")
     if not isinstance(msg, dict) or msg.get("role") != "ROLE_USER":
         raise ValueError("A ROLE_USER message is required")
-    if not isinstance(msg.get("messageId"), str) or not msg["messageId"][:100]:
+    if not isinstance(msg.get("messageId"), str) or not 1 <= len(msg["messageId"]) <= 100:
         raise ValueError("A nonempty messageId is required")
     parts = msg.get("parts")
     if not isinstance(parts, list) or not 1 <= len(parts) <= 3:
@@ -133,7 +133,7 @@ def a2a_message():
     if (request.content_length is not None and
             request.content_length > MAX_REQUEST_BYTES):
         return _error(None, -32600, "Request exceeds 4096 bytes", 413)
-    if request.headers.get("A2A-Version") != "1.0":
+    if request.headers.get("A2A-Version") not in (None, "1.0"):
         return _error(None, -32001, "Use A2A-Version: 1.0", 400)
     if not request.is_json:
         return _error(None, -32600, "JSON content type required", 415)
