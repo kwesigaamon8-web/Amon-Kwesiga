@@ -913,5 +913,43 @@
     "current_independently_verified_new_deposits": "NOT_VERIFIED",
     "strict_no_email": true,
     "exclude_owners_accounting_tax_audit_clients": true
+  },
+  "every_owner_prompt_product_and_permitted_post_order_2026_11_22": {
+    "owner_order_id": "OWNER-20261122-EVERY-PROMPT-REAL-WORKER-PRODUCT-PUBLISH",
+    "order_doc": "crypto-agents/owner-orders/2026-11-22_EVERY_PROMPT_PRODUCT_AND_POST_OWNER_ORDER.md",
+    "latest_public_safe_event": "crypto-agents/owner-orders/LATEST_PROMPT_PRODUCT_ORDER.json",
+    "trigger": "ONLY_WHEN_PROMPT_IS_AUTHORIZED_AND_AUTHENTICALLY_DISPATCHED_TO_A_REAL_EXECUTOR",
+    "every_real_worker_instruction": "For each genuinely invoked prompt event, make or materially improve one useful original unique tested product, then post once on permissioned authenticated owned channel and quote lawful buyer-specific service",
+    "per_worker_max_per_actual_run": 1,
+    "configured_virtual_positions": "11255658980400",
+    "active_worker_count_implied_by_manifest": 0,
+    "cannot_auto_monitor_future_chat_messages": true,
+    "no_auto_external_webhooks_from_chat_messages": true,
+    "every_product_requires": [
+      "actual_executor_run_id",
+      "source_or_deliverable",
+      "source_license_review",
+      "tested_acceptance_criteria",
+      "unique_public_post_url",
+      "price_or_honest_custom_quote",
+      "real_buyer_or_NONE",
+      "correct_network_txid_or_NOT_VERIFIED"
+    ],
+    "release_location": "https://github.com/kwesigaamon8-web/Amon-Kwesiga",
+    "zero_cost_rules": [
+      "NO_SUBSCRIPTIONS",
+      "NO_PAID_API",
+      "NO_PAID_ADS",
+      "NO_WALLET_SPEND_OR_SIGN",
+      "NO_GMAIL",
+      "NO_SCRAPED_PERSONAL_DATA",
+      "NO_SPAM",
+      "NO_ACCOUNTING_TAX_AUDIT_CLIENTS"
+    ],
+    "first_product": "docs/product-brief-builder.html",
+    "first_product_logic": "docs/assets/product-brief-core.mjs",
+    "first_product_test_source": "docs/tests/product-brief-builder.test.js",
+    "first_product_status": "AUTHENTICATED_GITHUB_SOURCE_PUBLISHED_UNVERIFIED_REMOTE_RUN",
+    "verified_new_income": "NOT_VERIFIED"
   }
 }
