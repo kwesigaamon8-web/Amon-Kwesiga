@@ -6,7 +6,11 @@
 
 **Request one deliverable:** [Public GitHub quote request](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) (GitHub login required), or [existing TaskBounty discussion](https://www.task-bounty.com/board/43a7a645-082f-4f5f-87b8-f5397ec9c121) if its external public reply facility is available. Provide only a brief non-sensitive example, an expected result, deadline and optional budget; never publish confidential records, wallet seeds, financial credentials or personal data.
 
-## How to order and pay for an ENIGMA service
+## How to order and pay for an ENIGMA service## Bonus included with every eligible paid ENIGMA service: PC AI Miner learning pack
+
+**Free educational bonus, not mining income:** [PC AI Miner learning bonus and source-backed demos](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/miner-bonus.html). Customers who commission an agreed paid ENIGMA digital job can access the browser SHA256d learning demo, original Python sample and tests, opt-in pool configuration helper and mining-feasibility calculator at no extra charge. This software is **already public and free** to everyone; no exclusivity or unverified executable binaries are sold. Historical 34 Windows miner archives are held back pending independent review. No automatic mining, Bitcoin earnings, malware-clean assurance or electricity profitability is promised. Only consented owner-controlled hardware may participate in actual mining. The bonus does not change the payable price or payment route for the commissioned service.
+
+
 
 **BUYER PATH:** [See service and starting price](#ready-to-demonstrate-small-services) → [request the exact job and quote](https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml) → agree final scope, acceptance criteria, exact coin/network, delivery and price → [follow the payment instructions](https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/payment.html) → delivery, buyer acceptance, agreed settlement and verified receipt.
 
