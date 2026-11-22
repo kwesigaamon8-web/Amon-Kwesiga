@@ -111,7 +111,7 @@ def create_receipt(report,prior=None):
     # A poor NEW model attempt must not destroy a previous genuinely graded
     # lesson. This is retained historical context, NOT a new successful run.
     retain_earlier=bool(old and old.get("practical_lesson_reusable") is True
-                       and old.get("lesson") and not successful)
+                       and old.get("lesson") and (not successful or repeated))
     reusable_lesson=(learned if successful and not repeated else
                      str(old.get("lesson") or "")[:MAX_TEXT] if retain_earlier else "")
     lesson_origin=("current_graded_training" if successful and not repeated
@@ -169,6 +169,8 @@ def self_test():
     assert first["real_model_response_proven"] and first["lesson"] and not first["actual_bitcoin_payment_verified"]
     assert create_receipt(good,first)["previous_source_repeated"]
     assert create_receipt(good,first)["failure_or_blocker"]=="SAME_UNVERIFIED_SOURCE_AS_PRIOR_RUN"
+    assert create_receipt(good,first)["lesson"]==first["lesson"]
+    assert create_receipt(good,first)["lesson_origin"]=="retained_previous_graded_training"
     weak=dict(good)
     weak_practical=dict(good["practical_training_while_working"])
     weak_result=dict(weak_practical["result"],status="MODEL_RESPONSE_INCOMPLETE_OR_SOURCE_NOT_VERIFIED",
