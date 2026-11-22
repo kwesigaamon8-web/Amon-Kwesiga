@@ -12,5 +12,10 @@
   "accepts_secret_keys": false,
   "accepts_email": false,
   "no_live_mcp_or_a2a_endpoint": true,
-  "last_updated_utc": "2026-11-18T23:48:00Z"
+  "last_updated_utc": "2026-11-22",
+  "public_a2a_source_card": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/.well-known/agent-card.json",
+  "a2a_json_rpc_source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/a2a_bridge.py",
+  "a2a_deployment_status": "SOURCE_PUBLISHED_NOT_INDEPENDENTLY_VERIFIED_LIVE",
+  "external_agent_sessions_verified": 0,
+  "opt_in_code_collaboration": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43"
 }
