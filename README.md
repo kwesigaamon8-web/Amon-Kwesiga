@@ -1,6 +1,6 @@
 # Amon-Kwesiga
 
-[**Order ENIGMA digital services — no subscription**](docs/buy.html): choose among 18 small-scope or custom data, Python, public research and read-only Bitcoin software services; examples, price guidance and buyer copy-to-GitHub enquiry. Free source remains free. This GitHub source link is permanent; the [latest hosted preview](docs/TEMP_PREVIEW.md) is temporary and only valid after a successful deployment.
+[**Order ENIGMA digital services — no subscription**](docs/BUY_NOW.md): choose among 18 small-scope or custom data, Python, public research and read-only Bitcoin software services; examples, price guidance and buyer copy-to-GitHub enquiry. Free source remains free. The Markdown offer catalogue is readable immediately on GitHub. The optional [interactive order-preparer source](docs/buy.html) requires a separately verified live host before it can run in a browser.
 
 
 ## WORLDWIDE INTELLIGENCE REPORTS — FOR SALE
