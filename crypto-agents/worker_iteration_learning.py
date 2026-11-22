@@ -86,7 +86,7 @@ def create_receipt(report,prior=None):
     result=practical.get("result") or {}
     grade=result.get("status") or "NOT_GRADED"
     txt=str(result.get("actual_training_model_response") or "")
-    match=re.search(r"(?im)^\\s*LEARNED\\s*:\\s*(.*)$",txt)
+    match=re.search(r"(?im)^\s*LEARNED\s*:\s*(.*)$",txt)
     learned=(match.group(1).strip() if match else "")[:MAX_TEXT]
     source=str(result.get("source_url") or (practical.get("assignment") or {}).get("real_original_research_url") or "")[:400]
     if source and not source.startswith("https://"):source=""
@@ -137,7 +137,7 @@ def save_receipt(obj,root=ROOT):
     p=location(*obj["worker"].split("/",1),root)
     p.parent.mkdir(parents=True,exist_ok=True)
     tmp=p.with_suffix(".tmp")
-    tmp.write_text(json.dumps(obj,ensure_ascii=False,sort_keys=True,indent=2)+"\\n",encoding="utf-8")
+    tmp.write_text(json.dumps(obj,ensure_ascii=False,sort_keys=True,indent=2)+"\n",encoding="utf-8")
     tmp.replace(p)
     return p
 
@@ -152,7 +152,7 @@ def self_test():
      "practical_training_while_working":{"independent_model_call_status":"MODEL_COMPLETED",
        "result":{"status":"APPLIED_ORIGINAL_DRAFT_NEEDS_INDEPENDENT_REVIEW",
          "real_model_call_completed":True,"source_url":"https://example.org/issue",
-         "actual_training_model_response":"SOURCE: Buyer not verified\\nLEARNED: The original sponsor must explicitly fund the job\\nBUILT: Test scope\\nNEXT: Check budget"}}}
+         "actual_training_model_response":"SOURCE: Buyer not verified\nLEARNED: The original sponsor must explicitly fund the job\nBUILT: Test scope\nNEXT: Check budget"}}}
     first=create_receipt(good)
     assert first["real_model_response_proven"] and first["lesson"] and not first["actual_bitcoin_payment_verified"]
     assert create_receipt(good,first)["previous_source_repeated"]
