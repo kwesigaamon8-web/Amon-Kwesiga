@@ -6,6 +6,7 @@ body:
     attributes:
       value: |
         **ENIGMA ONLY:** This independent project does not accept the owner's accounting, tax, audit or professional consulting engagements. GitHub sign-in is required to submit this public issue. **Before posting:** This is a public GitHub issue. Describe the work using fictional or anonymized examples only. **Never** share bank statements, account numbers, personal client or patient data, medical histories, credentials, wallet secrets, or confidential documents.
+        **Starter quotes (USD equivalent, not a charge):** CSV cleanup up to 100 rows **$5**; one public Bitcoin-mainnet TXID evidence check **$15**; private daily planner customization up to five fields **$25**; receive-only Bitcoin merchant page **$30**; approved exported BTC/Base-USDC ledger reconciliation up to 500 rows **$50**. Bespoke public-source research, code and other services receive an individual quote. **Payment instructions after mutual agreement only:** B1 native BTC on Bitcoin mainnet `bc1qvprle87txnk7dgcgsau0nauxvvkwuyp0w9zc0z`; B2 native BTC on Bitcoin mainnet `bc1qtaunz7mx7k588p8v544tq7x7ezxxcfky0h2vn9`; conditional B1 native Circle USDC on Base mainnet `0x734989a439F146885C12907cd9Dd191b03d5B07e` only after owner/network/token validation. See https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/payment.html. Do **not** transfer funds when merely asking for a quote. The exact amount, network, deliverable and acceptance criteria must be agreed first.
         **Quick request:** tell us what result you need and choose a service. For OSINT we use only lawfully accessible public information with dated citations, never personal surveillance or private data harvesting. Full scoped portfolio: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_GLOBAL_PAID_SERVICES_2026-11-22.md. The budget, deadline, tests and BTC/payment network can be agreed afterwards. No deposit or payment is requested to obtain a quote; this form is not a contract.
   - type: dropdown
     id: service
@@ -75,7 +76,6 @@ body:
       options:
         - Agreed native BTC on Bitcoin mainnet
         - Native USDC on Base (subject to exact token/network and owner-route verification)
-        - Another owner-confirmed crypto asset/network
         - Other agreed lawful payment method
         - Not decided
     validations:
