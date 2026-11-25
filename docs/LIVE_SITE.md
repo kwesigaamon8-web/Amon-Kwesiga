@@ -1,6 +1,10 @@
 # B1/B2 Digital Work Studio — verified buyer access
 
-**Primary, automatically renewed directory (recommended):** [Open the latest current free studio, paid services and native BTC payment pages](./TEMP_PREVIEW.md).
+**Primary buyer route:** [Browse the current 18-service catalogue and request a fixed-scope quote](./BUY_NOW.md). This readable GitHub catalogue includes indicative prices, public-safe intake steps and receive-only payment conditions; it does not require a working temporary website to view.
+
+**Temporary demo directory:** [Inspect the last verified free studio preview and its dated limitations](./TEMP_PREVIEW.md).
+
+**Public recheck — 25 November 2026:** the preview homepage returned HTTP 200, but `buy.html` returned HTTP 404. A working homepage does not establish that the current order app is deployed. Use the catalogue and GitHub quote form above for inquiries; do not treat the preview as a working checkout.
 
 The primary directory is maintained by the no-fee, twice-weekly [free hosting renewal workflow](https://github.com/kwesigaamon8-web/Amon-Kwesiga/actions/workflows/b1-b2-free-studio-renewal.yml), which tests the original browser tools and published assets before updating its public link. Each anonymous preview expires after seven days. **Always use the stable directory above**, not an old expiring preview address.
 
