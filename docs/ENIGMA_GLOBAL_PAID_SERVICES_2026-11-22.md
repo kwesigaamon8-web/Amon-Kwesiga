@@ -1,6 +1,6 @@
 # ENIGMA B1/B2 — Global Digital Services, Software and Public-Source Intelligence
 
-**[Buyer storefront — 18 service types, examples, prices and private in-browser order preparation](buy.html)**. All existing software and public samples remain free; the paid item is bespoke service delivery after agreement. No subscription or paid advertising needed. The GitHub document is durable; the hosted storefront depends on an independently successful free deployment.
+**[Read the buyer catalogue — 18 service types, examples and starting prices](BUY_NOW.md)**. All existing software and public samples remain free; the paid item is bespoke service delivery after agreement. No subscription or paid advertising needed. This catalogue is readable directly on GitHub. The optional [browser order-preparation app source](buy.html) requires a separately verified hosted preview; this source link is not a live checkout.
 
 **Worldwide custom work enquiries • Updated 22 November 2026**
 
