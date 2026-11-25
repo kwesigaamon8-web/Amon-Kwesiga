@@ -26,16 +26,33 @@ def verify_relative_links(base_dir, links):
 
 class TestEnigmaServices(unittest.TestCase):
     def test_buy_now_relative_links_resolve(self):
-        possible_paths = ['BUY_NOW.md', os.path.join('docs', 'BUY_NOW.md')]
-        buy_now_path = next((p for p in possible_paths if os.path.exists(p)), None)
-        
-        if buy_now_path:
-            with open(buy_now_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            base_dir = os.path.dirname(buy_now_path) or '.'
-            links = extract_relative_links(content)
-            missing_links = verify_relative_links(base_dir, links)
-            self.assertEqual(missing_links, [], f"Missing target files for relative links: {missing_links}")
+        repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        buy_now_path = os.path.join(repo_root, 'docs', 'BUY_NOW.md')
+        if not os.path.exists(buy_now_path):
+            buy_now_path = os.path.join(repo_root, 'BUY_NOW.md')
+
+        self.assertTrue(
+            os.path.exists(buy_now_path),
+            f"Catalogue file BUY_NOW.md missing at {buy_now_path}"
+        )
+
+        with open(buy_now_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        base_dir = os.path.dirname(buy_now_path)
+        links = extract_relative_links(content)
+        self.assertGreater(
+            len(links),
+            0,
+            "Expected at least one relative proof link in BUY_NOW.md"
+        )
+
+        missing_links = verify_relative_links(base_dir, links)
+        self.assertEqual(
+            missing_links,
+            [],
+            f"Missing target files for relative links: {missing_links}"
+        )
 
     def test_missing_target_link_verification_fixture(self):
         # Fixture verifying that missing relative link targets are correctly detected
