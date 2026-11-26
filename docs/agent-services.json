@@ -1,6 +1,6 @@
 {
   "schema": "b1b2-digital-services/v1",
-  "updated_utc": "2026-11-22",
+  "updated_utc": "2026-11-26",
   "provider": {
     "name": "B1/B2 Digital Work Studio",
     "type": "Human-supervised independent developer services",
@@ -200,5 +200,179 @@
     "no_required_subscription_or_wallet_spend": true,
     "human_review_for_real_buyer_work": true,
     "public_opt_in_project": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/43"
+  },
+  "storefront_offers": [
+    {
+      "id": "storefront-01",
+      "name": "CSV cleanup & duplicate review",
+      "starting_usd_equivalent": 5,
+      "scope": "100 rows / 20 cols",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/five-dollar-csv-pilot",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-02",
+      "name": "Python code variant setup & test",
+      "starting_usd_equivalent": 5,
+      "scope": "EN-0001–EN-1000",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/enigma-1000-individual-offers.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-03",
+      "name": "Public Bitcoin transaction report",
+      "starting_usd_equivalent": 15,
+      "scope": "One public native BTC TXID",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/africa-bitcoin-merchant-wallet",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-04",
+      "name": "Public-source fact check",
+      "starting_usd_equivalent": 15,
+      "scope": "One claim and source trail",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-05",
+      "name": "Personal planner customization",
+      "starting_usd_equivalent": 25,
+      "scope": "Up to five agreed fields",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/personal-daily-checkin-demo.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-06",
+      "name": "Custom CSV-to-JSON mapping",
+      "starting_usd_equivalent": 25,
+      "scope": "Small sample schema",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/csv-to-json",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-07",
+      "name": "Receive-only Bitcoin merchant page",
+      "starting_usd_equivalent": 30,
+      "scope": "Payment requests and checks",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/bitcoin-merchant/index.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-08",
+      "name": "Public supplier/company profile",
+      "starting_usd_equivalent": 35,
+      "scope": "Dated public-source register",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/intelligence.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-09",
+      "name": "Software QA and docs",
+      "starting_usd_equivalent": 35,
+      "scope": "One scoped bug or guide",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-10",
+      "name": "Anonymized data-reconciliation review",
+      "starting_usd_equivalent": 40,
+      "scope": "Duplicate/missing exception checks",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-11",
+      "name": "BTC / Base-native USDC export reconciling",
+      "starting_usd_equivalent": 50,
+      "scope": "Up to 500 approved exported records",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/crypto-ledger/index.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-12",
+      "name": "Public tender / bounty research",
+      "starting_usd_equivalent": 60,
+      "scope": "One scoped public market scan",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/intelligence.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-13",
+      "name": "Competitor or market brief",
+      "starting_usd_equivalent": 75,
+      "scope": "Public business/sector comparison",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/reports/2026-11-22_EAST_AFRICA_DIGITAL_READINESS.md",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-14",
+      "name": "Original industry intelligence report",
+      "starting_usd_equivalent": 150,
+      "scope": "Dated evidence + business decisions",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/reports/2026-11-22_EAST_AFRICA_MACRO_SIGNALS.md",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-15",
+      "name": "New custom website, app or automation",
+      "starting_usd_equivalent": null,
+      "scope": "Requirements, testing and license review",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_GLOBAL_PAID_SERVICES_2026-11-22.md",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-16",
+      "name": "Tailored international public-data report",
+      "starting_usd_equivalent": null,
+      "scope": "Buyer-specific source rights and sources",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-17",
+      "name": "Permissioned PC AI Miner training",
+      "starting_usd_equivalent": null,
+      "scope": "Free software; charge only agreed setup help",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/pc-ai-miner.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    },
+    {
+      "id": "storefront-18",
+      "name": "Customize original browser tools",
+      "starting_usd_equivalent": null,
+      "scope": "Choose from 67 free existing utilities/apps",
+      "evidence": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/free-toolbox.html",
+      "acceptance": "Agree a measurable completion check, output format and deadline before work; buyer reviews against that agreed check.",
+      "status": "quote_only"
+    }
+  ],
+  "storefront_offer_terms": {
+    "source": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/BUY_NOW.md",
+    "quote_request": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/issues/new?template=paid-work-request.yml",
+    "payment_instructions": "https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/payment.html",
+    "payment_requires_prior_agreement": true,
+    "ai_assisted_human_supervised": true,
+    "conditional_base_usdc_address": "0x734989a439F146885C12907cd9Dd191b03d5B07e",
+    "conditional_base_usdc_note": "Native Circle USDC on Base mainnet only after per-job owner and network verification",
+    "existing_detailed_offers": "The offers array retains the five detailed starter specifications; storefront_offers indexes all 18 storefront categories."
   }
 }
