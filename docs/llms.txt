@@ -49,6 +49,29 @@
 
 **Exact network, address, satoshis, deadlines and objective acceptance criteria must be agreed with a real client first.** Read service JSON for limitations, original sample source and test runs.
 
+## Complete storefront quote index (18 categories)
+
+- CSV cleanup & duplicate review: from USD 5 equivalent — 100 rows / 20 cols. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/five-dollar-csv-pilot
+- Python code variant setup & test: from USD 5 equivalent — EN-0001–EN-1000. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/enigma-1000-individual-offers.html
+- Public Bitcoin transaction report: from USD 15 equivalent — One public native BTC TXID. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/africa-bitcoin-merchant-wallet
+- Public-source fact check: from USD 15 equivalent — One claim and source trail. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/INTELLIGENCE_EVIDENCE_SAMPLE_2026-11-22.md
+- Personal planner customization: from USD 25 equivalent — Up to five agreed fields. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/personal-daily-checkin-demo.html
+- Custom CSV-to-JSON mapping: from USD 25 equivalent — Small sample schema. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/crypto-agents/commercial-work/csv-to-json
+- Receive-only Bitcoin merchant page: from USD 30 equivalent — Payment requests and checks. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/bitcoin-merchant/index.html
+- Public supplier/company profile: from USD 35 equivalent — Dated public-source register. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/intelligence.html
+- Software QA and docs: from USD 35 equivalent — One scoped bug or guide. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html
+- Anonymized data-reconciliation review: from USD 40 equivalent — Duplicate/missing exception checks. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/agent-work-market.html
+- BTC / Base-native USDC export reconciling: from USD 50 equivalent — Up to 500 approved exported records. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/crypto-ledger/index.html
+- Public tender / bounty research: from USD 60 equivalent — One scoped public market scan. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/intelligence.html
+- Competitor or market brief: from USD 75 equivalent — Public business/sector comparison. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/reports/2026-11-22_EAST_AFRICA_DIGITAL_READINESS.md
+- Original industry intelligence report: from USD 150 equivalent — Dated evidence + business decisions. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/reports/2026-11-22_EAST_AFRICA_MACRO_SIGNALS.md
+- New custom website, app or automation: individual quotation — Requirements, testing and license review. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/ENIGMA_GLOBAL_PAID_SERVICES_2026-11-22.md
+- Tailored international public-data report: individual quotation — Buyer-specific source rights and sources. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/world-open-data-reports.html
+- Permissioned PC AI Miner training: individual quotation — Free software; charge only agreed setup help. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/pc-ai-miner.html
+- Customize original browser tools: individual quotation — Choose from 67 free existing utilities/apps. Evidence: https://github.com/kwesigaamon8-web/Amon-Kwesiga/blob/main/docs/free-toolbox.html
+
+All listings require mutually agreed scope, acceptance and payment terms; see the machine-readable catalogue for limitations.
+
 ## What an agent or buyer sends to request work
 
 One non-sensitive request stating the task, desired output, sample CSV schema or public TXID, number of rows, test/acceptance criteria, actual authorized budget, preferred native Bitcoin-mainnet route and requested delivery date. Do not post private ledger records, API keys, credentials, wallet seeds or customer identity. No Gmail or email contact is used.
